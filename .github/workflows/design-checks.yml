@@ -1,0 +1,64 @@
+name: 設計規範機檢
+
+# CLAUDE.md「任務完成前的自檢」裡四項可機檢的紅線，改由 CI 自動驗，
+# 不再靠交付者自己申報。
+#
+# 注意：本 repo 為免費方案的 private repo，無法設定分支保護，
+# 因此這個 workflow **擋不住合併**——它只會在 PR 上顯示紅叉並寄信通知。
+# 看到紅叉請不要合併。（要真正擋住需升級 GitHub Pro。）
+
+on:
+  push:
+    branches: ['**']
+    paths:
+      - 'ui-restyle-demo-latest.html'
+      - 'scripts/check-design.sh'
+      - '.github/workflows/design-checks.yml'
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  design-checks:
+    name: 硬編色／外部資源／字級／rgba
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: 取出程式碼
+        uses: actions/checkout@v4
+
+      - name: 執行機檢
+        id: checks
+        run: |
+          chmod +x scripts/check-design.sh
+          # 同時輸出到 log 與 PR 摘要
+          {
+            echo '## 設計規範機檢'
+            echo ''
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          set +e
+          bash scripts/check-design.sh ui-restyle-demo-latest.html 2>&1 | tee /tmp/result.txt
+          STATUS=${PIPESTATUS[0]}
+          set -e
+
+          cat /tmp/result.txt >> "$GITHUB_STEP_SUMMARY"
+          {
+            echo '```'
+            echo ''
+            if [ "$STATUS" -ne 0 ]; then
+              echo '❌ **未通過。** 違規細節見上方，或展開 job log。'
+              echo ''
+              echo '基準值定義在 `scripts/check-design.sh` 開頭，與 `CLAUDE.md` 自檢清單一致。'
+              echo '若這是刻意的設計決策，請先與協作者取得共識，再一併更新基準值與 `CLAUDE.md`。'
+            else
+              echo '✅ 四項機檢全數通過。'
+              echo ''
+              echo '> 提醒：機檢只驗得了這四項。**破版、共用區塊影響、無障礙、'
+              echo '> 建案首頁底圖是否為業主實景照**，這些仍然只能靠人眼——PR 的畫面截圖不可省。'
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          exit "$STATUS"
