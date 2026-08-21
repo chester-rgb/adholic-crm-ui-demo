@@ -1,0 +1,12 @@
+# 鎖 LF 換行。
+# 兩位開發者都在 Windows，若讓 git 自動轉 CRLF，兩台機器 checkout 出來的
+# 3518 行單檔 HTML 會整檔被視為改動，diff 與合併完全失去意義。
+# 現況：所有 .html/.md 均為純 LF + UTF-8。不要改這個設定。
+* text=auto eol=lf
+
+*.html text eol=lf
+*.md   text eol=lf
+
+# 單檔 demo 內嵌了 base64 字體與 logo，行很長；標記為 diff 友善的文字檔即可，
+# 不要當成 binary，否則就看不到設計改了什麼。
+*.html diff

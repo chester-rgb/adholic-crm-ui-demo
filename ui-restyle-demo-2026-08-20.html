@@ -1,0 +1,564 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>白紙上的刊物</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap">
+<style>
+  /* ── 建案客資 CRM 定案 tokens（design-taste 05 §三，2026-07-04 拍板）──
+     方向：「白紙上的刊物」。單一視覺世界，刻意不做深色模式。 */
+  :root{
+    --paper:#FBFAF7; --surface:#FFFFFF; --panel:#F3F1EA;
+    --ink:#1C2434; --muted:#646B7A; --hairline:#E8E4DA;
+    --navy:#1E3A5F; --red:#A93226;
+    --serif:'Noto Serif TC',serif;
+    --sans:'Noto Sans TC',-apple-system,sans-serif;
+    /* rem 刻度（比例 1.2） */
+    --fs-0:.694rem; --fs-1:.833rem; --fs-2:1rem; --fs-3:1.2rem; --fs-4:1.44rem; --fs-num:2.75rem;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{font-size:16px}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:var(--sans); font-weight:400; font-size:var(--fs-1);
+    line-height:1.7; -webkit-font-smoothing:antialiased;
+  }
+  button{font-family:var(--sans); cursor:pointer; background:none; border:none; color:inherit; font-size:inherit}
+  ::selection{background:var(--panel)}
+
+  /* ── 版面骨架 ── */
+  .app{display:grid; grid-template-columns:216px 1fr; min-height:100vh}
+  @media (max-width:900px){ .app{grid-template-columns:1fr} .sidebar{display:none} }
+
+  /* ── 側欄：淺色編輯側欄（歷史教訓：別回深藏青整面側欄）── */
+  .sidebar{
+    border-right:1px solid var(--hairline); padding:1.5rem 0;
+    display:flex; flex-direction:column; gap:2rem; background:var(--paper);
+  }
+  .brand{padding:0 1.5rem}
+  .brand .word{font-family:var(--serif); font-weight:700; font-size:var(--fs-2); letter-spacing:.12em}
+  .brand .sub{font-size:var(--fs-0); color:var(--muted); letter-spacing:.28em; margin-top:.15rem}
+  .nav-group{display:flex; flex-direction:column}
+  .nav-label{
+    font-size:var(--fs-0); color:var(--muted); letter-spacing:.22em;
+    padding:0 1.5rem .5rem; border-bottom:1px solid var(--hairline); margin:0 0 .35rem;
+  }
+  .nav-item{
+    display:flex; align-items:center; gap:.6rem; text-align:left;
+    padding:.42rem 1.5rem; color:var(--muted); font-size:var(--fs-1);
+    border-left:2px solid transparent; transition:background .15s ease-out,color .15s ease-out;
+  }
+  .nav-item:hover{background:var(--panel); color:var(--ink)}
+  .nav-item.active{color:var(--ink); font-weight:500; border-left-color:var(--ink)}
+  .nav-item .n{margin-left:auto; font-size:var(--fs-0); color:var(--red); font-variant-numeric:tabular-nums}
+  .sidebar .foot{margin-top:auto; padding:0 1.5rem; font-size:var(--fs-0); color:var(--muted)}
+  .sidebar .foot button{color:var(--muted); text-decoration:underline; text-underline-offset:3px; font-size:var(--fs-0)}
+  .sidebar .foot button:hover{color:var(--ink)}
+
+  /* ── 主區 ── */
+  .main{display:flex; flex-direction:column; min-width:0}
+
+  .topbar{
+    display:flex; align-items:center; gap:1rem;
+    padding:.8rem 2.5rem; border-bottom:1px solid var(--hairline);
+  }
+  .quick{
+    flex:0 1 21rem; display:flex; align-items:center; gap:.5rem;
+    border:1px solid var(--hairline); background:var(--surface);
+    padding:.32rem .75rem; color:var(--muted); font-size:var(--fs-1);
+    transition:border-color .15s ease-out;
+  }
+  .quick:hover{border-color:var(--muted)}
+  .quick kbd{
+    margin-left:auto; font-family:var(--sans); font-size:var(--fs-0);
+    border:1px solid var(--hairline); padding:0 .35rem; color:var(--muted); background:var(--paper);
+  }
+  .topbar .who{margin-left:auto; font-size:var(--fs-0); color:var(--muted); letter-spacing:.05em}
+
+  .page{padding:2rem 2.5rem 4rem; max-width:1120px; width:100%}
+
+  .crumb{font-size:var(--fs-0); color:var(--muted); letter-spacing:.1em}
+  .crumb b{color:var(--ink); font-weight:500}
+
+  /* 刊頭：節標 2px 墨色粗規線 */
+  .masthead{
+    display:flex; align-items:flex-end; gap:1.25rem; flex-wrap:wrap;
+    border-bottom:2px solid var(--ink); padding:.4rem 0 .9rem; margin-top:.5rem;
+  }
+  .masthead h1{font-family:var(--serif); font-weight:700; font-size:var(--fs-4); letter-spacing:.08em; line-height:1.3}
+  .masthead .tpl{font-size:var(--fs-0); color:var(--muted)}
+  .masthead .acts{margin-left:auto; display:flex; gap:.6rem; align-items:center}
+  .btn{
+    font-size:var(--fs-1); padding:.4rem 1.1rem; letter-spacing:.06em;
+    border:1px solid var(--ink); background:var(--surface); color:var(--ink);
+    transition:background .15s ease-out,color .15s ease-out;
+  }
+  .btn:hover{background:var(--panel)}
+  .btn.primary{background:var(--ink); color:var(--paper); border-color:var(--ink)}
+  .btn.primary:hover{background:var(--navy); border-color:var(--navy)}
+  .btn:focus-visible,.nav-item:focus-visible,.chip:focus-visible,.pill:focus-visible,.quick:focus-visible{outline:2px solid var(--navy); outline-offset:2px}
+
+  /* ── KPI 列：髮絲線分欄，不做卡片 ── */
+  .kpis{
+    display:grid; grid-template-columns:repeat(4,1fr);
+    border-bottom:1px solid var(--hairline); padding:1.4rem 0; margin-bottom:1.6rem;
+  }
+  @media (max-width:760px){ .kpis{grid-template-columns:repeat(2,1fr); row-gap:1.2rem} }
+  .kpi{padding:0 1.5rem; border-left:1px solid var(--hairline)}
+  .kpi:first-child{border-left:none; padding-left:0}
+  .kpi .k{font-size:var(--fs-0); color:var(--muted); letter-spacing:.18em}
+  .kpi .v{
+    font-family:var(--serif); font-weight:600; font-size:var(--fs-num);
+    line-height:1.15; font-variant-numeric:tabular-nums; display:flex; align-items:baseline; gap:.6rem;
+  }
+  .kpi .v small{font-family:var(--sans); font-weight:400; font-size:var(--fs-1); color:var(--muted)}
+  .kpi svg{align-self:center}
+  .kpi .spark-dot{fill:var(--red)}
+  .spark-line{stroke:var(--muted); fill:none; stroke-width:1.5}
+
+  /* ── 篩選：套用中條件＝可拆卸 chips ── */
+  .filters{display:flex; align-items:center; gap:.6rem; flex-wrap:wrap; margin-bottom:.9rem}
+  .filters .lbl{font-size:var(--fs-0); color:var(--muted); letter-spacing:.18em}
+  .pill{
+    font-size:var(--fs-0); padding:.22rem .8rem; letter-spacing:.05em;
+    border:1px solid var(--hairline); background:var(--surface); color:var(--muted);
+    transition:border-color .15s ease-out,color .15s ease-out;
+  }
+  .pill:hover{border-color:var(--muted); color:var(--ink)}
+  .pill.active{border-color:var(--ink); color:var(--ink); font-weight:500}
+  .pill .dot{display:inline-block; width:5px; height:5px; border-radius:50%; background:var(--red); margin-right:.4rem; vertical-align:2px}
+  .chip{
+    font-size:var(--fs-0); padding:.22rem .35rem .22rem .7rem; display:inline-flex; align-items:center; gap:.35rem;
+    border:1px solid var(--ink); background:var(--surface); color:var(--ink);
+  }
+  .chip .x{color:var(--muted); padding:0 .3rem; font-size:var(--fs-1); line-height:1}
+  .chip .x:hover{color:var(--red)}
+  .clear-all{font-size:var(--fs-0); color:var(--muted); text-decoration:underline; text-underline-offset:3px}
+  .clear-all:hover{color:var(--ink)}
+
+  /* 情境提示條 */
+  .notice{
+    display:none; align-items:center; gap:.8rem;
+    border-left:2px solid var(--red); background:var(--panel);
+    padding:.5rem 1rem; font-size:var(--fs-1); margin-bottom:1rem;
+  }
+  .notice.show{display:flex}
+  .notice button{text-decoration:underline; text-underline-offset:3px; color:var(--navy)}
+
+  /* ── 表格：表頭 1.5px 墨線、分隔靠髮絲線、hover 淡底 ── */
+  .table-wrap{overflow-x:auto; background:var(--surface); border:1px solid var(--hairline)}
+  table{width:100%; border-collapse:collapse; font-size:var(--fs-1); min-width:860px}
+  thead th{
+    text-align:left; font-weight:500; font-size:var(--fs-0); letter-spacing:.14em; color:var(--muted);
+    padding:.7rem .9rem; border-bottom:1.5px solid var(--ink); white-space:nowrap;
+  }
+  thead th.sortable{cursor:pointer; user-select:none}
+  thead th.sortable:hover{color:var(--ink)}
+  thead th .arr{font-size:.6rem; margin-left:.25rem}
+  tbody td{padding:.62rem .9rem; border-bottom:1px solid var(--hairline); white-space:nowrap; font-variant-numeric:tabular-nums}
+  tbody tr{transition:background .15s ease-out}
+  tbody tr:hover{background:var(--paper)}
+  tbody tr.checked{background:var(--panel)}
+  td .name{font-weight:500}
+  .tag{
+    font-size:var(--fs-0); border:1px solid var(--muted); color:var(--muted);
+    padding:0 .45rem; margin-left:.45rem; letter-spacing:.05em;
+  }
+  .badge{font-size:var(--fs-0); border:1px solid var(--ink); color:var(--ink); padding:.05rem .5rem; letter-spacing:.1em}
+  .badge.call{border-color:var(--muted); color:var(--muted)}
+  .unassigned{color:var(--red); font-size:var(--fs-0); letter-spacing:.1em}
+  .stale-dot{display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--red); margin-right:.45rem; vertical-align:1px}
+  td.ops{text-align:right}
+  td.ops .rowact{opacity:0; transition:opacity .15s ease-out; display:inline-flex; gap:.9rem}
+  tbody tr:hover td.ops .rowact, tbody tr.checked td.ops .rowact{opacity:1}
+  td.ops button{color:var(--navy); font-size:var(--fs-0); letter-spacing:.08em; text-decoration:underline; text-underline-offset:3px}
+  td.ops button.del{color:var(--muted)}
+  td.ops button:hover{color:var(--red)}
+  input[type=checkbox]{accent-color:var(--ink); width:14px; height:14px}
+  .tfoot{display:flex; justify-content:space-between; align-items:center; padding:.7rem .2rem; font-size:var(--fs-0); color:var(--muted)}
+  .tfoot .pager{display:flex; gap:1rem}
+  .tfoot .pager button{color:var(--muted); text-decoration:underline; text-underline-offset:3px}
+  .tfoot .pager button:hover{color:var(--ink)}
+
+  /* ── 批次浮條 ── */
+  .batchbar{
+    position:fixed; left:50%; bottom:1.6rem; transform:translate(-50%,140%);
+    display:flex; align-items:center; gap:1.2rem;
+    background:var(--ink); color:var(--paper); padding:.65rem 1.4rem;
+    font-size:var(--fs-1); box-shadow:0 8px 24px rgba(28,36,52,.18);
+    transition:transform .2s ease-out;
+  }
+  .batchbar.show{transform:translate(-50%,0)}
+  .batchbar b{font-variant-numeric:tabular-nums}
+  .batchbar button{color:var(--paper); text-decoration:underline; text-underline-offset:3px; letter-spacing:.05em}
+  .batchbar button:hover{color:var(--hairline)}
+  .batchbar .split{width:1px; height:1rem; background:rgba(251,250,247,.3)}
+
+  /* ── ⌘K 命令面板 ── */
+  .palette-mask{
+    position:fixed; inset:0; background:rgba(28,36,52,.32);
+    display:none; align-items:flex-start; justify-content:center; padding-top:14vh; z-index:50;
+  }
+  .palette-mask.show{display:flex}
+  .palette{
+    width:min(34rem,90vw); background:var(--surface); border:1px solid var(--hairline);
+    box-shadow:0 16px 48px rgba(28,36,52,.22);
+  }
+  .palette input{
+    width:100%; border:none; outline:none; padding:.9rem 1.2rem;
+    font-family:var(--sans); font-size:var(--fs-2); color:var(--ink);
+    border-bottom:1.5px solid var(--ink); background:var(--surface);
+  }
+  .palette input::placeholder{color:var(--muted)}
+  .palette .plist{max-height:17rem; overflow-y:auto; padding:.4rem 0}
+  .palette .grp{font-size:var(--fs-0); color:var(--muted); letter-spacing:.22em; padding:.5rem 1.2rem .2rem}
+  .palette .item{
+    display:flex; width:100%; text-align:left; gap:.8rem; align-items:baseline;
+    padding:.45rem 1.2rem; font-size:var(--fs-1); transition:background .12s ease-out;
+  }
+  .palette .item:hover,.palette .item.hl{background:var(--panel)}
+  .palette .item .meta{margin-left:auto; color:var(--muted); font-size:var(--fs-0); font-variant-numeric:tabular-nums}
+  .palette .empty{padding:1rem 1.2rem; color:var(--muted); font-size:var(--fs-1)}
+
+  /* ── Toast ── */
+  .toast{
+    position:fixed; right:1.6rem; bottom:1.6rem; transform:translateY(160%);
+    background:var(--surface); border:1px solid var(--ink); border-left:3px solid var(--ink);
+    padding:.7rem 1.2rem; font-size:var(--fs-1); transition:transform .2s ease-out; z-index:60;
+  }
+  .toast.show{transform:translateY(0)}
+  .toast b{font-variant-numeric:tabular-nums}
+
+  /* ── 頁尾：交接規格（給工程師）── */
+  .spec{border-top:2px solid var(--ink); margin-top:3.5rem; padding-top:1.2rem}
+  .spec h2{font-family:var(--serif); font-weight:600; font-size:var(--fs-3); letter-spacing:.1em; margin-bottom:1rem}
+  .spec-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr)); gap:2rem}
+  .spec h3{font-size:var(--fs-0); color:var(--muted); letter-spacing:.22em; font-weight:500; border-bottom:1px solid var(--hairline); padding-bottom:.4rem; margin-bottom:.7rem}
+  .swatches{display:flex; flex-direction:column; gap:.45rem}
+  .sw{display:flex; align-items:center; gap:.7rem; font-size:var(--fs-0); color:var(--muted)}
+  .sw i{width:2.2rem; height:1.15rem; border:1px solid var(--hairline); flex:none}
+  .sw code{font-family:ui-monospace,monospace; color:var(--ink)}
+  .spec ul{list-style:none; font-size:var(--fs-0); color:var(--muted); display:flex; flex-direction:column; gap:.4rem}
+  .spec ul b{color:var(--ink); font-weight:500}
+  .spec .foot{margin-top:2rem; font-size:var(--fs-0); color:var(--muted); letter-spacing:.05em}
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{transition:none !important; animation:none !important}
+  }
+</style>
+
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="word">ADHOLIC</div>
+      <div class="sub">建案客資系統</div>
+    </div>
+    <nav class="nav-group" aria-label="主選單">
+      <div class="nav-label">主選單</div>
+      <button class="nav-item">建案總覽</button>
+      <button class="nav-item active">來客名單<span class="n">384</span></button>
+      <button class="nav-item">最新消息</button>
+    </nav>
+    <nav class="nav-group" aria-label="系統設定">
+      <div class="nav-label">系統設定</div>
+      <button class="nav-item">人員管理</button>
+      <button class="nav-item">權限管理</button>
+      <button class="nav-item">操作紀錄</button>
+      <button class="nav-item">已刪來客</button>
+    </nav>
+    <div class="foot">
+      林曉青・系統管理員<br>
+      <button>變更密碼</button>　<button>登出</button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <button class="quick" id="quickBtn">快查客戶——姓名或電話，跨建案<kbd>⌘K</kbd></button>
+      <div class="who">青園綠境・銷售中</div>
+    </div>
+
+    <div class="page">
+      <div class="crumb">建案總覽 ／ <b>青園綠境</b> ／ 來客名單</div>
+
+      <div class="masthead">
+        <h1>來客名單</h1>
+        <div class="tpl">範本：完整客戶詳細資料 v1・18 個動態欄位</div>
+        <div class="acts">
+          <button class="btn">匯出 Excel</button>
+          <button class="btn primary">＋ 新增來客</button>
+        </div>
+      </div>
+
+      <div class="kpis">
+        <div class="kpi">
+          <div class="k">累積來客</div>
+          <div class="v">384
+            <svg width="72" height="26" viewBox="0 0 72 26" aria-hidden="true">
+              <polyline class="spark-line" points="0,20 12,17 24,18 36,12 48,14 60,7 70,4"/>
+              <circle class="spark-dot" cx="70" cy="4" r="2.5"/>
+            </svg>
+          </div>
+        </div>
+        <div class="kpi"><div class="k">戶數</div><div class="v">126</div></div>
+        <div class="kpi"><div class="k">住宅已售</div><div class="v">71<small>銷售率 56%</small></div></div>
+        <div class="kpi"><div class="k">車位已售</div><div class="v">39<small>共 84 位</small></div></div>
+      </div>
+
+      <div class="filters">
+        <span class="lbl">常用篩選</span>
+        <button class="pill" data-saved="fb">本週 FB 來客</button>
+        <button class="pill" data-saved="stale"><span class="dot"></span>久未跟進 66</button>
+        <button class="pill">未指派 12</button>
+        <span class="lbl" style="margin-left:.8rem">套用中</span>
+        <span class="chip">來源：FB<button class="x" aria-label="移除條件">×</button></span>
+        <span class="chip">需求房型：三房<button class="x" aria-label="移除條件">×</button></span>
+        <button class="clear-all">清除全部</button>
+      </div>
+
+      <div class="notice" id="staleNotice">
+        目前只顯示「久未跟進」的 66 筆來客（逾 14 天無互動・未成交）
+        <button id="showAll">顯示全部</button>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:2.2rem"><input type="checkbox" id="checkAll" aria-label="全選"></th>
+              <th>姓名</th>
+              <th>電話</th>
+              <th>來客／來電</th>
+              <th>來源</th>
+              <th class="sortable" id="sortDate">來訪日期<span class="arr">▾</span></th>
+              <th>建檔時間</th>
+              <th>負責業務</th>
+              <th style="text-align:right">操作</th>
+            </tr>
+          </thead>
+          <tbody id="rows">
+            <tr data-date="2026-08-19">
+              <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
+              <td><span class="name">陳威宇</span><span class="tag">回訪 ×2</span></td>
+              <td>0912-334-***</td><td><span class="badge">來客</span></td><td>FB</td>
+              <td>2026-08-19</td><td>2026-08-19 14:22</td><td>張家豪</td>
+              <td class="ops"><span class="rowact"><button>指派</button><button>詳情</button><button class="del">刪除</button></span></td>
+            </tr>
+            <tr data-date="2026-08-18">
+              <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
+              <td><span class="name">林佳蓉</span></td>
+              <td>0987-221-***</td><td><span class="badge">來客</span></td><td>現場</td>
+              <td>2026-08-18</td><td>2026-08-18 10:05</td><td>吳姿瑩</td>
+              <td class="ops"><span class="rowact"><button>指派</button><button>詳情</button><button class="del">刪除</button></span></td>
+            </tr>
+            <tr data-date="2026-08-17">
+              <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
+              <td><span class="stale-dot" title="久未跟進"></span><span class="name">黃淑珊</span></td>
+              <td>0933-108-***</td><td><span class="badge call">來電</span></td><td>網路</td>
+              <td>2026-08-17</td><td>2026-08-17 16:40</td><td><span class="unassigned">未指派</span></td>
+              <td class="ops"><span class="rowact"><button>指派</button><button>詳情</button><button class="del">刪除</button></span></td>
+            </tr>
+            <tr data-date="2026-08-16">
+              <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
+              <td><span class="name">許文彬</span><span class="tag">回訪 ×3</span></td>
+              <td>0921-877-***</td><td><span class="badge">來客</span></td><td>介紹</td>
+              <td>2026-08-16</td><td>2026-08-16 11:18</td><td>張家豪</td>
+              <td class="ops"><span class="rowact"><button>指派</button><button>詳情</button><button class="del">刪除</button></span></td>
+            </tr>
+            <tr data-date="2026-08-15">
+              <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
+              <td><span class="stale-dot" title="久未跟進"></span><span class="name">王思穎</span></td>
+              <td>0955-462-***</td><td><span class="badge">來客</span></td><td>看板</td>
+              <td>2026-08-15</td><td>2026-08-15 15:02</td><td><span class="unassigned">未指派</span></td>
+              <td class="ops"><span class="rowact"><button>指派</button><button>詳情</button><button class="del">刪除</button></span></td>
+            </tr>
+            <tr data-date="2026-08-14">
+              <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
+              <td><span class="name">蔡明翰</span></td>
+              <td>0910-664-***</td><td><span class="badge call">來電</span></td><td>IG</td>
+              <td>2026-08-14</td><td>2026-08-14 09:47</td><td>吳姿瑩</td>
+              <td class="ops"><span class="rowact"><button>指派</button><button>詳情</button><button class="del">刪除</button></span></td>
+            </tr>
+            <tr data-date="2026-08-12">
+              <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
+              <td><span class="name">楊雅筑</span></td>
+              <td>0978-315-***</td><td><span class="badge">來客</span></td><td>路過</td>
+              <td>2026-08-12</td><td>2026-08-12 17:33</td><td>張家豪</td>
+              <td class="ops"><span class="rowact"><button>指派</button><button>詳情</button><button class="del">刪除</button></span></td>
+            </tr>
+            <tr data-date="2026-08-11">
+              <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
+              <td><span class="name">郭俊廷</span></td>
+              <td>0930-529-***</td><td><span class="badge">來客</span></td><td>FB</td>
+              <td>2026-08-11</td><td>2026-08-11 13:20</td><td>陳冠廷</td>
+              <td class="ops"><span class="rowact"><button>指派</button><button>詳情</button><button class="del">刪除</button></span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tfoot">
+        <span>共 384 筆・第 1 / 48 頁</span>
+        <span class="pager"><button>上一頁</button><button>下一頁</button></span>
+      </div>
+
+      <!-- 交接規格：這頁本身就是給工程師的 spec -->
+      <div class="spec">
+        <h2>設計語言備註</h2>
+        <div class="spec-grid">
+          <div>
+            <h3>色彩 TOKENS</h3>
+            <div class="swatches">
+              <div class="sw"><i style="background:#FBFAF7"></i><code>--paper #FBFAF7</code> 頁底</div>
+              <div class="sw"><i style="background:#FFFFFF"></i><code>--surface #FFFFFF</code> 表格／面板</div>
+              <div class="sw"><i style="background:#F3F1EA"></i><code>--panel #F3F1EA</code> 淡底分隔</div>
+              <div class="sw"><i style="background:#1C2434"></i><code>--ink #1C2434</code> 墨色（非純黑）</div>
+              <div class="sw"><i style="background:#646B7A"></i><code>--muted #646B7A</code> 次要文字</div>
+              <div class="sw"><i style="background:#E8E4DA"></i><code>--hairline #E8E4DA</code> 髮絲線</div>
+              <div class="sw"><i style="background:#1E3A5F"></i><code>--navy #1E3A5F</code> 互動／連結</div>
+              <div class="sw"><i style="background:#A93226"></i><code>--red #A93226</code> 唯一香料：需要行動的狀態</div>
+            </div>
+          </div>
+          <div>
+            <h3>字排</h3>
+            <ul>
+              <li><b>Noto Serif TC</b>——刊頭、大數字（2.75rem）、品牌字</li>
+              <li><b>Noto Sans TC</b>——UI 標籤、表格、表單</li>
+              <li>rem 刻度比例 1.2；表頭小字拉字距 .14em</li>
+              <li>數字一律 <b>tabular-nums</b>，欄位才對得齊</li>
+              <li>節標 <b>2px 墨規線</b>、表頭 <b>1.5px 墨線</b></li>
+            </ul>
+          </div>
+          <div>
+            <h3>元件原則</h3>
+            <ul>
+              <li>卡片外框全拆：分隔靠<b>留白 → 髮絲線 → 淡底</b></li>
+              <li>徽章<b>細線描邊不填色</b>，彩色標籤全撤</li>
+              <li>圓角 0；陰影只給真的浮起的東西（批次浮條）</li>
+              <li>紅色只出現在「需要人行動」的地方</li>
+              <li>動效 150–250ms ease-out，只表達狀態變化</li>
+            </ul>
+          </div>
+          <div>
+            <h3>互動示範（這頁能玩的）</h3>
+            <ul>
+              <li><b>⌘K</b>——跨建案快查命令面板</li>
+              <li>勾選任一列——底部浮出<b>批次指派</b>條</li>
+              <li>點「久未跟進」——情境提示條＋紅點標記</li>
+              <li>表格列 hover——行內動作浮現</li>
+              <li>「來訪日期」表頭——點擊排序</li>
+              <li>套用中條件——chips 可逐一拆除</li>
+            </ul>
+          </div>
+        </div>
+        <div class="foot">建案客資 CRM・視覺重整示範｜依 design-taste 05 §三 定案 tokens（2026-07-04 拍板「白紙上的刊物」）｜正式版側欄品牌字請用 Adholic 原始 logo 檔</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="batchbar" id="batchbar">
+  已選 <b id="selCount">0</b> 筆
+  <span class="split"></span>
+  <button id="assignBtn">批次指派負責業務</button>
+  <button id="clearSel">取消選取</button>
+</div>
+
+<div class="palette-mask" id="paletteMask">
+  <div class="palette" role="dialog" aria-label="快查客戶">
+    <input id="paletteInput" placeholder="輸入姓名或電話，跨建案搜尋⋯" autocomplete="off">
+    <div class="plist" id="paletteList"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast">已指派 <b id="toastN">0</b> 筆・略過 0 筆・失敗 0 筆</div>
+
+<script>
+(function(){
+  var $=function(s){return document.querySelector(s)}, $$=function(s){return Array.prototype.slice.call(document.querySelectorAll(s))};
+
+  /* 勾選 → 批次浮條 */
+  var bar=$('#batchbar'), count=$('#selCount');
+  function syncBar(){
+    var checked=$$('.rowck').filter(function(c){return c.checked});
+    count.textContent=checked.length;
+    bar.classList.toggle('show',checked.length>0);
+    $$('.rowck').forEach(function(c){c.closest('tr').classList.toggle('checked',c.checked)});
+  }
+  $$('.rowck').forEach(function(c){c.addEventListener('change',syncBar)});
+  $('#checkAll').addEventListener('change',function(e){
+    $$('.rowck').forEach(function(c){c.checked=e.target.checked}); syncBar();
+  });
+  $('#clearSel').addEventListener('click',function(){
+    $('#checkAll').checked=false;
+    $$('.rowck').forEach(function(c){c.checked=false}); syncBar();
+  });
+  $('#assignBtn').addEventListener('click',function(){
+    var n=$$('.rowck').filter(function(c){return c.checked}).length;
+    $('#toastN').textContent=n;
+    var t=$('#toast'); t.classList.add('show');
+    setTimeout(function(){t.classList.remove('show')},2600);
+    $('#clearSel').click();
+  });
+
+  /* 常用篩選 pills ＋ 久未跟進提示條 */
+  $$('.pill').forEach(function(p){
+    p.addEventListener('click',function(){
+      p.classList.toggle('active');
+      if(p.dataset.saved==='stale') $('#staleNotice').classList.toggle('show',p.classList.contains('active'));
+    });
+  });
+  $('#showAll').addEventListener('click',function(){
+    $('#staleNotice').classList.remove('show');
+    $$('.pill').forEach(function(p){if(p.dataset.saved==='stale')p.classList.remove('active')});
+  });
+
+  /* 套用中 chips 拆除 */
+  $$('.chip .x').forEach(function(x){
+    x.addEventListener('click',function(){x.parentElement.remove()});
+  });
+  $('.clear-all').addEventListener('click',function(){ $$('.chip').forEach(function(c){c.remove()}) });
+
+  /* 來訪日期排序 */
+  var asc=false;
+  $('#sortDate').addEventListener('click',function(){
+    asc=!asc;
+    this.querySelector('.arr').textContent=asc?'▴':'▾';
+    var tb=$('#rows'), rows=$$('#rows tr');
+    rows.sort(function(a,b){
+      return asc ? a.dataset.date.localeCompare(b.dataset.date) : b.dataset.date.localeCompare(a.dataset.date);
+    }).forEach(function(r){tb.appendChild(r)});
+  });
+
+  /* ⌘K 快查面板 */
+  var mask=$('#paletteMask'), input=$('#paletteInput'), list=$('#paletteList');
+  var data=[
+    {g:'客戶',t:'陳威宇',m:'0912-334-***・青園綠境・3 次'},
+    {g:'客戶',t:'林佳蓉',m:'0987-221-***・青園綠境・1 次'},
+    {g:'客戶',t:'許文彬',m:'0921-877-***・青園綠境・3 次'},
+    {g:'客戶',t:'王思穎',m:'0955-462-***・青園綠境・1 次'},
+    {g:'動作',t:'新增來客',m:'本建案'},
+    {g:'動作',t:'開啟銷控表',m:'青園綠境'},
+    {g:'動作',t:'匯出 Excel',m:'目前篩選結果'}
+  ];
+  function render(q){
+    q=(q||'').trim();
+    var hits=data.filter(function(d){return !q || d.t.indexOf(q)>-1 || d.m.indexOf(q)>-1});
+    if(!hits.length){ list.innerHTML='<div class="empty">找不到「'+q.replace(/</g,'&lt;')+'」——換個關鍵字，或按 Esc 關閉。</div>'; return }
+    var html='', lastG='';
+    hits.forEach(function(d,i){
+      if(d.g!==lastG){ html+='<div class="grp">'+d.g+'</div>'; lastG=d.g }
+      html+='<button class="item'+(i===0?' hl':'')+'"><span>'+d.t+'</span><span class="meta">'+d.m+'</span></button>';
+    });
+    list.innerHTML=html;
+    $$('.palette .item').forEach(function(it){ it.addEventListener('click',close) });
+  }
+  function open(){ mask.classList.add('show'); input.value=''; render(''); input.focus() }
+  function close(){ mask.classList.remove('show') }
+  $('#quickBtn').addEventListener('click',open);
+  mask.addEventListener('click',function(e){ if(e.target===mask) close() });
+  input.addEventListener('input',function(){ render(input.value) });
+  document.addEventListener('keydown',function(e){
+    if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){ e.preventDefault(); mask.classList.contains('show')?close():open() }
+    if(e.key==='Escape') close();
+  });
+})();
+</script>
