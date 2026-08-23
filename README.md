@@ -33,7 +33,9 @@ Adholic 建案客資系統（`crm.adholic.com.tw`）的介面重設計提案。�
 
 | 檔案 | 內容 |
 |---|---|
-| `ui-restyle-demo-latest.html` | **最新**（＝下方 B9） |
+| `ui-restyle-demo-latest.html` | **最新**（＝下方 B18） |
+| `ui-restyle-demo-B18-2026-08-24.html` | 人員管理大改：資料卡重排、啟用改開關、刪除確認框、姓名分姓氏、預設排序、全站細線 icon |
+| `ui-restyle-demo-B10~B17-2026-08-23.html` | 齒輪選單分類、KPI 整合成一排、上線燈號、卡片牆演進 |
 | `ui-restyle-demo-B9-*.html` | 硬編色全數 token 化：新增邊框階、填色階、圖表五階等 20 個 token，零視覺變化 |
 | `ui-restyle-demo-B8-*.html` | 套用參考案設計語言：照片打底＋玻璃卡＋pin、KPI 數字階梯、狀態雙計數 |
 | `ui-restyle-demo-B7-*.html` | 套用前的版本（**留著做前後對比用**） |
@@ -55,7 +57,8 @@ Adholic 建案客資系統（`crm.adholic.com.tw`）的介面重設計提案。�
 
 - 顏色與間距**只用檔案開頭 `:root` 裡的 token**（第 13–44 行，共 64 個），不要寫死 hex 或魔術數字。
   白色請用 `var(--on-accent)`／`var(--card)`，不要寫 `#fff`。
-- 新增全域 class 前先確認沒撞到既有名稱（單檔 HTML 共用一個命名空間，這裡踩過兩次雷）。
+- 新增或**覆寫**全域 class 前，先 `grep` 一次既有定義（單檔 HTML 共用一個命名空間，這裡踩過三次雷：`.pin` 撞最新消息置頂、`.unit` 撞銷控戶別磚、`.pillbtn.danger` 覆寫掉其他頁 7 顆鈕）
+- 需要量元素寬度的邏輯，別在分頁隱藏時跑——那時候 `clientWidth` 是 0，`requestAnimationFrame` 與 `ResizeObserver` 在背景分頁也不保證被呼叫。
 - 頁面專屬樣式寫在該頁的 `/* ── 頁名 ── */` 區塊，選擇器用 `#page-xxx .foo` 限定。
 - **只改與任務相關的區塊**，不要順手重排 CSS、格式化或清理「看起來沒用到」的樣式——多半是別頁在用。
 - 改到共用區塊（`:root`、`.rail`、`.topbar`、`.chip`／`.pillbtn`／`.circlebtn`／`.kpi`／`.lead`／`.sec`、設計規範頁、JS 共用機制）**一定要通知對方**，PR 標題加 `[共用]`。
