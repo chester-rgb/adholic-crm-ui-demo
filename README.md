@@ -33,7 +33,8 @@ Adholic 建案客資系統（`crm.adholic.com.tw`）的介面重設計提案。�
 
 | 檔案 | 內容 |
 |---|---|
-| `ui-restyle-demo-latest.html` | **最新**（＝下方 B18） |
+| `ui-restyle-demo-latest.html` | **最新**（＝下方 B19） |
+| `ui-restyle-demo-B19-2026-08-24.html` | 權限管理改群組卡牆（簡約版）、搜尋收成放大鏡可展開、全站 icon 放大、加號 hover 轉一圈、側邊欄公告 icon 換掉 |
 | `ui-restyle-demo-B18-2026-08-24.html` | 人員管理大改：資料卡重排、啟用改開關、刪除確認框、姓名分姓氏、預設排序、全站細線 icon |
 | `ui-restyle-demo-B10~B17-2026-08-23.html` | 齒輪選單分類、KPI 整合成一排、上線燈號、卡片牆演進 |
 | `ui-restyle-demo-B9-*.html` | 硬編色全數 token 化：新增邊框階、填色階、圖表五階等 20 個 token，零視覺變化 |
