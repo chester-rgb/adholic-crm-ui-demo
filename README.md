@@ -33,7 +33,7 @@ Adholic 建案客資系統（`crm.adholic.com.tw`）的介面重設計提案。�
 
 | 檔案 | 內容 |
 |---|---|
-| `ui-restyle-demo-latest.html` | **最新**（＝下方 B19） |
+| `ui-restyle-demo-latest.html` | **唯一工作檔**；後續改動直接更新此檔，版本回溯使用 git history |
 | `ui-restyle-demo-B19-2026-08-24.html` | 權限管理改群組卡牆（簡約版）、搜尋收成放大鏡可展開、全站 icon 放大、加號 hover 轉一圈、側邊欄公告 icon 換掉 |
 | `ui-restyle-demo-B18-2026-08-24.html` | 人員管理大改：資料卡重排、啟用改開關、刪除確認框、姓名分姓氏、預設排序、全站細線 icon |
 | `ui-restyle-demo-B10~B17-2026-08-23.html` | 齒輪選單分類、KPI 整合成一排、上線燈號、卡片牆演進 |
@@ -67,7 +67,7 @@ Adholic 建案客資系統（`crm.adholic.com.tw`）的介面重設計提案。�
 
 ### 交付時
 
-- 大改版另存遞增檔名（`-B10-`），別覆蓋歷史版本；新檔確認能開之後再複製成 `latest`，兩個檔一起 commit。
+- 只更新 `ui-restyle-demo-latest.html`，不再新增 B 版檔；既有歷史版本保留不動。
 - PR 用 `.github/pull_request_template.md`，**畫面截圖一定要附**。
 - 一次 PR 只做一件事。不要累積成 500 行 diff——單檔 HTML 的大 diff 沒有人能審。
 
