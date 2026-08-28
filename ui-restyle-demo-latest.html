@@ -614,6 +614,7 @@
     font-size:.68rem; border:1px solid var(--line-3); color:var(--ink); background:var(--bg);
     font-variant-numeric:tabular-nums;
   }
+  .park.booked{background:var(--tint); border-color:var(--accent); color:var(--accent)}
   .park.signed{background:var(--accent); border-color:var(--accent); color:var(--on-accent)}
   .park.done{background:var(--fill-2); border-color:var(--fill-2); color:var(--muted)}
   .seg{display:inline-flex; background:var(--fill); border-radius:var(--r-pill); padding:.2rem; gap:.15rem}
@@ -1041,7 +1042,26 @@
   /* 來客詳情：面板本身不捲，內容區自己捲，頁籤列才不會跟著跑掉 */
   #drawer{padding:0; overflow:hidden; display:flex; flex-direction:column}
   #drawer .dhead > b{font-weight:500; font-size:1.17rem; display:flex; align-items:center; gap:.45rem}
-  #drawer .dbody{max-height:56vh}
+  /* 面板高度固定，切頁籤時大小不變——內容多寡交給 .dbody 自己捲 */
+  #drawer{height:calc(100vh - var(--s8) * 5)}
+  #drawer .dbody{flex:1; min-height:0; max-height:none}
+  /* 編輯時欄位很長，儲存鈕黏在底邊，不用捲到最後才找得到 */
+  #drawer .lead-editfoot{
+    grid-column:1/-1; display:flex; gap:var(--s2); justify-content:flex-end;
+    position:sticky; bottom:0; z-index:2; padding:var(--s3) 0;
+    background:var(--bg); border-top:1px solid var(--line);
+  }
+  #drawer .lead-editfoot[hidden]{display:none}
+  #drawer .ed{
+    width:100%; font:inherit; font-size:.76rem; color:var(--ink); background:var(--bg);
+    border:1px solid var(--line); border-radius:var(--r-cell); padding:.28rem .5rem;
+  }
+  #drawer textarea.ed{min-height:3.2rem; resize:vertical}
+  #drawer .ed:focus{outline:none; border-color:var(--accent)}
+  #drawer .optchecks{display:flex; flex-wrap:wrap; gap:.35rem .7rem; padding:.2rem 0}
+  #drawer .optchk{display:inline-flex; align-items:center; gap:.3rem; font-size:.72rem; color:var(--muted); cursor:pointer}
+  #drawer .optchk input{width:.85rem; height:.85rem}
+  #drawer.editing .lead-kv{border-bottom-color:transparent}
   /* 分級標籤在標題列裡，沿用來客名單那套配色 */
   #drawer .dhead .grade{font-size:.7rem; padding:.1rem .5rem; border-radius:var(--r-pill); font-weight:400}
   #drawer .dhead .grade.a{background:var(--accent); color:var(--on-accent)}
@@ -1060,6 +1080,18 @@
   .dl dd{font-variant-numeric:tabular-nums}
   .dsec{font-size:.66rem; color:var(--muted); letter-spacing:.18em; margin:1rem 0 .45rem; padding-top:.8rem; border-top:1px solid var(--line)}
   .dsec:first-child{margin-top:0; padding-top:0; border-top:none}
+  #drawer #d1.on{display:grid; grid-template-columns:repeat(auto-fit,minmax(calc(var(--s8) * 6),1fr)); gap:var(--s6); align-items:start}
+  #drawer .lead-data-grid{display:grid; gap:0 var(--s4)}
+  #drawer .lead-core-grid{grid-template-columns:1fr}
+  #drawer .lead-check-grid{grid-template-columns:repeat(auto-fit,minmax(calc(var(--s8) * 4),1fr))}
+  #drawer .lead-kv{min-width:0; padding:var(--s2) 0; border-bottom:1px solid var(--line)}
+  #drawer .lead-kv dt{color:var(--muted); font-size:.66rem; letter-spacing:.04em}
+  #drawer .lead-kv dd{font-size:.81rem; font-variant-numeric:tabular-nums; overflow-wrap:anywhere}
+  #drawer .lead-section-head{display:flex; align-items:center; min-height:var(--ctrl-h); margin-bottom:var(--s3)}
+  #drawer .lead-section-head .dsec{margin:0; padding:0; border:0}
+  #drawer .lead-section-head .circlebtn{margin-left:auto}
+  #drawer .lead-assignee{margin-bottom:var(--s3)}
+  #drawer .buyrow .meta{font-size:.7rem; color:var(--muted)}
   .hist{display:flex; flex-direction:column; gap:.6rem}
   .hist .h{background:var(--bg); border:1px solid var(--line); border-radius:var(--r-row); padding:.55rem .8rem; font-size:.76rem}
   .hist .h .top{display:flex; align-items:center; gap:.5rem; margin-bottom:.1rem}
@@ -4978,38 +5010,43 @@
     <button class="circlebtn close" id="drawerClose" aria-label="關閉">×</button>
   </div>
   <div class="dtabs" id="dtabs">
-    <button class="on" data-pane="d1">基本資料</button>
-    <button data-pane="d2">負責業務</button>
-    <button data-pane="d3">往來記錄</button>
+    <button class="on" data-pane="d3">往來紀錄</button>
     <button data-pane="d4">購買紀錄</button>
+    <button data-pane="d1">基本資料</button>
+    <button data-pane="d2">負責業務</button>
   </div>
   <div class="dbody">
-    <div class="dpane on" id="d1">
-      <div class="dsec">核心欄位</div>
-      <dl class="dl">
-        <dt>姓名</dt><dd data-lead-field="name">陳威宇</dd>
-        <dt>電話</dt><dd data-lead-field="phone">0912-334-268</dd>
-        <dt>來客／來電</dt><dd data-lead-field="kind">來客</dd>
-        <dt>來源</dt><dd data-lead-field="source">FB</dd>
-        <dt>來訪日期</dt><dd data-lead-field="visit">2026-08-19</dd>
-        <dt>建檔</dt><dd data-lead-field="created">2026-08-19 14:22</dd>
-        <dt>負責業務</dt><dd data-lead-field="assignee">張家豪</dd>
-      </dl>
-      <div class="dsec">勾勾表欄位（17）・節錄</div>
-      <dl class="dl">
-        <dt>需求房型</dt><dd>三房</dd>
-        <dt>購屋目的</dt><dd>自住</dd>
-        <dt>欲購屋時間</dt><dd>3 個月內</dd>
-        <dt>居住區域</dt><dd>北屯區</dd>
-        <dt>車位需求</dt><dd>需要 ×1</dd>
-      </dl>
+    <div class="dpane" id="d1">
+      <section class="lead-data-group" aria-labelledby="leadCoreTitle">
+        <div class="lead-section-head">
+          <div class="dsec" id="leadCoreTitle">核心欄位</div>
+          <button class="circlebtn soft" id="leadEditBtn" type="button" aria-label="編輯資料" data-tip="編輯"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9a2.1 2.1 0 0 0-3-3L5 17v3z"/><path d="M14.5 6.5l3 3"/></svg></button>
+        </div>
+        <dl class="lead-data-grid lead-core-grid" id="leadCoreGrid">
+          <div class="lead-kv"><dt>姓名</dt><dd data-lead-field="name">陳威宇</dd></div>
+          <div class="lead-kv"><dt>電話</dt><dd data-lead-field="phone">0912-334-268</dd></div>
+          <div class="lead-kv"><dt>來客／來電</dt><dd data-lead-field="kind">來客</dd></div>
+          <div class="lead-kv"><dt>來源</dt><dd data-lead-field="source">FB</dd></div>
+          <div class="lead-kv"><dt>來訪日期</dt><dd data-lead-field="visit">2026-08-19</dd></div>
+          <div class="lead-kv"><dt>建檔</dt><dd data-lead-field="created">2026-08-19 14:22</dd></div>
+          <div class="lead-kv"><dt>負責業務</dt><dd data-lead-field="assignee">張家豪</dd></div>
+        </dl>
+      </section>
+      <section class="lead-data-group" aria-labelledby="leadCheckTitle">
+        <div class="dsec" id="leadCheckTitle">勾勾表欄位</div>
+        <dl class="lead-data-grid lead-check-grid" id="leadCheckGrid"></dl>
+      </section>
+      <div class="lead-editfoot" id="leadEditFoot" hidden>
+        <button class="pillbtn" id="leadEditCancel" type="button">取消</button>
+        <button class="pillbtn solid" id="leadEditSave" type="button">儲存</button>
+      </div>
     </div>
     <div class="dpane" id="d2">
       <div class="dsec">目前負責業務</div>
-      <div class="buyrow"><span class="av">張</span><b>張家豪</b><span class="p" style="color:var(--muted)">艾德霍客</span></div>
-      <button class="pillbtn" data-demo-toast style="margin-bottom:1rem">更換負責業務</button>
+      <div class="buyrow lead-assignee"><span class="av" id="leadAssigneeAvatar">張</span><b id="leadAssigneeName">張家豪</b><span class="p meta">艾德霍客</span></div>
+      <button class="pillbtn" id="leadAssignBtn" type="button">更換負責業務</button>
       <div class="dsec">替換紀錄</div>
-      <div class="hist">
+      <div class="hist" id="leadAssignHist">
         <div class="h">
           <div class="top"><span class="chip">指派</span><time>2026-08-19 14:30</time></div>
           <p>指派給 張家豪（原 未指派）</p>
@@ -5017,9 +5054,12 @@
         </div>
       </div>
     </div>
-    <div class="dpane" id="d3">
-      <button class="pillbtn solid" data-demo-toast style="margin-bottom:var(--s3)"><span class="ic">＋</span>新增往來記錄</button>
-      <div class="hist">
+    <div class="dpane on" id="d3">
+      <div class="lead-section-head">
+        <div class="dsec">往來紀錄</div>
+        <button class="circlebtn soft" id="leadNoteBtn" type="button" aria-label="新增往來紀錄" data-tip="新增往來紀錄"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16"/></svg></button>
+      </div>
+      <div class="hist" id="leadNoteHist">
         <div class="h">
           <div class="top"><span class="chip">電話拜訪</span><time>2026-08-20 15:10</time></div>
           <p>致電來客，約週六下午賞屋，來客確認會帶家人一起來。</p>
@@ -5038,10 +5078,16 @@
       </div>
     </div>
     <div class="dpane" id="d4">
-      <div class="dnote" style="margin-bottom:.7rem">由銷控表歸戶帶出，下訂即計入——購買紀錄不在此建立。</div>
-      <div class="dsec">主建物 1 戶・加購車位 1 個</div>
-      <div class="buyrow"><b>8F・A4</b><span style="font-size:.7rem;color:var(--muted)">35.2 坪・三房</span><span class="p">3,350 萬</span></div>
-      <div class="buyrow"><b>B1・P05</b><span style="font-size:.7rem;color:var(--muted)">平面・大</span><span class="p">220 萬</span></div>
+      <div class="lead-section-head">
+        <div class="dsec">購買紀錄</div>
+        <button class="circlebtn soft" id="leadPurchaseBtn" type="button" aria-label="新增購買（下訂）" data-tip="新增購買（下訂）"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16"/></svg></button>
+      </div>
+      <div class="dnote">從銷控表選擇待售戶別或車位；建立下訂後，銷控狀態會同步改為「已訂」。</div>
+      <div class="dsec" id="leadPurchaseSummary">主建物 1 戶・加購車位 1 個</div>
+      <div id="leadPurchaseList">
+        <div class="buyrow" data-kind="unit"><b>8F・A4</b><span class="meta">35.2 坪・三房</span><span class="p">3,350 萬</span></div>
+        <div class="buyrow" data-kind="park"><b>B1・P05</b><span class="meta">平面・大</span><span class="p">220 萬</span></div>
+      </div>
       <div class="dfoot" style="padding:.8rem 0 0; border-top:none">
         <button class="pillbtn solid" data-demo-toast>設定簽約日</button>
         <button class="pillbtn" data-demo-toast>設定交屋日</button>
@@ -7393,9 +7439,37 @@
   refreshRoleCounts(); loadRole();
   window.CRM_ROLES=function(){ return ROLES.map(function(r){return r.name}) };
 
-  /* 抽屜 */
+  /* 來客詳情抽屜 */
+  var activeLeadRow=null;
+  function leadNow(){
+    var d=new Date(), z=function(n){return String(n).padStart(2,'0')};
+    return d.getFullYear()+'-'+z(d.getMonth()+1)+'-'+z(d.getDate())+' '+z(d.getHours())+':'+z(d.getMinutes());
+  }
+  function addLeadHistory(host,kind,body,by,when){
+    var h=document.createElement('div'); h.className='h';
+    var top=document.createElement('div'); top.className='top';
+    var chip=document.createElement('span'); chip.className='chip'; chip.textContent=kind;
+    var time=document.createElement('time'); time.textContent=when||leadNow();
+    var p=document.createElement('p'); p.textContent=body;
+    var who=document.createElement('span'); who.className='by'; who.textContent=by;
+    top.appendChild(chip); top.appendChild(time); h.appendChild(top); h.appendChild(p); h.appendChild(who);
+    host.insertBefore(h,host.firstChild); h.style.animation='rise .4s var(--enter) backwards';
+  }
+  function syncLeadAssignee(name){
+    var n=name||'未指派', av=$('#leadAssigneeAvatar'), nm=$('#leadAssigneeName');
+    if(av) av.textContent=n==='未指派'?'—':n.charAt(0);
+    if(nm) nm.textContent=n;
+    var field=$('#drawer [data-lead-field="assignee"]'); if(field) field.textContent=n;
+  }
+  function updatePurchaseSummary(){
+    var list=$('#leadPurchaseList'), sum=$('#leadPurchaseSummary'); if(!list||!sum) return;
+    var units=list.querySelectorAll('.buyrow[data-kind="unit"]').length;
+    var parks=list.querySelectorAll('.buyrow[data-kind="park"]').length;
+    sum.textContent='主建物 '+units+' 戶・加購車位 '+parks+' 個';
+  }
   function openDrawer(row){
     if(row){
+      activeLeadRow=row;
       var cells=row.children, nameEl=row.querySelector('.name');
       var name=nameEl?[].slice.call(nameEl.childNodes).filter(function(n){return n.nodeType===3}).map(function(n){return n.nodeValue}).join('').trim():'';
       var values={name:name,phone:cells[3].textContent.trim(),kind:cells[4].textContent.trim(),source:cells[5].textContent.trim(),visit:cells[8].textContent.trim(),created:row.dataset.created||'—',assignee:cells[9].textContent.trim()};
@@ -7407,7 +7481,10 @@
       if(headName) headName.textContent=name;
       if(avatar) avatar.textContent=name.charAt(0);
       if(summary) summary.textContent=values.phone+'・'+values.kind+'・'+values.source;
+      syncLeadAssignee(values.assignee);
     }
+    updatePurchaseSummary();
+    leadExitEdit(); leadResetTabs(); leadRenderCheck();
     $('#drawerMask').classList.add('show'); $('#drawer').classList.add('show')
   }
   function closeDrawer(){ $('#drawerMask').classList.remove('show'); $('#drawer').classList.remove('show') }
@@ -7419,6 +7496,211 @@
       $$('.dpane').forEach(function(p){p.classList.remove('on')});
       $('#'+b.dataset.pane).classList.add('on');
     });
+  });
+
+  /* ── 基本資料的檢視／編輯 ──
+     核心欄位就地換成輸入控件；勾勾表那半邊直接照「啟用中的範本」長出來，
+     範本頁改了欄位，這裡跟著變——兩邊共用同一份定義，不再各寫一份死清單。 */
+  var LEAD_CORE=[
+    {k:'name',    label:'姓名',      type:'text'},
+    {k:'phone',   label:'電話',      type:'text'},
+    {k:'kind',    label:'來客／來電', type:'select', opts:['來客','來電']},
+    {k:'source',  label:'來源',      type:'select', opts:['現場','路過','FB','IG','網路','介紹','看板']},
+    {k:'visit',   label:'來訪日期',   type:'date'},
+    {k:'created', label:'建檔',      type:'ro'},
+    {k:'assignee',label:'負責業務',   type:'select', opts:['未指派'].concat(LA_STAFF)}
+  ];
+  /* 示意值：新開的來客先給一組合理的預設，之後編輯就記在 LEAD_VALS 裡 */
+  var TPL_SEED={title:'先生', age_range:'31-40歲', area:'本區', marital:'已婚有子', job:'科技業',
+    income:'12-20萬', house_type:'大樓', house_own:'自有', family_size:'4', room_type:'3房',
+    budget:'2500萬以上', purpose:'自住', timeline:'三個月內', media:'網路-FB',
+    parking:'需要', revisit:'是', note:'關注貸款成數與車位配置'};
+  var SRC2MEDIA={'FB':'網路-FB','IG':'網路-FB','網路':'網路-google','介紹':'親友介紹','看板':'戶外看板'};
+  var LEAD_VALS={};
+  function leadKey(){ return ($('#drawer [data-lead-name]')||{textContent:''}).textContent.trim() }
+  function leadVals(){
+    var k=leadKey();
+    if(!LEAD_VALS[k]){
+      var v={}; Object.keys(TPL_SEED).forEach(function(x){ v[x]=TPL_SEED[x] });
+      var src=($('#drawer [data-lead-field="source"]')||{textContent:''}).textContent.trim();
+      if(SRC2MEDIA[src]) v.media=SRC2MEDIA[src];
+      LEAD_VALS[k]=v;
+    }
+    return LEAD_VALS[k];
+  }
+  function tplNow(){ return window.CRM_TPL? window.CRM_TPL() : {name:'—',ver:'',fields:[]} }
+  function esc(x){ return String(x==null?'':x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;') }
+  function leadCtrl(type,opts,val,name){
+    if(type==='長文字') return '<textarea class="ed" data-f="'+name+'">'+esc(val)+'</textarea>';
+    if(type==='多選'){
+      var on=String(val||'').split('、').filter(Boolean);
+      return '<span class="optchecks">'+(opts||[]).map(function(o){
+        return '<label class="optchk"><input type="checkbox" data-f="'+name+'" value="'+esc(o)+'"'+
+               (on.indexOf(o)>-1?' checked':'')+'>'+o+'</label>';
+      }).join('')+'</span>';
+    }
+    if(type==='select'||type==='單選'||type==='單選下拉'||type==='刻度尺選擇'||type==='滑桿'){
+      return '<select class="ed" data-f="'+name+'"><option value="">—</option>'+(opts||[]).map(function(o){
+        return '<option'+(o===val?' selected':'')+'>'+esc(o)+'</option>' }).join('')+'</select>';
+    }
+    var it = type==='數字' ? 'number' : (type==='日期'||type==='date') ? 'date' : 'text';
+    return '<input class="ed" type="'+it+'" data-f="'+name+'" value="'+esc(val)+'">';
+  }
+  function leadRenderCheck(){
+    var g=$('#leadCheckGrid'), ttl=$('#leadCheckTitle'), t=tplNow(); if(!g) return;
+    if(ttl) ttl.textContent='勾勾表欄位（'+t.fields.length+'）・'+t.name+' '+t.ver;
+    var v=leadVals();
+    g.innerHTML=t.fields.map(function(f){
+      return '<div class="lead-kv"><dt>'+esc(f.label)+'</dt><dd>'+(v[f.key]? esc(v[f.key]) : '—')+'</dd></div>';
+    }).join('');
+  }
+  function leadResetTabs(){
+    var first=$('#dtabs button'); if(!first) return;
+    $$('#dtabs button').forEach(function(x){x.classList.remove('on')}); first.classList.add('on');
+    $$('#drawer .dpane').forEach(function(p){p.classList.remove('on')});
+    var pane=$('#'+first.dataset.pane); if(pane) pane.classList.add('on');
+  }
+  var leadEditing=false;
+  function leadEnterEdit(){
+    leadEditing=true;
+    $('#drawer').classList.add('editing');
+    $('#leadEditFoot').hidden=false;
+    var eb=$('#leadEditBtn'); if(eb) eb.hidden=true;
+    LEAD_CORE.forEach(function(c){
+      if(c.type==='ro') return;
+      var dd=$('#drawer [data-lead-field="'+c.k+'"]'); if(!dd) return;
+      var raw=dd.textContent.trim(); dd.dataset.raw=raw;
+      dd.innerHTML=leadCtrl(c.type,c.opts,raw==='—'?'':raw,'core:'+c.k);
+    });
+    var v=leadVals();
+    $('#leadCheckGrid').innerHTML=tplNow().fields.map(function(f){
+      return '<div class="lead-kv"><dt>'+esc(f.label)+'</dt><dd>'+leadCtrl(f.type,f.opts,v[f.key]||'','tpl:'+f.key)+'</dd></div>';
+    }).join('');
+    if(window.enhanceSelects) window.enhanceSelects($('#d1'));
+    var f0=$('#d1 .ed'); if(f0) f0.focus();
+  }
+  function leadExitEdit(){
+    if(!leadEditing){ return }
+    leadEditing=false;
+    $('#drawer').classList.remove('editing');
+    $('#leadEditFoot').hidden=true;
+    var eb=$('#leadEditBtn'); if(eb) eb.hidden=false;
+    LEAD_CORE.forEach(function(c){
+      if(c.type==='ro') return;
+      var dd=$('#drawer [data-lead-field="'+c.k+'"]'); if(!dd) return;
+      dd.textContent=dd.dataset.raw||'—';
+    });
+    leadRenderCheck();
+  }
+  function leadReadEdit(){
+    var out={core:{},tpl:{}};
+    $$('#d1 [data-f]').forEach(function(el){
+      var p=el.dataset.f.split(':'), bag=(p[0]==='core')?out.core:out.tpl, k=p[1];
+      if(el.type==='checkbox'){
+        if(el.checked) bag[k]=(bag[k]? bag[k]+'、' : '')+el.value;
+        else if(!(k in bag)) bag[k]='';
+      } else bag[k]=el.value.trim();
+    });
+    return out;
+  }
+  function leadSaveEdit(){
+    var d=leadReadEdit();
+    if(!d.core.name){ toast('請輸入姓名'); return }
+    var oldKey=leadKey();
+    /* 寫回表格那一列——詳情改了，名單上就要跟著改，不然兩邊對不起來 */
+    var row=activeLeadRow;
+    if(row && row.children.length>9){
+      var cells=row.children, nameEl=row.querySelector('.name');
+      if(nameEl){
+        for(var i=0;i<nameEl.childNodes.length;i++){
+          var n=nameEl.childNodes[i];
+          if(n.nodeType===3 && n.nodeValue.trim()){ n.nodeValue=d.core.name; break }
+        }
+      }
+      cells[3].textContent=d.core.phone||'—';
+      var badge=cells[4].querySelector('.badge'); if(badge) badge.textContent=d.core.kind||'來客';
+      cells[5].textContent=d.core.source||'—';
+      if(d.core.visit){ cells[8].textContent=d.core.visit; row.dataset.date=d.core.visit }
+      if(d.core.assignee==='未指派') cells[9].innerHTML='<span class="unassigned">未指派</span>';
+      else cells[9].textContent=d.core.assignee;
+    }
+    /* 寫回抽屜自己：先把 raw 換掉，leadExitEdit 才會渲染出新值 */
+    LEAD_CORE.forEach(function(c){
+      if(c.type==='ro') return;
+      var dd=$('#drawer [data-lead-field="'+c.k+'"]'); if(!dd) return;
+      dd.dataset.raw=d.core[c.k]||'—';
+    });
+    var head=$('#drawer [data-lead-name]'); if(head) head.textContent=d.core.name;
+    LEAD_VALS[d.core.name]=d.tpl;
+    if(oldKey && oldKey!==d.core.name) delete LEAD_VALS[oldKey];
+    leadExitEdit();
+    syncLeadAssignee(d.core.assignee);
+    if(window.laFilterRows) window.laFilterRows();
+    toast('已更新 <b>'+d.core.name+'</b> 的資料');
+  }
+  var _eb=$('#leadEditBtn');   if(_eb) _eb.addEventListener('click',leadEnterEdit);
+  var _ec=$('#leadEditCancel');if(_ec) _ec.addEventListener('click',function(){ leadExitEdit(); toast('已取消編輯') });
+  var _es=$('#leadEditSave');  if(_es) _es.addEventListener('click',leadSaveEdit);
+
+  $('#leadAssignBtn').addEventListener('click',function(e){
+    e.stopPropagation();
+    var old=$('#leadAssigneeName').textContent.trim();
+    pickMenu(this,LA_STAFF,old,function(name){
+      if(activeLeadRow){
+        var cell=activeLeadRow.querySelector('.assignee'); if(cell) cell.textContent=name;
+      }
+      syncLeadAssignee(name);
+      addLeadHistory($('#leadAssignHist'),'更換','改派給 '+name+'（原 '+old+'）','操作：林曉青',leadNow());
+      toast('負責業務已更換為 <b>'+name+'</b>');
+    });
+  });
+
+  $('#leadNoteBtn').addEventListener('click',function(){
+    var assignee=$('#leadAssigneeName').textContent.trim();
+    openForm('新增往來紀錄',
+      fld('往來方式','kind','select','電話拜訪',['電話拜訪','回籠','新到訪','LINE','簡訊'])+
+      fld('紀錄內容','body','textarea')+
+      fld('經手業務','by','select',assignee,LA_STAFF),
+      '新增紀錄',function(v){
+        if(!v.body){ toast('請輸入往來內容'); return false }
+        addLeadHistory($('#leadNoteHist'),v.kind,v.body,v.by,leadNow());
+        toast('已新增往來紀錄・<b>'+v.kind+'</b>');
+      });
+  });
+
+  $('#leadPurchaseBtn').addEventListener('click',function(){
+    var items=[];
+    $$('#page-units .unit.sale').forEach(function(el){
+      var info=(el.dataset.info||'').split('｜');
+      items.push({label:'主建物｜'+info[0]+'｜'+info[1], kind:'unit', code:info[0], meta:info[1], el:el});
+    });
+    $$('#page-units .park:not(.signed):not(.done):not(.booked)').forEach(function(el){
+      items.push({label:'車位｜B1・'+el.textContent.trim()+'｜平面車位', kind:'park', code:'B1・'+el.textContent.trim(), meta:'平面車位', el:el});
+    });
+    if(!items.length){ toast('銷控表目前沒有可下訂的戶別或車位'); return }
+    var labels=items.map(function(x){return x.label});
+    var project=activeLeadRow&&activeLeadRow.dataset.proj?activeLeadRow.dataset.proj:$('#brandName').textContent.trim();
+    openForm('新增購買（下訂）',
+      fld('歸屬建案','project','select',project,[project])+
+      fld('銷控戶別','item','select',labels[0],labels)+
+      fld('成交價（萬）','price'),
+      '建立下訂',function(v){
+        var item=items.filter(function(x){return x.label===v.item})[0];
+        var price=Number(String(v.price).replace(/,/g,''));
+        if(!item){ toast('請重新選擇銷控戶別'); return false }
+        if(!Number.isFinite(price)||price<=0){ toast('請輸入成交價'); return false }
+        var name=$('#drawer [data-lead-name]').textContent.trim();
+        item.el.classList.remove('sale'); item.el.classList.add('booked');
+        if(item.kind==='unit') item.el.dataset.info=item.code+'｜'+item.meta+'｜已訂｜'+name;
+        else item.el.dataset.tip=item.code+'｜'+item.meta+'｜已訂｜'+name;
+        var row=document.createElement('div'); row.className='buyrow'; row.dataset.kind=item.kind;
+        var code=document.createElement('b'); code.textContent=item.code;
+        var meta=document.createElement('span'); meta.className='meta'; meta.textContent=item.meta;
+        var amount=document.createElement('span'); amount.className='p'; amount.textContent=price.toLocaleString()+' 萬';
+        row.appendChild(code); row.appendChild(meta); row.appendChild(amount);
+        $('#leadPurchaseList').appendChild(row); updatePurchaseSummary();
+        toast('已從銷控表下訂 <b>'+item.code+'</b>・'+price.toLocaleString()+' 萬');
+      });
   });
 
   /* ⌘K */
@@ -8389,6 +8671,12 @@ try{ /* templates */
     var b=e.target.closest('button[data-t]'); if(!b) return;
     cur=+b.dataset.t; draw();
   });
+
+  /* 來客詳情要照啟用中的範本長出欄位，這裡是唯一的對外出口 */
+  window.CRM_TPL=function(){
+    var t=TPL.filter(function(x){return x.active})[0]||TPL[0];
+    return {name:t.name, ver:t.ver, fields:clone(t.fields)};
+  };
 
   draw();
 })();
