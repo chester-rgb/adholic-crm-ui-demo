@@ -125,14 +125,15 @@
   .staff-view-seg button{
     display:inline-flex; align-items:center; justify-content:center;
   }
-  .rail button{
+  /* logo 鈕不吃導覽鈕的圓底：它本身是圖，加底色會變成一顆有色圓餅 */
+  .rail button:not(.markbtn){
     position:relative; width:2.5rem; height:2.5rem; border-radius:50%;
     display:flex; align-items:center; justify-content:center;
     background:var(--fill); color:var(--muted);
     transition:background .18s ease-out,color .18s ease-out,transform .12s ease-out;
   }
-  .rail button:hover{background:var(--fill); color:var(--ink)}
-  .rail button.active{background:var(--accent); color:var(--on-accent)}
+  .rail button:not(.markbtn):hover{background:var(--fill); color:var(--ink)}
+  .rail button.active:not(.markbtn){background:var(--accent); color:var(--on-accent)}
   .rail button .badge{
     position:absolute; top:-2px; right:-4px; font-size:.56rem; font-weight:500;
     background:var(--accent); color:var(--on-accent); border-radius:var(--r-pill);
