@@ -2184,12 +2184,11 @@
 #page-reports .sumhint{font-size:.62rem;color:var(--muted)}
 #page-reports .rowsub{font-size:.66rem;color:var(--muted)}
 /* — templates — */
-#page-templates .keycol{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.7rem;color:var(--muted);letter-spacing:.01em}
 #page-templates .tplmain{min-width:0}
 #page-templates .tfoot .tplhint{font-size:.66rem; color:var(--muted)}
-#page-templates tbody tr{cursor:grab}
-#page-templates tbody tr.dragging{opacity:.4}
-#page-templates .reqchip{cursor:pointer}
+/* 來源＝系統欄位／自訂欄位（正式系統的第三欄，不再對外露出英文 key） */
+#page-templates .srccol{font-size:.7rem; color:var(--muted)}
+#page-templates .optcol{color:var(--muted)}
 /* 版本規則：一次性知識，收進 ⓘ 裡，不常駐佔一整欄 */
 #page-templates .sec.pagebar{position:relative}
 #page-templates .rulepop{
@@ -2201,20 +2200,93 @@
 #page-templates .rulepop b{display:block; font-size:.72rem; font-weight:500; margin-bottom:var(--s2)}
 #page-templates .rulepop ul{margin:0; padding-left:1rem; display:flex; flex-direction:column; gap:var(--s2)}
 #page-templates .rulepop li{font-size:.68rem; line-height:1.7; color:var(--muted)}
-/* 未發版：主鈕亮起並掛一個小圓點，切去別頁再回來也看得見 */
-#page-templates [data-act="tplSaveVer"].hasdirty{position:relative}
-#page-templates [data-act="tplSaveVer"].hasdirty::after{
-  content:""; position:absolute; top:-2px; right:-2px; width:.45rem; height:.45rem;
-  border-radius:50%; background:var(--warm); border:2px solid var(--bg);
+#page-templates .rulepop li b{display:inline; color:var(--ink); margin:0}
+
+/* 編輯欄位：左欄位庫、右已啟用，比照正式系統的雙欄建構器 */
+#tplEditDlg .tplrule{font-size:.7rem; line-height:1.8; color:var(--muted); margin-bottom:var(--s4)}
+/* [hidden] 是 UA 樣式，權重輸給 .formdlg .fld 的 display:flex——要自己蓋回去 */
+#tplEditDlg .tplnamefld[hidden],#tplEditDlg .cusform[hidden]{display:none}
+#tplEditDlg .tplnamefld{margin-bottom:var(--s4)}
+#tplEditDlg .tplnamefld input{width:100%}
+#tplEditDlg .tplstd{background:var(--panel); border-radius:var(--r-card); padding:var(--s4); margin-bottom:var(--s5)}
+#tplEditDlg .tplstd-hd{display:flex; align-items:center; gap:var(--s3); margin-bottom:var(--s3); flex-wrap:wrap}
+#tplEditDlg .tplstd-hd b{font-size:.78rem; font-weight:500}
+#tplEditDlg .tplstd-hd small{font-size:.66rem; color:var(--muted)}
+#tplEditDlg .tplstd-hd .pillbtn{margin-left:auto}
+#tplEditDlg .tplstd-list{display:flex; flex-wrap:wrap; gap:var(--s2)}
+#tplEditDlg .stdchip{
+  display:inline-flex; align-items:center; gap:var(--s2); background:var(--tint); color:var(--accent);
+  border:1px solid var(--line-accent); border-radius:var(--r-pill); padding:.28rem .3rem .28rem .6rem;
+  font-size:.7rem; cursor:pointer; transition:background .15s ease-out, color .15s ease-out;
 }
-#page-templates .reqchip.off{color:var(--muted); background:var(--fill); border-color:transparent}
-/* 唯讀（檢視歷史版本）時把可改的東西關掉 */
-#page-templates.ro .reqchip,#page-templates.ro td.ops{pointer-events:none; opacity:.45}
-#page-templates.ro tbody tr{cursor:default}
-#page-templates .vrule{margin:0; padding-left:1.1rem; display:flex; flex-direction:column; gap:var(--s3)}
-#page-templates .vrule li{font-size:.7rem; line-height:1.75; color:var(--muted)}
-#page-templates .vrule b{color:var(--ink); font-weight:500}
-#page-templates .buyrow .use{margin-left:auto}
+#tplEditDlg .stdchip:hover{background:var(--accent); color:var(--on-accent); border-color:var(--accent)}
+#tplEditDlg .stdchip .n{opacity:.7}
+#tplEditDlg .stdchip .x{
+  border:none; background:none; color:inherit; font:inherit; font-size:.78rem; line-height:1;
+  cursor:pointer; padding:0 .2rem; opacity:.55;
+}
+#tplEditDlg .stdchip .x:hover{opacity:1}
+#tplEditDlg .stdempty{font-size:.68rem; color:var(--muted)}
+
+#tplEditDlg .tplcols{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--s5); align-items:start}
+#tplEditDlg .tplcol{min-width:0}
+#tplEditDlg .tplcol-hd{font-size:.72rem; font-weight:500; margin-bottom:var(--s3)}
+#tplEditDlg .tpllib{max-height:22rem; overflow-y:auto; padding-right:var(--s2)}
+#tplEditDlg .libgrp{font-size:.64rem; color:var(--muted); letter-spacing:.08em; margin:var(--s4) 0 var(--s2)}
+#tplEditDlg .libgrp.first{margin-top:0}
+#tplEditDlg .libwrap{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--s2)}
+#tplEditDlg .libbtn{
+  display:flex; align-items:center; gap:var(--s2); width:100%; min-width:0; text-align:left;
+  border:1px solid var(--line); border-radius:var(--r-row); background:var(--bg); color:var(--ink);
+  font:inherit; font-size:.72rem; padding:.4rem .6rem; cursor:pointer;
+  transition:border-color .15s ease-out, background .15s ease-out;
+}
+#tplEditDlg .libbtn:hover{border-color:var(--accent); background:var(--tint)}
+#tplEditDlg .libbtn .lb{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+#tplEditDlg .libbtn .plus{color:var(--muted); flex:none}
+#tplEditDlg .libbtn:hover .plus{color:var(--accent)}
+#tplEditDlg .libempty{font-size:.68rem; color:var(--muted); padding:var(--s4) 0}
+
+#tplEditDlg .tplon{max-height:22rem; overflow-y:auto; padding-right:var(--s2); display:flex; flex-direction:column; gap:var(--s2)}
+#tplEditDlg .tplfield{border:1px solid var(--line); border-radius:var(--r-row); background:var(--bg); padding:var(--s3)}
+#tplEditDlg .tplfield.dragging{opacity:.4}
+#tplEditDlg .fhead{display:flex; align-items:center; gap:var(--s2)}
+#tplEditDlg .drag{color:var(--line-3); cursor:grab; flex:none; line-height:1; font-size:.72rem}
+#tplEditDlg .fhead b{font-size:.76rem; font-weight:500; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+#tplEditDlg .fhead .reqlbl{margin-left:auto; font-size:.66rem; color:var(--muted); flex:none}
+#tplEditDlg .rmbtn{border:none; background:none; color:var(--hot); font:inherit; font-size:.68rem; cursor:pointer; padding:0; flex:none}
+#tplEditDlg .rmbtn:hover{text-decoration:underline}
+#tplEditDlg .optsum{
+  display:flex; align-items:center; gap:var(--s2); border:none; background:none; color:var(--muted);
+  font:inherit; font-size:.68rem; cursor:pointer; padding:var(--s2) 0 0; text-align:left; width:100%; min-width:0;
+}
+#tplEditDlg .optsum .cv{transition:transform .18s ease-out; flex:none; width:.7rem; height:.7rem}
+#tplEditDlg .optsum[aria-expanded="true"] .cv{transform:rotate(90deg)}
+#tplEditDlg .optsum .peek{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; min-width:0}
+#tplEditDlg .optsum:hover{color:var(--ink)}
+#tplEditDlg .optlist{display:flex; flex-direction:column; gap:var(--s2); padding:var(--s3) 0 var(--s1) 1.15rem}
+#tplEditDlg .optrow{display:flex; align-items:center; gap:var(--s2)}
+#tplEditDlg .optrow.dragging{opacity:.4}
+#tplEditDlg .optrow input{flex:1; min-width:0; font-size:.72rem; padding:.32rem .5rem; border-radius:var(--r-mini)}
+#tplEditDlg .addopt{
+  border:none; background:none; color:var(--accent); font:inherit; font-size:.68rem;
+  cursor:pointer; padding:0; text-align:left; align-self:flex-start;
+}
+#tplEditDlg .addopt:hover{text-decoration:underline}
+#tplEditDlg .onempty{
+  border:1px dashed var(--line-dash); border-radius:var(--r-card); padding:var(--s7) var(--s4);
+  text-align:center; font-size:.7rem; color:var(--muted); line-height:1.8;
+}
+#tplEditDlg .tplcus{margin-top:var(--s4); border-top:1px solid var(--line); padding-top:var(--s4)}
+#tplEditDlg .cusform{margin-top:var(--s3); border:1px dashed var(--line); border-radius:var(--r-row); padding:var(--s3); display:flex; flex-direction:column; gap:var(--s2)}
+#tplEditDlg .cusform input{width:100%}
+#tplEditDlg .cusacts{display:flex; gap:var(--s2); justify-content:flex-end}
+#tplEditDlg .facts{margin-top:var(--s5)}
+@media (max-width:1020px){
+  #tplEditDlg .tplcols{grid-template-columns:1fr}
+  #tplEditDlg .libwrap{grid-template-columns:1fr}
+}
+#tplEditDlg .optrow .iconop{font-size:.78rem; line-height:1; width:1.5rem; height:1.5rem; flex:none}
 /* — import — */
 #importDlg .dropzone{border:1px dashed var(--line);border-radius:var(--r-card);padding:var(--s8) var(--s6);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--s3);text-align:center;background:var(--bg)}
 #importDlg .dropzone:hover{border-color:var(--accent)}
@@ -4232,33 +4304,28 @@
 <section class="view" id="page-templates">
 <div class="sec pagebar">
   <h2>勾勾表範本</h2>
-  <span class="cnt" id="tplCount">18 欄</span>
+  <span class="cnt" id="tplCount">17 欄</span>
   <span class="chip" id="tplActiveChip">啟用中</span>
   <div class="acts">
-    <button class="pillbtn" data-act="tplVer">歷史版本 ▾</button>
     <button class="circlebtn soft" data-act="tplRule" type="button" aria-label="版本規則" data-tip="版本規則"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.5"/><circle cx="12" cy="7.8" r=".9" fill="currentColor" stroke="none"/></svg></button>
     <div class="rulepop" id="tplRulePop" role="dialog" aria-label="版本規則" hidden>
       <b>版本規則</b>
       <ul>
-        <li>改動不覆蓋舊版，發版才生效</li>
-        <li>來客資料綁建檔當下的版本</li>
+        <li>新增欄位／選項、調整必填、拖曳排序<b>不會</b>建立新版本</li>
+        <li>移除欄位、刪除既有選項<b>會</b>建立新版本</li>
+        <li>已建檔的來客仍對應建檔當下的版本</li>
         <li>同時只有一份範本啟用中</li>
-        <li>刪欄不刪值，只是不再出現</li>
       </ul>
     </div>
-    <button class="pillbtn" data-act="tplApplyStd">套用公版</button>
-    <button class="pillbtn" data-act="tplSaveVer">儲存為新版本</button>
-    <button class="pillbtn solid invite" data-act="tplAddField" aria-label="新增欄位"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16"/></svg><span class="lbl">新增欄位</span></button>
+    <button class="pillbtn" data-act="tplUse" id="tplUseBtn">設為啟用</button>
+    <button class="pillbtn" data-act="tplRename">重新命名</button>
+    <button class="pillbtn" data-act="tplNew">新增範本</button>
+    <button class="pillbtn solid" data-act="tplEdit">編輯欄位</button>
   </div>
 </div>
 
 <div class="block">
   <div class="seg" id="tplSeg"></div>
-</div>
-
-<div class="notice" id="tplVerNotice">
-  正在檢視歷史版本 <b id="tplVerName">v0.9</b>，此版本唯讀。
-  <button data-act="tplBackCur">回到目前版本</button>
 </div>
 
 <div class="block">
@@ -4269,24 +4336,16 @@
           <tr>
             <th style="width:2.4rem">#</th>
             <th>欄位標籤</th>
-            <th>key</th>
+            <th>來源</th>
             <th>型別</th>
             <th>選項</th>
             <th>必填</th>
-            <th class="amt">操作</th>
           </tr>
         </thead>
         <tbody id="tplRows"></tbody>
       </table>
-      <div class="tfoot"><span id="tplFoot">—</span><span class="tplhint">拖曳可調整欄位順序</span></div>
+      <div class="tfoot"><span id="tplFoot">—</span><span class="tplhint">增刪欄位、排序與必填都在「編輯欄位」裡調整</span></div>
     </div>
-  </div>
-</div>
-
-<div class="block anagrid">
-  <div class="acard">
-    <h3>公版庫 <small>套用會覆蓋目前欄位，按「儲存為新版本」才正式生效</small></h3>
-    <div id="tplStdList"></div>
   </div>
 </div>
 </section>
@@ -5271,6 +5330,47 @@
     </div>
   </div>
 </div>
+<div class="dlg-mask sheet-mask" id="tplEditMask">
+  <div class="dlg formdlg sheet" role="dialog" aria-labelledby="tplEditTitle" id="tplEditDlg">
+    <h3 id="tplEditTitle">編輯欄位<button class="circlebtn close" data-act="tplClose" type="button" aria-label="關閉">×</button></h3>
+    <p class="tplrule">新增欄位／選項、調整必填、拖曳排序不會建立新版本；移除欄位或刪除既有選項會建立新版本，舊資料仍對應原版本。</p>
+
+    <label class="fld tplnamefld" id="tplNameFld"><span>範本名稱</span><input id="tplNameInput" type="text" placeholder="例：青園綠境 來客表"></label>
+
+    <div class="tplstd">
+      <div class="tplstd-hd">
+        <b>套用公版</b><small>一鍵帶入常見欄位組合，帶入後仍可自由增刪／排序</small>
+        <button class="pillbtn" data-act="tplSaveStd" type="button">存成公版</button>
+      </div>
+      <div class="tplstd-list" id="tplStdChips"></div>
+    </div>
+
+    <div class="tplcols">
+      <div class="tplcol">
+        <div class="tplcol-hd">可用欄位</div>
+        <div class="tpllib" id="tplLib"></div>
+      </div>
+      <div class="tplcol">
+        <div class="tplcol-hd">已啟用欄位（<span id="tplOnCount">0</span>）</div>
+        <div class="tplon" id="tplOn"></div>
+        <div class="tplcus">
+          <button class="pillbtn" data-act="tplCusOpen" type="button">＋ 自訂欄位</button>
+          <div class="cusform" id="tplCusForm" hidden>
+            <input id="tplCusLabel" type="text" placeholder="欄位標籤" aria-label="欄位標籤">
+            <select id="tplCusType" aria-label="型別"></select>
+            <div class="cusacts">
+              <button class="pillbtn" data-act="tplCusCancel" type="button">取消</button>
+              <button class="pillbtn solid" data-act="tplCusAdd" type="button">加入</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="facts"><button class="pillbtn" data-act="tplClose" type="button">取消</button><button class="pillbtn solid" data-act="tplSave" type="button" id="tplSaveBtn">儲存</button></div>
+  </div>
+</div>
+
 <div class="dlg-mask" id="confirmMask">
   <div class="dlg confirm" role="alertdialog" aria-labelledby="confirmTitle" aria-describedby="confirmBody">
     <div class="cf-ico" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></div>
@@ -7863,202 +7963,407 @@
 try{ /* templates */
 (function(){
   var seg=document.getElementById('tplSeg'); if(!seg) return;
-  function F(label,key,type,opts,req){ return {label:label,key:key,type:type,opts:opts||'',req:!!req} }
-  /* 三份範本＋欄位正本。欄位名稱沿用 2026-08-05 系統實測的匯入欄位 */
-  var TPL=[
-    {id:'full', name:'完整來客詳細資料', ver:'v1', active:true, fields:[
-      F('客資分級','grade','select','A、B、C',1),
-      F('稱謂','title','select','先生、小姐'),
-      F('年齡層','age_range','select','25 歲以下、25-34、35-44、45-54、55 以上'),
-      F('居住區域','area','text'),
-      F('婚姻狀況','marital','radio','未婚、已婚'),
-      F('職業','job','text'),
-      F('月收入','income','select','5 萬以下、6-10 萬、10-15 萬、15 萬以上'),
-      F('現住房屋形態','house_type','select','公寓、電梯大樓、透天、其他'),
-      F('現住房屋','house_own','radio','自有、租屋'),
-      F('居住人口','family_size','number'),
-      F('需求房型','room_type','select','2 房、3 房、4 房',1),
-      F('購屋預算','budget','checkbox','1000 萬以下、1000-1500 萬、1500-2000 萬、2000 萬以上'),
-      F('購屋目的','purpose','select','自住、投資、置產'),
-      F('欲購屋時間','timeline','select','3 個月內、半年內、一年以上',1),
-      F('媒體來源','media','checkbox','FB、IG、網路、看板、介紹、路過'),
-      F('車位需求','parking','radio','需要、不需要'),
-      F('是否再訪','revisit','radio','是、否'),
-      F('備註','note','textarea')
+
+  /* 型別沿用正式系統的中文型別（2026-08-29 線上實測 crm.adholic.com.tw）。
+     單選／單選下拉／刻度尺選擇／滑桿是四種不同的作答 UI，不是同一個 select。 */
+  var TYPES=['文字','長文字','數字','日期','電話','Email','單選','單選下拉','多選','刻度尺選擇','滑桿'];
+  var NEED_OPTS={'單選':1,'單選下拉':1,'多選':1,'刻度尺選擇':1,'滑桿':1};
+
+  /* 欄位庫：系統內建欄位，分組同正式系統。
+     opts 存陣列——選項要能一顆一顆增刪，不能再塞成一整串「A、B、C」。 */
+  function L(label,key,type,opts){ return {label:label,key:key,type:type,opts:opts||[]} }
+  var LIB=[
+    {g:'基本', f:[
+      L('稱謂','title','單選',['先生','小姐']),
+      L('Email','email','Email'),
+      L('住家電話','phone_home','電話'),
+      L('公司電話','phone_work','電話'),
+      L('聯絡地址','address','文字'),
+      L('生日','birthday','日期'),
+      L('年齡層','age_range','刻度尺選擇',['25歲以下','26-30歲','31-40歲','41-50歲','51歲以上']),
+      L('婚姻狀況','marital','單選',['未婚','已婚無子','已婚有子','其他']),
+      L('子女數','children','數字')
     ]},
-    {id:'std', name:'標準來客表', ver:'v2', active:false, fields:[
-      F('客資分級','grade','select','A、B、C',1),
-      F('稱謂','title','select','先生、小姐'),
-      F('年齡層','age_range','select','25-34、35-44、45-54、55 以上'),
-      F('居住區域','area','text'),
-      F('職業','job','text'),
-      F('需求房型','room_type','select','2 房、3 房、4 房',1),
-      F('購屋預算','budget','select','1000 萬以下、1000-1500 萬、1500 萬以上'),
-      F('購屋目的','purpose','select','自住、投資、置產'),
-      F('欲購屋時間','timeline','select','3 個月內、半年內、一年以上',1),
-      F('媒體來源','media','select','FB、IG、網路、看板、介紹'),
-      F('車位需求','parking','radio','需要、不需要'),
-      F('備註','note','textarea')
+    {g:'來源', f:[
+      L('媒體來源(可複選)','media','多選',['網路-FB','網路-591','網路-google','報紙','派報','戶外看板','指示牌','車廂廣告','簡訊','電視廣告','親友介紹']),
+      L('介紹戶別','referrer','文字')
     ]},
-    {id:'lite', name:'簡易來客表', ver:'v1', active:false, fields:[
-      F('客資分級','grade','select','A、B、C',1),
-      F('需求房型','room_type','select','2 房、3 房、4 房',1),
-      F('欲購屋時間','timeline','select','3 個月內、半年內、一年以上'),
-      F('備註','note','textarea')
+    {g:'職業與收入', f:[
+      L('職業','job','單選下拉',['軍公教','科技業','金融業','服務業','製造業','自營商','退休','其他']),
+      L('職稱','job_title','文字'),
+      L('工作區域','work_area','文字'),
+      L('公司名稱','company','文字'),
+      L('月收入','income','單選下拉',['5萬以下','5-8萬','8-12萬','12-20萬','20萬以上'])
+    ]},
+    {g:'現況', f:[
+      L('居住區域','area','單選下拉',['本區','鄰近區','外縣市']),
+      L('現住房屋形態','house_type','單選',['公寓','大樓','套房','透天']),
+      L('現住房屋','house_own','單選下拉',['自有','租屋','與家人同住']),
+      L('居住人口(人)','family_size','刻度尺選擇',['1','2','3','4','5','6以上']),
+      L('交通工具','transport','單選',['自用車','機車','大眾運輸']),
+      L('租金','rent','數字'),
+      L('屋齡(年)','house_age','數字'),
+      L('現住格局(房/廳/衛)','layout_now','文字'),
+      L('室內坪數','indoor_ping','數字')
+    ]},
+    {g:'需求', f:[
+      L('需求房型','room_type','單選下拉',['2房','3房','4房','店面']),
+      L('購屋預算(可複選)','budget','多選',['1000萬以下','1000-1500萬','1500-2000萬','2000-2500萬','2500萬以上']),
+      L('購屋目的','purpose','單選下拉',['自住','投資','置產','換屋']),
+      L('欲購屋時間','timeline','單選下拉',['一個月內','三個月內','半年內','一年內','觀望中']),
+      L('車位需求','parking','單選',['需要','不需要','再考慮']),
+      L('產品需求(可複選)','product','多選',['住家','店面','事務所','車位']),
+      L('坪數需求(可複選)','ping_need','多選',['20坪以下','20-30坪','30-40坪','40坪以上']),
+      L('希望月付款(可複選)','monthly','多選',['2萬以下','2-3萬','3-4萬','4萬以上']),
+      L('自備款(可複選)','down_pay','多選',['200萬以下','200-300萬','300-500萬','500萬以上']),
+      L('購屋動機(可複選)','motive','多選',['結婚','生子','換屋','就學','就業','投資','退休']),
+      L('格局需求(房/廳/衛)','layout_need','文字'),
+      L('車位數','parking_n','刻度尺選擇',['0','1','2','3以上']),
+      L('樓層需求(可複選)','floor_need','多選',['低樓層','中樓層','高樓層','不指定']),
+      L('座向需求(可複選)','facing','多選',['座北朝南','座南朝北','座東朝西','座西朝東','不指定'])
+    ]},
+    {g:'其他', f:[
+      L('是否再訪','revisit','單選',['是','否']),
+      L('購屋次數','buy_times','刻度尺選擇',['第1次','第2次','3次以上']),
+      L('備註','note','長文字')
     ]}
   ];
-  /* 公版庫：套用後會整份覆蓋欄位。
-     必須在這裡就把欄位「拷貝」下來——直接指向 TPL 的話，
-     使用者一旦覆蓋掉某份範本，公版庫也會跟著被改掉（等於拿自己覆蓋自己） */
-  var STD=[
-    {name:'完整來客詳細資料', from:'full', tag:'內建'},
-    {name:'標準來客表', from:'std', tag:'內建'},
-    {name:'簡易來客表', from:'lite', tag:'內建'},
-    {name:'基本用', from:'lite', tag:'共用公版'}
+  var LIBMAP={};
+  LIB.forEach(function(g){ g.f.forEach(function(f){ LIBMAP[f.key]=f }) });
+
+  function pick(key,req){
+    var s=LIBMAP[key];
+    return {label:s.label, key:s.key, type:s.type, opts:s.opts.slice(), req:!!req, sys:true};
+  }
+  function fromKeys(keys,reqKeys){
+    var r=reqKeys||[];
+    return keys.map(function(k){ return pick(k, r.indexOf(k)>-1) });
+  }
+  function clone(fs){
+    return fs.map(function(f){ return {label:f.label,key:f.key,type:f.type,opts:f.opts.slice(),req:f.req,sys:f.sys} });
+  }
+
+  /* 三份示意範本。「完整客戶詳細資料」的欄位／型別／選項／順序與正式系統逐項對齊，
+     勾勾表是給客戶勾的表，所以不含客資分級（分級在客戶分級頁判定）。 */
+  var TPL=[
+    {id:'full', name:'完整客戶詳細資料', ver:'v1', active:true, fields:fromKeys(
+      ['title','age_range','area','marital','job','income','house_type','house_own','family_size',
+       'room_type','budget','purpose','timeline','media','parking','revisit','note'])},
+    {id:'std', name:'標準來客表', ver:'v2', active:false, fields:fromKeys(
+      ['title','age_range','area','job','room_type','budget','purpose','timeline','media','parking','note'],
+      ['room_type','timeline'])},
+    {id:'lite', name:'簡易來客表', ver:'v1', active:false, fields:fromKeys(
+      ['room_type','timeline','note'], ['room_type'])}
   ];
-  var cur=0, viewVer=null;          /* viewVer 非 null＝正在看歷史版本（唯讀） */
+
+  /* 公版＝可重複帶入的欄位組合。與正式系統一致：帶入是「補上去」不是「整份覆蓋」。 */
+  var STD=[
+    {name:'基本用', keys:['title','age_range','area','marital','job','income','room_type','budget','purpose','timeline','media','note']}
+  ];
+
+  var cur=0;
   function T(){ return TPL[cur] }
-  function clone(fs){ return fs.map(function(f){ return {label:f.label,key:f.key,type:f.type,opts:f.opts,req:f.req} }) }
-  /* 每份範本各留一份歷史快照，示範版本制 */
-  TPL.forEach(function(t){ t.history=[{ver:'v0.9', fields:clone(t.fields).slice(0,Math.max(3,t.fields.length-2))}] });
-  STD.forEach(function(x){
-    var src=TPL.filter(function(t){return t.id===x.from})[0];
-    x.fields=clone(src.fields);
-  });
 
   var page=document.getElementById('page-templates');
   var rows=document.getElementById('tplRows'), foot=document.getElementById('tplFoot');
   var cnt=document.getElementById('tplCount'), chip=document.getElementById('tplActiveChip');
-  var notice=document.getElementById('tplVerNotice');
-  var TYPES=['text','textarea','number','date','select','radio','checkbox'];
-  var PEN='<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9a2.1 2.1 0 0 0-3-3L5 17v3z"/><path d="M14.5 6.5l3 3"/></svg>';
-  var TRASH='<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg>';
+  var useBtn=document.getElementById('tplUseBtn');
 
-  function shownFields(){ return viewVer ? viewVer.fields : T().fields }
-
+  /* ── 頁面：唯讀的欄位總覽，所有編輯都在對話框裡 ── */
   function drawSeg(){
     seg.innerHTML=TPL.map(function(t,i){
-      return '<button'+(i===cur?' class="on"':'')+' data-t="'+i+'">'+t.name+(t.active?'（啟用中）':'')+'</button>';
-    }).join('');
-  }
-  function drawStd(){
-    var box=document.getElementById('tplStdList'); if(!box) return;
-    box.innerHTML=STD.map(function(x,i){
-      var n=x.fields.length;
-      return '<div class="buyrow"><b>'+x.name+'</b><span class="chip">'+x.tag+'</span>'+
-             '<span class="p">'+n+' 欄</span>'+
-             '<button class="pillbtn use" data-act="tplUseStd" data-s="'+i+'">套用</button></div>';
+      return '<button'+(i===cur?' class="on"':'')+' data-t="'+i+'">'+t.name+' '+t.ver+(t.active?'（啟用中）':'')+'</button>';
     }).join('');
   }
   function drawRows(){
-    var fs=shownFields();
+    var t=T(), fs=t.fields;
     rows.innerHTML=fs.map(function(f,i){
-      return '<tr data-i="'+i+'"'+(viewVer?'':' draggable="true"')+'>'+
+      return '<tr>'+
         '<td>'+(i+1)+'</td>'+
         '<td>'+f.label+'</td>'+
-        '<td class="keycol">'+f.key+'</td>'+
+        '<td class="srccol">'+(f.sys?'系統欄位':'自訂欄位')+'</td>'+
         '<td><span class="chip">'+f.type+'</span></td>'+
-        '<td>'+(f.opts||'<span style="color:var(--muted)">—</span>')+'</td>'+
-        '<td><span class="chip reqchip'+(f.req?' hot':' off')+'" data-act="tplReq" data-i="'+i+'" role="button" tabindex="0">'+(f.req?'必填':'選填')+'</span></td>'+
-        '<td class="ops"><span class="rowact">'+
-          '<button class="iconop" data-act="tplEditField" data-i="'+i+'" aria-label="編輯欄位" data-tip="編輯">'+PEN+'</button>'+
-          '<button class="iconop del" data-act="tplDelField" data-i="'+i+'" aria-label="刪除欄位" data-tip="刪除">'+TRASH+'</button>'+
-        '</span></td>'+
+        '<td class="optcol">'+(f.opts.length? f.opts.join('、') : '—')+'</td>'+
+        '<td class="srccol">'+(f.req?'<span class="chip hot">必填</span>':'—')+'</td>'+
       '</tr>';
     }).join('');
-    var t=T();
-    foot.textContent='共 '+fs.length+' 欄・'+(viewVer? viewVer.ver+'（唯讀）' : t.name+' '+t.ver);
+    foot.textContent='共 '+fs.length+' 欄・'+t.name+' '+t.ver;
     if(cnt) cnt.textContent=fs.length+' 欄';
-    if(chip){ chip.hidden=!t.active; chip.textContent='啟用中' }
-    page.classList.toggle('ro', !!viewVer);
-    if(notice) notice.classList.toggle('show', !!viewVer);
-    if(viewVer){ var vn=document.getElementById('tplVerName'); if(vn) vn.textContent=viewVer.ver }
+    if(chip){ chip.hidden=!t.active }
+    if(useBtn) useBtn.hidden=!!t.active;
   }
-  function draw(){ drawSeg(); drawRows(); drawStd() }
+  function draw(){ drawSeg(); drawRows() }
 
-  /* 欄位表單：新增與編輯共用 */
-  function fieldForm(title, f, done){
-    openForm(title,
-      fld('欄位標籤','label','text',f?f.label:'')+
-      fld('key','key','text',f?f.key:'')+
-      fld('型別','type','select',f?f.type:'select',TYPES)+
-      fld('選項（以、分隔）','opts','text',f?f.opts:'')+
-      fld('必填','req','select',(f&&f.req)?'必填':'選填',['選填','必填']),
-      '儲存', function(v){
-        if(!v.label){ toast('請輸入欄位標籤'); return false }
-        var needOpts=['select','radio','checkbox'].indexOf(v.type)>-1;
-        if(needOpts && !v.opts){ toast('這個型別需要填選項'); return false }
-        done({label:v.label, key:v.key||('field_'+(T().fields.length+1)), type:v.type,
-              opts:needOpts?v.opts:'', req:v.req==='必填'});
-      });
-  }
-  /* 未發版狀態要持續看得見——只跳一次 toast，切去別頁再回來就忘了還有變更沒發 */
-  var tplDirty=false;
-  function setDirty(v){
-    tplDirty=!!v;
-    var b=document.querySelector('#page-templates [data-act="tplSaveVer"]');
-    if(b){ b.classList.toggle('solid',tplDirty); b.classList.toggle('hasdirty',tplDirty) }
-  }
-  function bumpNote(){ setDirty(true); toast('已更新——按「儲存為新版本」才會建立新版') }
+  /* ── 編輯欄位對話框 ── */
+  var mask=document.getElementById('tplEditMask'), dlg=document.getElementById('tplEditDlg');
+  var libBox=document.getElementById('tplLib'), onBox=document.getElementById('tplOn');
+  var onCount=document.getElementById('tplOnCount'), stdChips=document.getElementById('tplStdChips');
+  var nameFld=document.getElementById('tplNameFld'), nameInput=document.getElementById('tplNameInput');
+  var cusForm=document.getElementById('tplCusForm'), cusLabel=document.getElementById('tplCusLabel'), cusType=document.getElementById('tplCusType');
+  var title=document.getElementById('tplEditTitle'), saveBtn=document.getElementById('tplSaveBtn');
 
-  document.addEventListener('click',function(e){
-    var b=e.target.closest('[data-act]'); if(!b || !page.contains(b)) return;
-    var act=b.dataset.act, i=+b.dataset.i;
-    /* 檢視歷史版本時整頁唯讀。原本只用 CSS 蓋住必填膠囊與列操作，
-       頁首工具列的新增欄位／套用公版／儲存新版全沒鎖，
-       改動會默默寫進「目前版本」的正本，而畫面停在歷史版看不出來 */
-    var WRITE={tplReq:1,tplEditField:1,tplDelField:1,tplAddField:1,tplSaveVer:1,tplApplyStd:1,tplUseStd:1};
-    if(viewVer && WRITE[act]){
-      toast('正在檢視歷史版本 <b>'+viewVer.ver+'</b>，唯讀。請先回到目前版本再編輯。');
+  cusType.innerHTML=TYPES.map(function(t){return '<option>'+t+'</option>'}).join('');
+
+  var mode='edit', cusSeq=0;   /* 'edit'＝改目前範本；'new'＝新增範本 */
+  var work=[];           /* 對話框自己的工作副本，按取消就整份丟掉 */
+  var orig=[];           /* 打開當下的快照，儲存時拿來判斷有沒有「移除」 */
+  var openOpts={};       /* 哪些欄位的選項是展開的，重畫時要記得 */
+
+  var CHEV='<svg class="ico cv" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>';
+
+  function drawLib(){
+    var used={}; work.forEach(function(f){ used[f.key]=1 });
+    var html='', any=false, first=true;
+    LIB.forEach(function(g){
+      var left=g.f.filter(function(f){ return !used[f.key] });
+      if(!left.length) return;
+      any=true;
+      html+='<div class="libgrp'+(first?' first':'')+'">'+g.g+'</div><div class="libwrap">'+
+        left.map(function(f){
+          return '<button class="libbtn" type="button" data-act="tplAdd" data-k="'+f.key+'">'+
+                 '<span class="plus">＋</span><span class="lb">'+f.label+'</span></button>';
+        }).join('')+'</div>';
+      first=false;
+    });
+    libBox.innerHTML=any? html : '<div class="libempty">欄位庫裡的欄位都已經加進來了。要別的欄位請用「＋ 自訂欄位」。</div>';
+  }
+  function drawOn(){
+    onCount.textContent=work.length;
+    if(!work.length){
+      onBox.innerHTML='<div class="onempty">尚未啟用任何欄位<br>從左邊「可用欄位」點「＋」加入</div>';
       return;
     }
-    if(act==='tplReq'){
-      var f=T().fields[i]; f.req=!f.req; drawRows(); bumpNote();
-    } else if(act==='tplEditField'){
-      fieldForm('編輯欄位', T().fields[i], function(nf){ T().fields[i]=nf; drawRows(); bumpNote() });
-    } else if(act==='tplDelField'){
-      var d=T().fields[i];
-      askConfirm({title:'刪除欄位', okText:'刪除欄位',
-        body:'刪除「<b>'+d.label+'</b>」？<br>已填的值不會被刪掉，只是新表單不再出現這一欄。',
-        onOk:function(){ T().fields.splice(i,1); drawRows(); setDirty(true); toast('已刪除欄位 <b>'+d.label+'</b>') }});
-    } else if(act==='tplAddField'){
-      fieldForm('新增欄位', null, function(nf){ T().fields.push(nf); drawRows(); setDirty(true); toast('已新增欄位 <b>'+nf.label+'</b>') });
-    } else if(act==='tplVer'){
-      /* 這個 handler 與 statmenu 的全域收合都掛在 document 上。
-         stopPropagation 只擋得住往上冒泡，擋不掉同一節點上的其他 listener——
-         選單開了會在同一次點擊裡被立刻收掉，所以要用 stopImmediatePropagation */
-      e.stopImmediatePropagation();
-      var t=T(), opts=[t.ver+'（目前）'].concat(t.history.map(function(h){return h.ver}));
-      pickMenu(b, opts, null, function(x){
-        if(x.indexOf('（目前）')>-1){ viewVer=null } 
-        else { viewVer=t.history.filter(function(h){return h.ver===x})[0]||null }
-        drawRows();
-        toast(viewVer? '正在檢視 <b>'+viewVer.ver+'</b>（唯讀）' : '已回到目前版本');
+    onBox.innerHTML=work.map(function(f,i){
+      var opt='';
+      if(NEED_OPTS[f.type]){
+        var open=!!openOpts[f.key];
+        opt='<button class="optsum" type="button" data-act="tplOpts" data-i="'+i+'" aria-expanded="'+open+'">'+
+              CHEV+'<span>選項（'+f.opts.length+'）</span>'+
+              (open?'':'<span class="peek">・'+(f.opts.slice(0,3).join('、')||'尚未設定')+(f.opts.length>3?'…':'')+'</span>')+
+            '</button>';
+        if(open){
+          opt+='<div class="optlist">'+f.opts.map(function(o,j){
+            return '<div class="optrow" data-j="'+j+'">'+
+              '<span class="drag" aria-hidden="true">⠿</span>'+
+              '<input type="text" value="'+String(o).replace(/"/g,'&quot;')+'" data-act="tplOptVal" data-i="'+i+'" data-j="'+j+'" aria-label="選項 '+(j+1)+'">'+
+              '<button class="iconop del" type="button" data-act="tplDelOpt" data-i="'+i+'" data-j="'+j+'" aria-label="刪除選項" data-tip="刪除">×</button>'+
+            '</div>';
+          }).join('')+
+          '<button class="addopt" type="button" data-act="tplAddOpt" data-i="'+i+'">＋ 新增選項</button></div>';
+        }
+      }
+      return '<div class="tplfield" data-i="'+i+'">'+
+        '<div class="fhead">'+
+          '<span class="drag" aria-hidden="true">⠿</span>'+
+          '<b>'+f.label+'</b>'+
+          '<span class="chip">'+f.type+'</span>'+
+          '<span class="reqlbl">必填</span>'+
+          '<button class="switch" type="button" role="switch" aria-checked="'+(f.req?'true':'false')+'" aria-label="'+f.label+' 必填" data-act="tplReq" data-i="'+i+'"><span class="knob"></span></button>'+
+          '<button class="rmbtn" type="button" data-act="tplRemove" data-i="'+i+'">移除</button>'+
+        '</div>'+opt+
+      '</div>';
+    }).join('');
+  }
+  function drawStd(){
+    stdChips.innerHTML=STD.length? STD.map(function(x,i){
+      return '<span class="stdchip" data-act="tplUseStd" data-s="'+i+'" role="button" tabindex="0">'+
+             x.name+'<span class="n">・'+x.keys.length+'欄</span>'+
+             '<button class="x" type="button" data-act="tplDelStd" data-s="'+i+'" aria-label="刪除公版 '+x.name+'">×</button></span>';
+    }).join('') : '<span class="stdempty">還沒有公版。把目前的欄位組合按「存成公版」就會出現在這裡。</span>';
+  }
+  function drawDlg(){ drawLib(); drawOn(); drawStd() }
+
+  function openDlg(m){
+    mode=m; openOpts={};
+    if(m==='new'){
+      work=[]; orig=[];
+      title.childNodes[0].nodeValue='新增勾勾表範本';
+      nameFld.hidden=false; nameInput.value='';
+      saveBtn.textContent='建立範本';
+    } else {
+      work=clone(T().fields); orig=clone(T().fields);
+      title.childNodes[0].nodeValue='編輯欄位';
+      nameFld.hidden=true;
+      saveBtn.textContent='儲存';
+    }
+    cusForm.hidden=true; cusLabel.value=''; cusType.value=TYPES[0];
+    drawDlg();
+    mask.classList.add('show');
+    if(window.enhanceSelects) window.enhanceSelects(dlg);
+    (m==='new'? nameInput : dlg.querySelector('.libbtn')||saveBtn).focus();
+  }
+  function closeDlg(){ mask.classList.remove('show') }
+
+  /* 版本規則：只有「移除欄位」或「刪掉既有選項」才發版；加東西、調必填、拖排序都不發版 */
+  function hasRemoval(){
+    var now={}; work.forEach(function(f){ now[f.key]=f });
+    for(var i=0;i<orig.length;i++){
+      var o=orig[i], n=now[o.key];
+      if(!n) return true;
+      for(var j=0;j<o.opts.length;j++){ if(n.opts.indexOf(o.opts[j])<0) return true }
+    }
+    return false;
+  }
+
+  /* ── 對話框內的互動 ── */
+  dlg.addEventListener('click',function(e){
+    var b=e.target.closest('[data-act]'); if(!b) return;
+    var act=b.dataset.act, i=+b.dataset.i, j=+b.dataset.j;
+    if(act==='tplAdd'){
+      var src=LIBMAP[b.dataset.k]; if(!src) return;
+      work.push({label:src.label,key:src.key,type:src.type,opts:src.opts.slice(),req:false,sys:true});
+      drawDlg(); onBox.scrollTop=onBox.scrollHeight;
+    } else if(act==='tplRemove'){
+      delete openOpts[work[i].key]; work.splice(i,1); drawDlg();
+    } else if(act==='tplReq'){
+      work[i].req=!work[i].req;
+      b.setAttribute('aria-checked', work[i].req?'true':'false');
+    } else if(act==='tplOpts'){
+      var k=work[i].key; openOpts[k]=!openOpts[k]; drawOn();
+    } else if(act==='tplAddOpt'){
+      work[i].opts.push('新選項'); drawOn();
+      var last=onBox.querySelector('.tplfield[data-i="'+i+'"] .optrow:last-of-type input');
+      if(last){ last.focus(); last.select() }
+    } else if(act==='tplDelOpt'){
+      work[i].opts.splice(j,1); drawOn();
+    } else if(act==='tplUseStd'){
+      var sx=STD[+b.dataset.s], added=0, has={};
+      work.forEach(function(f){ has[f.key]=1 });
+      sx.keys.forEach(function(k){
+        if(has[k]) return;
+        var s=LIBMAP[k]; if(!s) return;
+        work.push({label:s.label,key:s.key,type:s.type,opts:s.opts.slice(),req:false,sys:true}); added++;
       });
-    } else if(act==='tplRule'){
+      drawDlg();
+      toast(added? '已帶入 <b>'+sx.name+'</b>：新增 '+added+' 欄（重複的欄位略過）' : '<b>'+sx.name+'</b> 的欄位都已經在清單裡了');
+    } else if(act==='tplDelStd'){
+      e.stopPropagation();
+      var si=+b.dataset.s, sn=STD[si].name;
+      askConfirm({title:'刪除公版', okText:'刪除',
+        body:'刪除公版「<b>'+sn+'</b>」？<br>已經帶入到各範本的欄位不會被動到。',
+        onOk:function(){ STD.splice(si,1); drawStd(); toast('已刪除公版 <b>'+sn+'</b>') }});
+    } else if(act==='tplSaveStd'){
+      if(!work.length){ toast('目前沒有已啟用的欄位，先加幾欄再存成公版'); return }
+      openForm('存成公版', fld('公版名稱','name','text',''), '儲存', function(v){
+        if(!v.name){ toast('請輸入公版名稱'); return false }
+        STD.push({name:v.name, keys:work.map(function(f){return f.key})});
+        drawStd(); toast('已存成公版 <b>'+v.name+'</b>（'+work.length+' 欄）');
+      });
+    } else if(act==='tplCusOpen'){
+      cusForm.hidden=false; cusLabel.value=''; cusType.value=TYPES[0];
+      if(window.enhanceSelects) window.enhanceSelects(dlg);
+      cusLabel.focus();
+    } else if(act==='tplCusCancel'){
+      cusForm.hidden=true;
+    } else if(act==='tplCusAdd'){
+      var lb=cusLabel.value.trim();
+      if(!lb){ toast('請輸入欄位標籤'); cusLabel.focus(); return }
+      var ty=cusType.value, key='custom_'+(++cusSeq);
+      work.push({label:lb,key:key,type:ty,opts:NEED_OPTS[ty]?['選項 1']:[],req:false,sys:false});
+      if(NEED_OPTS[ty]) openOpts[key]=true;
+      cusForm.hidden=true; drawDlg(); onBox.scrollTop=onBox.scrollHeight;
+    } else if(act==='tplClose'){
+      closeDlg();
+    } else if(act==='tplSave'){
+      if(mode==='new'){
+        var nm=nameInput.value.trim();
+        if(!nm){ toast('請輸入範本名稱'); nameInput.focus(); return }
+        if(!work.length){ toast('至少要啟用一個欄位'); return }
+        TPL.push({id:'t'+TPL.length, name:nm, ver:'v1', active:false, fields:clone(work)});
+        cur=TPL.length-1; closeDlg(); draw();
+        toast('已建立範本 <b>'+nm+'</b>（'+work.length+' 欄）——按「設為啟用」才會開始收新資料');
+        return;
+      }
+      if(!work.length){ toast('至少要留一個欄位'); return }
+      var t=T(), bump=hasRemoval();
+      t.fields=clone(work);
+      if(bump){
+        var n=parseInt(t.ver.replace('v',''),10)||1;
+        t.ver='v'+(n+1);
+      }
+      closeDlg(); draw();
+      toast(bump? '有欄位／選項被移除，已建立 <b>'+t.ver+'</b>——舊資料仍對應原版本'
+                : '已儲存（沒有移除任何東西，版本維持 <b>'+t.ver+'</b>）');
+    }
+  });
+  /* 選項文字即時寫回工作副本；不重畫，免得每打一個字就失焦 */
+  dlg.addEventListener('input',function(e){
+    var el=e.target;
+    if(el.dataset && el.dataset.act==='tplOptVal') work[+el.dataset.i].opts[+el.dataset.j]=el.value;
+  });
+  dlg.addEventListener('keydown',function(e){
+    if(e.key!=='Enter') return;
+    if(e.target===cusLabel){ e.preventDefault(); dlg.querySelector('[data-act="tplCusAdd"]').click() }
+    else if(e.target===nameInput){ e.preventDefault(); saveBtn.click() }
+  });
+  mask.addEventListener('click',function(e){ if(e.target===mask) closeDlg() });
+
+  /* 拖曳排序：欄位與選項共用一組。手把 mousedown 才把 draggable 打開，
+     否則巢狀的選項列會被外層欄位卡搶走 dragstart。 */
+  (function(){
+    var armed=null, dragging=null;
+    onBox.addEventListener('mousedown',function(e){
+      var h=e.target.closest('.drag'); if(!h) return;
+      var it=h.closest('.optrow') || h.closest('.tplfield'); if(!it) return;
+      it.draggable=true; armed=it;
+    });
+    document.addEventListener('mouseup',function(){ if(armed && !dragging){ armed.draggable=false; armed=null } });
+    onBox.addEventListener('dragstart',function(e){
+      if(!armed){ e.preventDefault(); return }
+      dragging=armed; dragging.classList.add('dragging'); e.dataTransfer.effectAllowed='move';
+    });
+    onBox.addEventListener('dragover',function(e){
+      if(!dragging) return;
+      var sel=dragging.classList.contains('optrow')?'.optrow':'.tplfield';
+      var over=e.target.closest(sel);
+      if(!over||over===dragging||over.parentNode!==dragging.parentNode) return;
+      e.preventDefault();
+      var r=over.getBoundingClientRect();
+      if(e.clientY < r.top+r.height/2) over.parentNode.insertBefore(dragging,over);
+      else over.parentNode.insertBefore(dragging, over.nextSibling);
+    });
+    onBox.addEventListener('drop',function(e){ if(dragging) e.preventDefault() });
+    onBox.addEventListener('dragend',function(){
+      if(!dragging) return;
+      var isOpt=dragging.classList.contains('optrow'), box=dragging.parentNode;
+      dragging.classList.remove('dragging'); dragging.draggable=false; dragging=null; armed=null;
+      if(isOpt){
+        var fi=+box.closest('.tplfield').dataset.i;
+        var order=[].slice.call(box.querySelectorAll('.optrow')).map(function(r){ return +r.dataset.j });
+        var old=work[fi].opts;
+        work[fi].opts=order.map(function(k){ return old[k] });
+      } else {
+        var ord=[].slice.call(onBox.querySelectorAll('.tplfield')).map(function(r){ return +r.dataset.i });
+        var prev=work;
+        work=ord.map(function(k){ return prev[k] });
+      }
+      drawOn();
+    });
+  })();
+
+  /* ── 頁面上的動作 ── */
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('[data-act]'); if(!b || !page.contains(b)) return;
+    var act=b.dataset.act;
+    if(act==='tplEdit'){ openDlg('edit') }
+    else if(act==='tplNew'){ openDlg('new') }
+    else if(act==='tplRename'){
+      var t=T();
+      openForm('重新命名範本', fld('範本名稱','name','text',t.name), '儲存', function(v){
+        if(!v.name){ toast('請輸入範本名稱'); return false }
+        t.name=v.name; draw(); toast('已改名為 <b>'+v.name+'</b>');
+      });
+    }
+    else if(act==='tplUse'){
+      var t2=T();
+      askConfirm({title:'設為啟用', okText:'設為啟用', tone:'warm', icon:'<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>',
+        body:'把「<b>'+t2.name+'</b>」設為啟用中？<br>之後新建檔的來客會使用這份範本，已建檔的資料不受影響。',
+        onOk:function(){ TPL.forEach(function(x){ x.active=false }); t2.active=true; draw(); toast('<b>'+t2.name+'</b> 已設為啟用中') }});
+    }
+    else if(act==='tplRule'){
       e.stopImmediatePropagation();
       var pop=document.getElementById('tplRulePop');
       if(pop) pop.hidden=!pop.hidden;
-    } else if(act==='tplBackCur'){
-      viewVer=null; drawRows(); toast('已回到目前版本');
-    } else if(act==='tplSaveVer'){
-      var t2=T(), n=+(t2.ver.replace('v',''))||1;
-      t2.history.unshift({ver:t2.ver, fields:clone(t2.fields)});
-      t2.ver='v'+(Math.floor(n)+1);
-      viewVer=null; draw(); setDirty(false);
-      toast('已建立 <b>'+t2.ver+'</b>——舊版保留為唯讀');
-    } else if(act==='tplApplyStd'){
-      openForm('套用公版', fld('選擇公版','tpl','select',STD[0].name,STD.map(function(x){return x.name})), '套用', function(v){
-        var src=STD.filter(function(x){return x.name===v.tpl})[0];
-        T().fields=clone(src.fields); viewVer=null; draw(); setDirty(true);
-        toast('已套用公版 <b>'+v.tpl+'</b>（'+src.fields.length+' 欄）——按「儲存為新版本」才正式生效');
-      });
-    } else if(act==='tplUseStd'){
-      var si=+b.dataset.s, sx=STD[si];
-      askConfirm({title:'套用公版', okText:'套用', tone:'warm',
-        body:'以「<b>'+sx.name+'</b>」（'+sx.fields.length+' 欄）覆蓋<b>'+T().name+'</b>目前的欄位？<br>按「儲存為新版本」才會正式生效。',
-        onOk:function(){ T().fields=clone(sx.fields); viewVer=null; draw(); setDirty(true);
-          toast('已套用 <b>'+sx.name+'</b>——按「儲存為新版本」才正式生效') }});
     }
   });
   document.addEventListener('click',function(e){
@@ -8067,31 +8372,9 @@ try{ /* templates */
   });
   seg.addEventListener('click',function(e){
     var b=e.target.closest('button[data-t]'); if(!b) return;
-    cur=+b.dataset.t; viewVer=null; draw(); setDirty(false);
+    cur=+b.dataset.t; draw();
   });
-  /* 拖曳排序：放開才落定，順序寫回資料 */
-  var dragEl=null;
-  rows.addEventListener('dragstart',function(e){
-    if(viewVer) return;
-    dragEl=e.target.closest('tr'); if(!dragEl) return;
-    dragEl.classList.add('dragging'); e.dataTransfer.effectAllowed='move';
-  });
-  rows.addEventListener('dragover',function(e){
-    if(!dragEl) return; e.preventDefault();
-    var over=e.target.closest('tr'); if(!over||over===dragEl) return;
-    var r=over.getBoundingClientRect();
-    flip(rows,function(){
-      if(e.clientY < r.top+r.height/2) rows.insertBefore(dragEl,over);
-      else rows.insertBefore(dragEl, over.nextSibling);
-    });
-  });
-  rows.addEventListener('dragend',function(){
-    if(!dragEl) return;
-    dragEl.classList.remove('dragging'); dragEl=null;
-    var order=[].slice.call(rows.querySelectorAll('tr')).map(function(tr){ return +tr.dataset.i });
-    T().fields=order.map(function(k){ return T().fields[k] });
-    drawRows(); bumpNote();
-  });
+
   draw();
 })();
 }catch(e){console.warn("frag templates",e)}
