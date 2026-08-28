@@ -2185,8 +2185,6 @@
 #page-reports .rowsub{font-size:.66rem;color:var(--muted)}
 /* — templates — */
 #page-templates .keycol{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.7rem;color:var(--muted);letter-spacing:.01em}
-/* 勾勾表範本：左表格右預覽 */
-#page-templates .tplgrid{display:grid; grid-template-columns:minmax(0,1fr) 19rem; gap:var(--grid-gap); align-items:start}
 #page-templates .tplmain{min-width:0}
 #page-templates .tfoot .tplhint{font-size:.66rem; color:var(--muted)}
 #page-templates tbody tr{cursor:grab}
@@ -2213,22 +2211,10 @@
 /* 唯讀（檢視歷史版本）時把可改的東西關掉 */
 #page-templates.ro .reqchip,#page-templates.ro td.ops{pointer-events:none; opacity:.45}
 #page-templates.ro tbody tr{cursor:default}
-/* 表單預覽：只呈現版面，不是真的輸入 */
-#page-templates .pvform{display:flex; flex-direction:column; gap:var(--s3); max-height:26rem; overflow-y:auto}
-#page-templates .pvf{display:flex; flex-direction:column; gap:var(--s1)}
-#page-templates .pvf > span{font-size:.64rem; color:var(--muted); display:flex; align-items:center; gap:var(--s2)}
-#page-templates .pvf .req{color:var(--hot)}
-#page-templates .pvbox{height:var(--ctrl-h); border:1px solid var(--line); border-radius:var(--r-row); background:var(--bg);
-  display:flex; align-items:center; padding:0 var(--s3); font-size:.7rem; color:var(--line-3)}
-#page-templates .pvopts{display:flex; flex-wrap:wrap; gap:var(--s2)}
-#page-templates .pvopt{display:inline-flex; align-items:center; gap:var(--s2); font-size:.68rem; color:var(--muted)}
-#page-templates .pvopt i{width:.85rem; height:.85rem; border:1px solid var(--line-2); border-radius:var(--r-mini); flex:none}
-#page-templates .pvopt.radio i{border-radius:50%}
 #page-templates .vrule{margin:0; padding-left:1.1rem; display:flex; flex-direction:column; gap:var(--s3)}
 #page-templates .vrule li{font-size:.7rem; line-height:1.75; color:var(--muted)}
 #page-templates .vrule b{color:var(--ink); font-weight:500}
 #page-templates .buyrow .use{margin-left:auto}
-@media (max-width:1020px){ #page-templates .tplgrid{grid-template-columns:1fr} }
 /* — import — */
 #importDlg .dropzone{border:1px dashed var(--line);border-radius:var(--r-card);padding:var(--s8) var(--s6);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--s3);text-align:center;background:var(--bg)}
 #importDlg .dropzone:hover{border-color:var(--accent)}
@@ -4275,7 +4261,7 @@
   <button data-act="tplBackCur">回到目前版本</button>
 </div>
 
-<div class="block tplgrid">
+<div class="block">
   <div class="tplmain">
     <div class="table-wrap">
       <table>
@@ -4294,10 +4280,6 @@
       </table>
       <div class="tfoot"><span id="tplFoot">—</span><span class="tplhint">拖曳可調整欄位順序</span></div>
     </div>
-  </div>
-  <div class="acard tplprev">
-    <h3>表單預覽 <small>業務在現場看到的樣子</small></h3>
-    <div class="pvform" id="tplPreview"></div>
   </div>
 </div>
 
@@ -7947,7 +7929,7 @@ try{ /* templates */
   var page=document.getElementById('page-templates');
   var rows=document.getElementById('tplRows'), foot=document.getElementById('tplFoot');
   var cnt=document.getElementById('tplCount'), chip=document.getElementById('tplActiveChip');
-  var prev=document.getElementById('tplPreview'), notice=document.getElementById('tplVerNotice');
+  var notice=document.getElementById('tplVerNotice');
   var TYPES=['text','textarea','number','date','select','radio','checkbox'];
   var PEN='<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9a2.1 2.1 0 0 0-3-3L5 17v3z"/><path d="M14.5 6.5l3 3"/></svg>';
   var TRASH='<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg>';
@@ -7991,24 +7973,6 @@ try{ /* templates */
     page.classList.toggle('ro', !!viewVer);
     if(notice) notice.classList.toggle('show', !!viewVer);
     if(viewVer){ var vn=document.getElementById('tplVerName'); if(vn) vn.textContent=viewVer.ver }
-    drawPreview(fs);
-  }
-  function drawPreview(fs){
-    if(!prev) return;
-    prev.innerHTML=fs.map(function(f){
-      var body;
-      if(f.type==='radio'||f.type==='checkbox'){
-        body='<span class="pvopts">'+(f.opts||'—').split('、').map(function(o){
-          return '<span class="pvopt'+(f.type==='radio'?' radio':'')+'"><i></i>'+o+'</span>' }).join('')+'</span>';
-      } else if(f.type==='select'){
-        body='<span class="pvbox">'+((f.opts||'').split('、')[0]||'請選擇')+' ▾</span>';
-      } else if(f.type==='textarea'){
-        body='<span class="pvbox" style="height:3.2rem; align-items:flex-start; padding-top:.5rem">請輸入…</span>';
-      } else {
-        body='<span class="pvbox">'+(f.type==='date'?'YYYY/MM/DD':(f.type==='number'?'0':'請輸入…'))+'</span>';
-      }
-      return '<label class="pvf"><span>'+f.label+(f.req?'<b class="req">*</b>':'')+'</span>'+body+'</label>';
-    }).join('');
   }
   function draw(){ drawSeg(); drawRows(); drawStd() }
 
