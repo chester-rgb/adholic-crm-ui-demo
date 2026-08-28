@@ -5101,7 +5101,7 @@
       </div>
       <div class="assignee-card">
         <span class="av" id="leadAssigneeAvatar">張</span>
-        <div class="who"><b id="leadAssigneeName">張家豪</b><span class="meta">艾德霍客・現場一組</span></div>
+        <div class="who"><b id="leadAssigneeName">張家豪</b><span class="meta" id="leadAssigneeUnit">青園綠境</span></div>
       </div>
       <div class="lead-section-head"><div class="dsec">替換紀錄</div></div>
       <div class="hist" id="leadAssignHist">
@@ -7518,6 +7518,9 @@
     if(av) av.textContent=n==='未指派'?'—':n.charAt(0);
     if(nm) nm.textContent=n;
     var field=$('#drawer [data-lead-field="assignee"]'); if(field) field.textContent=n;
+    /* 副標放這筆來客的歸屬建案（demo 沒有組別編制，不掛不存在的「現場一組」） */
+    var sub=$('#leadAssigneeUnit');
+    if(sub) sub.textContent=activeLeadRow? (((activeLeadRow.children[6]||{textContent:''}).textContent||'').trim()||'—') : '—';
   }
   function updatePurchaseSummary(){
     var list=$('#leadPurchaseList'), sum=$('#leadPurchaseSummary'); if(!list||!sum) return;
