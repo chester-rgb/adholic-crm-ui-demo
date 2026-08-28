@@ -49,7 +49,7 @@
   html{font-size:16px}
   body{
     background:var(--bg); color:var(--ink);
-    font-family:var(--sans); font-weight:400; font-size:.95rem; line-height:1.7;
+    font-family:var(--sans); font-weight:400; font-size:.9rem; line-height:1.7;
     -webkit-font-smoothing:antialiased;
   }
   button{font-family:inherit; cursor:pointer; background:none; border:none; color:inherit; font-size:inherit}
@@ -135,7 +135,7 @@
   .rail button:not(.markbtn):hover{background:var(--fill); color:var(--ink)}
   .rail button.active:not(.markbtn){background:var(--accent); color:var(--on-accent)}
   .rail button .badge{
-    position:absolute; top:-2px; right:-4px; font-size:.63rem; font-weight:500;
+    position:absolute; top:-2px; right:-4px; font-size:.59rem; font-weight:500;
     background:var(--accent); color:var(--on-accent); border-radius:var(--r-pill);
     padding:0 .32rem; line-height:1.5; border:2px solid var(--bg);
     font-variant-numeric:tabular-nums;
@@ -148,7 +148,7 @@
   }
   /* 本案標記：告訴使用者以下功能屬於哪個建案（對應正式系統的群組標題） */
   .rail .rail-proj{
-    flex:none; font-size:.62rem; color:var(--muted);
+    flex:none; font-size:.58rem; color:var(--muted);
     letter-spacing:.06em; line-height:1.45; margin-bottom:.25rem;
     width:3.6rem; text-align:center;
     display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;
@@ -178,8 +178,8 @@
     display:flex; flex-direction:column; justify-content:center; background:var(--fill);
     border-radius:var(--r-pill); padding:.35rem 1.1rem; white-space:nowrap; line-height:1.35;
   }
-  .schedule .lbl b{font-weight:500; font-size:.85rem}
-  .schedule .lbl span{font-size:.69rem; color:var(--muted); letter-spacing:.1em; font-variant-numeric:tabular-nums}
+  .schedule .lbl b{font-weight:500; font-size:.81rem}
+  .schedule .lbl span{font-size:.66rem; color:var(--muted); letter-spacing:.1em; font-variant-numeric:tabular-nums}
   .track{
     flex:1; display:flex; align-items:center; gap:.5rem; min-width:0;
     background:var(--tint); border-radius:var(--r-pill); padding:.35rem .55rem; color:var(--ink);
@@ -188,19 +188,19 @@
     position:relative;
     display:flex; align-items:center; gap:.4rem; white-space:nowrap;
     background:var(--bg); border-radius:var(--r-pill); padding:.18rem .75rem .18rem .26rem;
-    font-size:.78rem; font-weight:500;
+    font-size:.74rem; font-weight:500;
     transition:box-shadow .18s ease-out, transform .12s ease-out;
   }
   .slot:hover{box-shadow:0 2px 8px rgba(28,43,58,.12)}
   .slot.now{background:var(--accent); color:var(--on-accent); padding-right:.9rem}
   .slot.now .av{background:rgba(255,255,255,.16); color:var(--on-accent)}
-  .slot .av{width:1.4rem; height:1.4rem; font-size:.67rem}
+  .slot .av{width:1.4rem; height:1.4rem; font-size:.64rem}
   .slot .av + .av{margin-left:-.5rem; box-shadow:0 0 0 2px var(--bg)}
   .slot.now .av + .av{box-shadow:0 0 0 2px var(--accent)}
   .slot em{font-style:normal; font-weight:400; opacity:.75; font-variant-numeric:tabular-nums}
   .slot.now::before{
     content:attr(data-now); position:absolute; bottom:calc(100% - .3rem); left:50%; transform:translateX(-50%);
-    background:var(--ink); color:var(--on-accent); font-size:.67rem; font-weight:500; letter-spacing:.06em;
+    background:var(--ink); color:var(--on-accent); font-size:.64rem; font-weight:500; letter-spacing:.06em;
     padding:.08rem .55rem; border-radius:var(--r-pill); white-space:nowrap; z-index:3;
     font-variant-numeric:tabular-nums; animation:fadein .4s ease-out both .3s;
   }
@@ -218,14 +218,14 @@
   /* 未讀數：跟側邊欄徽章同一套寫法（不設固定高度，靠 line-height 撐），
      只換成燈號紅。原本設 height:1rem 又加 2px 邊框，字會被擠得偏下 */
   .bell .ndot{
-    position:absolute; top:-2px; right:-2px; font-size:.63rem; font-weight:500;
+    position:absolute; top:-2px; right:-2px; font-size:.59rem; font-weight:500;
     background:var(--hot); color:var(--on-accent); border-radius:var(--r-pill);
     padding:0 .32rem; line-height:1.5; border:2px solid var(--bg);
     font-variant-numeric:tabular-nums;
   }
   .bell .ndot[hidden]{display:none}
   .avbtn{width:2.3rem; height:2.3rem; border-radius:50%; padding:0}
-  .avbtn .av{width:100%; height:100%; font-size:.9rem}
+  .avbtn .av{width:100%; height:100%; font-size:.85rem}
   /* 頭像選單 */
   .usermenu{
     position:absolute; top:calc(100% + .6rem); right:0; width:17.5rem; z-index:48;
@@ -235,13 +235,13 @@
   .usermenu.show{display:block; animation:menuIn .18s var(--enter) backwards; transform-origin:top right}
   .usermenu .uhead{display:flex; align-items:center; gap:.7rem; padding:.55rem .7rem .7rem}
   .usermenu .uhead .t b{font-weight:500; display:block; line-height:1.4}
-  .usermenu .uhead .t span{font-size:.74rem; color:var(--muted)}
-  .usermenu .ulbl{font-size:.67rem; color:var(--muted); letter-spacing:.18em; padding:.45rem .7rem .2rem; border-top:1px solid var(--line)}
-  .usermenu .nrow{display:flex; gap:.55rem; padding:.45rem .7rem; font-size:.81rem; border-radius:var(--r-cell); align-items:flex-start; width:100%; text-align:left}
+  .usermenu .uhead .t span{font-size:.7rem; color:var(--muted)}
+  .usermenu .ulbl{font-size:.64rem; color:var(--muted); letter-spacing:.18em; padding:.45rem .7rem .2rem; border-top:1px solid var(--line)}
+  .usermenu .nrow{display:flex; gap:.55rem; padding:.45rem .7rem; font-size:.76rem; border-radius:var(--r-cell); align-items:flex-start; width:100%; text-align:left}
   .usermenu .nrow:hover{background:var(--fill)}
   .usermenu .nrow .dot{margin-top:.45rem}
-  .usermenu .nrow time{display:block; font-size:.69rem; color:var(--muted); font-variant-numeric:tabular-nums}
-  .usermenu .urow{display:flex; align-items:center; gap:.6rem; width:100%; text-align:left; padding:.45rem .7rem; font-size:.85rem; border-radius:var(--r-cell)}
+  .usermenu .nrow time{display:block; font-size:.66rem; color:var(--muted); font-variant-numeric:tabular-nums}
+  .usermenu .urow{display:flex; align-items:center; gap:.6rem; width:100%; text-align:left; padding:.45rem .7rem; font-size:.81rem; border-radius:var(--r-cell)}
   .usermenu .urow:hover{background:var(--fill)}
   .usermenu .urow.exit{color:var(--hot)}
 
@@ -249,7 +249,7 @@
   .setmenu{width:19.5rem}
   .setmenu .urow{align-items:flex-start; padding:.45rem .7rem}
   .setmenu .urow.on{background:var(--tint); color:var(--accent)}
-  .setmenu .urow em{display:block; font-style:normal; font-size:.69rem; color:var(--muted); line-height:1.5; margin-top:.05rem}
+  .setmenu .urow em{display:block; font-style:normal; font-size:.66rem; color:var(--muted); line-height:1.5; margin-top:.05rem}
   .setmenu .urow.on em{color:var(--accent); opacity:.75}
   #gearBtn.active{background:var(--accent); color:var(--on-accent)}
 
@@ -263,18 +263,18 @@
   .masthead{display:flex; align-items:center; gap:.8rem; flex-wrap:wrap; margin-bottom:var(--head-gap); padding-right:13rem}
   .masthead .back{width:2.1rem; height:2.1rem}
   /* 字階跳級（Ron §5：頁標與 KPI 同級＝3.1× body，中間不設中繼級） */
-  .masthead h1{font-weight:300; font-size:2.97rem; letter-spacing:.04em; line-height:1.15}
-  .masthead .note{font-size:.78rem; color:var(--muted)}
+  .masthead h1{font-weight:300; font-size:2.81rem; letter-spacing:.04em; line-height:1.15}
+  .masthead .note{font-size:.74rem; color:var(--muted)}
   .masthead .acts{margin-left:auto; display:flex; gap:.5rem; align-items:center}
   .sec{display:flex; align-items:baseline; gap:.8rem; margin:0 0 .8rem}
-  .sec h2{font-weight:500; font-size:1.18rem; letter-spacing:.05em}
-  .sec .cnt{font-size:.78rem; color:var(--accent); border-bottom:1px solid var(--accent); padding-bottom:1px; font-variant-numeric:tabular-nums}
-  .sec .note{font-size:.76rem; color:var(--muted)}
+  .sec h2{font-weight:500; font-size:1.11rem; letter-spacing:.05em}
+  .sec .cnt{font-size:.74rem; color:var(--accent); border-bottom:1px solid var(--accent); padding-bottom:1px; font-variant-numeric:tabular-nums}
+  .sec .note{font-size:.72rem; color:var(--muted)}
   .sec .acts{margin-left:auto; display:flex; gap:.5rem}
   .block{margin-bottom:var(--sec-gap)}
 
   .pillbtn{
-    font-size:.81rem; height:var(--ctrl-h); padding:0 1.05rem; border-radius:var(--r-pill);
+    font-size:.76rem; height:var(--ctrl-h); padding:0 1.05rem; border-radius:var(--r-pill);
     letter-spacing:.04em; border:1px solid var(--line); color:var(--ink); background:var(--bg);
     display:inline-flex; align-items:center; gap:.4rem;
     transition:all .18s ease-out;
@@ -324,7 +324,7 @@
   .av{
     width:2rem; height:2rem; border-radius:50%; flex:none;
     display:inline-flex; align-items:center; justify-content:center;
-    font-weight:500; font-size:.78rem;
+    font-weight:500; font-size:.74rem;
     background:var(--tint); color:var(--accent);
   }
 
@@ -344,7 +344,7 @@
   .bay::after{top:100%; right:0}
   .cbtn{
     width:2.4rem; height:2.4rem; border-radius:50%; flex:none;
-    border:1px solid var(--line); background:var(--bg); color:var(--muted); font-size:.95rem;
+    border:1px solid var(--line); background:var(--bg); color:var(--muted); font-size:.9rem;
     display:flex; align-items:center; justify-content:center;
     transition:all .18s ease-out;
   }
@@ -358,16 +358,16 @@
     display:flex; flex-direction:column-reverse; justify-content:flex-end; gap:var(--s2);
     background:var(--panel); border-radius:var(--r-card); padding:var(--s4) var(--s5);
   }
-  .kpi .v{font-weight:500; font-size:1.68rem; line-height:1.3; letter-spacing:.01em; font-variant-numeric:tabular-nums; display:inline-flex; align-items:baseline; gap:var(--s2)}
+  .kpi .v{font-weight:500; font-size:1.59rem; line-height:1.3; letter-spacing:.01em; font-variant-numeric:tabular-nums; display:inline-flex; align-items:baseline; gap:var(--s2)}
   .kpi .bub{
-    font-size:.67rem; font-weight:500; letter-spacing:.02em; line-height:1.5;
+    font-size:.64rem; font-weight:500; letter-spacing:.02em; line-height:1.5;
     background:var(--tint); color:var(--accent); border-radius:var(--r-pill); padding:0 .45rem;
     font-variant-numeric:tabular-nums; align-self:center;
   }
   .kpi .bub.warm{background:var(--warm-tint); color:var(--warm)}
   .kpi .bub.hot{background:var(--hot-tint); color:var(--hot)}
-  .kpi .k{font-size:.74rem; color:var(--muted); display:flex; align-items:center; gap:.35rem}
-  .kpi .k small{font-size:.72rem; opacity:.85}
+  .kpi .k{font-size:.7rem; color:var(--muted); display:flex; align-items:center; gap:.35rem}
+  .kpi .k small{font-size:.68rem; opacity:.85}
 
   /* ── 建案總覽 ── */
   .projrow{display:grid; grid-template-columns:repeat(auto-fill,minmax(16rem,1fr)); gap:var(--grid-gap)}
@@ -378,23 +378,23 @@
     transition:transform .18s ease-out, box-shadow .18s ease-out;
   }
   .proj:hover{transform:translateY(-6px); box-shadow:var(--el2)}
-  .proj .status{align-self:flex-start; font-size:.72rem; border-radius:var(--r-pill); padding:.1rem .7rem; letter-spacing:.1em}
+  .proj .status{align-self:flex-start; font-size:.68rem; border-radius:var(--r-pill); padding:.1rem .7rem; letter-spacing:.1em}
   .status.selling{background:var(--accent); color:var(--on-accent); font-weight:500}
   .status.presale{border:1px solid var(--accent); color:var(--accent)}
   .status.soldout{background:var(--fill); color:var(--muted)}
-  .proj .pname{font-weight:500; font-size:1.18rem; letter-spacing:.08em}
-  .proj .owner{font-size:.76rem; color:var(--muted)}
+  .proj .pname{font-weight:500; font-size:1.11rem; letter-spacing:.08em}
+  .proj .owner{font-size:.72rem; color:var(--muted)}
   .proj .stats{display:flex; gap:1.4rem; margin-top:.15rem}
   .proj .stats div{display:flex; flex-direction:column}
-  .proj .stats b{font-weight:400; font-size:1.18rem; font-variant-numeric:tabular-nums}
-  .proj .stats span{font-size:.69rem; color:var(--muted); letter-spacing:.08em}
-  .proj .go{margin-top:.25rem; font-size:.78rem; color:var(--accent); letter-spacing:.06em}
+  .proj .stats b{font-weight:400; font-size:1.11rem; font-variant-numeric:tabular-nums}
+  .proj .stats span{font-size:.66rem; color:var(--muted); letter-spacing:.08em}
+  .proj .go{margin-top:.25rem; font-size:.74rem; color:var(--accent); letter-spacing:.06em}
   .proj.new{
     border:1px dashed var(--line-dash); background:transparent; align-items:center; justify-content:center;
     color:var(--muted); min-height:10.5rem; gap:.3rem; box-shadow:none;
   }
   .proj.new:hover{color:var(--ink); border-color:var(--muted); transform:none}
-  .proj.new .plus{font-weight:300; font-size:2.02rem; line-height:1}
+  .proj.new .plus{font-weight:300; font-size:1.91rem; line-height:1}
 
   /* ── 建案首頁 ── */
   .collect{
@@ -403,9 +403,9 @@
   }
   .collect .t{display:flex; flex-direction:column; gap:.05rem; margin-right:.5rem}
   .collect .t b{font-weight:500; letter-spacing:.06em}
-  .collect .t span{font-size:.74rem; color:var(--muted)}
+  .collect .t span{font-size:.7rem; color:var(--muted)}
   .collect .url{
-    font-size:.81rem; color:var(--ink);
+    font-size:.76rem; color:var(--ink);
     background:var(--fill); border:1px solid var(--line); border-radius:var(--r-pill);
     height:var(--ctrl-h); display:inline-flex; align-items:center; padding:0 1rem;
     font-variant-numeric:tabular-nums; letter-spacing:.02em;
@@ -421,7 +421,7 @@
   .feat:hover{transform:translateY(-6px); box-shadow:var(--el2)}
   .feat b{font-weight:500; letter-spacing:.06em; display:flex; align-items:center; gap:.5rem}
   .feat b .go{margin-left:auto; color:var(--accent); font-weight:400}
-  .feat span{font-size:.76rem; color:var(--muted)}
+  .feat span{font-size:.72rem; color:var(--muted)}
 
   /* ── 來客卡 ── */
   .leadrow{display:grid; grid-template-columns:repeat(auto-fill,minmax(14.5rem,1fr)); gap:var(--grid-gap)}
@@ -433,9 +433,9 @@
   }
   .lead:hover{transform:translateY(-3px); box-shadow:var(--el1)}
   .lead .head{display:flex; align-items:flex-start; gap:.65rem; padding-right:2.5rem}
-  .lead .head .av{width:2.4rem; height:2.4rem; font-size:.95rem; margin-top:.1rem}
-  .lead .name{font-weight:500; font-size:1.06rem; display:flex; align-items:center; gap:.4rem; flex-wrap:wrap; line-height:1.4}
-  .lead .role{font-size:.74rem; color:var(--muted); letter-spacing:.02em; line-height:1.55}
+  .lead .head .av{width:2.4rem; height:2.4rem; font-size:.9rem; margin-top:.1rem}
+  .lead .name{font-weight:500; font-size:1.01rem; display:flex; align-items:center; gap:.4rem; flex-wrap:wrap; line-height:1.4}
+  .lead .role{font-size:.7rem; color:var(--muted); letter-spacing:.02em; line-height:1.55}
   /* 焦點卡＝整張鋼藍實色（參考案的螢光綠卡對應物） */
   .lead.hotlead{background:var(--accent); color:var(--on-accent)}
   .lead.hotlead .role,.lead.hotlead .microlbl{color:rgba(255,255,255,.62)}
@@ -448,13 +448,13 @@
   .lead.hotlead .foot .circlebtn:hover{background:var(--on-accent); color:var(--accent)}
   .lead.hotlead .foot .circlebtn.solidink{background:var(--ink); border-color:var(--ink); color:var(--on-accent)}
   .lead.hotlead .interest i{background:rgba(255,255,255,.25)}
-  .microlbl{font-size:.67rem; color:var(--muted); letter-spacing:.14em; display:block; line-height:1.4; margin-bottom:.2rem}
+  .microlbl{font-size:.64rem; color:var(--muted); letter-spacing:.14em; display:block; line-height:1.4; margin-bottom:.2rem}
   .lead .meta{display:flex; align-items:flex-end; gap:.8rem}
   .lead .meta .col{display:flex; flex-direction:column}
   .lead .meta .col.right{margin-left:auto; align-items:flex-end}
   .chips{display:flex; gap:.35rem}
   .chip{
-    font-size:.72rem; border:1px solid var(--line-2); border-radius:var(--r-pill);
+    font-size:.68rem; border:1px solid var(--line-2); border-radius:var(--r-pill);
     padding:.06rem .55rem; color:var(--muted); letter-spacing:.05em; background:transparent;
   }
   .chip.hot{border-color:var(--hot); color:var(--hot)}
@@ -470,12 +470,12 @@
   .statuspill{
     flex:1; min-width:0; display:flex; align-items:center; gap:.45rem;
     background:var(--bg); border-radius:var(--r-pill); padding:.26rem .7rem .26rem .32rem;
-    font-size:.74rem; color:var(--ink); white-space:nowrap; overflow:hidden;
+    font-size:.7rem; color:var(--ink); white-space:nowrap; overflow:hidden;
   }
-  .statuspill .av{width:1.35rem; height:1.35rem; font-size:.65rem}
+  .statuspill .av{width:1.35rem; height:1.35rem; font-size:.61rem}
   /* 文字過長時省略，不硬切、也不擠掉右側箭頭 */
   .statuspill .st{flex:1 1 auto; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
-  .statuspill .caret{margin-left:auto; padding-left:.3rem; color:var(--muted); font-size:.67rem; flex:none}
+  .statuspill .caret{margin-left:auto; padding-left:.3rem; color:var(--muted); font-size:.64rem; flex:none}
   .lead .foot .circlebtn{width:1.9rem; height:1.9rem; background:var(--bg)}
   .lead .foot .circlebtn .ico{height:50%; width:auto}
   .lead .foot .circlebtn.solidink{background:var(--ink); border-color:var(--ink); color:var(--on-accent)}
@@ -483,22 +483,22 @@
   .filters{display:flex; align-items:center; gap:.5rem; flex-wrap:wrap; margin-bottom:.8rem}
   .filters .all{
     width:var(--ctrl-h); height:var(--ctrl-h); border-radius:50%; flex:none;
-    border:1px solid var(--ink); font-size:.76rem; font-weight:500;
+    border:1px solid var(--ink); font-size:.72rem; font-weight:500;
     display:inline-flex; align-items:center; justify-content:center;
   }
   .filters .all:hover{background:var(--fill)}
-  .filters .lbl{font-size:.74rem; color:var(--muted); letter-spacing:.2em; margin:0 .3rem 0 .5rem}
+  .filters .lbl{font-size:.7rem; color:var(--muted); letter-spacing:.2em; margin:0 .3rem 0 .5rem}
   .fchip{
-    font-size:.78rem; display:inline-flex; align-items:center; gap:.3rem; height:var(--ctrl-h);
+    font-size:.74rem; display:inline-flex; align-items:center; gap:.3rem; height:var(--ctrl-h);
     background:var(--fill); border-radius:var(--r-pill); padding:0 .5rem 0 .8rem; color:var(--ink);
   }
   .fchip .x{color:var(--muted); padding:0 .25rem}
   .fchip .x:hover{color:var(--hot)}
-  .clear-all{font-size:.78rem; color:var(--muted); text-decoration:underline; text-underline-offset:3px}
+  .clear-all{font-size:.74rem; color:var(--muted); text-decoration:underline; text-underline-offset:3px}
   .clear-all:hover{color:var(--ink)}
 
   .notice{
-    display:none; align-items:center; gap:.8rem; font-size:.87rem;
+    display:none; align-items:center; gap:.8rem; font-size:.83rem;
     background:var(--bg); border:1px solid var(--line); border-left:3px solid var(--warm);
     border-radius:12px; padding:.45rem 1rem; margin-bottom:.8rem;
   }
@@ -507,15 +507,15 @@
 
   .table-wrap{overflow-x:auto; background:var(--panel); border-radius:var(--r-card); padding:.4rem .4rem .2rem}
   /* min-width 只給可橫捲的資料表；別讓它波及卡內小表（如 .pivot） */
-  .table-wrap table{width:100%; border-collapse:separate; border-spacing:0 2px; font-size:.9rem; min-width:880px}
-  table{width:100%; border-collapse:separate; border-spacing:0 2px; font-size:.9rem}
+  .table-wrap table{width:100%; border-collapse:separate; border-spacing:0 2px; font-size:.85rem; min-width:880px}
+  table{width:100%; border-collapse:separate; border-spacing:0 2px; font-size:.85rem}
   thead th{
-    text-align:left; font-weight:400; font-size:.74rem; letter-spacing:.16em; color:var(--muted);
+    text-align:left; font-weight:400; font-size:.7rem; letter-spacing:.16em; color:var(--muted);
     padding:.55rem 1rem .45rem; white-space:nowrap; border-bottom:1px solid var(--line);
   }
   thead th.sortable{cursor:pointer; user-select:none}
   thead th.sortable:hover{color:var(--ink)}
-  thead th .arr{font-size:.62rem; margin-left:.25rem; color:var(--accent)}
+  thead th .arr{font-size:.58rem; margin-left:.25rem; color:var(--accent)}
   tbody td{padding:.72rem 1rem; white-space:nowrap; font-variant-numeric:tabular-nums; background:transparent; transition:background .15s ease-out}
   tbody tr td:first-child{border-radius:var(--r-row) 0 0 var(--r-row)}
   tbody tr td:last-child{border-radius:0 var(--r-row) var(--r-row) 0}
@@ -523,23 +523,36 @@
   tbody tr.checked td{background:var(--tint)}
   tbody tr.kbrow td{box-shadow:inset 0 0 0 1px var(--line-accent)}
   td .name{font-weight:500; display:inline-flex; align-items:center; gap:.6rem}
-  .tag{font-size:.69rem; color:var(--accent); border:1px solid var(--line-accent); border-radius:var(--r-pill); padding:0 .5rem; font-variant-numeric:tabular-nums}
-  .badge{font-size:.72rem; border-radius:var(--r-pill); padding:.1rem .7rem; letter-spacing:.08em; background:var(--bg); color:var(--ink)}
+  .tag{font-size:.66rem; color:var(--accent); border:1px solid var(--line-accent); border-radius:var(--r-pill); padding:0 .5rem; font-variant-numeric:tabular-nums}
+  .badge{font-size:.68rem; border-radius:var(--r-pill); padding:.1rem .7rem; letter-spacing:.08em; background:var(--bg); color:var(--ink)}
   .badge.call{background:var(--bg); border:1px solid var(--line); color:var(--muted)}
-  .unassigned{color:var(--hot); font-size:.78rem; letter-spacing:.06em}
+  .unassigned{color:var(--hot); font-size:.74rem; letter-spacing:.06em}
   .stale-dot{display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--warm)}
   td.ops{text-align:right}
   td.ops .rowact{opacity:0; transition:opacity .15s ease-out; display:inline-flex; gap:.4rem}
   tbody tr:hover td.ops .rowact, tbody tr.checked td.ops .rowact, tbody tr.kbrow td.ops .rowact{opacity:1}
   td.ops button{
-    font-size:.74rem; border:1px solid var(--line); border-radius:var(--r-pill); padding:.12rem .7rem; color:var(--ink); background:var(--bg);
+    font-size:.7rem; border:1px solid var(--line); border-radius:var(--r-pill); padding:.12rem .7rem; color:var(--ink); background:var(--bg);
     transition:all .15s ease-out;
   }
   td.ops button:hover{background:var(--accent); color:var(--on-accent); border-color:var(--accent)}
   td.ops button.del{color:var(--muted)}
   td.ops button.del:hover{background:var(--hot); color:var(--on-accent); border-color:var(--hot)}
-  input[type=checkbox]{accent-color:var(--accent); width:14px; height:14px}
-  .tfoot{display:flex; justify-content:space-between; align-items:center; padding:.6rem .4rem 0; font-size:.78rem; color:var(--muted)}
+  /* 勾選框：全站都是圓角語彙，方框太突兀——自繪成圓形＋打勾 */
+  input[type=checkbox]{
+    appearance:none; -webkit-appearance:none; margin:0; flex:none; cursor:pointer;
+    width:1rem; height:1rem; border-radius:50%; position:relative;
+    border:1px solid var(--line-2); background:var(--bg);
+    transition:background .15s ease-out, border-color .15s ease-out;
+  }
+  input[type=checkbox]:hover{border-color:var(--accent)}
+  input[type=checkbox]:checked{background:var(--accent); border-color:var(--accent)}
+  input[type=checkbox]:checked::after{
+    content:""; position:absolute; left:.29rem; top:.14rem; width:.22rem; height:.44rem;
+    border:solid var(--on-accent); border-width:0 1.5px 1.5px 0; transform:rotate(42deg);
+  }
+  input[type=checkbox]:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+  .tfoot{display:flex; justify-content:space-between; align-items:center; padding:.6rem .4rem 0; font-size:.74rem; color:var(--muted)}
   .tfoot .pager{display:flex; gap:.5rem}
   .tfoot .pager button{border:1px solid var(--line); border-radius:var(--r-pill); padding:.15rem .8rem; color:var(--muted)}
   .tfoot .pager button:hover{color:var(--ink); border-color:var(--muted)}
@@ -548,16 +561,19 @@
      正式系統把「客戶分級」拆成獨立頁是錯的分法，這裡整合進來客名單：
      表格一欄＋篩選一項。填色深淺＝分級高低，不引入新色相。 */
   #page-leadsall .grade{
-    font-size:.72rem; font-weight:500; letter-spacing:.04em;
+    font-size:.68rem; font-weight:500; letter-spacing:.04em;
     border-radius:var(--r-pill); padding:.06rem .55rem; white-space:nowrap;
   }
   #page-leadsall .grade.a{background:var(--accent); color:var(--on-accent)}
   #page-leadsall .grade.b{background:var(--tint); color:var(--accent)}
   #page-leadsall .grade.c{background:transparent; border:1px solid var(--line-2); color:var(--muted)}
+  #page-leadsall .grade.d{background:var(--fill); color:var(--muted)}
+  /* 操作欄跟其餘欄位一樣靠左，表頭才對得上按鈕 */
+  #page-leadsall td.ops{text-align:left}
   #page-leadsall .grade.none{background:transparent; color:var(--line-3)}
 
   /* ── 銷控表／價格表 ── */
-  .legend{display:flex; align-items:center; gap:1.1rem; flex-wrap:wrap; margin-bottom:.8rem; font-size:.76rem; color:var(--muted)}
+  .legend{display:flex; align-items:center; gap:1.1rem; flex-wrap:wrap; margin-bottom:.8rem; font-size:.72rem; color:var(--muted)}
   .legend .it{display:flex; align-items:center; gap:.4rem}
   .lg{width:.95rem; height:.95rem; border-radius:5px; flex:none}
   .lg.sale{border:1px solid var(--line-3); background:var(--bg)}
@@ -569,15 +585,15 @@
   .gridwrap{overflow-x:auto; background:var(--panel); border-radius:var(--r-card); padding:var(--card-pad)}
   .floor{display:grid; grid-template-columns:3.2rem repeat(6,minmax(5.2rem,1fr)); gap:.45rem; align-items:stretch; margin-bottom:.45rem; min-width:640px}
   .floor:last-child{margin-bottom:0}
-  .floor .f{display:flex; align-items:center; justify-content:center; font-size:.81rem; color:var(--muted); font-variant-numeric:tabular-nums}
+  .floor .f{display:flex; align-items:center; justify-content:center; font-size:.76rem; color:var(--muted); font-variant-numeric:tabular-nums}
   .unit{
     position:relative; border-radius:var(--r-cell); padding:.4rem .6rem; text-align:left;
     display:flex; flex-direction:column; gap:.05rem; line-height:1.35;
     border:1px solid var(--line-3); color:var(--ink); background:var(--bg);
     transition:transform .15s ease-out, box-shadow .15s ease-out;
   }
-  .unit b{font-weight:500; font-size:.81rem; letter-spacing:.04em}
-  .unit span{font-size:.67rem; color:var(--muted); letter-spacing:.04em; font-variant-numeric:tabular-nums}
+  .unit b{font-weight:500; font-size:.76rem; letter-spacing:.04em}
+  .unit span{font-size:.64rem; color:var(--muted); letter-spacing:.04em; font-variant-numeric:tabular-nums}
   .unit:hover{transform:translateY(-2px); box-shadow:0 6px 14px rgba(28,43,58,.10)}
   .unit.hold{border-color:var(--warm)}
   .unit.hold b::after{content:''; display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--warm); margin-left:.4rem; vertical-align:1px}
@@ -595,18 +611,18 @@
   .parkwrap{display:flex; align-items:center; gap:.45rem; flex-wrap:wrap}
   .park{
     width:3.4rem; border-radius:var(--r-mini); padding:.28rem 0; text-align:center;
-    font-size:.72rem; border:1px solid var(--line-3); color:var(--ink); background:var(--bg);
+    font-size:.68rem; border:1px solid var(--line-3); color:var(--ink); background:var(--bg);
     font-variant-numeric:tabular-nums;
   }
   .park.signed{background:var(--accent); border-color:var(--accent); color:var(--on-accent)}
   .park.done{background:var(--fill-2); border-color:var(--fill-2); color:var(--muted)}
   .seg{display:inline-flex; background:var(--fill); border-radius:var(--r-pill); padding:.2rem; gap:.15rem}
-  .seg button{font-size:.78rem; padding:.22rem .95rem; border-radius:var(--r-pill); color:var(--muted); letter-spacing:.06em; transition:all .15s ease-out}
+  .seg button{font-size:.74rem; padding:.22rem .95rem; border-radius:var(--r-pill); color:var(--muted); letter-spacing:.06em; transition:all .15s ease-out}
   .seg button:hover{color:var(--ink)}
   .seg button.on{background:var(--accent); color:var(--on-accent); font-weight:500}
-  .formula{font-size:.76rem; color:var(--muted)}
+  .formula{font-size:.72rem; color:var(--muted)}
   .formula b{color:var(--ink); font-weight:500}
-  .dnote{font-size:.74rem; color:var(--muted); background:var(--fill); border-radius:var(--r-cell); padding:.45rem .7rem}
+  .dnote{font-size:.7rem; color:var(--muted); background:var(--fill); border-radius:var(--r-cell); padding:.45rem .7rem}
 
   /* ── 權限管理 ── */
   /* ── 權限管理：角色列 ＋ 群組卡牆 ── */
@@ -619,11 +635,11 @@
   .rtile{
     background:var(--panel); border-radius:var(--r-card); padding:var(--s3) var(--s5);
     display:flex; flex-direction:column; align-items:flex-start; gap:.1rem;
-    font-size:.87rem; color:var(--ink); white-space:nowrap;
+    font-size:.83rem; color:var(--ink); white-space:nowrap;
     transition:background .18s ease-out, color .18s ease-out;
   }
-  .rtile .n{font-size:.74rem; color:var(--muted); font-variant-numeric:tabular-nums; display:flex; align-items:baseline; gap:var(--s2)}
-  .rtile .n code{font-size:.67rem; letter-spacing:.06em; color:var(--line-3)}
+  .rtile .n{font-size:.7rem; color:var(--muted); font-variant-numeric:tabular-nums; display:flex; align-items:baseline; gap:var(--s2)}
+  .rtile .n code{font-size:.64rem; letter-spacing:.06em; color:var(--line-3)}
   .rtile.on .n code{color:rgba(255,255,255,.55)}
   .rtile:hover{background:var(--fill)}
   .rtile.on{background:var(--accent); color:var(--on-accent)}
@@ -640,14 +656,14 @@
   .gcard{background:var(--panel); border-radius:var(--r-card); padding:var(--s5) var(--s5) var(--s4)}
   .gcard .ghead{display:flex; align-items:baseline; gap:var(--s3); margin-bottom:var(--s3)}
   .gcard .ghead .microlbl{margin:0}
-  .gcard .ghead .n{margin-left:auto; font-size:.74rem; color:var(--muted); font-variant-numeric:tabular-nums}
-  .gcard .prow{display:flex; align-items:center; gap:var(--s3); min-height:2rem; font-size:.83rem; color:var(--ink)}
+  .gcard .ghead .n{margin-left:auto; font-size:.7rem; color:var(--muted); font-variant-numeric:tabular-nums}
+  .gcard .prow{display:flex; align-items:center; gap:var(--s3); min-height:2rem; font-size:.78rem; color:var(--ink)}
   .gcard .prow.off{color:var(--muted)}
   .gcard .prow.locked{color:var(--line-3)}
-  .gcard .prow .lockchip{margin-left:auto; font-size:.67rem; color:var(--muted)}
+  .gcard .prow .lockchip{margin-left:auto; font-size:.64rem; color:var(--muted)}
   /* 方案未開通的那一列：留在原分類裡，但整列退灰、開關不能動 */
   .gcard .prow.locked .lockchip{
-    margin-left:auto; font-size:.65rem; letter-spacing:.04em;
+    margin-left:auto; font-size:.61rem; letter-spacing:.04em;
     background:var(--fill); color:var(--muted); border-radius:var(--r-pill); padding:.05rem .4rem;
   }
   .gcard .prow.locked .sw{margin-left:var(--s2); opacity:.45}
@@ -678,7 +694,7 @@
   .memberbox .assignbtn{
     flex:none; height:2.75rem; border-radius:var(--r-pill); padding:0 .625rem; overflow:hidden;
     border:1px solid var(--line-2); background:var(--bg); color:var(--muted);
-    display:flex; align-items:center; justify-content:center; gap:0; font-size:.81rem; font-weight:500;
+    display:flex; align-items:center; justify-content:center; gap:0; font-size:.76rem; font-weight:500;
     transition:padding-right .28s var(--enter), background .18s ease-out, border-color .18s ease-out, color .18s ease-out;
   }
   .memberbox .assignbtn .lbl{
@@ -698,9 +714,9 @@
     background:transparent; transition:background .15s ease-out;
   }
   .mrow:hover{background:var(--bg)}
-  .mrow .av{width:1.6rem; height:1.6rem; font-size:.69rem; flex:none}
+  .mrow .av{width:1.6rem; height:1.6rem; font-size:.66rem; flex:none}
   .mrow .who{min-width:0; flex:0 1 auto; display:block}
-  .mrow .who b{font-size:.83rem; font-weight:500; color:var(--ink); white-space:nowrap}
+  .mrow .who b{font-size:.78rem; font-weight:500; color:var(--ink); white-space:nowrap}
   .mrow .rm{
     flex:none; width:1.25rem; height:1.25rem; border-radius:50%; color:var(--line-3);
     display:flex; align-items:center; justify-content:center; opacity:0; margin-left:-.15rem;
@@ -710,7 +726,7 @@
   .mrow:hover .rm{opacity:1}
   .mrow .rm:focus-visible{opacity:1; outline:2px solid var(--accent); outline-offset:1px}
   .mrow .rm:hover{background:var(--hot-tint); color:var(--hot)}
-  .memberbox .empty{font-size:.81rem; color:var(--muted); padding:var(--s3) 0}
+  .memberbox .empty{font-size:.76rem; color:var(--muted); padding:var(--s3) 0}
 
   /* 點角色時，成員區從那顆磚底下「垂」出來：
      先長一段連著磚與面板的頸子，面板攤開後頸子再被拉細、斷開 */
@@ -750,7 +766,7 @@
   .sel-btn{
     width:100%; height:var(--ctrl-h); border:1px solid var(--line); border-radius:var(--r-row);
     padding:0 var(--s2) 0 var(--s3); background:var(--bg); color:var(--ink);
-    font:inherit; font-size:.87rem; display:flex; align-items:center; gap:var(--s2);
+    font:inherit; font-size:.83rem; display:flex; align-items:center; gap:var(--s2);
     transition:border-color .15s ease-out;
   }
   .sel-btn .sel-val{flex:1 1 auto; text-align:left; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
@@ -768,7 +784,7 @@
   @keyframes selDrop{ from{opacity:0; transform:translateY(-4px)} to{opacity:1; transform:none} }
   .sel-list button{
     display:flex; align-items:center; gap:var(--s2); width:100%; text-align:left;
-    font-size:.85rem; color:var(--ink); padding:.4rem var(--s3); border-radius:var(--r-mini);
+    font-size:.81rem; color:var(--ink); padding:.4rem var(--s3); border-radius:var(--r-mini);
   }
   .sel-list button:hover{background:var(--panel)}
   .sel-list button[aria-selected="true"]{color:var(--accent); font-weight:500; background:var(--tint)}
@@ -777,7 +793,7 @@
 
   .dlg.sheet select{
     width:100%; height:var(--ctrl-h); border:1px solid var(--line); border-radius:var(--r-row);
-    padding:0 var(--s3); background:var(--bg); color:var(--ink); font:inherit; font-size:.87rem;
+    padding:0 var(--s3); background:var(--bg); color:var(--ink); font:inherit; font-size:.83rem;
   }
   .dlg.sheet select:focus-visible{outline:2px solid var(--line-accent); outline-offset:var(--s1); border-color:var(--accent)}
   @media (max-width:760px){ .dlg.sheet .grid2{grid-template-columns:1fr} }
@@ -786,21 +802,21 @@
   .dlg.formdlg{width:min(26rem,92vw); text-align:left}
   .dlg.formdlg.wide{width:min(30rem,92vw)}
   .dlg.formdlg .f{display:flex; flex-direction:column; gap:var(--s2); margin-bottom:var(--s5)}
-  .dlg.formdlg label{font-size:.81rem; color:var(--muted); display:flex; align-items:center; gap:var(--s2)}
+  .dlg.formdlg label{font-size:.76rem; color:var(--muted); display:flex; align-items:center; gap:var(--s2)}
   /* 必填／選填靠到欄位右上，每一格的標記才會切齊 */
   .dlg.formdlg label .opt,
   .dlg.formdlg label .req{margin-left:auto}
   /* 必填／選填同一種膠囊，只有顏色不同 */
   .dlg.formdlg label .opt,
   .dlg.formdlg label .req{
-    font-size:.67rem; font-weight:500; letter-spacing:.02em;
+    font-size:.64rem; font-weight:500; letter-spacing:.02em;
     border-radius:var(--r-pill); padding:0 .4rem;
   }
   .dlg.formdlg label .req{color:var(--accent); background:var(--tint)}
   .dlg.formdlg label .opt{color:var(--muted); background:var(--fill)}
   .dlg.formdlg input,.dlg.formdlg textarea{
     width:100%; border:1px solid var(--line); border-radius:var(--r-row);
-    padding:0 var(--s3); background:var(--bg); color:var(--ink); font:inherit; font-size:.87rem;
+    padding:0 var(--s3); background:var(--bg); color:var(--ink); font:inherit; font-size:.83rem;
   }
   .dlg.formdlg input{height:var(--ctrl-h)}
   .dlg.formdlg textarea{padding:var(--s2) var(--s3); line-height:1.7; resize:vertical; min-height:4.5rem}
@@ -808,8 +824,8 @@
     outline:2px solid var(--line-accent); outline-offset:var(--s1); border-color:var(--accent);
   }
   .dlg.formdlg input[aria-invalid="true"]{border-color:var(--hot)}
-  .dlg.formdlg .hint{font-size:.72rem; line-height:1.6; color:var(--muted)}
-  .dlg.formdlg .err{display:none; font-size:.72rem; color:var(--hot)}
+  .dlg.formdlg .hint{font-size:.68rem; line-height:1.6; color:var(--muted)}
+  .dlg.formdlg .err{display:none; font-size:.68rem; color:var(--hot)}
   .dlg.formdlg .err.show{display:block}
   .dlg.formdlg .cf-acts .pillbtn{flex:0 0 auto; padding:0 var(--s5)}
   .dlg.formdlg .cf-acts{justify-content:flex-end}
@@ -819,37 +835,37 @@
   .picklist{max-height:17rem; overflow-y:auto; margin-bottom:var(--s5)}
   .picklist .prow2{display:flex; align-items:center; gap:var(--s3); padding:var(--s2) 0; cursor:pointer}
   .picklist .prow2 + .prow2{border-top:1px solid var(--line-3)}
-  .picklist .prow2 .av{width:1.8rem; height:1.8rem; font-size:.74rem; flex:none}
+  .picklist .prow2 .av{width:1.8rem; height:1.8rem; font-size:.7rem; flex:none}
   .picklist .prow2 .who{display:flex; flex-direction:column; min-width:0; flex:1 1 auto}
-  .picklist .prow2 .who b{font-size:.85rem; font-weight:500}
-  .picklist .prow2 .who span{font-size:.72rem; color:var(--muted)}
+  .picklist .prow2 .who b{font-size:.81rem; font-weight:500}
+  .picklist .prow2 .who span{font-size:.68rem; color:var(--muted)}
   .picklist .prow2 .box{
     width:1.05rem; height:1.05rem; border-radius:var(--r-mini); flex:none;
     border:1px solid var(--line-2); display:flex; align-items:center; justify-content:center;
   }
   .picklist .prow2[aria-selected="true"] .box{background:var(--accent); border-color:var(--accent)}
   .picklist .prow2[aria-selected="true"] .box::after{content:''; width:.34rem; height:.62rem; border:2px solid var(--on-accent); border-top:0; border-left:0; transform:rotate(42deg) translate(-1px,-1px)}
-  .picklist .empty{font-size:.81rem; color:var(--muted); padding:var(--s4) 0}
+  .picklist .empty{font-size:.76rem; color:var(--muted); padding:var(--s4) 0}
   @media (max-width:1020px){ .grpwall{grid-template-columns:1fr} }
   .rolecard,.permcard{background:var(--panel); border-radius:var(--r-card); padding:.6rem}
   .rolecard .role{
     width:100%; display:flex; align-items:center; gap:.6rem; text-align:left;
-    padding:.55rem .9rem; border-radius:var(--r-row); font-size:.9rem;
+    padding:.55rem .9rem; border-radius:var(--r-row); font-size:.85rem;
     transition:background .15s ease-out;
   }
   .rolecard .role:hover{background:var(--fill)}
   .rolecard .role.on{background:var(--tint); color:var(--accent); font-weight:500}
-  .rolecard .role .n{margin-left:auto; font-size:.74rem; color:var(--muted); font-variant-numeric:tabular-nums}
+  .rolecard .role .n{margin-left:auto; font-size:.7rem; color:var(--muted); font-variant-numeric:tabular-nums}
   .rolecard .role.on .n{color:var(--accent)}
   .permcard{padding:var(--card-pad)}
   .permhead{display:flex; align-items:baseline; gap:.8rem; margin-bottom:.6rem}
   .permhead b{font-weight:500}
-  .permhead .count{font-size:.76rem; color:var(--accent); font-variant-numeric:tabular-nums}
-  .permhead .note{margin-left:auto; font-size:.72rem; color:var(--muted)}
-  .permrow{display:flex; align-items:center; gap:.8rem; padding:.5rem .1rem; border-bottom:1px solid var(--line); font-size:.87rem}
+  .permhead .count{font-size:.72rem; color:var(--accent); font-variant-numeric:tabular-nums}
+  .permhead .note{margin-left:auto; font-size:.68rem; color:var(--muted)}
+  .permrow{display:flex; align-items:center; gap:.8rem; padding:.5rem .1rem; border-bottom:1px solid var(--line); font-size:.83rem}
   .permrow:last-of-type{border-bottom:none}
-  .permrow code{font-family:ui-monospace,monospace; font-size:.69rem; color:var(--muted); background:var(--fill); border-radius:6px; padding:0 .4rem}
-  .permrow .lockchip{margin-left:auto; font-size:.69rem; color:var(--muted); border:1px solid var(--line); border-radius:var(--r-pill); padding:0 .55rem}
+  .permrow code{font-family:ui-monospace,monospace; font-size:.66rem; color:var(--muted); background:var(--fill); border-radius:6px; padding:0 .4rem}
+  .permrow .lockchip{margin-left:auto; font-size:.66rem; color:var(--muted); border:1px solid var(--line); border-radius:var(--r-pill); padding:0 .55rem}
   .permrow.locked{opacity:.55}
   /* 與人員管理的 .switch 同一套手感：軌 2.15×1.2rem、鈕 .9rem、位移 .95rem、.2s spring */
   .sw{
@@ -867,7 +883,7 @@
   .sw:not([disabled]):hover{filter:brightness(.96)}
   .sw:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
   .unsaved{
-    display:none; align-items:center; gap:.8rem; margin-top:.8rem; font-size:.81rem;
+    display:none; align-items:center; gap:.8rem; margin-top:.8rem; font-size:.76rem;
     background:var(--tint); border-radius:var(--r-cell); padding:.45rem .9rem; color:var(--accent);
   }
   .unsaved.show{display:flex; animation:rise .25s ease-out both}
@@ -875,23 +891,23 @@
   .members{margin-top:1rem; border-top:1px solid var(--line); padding-top:.8rem}
   .members .microlbl{margin-bottom:.45rem}
   .members .chips{flex-wrap:wrap; gap:.4rem}
-  .members .warn{font-size:.72rem; color:var(--muted); margin-top:.5rem}
+  .members .warn{font-size:.68rem; color:var(--muted); margin-top:.5rem}
 
   /* ── 分析 ── */
   .anagrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(19rem,1fr)); gap:var(--grid-gap)}
   .acard{background:var(--panel); border-radius:var(--r-card); padding:var(--card-pad)}
   .acard.span2{grid-column:span 2}
   @media (max-width:1020px){ .acard.span2{grid-column:auto} }
-  .acard h3{font-weight:500; font-size:.9rem; letter-spacing:.08em; margin-bottom:.9rem; display:flex; align-items:baseline; gap:.6rem}
-  .acard h3 small{font-size:.72rem; color:var(--muted); font-weight:400}
+  .acard h3{font-weight:500; font-size:.85rem; letter-spacing:.08em; margin-bottom:.9rem; display:flex; align-items:baseline; gap:.6rem}
+  .acard h3 small{font-size:.68rem; color:var(--muted); font-weight:400}
   .bars{display:flex; align-items:flex-end; gap:.75rem; height:8.5rem; padding-top:.4rem}
   .bcol{flex:1; display:flex; flex-direction:column; align-items:center; gap:.4rem; height:100%; justify-content:flex-end}
-  .bcol .bv{font-size:.72rem; color:var(--muted); font-variant-numeric:tabular-nums}
+  .bcol .bv{font-size:.68rem; color:var(--muted); font-variant-numeric:tabular-nums}
   .bcol .b{width:100%; max-width:2.2rem; border-radius:7px 7px 3px 3px; background:var(--fill-3); transition:filter .15s ease-out}
   .bcol:hover .b{filter:brightness(.94)}
   .bcol.hi .b{background:var(--accent)}
   .bcol.hi .bv{color:var(--accent)}
-  .bcol .bl{font-size:.69rem; color:var(--muted); letter-spacing:.04em; font-variant-numeric:tabular-nums}
+  .bcol .bl{font-size:.66rem; color:var(--muted); letter-spacing:.04em; font-variant-numeric:tabular-nums}
   .donutrow{display:flex; align-items:center; gap:1.4rem}
   .donut{
     width:8.5rem; height:8.5rem; border-radius:50%; position:relative; flex:none;
@@ -899,9 +915,9 @@
   }
   .donut::after{content:''; position:absolute; inset:24%; border-radius:50%; background:var(--panel)}
   .donut .c{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; z-index:1}
-  .donut .c b{font-weight:300; font-size:1.68rem; font-variant-numeric:tabular-nums}
-  .donut .c span{font-size:.67rem; color:var(--muted); letter-spacing:.14em}
-  .dlegend{display:flex; flex-direction:column; gap:.4rem; font-size:.81rem; flex:1}
+  .donut .c b{font-weight:300; font-size:1.59rem; font-variant-numeric:tabular-nums}
+  .donut .c span{font-size:.64rem; color:var(--muted); letter-spacing:.14em}
+  .dlegend{display:flex; flex-direction:column; gap:.4rem; font-size:.76rem; flex:1}
   .dlegend .it{display:flex; align-items:center; gap:.55rem; color:var(--muted)}
   .dlegend .it b{margin-left:auto; font-weight:400; color:var(--ink); font-variant-numeric:tabular-nums}
   .dlegend .sw2c{width:.7rem; height:.7rem; border-radius:4px; flex:none}
@@ -910,64 +926,64 @@
   .eff h3 small{color:rgba(255,255,255,.55)}
   .eff .badge-up{
     align-self:flex-start; background:var(--on-accent); color:var(--ink); border-radius:var(--r-pill);
-    font-size:.81rem; font-weight:500; padding:.12rem .7rem; margin-bottom:.4rem;
+    font-size:.76rem; font-weight:500; padding:.12rem .7rem; margin-bottom:.4rem;
     font-variant-numeric:tabular-nums;
   }
   .eff svg{width:100%; height:5.5rem; display:block; margin-top:auto}
   .alert{display:flex; flex-direction:column}
-  .alert .row{display:flex; align-items:center; gap:.8rem; padding:.6rem .2rem; font-size:.87rem; border-bottom:1px solid var(--line)}
+  .alert .row{display:flex; align-items:center; gap:.8rem; padding:.6rem .2rem; font-size:.83rem; border-bottom:1px solid var(--line)}
   .alert .row:last-child{border-bottom:none}
   .alert .row b{font-weight:400; font-variant-numeric:tabular-nums; margin-left:auto}
   .alert .row button{
-    font-size:.74rem; border:1px solid var(--line); border-radius:var(--r-pill); padding:.1rem .7rem; color:var(--muted);
+    font-size:.7rem; border:1px solid var(--line); border-radius:var(--r-pill); padding:.1rem .7rem; color:var(--muted);
     transition:all .15s ease-out;
   }
   .alert .row button:hover{background:var(--accent); color:var(--on-accent); border-color:var(--accent)}
-  .pivot{width:100%; min-width:0; border-collapse:collapse; font-size:.81rem}
+  .pivot{width:100%; min-width:0; border-collapse:collapse; font-size:.76rem}
   .pivot th,.pivot td{padding:.38rem .5rem; text-align:right; font-variant-numeric:tabular-nums}
-  .pivot th{font-weight:400; font-size:.72rem; letter-spacing:.1em; color:var(--muted)}
+  .pivot th{font-weight:400; font-size:.68rem; letter-spacing:.1em; color:var(--muted)}
   .pivot th:first-child,.pivot td:first-child{text-align:left}
   .pivot td{border-top:1px solid var(--line)}
   .pivot td.hi{color:var(--accent); font-weight:500}
 
   /* ── 設計規範頁 ── */
   .guide .gsec{margin-bottom:var(--s8)}
-  .guide h2{font-weight:500; font-size:1.18rem; letter-spacing:.06em; margin-bottom:.9rem; display:flex; align-items:baseline; gap:.7rem}
+  .guide h2{font-weight:500; font-size:1.11rem; letter-spacing:.06em; margin-bottom:.9rem; display:flex; align-items:baseline; gap:.7rem}
   /* 頁首那顆 h2 是控制列標題，不吃規範頁內文標題的下距 */
   .guide .sec.pagebar h2{margin-bottom:0}
-  .guide h2 small{font-size:.74rem; color:var(--muted); font-weight:400; letter-spacing:.1em}
+  .guide h2 small{font-size:.7rem; color:var(--muted); font-weight:400; letter-spacing:.1em}
   .gcards{display:grid; grid-template-columns:repeat(auto-fill,minmax(17rem,1fr)); gap:var(--grid-gap)}
   .gcard{background:var(--card); border:1px solid var(--line); border-radius:var(--r-card); padding:var(--card-pad)}
-  .gcard h3{font-size:.74rem; color:var(--muted); letter-spacing:.24em; font-weight:400; margin-bottom:.7rem}
-  .gswatch{display:flex; align-items:center; gap:.7rem; font-size:.81rem; padding:.3rem 0}
+  .gcard h3{font-size:.7rem; color:var(--muted); letter-spacing:.24em; font-weight:400; margin-bottom:.7rem}
+  .gswatch{display:flex; align-items:center; gap:.7rem; font-size:.76rem; padding:.3rem 0}
   .gswatch i{width:2.6rem; height:1.4rem; border-radius:var(--r-mini); border:1px solid var(--line); flex:none}
-  .gswatch code{font-family:ui-monospace,monospace; color:var(--ink); font-size:.76rem}
-  .gswatch span{color:var(--muted); margin-left:auto; font-size:.74rem; text-align:right}
+  .gswatch code{font-family:ui-monospace,monospace; color:var(--ink); font-size:.72rem}
+  .gswatch span{color:var(--muted); margin-left:auto; font-size:.7rem; text-align:right}
   .gtype{display:flex; align-items:baseline; gap:1rem; padding:.35rem 0; border-bottom:1px solid var(--line)}
   .gtype:last-child{border-bottom:none}
   .gtype .demo{white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-  .gtype .m{margin-left:auto; font-size:.72rem; color:var(--muted); font-variant-numeric:tabular-nums; white-space:nowrap}
+  .gtype .m{margin-left:auto; font-size:.68rem; color:var(--muted); font-variant-numeric:tabular-nums; white-space:nowrap}
   .gspace{display:flex; flex-direction:column; gap:.45rem}
-  .gspace .row{display:flex; align-items:center; gap:.8rem; font-size:.74rem; color:var(--muted)}
+  .gspace .row{display:flex; align-items:center; gap:.8rem; font-size:.7rem; color:var(--muted)}
   .gspace .row i{height:.9rem; background:var(--tint); border-radius:4px; flex:none}
   .gspace .row code{font-family:ui-monospace,monospace; color:var(--ink); width:6.5rem; flex:none}
-  .grules{list-style:none; font-size:.85rem; display:flex; flex-direction:column; gap:.45rem}
+  .grules{list-style:none; font-size:.81rem; display:flex; flex-direction:column; gap:.45rem}
   .grules b{font-weight:500}
   .grules li{padding-left:1rem; position:relative}
   .grules li::before{content:''; position:absolute; left:0; top:.65rem; width:5px; height:5px; border-radius:50%; background:var(--accent)}
   .gdemo{display:flex; align-items:center; gap:.6rem; flex-wrap:wrap; padding:.3rem 0}
-  .gmotion{width:100%; border-collapse:collapse; font-size:.83rem}
+  .gmotion{width:100%; border-collapse:collapse; font-size:.78rem}
   .gmotion th,.gmotion td{padding:.4rem .5rem; text-align:left}
-  .gmotion th{font-weight:400; font-size:.72rem; letter-spacing:.12em; color:var(--muted)}
+  .gmotion th{font-weight:400; font-size:.68rem; letter-spacing:.12em; color:var(--muted)}
   .gmotion td{border-top:1px solid var(--line)}
-  .gmotion code{font-family:ui-monospace,monospace; font-size:.74rem; color:var(--ink)}
+  .gmotion code{font-family:ui-monospace,monospace; font-size:.7rem; color:var(--ink)}
 
   /* ── 浮層 ── */
   .batchbar{
     position:fixed; left:50%; bottom:1.6rem; transform:translate(-50%,calc(100% + 2.5rem));
     display:flex; align-items:center; gap:1.1rem;
     background:var(--accent); color:var(--on-accent); border-radius:var(--r-pill);
-    padding:.6rem 1.5rem; font-size:.9rem; font-weight:500;
+    padding:.6rem 1.5rem; font-size:.85rem; font-weight:500;
     box-shadow:0 12px 32px rgba(28,43,58,.28);
     transition:transform .35s var(--spring); z-index:40;
   }
@@ -988,20 +1004,20 @@
   }
   .palette input{
     width:100%; border:none; outline:none; padding:1rem 1.3rem;
-    font-family:var(--sans); font-size:1.06rem; color:var(--ink);
+    font-family:var(--sans); font-size:1.01rem; color:var(--ink);
     background:var(--bg); border-bottom:1px solid var(--line);
   }
   .palette input::placeholder{color:var(--muted)}
   .palette .plist{max-height:17rem; overflow-y:auto; padding:.4rem}
-  .palette .grp{font-size:.72rem; color:var(--muted); letter-spacing:.24em; padding:.5rem .9rem .2rem}
+  .palette .grp{font-size:.68rem; color:var(--muted); letter-spacing:.24em; padding:.5rem .9rem .2rem}
   .palette .item{
     display:flex; width:100%; text-align:left; gap:.8rem; align-items:baseline;
-    padding:.5rem .9rem; font-size:.9rem; border-radius:var(--r-cell);
+    padding:.5rem .9rem; font-size:.85rem; border-radius:var(--r-cell);
     transition:background .12s ease-out;
   }
   .palette .item:hover,.palette .item.hl{background:var(--fill)}
-  .palette .item .meta{margin-left:auto; color:var(--muted); font-size:.74rem; font-variant-numeric:tabular-nums}
-  .palette .empty{padding:1rem 1.2rem; color:var(--muted); font-size:.9rem}
+  .palette .item .meta{margin-left:auto; color:var(--muted); font-size:.7rem; font-variant-numeric:tabular-nums}
+  .palette .empty{padding:1rem 1.2rem; color:var(--muted); font-size:.85rem}
 
   .drawer-mask{
     position:fixed; inset:0; background:rgba(28,43,58,.30); display:none; z-index:45;
@@ -1016,36 +1032,46 @@
     display:flex; flex-direction:column;
   }
   .drawer.show{transform:none}
-  .drawer .dhead{display:flex; align-items:center; gap:.8rem; padding:1.1rem var(--card-pad) .9rem; border-bottom:1px solid var(--line)}
-  .drawer .dhead .av{width:2.4rem; height:2.4rem; font-size:.95rem}
+  .drawer .dhead,#drawer .dhead{display:flex; align-items:center; gap:.8rem; padding:1.1rem var(--card-pad) .9rem; border-bottom:1px solid var(--line)}
+  .drawer .dhead .av{width:2.4rem; height:2.4rem; font-size:.9rem}
   .drawer .dhead .t{line-height:1.4}
-  .drawer .dhead .t b{font-weight:500; font-size:1.12rem; display:flex; align-items:center; gap:.45rem}
-  .drawer .dhead .t span{font-size:.76rem; color:var(--muted); font-variant-numeric:tabular-nums}
-  .drawer .dhead .close{margin-left:auto}
+  .drawer .dhead .t b{font-weight:500; font-size:1.06rem; display:flex; align-items:center; gap:.45rem}
+  .drawer .dhead .t span{font-size:.72rem; color:var(--muted); font-variant-numeric:tabular-nums}
+  .drawer .dhead .close,#drawer .dhead .close{margin-left:auto}
+  /* 來客詳情：面板本身不捲，內容區自己捲，頁籤列才不會跟著跑掉 */
+  #drawer{padding:0; overflow:hidden; display:flex; flex-direction:column}
+  #drawer .dhead > b{font-weight:500; font-size:1.17rem; display:flex; align-items:center; gap:.45rem}
+  #drawer .dbody{max-height:56vh}
+  /* 分級標籤在標題列裡，沿用來客名單那套配色 */
+  #drawer .dhead .grade{font-size:.7rem; padding:.1rem .5rem; border-radius:var(--r-pill); font-weight:400}
+  #drawer .dhead .grade.a{background:var(--accent); color:var(--on-accent)}
+  #drawer .dhead .grade.b{background:var(--tint); color:var(--accent)}
+  #drawer .dhead .grade.c{background:transparent; border:1px solid var(--line-2); color:var(--muted)}
+  #drawer .dhead .grade.d{background:var(--fill); color:var(--muted)}
   .dtabs{display:flex; gap:.3rem; padding:.7rem var(--card-pad) 0}
-  .dtabs button{font-size:.78rem; padding:.25rem .85rem; border-radius:var(--r-pill); color:var(--muted); letter-spacing:.04em; transition:all .15s ease-out}
+  .dtabs button{font-size:.74rem; padding:.25rem .85rem; border-radius:var(--r-pill); color:var(--muted); letter-spacing:.04em; transition:all .15s ease-out}
   .dtabs button:hover{color:var(--ink); background:var(--fill)}
   .dtabs button.on{background:var(--accent); color:var(--on-accent); font-weight:500}
   .dbody{flex:1; overflow-y:auto; padding:1rem var(--card-pad) 1.25rem}
   .dpane{display:none}
   .dpane.on{display:block; animation:fadein .2s ease-out both}
-  .dl{display:grid; grid-template-columns:6.2rem 1fr; row-gap:.35rem; font-size:.85rem}
+  .dl{display:grid; grid-template-columns:6.2rem 1fr; row-gap:.35rem; font-size:.81rem}
   .dl dt{color:var(--muted)}
   .dl dd{font-variant-numeric:tabular-nums}
-  .dsec{font-size:.69rem; color:var(--muted); letter-spacing:.18em; margin:1rem 0 .45rem; padding-top:.8rem; border-top:1px solid var(--line)}
+  .dsec{font-size:.66rem; color:var(--muted); letter-spacing:.18em; margin:1rem 0 .45rem; padding-top:.8rem; border-top:1px solid var(--line)}
   .dsec:first-child{margin-top:0; padding-top:0; border-top:none}
   .hist{display:flex; flex-direction:column; gap:.6rem}
-  .hist .h{background:var(--bg); border:1px solid var(--line); border-radius:var(--r-row); padding:.55rem .8rem; font-size:.81rem}
+  .hist .h{background:var(--bg); border:1px solid var(--line); border-radius:var(--r-row); padding:.55rem .8rem; font-size:.76rem}
   .hist .h .top{display:flex; align-items:center; gap:.5rem; margin-bottom:.1rem}
-  .hist .h .top .chip{font-size:.67rem}
-  .hist .h .top time{margin-left:auto; font-size:.69rem; color:var(--muted); font-variant-numeric:tabular-nums}
+  .hist .h .top .chip{font-size:.64rem}
+  .hist .h .top time{margin-left:auto; font-size:.66rem; color:var(--muted); font-variant-numeric:tabular-nums}
   .hist .h p{color:var(--ink)}
-  .hist .h .by{font-size:.69rem; color:var(--muted)}
-  .buyrow{display:flex; align-items:center; gap:.7rem; background:var(--bg); border:1px solid var(--line); border-radius:var(--r-row); padding:.6rem .8rem; font-size:.85rem; margin-bottom:.6rem}
+  .hist .h .by{font-size:.66rem; color:var(--muted)}
+  .buyrow{display:flex; align-items:center; gap:.7rem; background:var(--bg); border:1px solid var(--line); border-radius:var(--r-row); padding:.6rem .8rem; font-size:.81rem; margin-bottom:.6rem}
   .buyrow b{font-weight:500}
   .buyrow .p{margin-left:auto; font-variant-numeric:tabular-nums}
   .dfoot{display:flex; gap:.5rem; padding:.8rem var(--card-pad); border-top:1px solid var(--line)}
-  .danger-link{margin-left:auto; align-self:center; font-size:.78rem; color:var(--hot); text-decoration:underline; text-underline-offset:3px}
+  .danger-link{margin-left:auto; align-self:center; font-size:.74rem; color:var(--hot); text-decoration:underline; text-underline-offset:3px}
 
   /* ⚠️ 共用：所有彈窗的遮罩。背景加模糊，讓底下的內容退到背景 */
   .dlg-mask{
@@ -1059,7 +1085,7 @@
     width:min(24rem,92vw); background:var(--bg); border:1px solid var(--line); border-radius:var(--r-card);
     padding:var(--card-pad); box-shadow:var(--el2);
   }
-  .dlg h3{font-weight:500; font-size:1.01rem; margin-bottom:.7rem; display:flex; align-items:center}
+  .dlg h3{font-weight:500; font-size:.95rem; margin-bottom:.7rem; display:flex; align-items:center}
   .dlg h3 .close{margin-left:auto}
 
   /* 破壞性操作的確認框：紅只出現在圖示與主鈕，其餘維持灰階 */
@@ -1073,7 +1099,7 @@
   .cf-ico.warm{background:var(--warm-tint); color:var(--warm)}
   .cf-acts .pillbtn.warm{background:var(--warm); color:var(--on-accent); border-color:var(--warm); font-weight:500}
   .cf-acts .pillbtn.warm:hover{filter:brightness(1.1); background:var(--warm); border-color:var(--warm)}
-  .cf-body{font-size:.87rem; color:var(--muted); line-height:1.75; margin-bottom:var(--s5); text-wrap:balance}
+  .cf-body{font-size:.83rem; color:var(--muted); line-height:1.75; margin-bottom:var(--s5); text-wrap:balance}
   .cf-body b{color:var(--ink); font-weight:500}
   .cf-acts{display:flex; gap:var(--s2)}
   .cf-acts .pillbtn{flex:1 1 0; justify-content:center; padding:0 var(--s3)}
@@ -1083,7 +1109,7 @@
   .toast{
     position:fixed; right:1.6rem; bottom:1.6rem; transform:translateY(calc(100% + 2.5rem)) scale(.95); opacity:0;
     background:var(--ink); color:var(--on-accent); border-radius:var(--r-pill);
-    padding:.55rem 1.3rem; font-size:.87rem; transition:transform .35s var(--spring), opacity .25s ease-out; z-index:60;
+    padding:.55rem 1.3rem; font-size:.83rem; transition:transform .35s var(--spring), opacity .25s ease-out; z-index:60;
   }
   .toast.show{transform:translateY(0) scale(1); opacity:1}
   .toast b{color:var(--accent-on-ink); font-variant-numeric:tabular-nums}
@@ -1104,13 +1130,13 @@
   }
   .ph-slot{
     position:absolute; top:var(--s4); left:var(--s5); z-index:2;
-    font-size:.69rem; letter-spacing:.14em; color:var(--on-accent);
+    font-size:.66rem; letter-spacing:.14em; color:var(--on-accent);
     background:rgba(16,26,36,.42); border:1px solid rgba(255,255,255,.28);
     border-radius:var(--r-pill); padding:.15rem .7rem; backdrop-filter:blur(6px);
   }
   .mappin{
     position:absolute; z-index:3; width:1.65rem; height:1.65rem; border-radius:50%;
-    background:var(--ink); color:var(--on-accent); font-size:.69rem; font-weight:500;
+    background:var(--ink); color:var(--on-accent); font-size:.66rem; font-weight:500;
     display:flex; align-items:center; justify-content:center;
     box-shadow:0 2px 10px rgba(12,20,28,.45);
     transition:transform .18s var(--spring), background .18s ease-out;
@@ -1122,9 +1148,9 @@
     flex:1 1 8rem; background:var(--ink);
     border-radius:var(--r-row); padding:.6rem .8rem; color:var(--on-accent);
   }
-  .gcell .v{font-weight:300; font-size:2.24rem; line-height:1.1; font-variant-numeric:tabular-nums; display:flex; align-items:baseline; gap:.35rem}
-  .gcell .v small{font-size:.78rem; font-weight:400; opacity:.8}
-  .gcell .k{font-size:.72rem; letter-spacing:.12em; opacity:.75; margin-top:.1rem}
+  .gcell .v{font-weight:300; font-size:2.12rem; line-height:1.1; font-variant-numeric:tabular-nums; display:flex; align-items:baseline; gap:.35rem}
+  .gcell .v small{font-size:.74rem; font-weight:400; opacity:.8}
+  .gcell .k{font-size:.68rem; letter-spacing:.12em; opacity:.75; margin-top:.1rem}
 
   /* R-02 KPI 數字階梯（Netsuite 語彙・字級隨量體遞減＝把漏斗做進排版） */
   /* 2026-08-26 對齊全站語彙：控制列改 sec pagebar、區間改膠囊、漏斗改十段條 */
@@ -1133,19 +1159,19 @@
   .ladder{display:flex; align-items:flex-end; gap:.4rem; flex-wrap:wrap}
   .rung{display:flex; flex-direction:column; justify-content:flex-end; flex:1 1 5rem; min-width:4.5rem}
   .rung b{font-weight:300; line-height:1; font-variant-numeric:tabular-nums; color:var(--ink)}
-  .rung .k{font-size:.72rem; color:var(--muted); letter-spacing:.1em; margin-top:.35rem}
-  .rung .rate{font-size:.69rem; color:var(--accent); font-variant-numeric:tabular-nums; margin-top:.1rem}
+  .rung .k{font-size:.68rem; color:var(--muted); letter-spacing:.1em; margin-top:.35rem}
+  .rung .rate{font-size:.66rem; color:var(--accent); font-variant-numeric:tabular-nums; margin-top:.1rem}
   .rung.tail b{color:var(--accent)}
-  .ladder .step{align-self:flex-end; color:var(--line-3); font-size:.84rem; padding-bottom:1.4rem; flex:none}
+  .ladder .step{align-self:flex-end; color:var(--line-3); font-size:.8rem; padding-bottom:1.4rem; flex:none}
 
   /* R-03 狀態雙計數 pill（xTiles 語彙・待處理實心跳出、已完成柔底） */
   .dual{display:flex; flex-direction:column}
-  .drow{display:flex; align-items:center; gap:.6rem; padding:.55rem .1rem; border-bottom:1px solid var(--line); font-size:.87rem}
+  .drow{display:flex; align-items:center; gap:.6rem; padding:.55rem .1rem; border-bottom:1px solid var(--line); font-size:.83rem}
   .drow:last-child{border-bottom:none}
-  .drow .av{width:1.7rem; height:1.7rem; font-size:.69rem}
+  .drow .av{width:1.7rem; height:1.7rem; font-size:.66rem}
   .dpills{margin-left:auto; display:flex; gap:.35rem}
   .dp{
-    font-size:.74rem; font-weight:500; border-radius:var(--r-pill); padding:.08rem .6rem;
+    font-size:.7rem; font-weight:500; border-radius:var(--r-pill); padding:.08rem .6rem;
     font-variant-numeric:tabular-nums; display:inline-flex; align-items:center; gap:.25rem;
   }
   .dp.warn{background:var(--warm); color:var(--on-accent)}
@@ -1157,7 +1183,7 @@
      所以改用掛在 body 的 position:fixed 單一提示元素，不受任何裁切 */
   .floattip{
     position:fixed; z-index:200; pointer-events:none;
-    background:var(--ink); color:var(--on-accent); font-size:.76rem; letter-spacing:.06em;
+    background:var(--ink); color:var(--on-accent); font-size:.72rem; letter-spacing:.06em;
     padding:.3rem .75rem; border-radius:var(--r-mini); white-space:nowrap;
     box-shadow:0 4px 14px rgba(12,20,28,.28);
     opacity:0; transform:translateY(2px); transition:opacity .12s ease-out, transform .12s ease-out;
@@ -1190,7 +1216,7 @@
     display:inline-flex; align-items:center; gap:var(--s2);
     height:var(--ctrl-h); padding:0 var(--s3);
     border:1px solid var(--line); border-radius:var(--r-pill); background:var(--bg);
-    font:inherit; font-size:.81rem; color:var(--ink);
+    font:inherit; font-size:.76rem; color:var(--ink);
     transition:border-color .15s ease-out;
   }
   .dp-btn > .ico{height:50%; width:auto; color:var(--muted); flex:none}
@@ -1207,7 +1233,7 @@
     animation:selDrop .16s var(--enter);
   }
   .dp-head{display:flex; align-items:center; gap:var(--s2); margin-bottom:var(--s3)}
-  .dp-head b{flex:1 1 auto; text-align:center; font-size:.87rem; font-weight:500}
+  .dp-head b{flex:1 1 auto; text-align:center; font-size:.83rem; font-weight:500}
   .dp-nav{
     width:1.75rem; height:1.75rem; border-radius:50%; color:var(--muted);
     display:flex; align-items:center; justify-content:center;
@@ -1215,9 +1241,9 @@
   .dp-nav:hover:not([disabled]){background:var(--panel); color:var(--ink)}
   .dp-nav[disabled]{color:var(--line-2); cursor:not-allowed}
   .dp-week,.dp-grid{display:grid; grid-template-columns:repeat(7,1fr); gap:2px}
-  .dp-week span{text-align:center; font-size:.67rem; color:var(--muted); padding-bottom:var(--s1)}
+  .dp-week span{text-align:center; font-size:.64rem; color:var(--muted); padding-bottom:var(--s1)}
   .dp-grid button{
-    height:2rem; border-radius:var(--r-mini); font-size:.81rem; color:var(--ink);
+    height:2rem; border-radius:var(--r-mini); font-size:.76rem; color:var(--ink);
     font-variant-numeric:tabular-nums; transition:background .12s ease-out, color .12s ease-out;
   }
   .dp-grid button:hover:not([disabled]){background:var(--panel)}
@@ -1229,7 +1255,7 @@
   .dp-grid button.edge.e{border-radius:0 var(--r-mini) var(--r-mini) 0}
   .dp-grid button.edge.s.e{border-radius:var(--r-mini)}
   .dp-foot{display:flex; align-items:center; gap:var(--s2); margin-top:var(--s3)}
-  .dp-foot .pillbtn{height:1.8rem; padding:0 var(--s3); font-size:.76rem}
+  .dp-foot .pillbtn{height:1.8rem; padding:0 var(--s3); font-size:.72rem}
   .dp-foot .pillbtn.solid{margin-left:auto; padding:0 var(--s4)}
 
   /* 只有 icon、滑過才長出文字的膠囊鈕 */
@@ -1247,7 +1273,7 @@
 
   /* 流水編號：這是那筆紀錄的固定 ID，不是畫面上的第幾列。已刪來客共用同一份樣式 */
   #page-audit .lognum,#page-trash .lognum{
-    color:var(--line-3); font-size:.74rem; font-variant-numeric:tabular-nums;
+    color:var(--line-3); font-size:.7rem; font-variant-numeric:tabular-nums;
     white-space:nowrap; width:1%;
   }
   #page-audit th.lognum,#page-trash th.lognum{color:var(--muted)}
@@ -1257,15 +1283,15 @@
   .billsum{display:grid; grid-template-columns:repeat(auto-fit,minmax(12rem,1fr)); gap:var(--grid-gap)}
   .billsum > div{background:var(--panel); border-radius:var(--r-card); padding:var(--s5) var(--s5) var(--s4)}
   .billsum .microlbl{margin-bottom:.3rem}
-  .billsum b{display:block; font-weight:500; font-size:1.23rem; font-variant-numeric:tabular-nums; letter-spacing:.02em}
-  .billsum em{display:block; font-style:normal; font-size:.72rem; color:var(--muted); margin-top:.2rem}
+  .billsum b{display:block; font-weight:500; font-size:1.17rem; font-variant-numeric:tabular-nums; letter-spacing:.02em}
+  .billsum em{display:block; font-style:normal; font-size:.68rem; color:var(--muted); margin-top:.2rem}
   /* 未結清＝要注意，用琥珀；這是全站「注意」的唯一色 */
   .billsum .warn b{color:var(--warm)}
-  #page-bills .bitem em{display:block; font-style:normal; font-size:.69rem; color:var(--muted); margin-top:.1rem}
+  #page-bills .bitem em{display:block; font-style:normal; font-size:.66rem; color:var(--muted); margin-top:.1rem}
   #page-bills td.amt,#page-bills th.amt{text-align:right}
   #page-bills td.amt{font-variant-numeric:tabular-nums}
   #page-bills td.amt.minus{color:var(--hot)}
-  #page-bills td.pay{color:var(--muted); font-size:.81rem}
+  #page-bills td.pay{color:var(--muted); font-size:.76rem}
   #page-bills td.t{font-variant-numeric:tabular-nums}
   /* 狀態色：已付款＝正常（鋼藍）、待付款＝要處理（琥珀）、已退款＝金流反向（紅）。
      跟操作紀錄的動作色同一套邏輯，不另外發明色相 */
@@ -1286,13 +1312,13 @@
   }
   #page-commission .pcard:hover{background:var(--fill)}
   #page-commission .pcard.on{background:var(--tint); border-color:var(--line-accent)}
-  #page-commission .pcard .av{width:2rem; height:2rem; font-size:.81rem; flex:none}
+  #page-commission .pcard .av{width:2rem; height:2rem; font-size:.76rem; flex:none}
   #page-commission .pcard .t{min-width:0; flex:1 1 auto}
-  #page-commission .pcard .t b{display:flex; align-items:center; gap:var(--s2); font-weight:500; font-size:.87rem; line-height:1.4; white-space:nowrap}
-  #page-commission .pcard .t b small{font-size:.63rem; color:var(--muted); font-weight:400; letter-spacing:.1em}
-  #page-commission .pcard .t > span{display:block; font-size:.69rem; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  #page-commission .pcard .t b{display:flex; align-items:center; gap:var(--s2); font-weight:500; font-size:.83rem; line-height:1.4; white-space:nowrap}
+  #page-commission .pcard .t b small{font-size:.59rem; color:var(--muted); font-weight:400; letter-spacing:.1em}
+  #page-commission .pcard .t > span{display:block; font-size:.66rem; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
   #page-commission .pcard.on .t > span{color:var(--accent)}
-  #page-commission .pcard .amt{font-size:.76rem; color:var(--muted); font-variant-numeric:tabular-nums; flex:none}
+  #page-commission .pcard .amt{font-size:.72rem; color:var(--muted); font-variant-numeric:tabular-nums; flex:none}
   #page-commission .pcard.on .amt{color:var(--accent)}
   /* 右側內容的第一塊不要再往下推——左右兩欄要從同一條線起跑 */
   #page-commission .paydetail > .block:first-child,
@@ -1302,7 +1328,7 @@
   /* 個人設定的頭像挑選：只選 18 張預設圖；人物縮至圓框 80%，底部仍由圓底完整收住 */
   #profileDlg,#profileDlg .grid2{text-align:left}
   .pfrow{display:flex; align-items:flex-start; gap:var(--s5)}
-  .pfrow .avprev{width:4.5rem; height:4.5rem; font-size:1.68rem; flex:none; overflow:hidden; background-size:80% auto; background-position:bottom center; background-repeat:no-repeat}
+  .pfrow .avprev{width:4.5rem; height:4.5rem; font-size:1.59rem; flex:none; overflow:hidden; background-size:80% auto; background-position:bottom center; background-repeat:no-repeat}
   .pfside{min-width:0; flex:1 1 auto; display:flex; flex-direction:column; gap:var(--s3)}
   .avgrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(2.5rem,1fr)); gap:var(--s2)}
   .avgrid .av{width:2.5rem; height:2.5rem; padding:0; overflow:hidden; border:2px solid transparent; background:var(--fill)}
@@ -1310,7 +1336,7 @@
   .avgrid .av{display:flex; align-items:flex-end; justify-content:center; overflow:hidden}
   .avgrid .av img{width:var(--s7); height:var(--s7); object-fit:contain; object-position:bottom; display:block}
   .avgrid .av[aria-checked="true"]{border-color:var(--accent)}
-  .avgrid .empty{grid-column:1/-1; font-size:.74rem; color:var(--muted); line-height:1.7}
+  .avgrid .empty{grid-column:1/-1; font-size:.7rem; color:var(--muted); line-height:1.7}
   /* 唯讀欄位：底色退成面板色、游標不變 I 字，一眼看得出不能改 */
   .dlg.formdlg input[readonly]{background:var(--panel); color:var(--muted); cursor:default}
 
@@ -1318,27 +1344,27 @@
   #page-commission .commwho{display:flex; align-items:center; gap:var(--s3); min-width:0}
   #page-commission .commwho[hidden]{display:none}
   #page-commission [data-act="addPlan"][hidden]{display:none}
-  #page-commission .commwho .av{width:2rem; height:2rem; font-size:.81rem; flex:none}
-  #page-commission .commwho b{font-weight:500; font-size:1.18rem; letter-spacing:.05em; white-space:nowrap}
+  #page-commission .commwho .av{width:2rem; height:2rem; font-size:.76rem; flex:none}
+  #page-commission .commwho b{font-weight:500; font-size:1.11rem; letter-spacing:.05em; white-space:nowrap}
   #page-commission .commwho .chips{display:flex; align-items:center; gap:var(--s2); flex-wrap:nowrap; min-width:0}
   .anascope .pstrip{
     background:var(--card); border-radius:var(--r-card); padding:var(--s4) var(--card-pad); margin-bottom:var(--grid-gap);
   }
   .anascope .pline1{display:flex; align-items:center; gap:var(--s3); margin-bottom:var(--s3)}
   .anascope .pline2{display:flex; align-items:center; gap:var(--s3); flex-wrap:wrap}
-  .anascope .pstrip .av{width:2.25rem; height:2.25rem; font-size:.9rem; flex:none}
-  .anascope .pline1 b{font-weight:500; font-size:1.18rem; letter-spacing:.02em}
-  .anascope .pstrip .period{font-size:.69rem; color:var(--muted); letter-spacing:.1em}
+  .anascope .pstrip .av{width:2.25rem; height:2.25rem; font-size:.85rem; flex:none}
+  .anascope .pline1 b{font-weight:500; font-size:1.11rem; letter-spacing:.02em}
+  .anascope .pstrip .period{font-size:.66rem; color:var(--muted); letter-spacing:.1em}
   .anascope .pstrip .period.push{margin-left:auto}
-  .anascope .pstrip .period b{margin-left:var(--s2); font-weight:500; font-size:.87rem; color:var(--ink); letter-spacing:0; font-variant-numeric:tabular-nums}
+  .anascope .pstrip .period b{margin-left:var(--s2); font-weight:500; font-size:.83rem; color:var(--ink); letter-spacing:0; font-variant-numeric:tabular-nums}
   /* 累計總額先定錨、本月新增獨立白框；其餘發放桶維持中性底 */
   /* 六格：11rem 下限在這個欄寬只排得下五格，第六格會自己孤零零一排。
      縮到 8.5rem 讓「總獎金＝已領＋三筆待發」與「本月新增」在同一排讀完 */
   .anascope .paykpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(8.5rem,1fr)); gap:var(--grid-gap); margin-bottom:var(--grid-gap)}
   .anascope .pk{background:var(--panel); border-radius:var(--r-card); padding:var(--s4) var(--s5)}
-  .anascope .pk b{display:block; font-weight:500; font-size:1.51rem; letter-spacing:.01em; font-variant-numeric:tabular-nums; line-height:1.35}
-  .anascope .pk span{display:block; font-size:.74rem; color:var(--muted); margin-top:.1rem}
-  .anascope .pk em{display:block; font-style:normal; font-size:.67rem; color:var(--line-3); margin-top:.15rem}
+  .anascope .pk b{display:block; font-weight:500; font-size:1.43rem; letter-spacing:.01em; font-variant-numeric:tabular-nums; line-height:1.35}
+  .anascope .pk span{display:block; font-size:.7rem; color:var(--muted); margin-top:.1rem}
+  .anascope .pk em{display:block; font-style:normal; font-size:.64rem; color:var(--line-3); margin-top:.15rem}
   .anascope .pk.ac b{color:var(--accent)}
   .anascope .pk.warm b{color:var(--warm)}
   .anascope .pk.hot b{color:var(--hot)}
@@ -1357,32 +1383,32 @@
   .anascope .chartcard .chead{display:flex; align-items:center; gap:var(--s5); flex-wrap:wrap; margin-bottom:var(--s4)}
   .anascope .chartcard .chead > .microlbl{flex:none}
   .anascope .chartcard .microlbl{margin:0}
-  .anascope .cstat{margin-left:0; font-size:.81rem; font-variant-numeric:tabular-nums}
+  .anascope .cstat{margin-left:0; font-size:.76rem; font-variant-numeric:tabular-nums}
   .anascope .cstat:first-child{margin-right:auto}
-  .anascope .cstat i{font-style:normal; font-size:.67rem; color:var(--muted); letter-spacing:.12em; margin-right:var(--s2)}
+  .anascope .cstat i{font-style:normal; font-size:.64rem; color:var(--muted); letter-spacing:.12em; margin-right:var(--s2)}
   #page-commission .bchart{display:flex; align-items:flex-end; gap:var(--s4); height:7rem}
   #page-commission .bcol{flex:1; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; gap:var(--s2)}
-  #page-commission .bcol .v{font-size:.67rem; color:var(--muted); font-variant-numeric:tabular-nums}
+  #page-commission .bcol .v{font-size:.64rem; color:var(--muted); font-variant-numeric:tabular-nums}
   #page-commission .bcol .bar{width:55%; max-width:3rem; background:var(--fill-3); border-radius:var(--r-mini) var(--r-mini) 0 0}
   #page-commission .bcol.cur .bar{background:var(--accent)}
   #page-commission .bcol.cur .v{color:var(--accent)}
-  #page-commission .bcol .m{font-size:.69rem; color:var(--muted)}
+  #page-commission .bcol .m{font-size:.66rem; color:var(--muted)}
   /* 銷售分析分三段：上＝兩張橫條圖（漏斗／來源）、中＝三個大數字對照、下＝趨勢。
      每段一種圖形語彙，不混排 */
   /* 五張並排：漏斗／來源／平均單價／成交天數／成交前帶看 */
   .anascope .sa-charts{display:grid; grid-template-columns:repeat(auto-fit,minmax(11.5rem,1fr)); gap:var(--grid-gap); margin-bottom:var(--grid-gap)}
   .anascope .sa-tile .microlbl{margin-bottom:var(--s3)}
   .anascope .sa-row{display:grid; grid-template-columns:3.4rem minmax(0,1fr) auto; align-items:center; gap:var(--s2); margin-bottom:var(--s3)}
-  .anascope .sa-row i{font-style:normal; font-size:.69rem; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-  .anascope .sa-row b{font-weight:500; font-size:.81rem; font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap}
-  .anascope .sa-row b em{font-style:normal; font-weight:400; font-size:.67rem; color:var(--muted); margin-left:.25rem}
+  .anascope .sa-row i{font-style:normal; font-size:.66rem; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .anascope .sa-row b{font-weight:500; font-size:.76rem; font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap}
+  .anascope .sa-row b em{font-style:normal; font-weight:400; font-size:.64rem; color:var(--muted); margin-left:.25rem}
   .anascope .sa-track{height:.55rem; border-radius:var(--r-pill); background:var(--fill); overflow:hidden}
   .anascope .sa-bar{display:block; height:100%; border-radius:var(--r-pill)}
   .anascope .sa-bar.me{background:var(--accent)}
   .anascope .sa-bar.mid{background:var(--chart-3)}
   .anascope .sa-bar.peer{background:var(--chart-4)}
-  .anascope .sa-note{display:block; font-style:normal; font-size:.67rem; color:var(--line-3); margin-top:var(--s2)}
-  .anascope .sa-big{display:block; font-weight:500; font-size:.96rem}
+  .anascope .sa-note{display:block; font-style:normal; font-size:.64rem; color:var(--line-3); margin-top:var(--s2)}
+  .anascope .sa-big{display:block; font-weight:500; font-size:.91rem}
   /* 中段：數字說話，跟全案比的結論收成一顆膠囊 */
   /* 每筆的異動紀錄掛在該列底下：成交→回溯→加扣→首款→保留款，一條時間軸 */
   #page-commission .exp{
@@ -1395,8 +1421,8 @@
   #page-commission .exp.on{transform:rotate(180deg); color:var(--accent)}
   #page-commission tr.logrow > td{background:var(--panel); padding:var(--s3) 1rem var(--s4) 3rem}
   #page-commission .paylog{display:flex; flex-direction:column; gap:var(--s2); margin:0; padding:0; list-style:none}
-  #page-commission .paylog li{display:grid; grid-template-columns:3.2rem 10rem minmax(0,1fr); align-items:baseline; gap:var(--s3); font-size:.76rem}
-  #page-commission .paylog time{color:var(--muted); font-variant-numeric:tabular-nums; font-size:.69rem}
+  #page-commission .paylog li{display:grid; grid-template-columns:3.2rem 10rem minmax(0,1fr); align-items:baseline; gap:var(--s3); font-size:.72rem}
+  #page-commission .paylog time{color:var(--muted); font-variant-numeric:tabular-nums; font-size:.66rem}
   #page-commission .paylog .lt{font-weight:500; color:var(--ink); position:relative; padding-left:var(--s4)}
   /* 每一種異動一個色點：回溯與加項＝琥珀（有加錢）、發放＝鋼藍、成交＝灰 */
   #page-commission .paylog .lt::before{
@@ -1406,14 +1432,14 @@
   #page-commission .paylog .lg-adj .lt::before{background:var(--warm)}
   #page-commission .paylog .lg-pay .lt::before,
   #page-commission .paylog .lg-hold .lt::before{background:var(--accent)}
-  #page-commission .paylog .ls{color:var(--muted); font-size:.72rem}
+  #page-commission .paylog .ls{color:var(--muted); font-size:.68rem}
 
   /* 轉換漏斗：十段格子條，一段 10%；右邊只寫人數 */
   .anascope .frow,#page-analytics .frow{display:grid; grid-template-columns:3rem 2.2rem minmax(0,1fr) 2.2rem; align-items:center; gap:var(--s2); margin-bottom:var(--s3)}
-  .anascope .frow .fl,#page-analytics .frow .fl{font-size:.69rem; color:var(--muted); white-space:nowrap}
+  .anascope .frow .fl,#page-analytics .frow .fl{font-size:.66rem; color:var(--muted); white-space:nowrap}
   /* 比例放條的左邊，數量放右邊——比例是「怎麼樣」，數量是「多少」，兩件事分開站 */
-  .anascope .frow .fp,#page-analytics .frow .fp{font-size:.74rem; color:var(--ink); font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap}
-  .anascope .frow b,#page-analytics .frow b{font-weight:500; font-size:.9rem; font-variant-numeric:tabular-nums; text-align:right}
+  .anascope .frow .fp,#page-analytics .frow .fp{font-size:.7rem; color:var(--ink); font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap}
+  .anascope .frow b,#page-analytics .frow b{font-weight:500; font-size:.85rem; font-variant-numeric:tabular-nums; text-align:right}
   .anascope .frow .fp{text-align:right}
   .anascope .seg10,#page-analytics .seg10{display:grid; grid-template-columns:repeat(10,1fr); gap:2px}
   .anascope .seg10 i,#page-analytics .seg10 i{
@@ -1434,23 +1460,23 @@
   .anascope .lb .microlbl{margin-bottom:var(--s5)}
   .anascope .podium{display:grid; grid-template-columns:repeat(3,1fr); align-items:end; gap:var(--s3); margin-bottom:var(--s4)}
   .anascope .pod{display:flex; flex-direction:column; align-items:center; gap:var(--s2); min-width:0}
-  .anascope .pod .av{width:2.25rem; height:2.25rem; font-size:.81rem}
+  .anascope .pod .av{width:2.25rem; height:2.25rem; font-size:.76rem}
   /* 第一名頭上的皇冠：填色不描邊，跟其他線條 icon 區隔開來 */
   .anascope .crown{width:1.15rem; height:1.15rem; fill:var(--warm); stroke:none; display:block; margin-bottom:-.15rem}
-  .anascope .pod .pn{font-size:.74rem; font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:100%}
-  .anascope .pod .pv{font-size:.67rem; color:var(--muted); font-variant-numeric:tabular-nums}
+  .anascope .pod .pn{font-size:.7rem; font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:100%}
+  .anascope .pod .pv{font-size:.64rem; color:var(--muted); font-variant-numeric:tabular-nums}
   .anascope .pod .step{
     width:100%; border-radius:var(--r-cell) var(--r-cell) 0 0; background:var(--fill);
     display:flex; align-items:center; justify-content:center;
-    font-size:1.18rem; font-weight:500; color:var(--muted); font-variant-numeric:tabular-nums;
+    font-size:1.11rem; font-weight:500; color:var(--muted); font-variant-numeric:tabular-nums;
   }
   .anascope .pod.p1 .step{height:4.5rem; background:var(--tint); color:var(--accent)}
   .anascope .pod.p2 .step{height:3.4rem}
   .anascope .pod.p3 .step{height:2.6rem}
   .anascope .lbrow{display:grid; grid-template-columns:1.8rem minmax(0,1fr) auto; align-items:center; gap:var(--s3); padding:var(--s2) var(--s3); border-radius:var(--r-row)}
-  .anascope .lbrow .no{font-size:.76rem; color:var(--line-3); font-variant-numeric:tabular-nums}
-  .anascope .lbrow .nm{font-size:.81rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-  .anascope .lbrow .vv{font-size:.81rem; font-variant-numeric:tabular-nums; color:var(--muted)}
+  .anascope .lbrow .no{font-size:.72rem; color:var(--line-3); font-variant-numeric:tabular-nums}
+  .anascope .lbrow .nm{font-size:.76rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .anascope .lbrow .vv{font-size:.76rem; font-variant-numeric:tabular-nums; color:var(--muted)}
   /* 自己那一列反色：實心鋼藍配白字，在一排淡色列裡直接跳出來 */
   .anascope .lbrow.me{background:var(--accent)}
   .anascope .lbrow.me .no,.anascope .lbrow.me .nm,.anascope .lbrow.me .vv{color:var(--on-accent); font-weight:500}
@@ -1463,19 +1489,19 @@
 
   /* 佔比與總額兩張並排 */
   .anascope .sa-top{display:grid; grid-template-columns:repeat(auto-fit,minmax(13rem,1fr)); gap:var(--grid-gap); margin-bottom:var(--grid-gap)}
-  .anascope .bigstat b{display:block; font-weight:500; font-size:1.68rem; line-height:1.3; letter-spacing:.01em; font-variant-numeric:tabular-nums; margin-top:var(--s2)}
-  .anascope .bigstat b small{font-size:.81rem; color:var(--muted); font-weight:400; margin-left:.2rem}
-  .anascope .bigstat em{display:block; font-style:normal; font-size:.69rem; color:var(--line-3); margin-top:var(--s2)}
+  .anascope .bigstat b{display:block; font-weight:500; font-size:1.59rem; line-height:1.3; letter-spacing:.01em; font-variant-numeric:tabular-nums; margin-top:var(--s2)}
+  .anascope .bigstat b small{font-size:.76rem; color:var(--muted); font-weight:400; margin-left:.2rem}
+  .anascope .bigstat em{display:block; font-style:normal; font-size:.66rem; color:var(--line-3); margin-top:var(--s2)}
 
   /* 戶別明細：回溯是加項用琥珀、首發是最終要付的錢加深，發放欄兩顆勾 */
   #page-commission .plus{color:var(--warm)}
   #page-commission td.first{font-weight:500}
-  #page-commission .adjbtn{font-size:.76rem; color:var(--accent); white-space:nowrap}
+  #page-commission .adjbtn{font-size:.72rem; color:var(--accent); white-space:nowrap}
   #page-commission .adjbtn.add{color:var(--line-3)}
   #page-commission .adjbtn.add:hover{color:var(--accent)}
   #page-commission .adjbtn.minus{color:var(--hot)}
   #page-commission td.payops{white-space:nowrap}
-  #page-commission .pchk{display:flex; align-items:center; gap:var(--s2); font-size:.74rem; color:var(--muted); cursor:pointer; line-height:1.9}
+  #page-commission .pchk{display:flex; align-items:center; gap:var(--s2); font-size:.7rem; color:var(--muted); cursor:pointer; line-height:1.9}
   #page-commission .pchk em{font-style:normal; color:var(--line-3)}
   #page-commission .pchk input{position:absolute; opacity:0; width:0; height:0}
   #page-commission .pchk i{
@@ -1495,15 +1521,15 @@
      多一個方案就多一張卡，不會像表格那樣把三欄攤在 1300px 上放空 */
   #page-commission .planempty{
     background:var(--panel); border-radius:var(--r-card); padding:var(--s8) var(--card-pad);
-    text-align:center; font-size:.96rem; font-weight:500; color:var(--ink);
+    text-align:center; font-size:.91rem; font-weight:500; color:var(--ink);
     display:flex; flex-direction:column; gap:var(--s2);
   }
-  #page-commission .planempty span{font-size:.81rem; font-weight:400; color:var(--muted)}
+  #page-commission .planempty span{font-size:.76rem; font-weight:400; color:var(--muted)}
   #page-commission .plans{display:flex; flex-direction:column; gap:var(--grid-gap)}
   #page-commission .plancard{background:var(--panel); border-radius:var(--r-card); overflow:hidden}
   #page-commission .pchead{display:flex; align-items:center; gap:var(--s4); padding:var(--s5) var(--card-pad)}
-  #page-commission .pchead .t b{display:block; font-weight:500; font-size:1.06rem; line-height:1.5}
-  #page-commission .pchead .t span{font-size:.74rem; color:var(--muted)}
+  #page-commission .pchead .t b{display:block; font-weight:500; font-size:1.01rem; line-height:1.5}
+  #page-commission .pchead .t span{font-size:.7rem; color:var(--muted)}
   #page-commission .pcacts{margin-left:auto; display:flex; gap:var(--s2); flex:none}
   /* 卡頭兩顆用「滑過長出文字」的膠囊（跟新增方案同一個機制），不是浮動提示 */
   #page-commission .pcacts .iconpill{border-color:var(--line); background:var(--bg); color:var(--muted)}
@@ -1520,17 +1546,17 @@
   #page-commission .pcgrid .microlbl{margin-bottom:.3rem}
   /* 級距一級一行，整行不斷字；費率跳鋼藍，眼睛直接找數字 */
   #page-commission .tierlist{display:flex; flex-direction:column; gap:.15rem}
-  #page-commission .tierlist span{display:flex; align-items:baseline; gap:var(--s2); white-space:nowrap; font-size:.87rem; line-height:1.6}
-  #page-commission .tierlist i{font-style:normal; font-size:.69rem; color:var(--muted); min-width:2.6rem}
+  #page-commission .tierlist span{display:flex; align-items:baseline; gap:var(--s2); white-space:nowrap; font-size:.83rem; line-height:1.6}
+  #page-commission .tierlist i{font-style:normal; font-size:.66rem; color:var(--muted); min-width:2.6rem}
   #page-commission .tierlist b{font-weight:500; color:var(--accent); font-variant-numeric:tabular-nums; margin-left:var(--s1)}
-  #page-commission .pcgrid b{display:block; font-weight:500; font-size:.9rem; line-height:1.5; font-variant-numeric:tabular-nums}
+  #page-commission .pcgrid b{display:block; font-weight:500; font-size:.85rem; line-height:1.5; font-variant-numeric:tabular-nums}
   #page-commission .pcfoot{
     display:flex; align-items:center; gap:var(--s3); flex-wrap:wrap;
     padding:var(--s3) var(--card-pad); background:var(--tint); border-top:1px solid var(--line);
   }
   #page-commission .pcfoot .microlbl{margin:0; flex:none}
   #page-commission .pcfoot .microlbl b{color:var(--ink); font-weight:500; margin-left:var(--s2); letter-spacing:0}
-  #page-commission .pcempty{font-size:.76rem; color:var(--muted)}
+  #page-commission .pcempty{font-size:.72rem; color:var(--muted)}
   #page-commission .pcpeople{display:flex; flex-wrap:wrap; align-items:center; gap:var(--s1) var(--s2); min-width:0}
   /* 卡底的指派鈕：跟卡頭兩顆同一個機制，滑過長出文字 */
   #page-commission .pcadd{margin-left:auto; border-color:var(--line-accent); color:var(--accent); background:var(--bg); flex:none}
@@ -1542,14 +1568,14 @@
 
   /* 新增方案：模式／回溯／基準／保留款＋級距表。沿用 formdlg 的欄位語彙，只補三個小東西 */
   #planDlg .swrow{display:flex; align-items:center; gap:var(--s3); height:var(--ctrl-h)}
-  #planDlg .swtxt{font-size:.81rem; color:var(--muted)}
+  #planDlg .swtxt{font-size:.76rem; color:var(--muted)}
   #planDlg .swrow .switch[aria-checked="true"] + .swtxt{color:var(--ink)}
   .suffixin{display:flex; align-items:stretch}
   .dlg.formdlg .suffixin input{
     flex:1 1 auto; min-width:0; border-radius:var(--r-row) 0 0 var(--r-row);
   }
   .dlg.formdlg .suffixin .sfx{
-    display:flex; align-items:center; padding:0 var(--s4); font-size:.81rem; color:var(--muted);
+    display:flex; align-items:center; padding:0 var(--s4); font-size:.76rem; color:var(--muted);
     flex:0 0 auto; white-space:nowrap; border:1px solid var(--line); border-left:0;
     border-radius:0 var(--r-row) var(--r-row) 0; background:var(--panel);
   }
@@ -1557,9 +1583,9 @@
   #adjClear[hidden]{display:none}
   .tierbox{border:1px solid var(--line); border-radius:var(--r-cell); padding:var(--s3); background:var(--panel)}
   .tierhead,.tierrow{display:grid; grid-template-columns:1.6rem 1fr 1fr 1.75rem; gap:var(--s2); align-items:center}
-  .tierhead{font-size:.67rem; letter-spacing:.14em; color:var(--muted); padding:0 0 var(--s2)}
+  .tierhead{font-size:.64rem; letter-spacing:.14em; color:var(--muted); padding:0 0 var(--s2)}
   .tierrow{margin-bottom:var(--s2)}
-  .tierrow .n{font-size:.74rem; color:var(--muted); font-variant-numeric:tabular-nums}
+  .tierrow .n{font-size:.7rem; color:var(--muted); font-variant-numeric:tabular-nums}
   .tierrow input{width:100%}
   /* 這顆在 grid 格裡，高度不是固定值，.ico 的 height:50% 算不出來——比照其他 iconop 給實值 */
   /* 刪除鈕滑過變紅＝全站一致的行為，原本鎖在人員管理與已刪來客的 td.ops 底下，
@@ -1573,24 +1599,24 @@
   .iconop .ico{height:calc(50% + 1px); width:auto}
   .iconop.del:hover{background:var(--hot); border-color:var(--hot); color:var(--on-accent)}
   .tierrow .iconop{justify-self:center}
-  .tierbox .pillbtn{height:1.8rem; padding:0 var(--s3); font-size:.76rem; margin-top:var(--s1)}
+  .tierbox .pillbtn{height:1.8rem; padding:0 var(--s3); font-size:.72rem; margin-top:var(--s1)}
 
   /* 方案摘要列：原本規則字串寫在 inline style，改成 class */
   #page-commission .planline{
     display:flex; align-items:center; gap:var(--s3); flex-wrap:wrap;
     background:var(--bg); border:1px solid var(--line); border-radius:var(--r-row);
-    padding:.6rem .8rem; font-size:.85rem;
+    padding:.6rem .8rem; font-size:.81rem;
   }
   #page-commission .planline b{font-weight:500}
-  #page-commission .planline .rule{font-size:.74rem; color:var(--muted)}
-  #page-commission .planline .p{margin-left:auto; font-variant-numeric:tabular-nums; color:var(--muted); font-size:.78rem}
+  #page-commission .planline .rule{font-size:.7rem; color:var(--muted)}
+  #page-commission .planline .p{margin-left:auto; font-variant-numeric:tabular-nums; color:var(--muted); font-size:.74rem}
   #page-commission td{font-variant-numeric:tabular-nums}
   #page-commission .minus{color:var(--hot)}
 
   /* ── 帳單與方案 ── */
   /* 這頁有兩段：上面是現有方案、下面是更多方案。
      區段標題比頁名小一階，否則兩個同級標題疊在一起會看不出層次 */
-  #page-plan .sec:not(.pagebar) h2{font-size:.96rem; letter-spacing:.08em}
+  #page-plan .sec:not(.pagebar) h2{font-size:.91rem; letter-spacing:.08em}
   /* 這排右端要掛開關，基線對齊會讓開關浮起來，改成整排垂直置中 */
   #page-plan .sec:not(.pagebar){align-items:center}
   #page-plan .sec:not(.pagebar){margin:0 0 var(--s4)}
@@ -1600,26 +1626,26 @@
   .subcard{background:var(--panel); border-radius:var(--r-card); padding:var(--s5) var(--card-pad) var(--s4)}
   .subcard .subhead{display:flex; align-items:center; gap:var(--s4); flex-wrap:wrap; padding-bottom:var(--s4); border-bottom:1px solid var(--line)}
   .subcard .plantag{
-    font-size:.81rem; letter-spacing:.06em; color:var(--on-accent); background:var(--accent);
+    font-size:.76rem; letter-spacing:.06em; color:var(--on-accent); background:var(--accent);
     border-radius:var(--r-pill); padding:.2rem .9rem; flex:none;
   }
-  .subcard .subhead .t b{display:block; font-weight:500; font-size:1.06rem; line-height:1.5}
-  .subcard .subhead .t span{font-size:.74rem; color:var(--muted); font-variant-numeric:tabular-nums}
+  .subcard .subhead .t b{display:block; font-weight:500; font-size:1.01rem; line-height:1.5}
+  .subcard .subhead .t span{font-size:.7rem; color:var(--muted); font-variant-numeric:tabular-nums}
   .subcard .sacts{margin-left:auto; display:flex; gap:var(--s2); flex:none}
   .subgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(11rem,1fr)); gap:var(--s5) var(--s6); padding-top:var(--s4)}
   .subgrid .microlbl{margin-bottom:.3rem}
-  .subgrid b{display:block; font-weight:500; font-size:.9rem; font-variant-numeric:tabular-nums; line-height:1.5}
-  .subgrid em{display:block; font-style:normal; font-size:.72rem; color:var(--muted); margin-top:.15rem}
+  .subgrid b{display:block; font-weight:500; font-size:.85rem; font-variant-numeric:tabular-nums; line-height:1.5}
+  .subgrid em{display:block; font-style:normal; font-size:.68rem; color:var(--muted); margin-top:.15rem}
 
   .quotawall{display:grid; grid-template-columns:repeat(auto-fit,minmax(13rem,1fr)); gap:var(--grid-gap)}
   .qcard{background:var(--panel); border-radius:var(--r-card); padding:var(--s5) var(--s5) var(--s4)}
   .qcard .qhead{display:flex; align-items:baseline; justify-content:space-between; gap:var(--s3); margin-bottom:var(--s3)}
   .qcard .qhead .microlbl{margin:0}
-  .qcard .qhead b{font-weight:500; font-size:1.29rem; font-variant-numeric:tabular-nums; letter-spacing:.02em}
-  .qcard .qhead b span{font-size:.76rem; color:var(--muted); font-weight:400; margin-left:.15rem}
+  .qcard .qhead b{font-weight:500; font-size:1.22rem; font-variant-numeric:tabular-nums; letter-spacing:.02em}
+  .qcard .qhead b span{font-size:.72rem; color:var(--muted); font-weight:400; margin-left:.15rem}
   .qcard .qbar{height:.3rem; border-radius:var(--r-pill); background:var(--fill); overflow:hidden}
   .qcard .qbar i{display:block; height:100%; border-radius:var(--r-pill); background:var(--accent)}
-  .qcard .qfoot{font-size:.72rem; color:var(--muted); margin-top:var(--s2)}
+  .qcard .qfoot{font-size:.68rem; color:var(--muted); margin-top:var(--s2)}
   /* 配額滿了＝要注意，用琥珀。這是全站「注意」的唯一色，不另發明 */
   .qcard.warn .qbar i{background:var(--warm)}
   .qcard.warn .qfoot{color:var(--warm)}
@@ -1632,18 +1658,18 @@
   .planmatrix th,.planmatrix td{padding:.62rem 1rem; text-align:center; vertical-align:middle}
   .planmatrix thead th{border-bottom:0; letter-spacing:normal}
   .planmatrix th.rowhead{
-    text-align:left; font-weight:400; font-size:.81rem; color:var(--ink);
+    text-align:left; font-weight:400; font-size:.76rem; color:var(--ink);
     white-space:normal; min-width:13rem; position:sticky; left:0; z-index:2;
     background:var(--panel);
   }
-  .planmatrix th.rowhead em{display:block; font-style:normal; font-size:.69rem; color:var(--muted); line-height:1.5}
+  .planmatrix th.rowhead em{display:block; font-style:normal; font-size:.66rem; color:var(--muted); line-height:1.5}
   /* 計費週期用開關（跟人員管理的啟用開關同一顆元件），兩側標字，
      未選的那邊退成 muted；折扣標用鋼藍系，不動到琥珀（琥珀留給「要注意」） */
   .cyclepick{display:inline-flex; align-items:center; gap:var(--s2)}
-  .cyclepick .cy{font-size:.78rem; color:var(--muted); transition:color .18s ease-out}
+  .cyclepick .cy{font-size:.74rem; color:var(--muted); transition:color .18s ease-out}
   .cyclepick .cy.on{color:var(--ink)}
   .cyclepick .chip.off{
-    font-size:.65rem; padding:0 .45rem; margin-left:var(--s1);
+    font-size:.61rem; padding:0 .45rem; margin-left:var(--s1);
     border-color:var(--line-accent); color:var(--accent); background:var(--tint);
   }
 
@@ -1651,20 +1677,20 @@
   .planmatrix th.corner{background:var(--panel); vertical-align:bottom; padding-bottom:var(--s5)}
   .planmatrix th.corner .microlbl{margin-bottom:var(--s3)}
   .planmatrix th.plan{vertical-align:bottom; padding:var(--s4) 1rem var(--s5); border-radius:var(--r-card) var(--r-card) 0 0}
-  .planmatrix th.plan .pn{display:flex; align-items:center; justify-content:center; gap:var(--s2); font-size:1.01rem; font-weight:500; letter-spacing:.04em}
-  .planmatrix th.plan .price{display:block; margin-top:var(--s2); font-size:.96rem; color:var(--ink); font-variant-numeric:tabular-nums}
-  .planmatrix th.plan .price em{font-style:normal; font-size:.69rem; color:var(--muted); margin-left:.1rem}
-  .planmatrix th.plan .pdesc{display:block; margin:var(--s2) 0 var(--s3); font-size:.69rem; color:var(--muted); line-height:1.6; font-weight:400}
+  .planmatrix th.plan .pn{display:flex; align-items:center; justify-content:center; gap:var(--s2); font-size:.95rem; font-weight:500; letter-spacing:.04em}
+  .planmatrix th.plan .price{display:block; margin-top:var(--s2); font-size:.91rem; color:var(--ink); font-variant-numeric:tabular-nums}
+  .planmatrix th.plan .price em{font-style:normal; font-size:.66rem; color:var(--muted); margin-left:.1rem}
+  .planmatrix th.plan .pdesc{display:block; margin:var(--s2) 0 var(--s3); font-size:.66rem; color:var(--muted); line-height:1.6; font-weight:400}
   .planmatrix th.plan .pillbtn{width:100%; justify-content:center}
   .planmatrix th.plan .pillbtn[disabled]{opacity:1; color:var(--muted); border-color:var(--line); cursor:default}
-  .planmatrix .chip.nowuse{font-size:.65rem; padding:0 .45rem; border-color:var(--line-accent); color:var(--accent); background:var(--tint)}
+  .planmatrix .chip.nowuse{font-size:.61rem; padding:0 .45rem; border-color:var(--line-accent); color:var(--accent); background:var(--tint)}
   /* 分組標題：整列一條，靠字級與字距分層，不加底色 */
   .planmatrix tr.grp th{
-    text-align:left; font-size:.67rem; letter-spacing:.18em; color:var(--muted); font-weight:400;
+    text-align:left; font-size:.64rem; letter-spacing:.18em; color:var(--muted); font-weight:400;
     padding:var(--s5) 1rem var(--s2); position:sticky; left:0; background:transparent;
   }
   .planmatrix tbody tr:not(.grp) td,.planmatrix tbody tr:not(.grp) th.rowhead{border-top:1px solid var(--line)}
-  .planmatrix tbody td{font-size:.83rem; color:var(--ink); font-variant-numeric:tabular-nums}
+  .planmatrix tbody td{font-size:.78rem; color:var(--ink); font-variant-numeric:tabular-nums}
   .planmatrix .no{color:var(--line-3)}
   .planmatrix .ico.yes{height:.95rem; width:.95rem; color:var(--accent); stroke-width:1.6; display:inline-block; vertical-align:-.15rem}
   .planmatrix .sr{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
@@ -1678,14 +1704,14 @@
   .pager{display:flex; align-items:center; gap:var(--s1)}
   .pager button{
     min-width:1.9rem; height:1.9rem; padding:0 var(--s2); border-radius:var(--r-pill);
-    font-size:.81rem; color:var(--muted); font-variant-numeric:tabular-nums;
+    font-size:.76rem; color:var(--muted); font-variant-numeric:tabular-nums;
     display:inline-flex; align-items:center; justify-content:center;
     transition:background .15s ease-out, color .15s ease-out;
   }
   .pager button:hover:not([disabled]):not(.on){background:var(--panel); color:var(--ink)}
   .pager button.on{background:var(--accent); color:var(--on-accent); font-weight:500}
   .pager button[disabled]{color:var(--line-2); cursor:not-allowed}
-  .pager .gapdots{color:var(--line-3); padding:0 var(--s1); font-size:.81rem}
+  .pager .gapdots{color:var(--line-3); padding:0 var(--s1); font-size:.76rem}
   .pager .nav .ico{height:50%; width:auto}
 
   /* 通用頁首控制列：標題＋筆數靠左，搜尋／篩選／動作靠右（操作紀錄、已刪來客共用） */
@@ -1699,7 +1725,7 @@
   /* 控制列裡的膠囊組全站統一：高＝控制元件高、四邊等距（原本只有齒輪四頁有）。
      寫在 .sec 底下，卡片內的小 seg（如匯入步驟條）不受影響 */
   /* 控制列上的建案狀態膠囊（原本是 inline style） */
-  .sec.pagebar .pgstatus{font-size:.72rem; border-radius:var(--r-pill); padding:.1rem .7rem}
+  .sec.pagebar .pgstatus{font-size:.68rem; border-radius:var(--r-pill); padding:.1rem .7rem}
   .sec .seg{height:var(--ctrl-h); align-items:center; padding:0 .378rem}
   .seg[hidden]{display:none}
   #page-audit td.ops,#page-trash td.ops,
@@ -1708,7 +1734,7 @@
   #page-audit .audit-row[hidden],#page-trash .trash-row[hidden]{display:none}
   #page-trash #trashEmpty{color:var(--muted)}
   #page-trash #trashEmpty:hover{color:var(--hot); border-color:var(--line-hot); background:var(--hot-tint)}
-  .tableEmpty{display:none; font-size:.85rem; color:var(--muted); padding:var(--s6) 0}
+  .tableEmpty{display:none; font-size:.81rem; color:var(--muted); padding:var(--s6) 0}
   .tableEmpty.show{display:block}
 
   /* ＋ ／成員 12 人／控件同一列（KPI 那組 2026-08-24 Enson 說沒意義，已移除） */
@@ -1737,11 +1763,11 @@
     display:flex; flex-direction:column; align-items:flex-start; justify-content:flex-end;
   }
   #page-staff .kpi .kmeta .bub{margin-bottom:auto}
-  #page-staff .kpis.inline .kpi .v{font-size:2.24rem;}
+  #page-staff .kpis.inline .kpi .v{font-size:2.12rem;}
   /* 待接受：整組轉橘，跟其他四個「已經在系統裡的人」分開 */
   #page-staff .kpi.warm .v,#page-staff .kpi.warm .k{color:var(--warm)}
   #page-staff .kpi.warm .k .dot{background:var(--warm)}
-  #page-staff .kpis.inline .kpi .k{font-size:.74rem;}
+  #page-staff .kpis.inline .kpi .k{font-size:.7rem;}
   @media (max-width:1020px){
     #page-staff .staffbar{flex-wrap:wrap}
     #page-staff .kpis.inline{order:3; flex-basis:100%; margin-left:0}
@@ -1758,7 +1784,7 @@
 
   /* 右上角兩顆 45px 圓鈕佔 98px，這裡只保留它們實際需要的寬度 */
   #page-staff .head{align-items:center; padding-right:6.4rem; gap:var(--s2)}
-  #page-staff .head .av{width:2rem; height:2rem; font-size:.81rem}
+  #page-staff .head .av{width:2rem; height:2rem; font-size:.76rem}
   /* 卡片右上角兩顆鈕（筆／垃圾桶）：縮一號＋槽收窄，姓名才不會被擠到換行 */
   /* 右上角圓鈕：2026-08-24 Enson 用調參面板拉出來的值
      間距 4px・直徑 45px・圖示 18px（0.40 倍徑）・槽內縮 4px */
@@ -1787,7 +1813,7 @@
   #page-staff .st-id{min-width:0; flex:1 1 auto; display:flex; flex-direction:column; gap:.15rem; align-items:flex-start}
   /* 姓名下方副標＝所屬案場 */
   #page-staff .st-id .st-unit{
-    font-size:.74rem; color:var(--muted); line-height:1.4;
+    font-size:.7rem; color:var(--muted); line-height:1.4;
     max-width:100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
   }
   #page-staff .lead.hotlead .st-id .st-unit{color:rgba(255,255,255,.7)}
@@ -1796,7 +1822,7 @@
   /* 底列標籤內距收窄一點，邀請中那顆旗標較寬時兩顆才不會被切字 */
   #page-staff .st-foot > .st-chips .st-role{flex:none; padding-left:var(--s1); padding-right:var(--s1)}
   #page-staff .st-foot > .st-chips .chip{
-    font-size:.65rem; padding-left:var(--s1); padding-right:var(--s1);
+    font-size:.61rem; padding-left:var(--s1); padding-right:var(--s1);
     min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
   }
   #page-staff .st-foot > .st-flag.warm{padding-left:var(--s2); padding-right:var(--s2)}
@@ -1881,21 +1907,21 @@
   }
   #page-staff .staff-view-seg .ico{height:50%; width:auto}
   #page-staff .st-name{
-    font-size:1.18rem; font-weight:500; line-height:1.25;
+    font-size:1.11rem; font-weight:500; line-height:1.25;
     display:flex; align-items:center; gap:0;
     max-width:100%; white-space:nowrap; overflow:hidden;
   }
   #page-staff .st-unit .st-me{margin-left:var(--s1)}
   /* 「你」標記：45px 圓鈕吃掉右上角後，這顆要縮小才不會把案場名擠掉 */
   #page-staff .st-me{
-    font-size:.62rem; font-weight:400; letter-spacing:0; color:var(--accent);
+    font-size:.58rem; font-weight:400; letter-spacing:0; color:var(--accent);
     background:var(--tint); border-radius:var(--r-pill); padding:.05rem .28rem; align-self:center;
   }
   #page-staff .lead.hotlead .st-me{background:rgba(255,255,255,.2); color:var(--on-accent)}
 
   /* 第二眼：職稱——緊貼姓名下方（「這個人是誰」歸一組），填色深淺＝權限高低 */
   #page-staff .st-role{
-    font-size:.65rem; font-weight:500; letter-spacing:.04em;
+    font-size:.61rem; font-weight:500; letter-spacing:.04em;
     border-radius:var(--r-pill); padding:.06rem .55rem; white-space:nowrap;
   }
   /* 角色色彩統一：權限高低不靠顏色分（顏色留給燈號），一律淡底鋼藍 */
@@ -1935,9 +1961,9 @@
   #page-staff .lead.hotlead .st-meta .chip{border-color:rgba(255,255,255,.35); color:rgba(255,255,255,.85)}
   #page-staff .st-flag.ok{background:var(--tint); color:var(--accent); border:none}
   #page-staff .lead.hotlead .st-flag.ok{background:var(--on-accent); color:var(--accent)}
-  #page-staff .st-last{font-size:.76rem; color:var(--muted); font-variant-numeric:tabular-nums}
+  #page-staff .st-last{font-size:.72rem; color:var(--muted); font-variant-numeric:tabular-nums}
   #page-staff .lead.hotlead .st-last{color:rgba(255,255,255,.7)}
-  #page-staff .st-flag{font-size:.76rem; font-weight:500; border-radius:var(--r-pill); padding:.12rem .7rem}
+  #page-staff .st-flag{font-size:.72rem; font-weight:500; border-radius:var(--r-pill); padding:.12rem .7rem}
   #page-staff .st-flag.warm{background:var(--warm); color:var(--on-accent)}
   #page-staff .st-flag.off{background:var(--bg); color:var(--muted); border:1px solid var(--line)}
   #page-staff .st-foot .circlebtn{margin-left:auto; width:1.9rem; height:1.9rem; background:var(--bg)}
@@ -1986,7 +2012,7 @@
   #page-staff .st-projs .chip{flex:none; max-width:100%; overflow:hidden; text-overflow:ellipsis}
   #page-staff .st-projs .chip.more{border-style:dashed; cursor:default}
   #page-staff .st-val{
-    font-size:.74rem; color:var(--ink); line-height:1.5;
+    font-size:.7rem; color:var(--ink); line-height:1.5;
     overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
   }
   #page-staff .lead.hotlead .st-val{color:var(--on-accent)}
@@ -2019,13 +2045,13 @@
   .qsearch{
     flex:1 1 auto; min-width:0; height:100%; width:auto;
     border:none; background:none; color:var(--ink);
-    padding:0 var(--s1) 0 var(--s4); font:inherit; font-size:.81rem;
+    padding:0 var(--s1) 0 var(--s4); font:inherit; font-size:.76rem;
     opacity:0; pointer-events:none; transition:opacity .18s ease-out;
   }
   .qsearch::placeholder{color:var(--muted)}
   .qsearch:focus-visible{outline:none}
   .qsearch::-webkit-search-cancel-button{display:none}
-  #page-staff .staff-empty{display:none; color:var(--muted); font-size:.85rem; padding:var(--s6) 0}
+  #page-staff .staff-empty{display:none; color:var(--muted); font-size:.81rem; padding:var(--s6) 0}
   #page-staff .staff-empty.show{display:block}
   #page-staff .sec .acts{flex-wrap:wrap; justify-content:flex-end}
   #page-staff .staff-view-seg{border:1px solid var(--line); background:var(--bg)}
@@ -2038,7 +2064,7 @@
      不能鎖在 #page-staff 底下——另外兩頁拿不到就會退回 inline 靠基線排，
      圓圈跟名字既沒置中也沒間距。只有線上點、邀請中變色那些裝飾才留給人員管理。 */
   .staff-person{display:flex; align-items:center; gap:var(--s3)}
-  .staff-person .av{width:var(--ctrl-h); height:var(--ctrl-h); font-size:.87rem; flex:none}
+  .staff-person .av{width:var(--ctrl-h); height:var(--ctrl-h); font-size:.83rem; flex:none}
   /* 列表也要上線燈號：資料源同卡片（<tr data-online>），視覺與卡片一致 */
   #page-staff .staff-person .av{position:relative}
   #page-staff .staff-person .av::after{
@@ -2052,9 +2078,9 @@
     border-radius:50%; background:var(--heat5); animation:staffOnlinePulse 2s ease-out infinite;
   }
   .staff-person .staff-name{display:block; font-weight:500}
-  #page-staff .staff-person small{display:block; color:var(--muted); font-size:.69rem; margin-top:var(--s1)}
+  #page-staff .staff-person small{display:block; color:var(--muted); font-size:.66rem; margin-top:var(--s1)}
   #page-staff .staff-contact{color:var(--muted)}
-  #page-staff .staff-status{display:inline-flex; align-items:center; gap:var(--s2); font-size:.81rem}
+  #page-staff .staff-status{display:inline-flex; align-items:center; gap:var(--s2); font-size:.76rem}
   #page-staff .staff-status.invited{color:var(--warm)}
   #page-staff .staff-status.disabled{color:var(--muted)}
   #page-staff td.ops .rowact{opacity:1}
@@ -2088,11 +2114,11 @@
   }
   #staffEditDrawer .staff-field{display:flex; flex-direction:column; gap:var(--s2); min-width:0}
   #staffEditDrawer .staff-field.full{grid-column:1/-1}
-  #staffEditDrawer label{font-size:.81rem; color:var(--muted)}
+  #staffEditDrawer label{font-size:.76rem; color:var(--muted)}
   #staffEditDrawer input,#staffEditDrawer select{
     width:100%; height:var(--ctrl-h); border:1px solid var(--line);
     border-radius:var(--r-row); padding:0 var(--s3); background:var(--bg);
-    color:var(--ink); font:inherit; font-size:.87rem;
+    color:var(--ink); font:inherit; font-size:.83rem;
   }
   #staffEditDrawer input:focus-visible,#staffEditDrawer select:focus-visible{
     outline:2px solid var(--line-accent); outline-offset:var(--s1); border-color:var(--accent);
@@ -2100,12 +2126,12 @@
   #staffEditDrawer input:disabled{background:var(--panel); color:var(--muted); cursor:not-allowed}
   #staffEditDrawer input[aria-invalid="true"]{border-color:var(--hot)}
   #page-collect input[aria-invalid="true"]{border-color:var(--hot)}
-  #staffEditDrawer .staff-hint{font-size:.72rem; line-height:1.6; color:var(--muted)}
-  #staffEditDrawer .staff-error{display:none; font-size:.72rem; color:var(--hot)}
+  #staffEditDrawer .staff-hint{font-size:.68rem; line-height:1.6; color:var(--muted)}
+  #staffEditDrawer .staff-error{display:none; font-size:.68rem; color:var(--hot)}
   #staffEditDrawer .staff-error.show{display:block}
   #staffEditDrawer .staff-toggle{
     grid-column:1/-1; display:flex; align-items:center; gap:var(--s3);
-    border-top:1px solid var(--line); padding-top:var(--s5); font-size:.87rem;
+    border-top:1px solid var(--line); padding-top:var(--s5); font-size:.83rem;
   }
   #staffEditDrawer .staff-toggle .sw{margin-left:0}
   #staffEditDrawer #staffEnabled[hidden]{display:none}
@@ -2154,12 +2180,12 @@
   margin-top:var(--s3);padding-top:var(--s3);border-top:1px solid var(--line);
 }
 #page-leadsall .leadsall-saved[hidden]{display:none}
-#page-leadsall .sv-lbl{font-size:.72rem;color:var(--muted);flex:none;letter-spacing:.1em}
+#page-leadsall .sv-lbl{font-size:.68rem;color:var(--muted);flex:none;letter-spacing:.1em}
 #page-leadsall .sv-chips{display:flex;align-items:center;gap:var(--s1);flex-wrap:wrap}
 #page-leadsall .sv{
   display:inline-flex;align-items:center;
   height:1.65rem;padding:0 var(--s3);border-radius:var(--r-pill);
-  background:var(--tint);color:var(--accent);font-size:.76rem;
+  background:var(--tint);color:var(--accent);font-size:.72rem;
   transition:background .18s ease-out, color .18s ease-out, padding-right .24s var(--enter);
 }
 #page-leadsall .sv:hover{background:var(--line-accent);padding-right:var(--s2)}
@@ -2168,7 +2194,7 @@
 #page-leadsall .sv .x{
   width:0;opacity:0;overflow:hidden;flex:none;
   height:1.05rem;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
-  color:var(--muted);font-size:.78rem;line-height:1;
+  color:var(--muted);font-size:.74rem;line-height:1;
   transition:width .24s var(--enter), opacity .18s ease-out, margin-left .24s var(--enter), background .15s ease-out, color .15s ease-out;
 }
 #page-leadsall .sv:hover .x,#page-leadsall .sv:focus-visible .x{width:1.05rem;opacity:1;margin-left:var(--s1)}
@@ -2179,15 +2205,15 @@
 #page-reports #reportsWeather .chip{cursor:pointer}
 #page-reports #reportsWeather .chip.on{border-color:var(--accent);color:var(--accent);background:var(--tint)}
 #page-reports .sumcard .chips{display:inline-flex;margin:var(--s2) 0 var(--s3)}
-#page-reports .sumtext{font-size:.81rem;line-height:1.7;color:var(--ink);background:var(--fill);border-radius:var(--r-row);padding:var(--s3);margin:0 0 var(--s3)}
+#page-reports .sumtext{font-size:.76rem;line-height:1.7;color:var(--ink);background:var(--fill);border-radius:var(--r-row);padding:var(--s3);margin:0 0 var(--s3)}
 #page-reports .sumfoot{display:flex;align-items:center;justify-content:space-between;gap:var(--s2)}
-#page-reports .sumhint{font-size:.69rem;color:var(--muted)}
-#page-reports .rowsub{font-size:.74rem;color:var(--muted)}
+#page-reports .sumhint{font-size:.66rem;color:var(--muted)}
+#page-reports .rowsub{font-size:.7rem;color:var(--muted)}
 /* — templates — */
 #page-templates .tplmain{min-width:0}
-#page-templates .tfoot .tplhint{font-size:.74rem; color:var(--muted)}
+#page-templates .tfoot .tplhint{font-size:.7rem; color:var(--muted)}
 /* 來源＝系統欄位／自訂欄位（正式系統的第三欄，不再對外露出英文 key） */
-#page-templates .srccol{font-size:.78rem; color:var(--muted)}
+#page-templates .srccol{font-size:.74rem; color:var(--muted)}
 #page-templates .optcol{color:var(--muted)}
 /* 版本規則：一次性知識，收進 ⓘ 裡，不常駐佔一整欄 */
 #page-templates .sec.pagebar{position:relative}
@@ -2197,68 +2223,68 @@
   box-shadow:var(--el1); padding:var(--s4); animation:selDrop .16s var(--enter);
 }
 #page-templates .rulepop[hidden]{display:none}
-#page-templates .rulepop b{display:block; font-size:.81rem; font-weight:500; margin-bottom:var(--s2)}
+#page-templates .rulepop b{display:block; font-size:.76rem; font-weight:500; margin-bottom:var(--s2)}
 #page-templates .rulepop ul{margin:0; padding-left:1rem; display:flex; flex-direction:column; gap:var(--s2)}
-#page-templates .rulepop li{font-size:.76rem; line-height:1.7; color:var(--muted)}
+#page-templates .rulepop li{font-size:.72rem; line-height:1.7; color:var(--muted)}
 #page-templates .rulepop li b{display:inline; color:var(--ink); margin:0}
 
 /* 編輯欄位：左欄位庫、右已啟用，比照正式系統的雙欄建構器 */
-#tplEditDlg .tplrule{font-size:.78rem; line-height:1.8; color:var(--muted); margin-bottom:var(--s4)}
+#tplEditDlg .tplrule{font-size:.74rem; line-height:1.8; color:var(--muted); margin-bottom:var(--s4)}
 /* [hidden] 是 UA 樣式，權重輸給 .formdlg .fld 的 display:flex——要自己蓋回去 */
 #tplEditDlg .tplnamefld[hidden],#tplEditDlg .cusform[hidden]{display:none}
 #tplEditDlg .tplnamefld{margin-bottom:var(--s4)}
 #tplEditDlg .tplnamefld input{width:100%}
 #tplEditDlg .tplstd{background:var(--panel); border-radius:var(--r-card); padding:var(--s4); margin-bottom:var(--s5)}
 #tplEditDlg .tplstd-hd{display:flex; align-items:center; gap:var(--s3); margin-bottom:var(--s3); flex-wrap:wrap}
-#tplEditDlg .tplstd-hd b{font-size:.87rem; font-weight:500}
-#tplEditDlg .tplstd-hd small{font-size:.74rem; color:var(--muted)}
+#tplEditDlg .tplstd-hd b{font-size:.83rem; font-weight:500}
+#tplEditDlg .tplstd-hd small{font-size:.7rem; color:var(--muted)}
 #tplEditDlg .tplstd-hd .pillbtn{margin-left:auto}
 #tplEditDlg .tplstd-list{display:flex; flex-wrap:wrap; gap:var(--s2)}
 #tplEditDlg .stdchip{
   display:inline-flex; align-items:center; gap:var(--s2); background:var(--tint); color:var(--accent);
   border:1px solid var(--line-accent); border-radius:var(--r-pill); padding:.28rem .3rem .28rem .6rem;
-  font-size:.78rem; cursor:pointer; transition:background .15s ease-out, color .15s ease-out;
+  font-size:.74rem; cursor:pointer; transition:background .15s ease-out, color .15s ease-out;
 }
 #tplEditDlg .stdchip:hover{background:var(--accent); color:var(--on-accent); border-color:var(--accent)}
 #tplEditDlg .stdchip .n{opacity:.7}
 #tplEditDlg .stdchip .x{
-  border:none; background:none; color:inherit; font:inherit; font-size:.87rem; line-height:1;
+  border:none; background:none; color:inherit; font:inherit; font-size:.83rem; line-height:1;
   cursor:pointer; padding:0 .2rem; opacity:.55;
 }
 #tplEditDlg .stdchip .x:hover{opacity:1}
-#tplEditDlg .stdempty{font-size:.76rem; color:var(--muted)}
+#tplEditDlg .stdempty{font-size:.72rem; color:var(--muted)}
 
 #tplEditDlg .tplcols{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--s5); align-items:start}
 #tplEditDlg .tplcol{min-width:0}
-#tplEditDlg .tplcol-hd{font-size:.81rem; font-weight:500; margin-bottom:var(--s3)}
+#tplEditDlg .tplcol-hd{font-size:.76rem; font-weight:500; margin-bottom:var(--s3)}
 #tplEditDlg .tpllib{max-height:22rem; overflow-y:auto; padding-right:var(--s2)}
-#tplEditDlg .libgrp{font-size:.72rem; color:var(--muted); letter-spacing:.08em; margin:var(--s4) 0 var(--s2)}
+#tplEditDlg .libgrp{font-size:.68rem; color:var(--muted); letter-spacing:.08em; margin:var(--s4) 0 var(--s2)}
 #tplEditDlg .libgrp.first{margin-top:0}
 #tplEditDlg .libwrap{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--s2)}
 #tplEditDlg .libbtn{
   display:flex; align-items:center; gap:var(--s2); width:100%; min-width:0; text-align:left;
   border:1px solid var(--line); border-radius:var(--r-row); background:var(--bg); color:var(--ink);
-  font:inherit; font-size:.81rem; padding:.4rem .6rem; cursor:pointer;
+  font:inherit; font-size:.76rem; padding:.4rem .6rem; cursor:pointer;
   transition:border-color .15s ease-out, background .15s ease-out;
 }
 #tplEditDlg .libbtn:hover{border-color:var(--accent); background:var(--tint)}
 #tplEditDlg .libbtn .lb{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
 #tplEditDlg .libbtn .plus{color:var(--muted); flex:none}
 #tplEditDlg .libbtn:hover .plus{color:var(--accent)}
-#tplEditDlg .libempty{font-size:.76rem; color:var(--muted); padding:var(--s4) 0}
+#tplEditDlg .libempty{font-size:.72rem; color:var(--muted); padding:var(--s4) 0}
 
 #tplEditDlg .tplon{max-height:22rem; overflow-y:auto; padding-right:var(--s2); display:flex; flex-direction:column; gap:var(--s2)}
 #tplEditDlg .tplfield{border:1px solid var(--line); border-radius:var(--r-row); background:var(--bg); padding:var(--s3)}
 #tplEditDlg .tplfield.dragging{opacity:.4}
 #tplEditDlg .fhead{display:flex; align-items:center; gap:var(--s2)}
-#tplEditDlg .drag{color:var(--line-3); cursor:grab; flex:none; line-height:1; font-size:.81rem}
-#tplEditDlg .fhead b{font-size:.85rem; font-weight:500; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
-#tplEditDlg .fhead .reqlbl{margin-left:auto; font-size:.74rem; color:var(--muted); flex:none}
-#tplEditDlg .rmbtn{border:none; background:none; color:var(--hot); font:inherit; font-size:.76rem; cursor:pointer; padding:0; flex:none}
+#tplEditDlg .drag{color:var(--line-3); cursor:grab; flex:none; line-height:1; font-size:.76rem}
+#tplEditDlg .fhead b{font-size:.81rem; font-weight:500; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+#tplEditDlg .fhead .reqlbl{margin-left:auto; font-size:.7rem; color:var(--muted); flex:none}
+#tplEditDlg .rmbtn{border:none; background:none; color:var(--hot); font:inherit; font-size:.72rem; cursor:pointer; padding:0; flex:none}
 #tplEditDlg .rmbtn:hover{text-decoration:underline}
 #tplEditDlg .optsum{
   display:flex; align-items:center; gap:var(--s2); border:none; background:none; color:var(--muted);
-  font:inherit; font-size:.76rem; cursor:pointer; padding:var(--s2) 0 0; text-align:left; width:100%; min-width:0;
+  font:inherit; font-size:.72rem; cursor:pointer; padding:var(--s2) 0 0; text-align:left; width:100%; min-width:0;
 }
 #tplEditDlg .optsum .cv{transition:transform .18s ease-out; flex:none; width:.7rem; height:.7rem}
 #tplEditDlg .optsum[aria-expanded="true"] .cv{transform:rotate(90deg)}
@@ -2267,15 +2293,15 @@
 #tplEditDlg .optlist{display:flex; flex-direction:column; gap:var(--s2); padding:var(--s3) 0 var(--s1) 1.15rem}
 #tplEditDlg .optrow{display:flex; align-items:center; gap:var(--s2)}
 #tplEditDlg .optrow.dragging{opacity:.4}
-#tplEditDlg .optrow input{flex:1; min-width:0; font-size:.81rem; padding:.32rem .5rem; border-radius:var(--r-mini)}
+#tplEditDlg .optrow input{flex:1; min-width:0; font-size:.76rem; padding:.32rem .5rem; border-radius:var(--r-mini)}
 #tplEditDlg .addopt{
-  border:none; background:none; color:var(--accent); font:inherit; font-size:.76rem;
+  border:none; background:none; color:var(--accent); font:inherit; font-size:.72rem;
   cursor:pointer; padding:0; text-align:left; align-self:flex-start;
 }
 #tplEditDlg .addopt:hover{text-decoration:underline}
 #tplEditDlg .onempty{
   border:1px dashed var(--line-dash); border-radius:var(--r-card); padding:var(--s7) var(--s4);
-  text-align:center; font-size:.78rem; color:var(--muted); line-height:1.8;
+  text-align:center; font-size:.74rem; color:var(--muted); line-height:1.8;
 }
 #tplEditDlg .tplcus{margin-top:var(--s4); border-top:1px solid var(--line); padding-top:var(--s4)}
 #tplEditDlg .cusform{margin-top:var(--s3); border:1px dashed var(--line); border-radius:var(--r-row); padding:var(--s3); display:flex; flex-direction:column; gap:var(--s2)}
@@ -2286,12 +2312,12 @@
   #tplEditDlg .tplcols{grid-template-columns:1fr}
   #tplEditDlg .libwrap{grid-template-columns:1fr}
 }
-#tplEditDlg .optrow .iconop{font-size:.87rem; line-height:1; width:1.5rem; height:1.5rem; flex:none}
+#tplEditDlg .optrow .iconop{font-size:.83rem; line-height:1; width:1.5rem; height:1.5rem; flex:none}
 /* — import — */
 #importDlg .dropzone{border:1px dashed var(--line);border-radius:var(--r-card);padding:var(--s8) var(--s6);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--s3);text-align:center;background:var(--bg)}
 #importDlg .dropzone:hover{border-color:var(--accent)}
-#importDlg .dropzone b{font-size:1.03rem;color:var(--ink)}
-#importDlg .dropzone .sub{font-size:.76rem;color:var(--muted)}
+#importDlg .dropzone b{font-size:.98rem;color:var(--ink)}
+#importDlg .dropzone .sub{font-size:.72rem;color:var(--muted)}
 #importDlg .dropzone .btns{display:flex;gap:var(--s2);margin-top:var(--s2);flex-wrap:wrap;justify-content:center}
 #importDlg .istep{display:none}
 #importDlg .istep.on{display:block}
@@ -2305,17 +2331,17 @@
 #importDlg h3 .close{margin-left:0}
 /* 每一步的「下一步該按哪顆」提示 */
 #importDlg .stephint{
-  font-size:.76rem; line-height:1.8; color:var(--muted); margin-top:var(--s3);
+  font-size:.72rem; line-height:1.8; color:var(--muted); margin-top:var(--s3);
 }
 #importDlg .stephint b{color:var(--ink); font-weight:500}
 /* 欄位對應：不用 .table-wrap——它的 overflow 會把下拉選單裁掉，min-width 也會逼出橫捲 */
 #importDlg .maptable{background:var(--panel); border-radius:var(--r-card); padding:var(--s2)}
 #importDlg .maphead,#importDlg .maprow{display:grid; grid-template-columns:1fr 1fr 14rem; gap:var(--s3); align-items:center}
-#importDlg .maphead{padding:var(--s2) var(--s3); font-size:.76rem; color:var(--muted)}
+#importDlg .maphead{padding:var(--s2) var(--s3); font-size:.72rem; color:var(--muted)}
 #importDlg .maprow{padding:var(--s1) var(--s3); border-radius:var(--r-row); transition:background .15s ease-out}
 #importDlg .maprow:hover{background:var(--fill)}
-#importDlg .maprow .xf{font-size:.87rem; color:var(--ink); display:flex; align-items:center; gap:var(--s2)}
-#importDlg .maprow .xv{font-size:.87rem; color:var(--muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+#importDlg .maprow .xf{font-size:.83rem; color:var(--ink); display:flex; align-items:center; gap:var(--s2)}
+#importDlg .maprow .xv{font-size:.83rem; color:var(--muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
 /* 上一步按鈕跟分頁條同一列 */
 #importDlg .impsegbar{display:flex; align-items:center; gap:var(--s3)}
 #importDlg .impsegbar .back[disabled]{opacity:.35; cursor:not-allowed}
@@ -2327,19 +2353,19 @@
 #importDlg .chip.skip{color:var(--muted)}
 /* — audit — */
 #page-audit .fbar{display:flex;align-items:center;gap:var(--s2);flex-wrap:wrap}
-#page-audit .fchip{display:inline-flex;align-items:center;gap:var(--s1);padding:var(--s1) var(--s3);border:1px solid var(--line);border-radius:var(--r-pill);background:var(--tint);color:var(--accent);font-size:.81rem;font-family:inherit;cursor:pointer}
-#page-audit .fchip .x{font-size:.9rem;line-height:1}
+#page-audit .fchip{display:inline-flex;align-items:center;gap:var(--s1);padding:var(--s1) var(--s3);border:1px solid var(--line);border-radius:var(--r-pill);background:var(--tint);color:var(--accent);font-size:.76rem;font-family:inherit;cursor:pointer}
+#page-audit .fchip .x{font-size:.85rem;line-height:1}
 #page-audit td.t{white-space:nowrap}
 /* 頭像＋姓名三張表要同一個規格：圓 --ctrl-h、間距 --s3。
    這裡原本是 32px＋8px，跟人員管理／已刪來客差 1.6px 與 4px，並排看得出來 */
 #page-audit .user{display:inline-flex;align-items:center;gap:var(--s3);white-space:nowrap}
-#page-audit .user .av{width:var(--ctrl-h); height:var(--ctrl-h); font-size:.87rem; flex:none}
+#page-audit .user .av{width:var(--ctrl-h); height:var(--ctrl-h); font-size:.83rem; flex:none}
 /* — trash — */
 #page-trash td .chip{margin-left:var(--s1)}
 /* — news — */
 #page-news .h.pin{border-color:var(--accent)}
 #page-news .h .meta{display:flex;align-items:center;justify-content:space-between;gap:var(--s2);margin-top:var(--s2)}
-#page-news .h .top .by{margin-left:auto; font-size:.69rem; color:var(--muted)}
+#page-news .h .top .by{margin-left:auto; font-size:.66rem; color:var(--muted)}
 #page-news .h .top time{margin-left:.6rem}
 #page-news .h .hacts{display:flex;gap:var(--s1);opacity:0;transition:opacity .18s ease-out, transform .25s var(--spring);position:absolute;right:.7rem;top:0;bottom:0;align-items:center;background:inherit;padding-left:.6rem}
 #page-news .h:hover .hacts,#page-news .h:focus-within .hacts{opacity:1}
@@ -2349,11 +2375,11 @@
 /* — collect — */
 #page-collect .phone{max-width:24rem;margin:0 auto;border:1px solid var(--line);border-radius:var(--r-card);overflow:hidden;background:var(--bg)}
 #page-collect .phead{display:flex;align-items:center;justify-content:space-between;padding:var(--s3) var(--s4);border-bottom:1px solid var(--line);background:var(--fill)}
-#page-collect .phead b{font-size:.92rem;color:var(--ink)}
+#page-collect .phead b{font-size:.87rem;color:var(--ink)}
 #page-collect .pbody{padding:var(--s4)}
 #page-collect .fld{display:flex;flex-direction:column;gap:var(--s1);margin-bottom:var(--s4)}
 #page-collect .fld:last-child{margin-bottom:0}
-#page-collect .fld input{height:var(--ctrl-h);border:1px solid var(--line);border-radius:var(--r-pill);padding:0 1rem;width:100%;background:var(--bg);color:var(--ink);font:inherit;font-size:.87rem}
+#page-collect .fld input{height:var(--ctrl-h);border:1px solid var(--line);border-radius:var(--r-pill);padding:0 1rem;width:100%;background:var(--bg);color:var(--ink);font:inherit;font-size:.83rem}
 #page-collect .fld input:focus{outline:none;border-color:var(--accent)}
 #page-collect .fld input::placeholder{color:var(--muted)}
 #page-collect .req{color:var(--hot)}
@@ -2387,7 +2413,7 @@
   .specfoot{display:none}
   /* 頂欄品牌位：總覽＝ADHOLiC logo、建案內＝建案名（點擊回總覽） */
   .brandslot{display:inline-flex; align-items:center; flex:none; padding:0; border:none; background:none; cursor:pointer}
-  .brandslot .brandname{display:none; font-weight:500; font-size:1.18rem; letter-spacing:.14em; line-height:1; color:var(--ink); white-space:nowrap; transition:color .18s ease-out}
+  .brandslot .brandname{display:none; font-weight:500; font-size:1.11rem; letter-spacing:.14em; line-height:1; color:var(--ink); white-space:nowrap; transition:color .18s ease-out}
   .brandslot.proj .brandname{display:inline-flex}
   .brandslot.proj:hover .brandname{color:var(--accent)}
   /* 站在總覽時品牌位就是招牌，不需要再點一次 */
@@ -2396,14 +2422,14 @@
   .notimenu{width:21rem}
   .notimenu .ulbl{display:flex; align-items:baseline; gap:.5rem}
   .notimenu .ulbl .cntb{margin-left:auto; color:var(--accent); letter-spacing:0; font-variant-numeric:tabular-nums}
-  .notimenu .srow{display:flex; align-items:center; gap:.6rem; width:100%; text-align:left; padding:.5rem .7rem; font-size:.81rem; border-radius:var(--r-cell)}
+  .notimenu .srow{display:flex; align-items:center; gap:.6rem; width:100%; text-align:left; padding:.5rem .7rem; font-size:.76rem; border-radius:var(--r-cell)}
   .notimenu .srow:hover{background:var(--fill)}
   .notimenu .srow.now{background:var(--tint)}
   .notimenu .srow time{flex:none; width:2.6rem; font-weight:500; color:var(--ink); font-variant-numeric:tabular-nums}
   .notimenu .srow.now time{color:var(--accent)}
   .notimenu .srow .what{flex:1; min-width:0}
   .notimenu .srow .what b{font-weight:500}
-  .notimenu .srow .what em{display:block; font-style:normal; font-size:.69rem; color:var(--muted); margin-top:.05rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .notimenu .srow .what em{display:block; font-style:normal; font-size:.66rem; color:var(--muted); margin-top:.05rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
   .notimenu .srow .chip{flex:none}
   .notimenu .srow.now .chip{border-color:var(--accent); color:var(--accent)}
   .notimenu .chip.sign{background:var(--accent); border-color:var(--accent); color:var(--on-accent)}
@@ -2432,23 +2458,23 @@
   .tour.show{display:block; animation:fadein .25s ease-out both}
   .tour-lines{position:absolute; inset:0; width:100%; height:100%; pointer-events:none}
   .tour-lines path{fill:none; stroke:var(--on-accent); stroke-width:1; stroke-linecap:round; opacity:.85}
-  .tour-tip{position:absolute; color:var(--on-accent); font-size:.87rem; line-height:1.9; letter-spacing:.06em; white-space:pre-line}
-  .tour-tip.centerblock{position:absolute; inset:0; margin:auto; height:fit-content; width:fit-content; max-width:36rem; line-height:2.2; font-size:.9rem}
+  .tour-tip{position:absolute; color:var(--on-accent); font-size:.83rem; line-height:1.9; letter-spacing:.06em; white-space:pre-line}
+  .tour-tip.centerblock{position:absolute; inset:0; margin:auto; height:fit-content; width:fit-content; max-width:36rem; line-height:2.2; font-size:.85rem}
   .tour-title{
     position:absolute; bottom:6.8rem; left:0; right:0; margin:0 auto; width:fit-content;
-    color:var(--on-accent); font-size:1.06rem; font-weight:500; letter-spacing:.24em;
+    color:var(--on-accent); font-size:1.01rem; font-weight:500; letter-spacing:.24em;
   }
   .tour-nav{position:absolute; bottom:3.2rem; left:0; right:0; margin:0 auto; width:fit-content; display:flex; align-items:center; gap:1rem}
   .tour-nav button{
     border:1px solid var(--on-accent); color:var(--on-accent); background:none;
-    border-radius:var(--r-pill); padding:.45rem 1.2rem; font-size:.81rem; letter-spacing:.08em;
+    border-radius:var(--r-pill); padding:.45rem 1.2rem; font-size:.76rem; letter-spacing:.08em;
     transition:opacity .18s ease-out;
   }
   .tour-nav button:hover{opacity:.8}
   #tourDots{display:flex; gap:.4rem}
   #tourDots i{width:7px; height:7px; border-radius:50%; border:1px solid var(--on-accent); display:block}
   #tourDots i.on{background:var(--on-accent)}
-  .tour .t-again{position:absolute; bottom:1.8rem; left:0; right:0; margin:0 auto; width:fit-content; font-size:.74rem; color:var(--on-accent); opacity:.75; letter-spacing:.06em}
+  .tour .t-again{position:absolute; bottom:1.8rem; left:0; right:0; margin:0 auto; width:fit-content; font-size:.7rem; color:var(--on-accent); opacity:.75; letter-spacing:.06em}
   /* Aceternity 流光邊框：五頁主 CTA（其餘頁不套） */
   :is(#page-projects,#page-home,#page-leadsall,#page-leadsall,#page-news) .masthead .pillbtn.solid{position:relative; z-index:0; overflow:visible}
   :is(#page-projects,#page-home,#page-leadsall,#page-leadsall,#page-news) .masthead .pillbtn.solid::before{
@@ -2488,7 +2514,7 @@
   .statmenu.show{display:block; animation:menuIn .18s var(--enter) backwards; transform-origin:top left}
   .statmenu button{
     display:flex; align-items:center; gap:.5rem; width:100%; text-align:left;
-    padding:.45rem .7rem; font-size:.81rem; border-radius:var(--r-cell); color:var(--ink);
+    padding:.45rem .7rem; font-size:.76rem; border-radius:var(--r-cell); color:var(--ink);
   }
   .statmenu button:hover{background:var(--fill)}
   .statmenu button.cur{background:var(--tint); color:var(--accent); font-weight:500}
@@ -2496,10 +2522,10 @@
   .hovercard{
     position:fixed; z-index:65; width:15.5rem; display:none;
     background:var(--bg); border:1px solid var(--line); border-radius:var(--r-card);
-    box-shadow:var(--el2); padding:.8rem 1rem; font-size:.81rem;
+    box-shadow:var(--el2); padding:.8rem 1rem; font-size:.76rem;
   }
   .hovercard.show{display:block; animation:menuIn .18s var(--enter) backwards}
-  .hovercard b{font-weight:500; font-size:.9rem; display:block; margin-bottom:.15rem}
+  .hovercard b{font-weight:500; font-size:.85rem; display:block; margin-bottom:.15rem}
   .hovercard .hrow{color:var(--muted); line-height:1.8}
   /* KPI 階層重整：標籤在上、數字＋單位＋徽章同一行（Annie 2026-08-24） */
   :is(#page-projects,#page-leadsall,#page-leadsall,#page-analytics,#page-reports,#importDlg,#page-commission) .kpi{flex-direction:column-reverse; align-items:flex-start; gap:.3rem}
@@ -2563,7 +2589,7 @@
   #toastwrap{position:fixed; right:1.6rem; bottom:1.6rem; z-index:60; display:flex; flex-direction:column; align-items:flex-end; gap:.5rem; pointer-events:none}
   #toastwrap .tst{
     background:var(--ink); color:var(--on-accent); border-radius:var(--r-pill);
-    padding:.55rem 1.3rem; font-size:.87rem; animation:toastIn .35s var(--spring) backwards;
+    padding:.55rem 1.3rem; font-size:.83rem; animation:toastIn .35s var(--spring) backwards;
     transition:opacity .25s ease-out, transform .25s ease-out; pointer-events:auto; max-width:26rem;
   }
   #toastwrap .tst.out{opacity:0; transform:translateY(8px) scale(.96)}
@@ -2597,13 +2623,13 @@
   .kpi:hover .v{transform:scale(1.05)}
   .drawer-mask.show{animation:fadein .25s ease-out}
   html{scroll-behavior:smooth}
-  #page-leadsall .emptyrow td{text-align:center; color:var(--muted); padding:1.6rem 1rem; font-size:.87rem}
+  #page-leadsall .emptyrow td{text-align:center; color:var(--muted); padding:1.6rem 1rem; font-size:.83rem}
   /* 通用表單對話框 */
   .formdlg .fld{display:flex; flex-direction:column; gap:.3rem; margin-bottom:.9rem}
-  .formdlg .fld > span{font-size:.74rem; color:var(--muted); letter-spacing:.08em}
+  .formdlg .fld > span{font-size:.7rem; color:var(--muted); letter-spacing:.08em}
   .formdlg input, .formdlg textarea, .formdlg select{
     border:1px solid var(--line); border-radius:var(--r-cell); padding:.5rem .7rem;
-    background:var(--bg); color:var(--ink); font:inherit; font-size:.87rem;
+    background:var(--bg); color:var(--ink); font:inherit; font-size:.83rem;
   }
   .formdlg textarea{min-height:4.5rem; resize:vertical}
   .formdlg input:focus, .formdlg textarea:focus, .formdlg select:focus{outline:none; border-color:var(--accent)}
@@ -2611,7 +2637,7 @@
   /* 現場收客 QR 彈窗 */
   .qrdlg{width:min(19rem,92vw); text-align:center}
   .qrdlg .qrsvg{display:block; width:11rem; height:11rem; margin:var(--s3) auto; color:var(--ink)}
-  .qrdlg .qru{display:block; font-size:.78rem; color:var(--muted); font-variant-numeric:tabular-nums; margin-bottom:var(--s2)}
+  .qrdlg .qru{display:block; font-size:.74rem; color:var(--muted); font-variant-numeric:tabular-nums; margin-bottom:var(--s2)}
   /* Kinetics 開場編排：載入時左欄與頂欄逐一彈入 */
   .rail button{animation:pop .5s var(--enter) backwards}
   .rail button:nth-of-type(1){animation-delay:.05s}.rail button:nth-of-type(2){animation-delay:.09s}
@@ -2718,14 +2744,14 @@
   .topbar .topsearch{
     flex:1; max-width:34rem; margin:0 auto; min-width:0;
     height:var(--ctrl-h); border:1px solid var(--line); border-radius:var(--r-pill);
-    background:var(--fill); color:var(--muted); font-size:.81rem; letter-spacing:.04em;
+    background:var(--fill); color:var(--muted); font-size:.76rem; letter-spacing:.04em;
     display:inline-flex; align-items:center; gap:.6rem; padding:0 .5rem 0 1rem;
     transition:border-color .18s ease-out, background .18s ease-out;
   }
   .topbar .topsearch:hover{border-color:var(--muted); background:var(--bg)}
   .topbar .topsearch span{overflow:hidden; white-space:nowrap; text-overflow:ellipsis}
   .topbar .topsearch kbd{
-    margin-left:auto; flex:none; font:inherit; font-size:.69rem; color:var(--muted);
+    margin-left:auto; flex:none; font:inherit; font-size:.66rem; color:var(--muted);
     border:1px solid var(--line); border-radius:var(--r-mini); padding:.1rem .45rem; background:var(--bg);
   }
   /* 建案總覽：最近動態單行緊湊列 */
@@ -2734,11 +2760,11 @@
   #page-projects .hist .h.act{display:flex; align-items:center; gap:.7rem; padding:.6rem .8rem}
   #page-projects .h.act .chip{flex:none; min-width:4.9rem; justify-content:center; text-align:center}
   #page-projects .h.act p{margin:0; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-  #page-projects .h.act time{margin-left:auto; flex:none; font-size:.69rem; color:var(--muted); font-variant-numeric:tabular-nums}
+  #page-projects .h.act time{margin-left:auto; flex:none; font-size:.66rem; color:var(--muted); font-variant-numeric:tabular-nums}
 
   @keyframes barx{0%{transform:scaleX(0)} 75%{transform:scaleX(1.05)} 100%{transform:scaleX(1)}}
   .view.on .salebar i,.view.on .gbar i{animation:barx .6s var(--enter) backwards .3s}
-  .kpi .v small{font-size:.87rem; font-weight:400; color:var(--muted); align-self:flex-end; padding-bottom:.3rem}
+  .kpi .v small{font-size:.83rem; font-weight:400; color:var(--muted); align-self:flex-end; padding-bottom:.3rem}
   /* hover 卡面定義：白面＋髮絲框，跟白底拉開（Annie 2026-08-24） */
   #page-projects .proj, #page-home .feat{transition:transform .18s ease-out, box-shadow .18s ease-out, background .18s ease-out}
   #page-projects .proj:hover, #page-home .feat:hover{background:var(--bg); outline:1px solid var(--line-2); outline-offset:-1px}
@@ -2760,7 +2786,7 @@
   /* 建案首頁：墨卡微量條＋功能卡即時指標 */
   #page-home .gcell .gbar{display:block; height:3px; border-radius:var(--r-mini); background:var(--muted); overflow:hidden; margin-top:.45rem}
   #page-home .gcell .gbar i{display:block; height:100%; width:var(--w,0%); background:var(--accent-on-ink); border-radius:inherit; transform-origin:left}
-  #page-home .feat .fm{font-size:.76rem; color:var(--accent); font-variant-numeric:tabular-nums; letter-spacing:.03em; margin-top:.35rem}
+  #page-home .feat .fm{font-size:.72rem; color:var(--accent); font-variant-numeric:tabular-nums; letter-spacing:.03em; margin-top:.35rem}
   #page-home .feat .fm b{font-weight:500}
   #page-home .feat .fm b.warn{color:var(--warm)}
   #page-home .feat .fm b.hotf{color:var(--hot)}
@@ -2981,7 +3007,7 @@
             </div>
             <div class="h act">
               <span class="chip">恆山千隅</span>
-              <p><b>林曉青</b>　刪除來客 黃淑珊 0938-227-***</p>
+              <p><b>林曉青</b>　刪除來客 黃淑珊 0938-227-415</p>
               <time>2026-08-20 10:58</time>
             </div>
           </div>
@@ -3028,7 +3054,7 @@
           <button class="feat" data-page="prices"><b>價格表<span class="go">→</span></b><span>三層價格與溢價、批次調底價</span><span class="fm"><b class="warn">9 戶底價待補</b></span></button>
           <button class="feat" data-page="analytics"><b>分析<span class="go">→</span></b><span>來客來源與轉換分析</span><span class="fm">本月成交 6・轉換 8.8%</span></button>
           <button class="feat" data-page="reports"><b>業務報表<span class="go">→</span></b><span>日報／週報／月報與目標達成</span><span class="fm">今日 14 組・下訂 2 戶</span></button>
-          <button class="feat" data-page="templates"><b>勾勾表範本<span class="go">→</span></b><span>設定來客名單動態欄位</span><span class="fm">完整來客詳細資料 v1・18 欄</span></button>
+          <button class="feat" data-page="templates"><b>勾勾表範本<span class="go">→</span></b><span>設定來客名單動態欄位</span><span class="fm">完整客戶詳細資料 v1・17 欄</span></button>
           <button class="feat" data-act="openImport"><b>Excel 匯入<span class="go">→</span></b><span>從舊 Excel 匯入來客</span><span class="fm">.xlsx／.csv・單次 5,000 列</span></button>
           <button class="feat" data-page="commission"><b>業務獎金<span class="go">→</span></b><span>獎金方案、明細與發放</span><span class="fm">標準跳趴案・5 位業務</span></button>
         </div>
@@ -3744,12 +3770,12 @@
           <h2>字體 <small>全站單一字族 MiSans TC・數字一律 tabular-nums</small></h2>
           <div class="gcards">
             <div class="gcard" style="grid-column:1/-1">
-              <div class="gtype"><span class="demo" style="font-size:2.69rem; font-weight:300; line-height:1.2">384</span><span class="m">KPI 大數字｜2.69rem・Light 300</span></div>
-              <div class="gtype"><span class="demo" style="font-size:1.74rem; font-weight:500">來客名單</span><span class="m">頁標 h1｜1.74rem・Medium 500</span></div>
-              <div class="gtype"><span class="demo" style="font-size:1.06rem; font-weight:500">新進來客</span><span class="m">節標 h2｜1.06rem・Medium 500</span></div>
-              <div class="gtype"><span class="demo" style="font-size:.95rem">內文與表格，行高 1.7</span><span class="m">body｜.95rem・Regular 400</span></div>
-              <div class="gtype"><span class="demo" style="font-size:.81rem">按鈕與 pill 文字</span><span class="m">控件｜.81rem・Regular 400</span></div>
-              <div class="gtype"><span class="demo" style="font-size:.74rem; letter-spacing:.16em; color:var(--muted)">表頭與微標籤</span><span class="m">標籤｜.67–.74rem・字距 .14–.24em</span></div>
+              <div class="gtype"><span class="demo" style="font-size:2.54rem; font-weight:300; line-height:1.2">384</span><span class="m">KPI 大數字｜2.54rem・Light 300</span></div>
+              <div class="gtype"><span class="demo" style="font-size:1.64rem; font-weight:500">來客名單</span><span class="m">頁標 h1｜1.64rem・Medium 500</span></div>
+              <div class="gtype"><span class="demo" style="font-size:1.01rem; font-weight:500">新進來客</span><span class="m">節標 h2｜1.01rem・Medium 500</span></div>
+              <div class="gtype"><span class="demo" style="font-size:.9rem">內文與表格，行高 1.7</span><span class="m">body｜.9rem・Regular 400</span></div>
+              <div class="gtype"><span class="demo" style="font-size:.76rem">按鈕與 pill 文字</span><span class="m">控件｜.76rem・Regular 400</span></div>
+              <div class="gtype"><span class="demo" style="font-size:.7rem; letter-spacing:.16em; color:var(--muted)">表頭與微標籤</span><span class="m">標籤｜.64–.7rem・字距 .14–.24em</span></div>
             </div>
           </div>
         </div>
@@ -3801,22 +3827,22 @@
               <div class="gdemo">
                 <button class="circlebtn">←</button>
                 <button class="circlebtn soft">↗</button>
-                <span style="font-size:.74rem;color:var(--muted)">描邊圓鈕＝頁內動作・軟底圓鈕＝頂欄/rail</span>
+                <span style="font-size:.7rem;color:var(--muted)">描邊圓鈕＝頁內動作・軟底圓鈕＝頂欄/rail</span>
               </div>
             </div>
             <div class="gcard">
               <h3>徽章・chip・狀態</h3>
               <div class="gdemo">
-                <span class="kpi" style="gap:.4rem"><span class="v" style="font-size:1.79rem"><span>66</span><span class="bub warm">逾 14 天</span></span></span>
+                <span class="kpi" style="gap:.4rem"><span class="v" style="font-size:1.7rem"><span>66</span><span class="bub warm">逾 14 天</span></span></span>
                 <span class="chip">FB</span>
                 <span class="chip hot">熱客</span>
                 <span class="badge">來客</span>
                 <span class="tag">回訪 ×2</span>
               </div>
               <div class="gdemo">
-                <span class="status selling" style="font-size:.72rem;border-radius:999px;padding:.1rem .7rem">銷售中</span>
-                <span class="status presale" style="font-size:.72rem;border-radius:999px;padding:.1rem .7rem">預售</span>
-                <span class="status soldout" style="font-size:.72rem;border-radius:999px;padding:.1rem .7rem">完銷</span>
+                <span class="status selling" style="font-size:.68rem;border-radius:999px;padding:.1rem .7rem">銷售中</span>
+                <span class="status presale" style="font-size:.68rem;border-radius:999px;padding:.1rem .7rem">預售</span>
+                <span class="status soldout" style="font-size:.68rem;border-radius:999px;padding:.1rem .7rem">完銷</span>
                 <span class="interest" style="padding:0"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span>
               </div>
             </div>
@@ -4039,7 +4065,6 @@
           <th style="width:2.4rem"><input type="checkbox" id="checkAll" aria-label="全選"></th>
           <th>姓名</th>
           <th>分級</th>
-          <th>意願</th>
           <th>電話</th>
           <th>來客／來電</th>
           <th>來源</th>
@@ -4047,7 +4072,7 @@
           <th>足跡建案</th>
           <th class="sortable" id="sortDate">來訪日期<span class="arr">▾</span></th>
           <th>負責業務</th>
-          <th class="amt">操作</th>
+          <th>操作</th>
         </tr>
       </thead>
       <tbody id="rows">
@@ -4055,8 +4080,7 @@
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
           <td><span class="name">陳威宇<span class="tag">回訪 ×2</span></span></td>
           <td><span class="grade a">A 級</span></td>
-          <td><span class="interest" aria-label="意願 4／5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></td>
-          <td>0912-334-***</td><td><span class="badge">來客</span></td><td>FB</td>
+          <td>0912-334-268</td><td><span class="badge">來客</span></td><td>FB</td>
           <td><span class="chip">青園綠境</span></td>
           <td><span class="chips"><span class="chip">恆山千隅</span></span></td>
           <td>2026-08-19</td><td class="assignee">張家豪</td>
@@ -4066,8 +4090,7 @@
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
           <td><span class="name">林佳蓉</span></td>
           <td><span class="grade b">B 級</span></td>
-          <td><span class="interest" aria-label="意願 3／5"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></td>
-          <td>0987-221-***</td><td><span class="badge">來客</span></td><td>現場</td>
+          <td>0987-221-903</td><td><span class="badge">來客</span></td><td>現場</td>
           <td><span class="chip">青園綠境</span></td>
           <td>—</td>
           <td>2026-08-18</td><td class="assignee">吳姿瑩</td>
@@ -4076,9 +4099,8 @@
         <tr data-date="2026-08-17" data-created="2026-08-17 16:40" data-proj="秴楓" data-cross="0" data-city="臺中市" data-dist="南屯區">
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
           <td><span class="name">黃淑珊</span></td>
-          <td><span class="grade c">C 級</span></td>
-          <td><span class="interest" aria-label="意願 2／5"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></td>
-          <td>0933-108-***</td><td><span class="badge call">來電</span></td><td>網路</td>
+          <td><span class="grade d">D 級</span></td>
+          <td>0933-108-574</td><td><span class="badge call">來電</span></td><td>網路</td>
           <td><span class="chip">秴楓</span></td>
           <td>—</td>
           <td>2026-08-17</td><td class="assignee"><span class="unassigned">未指派</span></td>
@@ -4088,8 +4110,7 @@
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
           <td><span class="name">許文彬<span class="tag">回訪 ×3</span></span></td>
           <td><span class="grade a">A 級</span></td>
-          <td><span class="interest" aria-label="意願 4／5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></td>
-          <td>0921-877-***</td><td><span class="badge">來客</span></td><td>介紹</td>
+          <td>0921-877-130</td><td><span class="badge">來客</span></td><td>介紹</td>
           <td><span class="chip">恆山千隅</span></td>
           <td><span class="chips"><span class="chip">秴楓</span></span></td>
           <td>2026-08-16</td><td class="assignee">張家豪</td>
@@ -4099,8 +4120,7 @@
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
           <td><span class="name">王思穎</span></td>
           <td><span class="grade c">C 級</span></td>
-          <td><span class="interest" aria-label="意願 2／5"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></td>
-          <td>0955-462-***</td><td><span class="badge">來客</span></td><td>看板</td>
+          <td>0955-462-821</td><td><span class="badge">來客</span></td><td>看板</td>
           <td><span class="chip">青園綠境</span></td>
           <td>—</td>
           <td>2026-08-15</td><td class="assignee"><span class="unassigned">未指派</span></td>
@@ -4110,8 +4130,7 @@
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
           <td><span class="name">蔡明翰</span></td>
           <td><span class="grade b">B 級</span></td>
-          <td><span class="interest" aria-label="意願 3／5"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></td>
-          <td>0910-664-***</td><td><span class="badge call">來電</span></td><td>IG</td>
+          <td>0910-664-359</td><td><span class="badge call">來電</span></td><td>IG</td>
           <td><span class="chip">青園綠境</span></td>
           <td><span class="chips"><span class="chip">恆山千隅</span><span class="chip">秴楓</span></span></td>
           <td>2026-08-14</td><td class="assignee">吳姿瑩</td>
@@ -4121,8 +4140,7 @@
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
           <td><span class="name">陳威宇<span class="tag">回訪 ×2</span></span></td>
           <td><span class="grade a">A 級</span></td>
-          <td><span class="interest" aria-label="意願 4／5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></td>
-          <td>0912-334-***</td><td><span class="badge">來客</span></td><td>FB</td>
+          <td>0912-334-268</td><td><span class="badge">來客</span></td><td>FB</td>
           <td><span class="chip">恆山千隅</span></td>
           <td><span class="chips"><span class="chip">青園綠境</span></span></td>
           <td>2026-08-13</td><td class="assignee">吳姿瑩</td>
@@ -4132,8 +4150,7 @@
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
           <td><span class="name">楊雅筑</span></td>
           <td><span class="grade b">B 級</span></td>
-          <td><span class="interest" aria-label="意願 3／5"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></td>
-          <td>0978-315-***</td><td><span class="badge">來客</span></td><td>路過</td>
+          <td>0978-315-642</td><td><span class="badge">來客</span></td><td>路過</td>
           <td><span class="chip">恆山千隅</span></td>
           <td>—</td>
           <td>2026-08-12</td><td class="assignee">張家豪</td>
@@ -4142,9 +4159,8 @@
         <tr data-date="2026-08-11" data-created="2026-08-11 13:20" data-proj="秴楓" data-cross="0" data-city="臺中市" data-dist="南屯區">
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
           <td><span class="name"><span class="stale-dot" title="久未跟進"></span>郭俊廷</span></td>
-          <td><span class="grade c">C 級</span></td>
-          <td><span class="interest" aria-label="意願 2／5"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></td>
-          <td>0930-529-***</td><td><span class="badge">來客</span></td><td>FB</td>
+          <td><span class="grade d">D 級</span></td>
+          <td>0930-529-087</td><td><span class="badge">來客</span></td><td>FB</td>
           <td><span class="chip">秴楓</span></td>
           <td>—</td>
           <td>2026-08-11</td><td class="assignee">陳冠廷</td>
@@ -4154,8 +4170,7 @@
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
           <td><span class="name"><span class="stale-dot" title="久未跟進"></span>蔡明翰</span></td>
           <td><span class="grade b">B 級</span></td>
-          <td><span class="interest" aria-label="意願 3／5"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></td>
-          <td>0910-664-***</td><td><span class="badge">來客</span></td><td>IG</td>
+          <td>0910-664-359</td><td><span class="badge">來客</span></td><td>IG</td>
           <td><span class="chip">恆山千隅</span></td>
           <td><span class="chips"><span class="chip">青園綠境</span><span class="chip">秴楓</span></span></td>
           <td>2026-08-09</td><td class="assignee">吳姿瑩</td>
@@ -4165,8 +4180,7 @@
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
           <td><span class="name"><span class="stale-dot" title="久未跟進"></span>許文彬<span class="tag">回訪 ×3</span></span></td>
           <td><span class="grade a">A 級</span></td>
-          <td><span class="interest" aria-label="意願 4／5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></td>
-          <td>0921-877-***</td><td><span class="badge">來客</span></td><td>介紹</td>
+          <td>0921-877-130</td><td><span class="badge">來客</span></td><td>介紹</td>
           <td><span class="chip">秴楓</span></td>
           <td><span class="chips"><span class="chip">恆山千隅</span></span></td>
           <td>2026-08-05</td><td class="assignee">周家瑜</td>
@@ -4176,8 +4190,7 @@
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
           <td><span class="name"><span class="stale-dot" title="久未跟進"></span>蔡明翰</span></td>
           <td><span class="grade b">B 級</span></td>
-          <td><span class="interest" aria-label="意願 3／5"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></td>
-          <td>0910-664-***</td><td><span class="badge call">來電</span></td><td>IG</td>
+          <td>0910-664-359</td><td><span class="badge call">來電</span></td><td>IG</td>
           <td><span class="chip">秴楓</span></td>
           <td><span class="chips"><span class="chip">青園綠境</span><span class="chip">恆山千隅</span></span></td>
           <td>2026-07-30</td><td class="assignee"><span class="unassigned">未指派</span></td>
@@ -4446,7 +4459,7 @@
           <td><span class="chip act-delete">移除成員角色</span></td>
           <td>許文彬</td>
           <td>114.36.201.77</td>
-          <td style="font-family:ui-monospace,monospace;font-size:.76rem">DELETE /api/v1/users/1427/role</td>
+          <td style="font-family:ui-monospace,monospace;font-size:.72rem">DELETE /api/v1/users/1427/role</td>
         </tr>
         <tr class="audit-row" data-date="2026-08-20" data-kind="update">
           <td class="lognum">#3039</td>
@@ -4455,7 +4468,7 @@
           <td><span class="chip act-update">批次指派負責業務</span></td>
           <td>青園綠境・188 筆 → 蔡宜庭</td>
           <td>220.132.78.45</td>
-          <td style="font-family:ui-monospace,monospace;font-size:.76rem">POST /api/v1/leads/batch-assign</td>
+          <td style="font-family:ui-monospace,monospace;font-size:.72rem">POST /api/v1/leads/batch-assign</td>
         </tr>
         <tr class="audit-row" data-date="2026-08-20" data-kind="create">
           <td class="lognum">#3038</td>
@@ -4464,7 +4477,7 @@
           <td><span class="chip act-create">Excel 匯入名單</span></td>
           <td>恆山千隅・49 筆</td>
           <td>114.36.201.77</td>
-          <td style="font-family:ui-monospace,monospace;font-size:.76rem">POST /api/v1/leads/import</td>
+          <td style="font-family:ui-monospace,monospace;font-size:.72rem">POST /api/v1/leads/import</td>
         </tr>
         <tr class="audit-row" data-date="2026-08-20" data-kind="update">
           <td class="lognum">#3037</td>
@@ -4473,7 +4486,7 @@
           <td><span class="chip act-update">批次指派負責業務</span></td>
           <td>秴楓・141 筆 → 郭俊廷</td>
           <td>61.216.44.132</td>
-          <td style="font-family:ui-monospace,monospace;font-size:.76rem">POST /api/v1/leads/batch-assign</td>
+          <td style="font-family:ui-monospace,monospace;font-size:.72rem">POST /api/v1/leads/batch-assign</td>
         </tr>
         <tr class="audit-row" data-date="2026-08-20" data-kind="create">
           <td class="lognum">#3036</td>
@@ -4482,7 +4495,7 @@
           <td><span class="chip act-create">Excel 匯入名單</span></td>
           <td>青園綠境・184 筆</td>
           <td>114.36.201.77</td>
-          <td style="font-family:ui-monospace,monospace;font-size:.76rem">POST /api/v1/leads/import</td>
+          <td style="font-family:ui-monospace,monospace;font-size:.72rem">POST /api/v1/leads/import</td>
         </tr>
         <tr class="audit-row" data-date="2026-08-20" data-kind="create">
           <td class="lognum">#3035</td>
@@ -4491,7 +4504,7 @@
           <td><span class="chip act-create">Excel 匯入名單</span></td>
           <td>恆山千隅・18 筆</td>
           <td>220.132.78.45</td>
-          <td style="font-family:ui-monospace,monospace;font-size:.76rem">POST /api/v1/leads/import</td>
+          <td style="font-family:ui-monospace,monospace;font-size:.72rem">POST /api/v1/leads/import</td>
         </tr>
         <tr class="audit-row" data-date="2026-08-19" data-kind="update">
           <td class="lognum">#3034</td>
@@ -4500,7 +4513,7 @@
           <td><span class="chip act-update">調整底價</span></td>
           <td>青園綠境 C2-5F</td>
           <td>61.216.44.132</td>
-          <td style="font-family:ui-monospace,monospace;font-size:.76rem">PATCH /api/v1/units/c2-5f/floor-price</td>
+          <td style="font-family:ui-monospace,monospace;font-size:.72rem">PATCH /api/v1/units/c2-5f/floor-price</td>
         </tr>
         <tr class="audit-row" data-date="2026-08-19" data-kind="update">
           <td class="lognum">#3033</td>
@@ -4509,7 +4522,7 @@
           <td><span class="chip act-update">編輯來客</span></td>
           <td>恆山千隅・林佳蓉</td>
           <td>203.74.120.6</td>
-          <td style="font-family:ui-monospace,monospace;font-size:.76rem">PATCH /api/v1/leads/1113</td>
+          <td style="font-family:ui-monospace,monospace;font-size:.72rem">PATCH /api/v1/leads/1113</td>
         </tr>
         <tr class="audit-row" data-date="2026-08-19" data-kind="login">
           <td class="lognum">#3032</td>
@@ -4518,16 +4531,16 @@
           <td><span class="chip act-login">登入</span></td>
           <td>—</td>
           <td>61.216.44.132</td>
-          <td style="font-family:ui-monospace,monospace;font-size:.76rem">POST /api/v1/auth/login</td>
+          <td style="font-family:ui-monospace,monospace;font-size:.72rem">POST /api/v1/auth/login</td>
         </tr>
         <tr class="audit-row" data-date="2026-08-19" data-kind="delete">
           <td class="lognum">#3031</td>
           <td class="t">2026-08-19 15:02</td>
           <td><span class="user"><span class="av">吳</span>吳姿瑩</span></td>
           <td><span class="chip act-delete">刪除來客</span></td>
-          <td>秴楓・張雅涵 0991-***-***</td>
+          <td>秴楓・張雅涵 0991-336-208</td>
           <td>2001:b011:300c:1a2f:8e1</td>
-          <td style="font-family:ui-monospace,monospace;font-size:.76rem">DELETE /api/v1/leads/1425</td>
+          <td style="font-family:ui-monospace,monospace;font-size:.72rem">DELETE /api/v1/leads/1425</td>
         </tr>
         <tr class="audit-row" data-date="2026-08-19" data-kind="update">
           <td class="lognum">#3030</td>
@@ -4536,7 +4549,7 @@
           <td><span class="chip act-update">編輯來客</span></td>
           <td>青園綠境・王思穎</td>
           <td>61.216.44.132</td>
-          <td style="font-family:ui-monospace,monospace;font-size:.76rem">PATCH /api/v1/leads/1742</td>
+          <td style="font-family:ui-monospace,monospace;font-size:.72rem">PATCH /api/v1/leads/1742</td>
         </tr>
         <tr class="audit-row" data-date="2026-08-18" data-kind="create">
           <td class="lognum">#3029</td>
@@ -4545,16 +4558,16 @@
           <td><span class="chip act-create">Excel 匯入名單</span></td>
           <td>青園綠境・30 筆</td>
           <td>114.36.201.77</td>
-          <td style="font-family:ui-monospace,monospace;font-size:.76rem">POST /api/v1/leads/import</td>
+          <td style="font-family:ui-monospace,monospace;font-size:.72rem">POST /api/v1/leads/import</td>
         </tr>
         <tr class="audit-row" data-date="2026-08-18" data-kind="delete">
           <td class="lognum">#3028</td>
           <td class="t">2026-08-18 13:53</td>
           <td><span class="user"><span class="av">陳</span>陳冠廷</span></td>
           <td><span class="chip act-delete">刪除來客</span></td>
-          <td>青園綠境・蔡宜庭 0982-***-***</td>
+          <td>青園綠境・蔡宜庭 0982-471-095</td>
           <td>220.132.78.45</td>
-          <td style="font-family:ui-monospace,monospace;font-size:.76rem">DELETE /api/v1/leads/1853</td>
+          <td style="font-family:ui-monospace,monospace;font-size:.72rem">DELETE /api/v1/leads/1853</td>
         </tr>
         <tr class="audit-row" data-date="2026-08-18" data-kind="login">
           <td class="lognum">#3027</td>
@@ -4563,7 +4576,7 @@
           <td><span class="chip act-login">登入</span></td>
           <td>—</td>
           <td>61.216.44.132</td>
-          <td style="font-family:ui-monospace,monospace;font-size:.76rem">POST /api/v1/auth/login</td>
+          <td style="font-family:ui-monospace,monospace;font-size:.72rem">POST /api/v1/auth/login</td>
         </tr>
         <tr class="audit-row" data-date="2026-08-18" data-kind="update">
           <td class="lognum">#3026</td>
@@ -4572,7 +4585,7 @@
           <td><span class="chip act-update">編輯來客</span></td>
           <td>恆山千隅・林佳蓉</td>
           <td>61.216.44.132</td>
-          <td style="font-family:ui-monospace,monospace;font-size:.76rem">PATCH /api/v1/leads/1688</td>
+          <td style="font-family:ui-monospace,monospace;font-size:.72rem">PATCH /api/v1/leads/1688</td>
         </tr>
         <tr class="audit-row" data-date="2026-08-17" data-kind="create">
           <td class="lognum">#3025</td>
@@ -4581,7 +4594,7 @@
           <td><span class="chip act-create">新增來客</span></td>
           <td>青園綠境・黃淑珊</td>
           <td>2001:b011:300c:1a2f:8e1</td>
-          <td style="font-family:ui-monospace,monospace;font-size:.76rem">POST /api/v1/leads</td>
+          <td style="font-family:ui-monospace,monospace;font-size:.72rem">POST /api/v1/leads</td>
         </tr>
         <tr class="audit-row" data-date="2026-08-17" data-kind="login">
           <td class="lognum">#3024</td>
@@ -4590,7 +4603,7 @@
           <td><span class="chip act-login">登入</span></td>
           <td>—</td>
           <td>220.132.78.45</td>
-          <td style="font-family:ui-monospace,monospace;font-size:.76rem">POST /api/v1/auth/login</td>
+          <td style="font-family:ui-monospace,monospace;font-size:.72rem">POST /api/v1/auth/login</td>
         </tr>
         <tr class="audit-row" data-date="2026-08-17" data-kind="login">
           <td class="lognum">#3023</td>
@@ -4599,7 +4612,7 @@
           <td><span class="chip act-login">登入</span></td>
           <td>—</td>
           <td>61.216.44.132</td>
-          <td style="font-family:ui-monospace,monospace;font-size:.76rem">POST /api/v1/auth/login</td>
+          <td style="font-family:ui-monospace,monospace;font-size:.72rem">POST /api/v1/auth/login</td>
         </tr>
         <tr class="audit-row" data-date="2026-08-16" data-kind="delete">
           <td class="lognum">#3022</td>
@@ -4608,7 +4621,7 @@
           <td><span class="chip act-delete">移除成員角色</span></td>
           <td>林佳蓉</td>
           <td>61.216.44.132</td>
-          <td style="font-family:ui-monospace,monospace;font-size:.76rem">DELETE /api/v1/users/1162/role</td>
+          <td style="font-family:ui-monospace,monospace;font-size:.72rem">DELETE /api/v1/users/1162/role</td>
         </tr>
         <tr class="audit-row" data-date="2026-08-16" data-kind="create">
           <td class="lognum">#3021</td>
@@ -4617,7 +4630,7 @@
           <td><span class="chip act-create">Excel 匯入名單</span></td>
           <td>秴楓・141 筆</td>
           <td>61.216.44.132</td>
-          <td style="font-family:ui-monospace,monospace;font-size:.76rem">POST /api/v1/leads/import</td>
+          <td style="font-family:ui-monospace,monospace;font-size:.72rem">POST /api/v1/leads/import</td>
         </tr>
         <tr class="audit-row" data-date="2026-08-16" data-kind="update">
           <td class="lognum">#3020</td>
@@ -4626,7 +4639,7 @@
           <td><span class="chip act-update">編輯來客</span></td>
           <td>恆山千隅・林佳蓉</td>
           <td>114.36.201.77</td>
-          <td style="font-family:ui-monospace,monospace;font-size:.76rem">PATCH /api/v1/leads/1093</td>
+          <td style="font-family:ui-monospace,monospace;font-size:.72rem">PATCH /api/v1/leads/1093</td>
         </tr>
         <tr class="audit-row" data-date="2026-08-16" data-kind="update">
           <td class="lognum">#3019</td>
@@ -4635,7 +4648,7 @@
           <td><span class="chip act-update">調整底價</span></td>
           <td>秴楓 A2-3F</td>
           <td>2001:b011:300c:1a2f:8e1</td>
-          <td style="font-family:ui-monospace,monospace;font-size:.76rem">PATCH /api/v1/units/a2-3f/floor-price</td>
+          <td style="font-family:ui-monospace,monospace;font-size:.72rem">PATCH /api/v1/units/a2-3f/floor-price</td>
         </tr>
         <tr class="audit-row" data-date="2026-08-15" data-kind="update">
           <td class="lognum">#3018</td>
@@ -4644,25 +4657,25 @@
           <td><span class="chip act-update">調整底價</span></td>
           <td>青園綠境 A7-12F</td>
           <td>2001:b011:300c:1a2f:8e1</td>
-          <td style="font-family:ui-monospace,monospace;font-size:.76rem">PATCH /api/v1/units/a7-12f/floor-price</td>
+          <td style="font-family:ui-monospace,monospace;font-size:.72rem">PATCH /api/v1/units/a7-12f/floor-price</td>
         </tr>
         <tr class="audit-row" data-date="2026-08-15" data-kind="delete">
           <td class="lognum">#3017</td>
           <td class="t">2026-08-15 09:29</td>
           <td><span class="user"><span class="av">周</span>周育賢<span class="microlbl">專案</span></span></td>
           <td><span class="chip act-delete">刪除來客</span></td>
-          <td>秴楓・許文彬 0992-***-***</td>
+          <td>秴楓・許文彬 0992-580-317</td>
           <td>203.74.120.6</td>
-          <td style="font-family:ui-monospace,monospace;font-size:.76rem">DELETE /api/v1/leads/1260</td>
+          <td style="font-family:ui-monospace,monospace;font-size:.72rem">DELETE /api/v1/leads/1260</td>
         </tr>
         <tr class="audit-row" data-date="2026-08-15" data-kind="delete">
           <td class="lognum">#3016</td>
           <td class="t">2026-08-15 09:08</td>
           <td><span class="user"><span class="av">郭</span>郭士銘</span></td>
           <td><span class="chip act-delete">刪除來客</span></td>
-          <td>恆山千隅・蔡宜庭 0967-***-***</td>
+          <td>恆山千隅・蔡宜庭 0967-124-863</td>
           <td>118.163.55.9</td>
-          <td style="font-family:ui-monospace,monospace;font-size:.76rem">DELETE /api/v1/leads/1471</td>
+          <td style="font-family:ui-monospace,monospace;font-size:.72rem">DELETE /api/v1/leads/1471</td>
         </tr>
         <tr class="audit-row" data-date="2026-08-14" data-kind="create">
           <td class="lognum">#3015</td>
@@ -4671,7 +4684,7 @@
           <td><span class="chip act-create">新增來客</span></td>
           <td>恆山千隅・郭俊廷</td>
           <td>61.216.44.132</td>
-          <td style="font-family:ui-monospace,monospace;font-size:.76rem">POST /api/v1/leads</td>
+          <td style="font-family:ui-monospace,monospace;font-size:.72rem">POST /api/v1/leads</td>
         </tr>
         <tr class="audit-row" data-date="2026-08-14" data-kind="update">
           <td class="lognum">#3014</td>
@@ -4680,7 +4693,7 @@
           <td><span class="chip act-update">售出（歸戶）</span></td>
           <td>恆山千隅 B3-9F・許文彬</td>
           <td>118.163.55.9</td>
-          <td style="font-family:ui-monospace,monospace;font-size:.76rem">POST /api/v1/units/b3-9f/sold</td>
+          <td style="font-family:ui-monospace,monospace;font-size:.72rem">POST /api/v1/units/b3-9f/sold</td>
         </tr>
         <tr class="audit-row" data-date="2026-08-14" data-kind="delete">
           <td class="lognum">#3013</td>
@@ -4689,7 +4702,7 @@
           <td><span class="chip act-delete">移除成員角色</span></td>
           <td>許文彬</td>
           <td>114.36.201.77</td>
-          <td style="font-family:ui-monospace,monospace;font-size:.76rem">DELETE /api/v1/users/1348/role</td>
+          <td style="font-family:ui-monospace,monospace;font-size:.72rem">DELETE /api/v1/users/1348/role</td>
         </tr>
         <tr class="audit-row" data-date="2026-08-14" data-kind="delete">
           <td class="lognum">#3012</td>
@@ -4698,16 +4711,16 @@
           <td><span class="chip act-delete">移除成員角色</span></td>
           <td>蔡宜庭</td>
           <td>2001:b011:300c:1a2f:8e1</td>
-          <td style="font-family:ui-monospace,monospace;font-size:.76rem">DELETE /api/v1/users/1798/role</td>
+          <td style="font-family:ui-monospace,monospace;font-size:.72rem">DELETE /api/v1/users/1798/role</td>
         </tr>
         <tr class="audit-row" data-date="2026-08-14" data-kind="delete">
           <td class="lognum">#3011</td>
           <td class="t">2026-08-14 08:01</td>
           <td><span class="user"><span class="av">許</span>許庭瑋<span class="microlbl">管理員</span></span></td>
           <td><span class="chip act-delete">刪除來客</span></td>
-          <td>青園綠境・陳威宇 0914-***-***</td>
+          <td>青園綠境・陳威宇 0914-702-459</td>
           <td>61.216.44.132</td>
-          <td style="font-family:ui-monospace,monospace;font-size:.76rem">DELETE /api/v1/leads/1708</td>
+          <td style="font-family:ui-monospace,monospace;font-size:.72rem">DELETE /api/v1/leads/1708</td>
         </tr>
       </tbody>
     </table>
@@ -4764,7 +4777,7 @@
         <tr class="trash-row" data-proj="青園綠境" data-name="陳威宇" data-date="2026-08-18">
           <td class="lognum">#1651</td>
           <td><span class="name">陳威宇</span></td>
-          <td>0912-334-***</td>
+          <td>0912-334-268</td>
           <td>青園綠境</td>
           <td><span class="badge">來客</span></td>
           <td><span class="microlbl">現場來店</span></td>
@@ -4775,7 +4788,7 @@
         <tr class="trash-row" data-proj="恆山千隅" data-name="林佳蓉" data-date="2026-08-15">
           <td class="lognum">#1596</td>
           <td><span class="name">林佳蓉</span></td>
-          <td>0928-517-***</td>
+          <td>0928-517-296</td>
           <td>恆山千隅</td>
           <td><span class="badge call">來電</span></td>
           <td><span class="microlbl">看板來電</span></td>
@@ -4786,7 +4799,7 @@
         <tr class="trash-row" data-proj="秴楓" data-name="黃淑珊" data-date="2026-08-12">
           <td class="lognum">#1725</td>
           <td><span class="name">黃淑珊</span></td>
-          <td>0933-862-***</td>
+          <td>0933-862-741</td>
           <td>秴楓</td>
           <td><span class="badge">來客</span></td>
           <td><span class="microlbl">Meta 表單</span></td>
@@ -4797,7 +4810,7 @@
         <tr class="trash-row" data-proj="青園綠境" data-name="許文彬" data-date="2026-08-08">
           <td class="lognum">#1502</td>
           <td><span class="name">許文彬</span></td>
-          <td>0955-208-***</td>
+          <td>0955-208-513</td>
           <td>青園綠境</td>
           <td><span class="badge call">來電</span></td>
           <td><span class="microlbl">電話進線</span></td>
@@ -4808,7 +4821,7 @@
         <tr class="trash-row" data-proj="恆山千隅" data-name="王思穎" data-date="2026-08-03">
           <td class="lognum">#1470</td>
           <td><span class="name">王思穎</span></td>
-          <td>0910-476-***</td>
+          <td>0910-476-968</td>
           <td>恆山千隅</td>
           <td><span class="badge">來客</span></td>
           <td><span class="microlbl">親友介紹</span></td>
@@ -4819,7 +4832,7 @@
         <tr class="trash-row" data-proj="秴楓" data-name="蔡明翰" data-date="2026-07-26">
           <td class="lognum">#1385</td>
           <td><span class="name">蔡明翰</span></td>
-          <td>0972-981-***</td>
+          <td>0972-981-034</td>
           <td>秴楓</td>
           <td><span class="badge">來客</span></td>
           <td><span class="microlbl">官網留資</span></td>
@@ -4958,11 +4971,10 @@
   </div>
 </div>
 
-<div class="drawer-mask" id="drawerMask"></div>
-<aside class="drawer" id="drawer" aria-label="來客詳情">
+<div class="dlg-mask sheet-mask" id="drawerMask">
+<div class="dlg sheet leaddlg" id="drawer" role="dialog" aria-labelledby="leadDlgName" aria-label="來客詳情">
   <div class="dhead">
-    <span class="av" data-lead-avatar>陳</span>
-    <div class="t"><b><span data-lead-name>陳威宇</span><span class="chip hot">熱客</span></b><span data-lead-summary>0912-334-***・回訪 ×2・FB</span></div>
+    <b id="leadDlgName"><span data-lead-name>陳威宇</span><span class="grade a" data-lead-grade>A 級</span></b>
     <button class="circlebtn close" id="drawerClose" aria-label="關閉">×</button>
   </div>
   <div class="dtabs" id="dtabs">
@@ -4976,16 +4988,15 @@
       <div class="dsec">核心欄位</div>
       <dl class="dl">
         <dt>姓名</dt><dd data-lead-field="name">陳威宇</dd>
-        <dt>電話</dt><dd data-lead-field="phone">0912-334-***</dd>
+        <dt>電話</dt><dd data-lead-field="phone">0912-334-268</dd>
         <dt>來客／來電</dt><dd data-lead-field="kind">來客</dd>
         <dt>來源</dt><dd data-lead-field="source">FB</dd>
         <dt>來訪日期</dt><dd data-lead-field="visit">2026-08-19</dd>
         <dt>建檔</dt><dd data-lead-field="created">2026-08-19 14:22</dd>
         <dt>負責業務</dt><dd data-lead-field="assignee">張家豪</dd>
       </dl>
-      <div class="dsec">勾勾表欄位（18）・節錄</div>
+      <div class="dsec">勾勾表欄位（17）・節錄</div>
       <dl class="dl">
-        <dt>客資分級</dt><dd>A 級</dd>
         <dt>需求房型</dt><dd>三房</dd>
         <dt>購屋目的</dt><dd>自住</dd>
         <dt>欲購屋時間</dt><dd>3 個月內</dd>
@@ -5021,7 +5032,7 @@
         </div>
         <div class="h">
           <div class="top"><span class="chip">新到訪</span><time>2026-08-11 11:05</time></div>
-          <p>首訪。FB 廣告來源，填妥勾勾表 18 欄。</p>
+          <p>首訪。FB 廣告來源，填妥勾勾表 17 欄。</p>
           <span class="by">吳姿瑩</span>
         </div>
       </div>
@@ -5029,8 +5040,8 @@
     <div class="dpane" id="d4">
       <div class="dnote" style="margin-bottom:.7rem">由銷控表歸戶帶出，下訂即計入——購買紀錄不在此建立。</div>
       <div class="dsec">主建物 1 戶・加購車位 1 個</div>
-      <div class="buyrow"><b>8F・A4</b><span style="font-size:.74rem;color:var(--muted)">35.2 坪・三房</span><span class="p">3,350 萬</span></div>
-      <div class="buyrow"><b>B1・P05</b><span style="font-size:.74rem;color:var(--muted)">平面・大</span><span class="p">220 萬</span></div>
+      <div class="buyrow"><b>8F・A4</b><span style="font-size:.7rem;color:var(--muted)">35.2 坪・三房</span><span class="p">3,350 萬</span></div>
+      <div class="buyrow"><b>B1・P05</b><span style="font-size:.7rem;color:var(--muted)">平面・大</span><span class="p">220 萬</span></div>
       <div class="dfoot" style="padding:.8rem 0 0; border-top:none">
         <button class="pillbtn solid" data-demo-toast>設定簽約日</button>
         <button class="pillbtn" data-demo-toast>設定交屋日</button>
@@ -5038,7 +5049,8 @@
       </div>
     </div>
   </div>
-</aside>
+</div>
+</div>
 
 <div class="drawer-mask" id="staffEditMask"></div>
 <aside class="drawer" id="staffEditDrawer" role="dialog" aria-modal="true" aria-label="編輯成員" aria-hidden="true">
@@ -6761,8 +6773,8 @@
             && (!laStale || !!tr.querySelector('.stale-dot'))
             && (!laUn || !!tr.querySelector('.unassigned'))
             && (!laGrade || (tr.children[2]||{textContent:''}).textContent.trim()===laGrade)
-            && (!laSrc || (tr.children[6]||{textContent:''}).textContent.trim()===laSrc)
-            && (!laQ || ((tr.children[1]||{textContent:''}).textContent+(tr.children[4]||{textContent:''}).textContent).indexOf(laQ)>-1);
+            && (!laSrc || (tr.children[5]||{textContent:''}).textContent.trim()===laSrc)
+            && (!laQ || ((tr.children[1]||{textContent:''}).textContent+(tr.children[3]||{textContent:''}).textContent).indexOf(laQ)>-1);
       tr.style.display = ok ? '' : 'none';
       if(ok) n++;
     });
@@ -7386,9 +7398,12 @@
     if(row){
       var cells=row.children, nameEl=row.querySelector('.name');
       var name=nameEl?[].slice.call(nameEl.childNodes).filter(function(n){return n.nodeType===3}).map(function(n){return n.nodeValue}).join('').trim():'';
-      var values={name:name,phone:cells[4].textContent.trim(),kind:cells[5].textContent.trim(),source:cells[6].textContent.trim(),visit:cells[9].textContent.trim(),created:row.dataset.created||'—',assignee:cells[10].textContent.trim()};
+      var values={name:name,phone:cells[3].textContent.trim(),kind:cells[4].textContent.trim(),source:cells[5].textContent.trim(),visit:cells[8].textContent.trim(),created:row.dataset.created||'—',assignee:cells[9].textContent.trim()};
       Object.keys(values).forEach(function(key){var field=$('#drawer [data-lead-field="'+key+'"]');if(field) field.textContent=values[key]});
       var headName=$('#drawer [data-lead-name]'), avatar=$('#drawer [data-lead-avatar]'), summary=$('#drawer [data-lead-summary]');
+      /* 分級標籤直接抄該列的，不要寫死「熱客」——每一筆都掛熱客等於在說謊 */
+      var gSrc=row.querySelector('.grade'), gEl=$('#drawer [data-lead-grade]');
+      if(gEl){ if(gSrc){ gEl.className=gSrc.className; gEl.textContent=gSrc.textContent; gEl.hidden=false } else gEl.hidden=true }
       if(headName) headName.textContent=name;
       if(avatar) avatar.textContent=name.charAt(0);
       if(summary) summary.textContent=values.phone+'・'+values.kind+'・'+values.source;
@@ -7397,7 +7412,7 @@
   }
   function closeDrawer(){ $('#drawerMask').classList.remove('show'); $('#drawer').classList.remove('show') }
   $('#drawerClose').addEventListener('click',closeDrawer);
-  $('#drawerMask').addEventListener('click',closeDrawer);
+  $('#drawerMask').addEventListener('click',function(e){ if(e.target===$('#drawerMask')) closeDrawer() });
   $$('#dtabs button').forEach(function(b){
     b.addEventListener('click',function(){
       $$('#dtabs button').forEach(function(x){x.classList.remove('on')}); b.classList.add('on');
@@ -7409,10 +7424,10 @@
   /* ⌘K */
   var mask=$('#paletteMask'), input=$('#paletteInput'), list=$('#paletteList');
   var data=[
-    {g:'來客',t:'陳威宇',m:'0912-334-***・青園綠境・3 次'},
-    {g:'來客',t:'林佳蓉',m:'0987-221-***・青園綠境・1 次'},
-    {g:'來客',t:'許文彬',m:'0921-877-***・青園綠境・3 次'},
-    {g:'來客',t:'王思穎',m:'0955-462-***・青園綠境・1 次'},
+    {g:'來客',t:'陳威宇',m:'0912-334-268・青園綠境・3 次'},
+    {g:'來客',t:'林佳蓉',m:'0987-221-903・青園綠境・1 次'},
+    {g:'來客',t:'許文彬',m:'0921-877-130・青園綠境・3 次'},
+    {g:'來客',t:'王思穎',m:'0955-462-821・青園綠境・1 次'},
     {g:'動作',t:'新增來客',m:'來客名單',p:'leadsall'},
     {g:'動作',t:'開啟銷控表',m:'青園綠境',p:'units'},
     {g:'動作',t:'開啟價格表',m:'青園綠境',p:'prices'},
@@ -8798,7 +8813,6 @@ try{ /* collect */
         tr.innerHTML='<td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>'
           +'<td><span class="name">'+v.nm+'</span></td>'
           +'<td><span class="grade c">C 級</span></td>'
-          +'<td><span class="interest" aria-label="意願 2／5"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></td>'
           +'<td>'+(v.tel||'—')+'</td><td><span class="badge">來客</span></td><td>'+v.src+'</td>'
           +'<td><span class="chip">'+v.proj+'</span></td><td>—</td>'
           +'<td>2026-08-26</td><td class="assignee">'+(v.assignee==='未指派'?'<span class="unassigned">未指派</span>':v.assignee)+'</td>'
@@ -8940,7 +8954,7 @@ try{ /* collect */
       });
     } else if(act==='laGrade'){
       e.stopPropagation();
-      pickMenu(b,['全部','A 級','B 級','C 級'],null,function(x){
+      pickMenu(b,['全部','A 級','B 級','C 級','D 級'],null,function(x){
         laGrade = (x==='全部') ? '' : x;
         b.textContent='分級：'+x+' ▾';
         laMark(b,!!laGrade); laFilterRows();
@@ -9237,7 +9251,7 @@ try{ /* collect */
     }
     var old=(textNode? textNode.nodeValue : td.textContent).trim(), holder=td.innerHTML;
     var inp=document.createElement('input');
-    inp.value=old; inp.style.cssText='width:100%;border:1px solid var(--accent);border-radius:var(--r-cell);padding:.2rem .4rem;font:inherit;font-size:.87rem;background:var(--bg);color:var(--ink)';
+    inp.value=old; inp.style.cssText='width:100%;border:1px solid var(--accent);border-radius:var(--r-cell);padding:.2rem .4rem;font:inherit;font-size:.83rem;background:var(--bg);color:var(--ink)';
     td.innerHTML=''; td.appendChild(inp); inp.focus(); inp.select();
     function commit(save){
       var v=inp.value.trim();
