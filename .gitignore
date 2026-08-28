@@ -14,3 +14,6 @@ PLAN.md
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# B 版歷史檔已不再納管（2026-08-26 起只維護 latest）
+ui-restyle-demo-B28-2026-08-26.html
