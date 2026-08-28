@@ -112,7 +112,10 @@
      ⚠️ 量的時候要先 document.getAnimations().forEach(a=>a.finish())——
      進場動畫 rise 是從 translateY(12px) 開始，動畫沒落地就量會整整差 12px。
      側邊欄不隨分頁移動——曾做過每頁重算，換頁時整條會位移，反而更差。 */
-  .rail .mark{width:2.5rem; height:1.9rem; object-fit:contain; object-position:center top; margin-bottom:1.451rem; display:block}
+  /* logo 本身就是回總覽的入口；margin 留在按鈕上，rail 的對齊基準不變 */
+  .rail .markbtn{padding:0; border:none; background:none; cursor:pointer; margin-bottom:1.451rem; display:block; border-radius:var(--r-cell)}
+  .rail .markbtn:hover .mark{opacity:.7}
+  .rail .mark{width:2.5rem; height:1.9rem; object-fit:contain; object-position:center top; display:block; transition:opacity .18s ease-out}
   /* 有外框的鈕：60% 是算內容框，補 1.2px 才等於「外框直徑的 60%」
      （0.5(H-2)+1 = 0.5H） */
   .circlebtn .ico,.cbtn .ico,.sb-btn .ico,.iconop .ico,
@@ -2188,6 +2191,23 @@
 #page-templates tbody tr{cursor:grab}
 #page-templates tbody tr.dragging{opacity:.4}
 #page-templates .reqchip{cursor:pointer}
+/* 版本規則：一次性知識，收進 ⓘ 裡，不常駐佔一整欄 */
+#page-templates .sec.pagebar{position:relative}
+#page-templates .rulepop{
+  position:absolute; right:0; top:calc(100% + var(--s2)); z-index:30; width:15rem;
+  background:var(--bg); border:1px solid var(--line); border-radius:var(--r-card);
+  box-shadow:var(--el1); padding:var(--s4); animation:selDrop .16s var(--enter);
+}
+#page-templates .rulepop[hidden]{display:none}
+#page-templates .rulepop b{display:block; font-size:.72rem; font-weight:500; margin-bottom:var(--s2)}
+#page-templates .rulepop ul{margin:0; padding-left:1rem; display:flex; flex-direction:column; gap:var(--s2)}
+#page-templates .rulepop li{font-size:.68rem; line-height:1.7; color:var(--muted)}
+/* 未發版：主鈕亮起並掛一個小圓點，切去別頁再回來也看得見 */
+#page-templates [data-act="tplSaveVer"].hasdirty{position:relative}
+#page-templates [data-act="tplSaveVer"].hasdirty::after{
+  content:""; position:absolute; top:-2px; right:-2px; width:.45rem; height:.45rem;
+  border-radius:50%; background:var(--warm); border:2px solid var(--bg);
+}
 #page-templates .reqchip.off{color:var(--muted); background:var(--fill); border-color:transparent}
 /* 唯讀（檢視歷史版本）時把可改的東西關掉 */
 #page-templates.ro .reqchip,#page-templates.ro td.ops{pointer-events:none; opacity:.45}
@@ -2309,9 +2329,10 @@
   /* 頂欄品牌位：總覽＝ADHOLiC logo、建案內＝建案名（點擊回總覽） */
   .brandslot{display:inline-flex; align-items:center; flex:none; padding:0; border:none; background:none; cursor:pointer}
   .brandslot .brandname{display:none; font-weight:500; font-size:1.05rem; letter-spacing:.14em; line-height:1; color:var(--ink); white-space:nowrap; transition:color .18s ease-out}
-  .brandslot.proj .wordmark{display:none}
   .brandslot.proj .brandname{display:inline-flex}
   .brandslot.proj:hover .brandname{color:var(--accent)}
+  /* 站在總覽時品牌位就是招牌，不需要再點一次 */
+  .brandslot:not(.proj){display:none}   /* 總覽時沒有建案名可顯示，整顆收起 */
   /* 鈴鐺通知：今日重要行程 */
   .notimenu{width:21rem}
   .notimenu .ulbl{display:flex; align-items:baseline; gap:.5rem}
@@ -2706,7 +2727,7 @@
 
 <div class="app">
   <aside class="rail">
-    <img class="mark" src="data:image/png;base64,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" alt="Adholic">
+    <button class="markbtn" data-page="projects" data-tip="建案總覽" aria-label="回到建案總覽"><img class="mark" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPQAAAC4CAYAAADUtcHpAAAVNUlEQVR42u2dfXCV5ZnGf8/zvO85SQhYklgsCgkKIU5bsEWgCCTBbetWO+NU222304/dmd1uW8XSqrAtaqfddqu4fgBu2+0f+zGrdqq2u52trZ1WDRBEra6tXSoJH4YUUYTwESA5Oe/X/hHQiggBTs55z33ua4YZhoSTc96899y/c53rfm5QVYDaveE/KumyegkqQC3mZlrMzXoh5MvoJZBezAtm4arWARDlFrKp81m9KNqhVeWo8+ZVYzKrwFWDG/77efOq9cJoQavKUWOz1+P8S0giSCJw/iWMzV6vF0aRW1WOqG2r1oAZA8mf/LqTw8S5NkVv7dCq8kLt1Rj7J8UMkICxYzCZ1YreWtCqctGY7PU4fx5J/OavJTE4fx5jFL0VuVXp1/T5F+OqHwdT+8bufOyvPTlENLiIrvXP6EXTDq1KK2rb7CqsPUExH0Fva2uxWXW9taBV6UZtbx5xfPLvjWNwnqK3IrcqlbpgwSyyx7raI/n1J4cZyrWxVV1v7dCq9KB25niu9sl0xPXOqOutBa0qD1f7pDWtrrcit4p0B0hO5zbQwIl2aFVp1dRedfwAySm36dcDJ03tVXphtaBVpVCWG3De6aH2cdHbm0eWG/TCKnKrKEWApKYDOMPu/Kbb4TDRQLsGTrRDqyhqgGQlxhSwmI+itxmDza5U11sLWlUs1WaXDY9FxoV/7GHX+xJ1vRW5VcVQ88I5+NkOElNd2O6sgRPt0KriauKsGpy/GuwoFvMxgRN1vbWgVaOkcbXLcP6cUUHttwqcqOutyK0aBU1bMJdM1eOji9rHvT0GiAba1PXWDq0qKGpnioDax3W9a7DZVYreWtCqwqL27KKgtqK3IrdKGmofe5cYSJIBhnKt6nprh1adCWp7mVXFR+1ju3QCxtao660FrToj1B67tGiutqK3IrdqtFG7+jGghiRJyd1iINHDBbVDq07D1c6uBpueYj6K3kcPF1T01oJWnQJqe95skih9zy1W9FbkVo1cF85/H7b6sZK62iMds8wNtLNN0Vs7tOqtUdtUrSy5qz3irLeOWWpBq04cILFeOlztk9Z0BJ6OWSpyq0htgETHLLVDqwqE2n4pstoFQm8/q+d6a0Gr3ojaJcpqFyJw4ulKHUVu1RsDJAk15dWdj7PNcijXruitHVrHIo0p42L+k22WmvXWgtYAiT97RNsi067XAyeK3orcitpybiddqaMdutI0YcaY4RNIjKBiPmaljrreWtAVo/H1w6idxPJem26zVOSuLNReNJeMK7MAiQZOtEOrOL6rbcowQKLnemtBq96ssWO/Kha1dZulIndFqbltIV7mV0BWdnc+5vYyySGiXLu63tqh5ejs9lo8bxXGVFAxv4betep6a0HLUp29CetdVBGozVsETtT1VuSWgdrzF+LVVBhqq+tdKjm9BKOo6fPH4lU9gLHnVW4xH61pm8Gad1N1zv307wj15lDkLkNll1csamvgRJFbXe2KQO8B4lyrut7aoctHDfPH4irR1R6R612D0cCJFnRZFbT/NZyi9klW6ih6K3KXDWr/Gshodz7hSh0ds9QOTfpd7WHU1mI++TbLMYreWtApl79cUfsU0Nsqeitypxm1ff9XJGqEnTJ6a+AEDZakSe9srwX3ENadq8V8qox4JHBS23gf+3s0cKLInQKF3ITnz1TURrdZKnJrgERlwCSHiaI2Nj2u6K3ITQld7cwDWM1qnzkrugxJ8m5qk/vYv1/RW5Gb0mS11dUuEHpHwyecVDcpeitylwK12xfg+b+GJKsXo8DonVPXWzt00VHbrR7OaqsoZNYbPVxQCxoNkAjMeit6K3Krqy1ozPIQ0eAiutY/o9cDdbkZrQCJ8R5UV7tIgROcBk4UuUdREYraFDNw4mnWW5F7tFFbXe2iu97B0KV0r3tar4d26MJo6txxr59AoqLYrrf172HirBq9HlrQBXIaxugJJKV0vT1/NuNql+nFUOQ+c01vW4TLPAJJRi9GSdF7kHxuEZs7n9LroR369HT+rLOwbvXwCSSqEqN3NS67WtFbC/r0lam9Bee/U1E7LejtKXorcitqCzvlZID84KWK3tqhTxG1vZWK2qms6Bq8zCpFby3oU0DtcbfgvHcraqc26z2HceMUvRW5R6AL2hZRlXmERM/VVtdbO3T5o3bGrQI9V7s8XO+Mut5a0Cd1td+lqK2BE0Vuyv7QgkW4mkd0hY2it3ZoEa521UpdYaPorQUtBrWFu9rGCkfvsUv1RlbkhgvmLyIrHLWTZBDi9Vjv/SSJXPROcov4Q2Wjt1VXWzhqWwdJ/H0O9F9JHP2vzE59BL1R9LaK2oJR21iIg9+R7/8GO58dIBi6BpIBkWA2vM2y4tG7cs8Um956KV52FUniRDvAUf4TbHlyMwB7/7iDukaH5y2Sid6AdXM4e+Kj7O59STt0pWW1JQdIjIUgvI2udevf8O9R1QrCYD3WyVwkj6mpZPS2GiAR+r45CtaT57Y3fW3LL4YIw8XEUT9GMnpXZuCk8pD7gtZLyQhGbWOA+ABx/qNsXXt87Ny7/RXGT8rjvMtEEkoCWDuHt038NXsrC71t5bna/t2ys9oGwuAWutY9f8Jv8/fcQxw8ihXqehtXjV95Y5ZWxyIl1bKDKHiYLvPdk37vxo15wmgxcbRfJHrHEVh/TqWht6usE0j8VSSxXNROol3E4dX0rdk7ov+zd/se6hoPYL0PK3prQZcXavs1D2DtRLmutoEo/Dxda9ae0v/r63mOhsb34rxmkR9lGetj7Awydfdz8OVAkVsEap91s2jUtg7i6F66Ou7jdBb8RPkvEUe7RKbIkhicN4dxZy3VDi0HtVfLdbUtJNFWBg/+Jft3Hjqtx+jr3UfdpD6sd6Vw9H5UOno7+ahd/SDWvUMuahMRDH2WbRueO6PH6dv+O+omt+D57xKL3tiZZOruk4zespE7M/Zm+QGS8J/ZvO7hgvSxMLqRKHxJbODEeeKz3nI79LS2D+BnVsp1tS3E0e/JH/gM+14eKshj7tveT/2kHVjvY8jdOz1Xsust82Y/b14d1dkfY+wEmah9ZPAiHPoEW57aXNCH7tu+kfrGKTj/IpHoba2PNTN4x9gfsmtXoMhdDqqt+ibOmy4XtS1E4Qq6OztH5fGDoaXE4TaZgZN4OHCSH79U30OXg1oWXobz/o44klzMneS4ddR+xtYnXiWOvgTIvIhxDM6/kWkL5ipyp1mTF4wnk/0xxp4tErWNgSTpP+HgRaG0p6ebhsnvwPkXCw6cXCTN9ZbVoWu8fxhOPMVyBy+i4OaTDl4USofDrxGHfxAcOLlY2kodOW+SWhZdhvMeFhsgsQ6i/MO88PiVRUXh5gXvx69+WOZqIAMGUdssnRjUznoPYtzb5aJ2tIso/1H6evcW9Wf39W6jvnE8zpsn1vU2RkzW24pBbeu3iD5XO4puoLtzW0l+djjwDeLwOZHoHR/dZiljzLL8kXvqwsvIVv2MJPHEonaYv59Nj3+KUuJHS9s8rP8YmCqZ6C1jpY4r/wBJ1UMYKxS1LcRRD7n4L9jfc6ikz2XP9h00NGZxXptY19uaGfjljd7lzVC1WdkBEpKIJLyOno5XUvF0DvTfShQ8Ldb1FnDCiS3vAIn/OWLRgxffZdOa/0nNc9r57AAEXyCJD4k8rP9o4GTq/PcpclP0AIl01P49A/nPcqA3l6rntqf3ZeonJzihe7KM9XFuJtlz7qV/R6gduhiqychG7STOEYXX0Nu5L51tYPedROEamYf1x2C92dRm/l6RmyK52s59Xm5W20EcraB7zbrUPseNG/Pkc9cSx/vEDnCUadbblZ2rXZOVGyCxDsJgPbnkc+zvSTfu7fvjq9RPGsD5HxLses/EL6+sty27sUipARJjII76ifPX0NORK4vnfI75HlHwc7noXX4rdYwGSFI0Fhnkv0xXx91l9bzPb51GVWYDxtTL69QGkmSQaKid7nVPa4cuJGr7/kownuCPqH5OF/eU3XPftnYzUbhM5MdYJGBtNZ5/T7ms1CkPVpo4dQVe5nKxqJ3ErxINXU3f2r6yfA19Pb+jYdIMnH+hvC6dgPXOxXche3o6tENTiLFIX+4JJABh/saSDV4URjE2XEIcvSzX9faWloPrbVOP2sauBOMLRu376V77n2X/WjZ29hKFS5F6Ur+x1Xjp32aZbuSeOO12PP9DMlHbQhy9SO7gx09740X60Pt56hun4fwZ4tA7ScB55+LbiD3bO7RD62F/xxm8GLqOnt+8Iupl5ZIbiMIewbPTqQ6c2NSits3eLdvVDr7Hps6fiXttPR2vEIVfgSRC5pKsVKN3OpF7YvMKnHe5XNQO/4+B4DOpG7wo3GH9m6hvPBfnzxLpeqcYvdPXoacv+HO5WW1zZPAi/kJqBy8Khqf9y4nCbrnonbkhjeidrqvdMqcem1ktFrWNgSi6ne6OTqSr+9k9JMFiuehtavAzq9OG3ulC7obmu/AyH5SJ2g7i8AkO5T5XjnO2nN6xRVupa6rD894nM3DizsX3UhU4SU8KYNrCK8hU/VTkudrDabCDBFErmzt+SyVp6txx+GPWYz2Ba33Td653OpC7ub0Bz797uI0JRe0w/HrFFTPAlqf6SYJrSZKczMCJqcHLrGLCjDGK3Ed19pQ7xaK2tRAGj9DFEuiJqUTt6d1O/eRanLdAbOAk64dpcL1LX9DNrZfjZW4nia3Q5XKvEuSuZu+6PipZbtyTZKs+gHPnyitqwNo5aVgkb0uO2s5bKRa1AcL8UrY8sZVK167nDxPlFxPHA/JGLY8ETlzpXW+nqD2aZ4OFP6Sr4+uohrW39yXqJls8/1INnEjr0BcuugLn/Y3IAImxEIU92PgrMqePzkCHh+4gyneKhLIUBE5syVDb2LvkonYSEYTXsbHjFa3gY7RjwyBJ9EWS8KBI9DZHAiezSoPerkSofRfOl4vaYfB9NnfcpdXLWwVOXqV+8hDWu0wcwCRHTjgZKg16F7+gL1x4BTZzO0lshA5ebGQg+LTYwYuCFXXDMzT483D++ep6lytyN89qgMxdGImJfQNJkiMIrhE/eFEQPRsQ5RYTR33yji0q3ZhlcQvLjvs2zpsmNkAS51ewZd0aLdYRqnvDJuJwucgTQ5Oji+THLpWJ3C3tH8b5K2QGSBzE4YaKGrwoGHr3PEd943uGd5WJRO+5xURvWzTUtkJdbWMgCQ8SDn6RHRsGtUI59RND4/yXicNdYtG7iIETWzTUtv5Umdsijw5ePPFbrc3TRe/ObYThjWLR2/NnFwu9XVHGIv2MTNS2DsLwF3Tz5YodvKBgxxb9nobJLTj/XYreae3QzbMa8DJyUTuKdhMOXgcd+r65ELd9lLueONyh6J3WgpbsagNE+RvZumGL1mLBXO+XCPJLRMZlX0PvccvKE7nFo3bwI7rX3KJVSKEHOF6gvqkJ510kE73NqAZO7Kihti/0BJKjgxcDeR28GC2FwVLicJu8E0OPoPcoHi44OlfMjv2WXFebmDi/hD+u36mVN0rasm43QfQlSEK5i+RHx/UufAdtWfBhXFYyan+PrjV3atWNNnr3dFM/+e04f4663qXq0M2zGrBSXW0LUfgHBoObtNqKpIHwFqLwBcHoXfCst9UAyYg3XgyRRDp4UUz1du4jyi+GOBAXOhlG7zmFdr0L10mnLboC35OL2nFwG5s6/lWrrMjq632RusZaPG++ut7F6tBN7efg2dVyUTvYwMGhb2t1lUo7v0UUPicWvQsYOCnMFaqy38F5U8Sh9msbLwav0cGLEqqr6yBJeA1JnBOJ3p4/m3G1y9KB3C2tV2H9fxR7AkmY/yqbO/9Lq4pSH1u0g/rGDM5rk3diKGDdbN428dEzRe8zK+gpcyeQqX4IY98mLmNhLUTRL+lKlujgRUpUy5O4sy7Fukni7jfjfKyZiV93HwdfDkqD3Nkxt2K9RpGoHcevEkTX6uBFitTTkyMIryWJ5Z0YmkQFCZycfoee1noVvmDUjoNr2dzxmFZRyrR3+yvUTY7x/PfLdL3dHM6a9Dh7t+8oXoeeMncCnn8H8ubchj+iioIfsqnjP7R6Uqqo+m7C4DGsFbpI3vsu0+ePLV5BZ8fcivOa5KG2hTjsxYTX6+BFirXlF0OEwWLiaL+4npLE4LyLILu8OMjd3PYRvMy3RaI2JiYa+is2rXtGqyb1Y5a7qW88jPMuF7mi1trZjJ/YQV9v7+h16ClzJ+C8u1KzKL7wqP0vdK37qVZLmWgT3yeKHsYK3KhkTBaXXX2q6H1qhZmtuQ0n0dW2EIUbGQyWa5WUkzpCoqHriKLdYtHb+stHB7mntV6Fn/2WPNQ2AHmC8JO8uHaTFgnllvXeR/15fVjvSnGvLUnAuNmMn7SGvu29hevQTbPPwfPvhMQK3XjxT2zp6NDqKFN1rf03ovAnYtHbuhGj98gKtLr21mHUTiR+3vwU/Yd08KLcP+8JDi0hCl8Sid6ePxMyNxUGuae1XoUT6GobA0lykHz+Y2x/sldrosy1b2c/4ye/jHNXi0Rv6y4eCXq7k45FZr0HsHa8vOyshThYTvfan2g1ICVFtpGGxvNx/kyBNOlheS9nvf1+9r40dHrIXWVkBkishST4JZsOrtIqkBa1CpcRhS+KRG/rz8RVf+30OnRL61U4ga72MGrvIXf4o+z7zW6tAWHa03uIhsnbMO7jSJvgGEbvE7rexy/oKX82Ad89hJGI2gai4Fq2rH9U736xs9Pd1E+eiPMvFone8F5M470M9ORHhtzZWGaAxDqIwx/Rtebf9a6XroHlRGG3uGOLjrreddw0svfQLa1X4fxPE0cCZ5yjXmLdeFER2vR0H0Eg88TQOAbnL6G5beGJkbtp9jn4NQ+IRG1sTBj8Nd3rfqN3O5Xiem+lvnE8zpsnEr2NeQ8TGu9j9+vo/cYOXVUr1NU+MnjR3fHfepdXmJL814mC50Wit/MuIrQ3HR+5m9s+gvU+Iw+1j2y8OJzTjReVqK71BwmC60iSnEz0dm9Ab/caameqH8Sa8QIHL4YIcp+k54kX9O6u2Nnp7TRMrsL5rWJd7wmN97K7J+/BxxxVfXfg+U3EsaxThYyFcPAOtnR26F1d4fL33kp49gexnrzld352JkHum8BXDFMvmYef/QEYM0ovNAEOYExUgg/id9Df/7fsfHZA72gV09svxrofkMQZcZ/gkAwxMPgpQ1N7FeEWg+clo3r8qkqVDmVoapI3Bpyvt9QciP4fGbHO0PNXU7wAAAAASUVORK5CYII=" alt="Adholic"></button>
     <button class="circlebtn" id="navBack" data-tip="上一頁" aria-label="回上一頁" disabled>
       <svg class="ico" viewBox="0 0 24 24"><path d="M19 12H5"/><path d="M11 6l-6 6 6 6"/></svg>
     </button>
@@ -2748,6 +2769,9 @@
 
   <div class="main">
     <div class="topbar">
+      <div class="brandslot" id="brandSlot">
+        <span class="brandname" id="brandName">青園綠境</span>
+      </div>
 
       <div class="cluster" style="margin-left:auto">
         <button class="circlebtn soft" id="quickBtn" aria-label="快查來客（⌘K）">
@@ -2791,11 +2815,11 @@
 
         <div class="usermenu setmenu" id="gearMenu">
           <div class="ulbl" style="border-top:none">系統設定</div>
-          <button class="urow" data-page="staff"><span>人員管理<em>20 位成員・2 筆邀請中</em></span></button>
-          <button class="urow" data-page="perms"><span>權限管理<em>5 個角色・23 條權限</em></span></button>
-          <button class="urow" data-page="audit"><span>操作紀錄<em>今日 142 筆</em></span></button>
-          <button class="urow" data-page="trash"><span>已刪來客<em>23 筆可還原</em></span></button>
-          <div class="ulbl">租戶</div>
+          <button class="urow" data-page="staff"><span>人員管理</span></button>
+          <button class="urow" data-page="perms"><span>權限管理</span></button>
+          <button class="urow" data-page="audit"><span>操作紀錄</span></button>
+          <button class="urow" data-page="trash"><span>已刪來客</span></button>
+          <div class="ulbl">其他設定</div>
           <button class="urow" data-page="plan"><span>帳單與方案<em>Premium・使用者 20／20</em></span></button>
           <button class="urow" id="pwaInstall" type="button"><span>安裝到桌面<em>像 App 一樣開啟，不用開瀏覽器</em></span></button>
         </div>
@@ -4225,6 +4249,16 @@
   <span class="chip" id="tplActiveChip">啟用中</span>
   <div class="acts">
     <button class="pillbtn" data-act="tplVer">歷史版本 ▾</button>
+    <button class="circlebtn soft" data-act="tplRule" type="button" aria-label="版本規則" data-tip="版本規則"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.5"/><circle cx="12" cy="7.8" r=".9" fill="currentColor" stroke="none"/></svg></button>
+    <div class="rulepop" id="tplRulePop" role="dialog" aria-label="版本規則" hidden>
+      <b>版本規則</b>
+      <ul>
+        <li>改動不覆蓋舊版，發版才生效</li>
+        <li>來客資料綁建檔當下的版本</li>
+        <li>同時只有一份範本啟用中</li>
+        <li>刪欄不刪值，只是不再出現</li>
+      </ul>
+    </div>
     <button class="pillbtn" data-act="tplApplyStd">套用公版</button>
     <button class="pillbtn" data-act="tplSaveVer">儲存為新版本</button>
     <button class="pillbtn solid invite" data-act="tplAddField" aria-label="新增欄位"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16"/></svg><span class="lbl">新增欄位</span></button>
@@ -4267,18 +4301,9 @@
 </div>
 
 <div class="block anagrid">
-  <div class="acard span2">
-    <h3>公版庫 <small>套用後會以公版覆蓋目前欄位，並建立新版本</small></h3>
-    <div id="tplStdList"></div>
-  </div>
   <div class="acard">
-    <h3>版本規則</h3>
-    <ul class="vrule">
-      <li>欄位一經<b>啟用</b>就不再原地修改——改動會建立新版本，舊版本只讀保留。</li>
-      <li>已填的來客資料<b>綁在建檔當下的版本</b>，改範本不會回頭改動歷史資料。</li>
-      <li>同一時間只有<b>一份範本是啟用中</b>，新來客一律套用它。</li>
-      <li>刪除欄位不會刪掉已填的值，只是新表單不再出現該欄。</li>
-    </ul>
+    <h3>公版庫 <small>套用會覆蓋目前欄位，按「儲存為新版本」才正式生效</small></h3>
+    <div id="tplStdList"></div>
   </div>
 </div>
 </section>
@@ -8002,11 +8027,26 @@ try{ /* templates */
               opts:needOpts?v.opts:'', req:v.req==='必填'});
       });
   }
-  function bumpNote(){ toast('已更新——按「儲存為新版本」才會建立新版') }
+  /* 未發版狀態要持續看得見——只跳一次 toast，切去別頁再回來就忘了還有變更沒發 */
+  var tplDirty=false;
+  function setDirty(v){
+    tplDirty=!!v;
+    var b=document.querySelector('#page-templates [data-act="tplSaveVer"]');
+    if(b){ b.classList.toggle('solid',tplDirty); b.classList.toggle('hasdirty',tplDirty) }
+  }
+  function bumpNote(){ setDirty(true); toast('已更新——按「儲存為新版本」才會建立新版') }
 
   document.addEventListener('click',function(e){
     var b=e.target.closest('[data-act]'); if(!b || !page.contains(b)) return;
     var act=b.dataset.act, i=+b.dataset.i;
+    /* 檢視歷史版本時整頁唯讀。原本只用 CSS 蓋住必填膠囊與列操作，
+       頁首工具列的新增欄位／套用公版／儲存新版全沒鎖，
+       改動會默默寫進「目前版本」的正本，而畫面停在歷史版看不出來 */
+    var WRITE={tplReq:1,tplEditField:1,tplDelField:1,tplAddField:1,tplSaveVer:1,tplApplyStd:1,tplUseStd:1};
+    if(viewVer && WRITE[act]){
+      toast('正在檢視歷史版本 <b>'+viewVer.ver+'</b>，唯讀。請先回到目前版本再編輯。');
+      return;
+    }
     if(act==='tplReq'){
       var f=T().fields[i]; f.req=!f.req; drawRows(); bumpNote();
     } else if(act==='tplEditField'){
@@ -8015,11 +8055,14 @@ try{ /* templates */
       var d=T().fields[i];
       askConfirm({title:'刪除欄位', okText:'刪除欄位',
         body:'刪除「<b>'+d.label+'</b>」？<br>已填的值不會被刪掉，只是新表單不再出現這一欄。',
-        onOk:function(){ T().fields.splice(i,1); drawRows(); toast('已刪除欄位 <b>'+d.label+'</b>') }});
+        onOk:function(){ T().fields.splice(i,1); drawRows(); setDirty(true); toast('已刪除欄位 <b>'+d.label+'</b>') }});
     } else if(act==='tplAddField'){
-      fieldForm('新增欄位', null, function(nf){ T().fields.push(nf); drawRows(); toast('已新增欄位 <b>'+nf.label+'</b>') });
+      fieldForm('新增欄位', null, function(nf){ T().fields.push(nf); drawRows(); setDirty(true); toast('已新增欄位 <b>'+nf.label+'</b>') });
     } else if(act==='tplVer'){
-      e.stopPropagation();
+      /* 這個 handler 與 statmenu 的全域收合都掛在 document 上。
+         stopPropagation 只擋得住往上冒泡，擋不掉同一節點上的其他 listener——
+         選單開了會在同一次點擊裡被立刻收掉，所以要用 stopImmediatePropagation */
+      e.stopImmediatePropagation();
       var t=T(), opts=[t.ver+'（目前）'].concat(t.history.map(function(h){return h.ver}));
       pickMenu(b, opts, null, function(x){
         if(x.indexOf('（目前）')>-1){ viewVer=null } 
@@ -8027,30 +8070,39 @@ try{ /* templates */
         drawRows();
         toast(viewVer? '正在檢視 <b>'+viewVer.ver+'</b>（唯讀）' : '已回到目前版本');
       });
+    } else if(act==='tplRule'){
+      e.stopImmediatePropagation();
+      var pop=document.getElementById('tplRulePop');
+      if(pop) pop.hidden=!pop.hidden;
     } else if(act==='tplBackCur'){
       viewVer=null; drawRows(); toast('已回到目前版本');
     } else if(act==='tplSaveVer'){
       var t2=T(), n=+(t2.ver.replace('v',''))||1;
       t2.history.unshift({ver:t2.ver, fields:clone(t2.fields)});
       t2.ver='v'+(Math.floor(n)+1);
-      viewVer=null; draw();
+      viewVer=null; draw(); setDirty(false);
       toast('已建立 <b>'+t2.ver+'</b>——舊版保留為唯讀');
     } else if(act==='tplApplyStd'){
       openForm('套用公版', fld('選擇公版','tpl','select',STD[0].name,STD.map(function(x){return x.name})), '套用', function(v){
         var src=STD.filter(function(x){return x.name===v.tpl})[0];
-        T().fields=clone(src.fields); viewVer=null; draw();
-        toast('已套用公版 <b>'+v.tpl+'</b>（'+src.fields.length+' 欄）');
+        T().fields=clone(src.fields); viewVer=null; draw(); setDirty(true);
+        toast('已套用公版 <b>'+v.tpl+'</b>（'+src.fields.length+' 欄）——按「儲存為新版本」才正式生效');
       });
     } else if(act==='tplUseStd'){
       var si=+b.dataset.s, sx=STD[si];
       askConfirm({title:'套用公版', okText:'套用', tone:'warm',
         body:'以「<b>'+sx.name+'</b>」（'+sx.fields.length+' 欄）覆蓋<b>'+T().name+'</b>目前的欄位？<br>按「儲存為新版本」才會正式生效。',
-        onOk:function(){ T().fields=clone(sx.fields); viewVer=null; draw(); toast('已套用 <b>'+sx.name+'</b>') }});
+        onOk:function(){ T().fields=clone(sx.fields); viewVer=null; draw(); setDirty(true);
+          toast('已套用 <b>'+sx.name+'</b>——按「儲存為新版本」才正式生效') }});
     }
+  });
+  document.addEventListener('click',function(e){
+    var pop=document.getElementById('tplRulePop');
+    if(pop && !pop.hidden && !e.target.closest('#tplRulePop, [data-act="tplRule"]')) pop.hidden=true;
   });
   seg.addEventListener('click',function(e){
     var b=e.target.closest('button[data-t]'); if(!b) return;
-    cur=+b.dataset.t; viewVer=null; draw();
+    cur=+b.dataset.t; viewVer=null; draw(); setDirty(false);
   });
   /* 拖曳排序：放開才落定，順序寫回資料 */
   var dragEl=null;
