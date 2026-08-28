@@ -119,7 +119,7 @@
   .assignbtn .ico,.invite .ico,.rtile.add .ico{height:calc(50% + 1px)}
   /* 所有放 icon 的鈕一律 flex 置中，icon 高度佔 50%、寬度等比 */
   .rail button,.circlebtn,.cbtn,.sb-btn,.iconop,.rm,.assignbtn,.invite,.rtile.add,
-  .staff-view-seg button,#staffAvUploadBtn{
+  .staff-view-seg button{
     display:inline-flex; align-items:center; justify-content:center;
   }
   .rail button{
@@ -666,7 +666,7 @@
     display:flex; align-items:center; min-height:2.75rem;
   }
   /* 成員條的橫排規則：權限管理與業務獎金共用（鎖在單一 id 底下的話另一邊會變成直排） */
-  #memberRows,#commMembers{display:flex; flex-wrap:wrap; align-items:center; gap:var(--s1) var(--s2); min-width:0}
+  #memberRows{display:flex; flex-wrap:wrap; align-items:center; gap:var(--s1) var(--s2); min-width:0}
   /* 高度與圖示都要寫成實值：圖示若只給 height:50%，排版階段算不出百分比，
      它對按鈕寬度的貢獻＝0，鈕就會被壓成只剩左右內距的一條（實測 26px）並把＋切掉。
      .625rem×2 ＋ 圖示 1.375rem ＋ 框線 2px ＝ 2.75rem，收合時剛好是正圓。 */
@@ -2071,21 +2071,6 @@
   .av.av-p4{background:var(--fill-3); color:var(--ph-2)}
   .av.av-p5{background:var(--accent); color:var(--on-accent)}
   .av.hasimg{background-size:cover; background-position:center; color:transparent}
-  #staffEditDrawer .avatarset .avrow{display:flex; align-items:center; gap:var(--s4); flex-wrap:wrap}
-  #staffEditDrawer .avside{display:contents}
-  #staffEditDrawer .avacts{display:contents}
-  #staffEditDrawer .avprev{width:3.4rem; height:3.4rem; font-size:1.05rem; flex:none}
-  #staffEditDrawer .avpicks{display:flex; gap:var(--s2)}
-  #staffEditDrawer .avpicks .av{
-    width:2rem; height:2rem; font-size:.7rem; cursor:pointer;
-    border:2px solid transparent; transition:transform .15s var(--enter), border-color .15s ease-out;
-  }
-  #staffEditDrawer .avpicks .av:hover{transform:scale(1.08)}
-  #staffEditDrawer .avpicks .av[aria-checked="true"]{border-color:var(--ink)}
-  #staffEditDrawer #staffAvUploadBtn{height:var(--ctrl-h); padding:0 var(--s4) 0 var(--s3); gap:var(--s2)}
-  #staffEditDrawer #staffAvUploadBtn .ico{height:calc(50% + 1px); width:auto}
-  #staffEditDrawer .avclear{height:var(--ctrl-h); padding:0 var(--s4); color:var(--muted)}
-  #staffEditDrawer .avclear:hover{color:var(--hot); border-color:var(--line-hot)}
   #staffEditDrawer .staff-form{
     display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
     gap:var(--s5) var(--s6); padding:var(--s5) var(--s7) var(--s6); overflow-y:auto;
@@ -4842,11 +4827,11 @@
     <div class="pbody">
       <div class="fld">
         <span class="microlbl">來客姓名<b class="req">＊</b></span>
-        <input id="collectName" type="text" placeholder="請輸入來客姓名">
+        <input id="collectName" type="text" placeholder="請輸入來客姓名" required aria-required="true">
       </div>
       <div class="fld">
         <span class="microlbl">行動電話<b class="req">＊</b></span>
-        <input id="collectTel" type="tel" placeholder="09xxxxxxxx">
+        <input id="collectTel" type="tel" placeholder="09xxxxxxxx" required aria-required="true">
       </div>
       <div class="fld">
         <span class="microlbl">來客／來電</span>
@@ -4871,7 +4856,7 @@
     </div>
     <div class="pfoot">
       <button class="pillbtn" id="collectClearBtn">清除</button>
-      <button class="pillbtn solid" id="collectSubmitBtn" data-demo-toast>送出收客</button>
+      <button class="pillbtn solid" id="collectSubmitBtn">送出收客</button>
     </div>
     <div class="dnote">目前沒有網路時已暫存於本機，恢復連線會自動補送（有 <b>2 筆</b>暫存待送）。</div>
   </div>
@@ -5557,7 +5542,7 @@
       {name:'電銷專案',  mode:'each', back:false, base:'rooms',  hold:5,  from:'2026-05-01',
        tiers:[[0,3],[4,4]],        staff:[{n:'李承翰',i:'李'},{n:'周家瑜',i:'周'}]},
       {name:'案場主管加成', mode:'team', back:false, base:'amount', hold:10, from:'2026-01-01',
-       tiers:[[0,1.5]],            staff:[{n:'王毅群',i:'王'}]}
+       tiers:[[0,1.5]],            staff:[{n:'鄭明哲',i:'鄭'}]}
     ];
     var P=window.COMM_PLANS;
 
@@ -5621,7 +5606,11 @@
           askConfirm({
             title:'移出方案', okText:'移出', tone:'warm',
             body:'把 <b>'+nm+'</b> 移出「'+P[pi].name+'」？<br>已結算的獎金不受影響，之後的成交不再套用此方案。',
-            onOk:function(){ P[pi].staff.splice(mi,1); window.commRenderPlans(); toast('已移出 <b>'+nm+'</b>') }
+            onOk:function(){
+              P[pi].staff.splice(mi,1); window.commRenderPlans();
+              if(window.commSyncBonusPlans) window.commSyncBonusPlans();
+              toast('已移出 <b>'+nm+'</b>');
+            }
           });
         });
       });
@@ -5630,9 +5619,11 @@
     window.commAddStaffRow=function(nm,pi){
       var p=P[pi||0];
       if(P.some(function(x){return x.staff.some(function(y){return y.n===nm})})){
-        toast('<b>'+nm+'</b> 已經套用其他方案，一位業務只能有一個方案'); return;
+        toast('<b>'+nm+'</b> 已經套用其他方案，一位業務只能有一個方案'); return false;
       }
       p.staff.push({n:nm,i:nm.charAt(0)}); window.commRenderPlans();
+      if(window.commSyncBonusPlans) window.commSyncBonusPlans();
+      return true;
     };
     window.commRenderPlans();
 
@@ -5645,11 +5636,11 @@
     function profileAv(n){return n===ME?' data-profile-avatar':''}
     var LBL={lock:['鎖定 · 實發',''], paid:['已發首款',''], due:['首款待發',' hot']};
     var BONUS=[
-      {n:'林曉青',i:'林',unit:'艾德霍客',plan:'標準跳趴案',hold:10,
+      {n:'林曉青',i:'林',unit:'艾德霍客',planKey:'標準跳趴案',
        prev:[186400,214800,168000,246800,232400], sPrev:[[4100,3],[4700,4],[3700,3],[5400,4],[5100,4]], lead:{all:72,leads:48,re:21,days:34,visits:2.8,src:[['FB',2],['介紹',1],['現場',1]]},
        deals:[['A1-10F',1350,5,13500,'',0,'paid'],['B6-8F',1210,4,0,'',0,'lock'],
               ['C3-12F',1420,5,14200,'',0,'due'],['A2-P08',175,4,0,'',0,'paid']]},
-      {n:'張家豪',i:'張',unit:'現場一組',plan:'標準跳趴案',hold:10,
+      {n:'張家豪',i:'張',unit:'現場一組',planKey:'標準跳趴案',
        prev:[512400,644800,598400,701200,668400], sPrev:[[11400,8],[14300,10],[13300,9],[15600,11],[14900,10]], lead:{all:138,leads:96,re:52,days:28,visits:2.4,src:[['現場',5],['FB',4],['介紹',2],['看板',1]]},
        deals:[['A3-8F',1280,4,0,'',0,'lock'],['A5-12F',1460,5,14600,'',0,'paid'],
               ['A6-15F',1520,5,15200,'',0,'paid'],['B3-9F',1320,5,13200,'',0,'paid'],
@@ -5657,22 +5648,46 @@
               ['C1-7F',1240,4,0,'開案獎勵',10000,'paid'],['C2-5F',1180,4,0,'',0,'paid'],
               ['B2-6F',1150,5,11500,'前戶折半',-20000,'due'],['B4-16F',1580,6,15800,'',0,'due'],
               ['B1-P05',180,4,0,'',0,'due'],['A1-P12',165,4,0,'',0,'lock']]},
-      {n:'吳姿瑩',i:'吳',unit:'現場一組',plan:'標準跳趴案',hold:10,
+      {n:'吳姿瑩',i:'吳',unit:'現場一組',planKey:'標準跳趴案',
        prev:[132000,168400,144800,190200,176600], sPrev:[[2900,2],[3700,3],[3200,2],[4200,3],[3900,3]], lead:{all:95,leads:62,re:26,days:41,visits:3.1,src:[['FB',2],['現場',1]]},
        deals:[['A7-3F',1150,4,0,'',0,'paid'],['B2-10F',1290,5,12900,'',0,'paid'],['C5-6F',1080,4,0,'',0,'due']]},
-      {n:'陳冠廷',i:'陳',unit:'現場二組',plan:'標準跳趴案',hold:10,
+      {n:'陳冠廷',i:'陳',unit:'現場二組',planKey:'標準跳趴案',
        prev:[98400,124800,151200,110600,138400], sPrev:[[2200,2],[2800,2],[3400,3],[2500,2],[3100,2]], lead:{all:88,leads:55,re:22,days:38,visits:2.9,src:[['現場',2],['介紹',1]]},
        deals:[['B7-2F',990,4,0,'',0,'paid'],['A4-9F',1310,5,13100,'',0,'lock'],['C2-P11',170,4,0,'',0,'due']]},
-      {n:'李承翰',i:'李',unit:'電銷組',plan:'電銷專案',hold:5,
+      {n:'李承翰',i:'李',unit:'電銷組',planKey:'電銷專案',
        prev:[0,0,42000,68400,59200], sPrev:[[0,0],[0,0],[1400,1],[2300,2],[2000,2]], lead:{all:142,leads:88,re:19,days:52,visits:4.2,src:[['電話進線',2]]},
        deals:[['C6-4F',1050,3,0,'',0,'paid'],['B8-7F',1120,3,0,'',0,'due']]},
-      {n:'周家瑜',i:'周',unit:'電銷組',plan:'電銷專案',hold:5,
+      {n:'周家瑜',i:'周',unit:'電銷組',planKey:'電銷專案',
        prev:[0,0,36400,52800,61600], sPrev:[[0,0],[0,0],[1200,1],[1800,2],[2100,2]], lead:{all:121,leads:74,re:16,days:47,visits:3.8,src:[['電話進線',2]]},
        deals:[['A8-5F',980,3,0,'',0,'paid'],['C4-2F',1010,3,0,'',0,'paid']]},
-      {n:'王毅群',i:'王',unit:'艾德霍客',plan:'案場主管加成',hold:10,
+      {n:'鄭明哲',i:'鄭',unit:'艾德霍客',planKey:'案場主管加成',
        prev:[168400,182200,171600,196800,188400], sPrev:[[11200,8],[12100,10],[11400,9],[13100,11],[12600,10]],
-       deals:[['8 月案場總成交',13850,1.5,0,'',0,'paid']]}
+       deals:[['8 月個人成交合計',27850,1.5,0,'',0,'paid']]}
     ];
+    function planFor(p){
+      return (window.COMM_PLANS||[]).filter(function(x){return x.name===p.planKey})[0]||null;
+    }
+    function planLabel(p){ var plan=planFor(p); return plan?plan.name:'未指派方案' }
+    function holdRate(p){ var plan=planFor(p); return plan?plan.hold:0 }
+    function isSupervisor(p){ var plan=planFor(p); return !!plan&&plan.mode==='team' }
+    function memberPlan(name){
+      var found=null;
+      (window.COMM_PLANS||[]).some(function(plan){
+        if(plan.staff.some(function(s){return s.n===name})){ found=plan; return true }
+        return false;
+      });
+      return found;
+    }
+    function activeBonus(){
+      return BONUS.filter(function(p){ return !!memberPlan(p.n)||!p.planKey||!planFor(p) });
+    }
+    function emptyBonus(name,plan){
+      var row=[].slice.call(document.querySelectorAll('#staffRows .staff-row')).filter(function(x){
+        var n=x.querySelector('.staff-name'); return n&&n.textContent.trim()===name;
+      })[0];
+      return {n:name,i:name.charAt(0),unit:row?(row.dataset.unit||'未設定'):'未設定',planKey:plan.name,
+        prev:[0,0,0,0,0],sPrev:[[0,0],[0,0],[0,0],[0,0],[0,0]],deals:[]};
+    }
     var cur=BONUS[0];
     function fmt(n){ return n.toLocaleString('en-US') }
     function me(){ return BONUS.filter(function(p){return p.n===ME})[0] }
@@ -5683,9 +5698,9 @@
       var got=0,dueFirst=0,dueBack=0,dueHold=0;
       var ds=p.deals.map(function(d,di){
         var base=Math.round(d[1]*10*d[2]), total=base+d[3]+d[5];
-        var h=Math.round(total*p.hold/100), first=total-h;
+        var h=Math.round(total*holdRate(p)/100), first=total-h;
         var core=base+d[5];                                  /* 基本＋加扣款 */
-        var hCore=Math.round(core*p.hold/100), hBack=h-hCore;  /* 保留款拆兩段，差額歸回補避免湊不齊 */
+        var hCore=Math.round(core*holdRate(p)/100), hBack=h-hCore;  /* 保留款拆兩段，差額歸回補避免湊不齊 */
         var fCore=core-hCore, fBack=d[3]-hBack;              /* 首款、回補的現金部分 */
         if(d[6]==='lock'){ got+=fCore+fBack+h }
         else if(d[6]==='paid'){ got+=fCore+fBack; dueHold+=h }
@@ -5699,8 +5714,11 @@
           s:'累計跳級後，本戶依新費率補回差額'});
         if(d[5]) log.push({d:'2026-08-'+('0'+Math.min(28,day+3)).slice(-2), k:'adj', t:(d[5]>0?'加項 +':'扣項 ')+fmt(d[5]),
           s:d[4]||'手動調整'});
-        if(d[6]!=='due') log.push({d:'2026-09-05', k:'pay', t:'首款發放 '+fmt(first), s:'匯款・林曉青'});
-        if(d[6]==='lock') log.push({d:'2026-09-05', k:'hold', t:'保留款發放 '+fmt(h), s:'已交屋・全額結清'});
+        var payDay=new Date(dt+'T00:00:00+08:00'); payDay.setDate(payDay.getDate()+15);
+        var cap=new Date('2026-08-28T00:00:00+08:00'); if(payDay>cap) payDay=cap;
+        var paidOn=payDay.getFullYear()+'-'+('0'+(payDay.getMonth()+1)).slice(-2)+'-'+('0'+payDay.getDate()).slice(-2);
+        if(d[6]!=='due') log.push({d:paidOn, k:'pay', t:'首款發放 '+fmt(first), s:'匯款・許庭瑋'});
+        if(d[6]==='lock') log.push({d:paidOn, k:'hold', t:'保留款發放 '+fmt(h), s:'已交屋・全額結清・許庭瑋'});
         return {u:d[0],price:d[1],rate:d[2],base:base,back:d[3],adjTxt:d[4],adj:d[5],
                 total:total,hold:h,first:first,st:d[6],date:dt,log:log};
       });
@@ -5709,8 +5727,6 @@
               got:got,dueFirst:dueFirst,dueBack:dueBack,dueHold:dueHold,
               gotAll:history+got,ytd:history+t,months:p.prev.length+1};
     }
-    var MON=['3 月','4 月','5 月','6 月','7 月','8 月'];
-
     /* 一份模板兩個地方用：我的獎金、發放列表右側 */
     /* 個人銷售分析：整段搬到「分析 → 個人分析」用，獎金頁不再內嵌 */
     function analysisHTML(p){
@@ -5723,7 +5739,7 @@
           var cHouse=S.ds.length-cPark;
           var avg=cHouse? Math.round(S.ds.filter(function(x){return !/-P/.test(x.u)}).reduce(function(a,x){return a+x.price},0)/cHouse) : 0;
           /* 全案基準：主管加成那筆是全案彙總，不算進戶別基準 */
-          var peers=BONUS.filter(function(q){return q.plan!=='案場主管加成'});
+          var peers=BONUS.filter(function(q){return !isSupervisor(q)});
           var teamPrices=[], teamDeals=0;
           peers.forEach(function(q){ q.deals.forEach(function(d){ teamDeals++; if(!/-P/.test(d[0])) teamPrices.push(d[1]) }) });
           var teamAvg=teamPrices.length? Math.round(teamPrices.reduce(function(a,b){return a+b},0)/teamPrices.length) : 0;
@@ -5814,7 +5830,7 @@
         /* 總獎金為歷史月份加本月；歷史月份視為已領，本月仍按發放狀態拆分 */
         '<div class="paykpis">'+
           '<div class="pk total"><b>'+fmt(S.ytd)+'</b><span>總獎金</span><em>累計 '+S.months+' 個月</em></div>'+
-          '<div class="pk ac"><b>'+fmt(S.gotAll)+'</b><span>已領獎金</span><em>'+Math.round(S.gotAll/S.ytd*100)+'% 已入袋</em></div>'+
+          '<div class="pk ac"><b>'+fmt(S.gotAll)+'</b><span>已領獎金</span><em>'+(S.ytd?Math.round(S.gotAll/S.ytd*100):0)+'% 已入袋</em></div>'+
           '<div class="pk warm"><b>'+fmt(S.dueFirst)+'</b><span>待發首款</span><em>'+S.nd+' 戶未發</em></div>'+
           '<div class="pk warm"><b>'+fmt(S.dueBack)+'</b><span>待發回補</span><em>跳級補差</em></div>'+
           '<div class="pk hot"><b>'+fmt(S.dueHold)+'</b><span>待發保留款</span><em>交屋後發放</em></div>'+
@@ -5878,7 +5894,8 @@
     function board(el,meName,metric,ytd){
       var fnv = metric==='amt' ? amtOf : cntOf;
       var unit = metric==='amt' ? ' 萬' : ' 戶';
-      var list=BONUS.map(function(q){ return {n:q.n, i:q.i, v:fnv(q,ytd)} })
+      var list=BONUS.filter(function(q){return !isSupervisor(q)})
+                    .map(function(q){ return {n:q.n, i:q.i, v:fnv(q,ytd)} })
                     .sort(function(a,b){ return b.v-a.v });
       var top=list.slice(0,3), rest=list.slice(3);
       /* 頒獎台排 2 1 3，中間最高 */
@@ -6905,7 +6922,7 @@
     {name:'業主檢視', code:'OWNER', desc:'唯讀。看得到全建案的來客、銷控、分析與報表，也能匯出名單，但不能新增或修改任何資料。', n:5, on:['lead:read','lead:read_all','unit:read','export:run','analytics:read','report:read'], members:['青園建設 ×2','恆山建設 ×2','＋1']},
     {name:'專案經理', code:'PROJECT', desc:'管得到來客、銷控、勾勾表範本與匯入匯出。看不到底價與業務獎金，也不能改系統設定。', n:4, on:['lead:read','lead:read_all','lead:create','lead:update','lead:delete','lead:trash','template:read','template:edit','unit:read','unit:manage','import:run','export:run','analytics:read','report:read'], members:['張主任','李副理','＋2']},
     {name:'業務人員', code:'SALES', desc:'只看得到自己名下的來客，可新增與修改，不能刪除、不能看別人的名單，也看不到底價與獎金。', n:20, on:['lead:read','lead:create','lead:update','unit:read','analytics:read','report:read'], members:['張家豪','吳姿瑩','陳冠廷','＋17']},
-    {name:'底價檢視', code:'PRICE_VIEW', sub:'自建', desc:'自建角色。只加開銷控表的底價欄位，通常疊在業務或專案經理身上一起指派。', n:5, on:['unit:price_floor'], members:['王經理','＋4']}
+    {name:'底價檢視', code:'PRICE_VIEW', sub:'自建', desc:'自建角色。只能檢視與調整銷控表底價；指派後會取代成員原本的角色。', n:5, on:['unit:price_floor'], members:['王經理','＋4']}
   ];
   var curRole=0, permState=[], savedState=[];
   function renderRoles(){
@@ -6915,7 +6932,7 @@
         (i===curRole?' aria-current="true"':'')+'>'+r.name+
         '<span class="n">'+(r.code?'<code>'+r.code+'</code>':'')+r.n+' 人</span></button>';
     }).join('')+
-      '<button class="rtile add" type="button" data-demo-toast aria-label="新增角色">'+
+      '<button class="rtile add" type="button" aria-label="新增角色">'+
       '<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16"/></svg>新增角色</button>';
     $$('#roleList .rtile[data-i]').forEach(function(b){
       b.addEventListener('click',function(){ curRole=+b.dataset.i; loadRole(b) });
@@ -6973,7 +6990,6 @@
     permState=PERMS.map(function(p){return r.on.indexOf(p.c)>-1});
     savedState=permState.slice();
     $('#unsaved').classList.remove('show');
-    var pm=$('#permMembers'); if(pm) pm.innerHTML=r.n+' 位成員：'+r.members.map(function(m){return '<span class="chip">'+m+'</span>'}).join('');
     renderRoles(); renderPerms(); renderMembers();
     /* renderRoles 會重建磚，要抓重建後選中的那顆；初次載入也要指好 */
     var t=$('#roleList .rtile.on'); if(t) slimeFrom(t);
@@ -6996,19 +7012,39 @@
   window.addEventListener('resize',repoint);
   document.addEventListener('page:shown',function(e){ if(e.detail==='perms') repoint() });
   /* ── 成員：從人員管理那張表推出來，維持單一份人員資料 ── */
-  var PEOPLE=[].slice.call(document.querySelectorAll('#staffRows .staff-row')).map(function(row){
-    var b=row.querySelector('.staff-name');
-    var role=row.querySelector('.st-role');
-    return {
-      name:(b?b.textContent:'').trim(),
-      initial:(row.querySelector('.staff-person .av')||{}).textContent||'',
-      unit:row.dataset.unit||'—', attr:row.dataset.attr||'—',
-      project:(row.cells[5].querySelector('.chip')||{}).textContent||'—',
-      role:role?role.textContent.trim():''
-    };
-  });
-  var assign={};                                   /* 角色名 → 成員陣列 */
-  ROLES.forEach(function(r){ assign[r.name]=PEOPLE.filter(function(p){return p.role===r.name}) });
+  function readPeople(){
+    return [].slice.call(document.querySelectorAll('#staffRows .staff-row')).map(function(row){
+      var b=row.querySelector('.staff-name');
+      var role=row.querySelector('.st-role');
+      return {
+        name:(b?b.textContent:'').trim(),
+        initial:(row.querySelector('.staff-person .av')||{}).textContent||'',
+        unit:row.dataset.unit||'—', attr:row.dataset.attr||'—',
+        project:(row.cells[5].querySelector('.chip')||{}).textContent||'—',
+        role:role?role.textContent.trim():''
+      };
+    });
+  }
+  var PEOPLE=[], assign={};                        /* 角色名 → 成員陣列 */
+  function syncPeopleFromStaff(){
+    PEOPLE=readPeople();
+    var next={};
+    ROLES.forEach(function(r){ next[r.name]=PEOPLE.filter(function(p){return p.role===r.name}) });
+    assign=next;
+    refreshRoleCounts();
+    if($('#page-perms').classList.contains('on')){ renderRoles(); renderMembers(); repoint() }
+  }
+  function writeStaffRole(p){
+    var row=[].slice.call(document.querySelectorAll('#staffRows .staff-row')).filter(function(x){
+      var n=x.querySelector('.staff-name'); return n&&n.textContent.trim()===p.name;
+    })[0];
+    if(!row) return;
+    var role=row.querySelector('.st-role'); if(!role) return;
+    role.textContent=p.role||'未指派';
+    role.className='st-role '+(p.role==='系統管理員'?'admin':p.role==='業主檢視'?'external':'normal');
+  }
+  syncPeopleFromStaff();
+  document.addEventListener('staff:changed',syncPeopleFromStaff);
   function refreshRoleCounts(){
     ROLES.forEach(function(r){ r.n=(assign[r.name]||[]).length });
     var total=Object.keys(assign).reduce(function(a,k){return a+assign[k].length},0);
@@ -7018,6 +7054,8 @@
   function renderMembers(){
     var r=ROLES[curRole], list=assign[r.name]||[];
     var mc=$('#memberCount'); if(mc) mc.textContent=list.length+' 人';
+    var pm=$('#permMembers');
+    if(pm) pm.innerHTML=list.length+' 位成員：'+list.map(function(p){return '<span class="chip">'+p.name+'</span>'}).join('');
     $('#memberRows').innerHTML = list.length
       ? list.map(function(p,i){
           return '<div class="mrow" data-m="'+i+'" style="--i:'+i+'">'+
@@ -7036,7 +7074,7 @@
           okText:'移除',
           onOk:function(){
             var arr=assign[ROLES[curRole].name];
-            arr.splice(arr.indexOf(p),1); p.role='';
+            arr.splice(arr.indexOf(p),1); p.role=''; writeStaffRole(p);
             refreshRoleCounts(); renderRoles(); renderMembers();
             toast('已把 <b>'+p.name+'</b> 移出「'+ROLES[curRole].name+'」');
           }
@@ -7085,7 +7123,7 @@
       picked.forEach(function(nm){
         var p=PEOPLE.filter(function(x){return x.name===nm})[0]; if(!p) return;
         if(p.role && assign[p.role]){ var a=assign[p.role]; if(a.indexOf(p)>-1) a.splice(a.indexOf(p),1) }
-        p.role=r.name; assign[r.name].push(p);
+        p.role=r.name; assign[r.name].push(p); writeStaffRole(p);
       });
       close(); refreshRoleCounts(); renderRoles(); renderMembers();
       toast('已指派 <b>'+n+'</b> 位成員到「'+r.name+'」');
@@ -7130,7 +7168,12 @@
   })();
 
   $('#permRevert').addEventListener('click',function(){ permState=savedState.slice(); $('#unsaved').classList.remove('show'); renderPerms() });
-  $('#permSave').addEventListener('click',function(){ savedState=permState.slice(); $('#unsaved').classList.remove('show'); toast('權限已儲存並寫入操作紀錄') });
+  $('#permSave').addEventListener('click',function(){
+    ROLES[curRole].on=PERMS.filter(function(p,i){return permState[i]}).map(function(p){return p.c});
+    savedState=permState.slice();
+    $('#unsaved').classList.remove('show');
+    toast('權限已儲存並寫入操作紀錄');
+  });
   refreshRoleCounts(); loadRole();
   window.CRM_ROLES=function(){ return ROLES.map(function(r){return r.name}) };
 
@@ -7262,30 +7305,7 @@
     function findRow(email){
       return rows.find(function(row){return row.dataset.email===email})||null;
     }
-    function syncStaffSummary(){
-      var totals={enabled:0,'建設公司':0,'代銷公司':0,'協力廠商':0,invited:0};
-      rows.forEach(function(row){
-        var status=row.dataset.status||'enabled';
-        if(status==='invited'){ totals.invited++; return }
-        if(status==='enabled'){
-          totals.enabled++;
-          if(Object.prototype.hasOwnProperty.call(totals,row.dataset.attr)) totals[row.dataset.attr]++;
-        }
-      });
-      $$('[data-staff-kpi]').forEach(function(el){
-        var value=totals[el.dataset.staffKpi]||0;
-        el.dataset.n=String(value); el.textContent=String(value);
-      });
-    }
-    function makeCardButton(label,textValue,edit){
-      var button=make('button','circlebtn');
-      button.type='button'; button.setAttribute('aria-label',label);
-      button.dataset.tip=edit?'編輯':'重寄邀請';
-      if(edit) button.innerHTML='<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19l-4 1"/></svg>';
-      else button.textContent=textValue;
-      if(edit) button.dataset.staffEdit=''; else button.dataset.demoToast='';
-      return button;
-    }
+    function notifyStaffChanged(){ document.dispatchEvent(new CustomEvent('staff:changed')) }
     function renderStaffCards(){
       if(projObserver) projObserver.disconnect();
       cards.replaceChildren();
@@ -7313,7 +7333,6 @@
         bay.appendChild(jump); bay.appendChild(del); card.appendChild(bay);
 
         var head=make('div','head'), avatar=make('span','av'+(online?' online':''),name.charAt(0));
-        if(window.paintStaffAv) window.paintStaffAv(avatar,row.dataset.avatar||'',name.charAt(0));
         avatar.setAttribute('aria-label',online?'上線':'離線');
         var identity=make('div','st-id'), nameEl=make('div','st-name');
         var fam=row.dataset.fam||'';
@@ -7455,7 +7474,6 @@
       if(!row) return;
       var on=sw.getAttribute('aria-checked')!=='true';
       setStaffStatus(row,on);
-      syncStaffSummary();
       toast((on?'已啟用 <b>':'已停用 <b>')+rowName(row)+'</b>');
     });
 
@@ -7494,7 +7512,7 @@
           var i=rows.indexOf(row); if(i>-1) rows.splice(i,1);
           var c=cards.querySelector('[data-email="'+row.dataset.email+'"]');
           if(c) c.remove();
-          row.remove(); syncStaffSummary(); applyStaffFilters();
+          row.remove(); applyStaffFilters(); notifyStaffChanged();
           toast('已刪除 <b>'+nm+'</b>（示範資料，重新整理即復原）');
         }
       });
@@ -7526,7 +7544,7 @@
       applyStaffFilters();
       if(viewMode==='cards') fitStaffProjects();
     }
-    syncStaffSummary(); renderStaffCards();
+    renderStaffCards();
     var savedView=''; try{savedView=localStorage.getItem('adholic-staff-view')||''}catch(e){}
     setStaffView(savedView==='list'?'list':'cards',false);
     $$('#staffViewSeg button').forEach(function(button){
@@ -7565,16 +7583,6 @@
       var passwordOK=!passwordInput.value||passwordInput.value.length>=10;
       saveBtn.disabled=!(nameInput.value.trim()&&emailOK&&unitInput.value.trim()&&passwordOK);
     }
-    /* 頭貼：row.dataset.avatar 存 'preset:N' 或 data URL，這裡負責畫到任何一顆 .av 上 */
-    function paintAv(el,av,initial){
-      if(!el) return;
-      el.classList.remove('hasimg','av-p1','av-p2','av-p3','av-p4','av-p5');
-      el.style.backgroundImage='';
-      if(av && av.indexOf('data:')===0){ el.classList.add('hasimg'); el.style.backgroundImage='url("'+av+'")'; el.textContent=initial||''; }
-      else { if(av && av.indexOf('preset:')===0) el.classList.add('av-p'+av.slice(7)); el.textContent=initial||''; }
-    }
-    window.paintStaffAv=paintAv;
-
     /* 頭貼改由「個人設定」管理——成員的頭像不該由別人在人員管理裡代改 */
 
     function showStaffDrawer(){
@@ -7652,7 +7660,7 @@
           '<td><span class="staff-status invited"><span class="dot warm"></span><span data-staff-status>邀請中</span></span></td>'+
           '<td class="ops"><span class="rowact"><button class="iconop" data-staff-resend aria-label="重寄邀請給'+nm+'" data-tip="重寄邀請"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20 4v4.5h-4.5"/></svg></button><button class="iconop" data-staff-edit aria-label="編輯'+nm+'" data-tip="編輯"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19l-4 1"/></svg></button><button class="iconop del" data-staff-del aria-label="刪除'+nm+'" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></span></td>';
         $('#staffRows').appendChild(tr); rows.push(tr);
-        closeStaffEdit(false); syncStaffSummary(); renderStaffCards(); applyStaffFilters();
+        closeStaffEdit(false); renderStaffCards(); applyStaffFilters(); notifyStaffChanged();
         if(lastTrigger&&document.contains(lastTrigger)) lastTrigger.focus();
         toast('已寄出邀請信給 <b>'+nm+'</b>（'+em+'），對方完成認證後才會加入');
         return;
@@ -7689,10 +7697,10 @@
         if(listAv) listAv.classList.toggle('dim',!on);
       }
       /* 頭貼不在這裡改，沿用該成員原本的設定 */
-      paintAv(listAv,currentRow.dataset.avatar||'',name.charAt(0));
+      if(listAv) listAv.textContent=name.charAt(0);
       currentRow.querySelector('[data-staff-edit]').setAttribute('aria-label','編輯'+name);
       var changedPassword=!!passwordInput.value;
-      closeStaffEdit(false); syncStaffSummary(); renderStaffCards(); applyStaffFilters();
+      closeStaffEdit(false); renderStaffCards(); applyStaffFilters(); notifyStaffChanged();
       var returnTrigger=viewMode==='cards'?cards.querySelector('[data-email="'+editedEmail+'"] [data-staff-edit]'):findRow(editedEmail).querySelector('[data-staff-edit]');
       if(returnTrigger) returnTrigger.focus();
       toast(changedPassword?'成員資料與密碼已更新，該成員已登出所有裝置':'成員資料已更新');
@@ -8561,7 +8569,7 @@ try{ /* collect */
       a2.download='匯入失敗列-2026-08-21.csv'; a2.click(); toast('已下載失敗列，修正後可重傳');
     } else if(act==='assignStaff'){
       e.stopPropagation();
-      pickMenu(b,['李承翰','周家瑜','郭士銘','王毅群'],null,function(x){
+      pickMenu(b,['李承翰','周家瑜','郭士銘','鄭明哲'],null,function(x){
         /* 交給業務獎金那段統一建列——列的結構、分頁、計數都在那裡管 */
         if(window.commAddStaffRow) window.commAddStaffRow(x, +b.dataset.p||0);   /* 加進按鈕所屬的那張方案卡 */
         toast('已指派 <b>'+x+'</b> 進入方案');
