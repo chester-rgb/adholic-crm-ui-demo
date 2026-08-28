@@ -5182,6 +5182,9 @@
           <div class="h"><div class="top"><span class="chip hot">格式錯誤</span><time>2026-08-20 15:12</time></div><p>第 37 列：電話格式錯誤——「091234567」少一碼，無法比對撞單，未建檔。</p><span class="by">系統檢核</span></div>
           <div class="h"><div class="top"><span class="chip hot">必填缺漏</span><time>2026-08-20 15:12</time></div><p>第 52 列：姓名空白——核心欄必填，未建檔。</p><span class="by">系統檢核</span></div>
           <div class="h"><div class="top"><span class="chip hot">格式錯誤</span><time>2026-08-20 15:12</time></div><p>第 128 列：電話含全形字元「０９２２」——請改為半形數字後重新匯入。</p><span class="by">系統檢核</span></div>
+          <div class="h"><div class="top"><span class="chip hot">必填缺漏</span><time>2026-08-20 15:12</time></div><p>第 145 列：來訪日期空白——核心欄必填，未建檔。</p><span class="by">系統檢核</span></div>
+          <div class="h"><div class="top"><span class="chip hot">格式錯誤</span><time>2026-08-20 15:12</time></div><p>第 166 列：來訪日期「2026/13/02」不是有效日期——請確認月份後重新匯入。</p><span class="by">系統檢核</span></div>
+          <div class="h"><div class="top"><span class="chip hot">值不在選項內</span><time>2026-08-20 15:12</time></div><p>第 191 列：來客／來電欄填「網路」——只接受「來客」或「來電」，未建檔。</p><span class="by">系統檢核</span></div>
         </div>
       </div>
     </div>
@@ -8106,7 +8109,7 @@ try{ /* import */
     })(i);
   }
   /* 欄位對應正本：依 2026-08-05 系統實測的匯入欄位，前五欄是核心必填 */
-  var IMP_FIELDS = [
+  var IMP_FIELDS = window.IMP_FIELDS = [
     ['姓名','王小明',1], ['電話','0912345678',1], ['來訪日期','2026/01/15',1],
     ['來源','現場',1], ['來客/來電','來客',1],
     ['稱謂','先生',0], ['年齡層','25歲以下',0], ['居住區域','本區',0],
@@ -8703,11 +8706,24 @@ try{ /* collect */
       var ta=document.querySelector('#page-reports textarea, #page-reports .summary');
       toast('現場摘要已儲存 <b>2026-08-21</b>');
     } else if(act==='dlTpl'){
-      var csv='\ufeff'+['姓名,電話,來源,需求房型,購屋預算,備註','王小明,0912-345-678,現場,三房,1500-2000萬,'].join('\n');
+      /* 範本欄位直接取自欄位對應的正本 IMP_FIELDS——原本手寫一份，
+         結果少了「來訪日期」「來客/來電」兩個必填欄，照官方範本填完反而過不了 */
+      var F=(window.IMP_FIELDS||[]);
+      var head=F.map(function(f){return f[0]}).join(',');
+      var demo=F.map(function(f){return String(f[1]).indexOf(',')>-1 ? '"'+f[1]+'"' : f[1]}).join(',');
+      var csv='\ufeff'+[head,demo].join('\n');
       var a1=document.createElement('a'); a1.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
-      a1.download='來客匯入標準範本.csv'; a1.click(); toast('已下載 <b>來客匯入標準範本.csv</b>');
+      a1.download='來客匯入標準範本.csv'; a1.click();
+      toast('已下載 <b>來客匯入標準範本.csv</b>（'+F.length+' 欄，含 '+F.filter(function(f){return f[2]}).length+' 個必填）');
     } else if(act==='dlFail'){
-      var csv2='\ufeff'+['列號,姓名,電話,錯誤原因','12,林小美,09123456,電話格式錯誤','45,,0933-221-***,姓名空白'].join('\n');
+      /* 失敗列的內容要跟畫面上的錯誤明細對得起來——原本只有 2 筆、列號也不一樣 */
+      var csv2='\ufeff'+['列號,姓名,電話,來訪日期,來客/來電,錯誤原因',
+        '37,陳美玲,091234567,2026/08/12,來客,電話格式錯誤——少一碼',
+        '52,,0933-221-458,2026/08/12,來客,姓名空白（核心欄必填）',
+        '128,林俊傑,０９２２123456,2026/08/13,來客,電話含全形字元',
+        '145,黃詩涵,0955-870-221,,來客,來訪日期空白（核心欄必填）',
+        '166,張家瑋,0977-334-112,2026/13/02,來客,來訪日期不是有效日期',
+        '191,吳建良,0912-556-778,2026/08/14,網路,來客／來電只接受「來客」或「來電」'].join('\n');
       var a2=document.createElement('a'); a2.href=URL.createObjectURL(new Blob([csv2],{type:'text/csv'}));
       a2.download='匯入失敗列-2026-08-21.csv'; a2.click(); toast('已下載失敗列，修正後可重傳');
     } else if(act==='assignStaff'){
