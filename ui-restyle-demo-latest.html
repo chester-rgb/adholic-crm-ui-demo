@@ -1058,9 +1058,6 @@
   }
   #drawer textarea.ed{min-height:3.2rem; resize:vertical}
   #drawer .ed:focus{outline:none; border-color:var(--accent)}
-  #drawer .optchecks{display:flex; flex-wrap:wrap; gap:.35rem .7rem; padding:.2rem 0}
-  #drawer .optchk{display:inline-flex; align-items:center; gap:.3rem; font-size:.72rem; color:var(--muted); cursor:pointer}
-  #drawer .optchk input{width:.85rem; height:.85rem}
   #drawer.editing .lead-kv{border-bottom-color:transparent}
   /* 分級標籤在標題列裡，沿用來客名單那套配色 */
   #drawer .dhead .grade{font-size:.7rem; padding:.1rem .5rem; border-radius:var(--r-pill); font-weight:400}
@@ -1117,6 +1114,26 @@
   #drawer .assignee-meta dt{font-size:.66rem; color:var(--muted); letter-spacing:.04em}
   #drawer .assignee-meta dd{font-size:.81rem; margin:0; font-variant-numeric:tabular-nums}
   #drawer .assignee-card + .lead-section-head{margin-top:var(--s6)}
+  /* 編輯模式的下拉與日期：沿用全站的 .sel / .datepick，只把尺寸收成跟 .ed 一樣 */
+  #drawer .sel .sel-btn{height:auto; min-height:0; padding:.28rem .5rem; border-radius:var(--r-cell); font-size:.76rem}
+  #drawer .sel-list button{font-size:.76rem}
+  #drawer .sel.multi .sel-list[hidden]{display:none}
+  #drawer .sel-val.empty,#drawer .dp-val.empty{color:var(--muted)}
+  #drawer .dp-one{position:relative; width:100%; z-index:6}
+  #drawer .dp-one .dp-btn{
+    width:100%; height:auto; padding:.28rem .5rem; border-radius:var(--r-cell); font-size:.76rem;
+  }
+  /* .dp-btn > .ico 是 height:50%，父層改成 auto 高之後 50% 算不出來會爆掉——這裡給死值 */
+  #drawer .dp-one .dp-btn > .ico{height:.9rem; width:.9rem}
+  #drawer .dp-one .dp-val{flex:1 1 auto; text-align:left}
+  #drawer .dp-one .dp-btn .chev{width:.9rem; height:.9rem; color:var(--muted); flex:none; transition:transform .2s var(--enter)}
+  #drawer .dp-one.open .dp-btn{border-color:var(--accent); outline:2px solid var(--line-accent); outline-offset:var(--s1)}
+  #drawer .dp-one.open .chev{transform:rotate(180deg)}
+  #drawer .dp-one .dp-panel{left:0; right:auto; width:15.5rem; padding:var(--s3)}
+  #drawer .dp-one .dp-panel[hidden]{display:none}
+  #drawer .dp-one.up .dp-panel{top:auto; bottom:calc(100% + var(--s2))}
+  /* 唯讀欄位：看得到但不能在這裡改（負責業務改派走「負責業務」頁籤） */
+  #drawer .rohint{font-size:.66rem; color:var(--muted); margin-left:var(--s2)}
   /* 紀錄用時間軸呈現先後——最新的那顆點是實心藍 */
   #drawer .hist{position:relative; padding-left:1.35rem}
   #drawer .hist::before{content:""; position:absolute; left:.42rem; top:.9rem; bottom:.9rem; width:1px; background:var(--line-2)}
@@ -5085,11 +5102,6 @@
       <div class="assignee-card">
         <span class="av" id="leadAssigneeAvatar">張</span>
         <div class="who"><b id="leadAssigneeName">張家豪</b><span class="meta">艾德霍客・現場一組</span></div>
-        <dl class="assignee-meta">
-          <div><dt>接手時間</dt><dd id="leadAssignSince">—</dd></div>
-          <div><dt>指派方式</dt><dd id="leadAssignHow">現場排班</dd></div>
-          <div><dt>接手後互動</dt><dd id="leadAssignTouch">—</dd></div>
-        </dl>
       </div>
       <div class="lead-section-head"><div class="dsec">替換紀錄</div></div>
       <div class="hist" id="leadAssignHist">
@@ -7507,14 +7519,6 @@
     if(nm) nm.textContent=n;
     var field=$('#drawer [data-lead-field="assignee"]'); if(field) field.textContent=n;
   }
-  /* 負責業務卡的三個小欄位：接手時間抓最新一筆替換紀錄，互動次數數往來紀錄 */
-  function syncAssigneeMeta(how){
-    var h=$('#leadAssignHist'), first=h? h.querySelector('.h time') : null;
-    var since=$('#leadAssignSince'); if(since) since.textContent=first? first.textContent.trim() : (($('#drawer [data-lead-field="created"]')||{textContent:'—'}).textContent.trim());
-    var touch=$('#leadAssignTouch');
-    if(touch){ var n=$$('#leadNoteHist .h').length; touch.textContent=n? n+' 次' : '尚無紀錄' }
-    if(how){ var hw=$('#leadAssignHow'); if(hw) hw.textContent=how }
-  }
   function updatePurchaseSummary(){
     var list=$('#leadPurchaseList'), sum=$('#leadPurchaseSummary'); if(!list||!sum) return;
     var units=list.querySelectorAll('.buyrow[data-kind="unit"]').length;
@@ -7538,7 +7542,7 @@
       syncLeadAssignee(values.assignee);
     }
     updatePurchaseSummary();
-    leadExitEdit(); leadResetTabs(); leadRenderCheck(); syncAssigneeMeta();
+    leadExitEdit(); leadResetTabs(); leadRenderCheck();
     $('#drawerMask').classList.add('show'); $('#drawer').classList.add('show')
   }
   function closeDrawer(){ $('#drawerMask').classList.remove('show'); $('#drawer').classList.remove('show') }
@@ -7562,7 +7566,7 @@
     {k:'source',  label:'來源',      type:'select', opts:['現場','路過','FB','IG','網路','介紹','看板']},
     {k:'visit',   label:'來訪日期',   type:'date'},
     {k:'created', label:'建檔',      type:'ro'},
-    {k:'assignee',label:'負責業務',   type:'select', opts:['未指派'].concat(LA_STAFF)}
+    {k:'assignee',label:'負責業務',   type:'ro'}   /* 改派走「負責業務」頁籤，這裡只呈現 */
   ];
   /* 示意值：新開的來客先給一組合理的預設，之後編輯就記在 LEAD_VALS 裡 */
   var TPL_SEED={title:'先生', age_range:'31-40歲', area:'本區', marital:'已婚有子', job:'科技業',
@@ -7584,20 +7588,47 @@
   }
   function tplNow(){ return window.CRM_TPL? window.CRM_TPL() : {name:'—',ver:'',fields:[]} }
   function esc(x){ return String(x==null?'':x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;') }
+  var C_TICK='<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>';
+  var C_CHEV='<svg class="ico chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg>';
+  var C_CAL='<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg>';
+  var C_PREV='<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>';
+  var C_NEXT='<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>';
+  /* 可複選下拉：沿用 .sel 的外觀，差別只在點選項不收合、可以多選 */
+  function ctrlMulti(opts,val,name){
+    var on=String(val||'').split('、').filter(Boolean);
+    return '<div class="sel multi">'+
+      '<input type="hidden" data-f="'+name+'" value="'+esc(on.join('、'))+'">'+
+      '<button type="button" class="sel-btn" aria-haspopup="listbox" aria-expanded="false">'+
+        '<span class="sel-val'+(on.length?'':' empty')+'">'+(on.length?esc(on.join('、')):'未選擇')+'</span>'+C_CHEV+
+      '</button>'+
+      '<div class="sel-list" role="listbox" aria-multiselectable="true" hidden>'+
+        (opts||[]).map(function(o){
+          return '<button type="button" role="option" data-v="'+esc(o)+'" aria-selected="'+(on.indexOf(o)>-1)+'">'+esc(o)+C_TICK+'</button>';
+        }).join('')+
+      '</div></div>';
+  }
+  /* 單日選擇器：沿用篩選列那組 .dp 樣式，不用瀏覽器原生的 date input */
+  function ctrlDate(val,name){
+    return '<div class="datepick dp-one">'+
+      '<input type="hidden" data-f="'+name+'" value="'+esc(val||'')+'">'+
+      '<button type="button" class="dp-btn">'+C_CAL+
+        '<span class="dp-val'+(val?'':' empty')+'">'+(val?esc(val):'未設定')+'</span>'+C_CHEV+'</button>'+
+      '<div class="dp-panel" hidden>'+
+        '<div class="dp-head"><button type="button" class="dp-nav" data-mv="-1" aria-label="上個月">'+C_PREV+'</button>'+
+        '<b></b><button type="button" class="dp-nav" data-mv="1" aria-label="下個月">'+C_NEXT+'</button></div>'+
+        '<div class="dp-week"><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div>'+
+        '<div class="dp-grid"></div>'+
+      '</div></div>';
+  }
   function leadCtrl(type,opts,val,name){
     if(type==='長文字') return '<textarea class="ed" data-f="'+name+'">'+esc(val)+'</textarea>';
-    if(type==='多選'){
-      var on=String(val||'').split('、').filter(Boolean);
-      return '<span class="optchecks">'+(opts||[]).map(function(o){
-        return '<label class="optchk"><input type="checkbox" data-f="'+name+'" value="'+esc(o)+'"'+
-               (on.indexOf(o)>-1?' checked':'')+'>'+o+'</label>';
-      }).join('')+'</span>';
-    }
+    if(type==='多選') return ctrlMulti(opts,val,name);
+    if(type==='日期'||type==='date') return ctrlDate(val,name);
     if(type==='select'||type==='單選'||type==='單選下拉'||type==='刻度尺選擇'||type==='滑桿'){
       return '<select class="ed" data-f="'+name+'"><option value="">—</option>'+(opts||[]).map(function(o){
         return '<option'+(o===val?' selected':'')+'>'+esc(o)+'</option>' }).join('')+'</select>';
     }
-    var it = type==='數字' ? 'number' : (type==='日期'||type==='date') ? 'date' : 'text';
+    var it = type==='數字' ? 'number' : 'text';
     return '<input class="ed" type="'+it+'" data-f="'+name+'" value="'+esc(val)+'">';
   }
   function leadRenderCheck(){
@@ -7671,12 +7702,11 @@
           if(n.nodeType===3 && n.nodeValue.trim()){ n.nodeValue=d.core.name; break }
         }
       }
-      cells[3].textContent=d.core.phone||'—';
-      var badge=cells[4].querySelector('.badge'); if(badge) badge.textContent=d.core.kind||'來客';
-      cells[5].textContent=d.core.source||'—';
+      if('phone' in d.core) cells[3].textContent=d.core.phone||'—';
+      var badge=cells[4].querySelector('.badge');
+      if(badge && ('kind' in d.core)) badge.textContent=d.core.kind||'來客';
+      if('source' in d.core) cells[5].textContent=d.core.source||'—';
       if(d.core.visit){ cells[8].textContent=d.core.visit; row.dataset.date=d.core.visit }
-      if(d.core.assignee==='未指派') cells[9].innerHTML='<span class="unassigned">未指派</span>';
-      else cells[9].textContent=d.core.assignee;
     }
     /* 寫回抽屜自己：先把 raw 換掉，leadExitEdit 才會渲染出新值 */
     LEAD_CORE.forEach(function(c){
@@ -7688,10 +7718,102 @@
     LEAD_VALS[d.core.name]=d.tpl;
     if(oldKey && oldKey!==d.core.name) delete LEAD_VALS[oldKey];
     leadExitEdit();
-    syncLeadAssignee(d.core.assignee);
     if(window.laFilterRows) window.laFilterRows();
     toast('已更新 <b>'+d.core.name+'</b> 的資料');
   }
+  /* 多選下拉與單日選擇器的行為（都掛在 #drawer 上代理，控件是每次進編輯才長出來的） */
+  function mselSync(box){
+    var on=[].slice.call(box.querySelectorAll('[role="option"][aria-selected="true"]')).map(function(o){return o.dataset.v});
+    box.querySelector('input[data-f]').value=on.join('、');
+    var lab=box.querySelector('.sel-val');
+    lab.textContent = on.length? on.join('、') : '未選擇';
+    lab.classList.toggle('empty', !on.length);
+  }
+  function closeAllPops(except){
+    $$('#drawer .sel.open').forEach(function(w){
+      if(w===except) return;
+      w.classList.remove('open');
+      var l=w.querySelector('.sel-list'); if(l) l.hidden=true;
+      var b=w.querySelector('.sel-btn'); if(b) b.setAttribute('aria-expanded','false');
+    });
+    $$('#drawer .dp-one.open').forEach(function(b){
+      if(b===except) return;
+      b.classList.remove('open');
+      var pn=b.querySelector('.dp-panel'); if(pn) pn.hidden=true;
+    });
+  }
+  /* 下方空間不夠就往上開——彈窗裡的內容區會捲，往下開會被裁掉 */
+  function flipIfNeeded(box,pop){
+    box.classList.remove('up');
+    var host=$('#drawer .dbody')||$('#drawer');
+    var room=host.getBoundingClientRect().bottom - box.getBoundingClientRect().bottom;
+    if(room < pop.offsetHeight + 8) box.classList.add('up');
+  }
+  function dpDraw(box){
+    var inp=box.querySelector('input[data-f]'), grid=box.querySelector('.dp-grid'), ttl=box.querySelector('.dp-head b');
+    var ym=box.dataset.ym || (inp.value ? inp.value.slice(0,7) : TODAY.slice(0,7));
+    box.dataset.ym=ym;
+    var y=+ym.slice(0,4), m=+ym.slice(5,7);
+    ttl.textContent=y+' 年 '+m+' 月';
+    var lead=new Date(y,m-1,1).getDay(), days=new Date(y,m,0).getDate(), h='';
+    for(var i=0;i<lead;i++) h+='<button type="button" class="out" tabindex="-1"></button>';
+    for(var d=1;d<=days;d++){
+      var iso=y+'-'+String(m).padStart(2,'0')+'-'+String(d).padStart(2,'0');
+      h+='<button type="button" data-d="'+iso+'"'+(iso===inp.value?' class="edge s e"':'')+'>'+d+'</button>';
+    }
+    grid.innerHTML=h;
+  }
+  $('#drawer').addEventListener('click',function(e){
+    var opt=e.target.closest('.sel.multi [role="option"]');
+    if(opt){
+      e.stopPropagation();
+      opt.setAttribute('aria-selected', opt.getAttribute('aria-selected')==='true' ? 'false' : 'true');
+      mselSync(opt.closest('.sel.multi'));
+      return;
+    }
+    var mb=e.target.closest('.sel.multi .sel-btn');
+    if(mb){
+      e.stopPropagation();
+      var box=mb.closest('.sel.multi'), list=box.querySelector('.sel-list'), open=box.classList.contains('open');
+      closeAllPops(box);
+      box.classList.toggle('open',!open); list.hidden=open;
+      mb.setAttribute('aria-expanded',String(!open));
+      if(!open) flipIfNeeded(box,list);
+      return;
+    }
+    if(e.target.closest('.sel.multi .sel-list')){ e.stopPropagation(); return }
+
+    var day=e.target.closest('.dp-one .dp-grid button[data-d]');
+    if(day){
+      e.stopPropagation();
+      var dbox=day.closest('.dp-one'), di=dbox.querySelector('input[data-f]'), dv=dbox.querySelector('.dp-val');
+      di.value=day.dataset.d; dv.textContent=day.dataset.d; dv.classList.remove('empty');
+      dbox.classList.remove('open'); dbox.querySelector('.dp-panel').hidden=true;
+      return;
+    }
+    var nav=e.target.closest('.dp-one .dp-nav');
+    if(nav){
+      e.stopPropagation();
+      var nbox=nav.closest('.dp-one'), ym=nbox.dataset.ym.split('-');
+      var d2=new Date(+ym[0], (+ym[1]-1)+(+nav.dataset.mv), 1);
+      nbox.dataset.ym=d2.getFullYear()+'-'+String(d2.getMonth()+1).padStart(2,'0');
+      dpDraw(nbox);
+      return;
+    }
+    var db=e.target.closest('.dp-one .dp-btn');
+    if(db){
+      e.stopPropagation();
+      var pbox=db.closest('.dp-one'), pn=pbox.querySelector('.dp-panel'), was=pbox.classList.contains('open');
+      closeAllPops(pbox);
+      if(!was){ delete pbox.dataset.ym; dpDraw(pbox) }
+      pbox.classList.toggle('open',!was); pn.hidden=was;
+      if(!was) flipIfNeeded(pbox,pn);
+      return;
+    }
+    if(e.target.closest('.dp-one .dp-panel')){ e.stopPropagation(); return }
+  });
+  document.addEventListener('click',function(){ closeAllPops(null) });
+
   var _eb=$('#leadEditBtn');   if(_eb) _eb.addEventListener('click',leadEnterEdit);
   var _ec=$('#leadEditCancel');if(_ec) _ec.addEventListener('click',function(){ leadExitEdit(); toast('已取消編輯') });
   var _es=$('#leadEditSave');  if(_es) _es.addEventListener('click',leadSaveEdit);
@@ -7705,7 +7827,6 @@
       }
       syncLeadAssignee(name);
       addLeadHistory($('#leadAssignHist'),'更換','改派給 '+name+'（原 '+old+'）','操作：林曉青',leadNow());
-      syncAssigneeMeta('手動改派');
       toast('負責業務已更換為 <b>'+name+'</b>');
     });
   });
@@ -7719,7 +7840,6 @@
       '新增紀錄',function(v){
         if(!v.body){ toast('請輸入往來內容'); return false }
         addLeadHistory($('#leadNoteHist'),v.kind,v.body,v.by,leadNow());
-        syncAssigneeMeta();
         toast('已新增往來紀錄・<b>'+v.kind+'</b>');
       });
   });
