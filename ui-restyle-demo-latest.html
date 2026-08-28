@@ -1089,8 +1089,44 @@
   #drawer .lead-kv dd{font-size:.81rem; font-variant-numeric:tabular-nums; overflow-wrap:anywhere}
   #drawer .lead-section-head{display:flex; align-items:center; min-height:var(--ctrl-h); margin-bottom:var(--s3)}
   #drawer .lead-section-head .dsec{margin:0; padding:0; border:0}
-  #drawer .lead-section-head .circlebtn{margin-left:auto}
-  #drawer .lead-assignee{margin-bottom:var(--s3)}
+  #drawer .lead-section-head .circlebtn,#drawer .lead-section-head > .pillbtn{margin-left:auto}
+  /* 「更換負責業務」六個字，預設 5rem 收不住 */
+  #drawer .iconpill .lbl{max-width:0}
+  #drawer .iconpill:hover .lbl,#drawer .iconpill:focus-visible .lbl{max-width:7rem}
+  /* 基本資料：兩段各自佔滿整列，欄位自己排成多欄——原本左右並排，
+     一邊七列一邊十七列，高度差太多看起來像混在一起 */
+  #drawer #d1.on{display:block}
+  #drawer .lead-data-group + .lead-data-group{margin-top:var(--s6)}
+  #drawer .lead-core-grid,#drawer .lead-check-grid{
+    grid-template-columns:repeat(auto-fit,minmax(calc(var(--s8) * 5),1fr)); gap:0 var(--s6);
+  }
+  /* 負責業務：把留白換成有用的資訊，不要一張小卡撐一整頁 */
+  #drawer .assignee-card{
+    display:grid; grid-template-columns:auto 1fr; gap:var(--s3) var(--s4);
+    align-items:center; background:var(--panel); border-radius:var(--r-card); padding:var(--s5);
+  }
+  #drawer .assignee-card .av{width:2.6rem; height:2.6rem; font-size:.91rem}
+  #drawer .assignee-card .who{min-width:0}
+  #drawer .assignee-card .who b{display:block; font-size:1.01rem; font-weight:500}
+  #drawer .assignee-card .who .meta{font-size:.72rem; color:var(--muted)}
+  #drawer .assignee-meta{
+    grid-column:1/-1; display:grid; gap:var(--s3) var(--s5);
+    grid-template-columns:repeat(auto-fit,minmax(calc(var(--s8) * 3),1fr));
+    margin:0; padding-top:var(--s4); border-top:1px solid var(--line);
+  }
+  #drawer .assignee-meta dt{font-size:.66rem; color:var(--muted); letter-spacing:.04em}
+  #drawer .assignee-meta dd{font-size:.81rem; margin:0; font-variant-numeric:tabular-nums}
+  #drawer .assignee-card + .lead-section-head{margin-top:var(--s6)}
+  /* 紀錄用時間軸呈現先後——最新的那顆點是實心藍 */
+  #drawer .hist{position:relative; padding-left:1.35rem}
+  #drawer .hist::before{content:""; position:absolute; left:.42rem; top:.9rem; bottom:.9rem; width:1px; background:var(--line-2)}
+  #drawer .hist .h{position:relative}
+  #drawer .hist .h::before{
+    content:""; position:absolute; left:-1.19rem; top:.82rem; width:9px; height:9px; box-sizing:border-box;
+    border-radius:50%; background:var(--bg); border:2px solid var(--line-3);
+  }
+  #drawer .hist .h:first-child::before{background:var(--accent); border-color:var(--accent)}
+  #drawer .hist .h:first-child{border-color:var(--line-accent)}
   #drawer .buyrow .meta{font-size:.7rem; color:var(--muted)}
   .hist{display:flex; flex-direction:column; gap:.6rem}
   .hist .h{background:var(--bg); border:1px solid var(--line); border-radius:var(--r-row); padding:.55rem .8rem; font-size:.76rem}
@@ -5020,7 +5056,7 @@
       <section class="lead-data-group" aria-labelledby="leadCoreTitle">
         <div class="lead-section-head">
           <div class="dsec" id="leadCoreTitle">核心欄位</div>
-          <button class="circlebtn soft" id="leadEditBtn" type="button" aria-label="編輯資料" data-tip="編輯"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9a2.1 2.1 0 0 0-3-3L5 17v3z"/><path d="M14.5 6.5l3 3"/></svg></button>
+          <button class="pillbtn iconpill solid" id="leadEditBtn" type="button" aria-label="編輯資料"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9a2.1 2.1 0 0 0-3-3L5 17v3z"/><path d="M14.5 6.5l3 3"/></svg><span class="lbl">編輯</span></button>
         </div>
         <dl class="lead-data-grid lead-core-grid" id="leadCoreGrid">
           <div class="lead-kv"><dt>姓名</dt><dd data-lead-field="name">陳威宇</dd></div>
@@ -5033,7 +5069,7 @@
         </dl>
       </section>
       <section class="lead-data-group" aria-labelledby="leadCheckTitle">
-        <div class="dsec" id="leadCheckTitle">勾勾表欄位</div>
+        <div class="lead-section-head"><div class="dsec" id="leadCheckTitle">勾勾表欄位</div></div>
         <dl class="lead-data-grid lead-check-grid" id="leadCheckGrid"></dl>
       </section>
       <div class="lead-editfoot" id="leadEditFoot" hidden>
@@ -5042,10 +5078,20 @@
       </div>
     </div>
     <div class="dpane" id="d2">
-      <div class="dsec">目前負責業務</div>
-      <div class="buyrow lead-assignee"><span class="av" id="leadAssigneeAvatar">張</span><b id="leadAssigneeName">張家豪</b><span class="p meta">艾德霍客</span></div>
-      <button class="pillbtn" id="leadAssignBtn" type="button">更換負責業務</button>
-      <div class="dsec">替換紀錄</div>
+      <div class="lead-section-head">
+        <div class="dsec">目前負責業務</div>
+        <button class="pillbtn iconpill solid" id="leadAssignBtn" type="button" aria-label="更換負責業務"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8.5h13M13.5 5l3.5 3.5-3.5 3.5"/><path d="M20 15.5H7M10.5 12L7 15.5l3.5 3.5"/></svg><span class="lbl">更換負責業務</span></button>
+      </div>
+      <div class="assignee-card">
+        <span class="av" id="leadAssigneeAvatar">張</span>
+        <div class="who"><b id="leadAssigneeName">張家豪</b><span class="meta">艾德霍客・現場一組</span></div>
+        <dl class="assignee-meta">
+          <div><dt>接手時間</dt><dd id="leadAssignSince">—</dd></div>
+          <div><dt>指派方式</dt><dd id="leadAssignHow">現場排班</dd></div>
+          <div><dt>接手後互動</dt><dd id="leadAssignTouch">—</dd></div>
+        </dl>
+      </div>
+      <div class="lead-section-head"><div class="dsec">替換紀錄</div></div>
       <div class="hist" id="leadAssignHist">
         <div class="h">
           <div class="top"><span class="chip">指派</span><time>2026-08-19 14:30</time></div>
@@ -5057,7 +5103,7 @@
     <div class="dpane on" id="d3">
       <div class="lead-section-head">
         <div class="dsec">往來紀錄</div>
-        <button class="circlebtn soft" id="leadNoteBtn" type="button" aria-label="新增往來紀錄" data-tip="新增往來紀錄"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16"/></svg></button>
+        <button class="pillbtn iconpill solid" id="leadNoteBtn" type="button" aria-label="新增往來紀錄"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span class="lbl">新增紀錄</span></button>
       </div>
       <div class="hist" id="leadNoteHist">
         <div class="h">
@@ -5080,7 +5126,7 @@
     <div class="dpane" id="d4">
       <div class="lead-section-head">
         <div class="dsec">購買紀錄</div>
-        <button class="circlebtn soft" id="leadPurchaseBtn" type="button" aria-label="新增購買（下訂）" data-tip="新增購買（下訂）"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16"/></svg></button>
+        <button class="pillbtn iconpill solid" id="leadPurchaseBtn" type="button" aria-label="新增購買（下訂）"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span class="lbl">新增下訂</span></button>
       </div>
       <div class="dnote">從銷控表選擇待售戶別或車位；建立下訂後，銷控狀態會同步改為「已訂」。</div>
       <div class="dsec" id="leadPurchaseSummary">主建物 1 戶・加購車位 1 個</div>
@@ -7461,6 +7507,14 @@
     if(nm) nm.textContent=n;
     var field=$('#drawer [data-lead-field="assignee"]'); if(field) field.textContent=n;
   }
+  /* 負責業務卡的三個小欄位：接手時間抓最新一筆替換紀錄，互動次數數往來紀錄 */
+  function syncAssigneeMeta(how){
+    var h=$('#leadAssignHist'), first=h? h.querySelector('.h time') : null;
+    var since=$('#leadAssignSince'); if(since) since.textContent=first? first.textContent.trim() : (($('#drawer [data-lead-field="created"]')||{textContent:'—'}).textContent.trim());
+    var touch=$('#leadAssignTouch');
+    if(touch){ var n=$$('#leadNoteHist .h').length; touch.textContent=n? n+' 次' : '尚無紀錄' }
+    if(how){ var hw=$('#leadAssignHow'); if(hw) hw.textContent=how }
+  }
   function updatePurchaseSummary(){
     var list=$('#leadPurchaseList'), sum=$('#leadPurchaseSummary'); if(!list||!sum) return;
     var units=list.querySelectorAll('.buyrow[data-kind="unit"]').length;
@@ -7484,7 +7538,7 @@
       syncLeadAssignee(values.assignee);
     }
     updatePurchaseSummary();
-    leadExitEdit(); leadResetTabs(); leadRenderCheck();
+    leadExitEdit(); leadResetTabs(); leadRenderCheck(); syncAssigneeMeta();
     $('#drawerMask').classList.add('show'); $('#drawer').classList.add('show')
   }
   function closeDrawer(){ $('#drawerMask').classList.remove('show'); $('#drawer').classList.remove('show') }
@@ -7651,6 +7705,7 @@
       }
       syncLeadAssignee(name);
       addLeadHistory($('#leadAssignHist'),'更換','改派給 '+name+'（原 '+old+'）','操作：林曉青',leadNow());
+      syncAssigneeMeta('手動改派');
       toast('負責業務已更換為 <b>'+name+'</b>');
     });
   });
@@ -7664,6 +7719,7 @@
       '新增紀錄',function(v){
         if(!v.body){ toast('請輸入往來內容'); return false }
         addLeadHistory($('#leadNoteHist'),v.kind,v.body,v.by,leadNow());
+        syncAssigneeMeta();
         toast('已新增往來紀錄・<b>'+v.kind+'</b>');
       });
   });
