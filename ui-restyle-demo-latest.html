@@ -1265,6 +1265,30 @@
   #page-analytics .ana2-lights i.g{background:var(--heat5)}
   #page-analytics .ana2-lights i.y{background:var(--warm)}
 
+  /* — analytics2 第 5 批：對業主章＋跨案 — */
+  #page-analytics .ana2-trust{display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:var(--grid-gap)}
+  #page-analytics .ana2-trust-score{display:flex; align-items:baseline; gap:var(--s3); margin-bottom:var(--s4)}
+  #page-analytics .ana2-trust-score b{font-size:2.12rem; font-weight:300; line-height:1; font-variant-numeric:tabular-nums}
+  #page-analytics .ana2-trust-score span{font-size:.68rem; color:var(--muted)}
+  #page-analytics .ana2-report-preview{background:var(--panel); border:1px solid var(--line); border-radius:var(--r-card); padding:var(--s5); display:flex; flex-direction:column; gap:var(--s3)}
+  #page-analytics .ana2-report-preview h4{font-size:.76rem; font-weight:500; letter-spacing:.06em; margin:0}
+  #page-analytics .ana2-report-preview .blockrow{display:grid; grid-template-columns:repeat(4,1fr); gap:var(--s2)}
+  #page-analytics .ana2-report-preview .blockrow > div{background:var(--bg); border-radius:var(--r-mini); padding:var(--s2) var(--s3)}
+  #page-analytics .ana2-report-preview .blockrow b{display:block; font-size:.83rem; font-weight:500; font-variant-numeric:tabular-nums}
+  #page-analytics .ana2-report-preview .blockrow span{font-size:.64rem; color:var(--muted)}
+  #page-analytics .ana2-report-preview p{font-size:.68rem; color:var(--muted); margin:0; line-height:1.7}
+  #page-analytics .ana2-report-preview p b{color:var(--ink); font-weight:500}
+  #page-analytics .ana2-fieldsw{display:flex; flex-direction:column}
+  #page-analytics .ana2-fieldsw > div{display:flex; align-items:center; gap:var(--s3); padding:var(--s2) 0; border-bottom:1px solid var(--line); font-size:.76rem}
+  #page-analytics .ana2-fieldsw > div:last-child{border-bottom:none}
+  #page-analytics .ana2-fieldsw .switch{margin-left:auto}
+  #page-analytics .ana2-fieldsw > div.locked{color:var(--muted)}
+  #page-analytics .ana2-fieldsw > div.locked .lock{margin-left:auto; color:var(--hot); font-size:.68rem; display:inline-flex; align-items:center; gap:var(--s1)}
+  #page-analytics .ana2-flowmx{width:auto; min-width:60%}
+  #page-analytics .ana2-flowmx td.self{color:var(--line-3)}
+  #page-analytics .ana2-flowmx td.hotcell{background:var(--tint); font-weight:500}
+
+
   /* ── 設計規範頁 ── */
   .guide .gsec{margin-bottom:var(--s8)}
   .guide h2{font-weight:500; font-size:1.11rem; letter-spacing:.06em; margin-bottom:.9rem; display:flex; align-items:baseline; gap:.7rem}
@@ -4333,11 +4357,116 @@
                 </div>
               </div>
             </article>
+
+            <article class="acard ana2-wide" data-eng="new schema">
+              <div class="ana2-cardhead">
+                <div><h3>E4 跨案轉介</h3><span class="ana2-caption">這案不合的客，放到別案就成交——多案 CRM 的差異化</span></div>
+                <div class="engnote"><span class="chip eng-new">🆕 新增功能</span><span class="chip eng-schema">⚙ 動結構</span><small>需：足跡事件化＋同意範圍欄位</small></div>
+              </div>
+              <div class="ana2-order-layout">
+                <div>
+                  <div class="ana2-subhead">案間重疊組數（列→欄）</div>
+                  <div class="ana2-source-table-wrap">
+                    <table class="ana2-table ana2-flowmx">
+                      <thead><tr><th></th><th>青園綠境</th><th>恆山千隅</th><th>秴楓</th></tr></thead>
+                      <tbody>
+                        <tr><td>青園綠境</td><td class="self">—</td><td class="hotcell">31</td><td>12</td></tr>
+                        <tr><td>恆山千隅</td><td class="hotcell">31</td><td class="self">—</td><td>8</td></tr>
+                        <tr><td>秴楓</td><td>12</td><td>8</td><td class="self">—</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="ana2-caption">公司層級以電話去重；成交歸成交案、來源仍認首次來源並標「跨案導入」。</div>
+                </div>
+                <div>
+                  <div class="ana2-subhead">可轉案機會・來自 B1 高意願無匹配</div>
+                  <div class="ana2-todo">
+                    <div><b>許文彬</b><span class="chip hot">A 級</span><span>青園無 4 房匹配 → 秴楓 B3-7F 相符</span><button class="pillbtn" type="button" data-demo-toast>建立轉介</button></div>
+                    <div><b>楊雅筑</b><span class="chip">B 級</span><span>預算 1,100 萬 → 恆山千隅 2 房低樓層</span><button class="pillbtn" type="button" data-demo-toast>建立轉介</button></div>
+                  </div>
+                  <div class="ana2-caption">涉不同公司或不同個資利用目的<b>不得自動轉案</b>——先檢查授權與同意範圍；足跡要事件化（project_id／entered_at／consent_scope），不可只存一串案名。</div>
+                </div>
+              </div>
+            </article>
           </div>
         </div>
 
         <div class="ana2-panel" id="ana2-owner" role="tabpanel" aria-labelledby="ana2-tab-owner" hidden>
-          <div class="ana2-empty">第 5 批補上</div>
+          <div class="ana2-grid">
+
+            <article class="acard ana2-wide" data-eng="new">
+              <div class="ana2-cardhead">
+                <div><h3>F1 來人真實性稽核板</h3><span class="ana2-caption">業主最陰暗的懷疑是「組數是不是灌的」——用可稽核換信任</span></div>
+                <div class="engnote"><span class="chip eng-new">🆕 新增功能</span></div>
+              </div>
+              <div class="ana2-trust">
+                <div>
+                  <div class="ana2-trust-score"><b>87</b><span>真實性總分／100・業主版只出這個數字＋抽查機制</span></div>
+                  <div class="ana2-quality-list">
+                    <button class="ana2-quality-row" type="button" data-demo-toast aria-label="開啟明細"><span>電話重複率</span><span class="ana2-quality-track"><i class="ana2-quality-fill" style="--quality:12%"></i></span><b>1.2%</b><small>門檻 ≤3%</small></button>
+                    <button class="ana2-quality-row" type="button" data-demo-toast aria-label="開啟明細"><span>補建率</span><span class="ana2-quality-track"><i class="ana2-quality-fill" style="--quality:40%"></i></span><b>6%</b><small>門檻 ≤15%</small></button>
+                    <button class="ana2-quality-row low" type="button" data-demo-toast aria-label="開啟明細"><span>幽靈客率</span><span class="ana2-quality-track"><i class="ana2-quality-fill" style="--quality:55%"></i></span><b>11%</b><small>門檻 ≤10%</small></button>
+                    <button class="ana2-quality-row" type="button" data-demo-toast aria-label="開啟明細"><span>勾勾表完整度</span><span class="ana2-quality-track"><i class="ana2-quality-fill" style="--quality:78%"></i></span><b>78%</b><small>門檻 ≥70%</small></button>
+                  </div>
+                  <div class="ana2-caption">補建率＝建檔比來訪晚超過 1 天；幽靈客＝建檔 30 天零往來零回訪。總分跌破 70 → 月報前必須先處理。</div>
+                </div>
+                <div>
+                  <div class="ana2-subhead">嫌疑名單抽查・供隨機回撥</div>
+                  <div class="ana2-source-table-wrap">
+                    <table class="ana2-table">
+                      <thead><tr><th>疑點</th><th>對象</th><th>建檔業務</th><th>狀態</th></tr></thead>
+                      <tbody>
+                        <tr><td>同電話兩姓名</td><td>0912-334-***×2</td><td>陳冠廷</td><td><span class="chip warm">待回撥</span></td></tr>
+                        <tr><td>10 分鐘連建 6 筆</td><td>08-24 14:0x 批次</td><td>郭士銘</td><td><span class="chip warm">待回撥</span></td></tr>
+                        <tr><td>建檔 30 天零互動</td><td>7 月批 4 組</td><td>—</td><td><span class="chip">觀察</span></td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <button class="pillbtn" type="button" data-demo-toast>隨機抽 10 組回撥</button>
+                  <div class="ana2-caption">細項只在內部——給業主看太多＝教會市場怎麼灌水，也打擊自家士氣。敢給業主稽核工具的代銷，全台中沒幾家。</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="acard ana2-wide" data-eng="new">
+              <div class="ana2-cardhead">
+                <div><h3>F2 業主報表產生器</h3><span class="ana2-caption">邊界寫進系統而不是靠人記得——白名單、防呆、留痕</span></div>
+                <div class="engnote"><span class="chip eng-new">🆕 新增功能</span></div>
+              </div>
+              <div class="ana2-trust">
+                <div>
+                  <div class="ana2-subhead">週報預覽・業主拿到的樣子</div>
+                  <div class="ana2-report-preview" role="img" aria-label="業主週報縮樣：結果四格、判讀、已採取行動、需業主決策">
+                    <h4>青園綠境・第 34 週報告</h4>
+                    <div class="blockrow">
+                      <div><b>38 組</b><span>本週來人</span></div>
+                      <div><b>9 組</b><span>回籠</span></div>
+                      <div><b>3 戶</b><span>淨簽約</span></div>
+                      <div><b>42 戶</b><span>剩餘可售</span></div>
+                    </div>
+                    <p><b>判讀</b>：來客量回升，回籠沒有同步——卡在回訪經營不在廣告；2 房需求仍大於庫存。</p>
+                    <p><b>已採取行動</b>：週三起回訪專案（張家豪負責，下週三檢查）；FB 預算維持。</p>
+                    <p><b>需要業主決策</b>：三房樣品屋實景素材（最晚 9/05）——影響下一檔素材製作。</p>
+                  </div>
+                </div>
+                <div>
+                  <div class="ana2-subhead">欄位白名單・預設全關逐欄開</div>
+                  <div class="ana2-fieldsw">
+                    <div><span>量體與里程碑</span><button class="switch" type="button" role="switch" aria-checked="true" aria-label="量體與里程碑 對外顯示"><span class="knob"></span></button></div>
+                    <div><span>來源成效（含成熟 cohort 標注）</span><button class="switch" type="button" role="switch" aria-checked="true" aria-label="來源成效 對外顯示"><span class="knob"></span></button></div>
+                    <div><span>成交價帶（彙總）</span><button class="switch" type="button" role="switch" aria-checked="true" aria-label="成交價帶 對外顯示"><span class="knob"></span></button></div>
+                    <div><span>讓價率（區間呈現）</span><button class="switch" type="button" role="switch" aria-checked="false" aria-label="讓價率 對外顯示"><span class="knob"></span></button></div>
+                    <div class="locked"><span>底價／底價空間</span><span class="lock">🔒 硬編碼永不可開</span></div>
+                    <div class="locked"><span>獎金費率／保留款</span><span class="lock">🔒 硬編碼永不可開</span></div>
+                    <div class="locked"><span>業務個人排行</span><span class="lock">🔒 硬編碼永不可開</span></div>
+                  </div>
+                  <div class="ana2-actions"><button class="pillbtn solid" type="button" data-demo-toast>輸出 PDF</button><span class="ana2-caption">每份 PDF 留產出人＋時間＋白名單快照</span></div>
+                  <div class="ana2-caption">防呆註記引擎：分母 &lt;10 自動改「x／y 組」不顯示 %；複選媒體自動附攤提說明；補建率 &gt;10% 自動附說明段。對外角色的查詢層根本取不到底價——不是前端隱藏。</div>
+                </div>
+              </div>
+            </article>
+
+          </div>
         </div>
 
         <div class="ana2-panel" id="ana2-data" role="tabpanel" aria-labelledby="ana2-tab-data" hidden>
@@ -7546,6 +7675,12 @@
 
 
 
+  try{ /* analytics2：F2 白名單開關（純示意，切狀態即可） */
+    document.addEventListener('click',function(e){
+      var sw=e.target.closest('#page-analytics .ana2-fieldsw .switch'); if(!sw) return;
+      sw.setAttribute('aria-checked', sw.getAttribute('aria-checked')==='true' ? 'false' : 'true');
+    });
+  }catch(e){console.warn('frag ana2 fieldsw',e)}
   try{ /* analytics2：D7 雙版本切換 */
     var ana2Mode=document.getElementById('ana2SalesMode');
     if(ana2Mode){
