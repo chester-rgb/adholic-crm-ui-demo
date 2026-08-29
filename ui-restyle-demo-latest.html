@@ -1047,13 +1047,89 @@
   #page-analytics .ana2-table tbody tr:last-child td{border-bottom:none}
   #page-analytics .ana2-table td:nth-child(2){white-space:nowrap}
   #page-analytics .ana2-table .chip{font-size:.64rem}
+  #page-analytics .ana2-mirror{display:flex; flex-direction:column; gap:var(--s2)}
+  #page-analytics .ana2-mirror-head,#page-analytics .ana2-mirror-row{display:grid; grid-template-columns:minmax(0,1fr) 5rem minmax(0,1fr) 4rem; align-items:center; gap:var(--s3)}
+  #page-analytics .ana2-mirror-head{font-size:.68rem; color:var(--muted); letter-spacing:.1em; padding-bottom:var(--s2); border-bottom:1px solid var(--line)}
+  #page-analytics .ana2-mirror-head span:first-child{text-align:right}
+  #page-analytics .ana2-mirror-row{font-size:.76rem; min-height:var(--ctrl-h)}
+  #page-analytics .ana2-mirror-side{display:flex; align-items:center; gap:var(--s2); min-width:0}
+  #page-analytics .ana2-mirror-side.demand{justify-content:flex-end}
+  #page-analytics .ana2-mirror-track{display:flex; width:100%; height:var(--s4); overflow:hidden; background:var(--fill-3); border-radius:var(--r-mini)}
+  #page-analytics .ana2-mirror-side.demand .ana2-mirror-track{justify-content:flex-end}
+  #page-analytics .ana2-mirror-fill{display:block; width:var(--bar); height:100%; background:var(--chart-1)}
+  #page-analytics .ana2-mirror-side.supply .ana2-mirror-fill{background:var(--chart-3)}
+  #page-analytics .ana2-mirror-value{min-width:2.5rem; font-variant-numeric:tabular-nums}
+  #page-analytics .ana2-mirror-side.demand .ana2-mirror-value{text-align:right}
+  #page-analytics .ana2-mirror-label{text-align:center; font-weight:500; border-left:1px solid var(--line-2); border-right:1px solid var(--line-2)}
+  #page-analytics .ana2-mirror-gap{text-align:right; font-variant-numeric:tabular-nums; color:var(--muted)}
+  #page-analytics .ana2-mirror-row.gap .ana2-mirror-label,#page-analytics .ana2-mirror-row.gap .ana2-mirror-gap{color:var(--warm)}
+  #page-analytics .ana2-match-list{margin-top:var(--s6); padding-top:var(--s4); border-top:1px solid var(--line-2)}
+  #page-analytics .ana2-match-row{display:grid; grid-template-columns:minmax(7rem,1.1fr) auto minmax(8rem,1fr) minmax(8rem,1fr) minmax(10rem,1.2fr) auto; align-items:center; gap:var(--s3); padding:var(--s2) 0; border-bottom:1px solid var(--line); font-size:.76rem}
+  #page-analytics .ana2-match-row:last-child{border-bottom:none}
+  #page-analytics .ana2-match-row.head{font-size:.68rem; color:var(--muted); letter-spacing:.1em; padding-top:0}
+  #page-analytics .ana2-match-row b{font-weight:500}
+  #page-analytics .ana2-match-row .pillbtn{height:var(--ctrl-h); padding:0 var(--s3); font-size:.7rem;}
+  #page-analytics .ana2-risk-list{display:flex; flex-direction:column}
+  #page-analytics .ana2-risk-row{display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:center; gap:var(--s3); padding:var(--s2) 0; border-bottom:1px solid var(--line); font-size:.76rem}
+  #page-analytics .ana2-risk-row:last-child{border-bottom:none}
+  #page-analytics .ana2-risk-row b{font-weight:400}
+  #page-analytics .ana2-risk-row .pillbtn{height:var(--ctrl-h); padding:0 var(--s3); font-size:.7rem;}
+  #page-analytics .ana2-board-wrap{margin-top:var(--s5); padding-top:var(--s4); border-top:1px solid var(--line-2)}
+  #page-analytics .ana2-board{display:grid; grid-template-columns:3.5rem repeat(4,minmax(0,1fr)); gap:var(--s1)}
+  #page-analytics .ana2-board-label{display:flex; align-items:center; justify-content:center; min-height:var(--ctrl-h); font-size:.68rem; color:var(--muted)}
+  #page-analytics .ana2-board-cell{min-height:var(--ctrl-h); padding:0 var(--s2); background:var(--fill); border:1px solid var(--line); border-radius:var(--r-mini); font-size:.68rem; font-variant-numeric:tabular-nums}
+  #page-analytics .ana2-board-cell.watch{background:var(--warm-tint); border-color:var(--warm); color:var(--warm)}
+  #page-analytics .ana2-board-cell.high{background:var(--hot-tint); border-color:var(--hot); color:var(--hot)}
+  #page-analytics .ana2-board-cell.sold{background:var(--fill-2); color:var(--muted)}
+  #page-analytics .ana2-board-legend{display:flex; align-items:center; gap:var(--s4); flex-wrap:wrap; margin-top:var(--s3); font-size:.68rem; color:var(--muted)}
+  #page-analytics .ana2-board-legend span{display:inline-flex; align-items:center; gap:var(--s1)}
+  #page-analytics .ana2-board-legend i{width:var(--s3); height:var(--s3); border-radius:var(--r-mini); background:var(--fill)}
+  #page-analytics .ana2-board-legend .watch{background:var(--warm-tint)}
+  #page-analytics .ana2-board-legend .high{background:var(--hot-tint)}
+  #page-analytics .ana2-board-legend .sold{background:var(--fill-2)}
+  #page-analytics .ana2-price-layout{display:grid; grid-template-columns:minmax(0,1.45fr) minmax(18rem,.75fr); gap:var(--s6); align-items:stretch}
+  #page-analytics .ana2-price-chart{display:flex; flex-direction:column; gap:var(--s2)}
+  #page-analytics .ana2-price-chart svg{width:100%; min-height:15rem; display:block; overflow:visible}
+  #page-analytics .ana2-price-side{display:flex; flex-direction:column; gap:var(--s4)}
+  #page-analytics .ana2-depth{padding:var(--s4); background:var(--bg); border-radius:var(--r-row)}
+  #page-analytics .ana2-depth-head{display:flex; align-items:baseline; justify-content:space-between; gap:var(--s3); margin-bottom:var(--s3)}
+  #page-analytics .ana2-depth-head span{font-size:.68rem; color:var(--muted); letter-spacing:.1em}
+  #page-analytics .ana2-depth-head b{font-size:1.59rem; font-weight:400; font-variant-numeric:tabular-nums}
+  #page-analytics .ana2-depth-gauge{position:relative; height:var(--s3); background:var(--fill-3); border-radius:var(--r-pill)}
+  #page-analytics .ana2-depth-gauge > i{display:block; width:var(--depth); height:100%; background:var(--chart-1); border-radius:inherit}
+  #page-analytics .ana2-depth-mark{position:absolute; top:calc(var(--s1) * -1); bottom:calc(var(--s1) * -1); left:85%; border-left:2px solid var(--hot)}
+  #page-analytics .ana2-depth-note{margin-top:var(--s2); font-size:.68rem; color:var(--muted); line-height:1.7}
+  #page-analytics .ana2-depth-note b{color:var(--hot); font-weight:500}
+  #page-analytics .ana2-sensitive{margin-top:var(--s4); padding:var(--s3) var(--s4); background:var(--fill); border-radius:var(--r-row); font-size:.68rem; color:var(--muted); line-height:1.7}
+  #page-analytics .ana2-order-layout{display:grid; grid-template-columns:minmax(0,1.25fr) minmax(18rem,.75fr); gap:var(--s6); align-items:start}
+  #page-analytics .ana2-hold-list{display:flex; flex-direction:column}
+  #page-analytics .ana2-hold-row{display:grid; grid-template-columns:4.5rem minmax(0,1fr) minmax(0,1fr) 3.5rem 3.5rem; align-items:center; gap:var(--s3); padding:var(--s3) 0; border-bottom:1px solid var(--line); font-size:.76rem}
+  #page-analytics .ana2-hold-row:last-child{border-bottom:none}
+  #page-analytics .ana2-hold-row.head{font-size:.68rem; color:var(--muted); letter-spacing:.1em; padding-top:0}
+  #page-analytics .ana2-hold-row b{font-weight:500}
+  #page-analytics .ana2-hold-row span:nth-last-child(-n+2){text-align:right; font-variant-numeric:tabular-nums}
+  #page-analytics .ana2-hold-row.overdue span:nth-last-child(-n+2){color:var(--hot)}
+  #page-analytics .ana2-source-chart{display:flex; flex-direction:column; gap:var(--s3)}
+  #page-analytics .ana2-source-row{display:grid; grid-template-columns:5.5rem minmax(0,1fr) 3rem; align-items:center; gap:var(--s3); font-size:.76rem}
+  #page-analytics .ana2-source-bars{display:flex; flex-direction:column; gap:var(--s1)}
+  #page-analytics .ana2-source-bars i{display:block; height:var(--s2); width:var(--share); border-radius:var(--r-pill); background:var(--chart-1)}
+  #page-analytics .ana2-source-bars i.order{background:var(--chart-3)}
+  #page-analytics .ana2-source-row > b{text-align:right; font-weight:500; font-variant-numeric:tabular-nums}
+  #page-analytics .ana2-reason-list{display:flex; flex-direction:column; gap:var(--s2); margin-top:var(--s5); padding-top:var(--s4); border-top:1px solid var(--line-2)}
+  #page-analytics .ana2-reason-row{display:grid; grid-template-columns:5.5rem minmax(0,1fr) 2rem; align-items:center; gap:var(--s3); font-size:.68rem}
+  #page-analytics .ana2-reason-track{height:var(--s2); background:var(--fill-3); border-radius:var(--r-pill); overflow:hidden}
+  #page-analytics .ana2-reason-fill{display:block; width:var(--reason); height:100%; background:var(--chart-2); border-radius:inherit}
+  #page-analytics .ana2-reason-row b{text-align:right; font-weight:500; font-variant-numeric:tabular-nums}
   @media (max-width:1020px){
     #page-analytics .ana2-legend{width:100%; justify-content:flex-start; margin-left:0}
     #page-analytics .ana2-grid > .acard{grid-column:1 / -1}
     #page-analytics .ana2-action-grid{grid-template-columns:1fr}
     #page-analytics .ana2-pace-layout{grid-template-columns:1fr}
+    #page-analytics .ana2-price-layout,#page-analytics .ana2-order-layout{grid-template-columns:1fr}
     #page-analytics .ana2-quality-row{grid-template-columns:7rem minmax(0,1fr) 3rem}
     #page-analytics .ana2-quality-row > small{grid-column:2 / -1; text-align:left}
+    #page-analytics .ana2-match-row{grid-template-columns:minmax(7rem,1fr) auto minmax(8rem,1fr) minmax(9rem,1fr) auto}
+    #page-analytics .ana2-match-row > :nth-child(4){display:none}
   }
 
   /* ── 設計規範頁 ── */
@@ -3568,7 +3644,126 @@
         </div>
 
         <div class="ana2-panel" id="ana2-product" role="tabpanel" aria-labelledby="ana2-tab-product" hidden>
-          <div class="ana2-empty">第 2 批補上</div>
+          <div class="ana2-grid">
+            <article class="acard ana2-wide" data-eng="new">
+              <div class="ana2-cardhead">
+                <div><h3>B1 供需缺口對照</h3><span class="ana2-caption">有效需求 vs 目前可售・資料截至 2026-08-26 14:30</span></div>
+                <div class="engnote"><span class="chip eng-new">🆕 新增功能</span></div>
+              </div>
+              <div class="ana2-verdict"><span class="dot warm"></span><span><b>2 房需求比庫存多 15 個百分點</b>；4 房供給反而多 16 個百分點，下一檔不宜再用單一客群訴求。</span></div>
+              <div class="ana2-mirror" role="img" aria-label="以中軸0向左右展開，呈現2房、3房、4房與店面的需求占比和可售占比背靠背橫條圖">
+                <div class="ana2-mirror-head"><span>需求占比</span><span>0｜房型｜0</span><span>可售占比</span><span>缺口</span></div>
+                <div class="ana2-mirror-row gap">
+                  <span class="ana2-mirror-side demand"><b class="ana2-mirror-value">46%</b><span class="ana2-mirror-track"><i class="ana2-mirror-fill" style="--bar:46%"></i></span></span>
+                  <span class="ana2-mirror-label">2 房</span>
+                  <span class="ana2-mirror-side supply"><span class="ana2-mirror-track"><i class="ana2-mirror-fill" style="--bar:31%"></i></span><b class="ana2-mirror-value">31%</b></span>
+                  <span class="ana2-mirror-gap">＋15pp</span>
+                </div>
+                <div class="ana2-mirror-row">
+                  <span class="ana2-mirror-side demand"><b class="ana2-mirror-value">29%</b><span class="ana2-mirror-track"><i class="ana2-mirror-fill" style="--bar:29%"></i></span></span>
+                  <span class="ana2-mirror-label">3 房</span>
+                  <span class="ana2-mirror-side supply"><span class="ana2-mirror-track"><i class="ana2-mirror-fill" style="--bar:28%"></i></span><b class="ana2-mirror-value">28%</b></span>
+                  <span class="ana2-mirror-gap">＋1pp</span>
+                </div>
+                <div class="ana2-mirror-row">
+                  <span class="ana2-mirror-side demand"><b class="ana2-mirror-value">18%</b><span class="ana2-mirror-track"><i class="ana2-mirror-fill" style="--bar:18%"></i></span></span>
+                  <span class="ana2-mirror-label">4 房</span>
+                  <span class="ana2-mirror-side supply"><span class="ana2-mirror-track"><i class="ana2-mirror-fill" style="--bar:34%"></i></span><b class="ana2-mirror-value">34%</b></span>
+                  <span class="ana2-mirror-gap">−16pp</span>
+                </div>
+                <div class="ana2-mirror-row">
+                  <span class="ana2-mirror-side demand"><b class="ana2-mirror-value">7%</b><span class="ana2-mirror-track"><i class="ana2-mirror-fill" style="--bar:7%"></i></span></span>
+                  <span class="ana2-mirror-label">店面</span>
+                  <span class="ana2-mirror-side supply"><span class="ana2-mirror-track"><i class="ana2-mirror-fill" style="--bar:7%"></i></span><b class="ana2-mirror-value">7%</b></span>
+                  <span class="ana2-mirror-gap">0pp</span>
+                </div>
+              </div>
+              <div class="ana2-chart-meta"><span class="ana2-chart-key">有效需求占比</span><span class="ana2-chart-key phone">可售戶占比</span></div>
+              <div class="ana2-match-list">
+                <div class="ana2-subhead">高意願無匹配清單・示範 3 組</div>
+                <div class="ana2-match-row head"><span>姓名</span><span>分級</span><span>需求</span><span>預算</span><span>最近差距</span><span>動作</span></div>
+                <div class="ana2-match-row"><b>許文彬</b><span class="chip hot">A 級</span><span>4 房・A 棟</span><span>2,200–2,500 萬</span><span>最接近戶別差 320 萬</span><button class="pillbtn" type="button" data-demo-toast>轉介</button></div>
+                <div class="ana2-match-row"><b>蔡明翰</b><span class="chip">B 級</span><span>3 房・中高樓層</span><span>1,500–1,700 萬</span><span>最接近戶別差 150 萬</span><button class="pillbtn" type="button" data-demo-toast>轉介</button></div>
+                <div class="ana2-match-row"><b>楊雅筑</b><span class="chip">B 級</span><span>2 房・平車</span><span>1,100–1,300 萬</span><span>最接近戶別差 180 萬</span><button class="pillbtn" type="button" data-demo-toast>轉介</button></div>
+              </div>
+              <div class="ana2-caption">口徑｜需求分母 66 組有效需求客（複選以 1/k 加總）；供給分母 29 戶可售（車位排除）。預算交集＝需求上下界與戶別總價區間有重疊；樣本 &lt;20 不下結論。</div>
+            </article>
+
+            <article class="acard ana2-wide" data-eng="schema upgrade">
+              <div class="ana2-cardhead">
+                <div><h3>B2 戶別滯銷風險</h3><span class="ana2-caption">前 5 個風險產品群＋銷控空間定位</span></div>
+                <div class="engnote">
+                  <span class="chip eng-schema">⚙ 動結構</span><small>需：銷控狀態變更紀錄 unit_status_history</small>
+                  <span class="chip eng-upgrade">升級</span><small>升級自：產品去化</small>
+                </div>
+              </div>
+              <div class="ana2-risk-list" aria-label="滯銷風險前五群">
+                <div class="ana2-risk-row"><span class="dot hot"></span><b>A 棟 2 房邊間 6 戶・可售 21%・零淨簽 8 週</b><button class="pillbtn danger" type="button" data-demo-toast>查戶別</button></div>
+                <div class="ana2-risk-row"><span class="dot hot"></span><b>B 棟 4 房中高樓 5 戶・可售 17%・零淨簽 7 週</b><button class="pillbtn danger" type="button" data-demo-toast>查戶別</button></div>
+                <div class="ana2-risk-row"><span class="dot warm"></span><b>A 棟 3 房低樓層 4 戶・可售 14%・近 8 週淨退 1 戶</b><button class="pillbtn" type="button" data-demo-toast>查戶別</button></div>
+                <div class="ana2-risk-row"><span class="dot warm"></span><b>C 棟 4 房西向 3 戶・可售 10%・零淨簽 5 週</b><button class="pillbtn" type="button" data-demo-toast>查戶別</button></div>
+                <div class="ana2-risk-row"><span class="dot ac"></span><b>B 棟店面 2 戶・可售 7%・近 8 週淨簽 1 戶</b><button class="pillbtn" type="button" data-demo-toast>查戶別</button></div>
+              </div>
+              <div class="ana2-board-wrap">
+                <div class="ana2-subhead">迷你銷控棋盤・A2 垂直滯銷線</div>
+                <div class="ana2-board" aria-label="A1、A2、A3、B1四個戶別在9至12樓的滯銷風險棋盤">
+                  <span class="ana2-board-label">樓層</span><span class="ana2-board-label">A1</span><span class="ana2-board-label">A2</span><span class="ana2-board-label">A3</span><span class="ana2-board-label">B1</span>
+                  <span class="ana2-board-label">12F</span><button class="ana2-board-cell sold" type="button" data-demo-toast aria-label="A1 12樓，已售，開啟病歷卡">A1-12F</button><button class="ana2-board-cell high" type="button" data-demo-toast aria-label="A2 12樓，高風險，開啟病歷卡">A2-12F</button><button class="ana2-board-cell" type="button" data-demo-toast aria-label="A3 12樓，低風險，開啟病歷卡">A3-12F</button><button class="ana2-board-cell sold" type="button" data-demo-toast aria-label="B1 12樓，已售，開啟病歷卡">B1-12F</button>
+                  <span class="ana2-board-label">11F</span><button class="ana2-board-cell watch" type="button" data-demo-toast aria-label="A1 11樓，中風險，開啟病歷卡">A1-11F</button><button class="ana2-board-cell high" type="button" data-demo-toast aria-label="A2 11樓，高風險，開啟病歷卡">A2-11F</button><button class="ana2-board-cell sold" type="button" data-demo-toast aria-label="A3 11樓，已售，開啟病歷卡">A3-11F</button><button class="ana2-board-cell" type="button" data-demo-toast aria-label="B1 11樓，低風險，開啟病歷卡">B1-11F</button>
+                  <span class="ana2-board-label">10F</span><button class="ana2-board-cell" type="button" data-demo-toast aria-label="A1 10樓，低風險，開啟病歷卡">A1-10F</button><button class="ana2-board-cell high" type="button" data-demo-toast aria-label="A2 10樓，高風險，開啟病歷卡">A2-10F</button><button class="ana2-board-cell watch" type="button" data-demo-toast aria-label="A3 10樓，中風險，開啟病歷卡">A3-10F</button><button class="ana2-board-cell sold" type="button" data-demo-toast aria-label="B1 10樓，已售，開啟病歷卡">B1-10F</button>
+                  <span class="ana2-board-label">9F</span><button class="ana2-board-cell sold" type="button" data-demo-toast aria-label="A1 9樓，已售，開啟病歷卡">A1-9F</button><button class="ana2-board-cell watch" type="button" data-demo-toast aria-label="A2 9樓，中風險，開啟病歷卡">A2-9F</button><button class="ana2-board-cell" type="button" data-demo-toast aria-label="A3 9樓，低風險，開啟病歷卡">A3-9F</button><button class="ana2-board-cell watch" type="button" data-demo-toast aria-label="B1 9樓，中風險，開啟病歷卡">B1-9F</button>
+                </div>
+                <div class="ana2-board-legend"><span><i></i>低風險</span><span><i class="watch"></i>中風險</span><span><i class="high"></i>高風險</span><span><i class="sold"></i>已售</span></div>
+                <div class="ana2-caption">紅色直排連 3 格＝同向同戶型持續滯銷；點任一格開啟病歷卡。車位不混入住戶棋盤。</div>
+              </div>
+            </article>
+
+            <article class="acard ana2-wide" data-eng="schema new">
+              <div class="ana2-cardhead">
+                <div><h3>B3 價格與讓價儀</h3><span class="ana2-caption">房屋讓幅滾動中位＋議價深度・內部授權版</span></div>
+                <div class="engnote">
+                  <span class="chip eng-schema">⚙ 動結構</span><small>需：表底價版本紀錄 price_history</small>
+                  <span class="chip eng-new">🆕 新增功能</span><small>議價深度與紅綠燈</small>
+                </div>
+              </div>
+              <div class="ana2-price-layout">
+                <div class="ana2-price-chart">
+                  <div class="ana2-subhead">近 8 週房屋讓幅中位・IQR</div>
+                  <svg viewBox="0 0 440 220" role="img" aria-label="近8週房屋讓幅中位走勢，含IQR灰帶、調漲綠燈與底價失守紅燈">
+                    <line x1="20" y1="180" x2="420" y2="180" style="stroke:var(--line)"/>
+                    <line x1="20" y1="130" x2="420" y2="130" style="stroke:var(--line)"/>
+                    <line x1="20" y1="80" x2="420" y2="80" style="stroke:var(--line)"/>
+                    <line x1="20" y1="30" x2="420" y2="30" style="stroke:var(--line)"/>
+                    <polygon points="20,148 75,142 130,137 185,145 240,128 295,111 350,96 420,82 420,142 350,151 295,161 240,170 185,181 130,176 75,181 20,187" style="fill:var(--fill-3)"/>
+                    <polyline points="20,166 75,159 130,155 185,163 240,149 295,137 350,124 420,112" fill="none" style="stroke:var(--chart-1)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="185" cy="163" r="5" style="fill:var(--chart-1)"/>
+                    <text x="185" y="149" text-anchor="middle" style="fill:var(--accent);font-size:.64rem;">調漲綠燈</text>
+                    <circle cx="420" cy="112" r="5" style="fill:var(--hot)"/>
+                    <text x="414" y="98" text-anchor="end" style="fill:var(--hot);font-size:.64rem;">底價失守紅燈</text>
+                  </svg>
+                  <div class="ana2-pace-axis"><span>07/06</span><span>07/20</span><span>08/03</span><span>08/26</span></div>
+                  <div class="ana2-board-legend"><span><i style="background:var(--chart-1)"></i>讓幅中位</span><span><i></i>IQR（Q1–Q3）</span><span><i class="high"></i>底價紅燈</span></div>
+                  <div class="ana2-caption">燈號三條件｜① 讓幅中位連 3 週收斂　② 4 週淨簽 ≥2 戶／週　③ 近底價成交占比未升高。任一成交低於底價立即紅燈並走簽核。</div>
+                </div>
+                <div class="ana2-price-side">
+                  <div class="ana2-depth">
+                    <div class="ana2-depth-head"><span>近 10 筆議價深度中位</span><b>72%</b></div>
+                    <div class="ana2-depth-gauge" aria-label="議價深度72%，警戒線85%"><i style="--depth:72%"></i><span class="ana2-depth-mark"></span></div>
+                    <div class="ana2-depth-note"><b>85% 警戒線</b>｜&gt;85%＝底價保衛戰，須先確認付款與產品匹配再進價格簽核。</div>
+                  </div>
+                  <div>
+                    <div class="ana2-subhead">讓價試算・示意</div>
+                    <table class="ana2-table">
+                      <thead><tr><th>讓幅</th><th>解鎖戶數</th><th>預估增量成交</th></tr></thead>
+                      <tbody><tr><td>2%</td><td>3 戶</td><td>1 戶</td></tr><tr><td>3%</td><td>7 戶</td><td>2 戶</td></tr><tr><td>5%</td><td>12 戶</td><td>4 戶</td></tr></tbody>
+                    </table>
+                    <div class="ana2-caption">試算只描述假設，不宣稱讓價造成成交。</div>
+                  </div>
+                </div>
+              </div>
+              <div class="ana2-sensitive">權限註記｜底價、成交價與讓價數字僅內部授權角色可見；車位表價、成交價與讓價一律剝離，不併入房屋讓幅。</div>
+            </article>
+          </div>
         </div>
 
         <div class="ana2-panel" id="ana2-media" role="tabpanel" aria-labelledby="ana2-tab-media" hidden>
@@ -3594,7 +3789,47 @@
         </div>
 
         <div class="ana2-panel" id="ana2-cohort" role="tabpanel" aria-labelledby="ana2-tab-cohort" hidden>
-          <div class="ana2-empty">第 5 批補上</div>
+          <div class="ana2-grid">
+            <article class="acard ana2-wide" data-eng="schema upgrade">
+              <div class="ana2-cardhead">
+                <div><h3>E3 訂簽退追蹤</h3><span class="ana2-caption">已訂未簽懸置＋來源退戶偏差・資料截至 2026-08-26 14:30</span></div>
+                <div class="engnote">
+                  <span class="chip eng-schema">⚙ 動結構</span><small>需：退戶原因碼選單</small>
+                  <span class="chip eng-upgrade">升級</span><small>升級自：近 30 日退戶 KPI</small>
+                </div>
+              </div>
+              <div class="ana2-order-layout">
+                <div>
+                  <div class="ana2-subhead">懸置清單・已訂未簽 4 筆</div>
+                  <div class="ana2-hold-list" aria-label="已訂未簽懸置清單">
+                    <div class="ana2-hold-row head"><span>戶別</span><span>客名</span><span>業務</span><span>卡單</span><span>風險分</span></div>
+                    <div class="ana2-hold-row overdue"><b>A3-8F</b><span>王思穎</span><span>陳冠廷</span><span>18 天</span><span>91</span></div>
+                    <div class="ana2-hold-row overdue"><b>A2-7F</b><span>黃淑珊</span><span>張家豪</span><span>15 天</span><span>84</span></div>
+                    <div class="ana2-hold-row"><b>A5-6F</b><span>郭俊廷</span><span>陳冠廷</span><span>11 天</span><span>63</span></div>
+                    <div class="ana2-hold-row"><b>A3-4F</b><span>張雅涵</span><span>張家豪</span><span>7 天</span><span>42</span></div>
+                  </div>
+                  <div class="ana2-caption">卡單天數＝資料截至時間 − ordered_at；&gt;14 天標紅。風險分為示意規則分，不是退戶機率。</div>
+                </div>
+                <div>
+                  <div class="ana2-subhead">退戶占比 vs 下訂占比・按來源</div>
+                  <div class="ana2-source-chart" role="img" aria-label="FB、IG、現場及介紹三種來源的退戶占比與下訂占比偏差">
+                    <div class="ana2-source-row"><span>FB</span><span class="ana2-source-bars"><i style="--share:50%"></i><i class="order" style="--share:44%"></i></span><b>＋6pp</b></div>
+                    <div class="ana2-source-row"><span>IG</span><span class="ana2-source-bars"><i style="--share:33%"></i><i class="order" style="--share:28%"></i></span><b>＋5pp</b></div>
+                    <div class="ana2-source-row"><span>現場／介紹</span><span class="ana2-source-bars"><i style="--share:17%"></i><i class="order" style="--share:28%"></i></span><b>−11pp</b></div>
+                  </div>
+                  <div class="ana2-board-legend"><span><i style="background:var(--chart-1)"></i>退戶占比</span><span><i style="background:var(--chart-3)"></i>下訂占比</span></div>
+                  <div class="ana2-reason-list">
+                    <div class="ana2-subhead">退戶原因分佈</div>
+                    <div class="ana2-reason-row"><span>貸款不足</span><span class="ana2-reason-track"><i class="ana2-reason-fill" style="--reason:50%"></i></span><b>3</b></div>
+                    <div class="ana2-reason-row"><span>價格反悔</span><span class="ana2-reason-track"><i class="ana2-reason-fill" style="--reason:33%"></i></span><b>2</b></div>
+                    <div class="ana2-reason-row"><span>家人反對</span><span class="ana2-reason-track"><i class="ana2-reason-fill" style="--reason:17%"></i></span><b>1</b></div>
+                  </div>
+                  <div class="ana2-caption">退戶分母＝近 30 日 6 個退戶週期；下訂分母＝同期 18 個有效下訂週期。只比較來源集中偏差，不把兩者相除當退戶率。</div>
+                </div>
+              </div>
+            </article>
+          </div>
+          <div class="ana2-empty">E1／E2 第 4 批補上</div>
         </div>
 
         <div class="ana2-panel" id="ana2-owner" role="tabpanel" aria-labelledby="ana2-tab-owner" hidden>
