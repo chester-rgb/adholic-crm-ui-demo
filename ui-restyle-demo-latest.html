@@ -947,6 +947,115 @@
   .pivot td{border-top:1px solid var(--line)}
   .pivot td.hi{color:var(--accent); font-weight:500}
 
+  /* 分析 2.0：七章決策系統（頁面專屬，不改共用元件預設） */
+  #page-analytics .ana2-head{align-items:flex-start; flex-wrap:wrap}
+  #page-analytics .ana2-title{display:flex; flex-direction:column; gap:var(--s1)}
+  #page-analytics .ana2-title .note{line-height:1.7}
+  #page-analytics .ana2-legend{margin-left:auto; display:flex; align-items:center; justify-content:flex-end; gap:var(--s2); flex-wrap:wrap; font-size:.68rem; color:var(--muted)}
+  #page-analytics .ana2-legend > span{white-space:nowrap}
+  #page-analytics .engnote{display:flex; align-items:center; justify-content:flex-end; gap:var(--s1); flex-wrap:wrap; margin-left:auto}
+  #page-analytics .engnote .chip{font-size:.64rem; letter-spacing:.04em}
+  #page-analytics .engnote .chip.eng-new{border-color:var(--warm); background:var(--warm-tint); color:var(--warm)}
+  #page-analytics .engnote .chip.eng-upgrade{border-color:var(--accent); background:var(--tint); color:var(--accent)}
+  #page-analytics .engnote .chip.eng-schema{border-color:var(--hot); background:var(--hot-tint); color:var(--hot)}
+  #page-analytics .engnote small{font-size:.64rem; color:var(--muted); line-height:1.7}
+  #page-analytics .ana2-tabs{display:flex; width:100%; overflow-x:auto; margin-bottom:var(--s6)}
+  #page-analytics .ana2-tabs button{flex:1 0 auto; min-height:var(--ctrl-h)}
+  #page-analytics .ana2-panel[hidden]{display:none}
+  #page-analytics .ana2-panel{display:flex; flex-direction:column; gap:var(--grid-gap)}
+  #page-analytics .ana2-grid{display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:var(--grid-gap)}
+  #page-analytics .ana2-grid > .acard{grid-column:span 6}
+  #page-analytics .ana2-grid > .ana2-wide{grid-column:1 / -1}
+  #page-analytics .ana2-grid > .ana2-narrow{grid-column:span 5}
+  #page-analytics .ana2-grid > .ana2-broad{grid-column:span 7}
+  #page-analytics .ana2-cardhead{display:flex; align-items:flex-start; gap:var(--s3); padding-bottom:var(--s4); margin-bottom:var(--s4); border-bottom:1px solid var(--line)}
+  #page-analytics .ana2-cardhead > div:first-child{min-width:0}
+  #page-analytics .ana2-cardhead h3{margin-bottom:0}
+  #page-analytics .ana2-cardhead .ana2-caption{display:block; margin-top:var(--s1)}
+  #page-analytics .ana2-caption{font-size:.68rem; color:var(--muted); line-height:1.7}
+  #page-analytics .ana2-verdict{display:flex; align-items:center; gap:var(--s3); padding:var(--s3) var(--s4); margin-bottom:var(--s4); background:var(--tint); border-radius:var(--r-row); font-size:.83rem}
+  #page-analytics .ana2-verdict b{font-weight:500}
+  #page-analytics .ana2-action-grid{display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,1fr) minmax(0,.72fr); gap:var(--s5)}
+  #page-analytics .ana2-subhead{font-size:.68rem; color:var(--muted); letter-spacing:.1em; margin-bottom:var(--s2)}
+  #page-analytics .ana2-actions{display:flex; flex-direction:column}
+  #page-analytics .ana2-action-row{display:grid; grid-template-columns:minmax(0,1fr) auto auto auto; align-items:center; gap:var(--s3); padding:var(--s2) 0; border-bottom:1px solid var(--line); font-size:.76rem}
+  #page-analytics .ana2-action-row:last-child{border-bottom:none}
+  #page-analytics .ana2-action-row b{font-weight:500}
+  #page-analytics .ana2-action-row .ana2-owner{font-size:.68rem; color:var(--muted); white-space:nowrap}
+  #page-analytics .ana2-action-row .pillbtn{height:var(--ctrl-h); padding:0 var(--s3); font-size:.7rem;}
+  #page-analytics .ana2-kpi-grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--s2)}
+  #page-analytics .ana2-kpi-grid .kpi{background:var(--bg); border-radius:var(--r-cell); padding:var(--s3)}
+  #page-analytics .ana2-kpi-grid .kpi .v{font-size:1.59rem;}
+  #page-analytics .ana2-kpi-grid .kpi .k{font-size:.66rem}
+  #page-analytics .ana2-status{display:flex; flex-direction:column; gap:var(--s2)}
+  #page-analytics .ana2-status > div{display:flex; align-items:baseline; justify-content:space-between; gap:var(--s3); padding:var(--s3); background:var(--bg); border-radius:var(--r-cell)}
+  #page-analytics .ana2-status span{font-size:.68rem; color:var(--muted)}
+  #page-analytics .ana2-status b{font-size:1.11rem; font-weight:400; font-variant-numeric:tabular-nums}
+  #page-analytics .ana2-days{display:grid; grid-template-columns:repeat(28,minmax(0,1fr)); align-items:end; min-height:12rem; padding-top:var(--s7); border-bottom:1px solid var(--line-2)}
+  #page-analytics .ana2-day{position:relative; display:flex; align-items:stretch; justify-content:center; height:9.5rem; min-width:0}
+  #page-analytics .ana2-day.campaign{background:var(--warm-tint)}
+  #page-analytics .ana2-campaign-tag{position:absolute; left:0; top:calc(var(--s7) * -1); color:var(--warm); font-size:.64rem; white-space:nowrap; letter-spacing:.08em}
+  #page-analytics .ana2-pair{display:flex; align-items:flex-end; justify-content:center; gap:var(--s1); width:100%; padding:0 var(--s1)}
+  #page-analytics .ana2-bar{display:block; width:38%; min-height:var(--s1); border-radius:var(--r-mini) var(--r-mini) 0 0}
+  #page-analytics .ana2-bar.visit{height:var(--visit); background:var(--chart-1)}
+  #page-analytics .ana2-bar.phone{height:var(--phone); background:var(--chart-3)}
+  #page-analytics .ana2-day-label{position:absolute; left:50%; bottom:calc(var(--s5) * -1); transform:translateX(-50%); font-size:.64rem; color:var(--muted); white-space:nowrap; font-variant-numeric:tabular-nums}
+  #page-analytics .ana2-chart-meta{display:flex; align-items:center; gap:var(--s4); flex-wrap:wrap; margin-top:var(--s6); font-size:.68rem; color:var(--muted)}
+  #page-analytics .ana2-chart-key{display:inline-flex; align-items:center; gap:var(--s1)}
+  #page-analytics .ana2-chart-key::before{content:''; width:var(--s3); height:var(--s2); border-radius:var(--r-mini); background:var(--chart-1)}
+  #page-analytics .ana2-chart-key.phone::before{background:var(--chart-3)}
+  #page-analytics .ana2-baseline{margin-left:auto; display:flex; align-items:baseline; gap:var(--s3); padding:var(--s2) var(--s3); background:var(--bg); border-radius:var(--r-cell)}
+  #page-analytics .ana2-baseline b{font-size:.76rem; font-weight:500; color:var(--hot); font-variant-numeric:tabular-nums}
+  #page-analytics .ana2-water-grid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:var(--s4); min-height:16rem}
+  #page-analytics .ana2-water{display:grid; grid-template-rows:auto 1fr auto; gap:var(--s2); text-align:center}
+  #page-analytics .ana2-water > b{font-weight:500; font-size:.76rem}
+  #page-analytics .ana2-water-track{position:relative; width:5.5rem; height:12rem; justify-self:center; align-self:end; background:var(--bg); border:1px solid var(--line); border-radius:var(--r-row); overflow:hidden}
+  #page-analytics .ana2-water-fill{position:absolute; inset:auto 0 0; height:var(--level); background:var(--accent); display:flex; align-items:flex-start; justify-content:center; padding-top:var(--s3); color:var(--on-accent)}
+  #page-analytics .ana2-water-fill.low{background:var(--hot)}
+  #page-analytics .ana2-water-fill strong{font-size:1.11rem; font-weight:500; font-variant-numeric:tabular-nums}
+  #page-analytics .ana2-target-line{position:absolute; left:0; right:0; bottom:70%; z-index:2; border-top:2px solid var(--hot)}
+  #page-analytics .ana2-target-line span{position:absolute; left:var(--s1); top:calc(var(--s3) * -1); font-size:.64rem; color:var(--hot); white-space:nowrap; background:var(--bg)}
+  #page-analytics .ana2-water small{font-size:.64rem; color:var(--muted); line-height:1.7}
+  #page-analytics .ana2-boost{display:flex; align-items:center; gap:var(--s3); flex-wrap:wrap; margin-top:var(--s4); padding:var(--s3) var(--s4); background:var(--bg); border-radius:var(--r-row); font-size:.76rem}
+  #page-analytics .ana2-boost b{font-weight:500; font-variant-numeric:tabular-nums}
+  #page-analytics .ana2-boost .pending{color:var(--muted)}
+  #page-analytics .ana2-pace-layout{display:grid; grid-template-columns:minmax(0,1.7fr) minmax(15rem,.75fr); gap:var(--s5); align-items:stretch}
+  #page-analytics .ana2-pace-chart{display:flex; flex-direction:column; gap:var(--s2)}
+  #page-analytics .ana2-pace-chart svg{width:100%; min-height:13rem; display:block; overflow:visible}
+  #page-analytics .ana2-pace-axis{display:flex; justify-content:space-between; color:var(--muted); font-size:.64rem; font-variant-numeric:tabular-nums}
+  #page-analytics .ana2-pace-metrics{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:var(--s2)}
+  #page-analytics .ana2-pace-metrics > div{padding:var(--s3); background:var(--bg); border-radius:var(--r-cell)}
+  #page-analytics .ana2-pace-metrics span{display:block; font-size:.64rem; color:var(--muted); margin-bottom:var(--s1)}
+  #page-analytics .ana2-pace-metrics b{display:block; font-size:1.11rem; font-weight:400; font-variant-numeric:tabular-nums}
+  #page-analytics .ana2-pace-metrics small{display:block; margin-top:var(--s1); font-size:.64rem; color:var(--muted); line-height:1.7}
+  #page-analytics .ana2-insufficient{margin-top:var(--s2); padding:var(--s3); background:var(--fill); border-radius:var(--r-cell); font-size:.68rem; color:var(--muted)}
+  #page-analytics .ana2-quality-list{display:flex; flex-direction:column; gap:var(--s1)}
+  #page-analytics .ana2-quality-row{display:grid; grid-template-columns:9rem minmax(0,1fr) 3.5rem 6rem; align-items:center; gap:var(--s3); width:100%; padding:var(--s3); border-radius:var(--r-row); text-align:left; transition:background .15s ease-out}
+  #page-analytics .ana2-quality-row:hover{background:var(--bg)}
+  #page-analytics .ana2-quality-row > span:first-child{font-size:.76rem}
+  #page-analytics .ana2-quality-row > b{font-size:.76rem; font-weight:500; text-align:right; font-variant-numeric:tabular-nums}
+  #page-analytics .ana2-quality-row > small{font-size:.64rem; color:var(--muted); text-align:right}
+  #page-analytics .ana2-quality-track{height:var(--s2); background:var(--fill-3); border-radius:var(--r-pill); overflow:hidden}
+  #page-analytics .ana2-quality-fill{display:block; width:var(--quality); height:100%; background:var(--accent); border-radius:inherit}
+  #page-analytics .ana2-quality-row.low .ana2-quality-fill{background:var(--warm)}
+  #page-analytics .ana2-quality-row.low > b{color:var(--warm)}
+  #page-analytics .ana2-empty{display:flex; align-items:center; justify-content:center; min-height:13rem; border:1px dashed var(--line-dash); border-radius:var(--r-card); color:var(--muted); font-size:.76rem}
+  #page-analytics .ana2-table{width:100%; border-collapse:collapse; font-size:.76rem}
+  #page-analytics .ana2-table th,#page-analytics .ana2-table td{padding:var(--s3) var(--s4); text-align:left; vertical-align:top}
+  #page-analytics .ana2-table th{font-size:.68rem; font-weight:400; letter-spacing:.1em; color:var(--muted); border-bottom:1px solid var(--line-2)}
+  #page-analytics .ana2-table td{border-bottom:1px solid var(--line)}
+  #page-analytics .ana2-table tbody tr:last-child td{border-bottom:none}
+  #page-analytics .ana2-table td:nth-child(2){white-space:nowrap}
+  #page-analytics .ana2-table .chip{font-size:.64rem}
+  @media (max-width:1020px){
+    #page-analytics .ana2-legend{width:100%; justify-content:flex-start; margin-left:0}
+    #page-analytics .ana2-grid > .acard{grid-column:1 / -1}
+    #page-analytics .ana2-action-grid{grid-template-columns:1fr}
+    #page-analytics .ana2-pace-layout{grid-template-columns:1fr}
+    #page-analytics .ana2-quality-row{grid-template-columns:7rem minmax(0,1fr) 3rem}
+    #page-analytics .ana2-quality-row > small{grid-column:2 / -1; text-align:left}
+  }
+
   /* ── 設計規範頁 ── */
   .guide .gsec{margin-bottom:var(--s8)}
   .guide h2{font-weight:500; font-size:1.11rem; letter-spacing:.06em; margin-bottom:.9rem; display:flex; align-items:baseline; gap:.7rem}
@@ -3286,94 +3395,188 @@
 
       <!-- ═══ 分析 ═══ -->
       <section class="view" id="page-analytics">
-        <div class="sec pagebar">
-          <h2>分析</h2><span class="cnt" id="anaCnt">全案</span>
-          <div class="acts">
-            <div class="seg" id="anaTabSeg" aria-label="分析範圍">
-              <button class="on" data-at="proj">全案分析</button>
-              <button data-at="me">個人分析</button>
-            </div>
-            <div class="seg" id="anaRangeSeg" aria-label="統計區間">
-              <button data-rg="4">近 4 週</button>
-              <button class="on" data-rg="8">近 8 週</button>
-              <button data-rg="12">近 12 週</button>
-              <button data-rg="q">本季</button>
-            </div>
+        <div class="sec pagebar ana2-head">
+          <div class="ana2-title">
+            <h2>分析</h2>
+            <span class="note">回答：哪裡不對、為什麼、現在要做什麼</span>
+          </div>
+          <div class="ana2-legend" aria-label="工程備註圖例">
+            <span><span class="chip eng-new">🆕 新增功能</span>正式系統沒有</span>
+            <span><span class="chip eng-upgrade">升級</span>改既有功能</span>
+            <span><span class="chip eng-schema">⚙ 動結構</span>需補資料／設定</span>
           </div>
         </div>
 
-        <div id="anaProj">
-        <div class="block kpis">
-          <div class="kpi"><span class="v"><span class="num" data-n="1268">1,268</span><small>組</small><span class="bub">↑27 週</span></span><span class="k">累積來客</span></div>
-          <div class="kpi"><span class="v"><span class="num" data-n="7">7</span><small>組</small></span><span class="k"><span class="dot ac"></span>今日新進</span></div>
-          <div class="kpi"><span class="v"><span class="num" data-n="74">74</span><small>位</small><span class="bub">跑 2 案以上</span></span><span class="k"><span class="dot ac"></span>跨案來客</span></div>
-          <div class="kpi"><span class="v"><span class="num" data-n="68">68</span><small>組</small><span class="bub">↑12%</span></span><span class="k">本月來客</span></div>
-          <div class="kpi"><span class="v"><span class="num" data-n="17">17</span><small>組</small></span><span class="k">週均來客</span></div>
-          <div class="kpi"><span class="v"><span class="num" data-n="6">6</span><small>戶</small><span class="bub">8.8%</span></span><span class="k"><span class="dot ac"></span>本月成交</span></div>
-          <div class="kpi"><span class="v"><span class="num" data-n="1.7">1.7</span><small>次</small></span><span class="k">平均回訪次數</span></div>
+        <div class="seg ana2-tabs" id="ana2Tabs" role="tablist" aria-label="分析章節">
+          <button class="on" id="ana2-tab-command" type="button" role="tab" aria-selected="true" aria-controls="ana2-command" data-ana2="command">作戰台</button>
+          <button id="ana2-tab-product" type="button" role="tab" aria-selected="false" aria-controls="ana2-product" data-ana2="product">產品價格</button>
+          <button id="ana2-tab-media" type="button" role="tab" aria-selected="false" aria-controls="ana2-media" data-ana2="media">名單媒體</button>
+          <button id="ana2-tab-sales" type="button" role="tab" aria-selected="false" aria-controls="ana2-sales" data-ana2="sales">業務</button>
+          <button id="ana2-tab-cohort" type="button" role="tab" aria-selected="false" aria-controls="ana2-cohort" data-ana2="cohort">熟成訂單</button>
+          <button id="ana2-tab-owner" type="button" role="tab" aria-selected="false" aria-controls="ana2-owner" data-ana2="owner">對業主</button>
+          <button id="ana2-tab-data" type="button" role="tab" aria-selected="false" aria-controls="ana2-data" data-ana2="data">資料</button>
         </div>
 
-        <div class="block anagrid">
-          <div class="acard span2">
-            <h3>來客漏斗 <small>條長＝佔累積來客的比例</small></h3>
-            <div class="frow"><span class="fl">累積來客</span><b>384</b><span class="seg10 base"><i style="--f:100%"></i><i style="--f:100%"></i><i style="--f:100%"></i><i style="--f:100%"></i><i style="--f:100%"></i><i style="--f:100%"></i><i style="--f:100%"></i><i style="--f:100%"></i><i style="--f:100%"></i><i style="--f:100%"></i></span><span class="fp">100%</span></div>
-            <div class="frow"><span class="fl">回訪</span><b>92</b><span class="seg10 mid"><i style="--f:100%"></i><i style="--f:100%"></i><i style="--f:40%"></i><i style="--f:0%"></i><i style="--f:0%"></i><i style="--f:0%"></i><i style="--f:0%"></i><i style="--f:0%"></i><i style="--f:0%"></i><i style="--f:0%"></i></span><span class="fp">24%</span></div>
-            <div class="frow"><span class="fl">下訂</span><b>78</b><span class="seg10 mid"><i style="--f:100%"></i><i style="--f:100%"></i><i style="--f:3%"></i><i style="--f:0%"></i><i style="--f:0%"></i><i style="--f:0%"></i><i style="--f:0%"></i><i style="--f:0%"></i><i style="--f:0%"></i><i style="--f:0%"></i></span><span class="fp">20%</span></div>
-            <div class="frow"><span class="fl">簽約</span><b>71</b><span class="seg10 me"><i style="--f:100%"></i><i style="--f:85%"></i><i style="--f:0%"></i><i style="--f:0%"></i><i style="--f:0%"></i><i style="--f:0%"></i><i style="--f:0%"></i><i style="--f:0%"></i><i style="--f:0%"></i><i style="--f:0%"></i></span><span class="fp">18%</span></div>
-          </div>
-          <div class="acard">
-            <h3>業務跟進 <small>本週・待處理／已完成</small></h3>
-            <div class="dual">
-              <div class="drow">張家豪<span class="dpills"><span class="dp warn">待 3</span><span class="dp done">✓ 12</span></span></div>
-              <div class="drow">吳姿瑩<span class="dpills"><span class="dp warn">待 1</span><span class="dp done">✓ 9</span></span></div>
-              <div class="drow">陳冠廷<span class="dpills"><span class="dp hot">待 6</span><span class="dp done">✓ 4</span></span></div>
-              <div class="drow">郭士銘<span class="dpills"><span class="dp done">✓ 7</span></span></div>
-            </div>
-          </div>
-          <div class="acard span2">
-            <h3>每週來客 <small>7/06 – 8/17</small></h3>
-            <div class="bars">
-              <div class="bcol"><span class="bv">12</span><div class="b" style="height:34%"></div><span class="bl">7/06</span></div>
-              <div class="bcol"><span class="bv">18</span><div class="b" style="height:52%"></div><span class="bl">7/13</span></div>
-              <div class="bcol"><span class="bv">15</span><div class="b" style="height:43%"></div><span class="bl">7/20</span></div>
-              <div class="bcol"><span class="bv">22</span><div class="b" style="height:63%"></div><span class="bl">7/27</span></div>
-              <div class="bcol"><span class="bv">17</span><div class="b" style="height:49%"></div><span class="bl">8/03</span></div>
-              <div class="bcol"><span class="bv">26</span><div class="b" style="height:74%"></div><span class="bl">8/10</span></div>
-              <div class="bcol hi"><span class="bv">27</span><div class="b" style="height:77%"></div><span class="bl">8/17</span></div>
-            </div>
-          </div>
-          <div class="acard eff">
-            <h3>來客→成交轉換 <small>近 8 週</small></h3>
-            <span class="badge-up">↑ 8.8%</span>
-            <svg viewBox="0 0 260 88" preserveAspectRatio="none" aria-hidden="true">
-              <path d="M0,72 C30,68 45,60 70,62 C95,64 110,48 135,45 C160,42 180,47 205,34 C225,24 245,19 260,15 L260,88 L0,88 Z" fill="rgba(169,204,228,.16)"/>
-              <path d="M0,72 C30,68 45,60 70,62 C95,64 110,48 135,45 C160,42 180,47 205,34 C225,24 245,19 260,15" fill="none" style="stroke:var(--accent-on-ink)" stroke-width="2.5" stroke-linecap="round"/>
-              <circle cx="260" cy="15" r="4" style="fill:var(--accent-on-ink)"/>
-            </svg>
-          </div>
-          <div class="acard">
-            <h3>來源分佈 <small>累積 384 筆</small></h3>
-            <div class="donutrow">
-              <div class="donut"><div class="c"><b>384</b><span>累積來客</span></div></div>
-              <div class="dlegend">
-                <div class="it"><span class="sw2c" style="background:var(--accent)"></span>FB<b>34%</b></div>
-                <div class="it"><span class="sw2c" style="background:var(--chart-2)"></span>現場<b>21%</b></div>
-                <div class="it"><span class="sw2c" style="background:var(--chart-3)"></span>網路<b>17%</b></div>
-                <div class="it"><span class="sw2c" style="background:var(--chart-4)"></span>介紹<b>16%</b></div>
-                <div class="it"><span class="sw2c" style="background:var(--chart-5)"></span>其他<b>12%</b></div>
+        <div class="ana2-panel" id="ana2-command" role="tabpanel" aria-labelledby="ana2-tab-command">
+          <div class="ana2-grid">
+            <article class="acard ana2-wide" data-eng="new schema">
+              <div class="ana2-cardhead">
+                <div><h3>A1 今日行動台</h3><span class="ana2-caption">資料截至 2026-08-26 14:30</span></div>
+                <div class="engnote">
+                  <span class="chip eng-new">🆕 新增功能</span>
+                  <span class="chip eng-schema">⚙ 動結構</span>
+                  <small>需：SLA 設定、往來紀錄結構化</small>
+                </div>
               </div>
-            </div>
+              <div class="ana2-verdict"><span class="dot warm"></span><b>量體正常，但有 7 組新名單尚未首次跟進。</b></div>
+              <div class="ana2-action-grid">
+                <div>
+                  <div class="ana2-subhead">待處理清單</div>
+                  <div class="ana2-actions">
+                    <div class="ana2-action-row"><span>新名單未首次跟進</span><b>7 組</b><span class="ana2-owner">李承翰</span><button class="pillbtn danger" id="goStale" type="button" data-demo-toast>處理</button></div>
+                    <div class="ana2-action-row"><span>新名單尚未指派</span><b>3 組</b><span class="ana2-owner">周家瑜</span><button class="pillbtn" type="button" data-act="goUnassigned" data-demo-toast>處理</button></div>
+                    <div class="ana2-action-row"><span>勾勾表同步中斷</span><b>18 組</b><span class="ana2-owner">郭士銘</span><button class="pillbtn" type="button" data-demo-toast>處理</button></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="ana2-subhead">今日量體</div>
+                  <div class="ana2-kpi-grid">
+                    <div class="kpi"><span class="v"><span class="num" data-n="8">8</span><small>組</small></span><span class="k">今日新客組數</span></div>
+                    <div class="kpi"><span class="v"><span class="num" data-n="5">5</span><small>組次</small></span><span class="k">來人組次</span></div>
+                    <div class="kpi"><span class="v"><span class="num" data-n="3">3</span><small>組</small></span><span class="k">來電</span></div>
+                    <div class="kpi"><span class="v">＋<span class="num" data-n="1">1</span><small>戶</small></span><span class="k">淨增已簽</span></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="ana2-subhead">銷售與資料</div>
+                  <div class="ana2-status">
+                    <div><span>近 30 日退戶</span><b>2</b></div>
+                    <div><span>資料完整度</span><b>88%</b></div>
+                  </div>
+                </div>
+              </div>
+              <div class="ana2-caption">待辦排序：SLA 逾時 → 資料斷流 → 異常趨勢。</div>
+            </article>
+
+            <article class="acard ana2-wide" data-eng="upgrade schema">
+              <div class="ana2-cardhead">
+                <div><h3>A2 量體與節奏基準線</h3><span class="ana2-caption">近 28 天・日別來人與來電</span></div>
+                <div class="engnote">
+                  <span class="chip eng-upgrade">升級</span>
+                  <small>升級自：每週來客走勢</small>
+                  <span class="chip eng-schema">⚙ 動結構</span>
+                  <small>需：檔期標籤</small>
+                </div>
+              </div>
+              <div class="ana2-days" aria-label="2026-07-30 至 2026-08-26 日別來人與來電長條圖">
+                <div class="ana2-day" style="--visit:36%;--phone:24%" aria-label="7月30日，來人5組次，來電3組"><span class="ana2-pair"><i class="ana2-bar visit"></i><i class="ana2-bar phone"></i></span><span class="ana2-day-label">7/30</span></div>
+                <div class="ana2-day" style="--visit:29%;--phone:38%" aria-label="7月31日，來人4組次，來電5組"><span class="ana2-pair"><i class="ana2-bar visit"></i><i class="ana2-bar phone"></i></span></div>
+                <div class="ana2-day" style="--visit:58%;--phone:32%" aria-label="8月1日，來人8組次，來電4組"><span class="ana2-pair"><i class="ana2-bar visit"></i><i class="ana2-bar phone"></i></span></div>
+                <div class="ana2-day" style="--visit:72%;--phone:46%" aria-label="8月2日，來人10組次，來電6組"><span class="ana2-pair"><i class="ana2-bar visit"></i><i class="ana2-bar phone"></i></span></div>
+                <div class="ana2-day" style="--visit:36%;--phone:54%" aria-label="8月3日，來人5組次，來電7組"><span class="ana2-pair"><i class="ana2-bar visit"></i><i class="ana2-bar phone"></i></span><span class="ana2-day-label">8/3</span></div>
+                <div class="ana2-day" style="--visit:29%;--phone:38%" aria-label="8月4日，來人4組次，來電5組"><span class="ana2-pair"><i class="ana2-bar visit"></i><i class="ana2-bar phone"></i></span></div>
+                <div class="ana2-day" style="--visit:43%;--phone:31%" aria-label="8月5日，來人6組次，來電4組"><span class="ana2-pair"><i class="ana2-bar visit"></i><i class="ana2-bar phone"></i></span></div>
+                <div class="ana2-day" style="--visit:50%;--phone:38%" aria-label="8月6日，來人7組次，來電5組"><span class="ana2-pair"><i class="ana2-bar visit"></i><i class="ana2-bar phone"></i></span></div>
+                <div class="ana2-day" style="--visit:36%;--phone:46%" aria-label="8月7日，來人5組次，來電6組"><span class="ana2-pair"><i class="ana2-bar visit"></i><i class="ana2-bar phone"></i></span><span class="ana2-day-label">8/7</span></div>
+                <div class="ana2-day" style="--visit:64%;--phone:54%" aria-label="8月8日，來人9組次，來電7組"><span class="ana2-pair"><i class="ana2-bar visit"></i><i class="ana2-bar phone"></i></span></div>
+                <div class="ana2-day" style="--visit:86%;--phone:62%" aria-label="8月9日，來人12組次，來電8組"><span class="ana2-pair"><i class="ana2-bar visit"></i><i class="ana2-bar phone"></i></span></div>
+                <div class="ana2-day" style="--visit:43%;--phone:46%" aria-label="8月10日，來人6組次，來電6組"><span class="ana2-pair"><i class="ana2-bar visit"></i><i class="ana2-bar phone"></i></span></div>
+                <div class="ana2-day" style="--visit:36%;--phone:38%" aria-label="8月11日，來人5組次，來電5組"><span class="ana2-pair"><i class="ana2-bar visit"></i><i class="ana2-bar phone"></i></span><span class="ana2-day-label">8/11</span></div>
+                <div class="ana2-day" style="--visit:50%;--phone:54%" aria-label="8月12日，來人7組次，來電7組"><span class="ana2-pair"><i class="ana2-bar visit"></i><i class="ana2-bar phone"></i></span></div>
+                <div class="ana2-day campaign" style="--visit:57%;--phone:62%" aria-label="8月13日，928檔期，來人8組次，來電8組"><span class="ana2-campaign-tag">928 檔期</span><span class="ana2-pair"><i class="ana2-bar visit"></i><i class="ana2-bar phone"></i></span></div>
+                <div class="ana2-day campaign" style="--visit:64%;--phone:69%" aria-label="8月14日，928檔期，來人9組次，來電9組"><span class="ana2-pair"><i class="ana2-bar visit"></i><i class="ana2-bar phone"></i></span></div>
+                <div class="ana2-day campaign" style="--visit:78%;--phone:77%" aria-label="8月15日，928檔期，來人11組次，來電10組"><span class="ana2-pair"><i class="ana2-bar visit"></i><i class="ana2-bar phone"></i></span><span class="ana2-day-label">8/15</span></div>
+                <div class="ana2-day campaign" style="--visit:100%;--phone:92%" aria-label="8月16日，928檔期，來人14組次，來電12組"><span class="ana2-pair"><i class="ana2-bar visit"></i><i class="ana2-bar phone"></i></span></div>
+                <div class="ana2-day campaign" style="--visit:64%;--phone:69%" aria-label="8月17日，928檔期，來人9組次，來電9組"><span class="ana2-pair"><i class="ana2-bar visit"></i><i class="ana2-bar phone"></i></span></div>
+                <div class="ana2-day campaign" style="--visit:50%;--phone:54%" aria-label="8月18日，928檔期，來人7組次，來電7組"><span class="ana2-pair"><i class="ana2-bar visit"></i><i class="ana2-bar phone"></i></span></div>
+                <div class="ana2-day campaign" style="--visit:57%;--phone:62%" aria-label="8月19日，928檔期，來人8組次，來電8組"><span class="ana2-pair"><i class="ana2-bar visit"></i><i class="ana2-bar phone"></i></span><span class="ana2-day-label">8/19</span></div>
+                <div class="ana2-day campaign" style="--visit:71%;--phone:69%" aria-label="8月20日，928檔期，來人10組次，來電9組"><span class="ana2-pair"><i class="ana2-bar visit"></i><i class="ana2-bar phone"></i></span></div>
+                <div class="ana2-day campaign" style="--visit:79%;--phone:77%" aria-label="8月21日，928檔期，來人11組次，來電10組"><span class="ana2-pair"><i class="ana2-bar visit"></i><i class="ana2-bar phone"></i></span></div>
+                <div class="ana2-day campaign" style="--visit:93%;--phone:85%" aria-label="8月22日，928檔期，來人13組次，來電11組"><span class="ana2-pair"><i class="ana2-bar visit"></i><i class="ana2-bar phone"></i></span></div>
+                <div class="ana2-day campaign" style="--visit:86%;--phone:77%" aria-label="8月23日，928檔期，來人12組次，來電10組"><span class="ana2-pair"><i class="ana2-bar visit"></i><i class="ana2-bar phone"></i></span><span class="ana2-day-label">8/23</span></div>
+                <div class="ana2-day" style="--visit:43%;--phone:46%" aria-label="8月24日，來人6組次，來電6組"><span class="ana2-pair"><i class="ana2-bar visit"></i><i class="ana2-bar phone"></i></span></div>
+                <div class="ana2-day" style="--visit:36%;--phone:38%" aria-label="8月25日，來人5組次，來電5組"><span class="ana2-pair"><i class="ana2-bar visit"></i><i class="ana2-bar phone"></i></span></div>
+                <div class="ana2-day" style="--visit:22%;--phone:32%" aria-label="8月26日，來人3組次，來電5組"><span class="ana2-pair"><i class="ana2-bar visit"></i><i class="ana2-bar phone"></i></span><span class="ana2-day-label">8/26</span></div>
+              </div>
+              <div class="ana2-chart-meta">
+                <span class="ana2-chart-key">來人組次</span><span class="ana2-chart-key phone">來電新客</span>
+                <span class="ana2-baseline"><span>本日 8 組・前 4 個週三中位數 12 組</span><b>−34%</b></span>
+              </div>
+              <div class="ana2-caption">基線＝前 4 個同星期幾中位數；樣本 &lt;20 組不顯示 %。</div>
+            </article>
+
+            <article class="acard ana2-narrow" data-eng="new">
+              <div class="ana2-cardhead">
+                <div><h3>A3 有效客水位／加碼論證板</h3><span class="ana2-caption">A／B 級有效客折算戶數 vs 未來 4 週目標</span></div>
+                <div class="engnote"><span class="chip eng-new">🆕 新增功能</span></div>
+              </div>
+              <div class="ana2-water-grid">
+                <div class="ana2-water">
+                  <b>青園綠境</b>
+                  <div class="ana2-water-track"><div class="ana2-water-fill" style="--level:98%"><strong>1.4x</strong></div><div class="ana2-target-line"><span>目標 10</span></div></div>
+                  <small>66 組 × 21.5%＝14.2 戶</small>
+                </div>
+                <div class="ana2-water">
+                  <b>恆山千隅</b>
+                  <div class="ana2-water-track"><div class="ana2-water-fill low" style="--level:60%"><strong>0.9x</strong></div><div class="ana2-target-line"><span>目標 8</span></div></div>
+                  <small>34 組 × 20.0%＝6.8 戶</small>
+                </div>
+                <div class="ana2-water">
+                  <b>秴楓</b>
+                  <div class="ana2-water-track"><div class="ana2-water-fill low" style="--level:36%"><strong>0.5x</strong></div><div class="ana2-target-line"><span>目標 6</span></div></div>
+                  <small>18 組 × 17.2%＝3.1 戶</small>
+                </div>
+              </div>
+              <div class="ana2-boost"><span>有效客缺口</span><b>23 組</b><span>→</span><span>建議補進</span><b>36 組</b><span>（按 64% 成為有效客）</span><span>→</span><span class="pending">每有效組成本待接花費資料</span></div>
+              <div class="ana2-caption">有效客＝A／B 級・近 14 天有往來・未成交；折算＝Σ（組數 × 該級近 90 日成交率）。</div>
+            </article>
+
+            <article class="acard ana2-broad" data-eng="schema upgrade">
+              <div class="ana2-cardhead">
+                <div><h3>A4 去化節奏與完銷推估</h3><span class="ana2-caption">P1 示範版・累計淨簽 vs 承諾軌道</span></div>
+                <div class="engnote">
+                  <span class="chip eng-schema">⚙ 動結構</span><small>需：銷售目標與檔期設定</small>
+                  <span class="chip eng-upgrade">升級</span><small>升級自：去化速度 KPI</small>
+                </div>
+              </div>
+              <div class="ana2-pace-layout">
+                <div class="ana2-pace-chart">
+                  <svg viewBox="0 0 360 180" role="img" aria-label="2026年5月至8月累計淨簽曲線落後承諾軌道">
+                    <line x1="10" y1="150" x2="350" y2="150" style="stroke:var(--line)"/>
+                    <line x1="10" y1="110" x2="350" y2="110" style="stroke:var(--line)"/>
+                    <line x1="10" y1="70" x2="350" y2="70" style="stroke:var(--line)"/>
+                    <line x1="10" y1="30" x2="350" y2="30" style="stroke:var(--line)"/>
+                    <polygon points="145,94 180,81 215,68 250,55 285,43 320,31 350,21 350,49 320,58 285,67 250,78 215,91 180,101 145,110" style="fill:var(--hot-tint)"/>
+                    <polyline points="10,150 45,138 75,127 110,111 145,94 180,81 215,68 250,55 285,43 320,31 350,21" fill="none" style="stroke:var(--line-3)" stroke-width="2" stroke-dasharray="6 6"/>
+                    <polyline points="10,150 45,141 75,131 110,119 145,110 180,101 215,91 250,78 285,67 320,58 350,49" fill="none" style="stroke:var(--accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="350" cy="49" r="4" style="fill:var(--accent)"/>
+                  </svg>
+                  <div class="ana2-pace-axis"><span>2026-05</span><span>06</span><span>07</span><span>08-26</span></div>
+                  <div class="ana2-caption">實線：累計淨簽　虛線：承諾軌道　淡紅：落後區間</div>
+                </div>
+                <div>
+                  <div class="ana2-pace-metrics">
+                    <div><span>4 週速度</span><b>2.4 戶／週</b></div>
+                    <div><span>8 週速度</span><b>1.7 戶／週</b></div>
+                    <div><span>節奏區間</span><b>約 21–29 週</b><small>非信賴區間、非保證日</small></div>
+                  </div>
+                  <div class="ana2-insufficient">資料不足示範｜秴楓近 4 週淨簽 3 戶，此區顯示：暫不估。</div>
+                </div>
+              </div>
+            </article>
           </div>
-          <div class="acard">
-            <h3>健康度預警</h3>
-            <div class="alert">
-              <div class="row"><span class="dot warm"></span>久未跟進<b>66 筆</b><button id="goStale">查看名單</button></div>
-              <div class="row"><span class="dot hot"></span>未指派來客<b>12 筆</b><button data-act="goUnassigned">查看名單</button></div>
-              <div class="row"><span class="dot" style="background:var(--line-3)"></span>本週零跟進業務<b>2 人</b><button data-act="goStaleList">查看</button></div>
+        </div>
+
+        <div class="ana2-panel" id="ana2-product" role="tabpanel" aria-labelledby="ana2-tab-product" hidden>
+          <div class="ana2-empty">第 2 批補上</div>
+        </div>
+
+        <div class="ana2-panel" id="ana2-media" role="tabpanel" aria-labelledby="ana2-tab-media" hidden>
+          <article class="acard" data-eng="upgrade">
+            <div class="ana2-cardhead">
+              <div><h3>動態欄位樞紐</h3><span class="ana2-caption">需求房型 × 客資分級・名單媒體章暫存內容</span></div>
+              <div class="engnote"><span class="chip eng-upgrade">升級</span><small>升級自：動態欄位樞紐</small></div>
             </div>
-          </div>
-          <div class="acard">
-            <h3>動態欄位樞紐 <small>需求房型 × 客資分級</small></h3>
             <table class="pivot">
               <thead><tr><th>需求房型</th><th>A 級</th><th>B 級</th><th>C 級</th></tr></thead>
               <tbody>
@@ -3382,11 +3585,61 @@
                 <tr><td>店面</td><td>8</td><td>12</td><td>19</td></tr>
               </tbody>
             </table>
+          </article>
+          <div class="ana2-empty">第 3 批補上</div>
+        </div>
+
+        <div class="ana2-panel" id="ana2-sales" role="tabpanel" aria-labelledby="ana2-tab-sales" hidden>
+          <div class="ana2-empty">第 4 批補上</div>
+        </div>
+
+        <div class="ana2-panel" id="ana2-cohort" role="tabpanel" aria-labelledby="ana2-tab-cohort" hidden>
+          <div class="ana2-empty">第 5 批補上</div>
+        </div>
+
+        <div class="ana2-panel" id="ana2-owner" role="tabpanel" aria-labelledby="ana2-tab-owner" hidden>
+          <div class="ana2-empty">第 5 批補上</div>
+        </div>
+
+        <div class="ana2-panel" id="ana2-data" role="tabpanel" aria-labelledby="ana2-tab-data" hidden>
+          <div class="ana2-grid">
+            <article class="acard ana2-wide" data-eng="new">
+              <div class="ana2-cardhead">
+                <div><h3>G1 資料可信度儀表</h3><span class="ana2-caption">資料截至 2026-08-26 14:30・點任一列開啟異常明細</span></div>
+                <div class="engnote"><span class="chip eng-new">🆕 新增功能</span></div>
+              </div>
+              <div class="ana2-quality-list">
+                <button class="ana2-quality-row" type="button" data-demo-toast aria-label="開啟異常明細"><span>來源完整率</span><span class="ana2-quality-track"><i class="ana2-quality-fill" style="--quality:96%"></i></span><b>96%</b><small>門檻 ≥90%</small></button>
+                <button class="ana2-quality-row" type="button" data-demo-toast aria-label="開啟異常明細"><span>合法電話率</span><span class="ana2-quality-track"><i class="ana2-quality-fill" style="--quality:99%"></i></span><b>99%</b><small>門檻 ≥98%</small></button>
+                <button class="ana2-quality-row" type="button" data-demo-toast aria-label="開啟異常明細"><span>同案重複率</span><span class="ana2-quality-track"><i class="ana2-quality-fill" style="--quality:2%"></i></span><b>2%</b><small>門檻 ≤5%</small></button>
+                <button class="ana2-quality-row low" type="button" data-demo-toast aria-label="開啟異常明細"><span>問卷覆蓋率</span><span class="ana2-quality-track"><i class="ana2-quality-fill" style="--quality:71%"></i></span><b>71%</b><small>門檻 ≥80%</small></button>
+                <button class="ana2-quality-row" type="button" data-demo-toast aria-label="開啟異常明細"><span>互動紀錄覆蓋率</span><span class="ana2-quality-track"><i class="ana2-quality-fill" style="--quality:84%"></i></span><b>84%</b><small>門檻 ≥80%</small></button>
+                <button class="ana2-quality-row" type="button" data-demo-toast aria-label="開啟異常明細"><span>銷售事件一致率</span><span class="ana2-quality-track"><i class="ana2-quality-fill" style="--quality:100%"></i></span><b>100%</b><small>門檻 100%</small></button>
+              </div>
+            </article>
+
+            <article class="acard ana2-wide" data-eng="schema">
+              <div class="ana2-cardhead">
+                <div><h3>G2 資料補課對照表</h3><span class="ana2-caption">正式工程的資料與設定待辦</span></div>
+                <div class="engnote"><span class="chip eng-schema">⚙ 動結構</span><small>需：時間事件、來源對照與設定版本</small></div>
+              </div>
+              <table class="ana2-table">
+                <thead><tr><th>要補什麼</th><th>工程量</th><th>解鎖哪些模組</th></tr></thead>
+                <tbody>
+                  <tr><td>首次進案時間 `first_project_touch_at`</td><td><span class="chip">中</span></td><td>A1 今日行動台、A2 量體基準、E1 熟成 cohort</td></tr>
+                  <tr><td>指派／改派時間 `assigned_at`、`reassigned_at`</td><td><span class="chip">中</span></td><td>A1 行動台 SLA、D2 名單承接、D3 派客公平</td></tr>
+                  <tr><td>人工互動與下次應追時間</td><td><span class="chip">中</span></td><td>A1 待辦、D2 跟進時延、D4 分級校準</td></tr>
+                  <tr><td>下訂、簽約、退戶事件時間</td><td><span class="chip">中</span></td><td>E1 轉換、E3 退戶、A4 去化推估</td></tr>
+                  <tr><td>銷控狀態與價格生效時間</td><td><span class="chip">大</span></td><td>B2 滯銷、B3 價格、A4 目標軌道</td></tr>
+                  <tr><td>勾勾表版本與 `canonical_field_key` 對照</td><td><span class="chip">中</span></td><td>C1 來源品質、B1 供需、G1 問卷覆蓋</td></tr>
+                  <tr><td>銷控狀態／價格歷史資料源</td><td><span class="chip">大</span></td><td>B2 庫存週數、B3 讓價、A4 快照還原</td></tr>
+                  <tr><td>Meta 花費、歸因鍵與 CAPI outbox</td><td><span class="chip">大</span></td><td>C4/C6 素材到簽約、A3 有效組成本</td></tr>
+                  <tr><td>專案 SLA／檔期／銷售目標版本設定</td><td><span class="chip">中</span></td><td>A1 優先序、A2 檔期帶、A4 承諾軌道</td></tr>
+                </tbody>
+              </table>
+            </article>
           </div>
         </div>
-      </div>
-
-        <div id="anaMe" class="anascope" hidden></div>
       </section>
 
       <!-- ═══ 權限管理 ═══ -->
@@ -6553,31 +6806,37 @@
   })();
 
 
-  /* 分析頁：全案／個人 兩個分頁＋統計區間 */
-  (function(){
-    var tab=document.getElementById('anaTabSeg'); if(!tab) return;
-    var rangeSeg=document.getElementById('anaRangeSeg');
-    var proj=document.getElementById('anaProj'), meBox=document.getElementById('anaMe');
-    tab.querySelectorAll('button').forEach(function(b){
-      b.addEventListener('click',function(){
-        tab.querySelectorAll('button').forEach(function(x){x.classList.remove('on')});
-        b.classList.add('on');
-        var me=b.dataset.at==='me';
-        proj.hidden=me; meBox.hidden=!me;
-        rangeSeg.hidden=me;                     /* 區間是全案圖表的參數，個人分析沒有它 */
-        var c=document.getElementById('anaCnt');
-        if(c) c.textContent=me?(window.ANA?window.ANA.cur:'個人'):'全案';
-        if(me && window.ANA) window.ANA.render(meBox, window.ANA.cur||window.ANA.me);
+  try{ /* analytics2：七章頁籤 */
+    var ana2Tabs=document.getElementById('ana2Tabs');
+    if(ana2Tabs){
+      var ana2Buttons=[].slice.call(ana2Tabs.querySelectorAll('[data-ana2]'));
+      var ana2Panels=[].slice.call(document.querySelectorAll('#page-analytics .ana2-panel'));
+      function ana2Show(button,focus){
+        var key=button.dataset.ana2;
+        ana2Buttons.forEach(function(b){
+          var on=b===button;
+          b.classList.toggle('on',on);
+          b.setAttribute('aria-selected',String(on));
+          b.tabIndex=on?0:-1;
+        });
+        ana2Panels.forEach(function(panel){ panel.hidden=panel.id!=='ana2-'+key });
+        if(focus) button.focus();
+      }
+      ana2Buttons.forEach(function(button,index){
+        button.addEventListener('click',function(){ ana2Show(button,false) });
+        button.addEventListener('keydown',function(e){
+          var next=index;
+          if(e.key==='ArrowRight') next=(index+1)%ana2Buttons.length;
+          else if(e.key==='ArrowLeft') next=(index+ana2Buttons.length-1)%ana2Buttons.length;
+          else if(e.key==='Home') next=0;
+          else if(e.key==='End') next=ana2Buttons.length-1;
+          else return;
+          e.preventDefault(); ana2Show(ana2Buttons[next],true);
+        });
       });
-    });
-    rangeSeg.querySelectorAll('button').forEach(function(b){
-      b.addEventListener('click',function(){
-        rangeSeg.querySelectorAll('button').forEach(function(x){x.classList.remove('on')});
-        b.classList.add('on');
-        toast('統計區間切到 <b>'+b.textContent+'</b>（demo 資料為近 8 週）');
-      });
-    });
-  })();
+      ana2Show(ana2Buttons[0],false);
+    }
+  }catch(e){}
 
   var bar=$('#batchbar'), count=$('#selCount');
   /* 只認畫面上看得到的列：被篩掉、被軟刪的列不該算進批次，也不該被全選勾到 */
