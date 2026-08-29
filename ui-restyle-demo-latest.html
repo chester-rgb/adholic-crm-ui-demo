@@ -1267,6 +1267,29 @@
   #page-analytics .ana2-lights i{width:var(--s3); height:var(--s3); border-radius:50%; background:var(--track)}
   #page-analytics .ana2-lights i.g{background:var(--heat5)}
   #page-analytics .ana2-lights i.y{background:var(--warm)}
+  /* — P2 收尾批 — */
+  #page-analytics .ana2-nodes{display:grid; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr)); gap:var(--s4); margin-bottom:var(--s3)}
+  #page-analytics .ana2-node{background:var(--bg); border-radius:var(--r-row); padding:var(--s4)}
+  #page-analytics .ana2-node.bad{outline:1px solid var(--line-hot); outline-offset:-1px}
+  #page-analytics .ana2-node .nh{display:flex; align-items:center; gap:var(--s2); margin-bottom:var(--s2)}
+  #page-analytics .ana2-node .nh b{font-weight:500; font-size:.83rem}
+  #page-analytics .ana2-node .nh .lt{width:var(--s3); height:var(--s3); border-radius:50%; margin-left:auto; flex:none; background:var(--track)}
+  #page-analytics .ana2-node .nh .lt.g{background:var(--heat5)}
+  #page-analytics .ana2-node .nh .lt.y{background:var(--warm)}
+  #page-analytics .ana2-node .nh .lt.r{background:var(--hot)}
+  #page-analytics .ana2-node .nv{font-size:.76rem; margin-bottom:var(--s1)}
+  #page-analytics .ana2-node .nv b{color:var(--hot); font-weight:500}
+  #page-analytics .ana2-heatwall{display:grid; grid-template-columns:repeat(auto-fit,minmax(8.5rem,1fr)); gap:var(--s3); margin-bottom:var(--s3)}
+  #page-analytics .ana2-heatcard{background:var(--bg); border-radius:var(--r-row); padding:var(--s3) var(--s4); display:flex; flex-direction:column; gap:var(--s1)}
+  #page-analytics .ana2-heatcard b{font-size:1.59rem; font-weight:500; font-variant-numeric:tabular-nums; line-height:1.2}
+  #page-analytics .ana2-heatcard span{font-size:.7rem; color:var(--muted)}
+  #page-analytics .ana2-heatcard.cold b{color:var(--hot)}
+  #page-analytics .ana2-heatcard .ana2-mini{height:var(--s6); margin-top:var(--s1)}
+  #page-analytics .ana2-reason-row.miss .ana2-reason-fill{background:var(--warm)}
+  #page-analytics .ana2-reason-row.miss > b{color:var(--warm)}
+  #page-analytics .ana2-matcard{background:var(--bg); border-radius:var(--r-row); padding:var(--s3) var(--s4); margin-bottom:var(--s3); display:flex; align-items:center; gap:var(--s3); flex-wrap:wrap}
+  #page-analytics .ana2-matcard b{font-weight:500}
+  #page-analytics .ana2-matcard .ana2-caption{flex-basis:100%}
 
   /* — analytics2 第 5 批：對業主章＋跨案 — */
   #page-analytics .ana2-trust{display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:var(--grid-gap)}
@@ -3830,6 +3853,31 @@
                 </div>
               </div>
             </article>
+
+            <article class="acard ana2-wide" data-eng="new schema">
+              <div class="ana2-cardhead">
+                <div><h3>A5 檔期節點健檢</h3><span class="ana2-caption">開盤動能與轉場判定・三案節點卡＝總監作戰地圖</span></div>
+                <div class="engnote"><span class="chip eng-new">🆕 新增功能</span><span class="chip eng-schema">⚙ 動結構</span><small>需：檔期階段與開盤轉率設定</small></div>
+              </div>
+              <div class="ana2-nodes">
+                <div class="ana2-node">
+                  <div class="nh"><b>青園綠境</b><span class="chip">強銷</span><i class="lt g"></i></div>
+                  <div class="nv">轉場檢查：週速度 0.9 戶 ≥ 所需 0.8</div>
+                  <div class="ana2-caption">照計畫走，不動作。</div>
+                </div>
+                <div class="ana2-node bad">
+                  <div class="nh"><b>恆山千隅</b><span class="chip">公開前 21 天</span><i class="lt r"></i></div>
+                  <div class="nv">開盤動能 <b>0.7x</b>・缺 9 組 A 級</div>
+                  <div class="ana2-caption">建議：延後公開，或本週加碼預熱把 A 級補到 24 組。</div>
+                </div>
+                <div class="ana2-node">
+                  <div class="nh"><b>秴楓</b><span class="chip">尾盤</span><i class="lt y"></i></div>
+                  <div class="nv">轉場條件成立：速度 &lt;50% 連 3 週・水位 0.5</div>
+                  <div class="ana2-caption">建議：收廣告、讓價集中滯銷 6 戶、人力調往恆山。</div>
+                </div>
+              </div>
+              <div class="ana2-caption">開盤動能＝潛銷 A 級×A 開盤轉率＋B 級×B 開盤轉率（首案用假設值 A=35%／B=12%，畫面標注「假設」，累積 1–2 案實績後改實測）。尾盤轉場＝週速度低於完銷所需 50% 連 3 週且水位覆蓋 &lt;1.0。</div>
+            </article>
           </div>
         </div>
 
@@ -3952,6 +4000,35 @@
                 </div>
               </div>
               <div class="ana2-sensitive">權限註記｜底價、成交價與讓價數字僅內部授權角色可見；車位表價、成交價與讓價一律剝離，不併入房屋讓幅。</div>
+            </article>
+
+            <article class="acard ana2-wide" data-eng="new schema">
+              <div class="ana2-cardhead">
+                <div><h3>B4 調價彈性回放</h3><span class="ana2-caption">事件研究：07/14 表價 −3% 前後 30 天・只報前後差異，不宣稱因果</span></div>
+                <div class="engnote"><span class="chip eng-new">🆕 新增功能</span><span class="chip eng-schema">⚙ 動結構</span><small>需：price_history</small></div>
+              </div>
+              <div class="ana2-verdict"><span class="dot"></span><span><b>上次讓 3% 換到週去化翻倍</b>（0.7 → 1.5 戶/週）——這次建議同幅度、只放滯銷 8 戶。</span></div>
+              <div class="ana2-pace-chart">
+                <svg viewBox="0 0 560 150" role="img" aria-label="調價日前後三十天的週去化戶數，調價日以垂直虛線標記，調價後柱體明顯升高">
+                  <line x1="280" y1="10" x2="280" y2="140" stroke="var(--line-3)" stroke-width="1" stroke-dasharray="4 4"/>
+                  <rect x="40"  y="112" width="28" height="28" fill="var(--chart-4)"/>
+                  <rect x="100" y="119" width="28" height="21" fill="var(--chart-4)"/>
+                  <rect x="160" y="105" width="28" height="35" fill="var(--chart-4)"/>
+                  <rect x="220" y="119" width="28" height="21" fill="var(--chart-4)"/>
+                  <rect x="300" y="84"  width="28" height="56" fill="var(--chart-1)"/>
+                  <rect x="360" y="70"  width="28" height="70" fill="var(--chart-1)"/>
+                  <rect x="420" y="77"  width="28" height="63" fill="var(--chart-1)"/>
+                  <rect x="480" y="91"  width="28" height="49" fill="var(--chart-1)"/>
+                  <text x="272" y="24" text-anchor="end" fill="var(--muted)" font-size="11">調價日 07/14</text>
+                </svg>
+                <div class="ana2-chart-key"><span><i style="background:var(--chart-4)"></i>調價前（週均 0.7 戶）</span><span><i style="background:var(--chart-1)"></i>調價後（週均 1.5 戶）</span></div>
+              </div>
+              <div class="ana2-pace-metrics">
+                <div><span class="ana2-subhead">Δ週去化</span><b>+0.8 戶</b></div>
+                <div><span class="ana2-subhead">Δ議價深度</span><b>−6pp</b></div>
+                <div><span class="ana2-subhead">Δ來訪→下訂</span><b>−4 天</b></div>
+              </div>
+              <div class="ana2-caption">同期廣告量、檔期與產品組成都在變——本卡只報前後差異；成交戶數 &lt;10 不出結論只出觀察。</div>
             </article>
           </div>
         </div>
@@ -4120,6 +4197,36 @@
 
             <article class="acard ana2-wide" data-eng="new schema">
               <div class="ana2-cardhead">
+                <div><h3>C5 素材訴求×客層對照</h3><span class="ana2-caption">素材說要打誰、實際來了誰・下一輪 3x3 矩陣的訴求依據</span></div>
+                <div class="engnote"><span class="chip eng-new">🆕 新增功能</span><span class="chip eng-schema">⚙ 動結構</span><small>需：素材檔案表＋UTM／Lead Form</small></div>
+              </div>
+              <div class="ana2-order-layout">
+                <div>
+                  <div class="ana2-subhead">素材檔案</div>
+                  <div class="ana2-matcard">
+                    <b>AD-0817</b><span class="chip warm">主訴求：低總價首購</span>
+                    <div class="ana2-caption">檔期 08/01–08/21・FB・花費佔比 34%・已進客 47 組（填答率 68%）</div>
+                  </div>
+                  <div class="ana2-verdict"><span class="dot warm"></span><span><b>錯配 2 維</b>：主打首購，但購屋目的「投資」42%、預算眾數高一個級距——下一輪改打自住換屋。</span></div>
+                  <div class="ana2-caption">錯配維度 ≥3 且花費佔比 &gt;20% 才觸發「換訴求」提示；樣本 &lt;20 組不貼標籤；填答率 &lt;60% 整卡降信心標注。素材層歸因需 UTM（utm_content=素材編號）——未接前為來源層粗歸因。</div>
+                </div>
+                <div>
+                  <div class="ana2-subhead">實際進客輪廓 vs 素材目標</div>
+                  <div class="ana2-reason-list">
+                    <div class="ana2-reason-row"><span>年齡層 31–40</span><span class="ana2-reason-track"><i class="ana2-reason-fill" style="--reason:56%"></i></span><b>56%</b></div>
+                    <div class="ana2-reason-row"><span>居住區域 北屯</span><span class="ana2-reason-track"><i class="ana2-reason-fill" style="--reason:49%"></i></span><b>49%</b></div>
+                    <div class="ana2-reason-row"><span>需求房型 2 房</span><span class="ana2-reason-track"><i class="ana2-reason-fill" style="--reason:52%"></i></span><b>52%</b></div>
+                    <div class="ana2-reason-row miss"><span>購屋目的 投資</span><span class="ana2-reason-track"><i class="ana2-reason-fill" style="--reason:42%"></i></span><b>42%</b></div>
+                    <div class="ana2-reason-row miss"><span>預算 1500–2000 萬</span><span class="ana2-reason-track"><i class="ana2-reason-fill" style="--reason:44%"></i></span><b>44%</b></div>
+                    <div class="ana2-reason-row"><span>欲購時間 半年內</span><span class="ana2-reason-track"><i class="ana2-reason-fill" style="--reason:38%"></i></span><b>38%</b></div>
+                  </div>
+                  <div class="ana2-board-legend"><span><i style="background:var(--chart-2)"></i>命中目標</span><span><i style="background:var(--warm)"></i>錯配維度</span></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="acard ana2-wide" data-eng="new schema">
+              <div class="ana2-cardhead">
                 <div><h3>C6 CAPI 回傳價值儀表</h3><span class="ana2-caption">業主版摘要＋內部事件帳・資料截至 2026-08-26 14:30</span></div>
                 <div class="engnote">
                   <span class="chip eng-new">🆕 新增功能</span>
@@ -4147,6 +4254,37 @@
                 </div>
               </div>
               <div class="ana2-capi-monitor"><b>內部六狀態</b><span class="chip">應送 128</span><span class="chip">成功 120</span><span class="chip">延遲 4</span><span class="chip warm">重試 2</span><span class="chip hot">永久失敗 1</span><span class="chip">重複 1</span><span>成功 120／應送 128＝93.75%，畫面四捨五入 94%；退戶要補修正事件。</span></div>
+            </article>
+
+            
+
+            <article class="acard ana2-wide" data-eng="new">
+              <div class="ana2-cardhead">
+                <div><h3>C7 舊名單再行銷池</h3><span class="ana2-caption">檔期中後段名單枯竭時，先榨已付過錢的名單再買新流量</span></div>
+                <div class="engnote"><span class="chip eng-new">🆕 新增功能</span></div>
+              </div>
+              <div class="ana2-order-layout">
+                <div>
+                  <div class="ana2-verdict"><span class="dot"></span><span>池內 <b>168 組</b>・檔期還剩 6 週——超過 150 組門檻，<b>本檔期來得及點火</b>。</span></div>
+                  <div class="ana2-subhead">入池條件（全部同時成立）</div>
+                  <div class="ana2-caption">品質分 40–79（太低不值、太高該人追）・最後往來 &gt;30 天・欲購屋時間 3 個月內～半年內・無購買紀錄未退戶。</div>
+                  <div class="ana2-subhead">分數帶分布</div>
+                  <div class="ana2-reason-list">
+                    <div class="ana2-reason-row"><span>40–54 分</span><span class="ana2-reason-track"><i class="ana2-reason-fill" style="--reason:38%"></i></span><b>64 組</b></div>
+                    <div class="ana2-reason-row"><span>55–66 分</span><span class="ana2-reason-track"><i class="ana2-reason-fill" style="--reason:36%"></i></span><b>61 組</b></div>
+                    <div class="ana2-reason-row"><span>67–79 分</span><span class="ana2-reason-track"><i class="ana2-reason-fill" style="--reason:26%"></i></span><b>43 組</b></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="ana2-subhead">動作</div>
+                  <div class="ana2-todo">
+                    <div><b>匯出 Meta 自訂受眾</b><span>電話正規化＋SHA256 雜湊</span><button class="pillbtn" type="button" data-demo-toast>匯出</button></div>
+                    <div><b>LINE 分眾推播</b><span>池內 &lt;100 組時的替代管道</span><button class="pillbtn" type="button" data-demo-toast>建立名單</button></div>
+                  </div>
+                  <div class="ana2-subhead">喚醒成效</div>
+                  <div class="ana2-caption">待喚醒 campaign 起跑後回填：喚醒率＝30 日內回籠 ÷ 池內組數；喚醒成本與新客 CPQL 並排比——順序反了 CPL 翻倍。匯出留個資使用授權紀錄。</div>
+                </div>
+              </div>
             </article>
 
             <article class="acard ana2-wide" data-eng="upgrade">
@@ -4279,6 +4417,72 @@
                 <div class="ana2-reason-row"><span>李承翰</span><span class="ana2-reason-track"><i class="ana2-reason-fill" style="--reason:12%"></i></span><b>12%</b></div>
               </div>
               <div class="ana2-caption">灌分／藏客旗標只進主管版——讓業務看到等於發攻略。稽核全部用首次快照回溯，當前值只做展示。</div>
+            </article>
+
+            <article class="acard ana2-wide mgr-only" data-eng="new">
+              <div class="ana2-cardhead">
+                <div><h3>D5 開單熱度分</h3><span class="ana2-caption">下個月誰會開單——派客與排班的紅綠燈，每週重算</span></div>
+                <div class="engnote"><span class="chip eng-new">🆕 新增功能</span></div>
+              </div>
+              <div class="ana2-heatwall">
+                <div class="ana2-heatcard"><b>82</b><span>張家豪</span><div class="ana2-mini"><i style="height:85%"></i><i style="height:80%"></i><i style="height:75%"></i><i class="now" style="height:100%"></i></div></div>
+                <div class="ana2-heatcard"><b>74</b><span>吳姿瑩</span><div class="ana2-mini"><i style="height:70%"></i><i style="height:78%"></i><i style="height:65%"></i><i class="now" style="height:80%"></i></div></div>
+                <div class="ana2-heatcard"><b>68</b><span>李承翰</span><div class="ana2-mini"><i style="height:60%"></i><i style="height:55%"></i><i style="height:72%"></i><i class="now" style="height:70%"></i></div></div>
+                <div class="ana2-heatcard"><b>55</b><span>周家瑜</span><div class="ana2-mini"><i style="height:58%"></i><i style="height:50%"></i><i style="height:45%"></i><i class="now" style="height:55%"></i></div></div>
+                <div class="ana2-heatcard cold"><b>31</b><span>陳冠廷</span><div class="ana2-mini"><i style="height:52%"></i><i style="height:40%"></i><i style="height:33%"></i><i class="now" style="height:28%"></i></div></div>
+                <div class="ana2-heatcard cold"><b>27</b><span>郭士銘</span><div class="ana2-mini"><i style="height:30%"></i><i style="height:35%"></i><i style="height:25%"></i><i class="now" style="height:26%"></i></div></div>
+              </div>
+              <div class="ana2-caption">熱度分＝40×min(在手A/3,1)＋30×min(本月促回/5,1)＋20×min(近14天有效往來/10,1)＋10×(待兌現再訪≥1)。迷你條＝四項組成。回測：上月熱度前 1/3 貢獻成交佔比 <b>58%</b>（連 3 月 &lt;50% 就調權重，回測準確率公開在此）。<b>明文禁止進獎金與考核</b>——一進獎金，回訪與往來紀錄隔週就被灌爆。&lt;30 分連 2 週 → 這週就對在手客，不等下月掛零。</div>
+            </article>
+
+            <article class="acard ana2-narrow mgr-only" data-eng="new schema">
+              <div class="ana2-cardhead">
+                <div><h3>D6 新人 Ramp-Up</h3><span class="ana2-caption">郭士銘・到職第 7 週・對照歷史新人 P25–P75 帶</span></div>
+                <div class="engnote"><span class="chip eng-new">🆕 新增功能</span><span class="chip eng-schema">⚙ 動結構</span><small>需：人員檔到職日</small></div>
+              </div>
+              <div class="ana2-pace-chart">
+                <svg viewBox="0 0 360 130" role="img" aria-label="新人到職週別累計下訂曲線，灰帶為歷史新人的P25至P75區間，目前落在帶內下緣">
+                  <polygon points="20,118 80,112 140,100 200,84 260,64 320,42 320,84 260,96 200,106 140,114 80,119 20,122" fill="var(--fill-3)"/>
+                  <polyline points="20,121 80,118 140,115 200,112" fill="none" stroke="var(--accent)" stroke-width="2"/>
+                  <circle cx="200" cy="112" r="4" fill="var(--accent)"/>
+                </svg>
+                <div class="ana2-chart-key"><span><i style="background:var(--fill-3)"></i>歷史新人 P25–P75</span><span><i style="background:var(--accent)"></i>郭士銘累計下訂</span></div>
+              </div>
+              <div class="ana2-reason-list">
+                <div class="ana2-reason-row"><span>首次接客</span><span class="ana2-reason-track"><i class="ana2-reason-fill" style="--reason:100%"></i></span><b>D3 ✓</b></div>
+                <div class="ana2-reason-row"><span>首次促回</span><span class="ana2-reason-track"><i class="ana2-reason-fill" style="--reason:100%"></i></span><b>D11 ✓</b></div>
+                <div class="ana2-reason-row miss"><span>首張下訂</span><span class="ana2-reason-track"><i class="ana2-reason-fill" style="--reason:46%"></i></span><b>未達・帶 P75＝D49</b></div>
+              </div>
+              <div class="ana2-caption">紅黃燈用「結果<b>且</b>行為」雙條件——只看結果會錯殺被派爛客的新人。前 90 天陪談紀錄掛零而新人紅燈 → 問題先算帶的人。</div>
+            </article>
+
+            <article class="acard ana2-broad mgr-only" data-eng="new">
+              <div class="ana2-cardhead">
+                <div><h3>D8 換手成效與撿客榜</h3><span class="ana2-caption">抽回重派有沒有用——有對照組才知道是換手救的還是客本來會買</span></div>
+                <div class="engnote"><span class="chip eng-new">🆕 新增功能</span></div>
+              </div>
+              <div class="ana2-order-layout">
+                <div>
+                  <div class="ana2-subhead">換手漏斗・近 90 日 vs 對照組</div>
+                  <div class="ana2-reason-list">
+                    <div class="ana2-reason-row"><span>換手 14 組</span><span class="ana2-reason-track"><i class="ana2-reason-fill" style="--reason:100%"></i></span><b>14</b></div>
+                    <div class="ana2-reason-row"><span>14 天激活</span><span class="ana2-reason-track"><i class="ana2-reason-fill" style="--reason:79%"></i></span><b>11</b></div>
+                    <div class="ana2-reason-row"><span>90 天下訂</span><span class="ana2-reason-track"><i class="ana2-reason-fill" style="--reason:29%"></i></span><b>4</b></div>
+                    <div class="ana2-reason-row"><span>對照組下訂（同分級同客齡未換手）</span><span class="ana2-reason-track"><i class="ana2-reason-fill" style="--reason:14%"></i></span><b>2</b></div>
+                  </div>
+                  <div class="ana2-caption">換手客 90 天下訂率 29% vs 對照組 14%——抽回重派是救客不是搶客，數據背書。</div>
+                </div>
+                <div>
+                  <div class="ana2-subhead">撿客榜・接爛攤救得活的人</div>
+                  <div class="ana2-reason-list">
+                    <div class="ana2-reason-row"><span>李承翰</span><span class="ana2-reason-track"><i class="ana2-reason-fill" style="--reason:100%"></i></span><b>救活 3 組</b></div>
+                    <div class="ana2-reason-row"><span>吳姿瑩</span><span class="ana2-reason-track"><i class="ana2-reason-fill" style="--reason:67%"></i></span><b>2 組</b></div>
+                    <div class="ana2-reason-row"><span>周家瑜</span><span class="ana2-reason-track"><i class="ana2-reason-fill" style="--reason:33%"></i></span><b>1 組</b></div>
+                  </div>
+                  <div class="ana2-subhead">換手原因分佈</div>
+                  <div class="ana2-caption">怠速抽回 8・離職交接 4・客訴 2——怠速占比升高＝跟進管理失效的落後指標。獎金歸因照替換時間切，寫死規則杜絕「這組本來是我的」。這個榜公開只會鼓勵好行為。</div>
+                </div>
+              </div>
             </article>
 
             <article class="acard ana2-wide rep-only" data-eng="new">
@@ -4420,6 +4624,38 @@
                   <div class="ana2-caption">涉不同公司或不同個資利用目的<b>不得自動轉案</b>——先檢查授權與同意範圍；足跡要事件化（project_id／entered_at／consent_scope），不可只存一串案名。</div>
                 </div>
               </div>
+            </article>
+
+            <article class="acard ana2-wide" data-eng="new schema">
+              <div class="ana2-cardhead">
+                <div><h3>E5 勾勾表填答×預測力</h3><span class="ana2-caption">17 欄裡哪幾欄真的跟成交有關、哪幾欄白問</span></div>
+                <div class="engnote"><span class="chip eng-new">🆕 新增功能</span><span class="chip eng-schema">⚙ 動結構</span><small>需：checkin_submitted_at</small></div>
+              </div>
+              <div class="ana2-order-layout">
+                <div>
+                  <div class="ana2-subhead">欄位填答率（低於 60% 標橘）</div>
+                  <div class="ana2-reason-list">
+                    <div class="ana2-reason-row"><span>需求房型</span><span class="ana2-reason-track"><i class="ana2-reason-fill" style="--reason:92%"></i></span><b>92%</b></div>
+                    <div class="ana2-reason-row"><span>購屋預算</span><span class="ana2-reason-track"><i class="ana2-reason-fill" style="--reason:81%"></i></span><b>81%</b></div>
+                    <div class="ana2-reason-row"><span>欲購屋時間</span><span class="ana2-reason-track"><i class="ana2-reason-fill" style="--reason:77%"></i></span><b>77%</b></div>
+                    <div class="ana2-reason-row"><span>居住區域</span><span class="ana2-reason-track"><i class="ana2-reason-fill" style="--reason:74%"></i></span><b>74%</b></div>
+                    <div class="ana2-reason-row miss"><span>媒體來源</span><span class="ana2-reason-track"><i class="ana2-reason-fill" style="--reason:54%"></i></span><b>54%</b></div>
+                    <div class="ana2-reason-row miss"><span>月收入</span><span class="ana2-reason-track"><i class="ana2-reason-fill" style="--reason:48%"></i></span><b>48%</b></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="ana2-subhead">欄位 lift（有填者成交率 ÷ 未填者）</div>
+                  <div class="ana2-reason-list">
+                    <div class="ana2-reason-row"><span>購屋預算</span><span class="ana2-reason-track"><i class="ana2-reason-fill" style="--reason:100%"></i></span><b>2.3×</b></div>
+                    <div class="ana2-reason-row"><span>欲購屋時間</span><span class="ana2-reason-track"><i class="ana2-reason-fill" style="--reason:91%"></i></span><b>2.1×</b></div>
+                    <div class="ana2-reason-row"><span>需求房型</span><span class="ana2-reason-track"><i class="ana2-reason-fill" style="--reason:78%"></i></span><b>1.8×</b></div>
+                    <div class="ana2-reason-row"><span>婚姻狀況</span><span class="ana2-reason-track"><i class="ana2-reason-fill" style="--reason:48%"></i></span><b>1.1×</b></div>
+                    <div class="ana2-reason-row"><span>稱謂</span><span class="ana2-reason-track"><i class="ana2-reason-fill" style="--reason:43%"></i></span><b>1.0×</b></div>
+                  </div>
+                  <div class="ana2-verdict"><span class="dot"></span><span><b>lift 低又填答低的欄直接砍</b>——問卷變短 → 填答率升 → 客層資料變乾淨，正循環的起點。</span></div>
+                </div>
+              </div>
+              <div class="ana2-caption">按範本版本分開算（不同版本欄位不可混）；單一業務平均填答率 &lt;60% → 提示現場流程未落實，不是客人不願填。</div>
             </article>
           </div>
         </div>
