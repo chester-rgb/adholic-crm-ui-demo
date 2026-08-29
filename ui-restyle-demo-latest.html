@@ -980,8 +980,7 @@
   #page-analytics .ana2-navnote{font-size:.68rem; color:var(--muted); letter-spacing:.04em}
   /* 章首列：刊頭語彙——章號、章名、這章回答什麼、看的節奏 */
   #page-analytics .ana2-chaphead{
-    display:flex; align-items:baseline; gap:var(--s4);
-    padding-bottom:var(--s3); margin-bottom:var(--s5); border-bottom:1px solid var(--line-2);
+    display:flex; align-items:baseline; gap:var(--s4); margin-bottom:var(--s5);
   }
   #page-analytics .ana2-chaphead .no{
     font-size:2.12rem; font-weight:300; color:var(--line-2); line-height:.9;
@@ -999,7 +998,7 @@
     border:1px solid var(--line); border-radius:var(--r-pill); padding:.12rem .55rem;
   }
   /* 作戰台首屏的量體階梯：字級隨量體遞減，把漏斗做進排版（R-02 語彙） */
-  #page-analytics .ana2-ladder{padding-bottom:var(--s5); margin-bottom:var(--s5); border-bottom:1px solid var(--line)}
+  #page-analytics .ana2-ladder{margin-bottom:var(--s4)}
   #page-analytics .ana2-ladder .ladder{gap:var(--s4); margin-bottom:var(--s3)}
   #page-analytics .ana2-ladder .rung .k{letter-spacing:.14em}
   #page-analytics .ana2-rung-alert{margin-left:var(--s6); padding-left:var(--s6); border-left:1px solid var(--line)}
@@ -1018,18 +1017,20 @@
   @keyframes ana2Rise{ from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:none} }
   #page-analytics .ana2-panel[hidden]{display:none}
   #page-analytics .ana2-panel[hidden]{display:none}
-  #page-analytics .ana2-panel{display:flex; flex-direction:column; gap:var(--grid-gap)}
-  #page-analytics .ana2-grid{display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:var(--grid-gap)}
+  #page-analytics .ana2-panel{display:flex; flex-direction:column; gap:var(--s7)}
+  #page-analytics .ana2-grid{display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:var(--s8) var(--s7)}
+  /* 卡片外框全拆（2026-07-04 定案「白紙上的刊物」）：分隔靠留白與規線，不靠框 */
+  #page-analytics .ana2-grid > .acard{background:none; border-radius:0; padding:0}
   #page-analytics .ana2-grid > .acard{grid-column:span 6}
   #page-analytics .ana2-grid > .ana2-wide{grid-column:1 / -1}
   #page-analytics .ana2-grid > .ana2-narrow{grid-column:span 5}
   #page-analytics .ana2-grid > .ana2-broad{grid-column:span 7}
-  #page-analytics .ana2-cardhead{display:flex; align-items:flex-start; gap:var(--s3); padding-bottom:var(--s4); margin-bottom:var(--s4); border-bottom:1px solid var(--line)}
+  #page-analytics .ana2-cardhead{display:flex; align-items:flex-start; gap:var(--s3); padding-top:var(--s3); margin-bottom:var(--s4); border-top:2px solid var(--ink)}
   #page-analytics .ana2-cardhead > div:first-child{min-width:0}
   #page-analytics .ana2-cardhead h3{margin-bottom:0}
   #page-analytics .ana2-cardhead .ana2-caption{display:block; margin-top:var(--s1)}
   #page-analytics .ana2-caption{font-size:.68rem; color:var(--muted); line-height:1.7}
-  #page-analytics .ana2-verdict{display:flex; align-items:center; gap:var(--s3); padding:var(--s3) var(--s4); margin-bottom:var(--s4); background:var(--tint); border-radius:var(--r-row); font-size:.83rem}
+  #page-analytics .ana2-verdict{display:flex; align-items:baseline; gap:var(--s3); margin-bottom:var(--s5); font-size:.9rem; line-height:1.7}
   #page-analytics .ana2-verdict b{font-weight:500}
   #page-analytics .ana2-action-grid{display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,1fr) minmax(0,.72fr); gap:var(--s5)}
   #page-analytics .ana2-subhead{font-size:.68rem; color:var(--muted); letter-spacing:.1em; margin-bottom:var(--s2)}
@@ -1039,12 +1040,13 @@
   #page-analytics .ana2-action-row b{font-weight:500}
   #page-analytics .ana2-action-row .ana2-owner{font-size:.68rem; color:var(--muted); white-space:nowrap}
   #page-analytics .ana2-action-row .pillbtn{height:var(--ctrl-h); padding:0 var(--s3); font-size:.7rem;}
-  #page-analytics .ana2-kpi-grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--s2)}
-  #page-analytics .ana2-kpi-grid .kpi{background:var(--bg); border-radius:var(--r-cell); padding:var(--s3)}
-  #page-analytics .ana2-kpi-grid .kpi .v{font-size:1.59rem;}
+  #page-analytics .ana2-kpi-grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--s4) var(--s5)}
+  #page-analytics .ana2-kpi-grid .kpi{background:none; border-radius:0; padding:0}
+  #page-analytics .ana2-kpi-grid .kpi .v{font-size:1.91rem; font-weight:300}
   #page-analytics .ana2-kpi-grid .kpi .k{font-size:.66rem}
   #page-analytics .ana2-status{display:flex; flex-direction:column; gap:var(--s2)}
-  #page-analytics .ana2-status > div{display:flex; align-items:baseline; justify-content:space-between; gap:var(--s3); padding:var(--s3); background:var(--bg); border-radius:var(--r-cell)}
+  #page-analytics .ana2-status > div{display:flex; align-items:baseline; justify-content:space-between; gap:var(--s3); padding:var(--s2) 0; border-bottom:1px solid var(--line)}
+  #page-analytics .ana2-status > div:last-child{border-bottom:none}
   #page-analytics .ana2-status span{font-size:.68rem; color:var(--muted)}
   #page-analytics .ana2-status b{font-size:1.11rem; font-weight:400; font-variant-numeric:tabular-nums}
   #page-analytics .ana2-days{display:grid; grid-template-columns:repeat(28,minmax(0,1fr)); align-items:end; min-height:12rem; padding-top:var(--s7); border-bottom:1px solid var(--line-2)}
@@ -1060,19 +1062,19 @@
   #page-analytics .ana2-chart-key{display:inline-flex; align-items:center; gap:var(--s1)}
   #page-analytics .ana2-chart-key::before{content:''; width:var(--s3); height:var(--s2); border-radius:var(--r-mini); background:var(--chart-1)}
   #page-analytics .ana2-chart-key.phone::before{background:var(--chart-3)}
-  #page-analytics .ana2-baseline{margin-left:auto; display:flex; align-items:baseline; gap:var(--s3); padding:var(--s2) var(--s3); background:var(--bg); border-radius:var(--r-cell)}
+  #page-analytics .ana2-baseline{margin-left:auto; display:flex; align-items:baseline; gap:var(--s3); padding:var(--s2) var(--s3); background:var(--fill); border-radius:var(--r-cell)}
   #page-analytics .ana2-baseline b{font-size:.76rem; font-weight:500; color:var(--hot); font-variant-numeric:tabular-nums}
   #page-analytics .ana2-water-grid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:var(--s4); min-height:16rem}
   #page-analytics .ana2-water{display:grid; grid-template-rows:auto 1fr auto; gap:var(--s2); text-align:center}
   #page-analytics .ana2-water > b{font-weight:500; font-size:.76rem}
-  #page-analytics .ana2-water-track{position:relative; width:5.5rem; height:12rem; justify-self:center; align-self:end; background:var(--bg); border:1px solid var(--line); border-radius:var(--r-row); overflow:hidden}
+  #page-analytics .ana2-water-track{position:relative; width:5.5rem; height:12rem; justify-self:center; align-self:end; background:var(--fill); border-radius:var(--r-row); overflow:hidden}
   #page-analytics .ana2-water-fill{position:absolute; inset:auto 0 0; height:var(--level); background:var(--accent); display:flex; align-items:flex-start; justify-content:center; padding-top:var(--s3); color:var(--on-accent)}
   #page-analytics .ana2-water-fill.low{background:var(--hot)}
   #page-analytics .ana2-water-fill strong{font-size:1.11rem; font-weight:500; font-variant-numeric:tabular-nums}
   #page-analytics .ana2-target-line{position:absolute; left:0; right:0; bottom:70%; z-index:2; border-top:2px solid var(--hot)}
   #page-analytics .ana2-target-line span{position:absolute; left:var(--s1); top:calc(var(--s3) * -1); font-size:.64rem; color:var(--hot); white-space:nowrap; background:var(--bg)}
   #page-analytics .ana2-water small{font-size:.64rem; color:var(--muted); line-height:1.7}
-  #page-analytics .ana2-boost{display:flex; align-items:center; gap:var(--s3); flex-wrap:wrap; margin-top:var(--s4); padding:var(--s3) var(--s4); background:var(--bg); border-radius:var(--r-row); font-size:.76rem}
+  #page-analytics .ana2-boost{display:flex; align-items:center; gap:var(--s3); flex-wrap:wrap; margin-top:var(--s4); padding-top:var(--s3); border-top:1px solid var(--line); font-size:.76rem}
   #page-analytics .ana2-boost b{font-weight:500; font-variant-numeric:tabular-nums}
   #page-analytics .ana2-boost .pending{color:var(--muted)}
   #page-analytics .ana2-pace-layout{display:grid; grid-template-columns:minmax(0,1.7fr) minmax(15rem,.75fr); gap:var(--s5); align-items:stretch}
@@ -1080,14 +1082,14 @@
   #page-analytics .ana2-pace-chart svg{width:100%; min-height:13rem; display:block; overflow:visible}
   #page-analytics .ana2-pace-axis{display:flex; justify-content:space-between; color:var(--muted); font-size:.64rem; font-variant-numeric:tabular-nums}
   #page-analytics .ana2-pace-metrics{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:var(--s2)}
-  #page-analytics .ana2-pace-metrics > div{padding:var(--s3); background:var(--bg); border-radius:var(--r-cell)}
+  #page-analytics .ana2-pace-metrics > div{padding:0 0 0 var(--s4); border-left:1px solid var(--line-2)}
   #page-analytics .ana2-pace-metrics span{display:block; font-size:.64rem; color:var(--muted); margin-bottom:var(--s1)}
   #page-analytics .ana2-pace-metrics b{display:block; font-size:1.11rem; font-weight:400; font-variant-numeric:tabular-nums}
   #page-analytics .ana2-pace-metrics small{display:block; margin-top:var(--s1); font-size:.64rem; color:var(--muted); line-height:1.7}
   #page-analytics .ana2-insufficient{margin-top:var(--s2); padding:var(--s3); background:var(--fill); border-radius:var(--r-cell); font-size:.68rem; color:var(--muted)}
   #page-analytics .ana2-quality-list{display:flex; flex-direction:column; gap:var(--s1)}
   #page-analytics .ana2-quality-row{display:grid; grid-template-columns:9rem minmax(0,1fr) 3.5rem 6rem; align-items:center; gap:var(--s3); width:100%; padding:var(--s3); border-radius:var(--r-row); text-align:left; transition:background .15s ease-out}
-  #page-analytics .ana2-quality-row:hover{background:var(--bg)}
+  #page-analytics .ana2-quality-row:hover{background:var(--fill)}
   #page-analytics .ana2-quality-row > span:first-child{font-size:.76rem}
   #page-analytics .ana2-quality-row > b{font-size:.76rem; font-weight:500; text-align:right; font-variant-numeric:tabular-nums}
   #page-analytics .ana2-quality-row > small{font-size:.64rem; color:var(--muted); text-align:right}
@@ -1147,7 +1149,7 @@
   #page-analytics .ana2-price-chart{display:flex; flex-direction:column; gap:var(--s2)}
   #page-analytics .ana2-price-chart svg{width:100%; min-height:15rem; display:block; overflow:visible}
   #page-analytics .ana2-price-side{display:flex; flex-direction:column; gap:var(--s4)}
-  #page-analytics .ana2-depth{padding:var(--s4); background:var(--bg); border-radius:var(--r-row)}
+  #page-analytics .ana2-depth{padding:var(--s4) 0 0 var(--s4); border-left:1px solid var(--line-2)}
   #page-analytics .ana2-depth-head{display:flex; align-items:baseline; justify-content:space-between; gap:var(--s3); margin-bottom:var(--s3)}
   #page-analytics .ana2-depth-head span{font-size:.68rem; color:var(--muted); letter-spacing:.1em}
   #page-analytics .ana2-depth-head b{font-size:1.59rem; font-weight:400; font-variant-numeric:tabular-nums}
@@ -1212,12 +1214,12 @@
   #page-analytics .ana2-hist-meta span{display:inline-flex; align-items:center; gap:var(--s1)}
   #page-analytics .ana2-hist-meta i{width:var(--s3); height:var(--s2); border-radius:var(--r-mini); background:var(--chart-1)}
   #page-analytics .ana2-hist-meta i[data-source="other"]{background:var(--chart-3)}
-  #page-analytics .ana2-calibration{padding:var(--s4); border-radius:var(--r-row); background:var(--bg)}
+  #page-analytics .ana2-calibration{padding:0}
   #page-analytics .ana2-calibration .ana2-table th,#page-analytics .ana2-calibration .ana2-table td{text-align:right}
   #page-analytics .ana2-calibration .ana2-table th:first-child,#page-analytics .ana2-calibration .ana2-table td:first-child{text-align:left}
   #page-analytics .ana2-calibration .ana2-table td:last-child{font-weight:500; color:var(--accent); font-variant-numeric:tabular-nums}
   #page-analytics .ana2-ledgers{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:var(--s3)}
-  #page-analytics .ana2-ledger{padding:var(--s4); border-radius:var(--r-row); background:var(--bg)}
+  #page-analytics .ana2-ledger{padding:var(--s4); border-radius:var(--r-row); background:var(--fill)}
   #page-analytics .ana2-ledger-title{display:flex; align-items:baseline; justify-content:space-between; gap:var(--s2); padding-bottom:var(--s3); margin-bottom:var(--s2); border-bottom:1px solid var(--line-2); font-size:.76rem; font-weight:500}
   #page-analytics .ana2-ledger-title small{font-size:.64rem; color:var(--muted); font-weight:400}
   #page-analytics .ana2-ledger-row{display:flex; align-items:baseline; justify-content:space-between; gap:var(--s3); padding:var(--s2) 0; border-bottom:1px solid var(--line); font-size:.68rem; color:var(--muted)}
@@ -1258,6 +1260,7 @@
     #page-analytics .ana2-match-row > :nth-child(4){display:none}
     #page-analytics .ana2-media-split,#page-analytics .ana2-score-layout,#page-analytics .ana2-capi-layout{grid-template-columns:1fr}
     #page-analytics .ana2-ledgers{grid-template-columns:1fr}
+    #page-analytics .ana2-grid > .acard,#page-analytics .ana2-grid > .ana2-narrow,#page-analytics .ana2-grid > .ana2-broad{grid-column:1 / -1}
   }
 
   /* — analytics2 第 4 批：業務章 — */
@@ -1276,10 +1279,12 @@
   #page-analytics .ana2-matrix td.na{color:var(--muted)}
   /* D2 佇列四格＋怠速熱力 */
   #page-analytics .ana2-queue{display:grid; grid-template-columns:repeat(auto-fit,minmax(8rem,1fr)); gap:var(--s3); margin-bottom:var(--s4)}
-  #page-analytics .ana2-queue > div{background:var(--bg); border:1px solid var(--line); border-radius:var(--r-row); padding:var(--s3) var(--s4)}
-  #page-analytics .ana2-queue b{display:block; font-size:1.11rem; font-weight:500; font-variant-numeric:tabular-nums}
+  #page-analytics .ana2-queue > div{padding:0 0 0 var(--s4)}
+  #page-analytics .ana2-queue > div + div{border-left:1px solid var(--line-2)}
+  #page-analytics .ana2-queue > div:first-child{padding-left:0}
+  #page-analytics .ana2-queue b{display:block; font-size:1.91rem; font-weight:300; line-height:1.2; font-variant-numeric:tabular-nums}
   #page-analytics .ana2-queue span{font-size:.68rem; color:var(--muted)}
-  #page-analytics .ana2-queue > div.bad{border-color:var(--line-hot)}
+  #page-analytics .ana2-queue > div.bad{border-left-color:var(--line-hot)}
   #page-analytics .ana2-queue > div.bad b{color:var(--hot)}
   #page-analytics .ana2-idle{display:grid; grid-template-columns:5.5rem repeat(4,1fr); gap:var(--s1); font-size:.76rem}
   #page-analytics .ana2-idle > span{padding:var(--s2); text-align:center; font-variant-numeric:tabular-nums; border-radius:var(--r-mini)}
@@ -1307,7 +1312,8 @@
   /* 業務版成績單 */
   #page-analytics .ana2-repgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(14rem,1fr)); gap:var(--grid-gap)}
   #page-analytics .ana2-todo{display:flex; flex-direction:column; gap:var(--s2)}
-  #page-analytics .ana2-todo > div{display:flex; align-items:center; gap:var(--s3); background:var(--bg); border:1px solid var(--line); border-radius:var(--r-row); padding:var(--s3) var(--s4); font-size:.76rem}
+  #page-analytics .ana2-todo > div{display:flex; align-items:center; gap:var(--s3); padding:var(--s2) 0; border-bottom:1px solid var(--line); font-size:.76rem}
+  #page-analytics .ana2-todo > div:last-child{border-bottom:none}
   #page-analytics .ana2-todo b{font-weight:500}
   #page-analytics .ana2-todo .pillbtn{margin-left:auto; height:1.8rem; padding:0 var(--s3); font-size:.68rem}
   #page-analytics .ana2-mini{display:flex; align-items:flex-end; gap:var(--s2); height:calc(var(--s8) * 2)}
@@ -4269,7 +4275,7 @@
               <div class="ana2-caption">團隊 CQI 變異係數 0.11（&lt;0.15 綠）。張家豪連 4 週高於平均 1σ → 下週名單客往後排。未指派池滯留中位 6.2 小時。CQI 用建檔 7 日內首次分級快照，事後改分級改不了自己的 CQI。</div>
             </article>
 
-            <article class="acard ana2-narrow mgr-only" data-eng="new schema">
+            <article class="acard ana2-broad mgr-only" data-eng="new schema">
               <div class="ana2-cardhead">
                 <div><h3><span class="mid">D4</span>分級準確度與防灌分</h3><span class="ana2-caption">評得多、中得少＝灌分區・近 90 日</span></div>
                 <div class="engnote"><span class="engmark new" data-tip="新增功能" title="新增功能"><b>新</b><i>新增功能</i></span><span class="engmark schema" data-tip="需動資料結構・需：grade_history" title="需動資料結構・需：grade_history"><b>構</b><i>需動資料結構・需：grade_history</i></span></div>
