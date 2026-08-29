@@ -2287,6 +2287,9 @@
   #page-perms .rtile{
     border:1px solid transparent;
   }
+  /* 新增角色：外框不填滿——被上面的 transparent 蓋掉的虛線框補回來 */
+  #page-perms .rtile.add{border:1px dashed var(--line-2); background:none}
+  #page-perms .rtile.add:hover{border-color:var(--line-accent); background:var(--tint)}
   #page-perms .rtile .n code{
     color:var(--muted);
   }
@@ -2643,10 +2646,36 @@
 #page-templates .tplmain{min-width:0}
 #page-templates .sec.pagebar{position:relative; flex-wrap:wrap}
 #page-templates .sec.pagebar .acts{align-items:center; margin-left:auto}
-#page-templates .tpl-picker{display:flex; align-items:center; gap:var(--s2)}
-#page-templates .tpl-picker-label{font-size:.74rem; color:var(--muted); white-space:nowrap}
-#page-templates .tpl-picker .sel{width:15rem}
-#page-templates .tpl-actions{display:flex; align-items:center; gap:var(--s2)}
+/* 左右版型：左範本磚（同權限頁角色磚語彙）、右內容 */
+#page-templates .tpl-layout{display:grid; grid-template-columns:15rem minmax(0,1fr); gap:var(--s6); align-items:start}
+#page-templates .tpl-side-label{font-size:.68rem; color:var(--muted); letter-spacing:.14em; margin-bottom:var(--s3)}
+#page-templates .tpl-tiles{display:flex; flex-direction:column; gap:var(--s3)}
+#page-templates .tpl-tile{
+  background:var(--panel); border:1px solid transparent; border-radius:var(--r-card);
+  padding:var(--s3) var(--s5); text-align:left;
+  display:flex; flex-direction:column; align-items:flex-start; gap:.1rem;
+  font-size:.83rem; color:var(--ink);
+  transition:background .18s ease-out, border-color .18s ease-out, color .18s ease-out;
+}
+#page-templates .tpl-tile .n{font-size:.7rem; color:var(--muted); font-variant-numeric:tabular-nums; display:flex; align-items:baseline; gap:var(--s2)}
+#page-templates .tpl-tile:hover{background:var(--fill)}
+#page-templates .tpl-tile.on{background:var(--tint); border-color:var(--line-accent); color:var(--accent)}
+#page-templates .tpl-tile.on .n{color:var(--accent)}
+#page-templates .tpl-tile .n .live{color:var(--accent)}
+#page-templates .tpl-tile.add{
+  background:none; border:1px dashed var(--line-2); color:var(--muted);
+  flex-direction:row; align-items:center; justify-content:center; gap:var(--s2);
+}
+#page-templates .tpl-tile.add:hover{background:var(--tint); border-color:var(--line-accent); color:var(--accent)}
+#page-templates .tpl-tile.add .ico{height:1rem; width:auto; transition:transform .55s var(--enter)}
+#page-templates .tpl-tile.add:hover .ico{transform:rotate(360deg)}
+#page-templates .tpl-body-head{
+  display:flex; align-items:center; gap:var(--s3); flex-wrap:wrap;
+  padding-bottom:var(--s4); margin-bottom:var(--s4); border-bottom:1px solid var(--line);
+}
+#page-templates .tpl-body-head > b{font-weight:500; font-size:.95rem;}
+#page-templates .tpl-actions{display:flex; align-items:center; gap:var(--s2); margin-left:auto}
+@media (max-width:1020px){ #page-templates .tpl-layout{grid-template-columns:1fr} }
 #page-templates #tplActiveChip.on{border-color:var(--line-accent); color:var(--accent); background:var(--tint)}
 #page-templates .tpl-required{color:var(--hot); font-weight:500; margin-left:var(--s1)}
 /* 來源＝系統欄位／自訂欄位（正式系統的第三欄，不再對外露出英文 key） */
@@ -5533,19 +5562,7 @@
 <section class="view" id="page-templates">
 <div class="sec pagebar">
   <h2>勾勾表範本</h2>
-  <span class="cnt" id="tplCount">17 欄</span>
-  <span class="chip on" id="tplActiveChip">啟用中</span>
   <div class="acts">
-    <div class="tpl-picker">
-      <label class="tpl-picker-label" for="tplSelect">範本</label>
-      <select id="tplSelect" aria-label="切換範本"></select>
-    </div>
-    <div class="tpl-actions">
-      <button class="pillbtn iconpill" data-act="tplUse" id="tplUseBtn" type="button" aria-label="設為啟用"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="10" rx="5"/><circle cx="15.5" cy="12" r="2.5"/></svg><span class="lbl">設為啟用</span></button>
-      <button class="pillbtn iconpill" data-act="tplRename" type="button" aria-label="重新命名"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5V4h2.5L19 16.5 16.5 19 4 6.5z"/><circle cx="7.5" cy="7.5" r="1"/></svg><span class="lbl">重新命名</span></button>
-      <button class="pillbtn iconpill" data-act="tplNew" type="button" aria-label="新增範本"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span class="lbl">新增範本</span></button>
-      <button class="pillbtn iconpill solid" data-act="tplEdit" type="button" aria-label="編輯欄位"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9a2.1 2.1 0 0 0-3-3L5 17v3z"/><path d="M14.5 6.5l3 3"/></svg><span class="lbl">編輯欄位</span></button>
-    </div>
     <button class="circlebtn soft" data-act="tplRule" type="button" aria-label="版本規則" data-tip="版本規則"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.5"/><circle cx="12" cy="7.8" r=".9" fill="currentColor" stroke="none"/></svg></button>
     <div class="rulepop" id="tplRulePop" role="dialog" aria-label="版本規則" hidden>
       <b>版本規則</b>
@@ -5559,21 +5576,38 @@
   </div>
 </div>
 
-<div class="block">
-  <div class="tplmain">
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th style="width:2.4rem">#</th>
-            <th>欄位標籤</th>
-            <th>來源</th>
-            <th>型別</th>
-            <th>選項</th>
-          </tr>
-        </thead>
-        <tbody id="tplRows"></tbody>
-      </table>
+<div class="block tpl-layout">
+  <aside class="tpl-side">
+    <div class="tpl-side-label">範本</div>
+    <div class="tpl-tiles" id="tplTiles"></div>
+  </aside>
+  <div class="tpl-body">
+    <div class="tpl-body-head">
+      <b id="tplName">完整客戶詳細資料</b>
+      <span class="chip" id="tplVer">v1</span>
+      <span class="chip on" id="tplActiveChip">啟用中</span>
+      <span class="cnt" id="tplCount">17 欄</span>
+      <div class="tpl-actions">
+        <button class="pillbtn iconpill" data-act="tplUse" id="tplUseBtn" type="button" aria-label="設為啟用"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="10" rx="5"/><circle cx="15.5" cy="12" r="2.5"/></svg><span class="lbl">設為啟用</span></button>
+        <button class="pillbtn iconpill" data-act="tplRename" type="button" aria-label="重新命名"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5V4h2.5L19 16.5 16.5 19 4 6.5z"/><circle cx="7.5" cy="7.5" r="1"/></svg><span class="lbl">重新命名</span></button>
+        <button class="pillbtn iconpill solid" data-act="tplEdit" type="button" aria-label="編輯欄位"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9a2.1 2.1 0 0 0-3-3L5 17v3z"/><path d="M14.5 6.5l3 3"/></svg><span class="lbl">編輯欄位</span></button>
+      </div>
+    </div>
+    <div class="tplmain">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:2.4rem">#</th>
+              <th>欄位標籤</th>
+              <th>來源</th>
+              <th>型別</th>
+              <th>選項</th>
+            </tr>
+          </thead>
+          <tbody id="tplRows"></tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
@@ -9635,7 +9669,7 @@
 }catch(e){console.warn("frag reports",e)}
 try{ /* templates */
 (function(){
-  var select=document.getElementById('tplSelect'); if(!select) return;
+  var tplTiles=document.getElementById('tplTiles'); if(!tplTiles) return;
 
   /* 型別沿用正式系統的中文型別（2026-08-29 線上實測 crm.adholic.com.tw）。
      單選／單選下拉／刻度尺選擇／滑桿是四種不同的作答 UI，不是同一個 select。 */
@@ -9744,11 +9778,16 @@ try{ /* templates */
 
   /* ── 頁面：唯讀的欄位總覽，所有編輯都在對話框裡 ── */
   function drawPicker(){
-    select.innerHTML=TPL.map(function(t,i){
-      return '<option value="'+i+'">'+t.name+' '+t.ver+(t.active?'（啟用中）':'')+'</option>';
-    }).join('');
-    select.value=String(cur);
-    if(window.enhanceSelects) window.enhanceSelects(page);
+    tplTiles.innerHTML=TPL.map(function(t,i){
+      return '<button class="tpl-tile'+(i===cur?' on':'')+'" type="button" data-t="'+i+'"'+
+        (i===cur?' aria-current="true"':'')+'>'+t.name+
+        '<span class="n">'+t.ver+'・'+t.fields.length+' 欄'+(t.active?'<span class="live">・啟用中</span>':'')+'</span></button>';
+    }).join('')+
+      '<button class="tpl-tile add" type="button" data-act="tplNew" aria-label="新增範本">'+
+      '<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>新增範本</button>';
+    var nm=document.getElementById('tplName'), vr=document.getElementById('tplVer');
+    if(nm) nm.textContent=T().name;
+    if(vr) vr.textContent=T().ver;
   }
   function drawRows(){
     var t=T(), fs=t.fields;
@@ -10043,8 +10082,9 @@ try{ /* templates */
     var pop=document.getElementById('tplRulePop');
     if(pop && !pop.hidden && !e.target.closest('#tplRulePop, [data-act="tplRule"]')) pop.hidden=true;
   });
-  select.addEventListener('change',function(){
-    cur=+select.value; draw();
+  tplTiles.addEventListener('click',function(e){
+    var b=e.target.closest('.tpl-tile[data-t]'); if(!b) return;
+    cur=+b.dataset.t; draw();
   });
 
   /* 來客詳情要照啟用中的範本長出欄位，這裡是唯一的對外出口 */
