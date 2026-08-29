@@ -948,89 +948,35 @@
   .pivot td.hi{color:var(--accent); font-weight:500}
 
   /* 分析 2.0：七章決策系統（頁面專屬，不改共用元件預設） */
-  /* 工程備註：平常只留一個字的標記，打開「工程備註」才展開全文（給工程師的圖層，不跟數字搶戲） */
-  #page-analytics .engnote{display:flex; align-items:center; justify-content:flex-end; gap:var(--s1); flex-wrap:wrap; margin-left:auto}
-  #page-analytics .engmark{
-    display:inline-flex; align-items:center; gap:var(--s1); flex:none; cursor:help;
-    border-radius:var(--r-pill); padding:.1rem .3rem; font-size:.64rem; line-height:1.6;
-  }
-  #page-analytics .engmark b{
-    display:inline-flex; align-items:center; justify-content:center; flex:none;
-    width:1.05rem; height:1.05rem; border-radius:var(--r-mini); font-weight:500;
-  }
-  #page-analytics .engmark i{display:none; font-style:normal; color:var(--muted); white-space:nowrap}
-  #page-analytics .engmark.new b{background:var(--warm-tint); color:var(--warm)}
-  #page-analytics .engmark.upgrade b{background:var(--tint); color:var(--accent)}
-  #page-analytics .engmark.schema b{background:var(--hot-tint); color:var(--hot)}
-  #page-analytics.engfull .engmark i{display:inline}
-  #page-analytics.engfull .engmark.new{background:var(--warm-tint)}
-  #page-analytics.engfull .engmark.upgrade{background:var(--tint)}
-  #page-analytics.engfull .engmark.schema{background:var(--hot-tint)}
-  /* 章節列：沿用系統 .seg 緊湊語彙（不拉滿版），加編輯感的章節字母 */
-  #page-analytics .ana2-navrow{display:flex; align-items:center; gap:var(--s5); flex-wrap:wrap; margin-bottom:var(--s6)}
-  #page-analytics .ana2-tabs{overflow-x:auto; scrollbar-width:none; max-width:100%}
-  #page-analytics .ana2-tabs button{white-space:nowrap; display:inline-flex; align-items:center; gap:var(--s2)}
-  #page-analytics .ana2-tabs button em{
-    font-style:normal; font-size:.64rem; letter-spacing:.1em; opacity:.55;
-    font-variant-numeric:tabular-nums;
-  }
-  #page-analytics .ana2-tabs button.on em{opacity:.75}
+  #page-analytics .ana2-head{align-items:flex-start; flex-wrap:wrap}
+  #page-analytics .ana2-title{display:flex; flex-direction:column; gap:var(--s1)}
+  #page-analytics .ana2-title .note{line-height:1.7}
+  #page-analytics .ana2-rolebtn{margin-left:auto; flex:none}
   #page-analytics .ana2-tabs button[disabled]{opacity:.32; cursor:not-allowed}
   #page-analytics .ana2-tabs button[disabled]:hover{color:var(--muted)}
-  #page-analytics .ana2-navnote{font-size:.68rem; color:var(--muted); letter-spacing:.04em}
-  /* 章首列：刊頭語彙——章號、章名、這章回答什麼、看的節奏 */
-  #page-analytics .ana2-chaphead{
-    display:flex; align-items:baseline; gap:var(--s4); margin-bottom:var(--s5);
-  }
-  #page-analytics .ana2-chaphead .no{
-    font-size:2.12rem; font-weight:300; color:var(--line-2); line-height:.9;
-    letter-spacing:.06em; flex:none; font-variant-numeric:tabular-nums;
-  }
-  #page-analytics .ana2-chaphead > div{display:flex; flex-direction:column; gap:var(--s1); min-width:0}
-  #page-analytics .ana2-chaphead b{font-size:1.01rem; font-weight:500; letter-spacing:.1em}
-  #page-analytics .ana2-cardhead h3 .mid{
-    font-size:.64rem; font-weight:400; letter-spacing:.12em; color:var(--accent);
-    margin-right:var(--s2); vertical-align:.25em; font-variant-numeric:tabular-nums;
-  }
-  #page-analytics .ana2-chaphead > div span{font-size:.68rem; color:var(--muted)}
-  #page-analytics .ana2-chaphead .rhythm{
-    margin-left:auto; flex:none; font-size:.64rem; letter-spacing:.14em; color:var(--muted);
-    border:1px solid var(--line); border-radius:var(--r-pill); padding:.12rem .55rem;
-  }
-  /* 作戰台首屏的量體階梯：字級隨量體遞減，把漏斗做進排版（R-02 語彙） */
-  #page-analytics .ana2-ladder{margin-bottom:var(--s4)}
-  #page-analytics .ana2-ladder .ladder{gap:var(--s4); margin-bottom:var(--s3)}
-  #page-analytics .ana2-ladder .rung .k{letter-spacing:.14em}
-  #page-analytics .ana2-rung-alert{margin-left:var(--s6); padding-left:var(--s6); border-left:1px solid var(--line)}
-  #page-analytics .ana2-rung-alert b{color:var(--hot)}
-  /* 章節切換：卡片依序浮出（motion 的 stagger 語彙，reduced-motion 下自動停用） */
-  #page-analytics .ana2-panel:not([hidden]) > .ana2-grid > .acard,
-  #page-analytics .ana2-panel:not([hidden]) > .ana2-chaphead,
-  #page-analytics .ana2-panel:not([hidden]) > .ana2-ladder{animation:ana2Rise .42s var(--enter) backwards}
-  #page-analytics .ana2-panel:not([hidden]) > .ana2-chaphead{animation-delay:.02s}
-  #page-analytics .ana2-panel:not([hidden]) > .ana2-ladder{animation-delay:.06s}
-  #page-analytics .ana2-panel:not([hidden]) > .ana2-grid > .acard:nth-child(1){animation-delay:.10s}
-  #page-analytics .ana2-panel:not([hidden]) > .ana2-grid > .acard:nth-child(2){animation-delay:.15s}
-  #page-analytics .ana2-panel:not([hidden]) > .ana2-grid > .acard:nth-child(3){animation-delay:.20s}
-  #page-analytics .ana2-panel:not([hidden]) > .ana2-grid > .acard:nth-child(4){animation-delay:.25s}
-  #page-analytics .ana2-panel:not([hidden]) > .ana2-grid > .acard:nth-child(n+5){animation-delay:.30s}
-  @keyframes ana2Rise{ from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:none} }
+  #page-analytics .ana2-legend{ display:flex; align-items:center; justify-content:flex-end; gap:var(--s2); flex-wrap:wrap; font-size:.68rem; color:var(--muted)}
+  #page-analytics .ana2-legend > span{white-space:nowrap}
+  #page-analytics .engnote{display:flex; align-items:center; justify-content:flex-end; gap:var(--s1); flex-wrap:wrap; margin-left:auto}
+  #page-analytics .engnote .chip{font-size:.64rem; letter-spacing:.04em}
+  #page-analytics .engnote .chip.eng-new{border-color:var(--warm); background:var(--warm-tint); color:var(--warm)}
+  #page-analytics .engnote .chip.eng-upgrade{border-color:var(--accent); background:var(--tint); color:var(--accent)}
+  #page-analytics .engnote .chip.eng-schema{border-color:var(--hot); background:var(--hot-tint); color:var(--hot)}
+  #page-analytics .engnote small{font-size:.64rem; color:var(--muted); line-height:1.7}
+  #page-analytics .ana2-tabs{display:flex; width:100%; overflow-x:auto; margin-bottom:var(--s6)}
+  #page-analytics .ana2-tabs button{flex:1 0 auto; min-height:var(--ctrl-h)}
   #page-analytics .ana2-panel[hidden]{display:none}
-  #page-analytics .ana2-panel[hidden]{display:none}
-  #page-analytics .ana2-panel{display:flex; flex-direction:column; gap:var(--s7)}
-  #page-analytics .ana2-grid{display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:var(--s8) var(--s7)}
-  /* 卡片外框全拆（2026-07-04 定案「白紙上的刊物」）：分隔靠留白與規線，不靠框 */
-  #page-analytics .ana2-grid > .acard{background:none; border-radius:0; padding:0}
+  #page-analytics .ana2-panel{display:flex; flex-direction:column; gap:var(--grid-gap)}
+  #page-analytics .ana2-grid{display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:var(--grid-gap)}
   #page-analytics .ana2-grid > .acard{grid-column:span 6}
   #page-analytics .ana2-grid > .ana2-wide{grid-column:1 / -1}
   #page-analytics .ana2-grid > .ana2-narrow{grid-column:span 5}
   #page-analytics .ana2-grid > .ana2-broad{grid-column:span 7}
-  #page-analytics .ana2-cardhead{display:flex; align-items:flex-start; gap:var(--s3); padding-top:var(--s3); margin-bottom:var(--s4); border-top:2px solid var(--ink)}
+  #page-analytics .ana2-cardhead{display:flex; align-items:flex-start; gap:var(--s3); padding-bottom:var(--s4); margin-bottom:var(--s4); border-bottom:1px solid var(--line)}
   #page-analytics .ana2-cardhead > div:first-child{min-width:0}
   #page-analytics .ana2-cardhead h3{margin-bottom:0}
   #page-analytics .ana2-cardhead .ana2-caption{display:block; margin-top:var(--s1)}
   #page-analytics .ana2-caption{font-size:.68rem; color:var(--muted); line-height:1.7}
-  #page-analytics .ana2-verdict{display:flex; align-items:baseline; gap:var(--s3); margin-bottom:var(--s5); font-size:.9rem; line-height:1.7}
+  #page-analytics .ana2-verdict{display:flex; align-items:center; gap:var(--s3); padding:var(--s3) var(--s4); margin-bottom:var(--s4); background:var(--tint); border-radius:var(--r-row); font-size:.83rem}
   #page-analytics .ana2-verdict b{font-weight:500}
   #page-analytics .ana2-action-grid{display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,1fr) minmax(0,.72fr); gap:var(--s5)}
   #page-analytics .ana2-subhead{font-size:.68rem; color:var(--muted); letter-spacing:.1em; margin-bottom:var(--s2)}
@@ -1040,13 +986,12 @@
   #page-analytics .ana2-action-row b{font-weight:500}
   #page-analytics .ana2-action-row .ana2-owner{font-size:.68rem; color:var(--muted); white-space:nowrap}
   #page-analytics .ana2-action-row .pillbtn{height:var(--ctrl-h); padding:0 var(--s3); font-size:.7rem;}
-  #page-analytics .ana2-kpi-grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--s4) var(--s5)}
-  #page-analytics .ana2-kpi-grid .kpi{background:none; border-radius:0; padding:0}
-  #page-analytics .ana2-kpi-grid .kpi .v{font-size:1.91rem; font-weight:300}
+  #page-analytics .ana2-kpi-grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--s2)}
+  #page-analytics .ana2-kpi-grid .kpi{background:var(--bg); border-radius:var(--r-cell); padding:var(--s3)}
+  #page-analytics .ana2-kpi-grid .kpi .v{font-size:1.59rem;}
   #page-analytics .ana2-kpi-grid .kpi .k{font-size:.66rem}
   #page-analytics .ana2-status{display:flex; flex-direction:column; gap:var(--s2)}
-  #page-analytics .ana2-status > div{display:flex; align-items:baseline; justify-content:space-between; gap:var(--s3); padding:var(--s2) 0; border-bottom:1px solid var(--line)}
-  #page-analytics .ana2-status > div:last-child{border-bottom:none}
+  #page-analytics .ana2-status > div{display:flex; align-items:baseline; justify-content:space-between; gap:var(--s3); padding:var(--s3); background:var(--bg); border-radius:var(--r-cell)}
   #page-analytics .ana2-status span{font-size:.68rem; color:var(--muted)}
   #page-analytics .ana2-status b{font-size:1.11rem; font-weight:400; font-variant-numeric:tabular-nums}
   #page-analytics .ana2-days{display:grid; grid-template-columns:repeat(28,minmax(0,1fr)); align-items:end; min-height:12rem; padding-top:var(--s7); border-bottom:1px solid var(--line-2)}
@@ -1062,19 +1007,19 @@
   #page-analytics .ana2-chart-key{display:inline-flex; align-items:center; gap:var(--s1)}
   #page-analytics .ana2-chart-key::before{content:''; width:var(--s3); height:var(--s2); border-radius:var(--r-mini); background:var(--chart-1)}
   #page-analytics .ana2-chart-key.phone::before{background:var(--chart-3)}
-  #page-analytics .ana2-baseline{margin-left:auto; display:flex; align-items:baseline; gap:var(--s3); padding:var(--s2) var(--s3); background:var(--fill); border-radius:var(--r-cell)}
+  #page-analytics .ana2-baseline{margin-left:auto; display:flex; align-items:baseline; gap:var(--s3); padding:var(--s2) var(--s3); background:var(--bg); border-radius:var(--r-cell)}
   #page-analytics .ana2-baseline b{font-size:.76rem; font-weight:500; color:var(--hot); font-variant-numeric:tabular-nums}
   #page-analytics .ana2-water-grid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:var(--s4); min-height:16rem}
   #page-analytics .ana2-water{display:grid; grid-template-rows:auto 1fr auto; gap:var(--s2); text-align:center}
   #page-analytics .ana2-water > b{font-weight:500; font-size:.76rem}
-  #page-analytics .ana2-water-track{position:relative; width:5.5rem; height:12rem; justify-self:center; align-self:end; background:var(--fill); border-radius:var(--r-row); overflow:hidden}
+  #page-analytics .ana2-water-track{position:relative; width:5.5rem; height:12rem; justify-self:center; align-self:end; background:var(--bg); border:1px solid var(--line); border-radius:var(--r-row); overflow:hidden}
   #page-analytics .ana2-water-fill{position:absolute; inset:auto 0 0; height:var(--level); background:var(--accent); display:flex; align-items:flex-start; justify-content:center; padding-top:var(--s3); color:var(--on-accent)}
   #page-analytics .ana2-water-fill.low{background:var(--hot)}
   #page-analytics .ana2-water-fill strong{font-size:1.11rem; font-weight:500; font-variant-numeric:tabular-nums}
   #page-analytics .ana2-target-line{position:absolute; left:0; right:0; bottom:70%; z-index:2; border-top:2px solid var(--hot)}
   #page-analytics .ana2-target-line span{position:absolute; left:var(--s1); top:calc(var(--s3) * -1); font-size:.64rem; color:var(--hot); white-space:nowrap; background:var(--bg)}
   #page-analytics .ana2-water small{font-size:.64rem; color:var(--muted); line-height:1.7}
-  #page-analytics .ana2-boost{display:flex; align-items:center; gap:var(--s3); flex-wrap:wrap; margin-top:var(--s4); padding-top:var(--s3); border-top:1px solid var(--line); font-size:.76rem}
+  #page-analytics .ana2-boost{display:flex; align-items:center; gap:var(--s3); flex-wrap:wrap; margin-top:var(--s4); padding:var(--s3) var(--s4); background:var(--bg); border-radius:var(--r-row); font-size:.76rem}
   #page-analytics .ana2-boost b{font-weight:500; font-variant-numeric:tabular-nums}
   #page-analytics .ana2-boost .pending{color:var(--muted)}
   #page-analytics .ana2-pace-layout{display:grid; grid-template-columns:minmax(0,1.7fr) minmax(15rem,.75fr); gap:var(--s5); align-items:stretch}
@@ -1082,14 +1027,14 @@
   #page-analytics .ana2-pace-chart svg{width:100%; min-height:13rem; display:block; overflow:visible}
   #page-analytics .ana2-pace-axis{display:flex; justify-content:space-between; color:var(--muted); font-size:.64rem; font-variant-numeric:tabular-nums}
   #page-analytics .ana2-pace-metrics{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:var(--s2)}
-  #page-analytics .ana2-pace-metrics > div{padding:0 0 0 var(--s4); border-left:1px solid var(--line-2)}
+  #page-analytics .ana2-pace-metrics > div{padding:var(--s3); background:var(--bg); border-radius:var(--r-cell)}
   #page-analytics .ana2-pace-metrics span{display:block; font-size:.64rem; color:var(--muted); margin-bottom:var(--s1)}
   #page-analytics .ana2-pace-metrics b{display:block; font-size:1.11rem; font-weight:400; font-variant-numeric:tabular-nums}
   #page-analytics .ana2-pace-metrics small{display:block; margin-top:var(--s1); font-size:.64rem; color:var(--muted); line-height:1.7}
   #page-analytics .ana2-insufficient{margin-top:var(--s2); padding:var(--s3); background:var(--fill); border-radius:var(--r-cell); font-size:.68rem; color:var(--muted)}
   #page-analytics .ana2-quality-list{display:flex; flex-direction:column; gap:var(--s1)}
   #page-analytics .ana2-quality-row{display:grid; grid-template-columns:9rem minmax(0,1fr) 3.5rem 6rem; align-items:center; gap:var(--s3); width:100%; padding:var(--s3); border-radius:var(--r-row); text-align:left; transition:background .15s ease-out}
-  #page-analytics .ana2-quality-row:hover{background:var(--fill)}
+  #page-analytics .ana2-quality-row:hover{background:var(--bg)}
   #page-analytics .ana2-quality-row > span:first-child{font-size:.76rem}
   #page-analytics .ana2-quality-row > b{font-size:.76rem; font-weight:500; text-align:right; font-variant-numeric:tabular-nums}
   #page-analytics .ana2-quality-row > small{font-size:.64rem; color:var(--muted); text-align:right}
@@ -1149,7 +1094,7 @@
   #page-analytics .ana2-price-chart{display:flex; flex-direction:column; gap:var(--s2)}
   #page-analytics .ana2-price-chart svg{width:100%; min-height:15rem; display:block; overflow:visible}
   #page-analytics .ana2-price-side{display:flex; flex-direction:column; gap:var(--s4)}
-  #page-analytics .ana2-depth{padding:var(--s4) 0 0 var(--s4); border-left:1px solid var(--line-2)}
+  #page-analytics .ana2-depth{padding:var(--s4); background:var(--bg); border-radius:var(--r-row)}
   #page-analytics .ana2-depth-head{display:flex; align-items:baseline; justify-content:space-between; gap:var(--s3); margin-bottom:var(--s3)}
   #page-analytics .ana2-depth-head span{font-size:.68rem; color:var(--muted); letter-spacing:.1em}
   #page-analytics .ana2-depth-head b{font-size:1.59rem; font-weight:400; font-variant-numeric:tabular-nums}
@@ -1214,12 +1159,12 @@
   #page-analytics .ana2-hist-meta span{display:inline-flex; align-items:center; gap:var(--s1)}
   #page-analytics .ana2-hist-meta i{width:var(--s3); height:var(--s2); border-radius:var(--r-mini); background:var(--chart-1)}
   #page-analytics .ana2-hist-meta i[data-source="other"]{background:var(--chart-3)}
-  #page-analytics .ana2-calibration{padding:0}
+  #page-analytics .ana2-calibration{padding:var(--s4); border-radius:var(--r-row); background:var(--bg)}
   #page-analytics .ana2-calibration .ana2-table th,#page-analytics .ana2-calibration .ana2-table td{text-align:right}
   #page-analytics .ana2-calibration .ana2-table th:first-child,#page-analytics .ana2-calibration .ana2-table td:first-child{text-align:left}
   #page-analytics .ana2-calibration .ana2-table td:last-child{font-weight:500; color:var(--accent); font-variant-numeric:tabular-nums}
   #page-analytics .ana2-ledgers{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:var(--s3)}
-  #page-analytics .ana2-ledger{padding:var(--s4); border-radius:var(--r-row); background:var(--fill)}
+  #page-analytics .ana2-ledger{padding:var(--s4); border-radius:var(--r-row); background:var(--bg)}
   #page-analytics .ana2-ledger-title{display:flex; align-items:baseline; justify-content:space-between; gap:var(--s2); padding-bottom:var(--s3); margin-bottom:var(--s2); border-bottom:1px solid var(--line-2); font-size:.76rem; font-weight:500}
   #page-analytics .ana2-ledger-title small{font-size:.64rem; color:var(--muted); font-weight:400}
   #page-analytics .ana2-ledger-row{display:flex; align-items:baseline; justify-content:space-between; gap:var(--s3); padding:var(--s2) 0; border-bottom:1px solid var(--line); font-size:.68rem; color:var(--muted)}
@@ -1260,7 +1205,6 @@
     #page-analytics .ana2-match-row > :nth-child(4){display:none}
     #page-analytics .ana2-media-split,#page-analytics .ana2-score-layout,#page-analytics .ana2-capi-layout{grid-template-columns:1fr}
     #page-analytics .ana2-ledgers{grid-template-columns:1fr}
-    #page-analytics .ana2-grid > .acard,#page-analytics .ana2-grid > .ana2-narrow,#page-analytics .ana2-grid > .ana2-broad{grid-column:1 / -1}
   }
 
   /* — analytics2 第 4 批：業務章 — */
@@ -1279,12 +1223,10 @@
   #page-analytics .ana2-matrix td.na{color:var(--muted)}
   /* D2 佇列四格＋怠速熱力 */
   #page-analytics .ana2-queue{display:grid; grid-template-columns:repeat(auto-fit,minmax(8rem,1fr)); gap:var(--s3); margin-bottom:var(--s4)}
-  #page-analytics .ana2-queue > div{padding:0 0 0 var(--s4)}
-  #page-analytics .ana2-queue > div + div{border-left:1px solid var(--line-2)}
-  #page-analytics .ana2-queue > div:first-child{padding-left:0}
-  #page-analytics .ana2-queue b{display:block; font-size:1.91rem; font-weight:300; line-height:1.2; font-variant-numeric:tabular-nums}
+  #page-analytics .ana2-queue > div{background:var(--bg); border:1px solid var(--line); border-radius:var(--r-row); padding:var(--s3) var(--s4)}
+  #page-analytics .ana2-queue b{display:block; font-size:1.11rem; font-weight:500; font-variant-numeric:tabular-nums}
   #page-analytics .ana2-queue span{font-size:.68rem; color:var(--muted)}
-  #page-analytics .ana2-queue > div.bad{border-left-color:var(--line-hot)}
+  #page-analytics .ana2-queue > div.bad{border-color:var(--line-hot)}
   #page-analytics .ana2-queue > div.bad b{color:var(--hot)}
   #page-analytics .ana2-idle{display:grid; grid-template-columns:5.5rem repeat(4,1fr); gap:var(--s1); font-size:.76rem}
   #page-analytics .ana2-idle > span{padding:var(--s2); text-align:center; font-variant-numeric:tabular-nums; border-radius:var(--r-mini)}
@@ -1312,8 +1254,7 @@
   /* 業務版成績單 */
   #page-analytics .ana2-repgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(14rem,1fr)); gap:var(--grid-gap)}
   #page-analytics .ana2-todo{display:flex; flex-direction:column; gap:var(--s2)}
-  #page-analytics .ana2-todo > div{display:flex; align-items:center; gap:var(--s3); padding:var(--s2) 0; border-bottom:1px solid var(--line); font-size:.76rem}
-  #page-analytics .ana2-todo > div:last-child{border-bottom:none}
+  #page-analytics .ana2-todo > div{display:flex; align-items:center; gap:var(--s3); background:var(--bg); border:1px solid var(--line); border-radius:var(--r-row); padding:var(--s3) var(--s4); font-size:.76rem}
   #page-analytics .ana2-todo b{font-weight:500}
   #page-analytics .ana2-todo .pillbtn{margin-left:auto; height:1.8rem; padding:0 var(--s3); font-size:.68rem}
   #page-analytics .ana2-mini{display:flex; align-items:flex-end; gap:var(--s2); height:calc(var(--s8) * 2)}
@@ -3690,47 +3631,39 @@
 
       <!-- ═══ 分析 ═══ -->
       <section class="view" id="page-analytics">
-        <div class="sec pagebar">
-          <h2>分析</h2><span class="cnt" id="ana2Count">27 個模組</span>
-          <span class="note">回答哪裡不對、為什麼、現在要做什麼</span>
-          <div class="acts">
-            <button class="pillbtn" type="button" data-act="ana2Eng" id="ana2EngBtn" aria-pressed="false">工程備註</button>
-            <button class="pillbtn" type="button" data-act="ana2Role" id="ana2RoleBtn">檢視身分：系統管理員 ▾</button>
+        <div class="sec pagebar ana2-head">
+          <div class="ana2-title">
+            <h2>分析</h2>
+            <span class="note">回答：哪裡不對、為什麼、現在要做什麼</span>
+          </div>
+          <button class="pillbtn ana2-rolebtn" type="button" id="ana2RoleBtn">檢視身分：系統管理員 ▾</button>
+          <div class="ana2-legend" aria-label="工程備註圖例">
+            <span><span class="chip eng-new">🆕 新增功能</span>正式系統沒有</span>
+            <span><span class="chip eng-upgrade">升級</span>改既有功能</span>
+            <span><span class="chip eng-schema">⚙ 動結構</span>需補資料／設定</span>
           </div>
         </div>
 
-        <div class="block ana2-navrow"><div class="seg ana2-tabs" id="ana2Tabs" role="tablist" aria-label="分析章節">
-          <button class="on" id="ana2-tab-command" type="button" role="tab" aria-selected="true" aria-controls="ana2-command" data-ana2="command" data-perm="analytics:command"><em>A</em>作戰台</button>
-          <button id="ana2-tab-product" type="button" role="tab" aria-selected="false" aria-controls="ana2-product" data-ana2="product" data-perm="analytics:product"><em>B</em>產品價格</button>
-          <button id="ana2-tab-media" type="button" role="tab" aria-selected="false" aria-controls="ana2-media" data-ana2="media" data-perm="analytics:media"><em>C</em>名單媒體</button>
-          <button id="ana2-tab-sales" type="button" role="tab" aria-selected="false" aria-controls="ana2-sales" data-ana2="sales" data-perm="analytics:team"><em>D</em>業務</button>
-          <button id="ana2-tab-cohort" type="button" role="tab" aria-selected="false" aria-controls="ana2-cohort" data-ana2="cohort" data-perm="analytics:cohort"><em>E</em>熟成訂單</button>
-          <button id="ana2-tab-owner" type="button" role="tab" aria-selected="false" aria-controls="ana2-owner" data-ana2="owner" data-perm="analytics:owner"><em>F</em>對業主</button>
-          <button id="ana2-tab-data" type="button" role="tab" aria-selected="false" aria-controls="ana2-data" data-ana2="data" data-perm="analytics:data"><em>G</em>資料</button>
-          </div>
-          <span class="ana2-navnote" id="ana2NavNote">照節奏排：每天看 A、每週看 B–E、每月看 F</span>
+        <div class="seg ana2-tabs" id="ana2Tabs" role="tablist" aria-label="分析章節">
+          <button class="on" id="ana2-tab-command" type="button" role="tab" aria-selected="true" aria-controls="ana2-command" data-ana2="command" data-perm="analytics:command">作戰台</button>
+          <button id="ana2-tab-product" type="button" role="tab" aria-selected="false" aria-controls="ana2-product" data-ana2="product" data-perm="analytics:product">產品價格</button>
+          <button id="ana2-tab-media" type="button" role="tab" aria-selected="false" aria-controls="ana2-media" data-ana2="media" data-perm="analytics:media">名單媒體</button>
+          <button id="ana2-tab-sales" type="button" role="tab" aria-selected="false" aria-controls="ana2-sales" data-ana2="sales" data-perm="analytics:team">業務</button>
+          <button id="ana2-tab-cohort" type="button" role="tab" aria-selected="false" aria-controls="ana2-cohort" data-ana2="cohort" data-perm="analytics:cohort">熟成訂單</button>
+          <button id="ana2-tab-owner" type="button" role="tab" aria-selected="false" aria-controls="ana2-owner" data-ana2="owner" data-perm="analytics:owner">對業主</button>
+          <button id="ana2-tab-data" type="button" role="tab" aria-selected="false" aria-controls="ana2-data" data-ana2="data" data-perm="analytics:data">資料</button>
         </div>
 
         <div class="ana2-panel" id="ana2-command" role="tabpanel" aria-labelledby="ana2-tab-command">
-          <div class="ana2-chaphead"><span class="no">A</span><div><b>作戰台</b><span>今天先救哪一件事——每日早會的主場</span></div><span class="rhythm">日</span></div>
-          <div class="block ana2-ladder">
-            <div class="ladder" role="img" aria-label="本檔期來客到簽約的量體階梯：來客 384 組、回訪 92 組、下訂 78 戶、簽約 71 戶">
-              <div class="rung"><b style="font-size:2.54rem;">384</b><span class="k">累積來客</span></div>
-              <span class="step">→</span>
-              <div class="rung"><b style="font-size:2.12rem;">92</b><span class="k">回訪</span><span class="rate">24.0%</span></div>
-              <span class="step">→</span>
-              <div class="rung"><b style="font-size:1.64rem;">78</b><span class="k">下訂</span><span class="rate">84.8%</span></div>
-              <span class="step">→</span>
-              <div class="rung tail"><b style="font-size:1.43rem;">71</b><span class="k">淨簽約</span><span class="rate">91.0%</span></div>
-              <div class="rung ana2-rung-alert"><b style="font-size:1.11rem;">4</b><span class="k">今日逾期未追</span></div>
-            </div>
-            <div class="ana2-caption">全案累計・淨簽約已扣退戶。轉換率分母為前一階，非累計來客。逾期未追是唯一需要今天動作的數字。</div>
-          </div>
           <div class="ana2-grid">
             <article class="acard ana2-wide" data-eng="new schema">
               <div class="ana2-cardhead">
-                <div><h3><span class="mid">A1</span>今日行動台</h3><span class="ana2-caption">資料截至 2026-08-26 14:30</span></div>
-                <div class="engnote"><span class="engmark new" data-tip="新增功能" title="新增功能"><b>新</b><i>新增功能</i></span><span class="engmark schema" data-tip="需動資料結構" title="需動資料結構"><b>構</b><i>需動資料結構</i></span></div>
+                <div><h3>A1 今日行動台</h3><span class="ana2-caption">資料截至 2026-08-26 14:30</span></div>
+                <div class="engnote">
+                  <span class="chip eng-new">🆕 新增功能</span>
+                  <span class="chip eng-schema">⚙ 動結構</span>
+                  <small>需：SLA 設定、往來紀錄結構化</small>
+                </div>
               </div>
               <div class="ana2-verdict"><span class="dot warm"></span><b>量體正常，但有 7 組新名單尚未首次跟進。</b></div>
               <div class="ana2-action-grid">
@@ -3764,8 +3697,13 @@
 
             <article class="acard ana2-wide" data-eng="upgrade schema">
               <div class="ana2-cardhead">
-                <div><h3><span class="mid">A2</span>量體與節奏基準線</h3><span class="ana2-caption">近 28 天・日別來人與來電</span></div>
-                <div class="engnote"><span class="engmark upgrade" data-tip="升級既有" title="升級既有"><b>升</b><i>升級既有</i></span><span class="engmark schema" data-tip="需動資料結構" title="需動資料結構"><b>構</b><i>需動資料結構</i></span></div>
+                <div><h3>A2 量體與節奏基準線</h3><span class="ana2-caption">近 28 天・日別來人與來電</span></div>
+                <div class="engnote">
+                  <span class="chip eng-upgrade">升級</span>
+                  <small>升級自：每週來客走勢</small>
+                  <span class="chip eng-schema">⚙ 動結構</span>
+                  <small>需：檔期標籤</small>
+                </div>
               </div>
               <div class="ana2-days" aria-label="2026-07-30 至 2026-08-26 日別來人與來電長條圖">
                 <div class="ana2-day" style="--visit:36%;--phone:24%" aria-label="7月30日，來人5組次，來電3組"><span class="ana2-pair"><i class="ana2-bar visit"></i><i class="ana2-bar phone"></i></span><span class="ana2-day-label">7/30</span></div>
@@ -3806,8 +3744,8 @@
 
             <article class="acard ana2-narrow" data-eng="new">
               <div class="ana2-cardhead">
-                <div><h3><span class="mid">A3</span>有效客水位／加碼論證板</h3><span class="ana2-caption">A／B 級有效客折算戶數 vs 未來 4 週目標</span></div>
-                <div class="engnote"><span class="engmark new" data-tip="新增功能" title="新增功能"><b>新</b><i>新增功能</i></span></div>
+                <div><h3>A3 有效客水位／加碼論證板</h3><span class="ana2-caption">A／B 級有效客折算戶數 vs 未來 4 週目標</span></div>
+                <div class="engnote"><span class="chip eng-new">🆕 新增功能</span></div>
               </div>
               <div class="ana2-water-grid">
                 <div class="ana2-water">
@@ -3832,8 +3770,11 @@
 
             <article class="acard ana2-broad" data-eng="schema upgrade">
               <div class="ana2-cardhead">
-                <div><h3><span class="mid">A4</span>去化節奏與完銷推估</h3><span class="ana2-caption">P1 示範版・累計淨簽 vs 承諾軌道</span></div>
-                <div class="engnote"><span class="engmark schema" data-tip="需動資料結構・需：銷售目標與檔期設定" title="需動資料結構・需：銷售目標與檔期設定"><b>構</b><i>需動資料結構・需：銷售目標與檔期設定</i></span><span class="engmark upgrade" data-tip="升級既有・升級自：去化速度 KPI" title="升級既有・升級自：去化速度 KPI"><b>升</b><i>升級既有・升級自：去化速度 KPI</i></span></div>
+                <div><h3>A4 去化節奏與完銷推估</h3><span class="ana2-caption">P1 示範版・累計淨簽 vs 承諾軌道</span></div>
+                <div class="engnote">
+                  <span class="chip eng-schema">⚙ 動結構</span><small>需：銷售目標與檔期設定</small>
+                  <span class="chip eng-upgrade">升級</span><small>升級自：去化速度 KPI</small>
+                </div>
               </div>
               <div class="ana2-pace-layout">
                 <div class="ana2-pace-chart">
@@ -3864,12 +3805,11 @@
         </div>
 
         <div class="ana2-panel" id="ana2-product" role="tabpanel" aria-labelledby="ana2-tab-product" hidden>
-          <div class="ana2-chaphead"><span class="no">B</span><div><b>產品與價格</b><span>庫存卡在哪、價格該漲該讓——每週檢討</span></div><span class="rhythm">週</span></div>
           <div class="ana2-grid">
             <article class="acard ana2-wide" data-eng="new">
               <div class="ana2-cardhead">
-                <div><h3><span class="mid">B1</span>供需缺口對照</h3><span class="ana2-caption">有效需求 vs 目前可售・資料截至 2026-08-26 14:30</span></div>
-                <div class="engnote"><span class="engmark new" data-tip="新增功能" title="新增功能"><b>新</b><i>新增功能</i></span></div>
+                <div><h3>B1 供需缺口對照</h3><span class="ana2-caption">有效需求 vs 目前可售・資料截至 2026-08-26 14:30</span></div>
+                <div class="engnote"><span class="chip eng-new">🆕 新增功能</span></div>
               </div>
               <div class="ana2-verdict"><span class="dot warm"></span><span><b>2 房需求比庫存多 15 個百分點</b>；4 房供給反而多 16 個百分點，下一檔不宜再用單一客群訴求。</span></div>
               <div class="ana2-mirror" role="img" aria-label="以中軸0向左右展開，呈現2房、3房、4房與店面的需求占比和可售占比背靠背橫條圖">
@@ -3912,8 +3852,11 @@
 
             <article class="acard ana2-wide" data-eng="schema upgrade">
               <div class="ana2-cardhead">
-                <div><h3><span class="mid">B2</span>戶別滯銷風險</h3><span class="ana2-caption">前 5 個風險產品群＋銷控空間定位</span></div>
-                <div class="engnote"><span class="engmark schema" data-tip="需動資料結構・需：銷控狀態變更紀錄 unit_status_history" title="需動資料結構・需：銷控狀態變更紀錄 unit_status_history"><b>構</b><i>需動資料結構・需：銷控狀態變更紀錄 unit_status_history</i></span><span class="engmark upgrade" data-tip="升級既有・升級自：產品去化" title="升級既有・升級自：產品去化"><b>升</b><i>升級既有・升級自：產品去化</i></span></div>
+                <div><h3>B2 戶別滯銷風險</h3><span class="ana2-caption">前 5 個風險產品群＋銷控空間定位</span></div>
+                <div class="engnote">
+                  <span class="chip eng-schema">⚙ 動結構</span><small>需：銷控狀態變更紀錄 unit_status_history</small>
+                  <span class="chip eng-upgrade">升級</span><small>升級自：產品去化</small>
+                </div>
               </div>
               <div class="ana2-risk-list" aria-label="滯銷風險前五群">
                 <div class="ana2-risk-row"><span class="dot hot"></span><b>A 棟 2 房邊間 6 戶・可售 21%・零淨簽 8 週</b><button class="pillbtn danger" type="button" data-demo-toast>查戶別</button></div>
@@ -3938,8 +3881,11 @@
 
             <article class="acard ana2-wide" data-eng="schema new">
               <div class="ana2-cardhead">
-                <div><h3><span class="mid">B3</span>價格與讓價儀</h3><span class="ana2-caption">房屋讓幅滾動中位＋議價深度・內部授權版</span></div>
-                <div class="engnote"><span class="engmark schema" data-tip="需動資料結構・需：表底價版本紀錄 price_history" title="需動資料結構・需：表底價版本紀錄 price_history"><b>構</b><i>需動資料結構・需：表底價版本紀錄 price_history</i></span><span class="engmark new" data-tip="新增功能・議價深度與紅綠燈" title="新增功能・議價深度與紅綠燈"><b>新</b><i>新增功能・議價深度與紅綠燈</i></span></div>
+                <div><h3>B3 價格與讓價儀</h3><span class="ana2-caption">房屋讓幅滾動中位＋議價深度・內部授權版</span></div>
+                <div class="engnote">
+                  <span class="chip eng-schema">⚙ 動結構</span><small>需：表底價版本紀錄 price_history</small>
+                  <span class="chip eng-new">🆕 新增功能</span><small>議價深度與紅綠燈</small>
+                </div>
               </div>
               <div class="ana2-price-layout">
                 <div class="ana2-price-chart">
@@ -3982,12 +3928,14 @@
         </div>
 
         <div class="ana2-panel" id="ana2-media" role="tabpanel" aria-labelledby="ana2-tab-media" hidden>
-          <div class="ana2-chaphead"><span class="no">C</span><div><b>名單與媒體</b><span>廣告錢變成了幾組什麼品質的人——投放閉環</span></div><span class="rhythm">週</span></div>
           <div class="ana2-grid">
             <article class="acard ana2-wide" data-eng="upgrade schema">
               <div class="ana2-cardhead">
-                <div><h3><span class="mid">C1</span>來源品質對帳</h3><span class="ana2-caption">成熟 cohort・W＝60 日・2026-05-01～06-27・n＝200</span></div>
-                <div class="engnote"><span class="engmark upgrade" data-tip="升級既有・升級自：媒體成效表" title="升級既有・升級自：媒體成效表"><b>升</b><i>升級既有・升級自：媒體成效表</i></span><span class="engmark schema" data-tip="需動資料結構・需：媒體花費登錄表或 Meta API" title="需動資料結構・需：媒體花費登錄表或 Meta API"><b>構</b><i>需動資料結構・需：媒體花費登錄表或 Meta API</i></span></div>
+                <div><h3>C1 來源品質對帳</h3><span class="ana2-caption">成熟 cohort・W＝60 日・2026-05-01～06-27・n＝200</span></div>
+                <div class="engnote">
+                  <span class="chip eng-upgrade">升級</span><small>升級自：媒體成效表</small>
+                  <span class="chip eng-schema">⚙ 動結構</span><small>需：媒體花費登錄表或 Meta API</small>
+                </div>
               </div>
               <div class="ana2-verdict"><span class="dot warm"></span><span><b>FB 帶來 32% 量體，60 日淨簽僅 3.1%。</b>先查承接與素材訴求，不因名單量大直接加碼。</span></div>
               <div class="ana2-media-split">
@@ -4020,7 +3968,7 @@
                 <div class="ana2-source-table-wrap">
                   <div class="ana2-subhead">來源對帳・成熟樣本先列</div>
                   <table class="ana2-table ana2-source-table">
-                    <thead><tr><th>來源</th><th>組數</th><th>占比</th><th>W日回籠</th><th>W日淨簽</th><th class="ana2-cost-pending">CPL <span class="ana2-gear" aria-label="需補花費資料">構</span></th><th class="ana2-cost-pending">CPQL <span class="ana2-gear" aria-label="需補花費資料">構</span></th><th class="ana2-cost-pending">CAC <span class="ana2-gear" aria-label="需補花費資料">構</span></th></tr></thead>
+                    <thead><tr><th>來源</th><th>組數</th><th>占比</th><th>W日回籠</th><th>W日淨簽</th><th class="ana2-cost-pending">CPL <span class="ana2-gear" aria-label="需補花費資料">⚙</span></th><th class="ana2-cost-pending">CPQL <span class="ana2-gear" aria-label="需補花費資料">⚙</span></th><th class="ana2-cost-pending">CAC <span class="ana2-gear" aria-label="需補花費資料">⚙</span></th></tr></thead>
                     <tbody>
                       <tr><td>現場</td><td>24</td><td>12%</td><td>10／24・41.7%</td><td>5／24・20.8%</td><td class="ana2-cost-pending">待接花費資料</td><td class="ana2-cost-pending">待接花費資料</td><td class="ana2-cost-pending">待接花費資料</td></tr>
                       <tr><td>看板</td><td>28</td><td>14%</td><td>9／28・32.1%</td><td>4／28・14.3%</td><td class="ana2-cost-pending">待接花費資料</td><td class="ana2-cost-pending">待接花費資料</td><td class="ana2-cost-pending">待接花費資料</td></tr>
@@ -4039,8 +3987,8 @@
 
             <article class="acard ana2-wide" data-eng="new">
               <div class="ana2-cardhead">
-                <div><h3><span class="mid">C2</span>來源分軌漏斗＋滯後天數</h3><span class="ana2-caption">同批客資・建檔→到訪→回訪→下訂→簽約</span></div>
-                <div class="engnote"><span class="engmark new" data-tip="新增功能" title="新增功能"><b>新</b><i>新增功能</i></span></div>
+                <div><h3>C2 來源分軌漏斗＋滯後天數</h3><span class="ana2-caption">同批客資・建檔→到訪→回訪→下訂→簽約</span></div>
+                <div class="engnote"><span class="chip eng-new">🆕 新增功能</span></div>
               </div>
               <div class="ana2-funnel-stack" aria-label="FB、看板與現場三條橫向漏斗，關卡間標示中位天數">
                 <div class="ana2-funnel-row">
@@ -4079,8 +4027,8 @@
 
             <article class="acard ana2-broad" data-eng="new">
               <div class="ana2-cardhead">
-                <div><h3><span class="mid">C3</span>名單品質引擎</h3><span class="ana2-caption">規則分分布＋實際淨簽校準・可評分樣本 n＝150</span></div>
-                <div class="engnote"><span class="engmark new" data-tip="新增功能" title="新增功能"><b>新</b><i>新增功能</i></span></div>
+                <div><h3>C3 名單品質引擎</h3><span class="ana2-caption">規則分分布＋實際淨簽校準・可評分樣本 n＝150</span></div>
+                <div class="engnote"><span class="chip eng-new">🆕 新增功能</span></div>
               </div>
               <div class="ana2-score-layout">
                 <div class="ana2-hist">
@@ -4112,8 +4060,11 @@
 
             <article class="acard ana2-narrow" data-eng="schema new">
               <div class="ana2-cardhead">
-                <div><h3><span class="mid">C4</span>廣告×CRM 對齊週報</h3><span class="ana2-caption">本週 2026-08-20～08-26・廣告帳、落地帳、滯後帳分開</span></div>
-                <div class="engnote"><span class="engmark schema" data-tip="需動資料結構・需：花費登錄＋Lead Form 對接" title="需動資料結構・需：花費登錄＋Lead Form 對接"><b>構</b><i>需動資料結構・需：花費登錄＋Lead Form 對接</i></span><span class="engmark new" data-tip="新增功能" title="新增功能"><b>新</b><i>新增功能</i></span></div>
+                <div><h3>C4 廣告×CRM 對齊週報</h3><span class="ana2-caption">本週 2026-08-20～08-26・廣告帳、落地帳、滯後帳分開</span></div>
+                <div class="engnote">
+                  <span class="chip eng-schema">⚙ 動結構</span><small>需：花費登錄＋Lead Form 對接</small>
+                  <span class="chip eng-new">🆕 新增功能</span>
+                </div>
               </div>
               <div class="ana2-ledgers">
                 <div class="ana2-ledger">
@@ -4140,8 +4091,11 @@
 
             <article class="acard ana2-wide" data-eng="new schema">
               <div class="ana2-cardhead">
-                <div><h3><span class="mid">C6</span>CAPI 回傳價值儀表</h3><span class="ana2-caption">業主版摘要＋內部事件帳・資料截至 2026-08-26 14:30</span></div>
-                <div class="engnote"><span class="engmark new" data-tip="新增功能" title="新增功能"><b>新</b><i>新增功能</i></span><span class="engmark schema" data-tip="需動資料結構・需：CAPI 對接＋事件 outbox" title="需動資料結構・需：CAPI 對接＋事件 outbox"><b>構</b><i>需動資料結構・需：CAPI 對接＋事件 outbox</i></span></div>
+                <div><h3>C6 CAPI 回傳價值儀表</h3><span class="ana2-caption">業主版摘要＋內部事件帳・資料截至 2026-08-26 14:30</span></div>
+                <div class="engnote">
+                  <span class="chip eng-new">🆕 新增功能</span>
+                  <span class="chip eng-schema">⚙ 動結構</span><small>需：CAPI 對接＋事件 outbox</small>
+                </div>
               </div>
               <div class="ana2-capi-layout">
                 <div class="ana2-capi-hero">
@@ -4169,7 +4123,7 @@
             <article class="acard ana2-wide" data-eng="upgrade">
               <div class="ana2-cardhead">
                 <div><h3>動態欄位樞紐</h3><span class="ana2-caption">需求房型 × 客資分級・保留既有樞紐分析</span></div>
-                <div class="engnote"><span class="engmark upgrade" data-tip="升級既有・正式系統既有功能原樣保留" title="升級既有・正式系統既有功能原樣保留"><b>升</b><i>升級既有・正式系統既有功能原樣保留</i></span></div>
+                <div class="engnote"><span class="chip eng-upgrade">沿用</span><small>正式系統既有功能原樣保留</small></div>
               </div>
               <table class="pivot">
                 <thead><tr><th>需求房型</th><th>A 級</th><th>B 級</th><th>C 級</th></tr></thead>
@@ -4184,13 +4138,12 @@
         </div>
 
         <div class="ana2-panel" id="ana2-sales" role="tabpanel" aria-labelledby="ana2-tab-sales" hidden>
-          <div class="ana2-chaphead"><span class="no">D</span><div><b>業務管理</b><span>排行榜變教練處方箋——每週帶人</span></div><span class="rhythm">週</span></div>
           <div class="ana2-grid">
 
             <article class="acard ana2-wide" data-eng="new">
               <div class="ana2-cardhead">
-                <div><h3><span class="mid">D7</span>雙版本成績單</h3><span class="ana2-caption">行為指標給業務、結果與旗標只給主管——這個呈現層決定整套系統是解藥還是毒藥</span></div>
-                <div class="engnote"><span class="engmark new" data-tip="新增功能" title="新增功能"><b>新</b><i>新增功能</i></span></div>
+                <div><h3>D7 雙版本成績單</h3><span class="ana2-caption">行為指標給業務、結果與旗標只給主管——這個呈現層決定整套系統是解藥還是毒藥</span></div>
+                <div class="engnote"><span class="chip eng-new">🆕 新增功能</span></div>
               </div>
               <div class="ana2-modebar">
                 <div class="seg" id="ana2SalesMode" role="tablist" aria-label="成績單版本">
@@ -4203,8 +4156,8 @@
 
             <article class="acard ana2-wide mgr-only" data-eng="upgrade new">
               <div class="ana2-cardhead">
-                <div><h3><span class="mid">D1</span>業務戰力矩陣</h3><span class="ana2-caption">四段漏斗×客質調整・近 90 日成熟 cohort・資料截至 2026-08-26 14:30</span></div>
-                <div class="engnote"><span class="engmark upgrade" data-tip="升級既有・升級自：業務排行" title="升級既有・升級自：業務排行"><b>升</b><i>升級既有・升級自：業務排行</i></span><span class="engmark new" data-tip="新增功能・客質調整指數" title="新增功能・客質調整指數"><b>新</b><i>新增功能・客質調整指數</i></span></div>
+                <div><h3>D1 業務戰力矩陣</h3><span class="ana2-caption">四段漏斗×客質調整・近 90 日成熟 cohort・資料截至 2026-08-26 14:30</span></div>
+                <div class="engnote"><span class="chip eng-upgrade">升級</span><small>升級自：業務排行</small><span class="chip eng-new">🆕 新增功能</span><small>客質調整指數</small></div>
               </div>
               <div class="ana2-verdict"><span class="dot warm"></span><span><b>陳冠廷促回率 41% 掉出團隊 P25</b>——本月教練重點：首訪後 48 小時電訪；郭士銘樣本不足暫不評。</span></div>
               <div class="ana2-source-table-wrap">
@@ -4225,8 +4178,8 @@
 
             <article class="acard ana2-wide mgr-only" data-eng="upgrade schema">
               <div class="ana2-cardhead">
-                <div><h3><span class="mid">D2</span>名單承接與怠速警報</h3><span class="ana2-caption">黃金 24 小時＋分級怠速・資料截至 2026-08-26 14:30</span></div>
-                <div class="engnote"><span class="engmark upgrade" data-tip="升級既有・升級自：久未跟進標記" title="升級既有・升級自：久未跟進標記"><b>升</b><i>升級既有・升級自：久未跟進標記</i></span><span class="engmark schema" data-tip="需動資料結構・需：SLA 與分級跟進間隔設定" title="需動資料結構・需：SLA 與分級跟進間隔設定"><b>構</b><i>需動資料結構・需：SLA 與分級跟進間隔設定</i></span></div>
+                <div><h3>D2 名單承接與怠速警報</h3><span class="ana2-caption">黃金 24 小時＋分級怠速・資料截至 2026-08-26 14:30</span></div>
+                <div class="engnote"><span class="chip eng-upgrade">升級</span><small>升級自：久未跟進標記</small><span class="chip eng-schema">⚙ 動結構</span><small>需：SLA 與分級跟進間隔設定</small></div>
               </div>
               <div class="ana2-queue">
                 <div><b>2</b><span>未指派</span></div>
@@ -4262,8 +4215,8 @@
 
             <article class="acard ana2-narrow mgr-only" data-eng="new schema">
               <div class="ana2-cardhead">
-                <div><h3><span class="mid">D3</span>派客公平性（CQI）</h3><span class="ana2-caption">每人手上客的期望含金量・近 8 週</span></div>
-                <div class="engnote"><span class="engmark new" data-tip="新增功能" title="新增功能"><b>新</b><i>新增功能</i></span><span class="engmark schema" data-tip="需動資料結構・需：首次分級快照 grade_history" title="需動資料結構・需：首次分級快照 grade_history"><b>構</b><i>需動資料結構・需：首次分級快照 grade_history</i></span></div>
+                <div><h3>D3 派客公平性（CQI）</h3><span class="ana2-caption">每人手上客的期望含金量・近 8 週</span></div>
+                <div class="engnote"><span class="chip eng-new">🆕 新增功能</span><span class="chip eng-schema">⚙ 動結構</span><small>需：首次分級快照 grade_history</small></div>
               </div>
               <div class="ana2-cqi-row"><span>張家豪</span><span class="ana2-cqi-bar"><i style="width:34%;background:var(--chart-1)"></i><i style="width:30%;background:var(--chart-3)"></i><i style="width:14%;background:var(--chart-4)"></i></span><b>1.18</b></div>
               <div class="ana2-cqi-row"><span>吳姿瑩</span><span class="ana2-cqi-bar"><i style="width:26%;background:var(--chart-1)"></i><i style="width:28%;background:var(--chart-3)"></i><i style="width:14%;background:var(--chart-4)"></i></span><b>1.05</b></div>
@@ -4275,10 +4228,10 @@
               <div class="ana2-caption">團隊 CQI 變異係數 0.11（&lt;0.15 綠）。張家豪連 4 週高於平均 1σ → 下週名單客往後排。未指派池滯留中位 6.2 小時。CQI 用建檔 7 日內首次分級快照，事後改分級改不了自己的 CQI。</div>
             </article>
 
-            <article class="acard ana2-broad mgr-only" data-eng="new schema">
+            <article class="acard ana2-narrow mgr-only" data-eng="new schema">
               <div class="ana2-cardhead">
-                <div><h3><span class="mid">D4</span>分級準確度與防灌分</h3><span class="ana2-caption">評得多、中得少＝灌分區・近 90 日</span></div>
-                <div class="engnote"><span class="engmark new" data-tip="新增功能" title="新增功能"><b>新</b><i>新增功能</i></span><span class="engmark schema" data-tip="需動資料結構・需：grade_history" title="需動資料結構・需：grade_history"><b>構</b><i>需動資料結構・需：grade_history</i></span></div>
+                <div><h3>D4 分級準確度與防灌分</h3><span class="ana2-caption">評得多、中得少＝灌分區・近 90 日</span></div>
+                <div class="engnote"><span class="chip eng-new">🆕 新增功能</span><span class="chip eng-schema">⚙ 動結構</span><small>需：grade_history</small></div>
               </div>
               <div class="ana2-scatterbox" role="img" aria-label="X 軸為 A+B 評級占比、Y 軸為 A 級命中率的業務校準散點圖，右下為灌分嫌疑區">
                 <span class="flagzone"><small>灌分區</small></span>
@@ -4302,7 +4255,7 @@
             <article class="acard ana2-wide rep-only" data-eng="new">
               <div class="ana2-cardhead">
                 <div><h3>我的成績單・張家豪</h3><span class="ana2-caption">只看得到自己＋匿名團隊分位帶・30 秒看完今天要幹嘛</span></div>
-                <div class="engnote"><span class="engmark new" data-tip="新增功能" title="新增功能"><b>新</b><i>新增功能</i></span></div>
+                <div class="engnote"><span class="chip eng-new">🆕 新增功能</span></div>
               </div>
               <div class="ana2-repgrid">
                 <div>
@@ -4330,13 +4283,12 @@
         </div>
 
         <div class="ana2-panel" id="ana2-cohort" role="tabpanel" aria-labelledby="ana2-tab-cohort" hidden>
-          <div class="ana2-chaphead"><span class="no">E</span><div><b>客資熟成與訂單</b><span>同一批客走到哪、會不會退——領先指標</span></div><span class="rhythm">週</span></div>
           
           <div class="ana2-grid">
             <article class="acard ana2-wide" data-eng="new">
               <div class="ana2-cardhead">
-                <div><h3><span class="mid">E1</span>Cohort 熟成矩陣</h3><span class="ana2-caption">同一批客走到哪・分母＝該月首次進案組數（電話去重）</span></div>
-                <div class="engnote"><span class="engmark new" data-tip="新增功能・吸收：來客漏斗＋轉換卡" title="新增功能・吸收：來客漏斗＋轉換卡"><b>新</b><i>新增功能・吸收：來客漏斗＋轉換卡</i></span></div>
+                <div><h3>E1 Cohort 熟成矩陣</h3><span class="ana2-caption">同一批客走到哪・分母＝該月首次進案組數（電話去重）</span></div>
+                <div class="engnote"><span class="chip eng-new">🆕 新增功能</span><small>吸收：來客漏斗＋轉換卡</small></div>
               </div>
               <div class="ana2-verdict"><span class="dot warm"></span><span><b>6 月批 30 日下訂率 11%</b>，比前三批中位低 42%——卡在回訪→下訂，不是來人問題。</span></div>
               <div class="ana2-source-table-wrap">
@@ -4355,8 +4307,8 @@
 
             <article class="acard ana2-wide" data-eng="new">
               <div class="ana2-cardhead">
-                <div><h3><span class="mid">E2</span>回訪領先儀</h3><span class="ana2-caption">整套系統唯一「看未來」的儀表・回訪率領先成交約 3 週</span></div>
-                <div class="engnote"><span class="engmark new" data-tip="新增功能" title="新增功能"><b>新</b><i>新增功能</i></span></div>
+                <div><h3>E2 回訪領先儀</h3><span class="ana2-caption">整套系統唯一「看未來」的儀表・回訪率領先成交約 3 週</span></div>
+                <div class="engnote"><span class="chip eng-new">🆕 新增功能</span></div>
               </div>
               <div class="ana2-pace-chart">
                 <svg viewBox="0 0 560 150" role="img" aria-label="14 天到場回訪率與往左平移三週的週成交組數雙線圖，兩線走勢高度重疊">
@@ -4373,8 +4325,11 @@
 
             <article class="acard ana2-wide" data-eng="schema upgrade">
               <div class="ana2-cardhead">
-                <div><h3><span class="mid">E3</span>訂簽退追蹤</h3><span class="ana2-caption">已訂未簽懸置＋來源退戶偏差・資料截至 2026-08-26 14:30</span></div>
-                <div class="engnote"><span class="engmark schema" data-tip="需動資料結構・需：退戶原因碼選單" title="需動資料結構・需：退戶原因碼選單"><b>構</b><i>需動資料結構・需：退戶原因碼選單</i></span><span class="engmark upgrade" data-tip="升級既有・升級自：近 30 日退戶 KPI" title="升級既有・升級自：近 30 日退戶 KPI"><b>升</b><i>升級既有・升級自：近 30 日退戶 KPI</i></span></div>
+                <div><h3>E3 訂簽退追蹤</h3><span class="ana2-caption">已訂未簽懸置＋來源退戶偏差・資料截至 2026-08-26 14:30</span></div>
+                <div class="engnote">
+                  <span class="chip eng-schema">⚙ 動結構</span><small>需：退戶原因碼選單</small>
+                  <span class="chip eng-upgrade">升級</span><small>升級自：近 30 日退戶 KPI</small>
+                </div>
               </div>
               <div class="ana2-order-layout">
                 <div>
@@ -4409,8 +4364,8 @@
 
             <article class="acard ana2-wide" data-eng="new schema">
               <div class="ana2-cardhead">
-                <div><h3><span class="mid">E4</span>跨案轉介</h3><span class="ana2-caption">這案不合的客，放到別案就成交——多案 CRM 的差異化</span></div>
-                <div class="engnote"><span class="engmark new" data-tip="新增功能" title="新增功能"><b>新</b><i>新增功能</i></span><span class="engmark schema" data-tip="需動資料結構・需：足跡事件化＋同意範圍欄位" title="需動資料結構・需：足跡事件化＋同意範圍欄位"><b>構</b><i>需動資料結構・需：足跡事件化＋同意範圍欄位</i></span></div>
+                <div><h3>E4 跨案轉介</h3><span class="ana2-caption">這案不合的客，放到別案就成交——多案 CRM 的差異化</span></div>
+                <div class="engnote"><span class="chip eng-new">🆕 新增功能</span><span class="chip eng-schema">⚙ 動結構</span><small>需：足跡事件化＋同意範圍欄位</small></div>
               </div>
               <div class="ana2-order-layout">
                 <div>
@@ -4441,13 +4396,12 @@
         </div>
 
         <div class="ana2-panel" id="ana2-owner" role="tabpanel" aria-labelledby="ana2-tab-owner" hidden>
-          <div class="ana2-chaphead"><span class="no">F</span><div><b>對業主</b><span>可稽核換信任——月報與對外邊界</span></div><span class="rhythm">月</span></div>
           <div class="ana2-grid">
 
             <article class="acard ana2-wide" data-eng="new">
               <div class="ana2-cardhead">
-                <div><h3><span class="mid">F1</span>來人真實性稽核板</h3><span class="ana2-caption">業主最陰暗的懷疑是「組數是不是灌的」——用可稽核換信任</span></div>
-                <div class="engnote"><span class="engmark new" data-tip="新增功能" title="新增功能"><b>新</b><i>新增功能</i></span></div>
+                <div><h3>F1 來人真實性稽核板</h3><span class="ana2-caption">業主最陰暗的懷疑是「組數是不是灌的」——用可稽核換信任</span></div>
+                <div class="engnote"><span class="chip eng-new">🆕 新增功能</span></div>
               </div>
               <div class="ana2-trust">
                 <div>
@@ -4480,8 +4434,8 @@
 
             <article class="acard ana2-wide" data-eng="new">
               <div class="ana2-cardhead">
-                <div><h3><span class="mid">F2</span>業主報表產生器</h3><span class="ana2-caption">邊界寫進系統而不是靠人記得——白名單、防呆、留痕</span></div>
-                <div class="engnote"><span class="engmark new" data-tip="新增功能" title="新增功能"><b>新</b><i>新增功能</i></span></div>
+                <div><h3>F2 業主報表產生器</h3><span class="ana2-caption">邊界寫進系統而不是靠人記得——白名單、防呆、留痕</span></div>
+                <div class="engnote"><span class="chip eng-new">🆕 新增功能</span></div>
               </div>
               <div class="ana2-trust">
                 <div>
@@ -4520,12 +4474,11 @@
         </div>
 
         <div class="ana2-panel" id="ana2-data" role="tabpanel" aria-labelledby="ana2-tab-data" hidden>
-          <div class="ana2-chaphead"><span class="no">G</span><div><b>資料地基</b><span>分析的前提，不是分析本身</span></div><span class="rhythm">建置</span></div>
           <div class="ana2-grid">
             <article class="acard ana2-wide" data-eng="new">
               <div class="ana2-cardhead">
-                <div><h3><span class="mid">G1</span>資料可信度儀表</h3><span class="ana2-caption">資料截至 2026-08-26 14:30・點任一列開啟異常明細</span></div>
-                <div class="engnote"><span class="engmark new" data-tip="新增功能" title="新增功能"><b>新</b><i>新增功能</i></span></div>
+                <div><h3>G1 資料可信度儀表</h3><span class="ana2-caption">資料截至 2026-08-26 14:30・點任一列開啟異常明細</span></div>
+                <div class="engnote"><span class="chip eng-new">🆕 新增功能</span></div>
               </div>
               <div class="ana2-quality-list">
                 <button class="ana2-quality-row" type="button" data-demo-toast aria-label="開啟異常明細"><span>來源完整率</span><span class="ana2-quality-track"><i class="ana2-quality-fill" style="--quality:96%"></i></span><b>96%</b><small>門檻 ≥90%</small></button>
@@ -4539,8 +4492,8 @@
 
             <article class="acard ana2-wide" data-eng="schema">
               <div class="ana2-cardhead">
-                <div><h3><span class="mid">G2</span>資料補課對照表</h3><span class="ana2-caption">正式工程的資料與設定待辦</span></div>
-                <div class="engnote"><span class="engmark schema" data-tip="需動資料結構・需：時間事件、來源對照與設定版本" title="需動資料結構・需：時間事件、來源對照與設定版本"><b>構</b><i>需動資料結構・需：時間事件、來源對照與設定版本</i></span></div>
+                <div><h3>G2 資料補課對照表</h3><span class="ana2-caption">正式工程的資料與設定待辦</span></div>
+                <div class="engnote"><span class="chip eng-schema">⚙ 動結構</span><small>需：時間事件、來源對照與設定版本</small></div>
               </div>
               <table class="ana2-table">
                 <thead><tr><th>要補什麼</th><th>工程量</th><th>解鎖哪些模組</th></tr></thead>
@@ -7727,30 +7680,18 @@
 
 
 
-  try{ /* analytics2：工程備註圖層＋檢視身分權限預覽 */
-    var ana2Page=document.getElementById('page-analytics');
-    var engBtn=document.getElementById('ana2EngBtn');
-    if(ana2Page && engBtn){
-      engBtn.addEventListener('click',function(){
-        var on=!ana2Page.classList.contains('engfull');
-        ana2Page.classList.toggle('engfull',on);
-        engBtn.classList.toggle('solid',on);
-        engBtn.setAttribute('aria-pressed',String(on));
-      });
-    }
-    /* 分析拆成七個權限碼，每章一個——權限頁勾七格就設定完，
-       不用在單一 analytics:read 底下再長出一堆例外規則。 */
-    var ANA2_ROLES=[
-      {n:'系統管理員', on:'*'},
-      {n:'專案經理',   on:['analytics:command','analytics:product','analytics:media','analytics:team','analytics:cohort','analytics:data']},
-      {n:'業務人員',   on:['analytics:command','analytics:cohort']},
-      {n:'業主檢視',   on:['analytics:command','analytics:product','analytics:owner']}
-    ];
-    var roleBtn=document.getElementById('ana2RoleBtn');
-    if(roleBtn && ana2Page){
-      var ana2Role=0;
-      function applyRole(){
-        var r=ANA2_ROLES[ana2Role], all=r.on==='*';
+  try{ /* analytics2：檢視身分＝七章權限碼的可見範圍預覽 */
+    var ana2RoleBtn=document.getElementById('ana2RoleBtn');
+    if(ana2RoleBtn){
+      var ANA2_ROLES=[
+        {n:'系統管理員', on:'*'},
+        {n:'專案經理',   on:['analytics:command','analytics:product','analytics:media','analytics:team','analytics:cohort','analytics:data']},
+        {n:'業務人員',   on:['analytics:command','analytics:cohort']},
+        {n:'業主檢視',   on:['analytics:command','analytics:product','analytics:owner']}
+      ];
+      var ana2RoleIdx=0;
+      function ana2ApplyRole(){
+        var r=ANA2_ROLES[ana2RoleIdx], all=r.on==='*';
         var tabs=[].slice.call(document.querySelectorAll('#ana2Tabs [data-perm]'));
         var firstOk=null;
         tabs.forEach(function(t){
@@ -7759,31 +7700,21 @@
           t.title=ok?'':(r.n+' 沒有「'+t.dataset.perm+'」權限');
           if(ok&&!firstOk) firstOk=t;
         });
-        roleBtn.textContent='檢視身分：'+r.n+' ▾';
+        ana2RoleBtn.textContent='檢視身分：'+r.n+' ▾';
         var cur=document.querySelector('#ana2Tabs button.on');
         if(cur&&cur.disabled&&firstOk) firstOk.click();
-        var note=document.getElementById('ana2NavNote');
-        if(note) note.textContent=all?'照節奏排：每天看 A、每週看 B–E、每月看 F'
-          :(r.n+'：可見 '+r.on.length+' 章／共 7 章，其餘章節在權限頁未開');
-        var cnt=document.getElementById('ana2Count');
-        if(cnt){
-          var vis=tabs.filter(function(t){return !t.disabled}).reduce(function(a,t){
-            var pn=document.getElementById('ana2-'+t.dataset.ana2);
-            return a+(pn?pn.querySelectorAll('.acard').length:0) },0);
-          cnt.textContent=vis+' 個模組';
-        }
       }
-      roleBtn.addEventListener('click',function(e){
+      ana2RoleBtn.addEventListener('click',function(e){
         e.stopPropagation();
-        pickMenu(roleBtn, ANA2_ROLES.map(function(r){return r.n}), ANA2_ROLES[ana2Role].n, function(x){
-          ANA2_ROLES.forEach(function(r,i){ if(r.n===x) ana2Role=i });
-          applyRole();
+        pickMenu(ana2RoleBtn, ANA2_ROLES.map(function(r){return r.n}), ANA2_ROLES[ana2RoleIdx].n, function(x){
+          ANA2_ROLES.forEach(function(r,i){ if(r.n===x) ana2RoleIdx=i });
+          ana2ApplyRole();
           toast('已切換檢視身分：<b>'+x+'</b>——僅示範權限可見範圍，不改實際權限設定');
         });
       });
-      applyRole();
+      ana2ApplyRole();
     }
-  }catch(e){console.warn('frag ana2 eng/role',e)}
+  }catch(e){console.warn('frag ana2 role',e)}
   try{ /* analytics2：F2 白名單開關（純示意，切狀態即可） */
     document.addEventListener('click',function(e){
       var sw=e.target.closest('#page-analytics .ana2-fieldsw .switch'); if(!sw) return;
