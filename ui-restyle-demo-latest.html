@@ -2692,7 +2692,13 @@
 #page-reports .wk-meta div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
 #page-reports .wk-meta span{font-size:.64rem;color:var(--muted);letter-spacing:.06em}
 #page-reports .wk-meta b{font-size:.72rem;font-weight:500;font-variant-numeric:tabular-nums}
-#page-reports .table-wrap.wk-table-wrap{padding:0;background:var(--bg);border-radius:var(--r-row)}
+#page-reports .table-wrap.wk-table-wrap{padding:0;background:var(--bg);border-radius:var(--r-row);overflow-x:visible}
+/* 主表固定不橫捲：欄寬平均分配、字級隨欄數縮 */
+#page-reports .wk-main-table{table-layout:fixed;width:100%}
+#page-reports .wk-main-table th,#page-reports .wk-main-table td{font-size:.64rem;padding:var(--s1);word-break:keep-all}
+#page-reports .wk-main-table .wk-stage{writing-mode:vertical-rl;letter-spacing:.2em;background:var(--panel);font-weight:500;width:1.6rem}
+#page-reports .wk-main-table tr.wk-stage-first > th:not(.wk-stage),
+#page-reports .wk-main-table tr.wk-stage-first > td{border-top:1px solid var(--line-2)}
 #page-reports .wk-table-wrap table{border-collapse:collapse;border-spacing:0;min-width:0}
 #page-reports .wk-main-table{min-width:72rem!important;table-layout:fixed}
 #page-reports .wk-table-wrap th,#page-reports .wk-table-wrap td{border:1px solid var(--line);padding:var(--s1) var(--s2);text-align:center;vertical-align:middle;white-space:normal;line-height:1.45}
@@ -5864,21 +5870,10 @@
 </div>
 
 <div id="reportsWeekly" style="display:none">
-  <div class="wk-toolbar">
-    <div class="wk-toolbar-copy"><b>青園綠境｜2026 年第 35 週</b><span class="wk-print-note">2026-08-24（一）～08-30（日）・列印為 A4 橫式四頁，對應現場週報第 2–5 頁。</span></div>
-    <button class="pillbtn" type="button" onclick="window.print()">列印／另存 PDF</button>
-  </div>
-  <div class="wk-legend" aria-label="資料來源圖例">
-    <span class="wk-legend-label">資料來源</span>
-    <span class="wk-source"><span class="chip wk-source-auto">自動</span><small>系統現有資料可計算</small></span>
-    <span class="wk-source"><span class="chip wk-source-manual">人工</span><small>現場填寫或專案經理撰寫</small></span>
-    <span class="wk-source"><span class="chip wk-source-missing">需補欄位</span><small>正式系統尚無資料欄位或階段</small></span>
-  </div>
-
   <section class="wk-section" aria-label="週報表">
     <div class="wk-meta wk-meta-6">
       <div><span>建案名稱</span><b>青園綠境</b></div>
-      <div><span>統計週數</span><b>第 35 週</b></div>
+      <div><span>統計週數</span><b>第 35 週</b><i>2026-08-24～08-30</i></div>
       <div><span>銷售單位</span><b>艾德霍客</b></div>
       <div><span>銷售期間</span><b>2026-03-01～2029-12-31</b></div>
       <div><span>銷售戶數</span><b>126 戶</b></div>
@@ -5887,36 +5882,28 @@
     <div class="table-wrap wk-table-wrap">
       <table class="wk-main-table">
         <colgroup><col><col span="10"></colgroup>
-        <thead><tr><th>項目</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th><th>日</th><th>本週累計</th><th>上週累計</th><th>總累計</th></tr></thead>
+        <thead><tr><th colspan="2">項目</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th><th>日</th><th>本週累計</th><th>上週累計</th><th>總累計</th></tr></thead>
         <tbody>
-          <tr class="wk-date-row"><th>日期</th><td>08/24</td><td>08/25</td><td>08/26</td><td>08/27</td><td>08/28</td><td>08/29</td><td>08/30</td><td class="wk-week-total">第 35 週</td><td>至 08/23</td><td>至 08/30</td></tr>
-          <tr><th>氣候 <span class="wk-source"><span class="chip wk-source-manual">人工</span></span></th>
-            <td><span class="wk-weather"><button class="chip" type="button" aria-label="氣候：晴，點選切換" onclick="this.textContent=this.textContent==='晴'?'陰':this.textContent==='陰'?'雨':'晴'">晴</button></span></td>
-            <td><span class="wk-weather"><button class="chip" type="button" aria-label="氣候：晴，點選切換" onclick="this.textContent=this.textContent==='晴'?'陰':this.textContent==='陰'?'雨':'晴'">晴</button></span></td>
-            <td><span class="wk-weather"><button class="chip" type="button" aria-label="氣候：陰，點選切換" onclick="this.textContent=this.textContent==='晴'?'陰':this.textContent==='陰'?'雨':'晴'">陰</button></span></td>
-            <td><span class="wk-weather"><button class="chip" type="button" aria-label="氣候：雨，點選切換" onclick="this.textContent=this.textContent==='晴'?'陰':this.textContent==='陰'?'雨':'晴'">雨</button></span></td>
-            <td><span class="wk-weather"><button class="chip" type="button" aria-label="氣候：陰，點選切換" onclick="this.textContent=this.textContent==='晴'?'陰':this.textContent==='陰'?'雨':'晴'">陰</button></span></td>
-            <td><span class="wk-weather"><button class="chip" type="button" aria-label="氣候：晴，點選切換" onclick="this.textContent=this.textContent==='晴'?'陰':this.textContent==='陰'?'雨':'晴'">晴</button></span></td>
-            <td><span class="wk-weather"><button class="chip" type="button" aria-label="氣候：晴，點選切換" onclick="this.textContent=this.textContent==='晴'?'陰':this.textContent==='陰'?'雨':'晴'">晴</button></span></td><td class="wk-week-total">—</td><td>—</td><td>—</td></tr>
-          <tr><th>當日來人（組）</th><td>2</td><td>2</td><td>3</td><td>2</td><td>3</td><td>6</td><td>7</td><td class="wk-week-total">25</td><td>115</td><td>140</td></tr>
-          <tr><th>當日來電（通）</th><td>1</td><td>2</td><td>1</td><td>1</td><td>2</td><td>2</td><td>2</td><td class="wk-week-total">11</td><td>41</td><td>52</td></tr>
-          <tr><th>當日回客（組）</th><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td class="wk-week-total">2</td><td>10</td><td>12</td></tr>
-          <tr class="wk-group-start"><th>小訂／戶數</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>1 戶 / 2 車</td><td>1 戶 / 2 車</td><td class="wk-week-total">2 戶 / 4 車</td><td>8 戶 / 13 車</td><td>10 戶 / 17 車</td></tr>
-          <tr><th>小訂／房價（萬）</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>6,520</td><td>6,148</td><td class="wk-week-total">12,668</td><td>51,112</td><td>63,780</td></tr>
-          <tr><th>小訂／車價（萬）</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>420</td><td>420</td><td class="wk-week-total">840</td><td>4,135</td><td>4,975</td></tr>
-          <tr><th>小訂／總價（萬）</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>6,940</td><td>6,568</td><td class="wk-week-total">13,508</td><td>55,247</td><td>68,755</td></tr>
-          <tr class="wk-group-start"><th>補足／戶數 <span class="wk-source"><span class="chip wk-source-missing">需補欄位</span></span></th><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td></tr>
-          <tr><th>補足／房價（萬）</th><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td></tr>
-          <tr><th>補足／車價（萬）</th><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td></tr>
-          <tr><th>補足／總價（萬）</th><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td></tr>
-          <tr class="wk-group-start"><th>簽約／戶數</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0 戶 / 0 車</td><td>8 戶 / 13 車</td><td>8 戶 / 13 車</td></tr>
-          <tr><th>簽約／房價（萬）</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0</td><td>51,112</td><td>51,112</td></tr>
-          <tr><th>簽約／車價（萬）</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0</td><td>4,135</td><td>4,135</td></tr>
-          <tr><th>簽約／總價（萬）</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0</td><td>55,247</td><td>55,247</td></tr>
-          <tr class="wk-group-start"><th>退戶／戶數</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0 戶 / 0 車</td><td>0 戶 / 0 車</td><td>0 戶 / 0 車</td></tr>
-          <tr><th>退戶／房價（萬）</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0</td><td>0</td><td>0</td></tr>
-          <tr><th>退戶／車價（萬）</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0</td><td>0</td><td>0</td></tr>
-          <tr><th>退戶／總價（萬）</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0</td><td>0</td><td>0</td></tr>
+          <tr class="wk-date-row"><th colspan="2">日期</th><td>08/24</td><td>08/25</td><td>08/26</td><td>08/27</td><td>08/28</td><td>08/29</td><td>08/30</td><td class="wk-week-total">第 35 週</td><td>至 08/23</td><td>至 08/30</td></tr>
+          <tr><th colspan="2">來人</th><td>2</td><td>2</td><td>3</td><td>2</td><td>3</td><td>6</td><td>7</td><td class="wk-week-total">25</td><td>115</td><td>140</td></tr>
+          <tr><th colspan="2">來電</th><td>1</td><td>2</td><td>1</td><td>1</td><td>2</td><td>2</td><td>2</td><td class="wk-week-total">11</td><td>41</td><td>52</td></tr>
+          <tr><th colspan="2">回客</th><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td class="wk-week-total">2</td><td>10</td><td>12</td></tr>
+          <tr class="wk-group-start" class="wk-stage-first"><th class="wk-stage" rowspan="4">小訂</th><th>戶數</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>1 戶 / 2 車</td><td>1 戶 / 2 車</td><td class="wk-week-total">2 戶 / 4 車</td><td>8 戶 / 13 車</td><td>10 戶 / 17 車</td></tr>
+          <tr><th>房價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>6,520</td><td>6,148</td><td class="wk-week-total">12,668</td><td>51,112</td><td>63,780</td></tr>
+          <tr><th>車價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>420</td><td>420</td><td class="wk-week-total">840</td><td>4,135</td><td>4,975</td></tr>
+          <tr><th>總價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>6,940</td><td>6,568</td><td class="wk-week-total">13,508</td><td>55,247</td><td>68,755</td></tr>
+          <tr class="wk-group-start" class="wk-stage-first"><th class="wk-stage" rowspan="4">補足</th><th>戶數 <span class="wk-source"><span class="chip wk-source-missing">需補欄位</span></span></th><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td></tr>
+          <tr><th>房價</th><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td></tr>
+          <tr><th>車價</th><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td></tr>
+          <tr><th>總價</th><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td></tr>
+          <tr class="wk-group-start" class="wk-stage-first"><th class="wk-stage" rowspan="4">簽約</th><th>戶數</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0 戶 / 0 車</td><td>8 戶 / 13 車</td><td>8 戶 / 13 車</td></tr>
+          <tr><th>房價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0</td><td>51,112</td><td>51,112</td></tr>
+          <tr><th>車價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0</td><td>4,135</td><td>4,135</td></tr>
+          <tr><th>總價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0</td><td>55,247</td><td>55,247</td></tr>
+          <tr class="wk-group-start" class="wk-stage-first"><th class="wk-stage" rowspan="4">退戶</th><th>戶數</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0 戶 / 0 車</td><td>0 戶 / 0 車</td><td>0 戶 / 0 車</td></tr>
+          <tr><th>房價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0</td><td>0</td><td>0</td></tr>
+          <tr><th>車價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0</td><td>0</td><td>0</td></tr>
+          <tr><th>總價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0</td><td>0</td><td>0</td></tr>
         </tbody>
       </table>
     </div>
@@ -11176,7 +11163,13 @@ try{ /* collect */
       if(!laUn){ laUn=true; var ub3=$('#page-leadsall [data-act="laUn"]'); if(ub3) laMark(ub3,true); laFilterRows(); }
       toast('只顯示<b>未指派</b>來客');
     } else if(act==='printRep'){
-      busy(b,900,function(){ toast('已送出列印——正式版另存 PDF 日報') });
+      var wkOn=document.getElementById('reportsWeekly');
+      if(wkOn && getComputedStyle(wkOn).display!=='none'){
+        toast('列印為 A4 橫式四頁，對應現場週報第 2–5 頁');
+        setTimeout(function(){ window.print() },260);
+      } else {
+        busy(b,900,function(){ toast('已送出列印——正式版另存 PDF 日報') });
+      }
     } else if(act==='saveSummary'){
       var ta=document.querySelector('#page-reports textarea, #page-reports .summary');
       toast('現場摘要已儲存 <b>2026-08-21</b>');
