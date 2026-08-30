@@ -2688,7 +2688,14 @@
 /* 六張卡：改成獨立卡片並排，不再是一條灰底分格 */
 #page-reports .wk-meta.wk-meta-6{grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));gap:var(--s3);padding:0;background:none;border-radius:0}
 #page-reports .wk-meta.wk-meta-6 > div{background:var(--bg);border:1px solid var(--line);border-radius:var(--r-row);padding:var(--s3) var(--s4);gap:var(--s2)}
-#page-reports .wk-meta.wk-meta-6 b{font-size:.83rem}
+#page-reports .wk-meta.wk-meta-6 b{font-size:.83rem;display:flex;align-items:baseline;gap:var(--s2);flex-wrap:wrap}
+#page-reports .wk-meta.wk-meta-6 b i{font-style:normal;font-size:.68rem;font-weight:400;color:var(--muted);letter-spacing:.02em}
+/* 需補欄位縮成一顆驚嘆號 */
+#page-reports .wk-flag{
+  display:inline-flex;align-items:center;justify-content:center;flex:none;
+  width:.95rem;height:.95rem;border-radius:50%;font-size:.58rem;font-weight:500;
+  background:var(--hot-tint);color:var(--hot);cursor:help;
+}
 #page-reports .wk-meta div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
 #page-reports .wk-meta span{font-size:.64rem;color:var(--muted);letter-spacing:.06em}
 #page-reports .wk-meta b{font-size:.72rem;font-weight:500;font-variant-numeric:tabular-nums}
@@ -2700,13 +2707,17 @@
 #page-reports .wk-main-table tr.wk-stage-first > th:not(.wk-stage),
 #page-reports .wk-main-table tr.wk-stage-first > td{border-top:1px solid var(--line-2)}
 #page-reports .wk-table-wrap table{border-collapse:collapse;border-spacing:0;min-width:0}
-#page-reports .wk-main-table{min-width:72rem!important;table-layout:fixed}
+#page-reports .wk-main-table{width:100%;min-width:0;table-layout:fixed}
 #page-reports .wk-table-wrap th,#page-reports .wk-table-wrap td{border:1px solid var(--line);padding:var(--s1) var(--s2);text-align:center;vertical-align:middle;white-space:normal;line-height:1.45}
 #page-reports .wk-table-wrap thead th{background:var(--fill);color:var(--ink);font-weight:500;letter-spacing:.04em}
 #page-reports .wk-table-wrap tbody tr:hover td{background:var(--bg)}
 #page-reports .wk-table-wrap tbody th{font-size:.68rem;font-weight:500;text-align:left;background:var(--fill);font-variant-numeric:tabular-nums}
 #page-reports .wk-main-table th,#page-reports .wk-main-table td{font-size:.64rem;font-variant-numeric:tabular-nums}
-#page-reports .wk-main-table col:first-child{width:8rem}
+/* 項目欄縮窄：階段直書欄 + 短欄名，兩欄合起來約 5.4rem 就夠 */
+#page-reports .wk-main-table thead th:first-child{width:5.4rem}
+#page-reports .wk-main-table tbody th.wk-stage{width:1.5rem}
+#page-reports .wk-main-table tbody th:not(.wk-stage){width:3.9rem;text-align:left;padding-left:var(--s2)}
+#page-reports .wk-main-table tbody tr > th[colspan="2"]{width:5.4rem}
 #page-reports .wk-main-table .wk-date-row td{color:var(--muted)}
 #page-reports .wk-main-table .wk-group-start>*{border-top-color:var(--line-3)}
 #page-reports .wk-main-table .wk-week-total{background:var(--tint);color:var(--accent);font-weight:500}
@@ -2744,25 +2755,28 @@
 #page-reports .wk-analysis-card.wk-analysis-na .wk-mini-table td{color:var(--muted)}
 #page-reports .wk-talk-block+.wk-talk-block{margin-top:var(--s5);padding-top:var(--s5);border-top:1px solid var(--line-2)}
 #page-reports .wk-talk-head{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);margin-bottom:var(--s2)}
-#page-reports .wk-talk-table{min-width:92rem!important;table-layout:fixed}
+/* 洽談說明：欄寬改百分比配比，整張塞進頁寬不橫捲（洽談內容吃掉剩餘空間） */
+#page-reports .wk-talk-table{width:100%;min-width:0;table-layout:fixed}
 #page-reports .wk-talk-table th,#page-reports .wk-talk-table td{font-size:.64rem}
-#page-reports .wk-talk-table col:nth-child(1){width:var(--s8)}
-#page-reports .wk-talk-table col:nth-child(2){width:6rem}
-#page-reports .wk-talk-table col:nth-child(3){width:5rem}
-#page-reports .wk-talk-table col:nth-child(4),#page-reports .wk-talk-table col:nth-child(5){width:6rem}
-#page-reports .wk-talk-table col:nth-child(6){width:5rem}
-#page-reports .wk-talk-table col:nth-child(7){width:34rem}
-#page-reports .wk-talk-table col:nth-child(8){width:10rem}
-#page-reports .wk-talk-table col:nth-child(9){width:9rem}
-#page-reports .wk-talk-table col:nth-child(10){width:var(--s8)}
-#page-reports .wk-talk-table col:nth-child(11){width:6rem}
+#page-reports .wk-talk-table thead th:nth-child(1){width:3%}
+#page-reports .wk-talk-table thead th:nth-child(2){width:6%}
+#page-reports .wk-talk-table thead th:nth-child(3){width:7%}
+#page-reports .wk-talk-table thead th:nth-child(4){width:6%}
+#page-reports .wk-talk-table thead th:nth-child(5){width:6%}
+#page-reports .wk-talk-table thead th:nth-child(6){width:5%}
+#page-reports .wk-talk-table thead th:nth-child(7){width:37%}
+#page-reports .wk-talk-table thead th:nth-child(8){width:8%}
+#page-reports .wk-talk-table thead th:nth-child(9){width:9%}
+#page-reports .wk-talk-table thead th:nth-child(10){width:5%}
+#page-reports .wk-talk-table thead th:nth-child(11){width:8%}
+#page-reports .wk-talk-table td{word-break:break-word}
 #page-reports .wk-talk-table td:nth-child(7){text-align:left;line-height:1.6}
 #page-reports .wk-grade{font-weight:500;min-width:var(--s7);display:inline-flex;justify-content:center}
 #page-reports .wk-grade-a{border-color:var(--hot);background:var(--hot-tint);color:var(--hot)}
 #page-reports .wk-grade-b{border-color:var(--warm);background:var(--warm-tint);color:var(--warm)}
 #page-reports .wk-grade-c{border-color:var(--accent);background:var(--tint);color:var(--accent)}
 #page-reports .wk-grade-d{border-color:var(--line-2);background:var(--fill);color:var(--muted)}
-#page-reports .wk-rank-table{min-width:64rem!important;table-layout:fixed}
+#page-reports .wk-rank-table{width:100%;min-width:0;table-layout:fixed}
 #page-reports .wk-rank-table th,#page-reports .wk-rank-table td{font-size:.68rem}
 #page-reports .wk-rank-table .wk-rank-missing{background:var(--hot-tint);color:var(--hot)}
 #page-reports .wk-rank-table tfoot td{padding:var(--s2);border:1px solid var(--line-2);background:var(--tint);font-weight:500;color:var(--accent);text-align:center}
@@ -5873,7 +5887,7 @@
   <section class="wk-section" aria-label="週報表">
     <div class="wk-meta wk-meta-6">
       <div><span>建案名稱</span><b>青園綠境</b></div>
-      <div><span>統計週數</span><b>第 35 週</b><i>2026-08-24～08-30</i></div>
+      <div><span>統計週數</span><b>第 35 週<i>08/24–08/30</i></b></div>
       <div><span>銷售單位</span><b>艾德霍客</b></div>
       <div><span>銷售期間</span><b>2026-03-01～2029-12-31</b></div>
       <div><span>銷售戶數</span><b>126 戶</b></div>
@@ -5892,7 +5906,7 @@
           <tr><th>房價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>6,520</td><td>6,148</td><td class="wk-week-total">12,668</td><td>51,112</td><td>63,780</td></tr>
           <tr><th>車價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>420</td><td>420</td><td class="wk-week-total">840</td><td>4,135</td><td>4,975</td></tr>
           <tr><th>總價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>6,940</td><td>6,568</td><td class="wk-week-total">13,508</td><td>55,247</td><td>68,755</td></tr>
-          <tr class="wk-group-start" class="wk-stage-first"><th class="wk-stage" rowspan="4">補足</th><th>戶數 <span class="wk-source"><span class="chip wk-source-missing">需補欄位</span></span></th><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td></tr>
+          <tr class="wk-group-start" class="wk-stage-first"><th class="wk-stage" rowspan="4">補足</th><th>戶數 <span class="wk-flag" role="img" aria-label="需補欄位：系統尚無補足階段" title="需補欄位：系統尚無補足階段">!</span></th><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td></tr>
           <tr><th>房價</th><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td></tr>
           <tr><th>車價</th><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td></tr>
           <tr><th>總價</th><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td></tr>
