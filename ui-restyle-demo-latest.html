@@ -2685,6 +2685,10 @@
 #page-reports .wk-section-title p{font-size:.68rem;color:var(--muted)}
 #page-reports .wk-section-head>.wk-source{justify-content:flex-end}
 #page-reports .wk-meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s2);margin-bottom:var(--s4);padding:var(--s3);background:var(--bg);border-radius:var(--r-row)}
+/* 六張卡：改成獨立卡片並排，不再是一條灰底分格 */
+#page-reports .wk-meta.wk-meta-6{grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));gap:var(--s3);padding:0;background:none;border-radius:0}
+#page-reports .wk-meta.wk-meta-6 > div{background:var(--bg);border:1px solid var(--line);border-radius:var(--r-row);padding:var(--s3) var(--s4);gap:var(--s2)}
+#page-reports .wk-meta.wk-meta-6 b{font-size:.83rem}
 #page-reports .wk-meta div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
 #page-reports .wk-meta span{font-size:.64rem;color:var(--muted);letter-spacing:.06em}
 #page-reports .wk-meta b{font-size:.72rem;font-weight:500;font-variant-numeric:tabular-nums}
@@ -5871,16 +5875,14 @@
     <span class="wk-source"><span class="chip wk-source-missing">需補欄位</span><small>正式系統尚無資料欄位或階段</small></span>
   </div>
 
-  <section class="wk-section" aria-labelledby="wkSheetTitle">
-    <div class="wk-section-head">
-      <div class="wk-section-title"><h3 id="wkSheetTitle">週報表</h3><p>青園綠境・第 35 週・核心營運彙總</p></div>
-      <span class="wk-source"><span class="chip wk-source-auto">自動</span><small>來客表・往來紀錄・銷控＋購買紀錄</small><span class="chip wk-source-missing">需補欄位</span><small>需：補足階段</small></span>
-    </div>
-    <div class="wk-meta">
+  <section class="wk-section" aria-label="週報表">
+    <div class="wk-meta wk-meta-6">
+      <div><span>建案名稱</span><b>青園綠境</b></div>
+      <div><span>統計週數</span><b>第 35 週</b></div>
       <div><span>銷售單位</span><b>艾德霍客</b></div>
-      <div><span>委任銷售期間</span><b>2026-03-01～2029-12-31</b></div>
-      <div><span>委任銷售戶數</span><b>126 戶</b></div>
-      <div><span>委任銷售金額</span><b>42.6 億</b></div>
+      <div><span>銷售期間</span><b>2026-03-01～2029-12-31</b></div>
+      <div><span>銷售戶數</span><b>126 戶</b></div>
+      <div><span>總銷金額</span><b>42.6 億</b></div>
     </div>
     <div class="table-wrap wk-table-wrap">
       <table class="wk-main-table">
