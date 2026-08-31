@@ -2693,8 +2693,9 @@
 #page-reports .wk-meta.wk-meta-6 > .wk-media-card{grid-column:span 4}
 #page-reports .wk-meta.wk-meta-6 > div > b{font-size:.83rem;display:flex;align-items:baseline;gap:var(--s2);flex-wrap:wrap}
 #page-reports .wk-meta.wk-meta-6 > div > b i{font-style:normal;font-size:.68rem;font-weight:400;color:var(--muted);letter-spacing:.02em}
-#page-reports .wk-meta.wk-meta-6 > .wk-balanced > b{margin-top:auto}
-#page-reports .wk-meta.wk-meta-6 > .wk-balanced > .wk-cardsub{margin-bottom:auto}
+#page-reports .wk-meta.wk-meta-6 > .wk-balanced > b{margin:auto 0}
+#page-reports .wk-meta.wk-meta-6 > .wk-week-card > .datepick{margin:auto 0}
+#page-reports .wk-meta.wk-meta-6 > div > .wk-cardsub{margin-top:0}
 #page-reports .wk-stat-head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s2)}
 #page-reports .wk-stat-head>span{font-size:.64rem;color:var(--muted);letter-spacing:.06em}
 #page-reports .wk-meta .wk-stat-val{font-size:1.01rem;font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap}
@@ -2769,8 +2770,10 @@
 #page-reports .wk-weather{display:inline-flex;justify-content:center}
 #page-reports .wk-weather .chip{cursor:pointer;min-width:var(--s7);padding:0 var(--s2)}
 #page-reports .wk-weather .chip:hover,#page-reports .wk-weather .chip:focus-visible{border-color:var(--warm);background:var(--warm-tint);color:var(--warm)}
-#page-reports .wk-heads{display:grid;grid-template-columns:repeat(10,.83rem);gap:var(--s1);color:var(--muted);margin:auto 0}
-#page-reports .wk-head{width:.83rem;height:.83rem;stroke:currentColor;fill:none;stroke-width:.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+#page-reports .wk-meta > .wk-ratio-card{display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--s4);align-items:stretch}
+#page-reports .wk-ratio-side{display:flex;flex-direction:column;justify-content:space-between;gap:var(--s2)}
+#page-reports .wk-heads{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:var(--s1);color:var(--muted);height:100%;align-content:center;justify-items:center}
+#page-reports .wk-head{width:100%;height:auto;aspect-ratio:1/1;stroke:currentColor;fill:none;stroke-width:.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
 #page-reports .wk-head.solid{stroke:none;fill:var(--accent)}
 #page-reports .wk-hot{color:var(--hot)}
 #page-reports .wk-prem-sub{display:flex;flex-direction:column;gap:var(--s1);margin:auto 0;font-size:.68rem;color:var(--muted)}
@@ -5984,12 +5987,13 @@
             <div class="dp-grid"></div>
           </div>
         </div>
+        <small class="wk-cardsub">7 日</small>
       </div>
       <div class="wk-balanced"><span>銷售期間</span><b class="wk-dates"><span>2026-03-01</span><span>～ 2029-12-31</span></b><small class="wk-cardsub">共 46 個月</small></div>
       <div><div class="wk-stat-head"><span>銷售戶數</span><b class="wk-stat-val">126 戶</b></div><span class="wk-prog"><i><u style="width:100%"></u></i><i><u style="width:20%"></u></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><small class="wk-prog-cap"><span>已簽約 8 戶</span><span>6%</span></small></div>
       <div><div class="wk-stat-head"><span>總銷金額</span><b class="wk-stat-val">42.6 億</b></div><span class="wk-prog"><i><u style="width:100%"></u></i><i><u style="width:100%"></u></i><i><u style="width:60%"></u></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><small class="wk-prog-cap"><span>已簽約 5.5 億</span><span>13%</span></small></div>
-      <div class="wk-kpi-card">
-        <div class="wk-stat-head"><span class="microlbl">成交比例・本週</span><b class="wk-stat-val">13:1</b></div><div class="wk-heads" aria-hidden="true">
+      <div class="wk-kpi-card wk-ratio-card">
+        <div class="wk-ratio-side"><span class="microlbl">成交比例・本週</span><b class="wk-stat-val">13:1</b></div><div class="wk-heads" aria-hidden="true">
           <svg class="wk-head" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M5 20c.9-4 3.7-6.1 7-6.1s6.1 2.1 7 6.1"/></svg>
           <svg class="wk-head" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M5 20c.9-4 3.7-6.1 7-6.1s6.1 2.1 7 6.1"/></svg>
           <svg class="wk-head" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M5 20c.9-4 3.7-6.1 7-6.1s6.1 2.1 7 6.1"/></svg>
@@ -6006,8 +6010,8 @@
           <svg class="wk-head solid" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.9"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
           </div>
       </div>
-      <div class="wk-kpi-card">
-        <div class="wk-stat-head"><span class="microlbl">成交比例・累計</span><b class="wk-stat-val">14:1</b></div><div class="wk-heads" aria-hidden="true">
+      <div class="wk-kpi-card wk-ratio-card">
+        <div class="wk-ratio-side"><span class="microlbl">成交比例・累計</span><b class="wk-stat-val">14:1</b></div><div class="wk-heads" aria-hidden="true">
           <svg class="wk-head" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M5 20c.9-4 3.7-6.1 7-6.1s6.1 2.1 7 6.1"/></svg>
           <svg class="wk-head" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M5 20c.9-4 3.7-6.1 7-6.1s6.1 2.1 7 6.1"/></svg>
           <svg class="wk-head" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M5 20c.9-4 3.7-6.1 7-6.1s6.1 2.1 7 6.1"/></svg>
