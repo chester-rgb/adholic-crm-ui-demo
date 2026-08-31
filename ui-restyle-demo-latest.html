@@ -33,8 +33,8 @@
     /* R-01 照片打底的佔位漸層四階（合規：正式使用時必須換成業主實景照） */
     --ph-1:#2C4257; --ph-2:#43607A; --ph-3:#6E8CA3; --ph-4:#A9BECD;
     --sans:'MiSans TC',-apple-system,'Noto Sans TC',sans-serif;
-    /* 圓角刻度：pill＝可點元件、24 卡片、14 列、10 格、8 迷你 */
-    --r-pill:999px; --r-card:1.75rem; --r-row:14px; --r-cell:10px; --r-mini:8px;
+    /* 圓角刻度：pill＝形狀、14 容器、8 迷你 */
+    --r-pill:999px; --r-card:14px; --r-row:14px; --r-cell:14px; --r-mini:8px;
     /* 間距刻度（8pt 系，全站只准取這裡） */
     --s1:.25rem; --s2:.5rem; --s3:.75rem; --s4:1rem; --s5:1.25rem; --s6:1.5rem; --s7:2rem; --s8:2.5rem;
     --pad-x:var(--s7); --sec-gap:2.25rem; --head-gap:var(--s4);
@@ -500,7 +500,7 @@
   .notice{
     display:none; align-items:center; gap:.8rem; font-size:.83rem;
     background:var(--bg); border:1px solid var(--line); border-left:3px solid var(--warm);
-    border-radius:12px; padding:.45rem 1rem; margin-bottom:.8rem;
+    border-radius:var(--r-row); padding:.45rem 1rem; margin-bottom:.8rem;
   }
   .notice.show{display:flex; animation:rise .3s ease-out both}
   .notice button{color:var(--accent); text-decoration:underline; text-underline-offset:3px}
@@ -575,7 +575,7 @@
   /* ── 銷控表／價格表 ── */
   .legend{display:flex; align-items:center; gap:1.1rem; flex-wrap:wrap; margin-bottom:.8rem; font-size:.72rem; color:var(--muted)}
   .legend .it{display:flex; align-items:center; gap:.4rem}
-  .lg{width:.95rem; height:.95rem; border-radius:5px; flex:none}
+  .lg{width:.95rem; height:.95rem; border-radius:var(--r-mini); flex:none}
   .lg.sale{border:1px solid var(--line-3); background:var(--bg)}
   .lg.hold{border:1px solid var(--warm); position:relative; background:var(--bg)}
   .lg.hold::after{content:''; position:absolute; inset:28%; border-radius:50%; background:var(--warm)}
@@ -677,7 +677,7 @@
   /* 連結靠指向：一顆會滑到目前角色底下的尖角 */
   .mstrip .beak{
     position:absolute; top:-5px; width:14px; height:14px;
-    background:var(--panel); border-radius:3px;
+    background:var(--panel); border-radius:var(--r-mini);
     transform:translateX(-50%) rotate(45deg);
     transition:left .42s var(--spring);
   }
@@ -865,7 +865,7 @@
   .permhead .note{margin-left:auto; font-size:.68rem; color:var(--muted)}
   .permrow{display:flex; align-items:center; gap:.8rem; padding:.5rem .1rem; border-bottom:1px solid var(--line); font-size:.83rem}
   .permrow:last-of-type{border-bottom:none}
-  .permrow code{font-family:ui-monospace,monospace; font-size:.66rem; color:var(--muted); background:var(--fill); border-radius:6px; padding:0 .4rem}
+  .permrow code{font-family:ui-monospace,monospace; font-size:.66rem; color:var(--muted); background:var(--fill); border-radius:var(--r-mini); padding:0 .4rem}
   .permrow .lockchip{margin-left:auto; font-size:.66rem; color:var(--muted); border:1px solid var(--line); border-radius:var(--r-pill); padding:0 .55rem}
   .permrow.locked{opacity:.55}
   /* 與人員管理的 .switch 同一套手感：軌 2.15×1.2rem、鈕 .9rem、位移 .95rem、.2s spring */
@@ -904,7 +904,7 @@
   .bars{display:flex; align-items:flex-end; gap:.75rem; height:8.5rem; padding-top:.4rem}
   .bcol{flex:1; display:flex; flex-direction:column; align-items:center; gap:.4rem; height:100%; justify-content:flex-end}
   .bcol .bv{font-size:.68rem; color:var(--muted); font-variant-numeric:tabular-nums}
-  .bcol .b{width:100%; max-width:2.2rem; border-radius:7px 7px 3px 3px; background:var(--fill-3); transition:filter .15s ease-out}
+  .bcol .b{width:100%; max-width:2.2rem; border-radius:var(--r-mini) var(--r-mini) 0 0; background:var(--fill-3); transition:filter .15s ease-out}
   .bcol:hover .b{filter:brightness(.94)}
   .bcol.hi .b{background:var(--accent)}
   .bcol.hi .bv{color:var(--accent)}
@@ -921,7 +921,7 @@
   .dlegend{display:flex; flex-direction:column; gap:.4rem; font-size:.76rem; flex:1}
   .dlegend .it{display:flex; align-items:center; gap:.55rem; color:var(--muted)}
   .dlegend .it b{margin-left:auto; font-weight:400; color:var(--ink); font-variant-numeric:tabular-nums}
-  .dlegend .sw2c{width:.7rem; height:.7rem; border-radius:4px; flex:none}
+  .dlegend .sw2c{width:.7rem; height:.7rem; border-radius:var(--r-mini); flex:none}
   .eff{background:var(--ink); border-color:var(--ink); color:var(--on-accent); display:flex; flex-direction:column}
   .eff h3{color:var(--on-accent)}
   .eff h3 small{color:rgba(255,255,255,.55)}
@@ -1334,7 +1334,7 @@
   .gtype .m{margin-left:auto; font-size:.68rem; color:var(--muted); font-variant-numeric:tabular-nums; white-space:nowrap}
   .gspace{display:flex; flex-direction:column; gap:.45rem}
   .gspace .row{display:flex; align-items:center; gap:.8rem; font-size:.7rem; color:var(--muted)}
-  .gspace .row i{height:.9rem; background:var(--tint); border-radius:4px; flex:none}
+  .gspace .row i{height:.9rem; background:var(--tint); border-radius:var(--r-mini); flex:none}
   .gspace .row code{font-family:ui-monospace,monospace; color:var(--ink); width:6.5rem; flex:none}
   .grules{list-style:none; font-size:.81rem; display:flex; flex-direction:column; gap:.45rem}
   .grules b{font-weight:500}
@@ -1896,7 +1896,7 @@
   .anascope .frow .fp{text-align:right}
   .anascope .seg10,#page-analytics .seg10{display:grid; grid-template-columns:repeat(10,1fr); gap:2px}
   .anascope .seg10 i,#page-analytics .seg10 i{
-    display:block; height:.55rem; border-radius:2px; background:var(--fill); position:relative; overflow:hidden;
+    display:block; height:.55rem; border-radius:var(--r-mini); background:var(--fill); position:relative; overflow:hidden;
   }
   /* 半滿的那一段用內層填色，比例才不會被格子切成整數 */
   .anascope .seg10 i::after,#page-analytics .seg10 i::after{content:''; position:absolute; inset:0 auto 0 0; width:var(--f); background:var(--segc)}
@@ -2819,15 +2819,15 @@
 #page-reports .wk-rank-table{width:100%;min-width:0;table-layout:fixed}
 #page-reports .wk-rank-table th,#page-reports .wk-rank-table td{font-size:.68rem;padding:var(--s2)}
 #page-reports .wk-rank-table tfoot td{padding:var(--s2);border:1px solid var(--line-2);background:var(--tint);font-weight:500;color:var(--accent);text-align:center}
-#page-reports .wk-rank-layout{display:grid;grid-template-columns:15rem minmax(0,1fr);gap:var(--s5);align-items:start}
+#page-reports .wk-rank-layout{display:grid;grid-template-columns:16rem minmax(0,1fr);gap:var(--s6);align-items:start}
 #page-reports .wk-rank-side .wk-podium{margin-top:var(--s2)}
-#page-reports .wk-podium{display:flex;align-items:flex-end;justify-content:center;gap:var(--s4);margin:var(--s4) 0 var(--s2)}
-#page-reports .wk-pod{display:flex;flex-direction:column;align-items:center;gap:var(--s1);width:auto;flex:1}
+#page-reports .wk-podium{display:flex;align-items:flex-end;justify-content:center;gap:var(--s5);margin:var(--s4) 0 var(--s2)}
+#page-reports .wk-pod{display:flex;flex-direction:column;align-items:center;gap:var(--s2);width:auto;flex:1}
 #page-reports .wk-pod .av,#page-reports .wk-pod b{font-size:.72rem}
 #page-reports .wk-pod .av{width:2.2rem;height:2.2rem}
 #page-reports .wk-pod b{font-weight:500}
 #page-reports .wk-pod i{font-style:normal;color:var(--muted);font-variant-numeric:tabular-nums}
-#page-reports .wk-pod .step{width:100%;display:flex;align-items:center;justify-content:center;background:var(--fill);border:1px solid var(--line);border-radius:var(--r-cell) var(--r-cell) 0 0;font-weight:300;color:var(--muted);font-variant-numeric:tabular-nums;margin-top:var(--s1)}
+#page-reports .wk-pod .step{width:100%;display:flex;align-items:center;justify-content:center;background:var(--fill);border:1px solid var(--line);border-radius:var(--r-cell) var(--r-cell) 0 0;font-weight:300;color:var(--muted);font-variant-numeric:tabular-nums;margin-top:var(--s2)}
 #page-reports .wk-pod.p1 .step{height:3.6rem;background:var(--tint);border-color:var(--line-accent);color:var(--accent)}
 #page-reports .wk-pod.p2 .step{height:2.6rem}
 #page-reports .wk-pod.p3 .step{height:2rem}
@@ -5489,9 +5489,9 @@
             <div class="gcard">
               <h3>圓角刻度（角色固定）</h3>
               <ul class="grules">
-                <li><b>pill 999</b>——所有可點的東西：按鈕、chip、導覽、開關</li>
-                <li><b>20px</b>——卡片容器；<b>14px</b>——列（表格列、角色列）</li>
-                <li><b>10px</b>——格（銷控格、選單項）；<b>8px</b>——迷你（tooltip、code）</li>
+                <li><b>r-pill＝999px</b>——形狀：按鈕、chip、導覽、開關</li>
+                <li><b>r-card＝r-row＝r-cell＝14px</b>——容器統一弧度：卡片、列、格、對話框、tile、銷控格、抽屜</li>
+                <li><b>r-mini＝8px</b>——迷你：tooltip、code 等元件</li>
               </ul>
             </div>
             <div class="gcard">
@@ -5533,9 +5533,9 @@
                 <span class="tag">回訪 ×2</span>
               </div>
               <div class="gdemo">
-                <span class="status selling" style="font-size:.68rem;border-radius:999px;padding:.1rem .7rem">銷售中</span>
-                <span class="status presale" style="font-size:.68rem;border-radius:999px;padding:.1rem .7rem">預售</span>
-                <span class="status soldout" style="font-size:.68rem;border-radius:999px;padding:.1rem .7rem">完銷</span>
+                <span class="status selling" style="font-size:.68rem;border-radius:var(--r-pill);padding:.1rem .7rem">銷售中</span>
+                <span class="status presale" style="font-size:.68rem;border-radius:var(--r-pill);padding:.1rem .7rem">預售</span>
+                <span class="status soldout" style="font-size:.68rem;border-radius:var(--r-pill);padding:.1rem .7rem">完銷</span>
                 <span class="interest" style="padding:0"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span>
               </div>
             </div>
@@ -6145,14 +6145,14 @@
         </div>
         <p class="wk-podium-note">以實際成交戶數排名・同戶數依累計簽約金額排序</p>
       </div>
-      <div class="table-wrap wk-table-wrap"><table class="wk-rank-table"><thead><tr><th>序號</th><th>業務員</th><th>職稱</th><th>小訂戶</th><th>實際成交戶數</th><th>簽約戶</th><th>累計簽約金額</th><th>累計接洽來客數</th><th>成交比</th><th>備註</th></tr></thead><tbody>
-        <tr><td>1</td><td>張家豪</td><td>專案副理</td><td>2.5</td><td>2.5</td><td>2</td><td>13,500 萬</td><td>30</td><td>12:1</td><td>共同成交 1 戶</td></tr>
-        <tr><td>2</td><td>吳姿瑩</td><td>業務主任</td><td>2</td><td>2</td><td>1.5</td><td>10,500 萬</td><td>28</td><td>14:1</td><td>—</td></tr>
-        <tr><td>3</td><td>陳冠廷</td><td>業務主任</td><td>1.5</td><td>1.5</td><td>1.5</td><td>10,300 萬</td><td>22</td><td>15:1</td><td>共同成交 1 戶</td></tr>
-        <tr><td>4</td><td>周家瑜</td><td>業務專員</td><td>2</td><td>2</td><td>1.5</td><td>10,447 萬</td><td>24</td><td>12:1</td><td>—</td></tr>
-        <tr><td>5</td><td>李承翰</td><td>業務專員</td><td>2</td><td>2</td><td>1.5</td><td>10,500 萬</td><td>23</td><td>12:1</td><td>本週下訂 A3-16F</td></tr>
-        <tr><td>6</td><td>郭士銘</td><td>業務專員</td><td>0</td><td>0</td><td>0</td><td>0 萬</td><td>13</td><td>13:0</td><td>本週持續追蹤 3 組</td></tr>
-      </tbody><tfoot><tr><td colspan="3">合計</td><td>10</td><td>10</td><td>8</td><td>55,247 萬</td><td>140</td><td>14:1</td><td>—</td></tr></tfoot></table></div>
+      <div class="table-wrap wk-table-wrap"><table class="wk-rank-table"><thead><tr><th>序號</th><th>業務員</th><th>職稱</th><th>小訂戶</th><th>實際成交戶數</th><th>簽約戶</th><th>累計簽約金額</th><th>累計接洽來客數</th><th>成交比</th></tr></thead><tbody>
+        <tr><td>1</td><td>張家豪</td><td>專案副理</td><td>2.5</td><td>2.5</td><td>2</td><td>13,500 萬</td><td>30</td><td>12:1</td></tr>
+        <tr><td>2</td><td>吳姿瑩</td><td>業務主任</td><td>2</td><td>2</td><td>1.5</td><td>10,500 萬</td><td>28</td><td>14:1</td></tr>
+        <tr><td>3</td><td>陳冠廷</td><td>業務主任</td><td>1.5</td><td>1.5</td><td>1.5</td><td>10,300 萬</td><td>22</td><td>15:1</td></tr>
+        <tr><td>4</td><td>周家瑜</td><td>業務專員</td><td>2</td><td>2</td><td>1.5</td><td>10,447 萬</td><td>24</td><td>12:1</td></tr>
+        <tr><td>5</td><td>李承翰</td><td>業務專員</td><td>2</td><td>2</td><td>1.5</td><td>10,500 萬</td><td>23</td><td>12:1</td></tr>
+        <tr><td>6</td><td>郭士銘</td><td>業務專員</td><td>0</td><td>0</td><td>0</td><td>0 萬</td><td>13</td><td>13:0</td></tr>
+      </tbody><tfoot><tr><td colspan="3">合計</td><td>10</td><td>10</td><td>8</td><td>55,247 萬</td><td>140</td><td>14:1</td></tr></tfoot></table></div>
     </div>
     <p class="wk-footnote">口徑：共同成交依實際分潤拆分，戶數可為 0.5；成交比＝累計接洽來客數 : 實際成交戶數，未成交者保留「來客數 : 0」。</p>
     <div class="wk-todo">
