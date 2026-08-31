@@ -2769,7 +2769,7 @@
 #page-reports .wk-weather{display:inline-flex;justify-content:center}
 #page-reports .wk-weather .chip{cursor:pointer;min-width:var(--s7);padding:0 var(--s2)}
 #page-reports .wk-weather .chip:hover,#page-reports .wk-weather .chip:focus-visible{border-color:var(--warm);background:var(--warm-tint);color:var(--warm)}
-#page-reports .wk-heads{display:grid;grid-template-columns:repeat(10,.83rem);gap:var(--s1);color:var(--line-3);margin:auto 0}
+#page-reports .wk-heads{display:grid;grid-template-columns:repeat(10,.83rem);gap:var(--s1);color:var(--muted);margin:auto 0}
 #page-reports .wk-head{width:.83rem;height:.83rem;stroke:currentColor;fill:none;stroke-width:.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
 #page-reports .wk-head.solid{stroke:none;fill:var(--accent)}
 #page-reports .wk-hot{color:var(--hot)}
@@ -2782,7 +2782,7 @@
 #page-reports .wk-subtitle{font-size:.72rem;font-weight:500;letter-spacing:.06em}
 #page-reports .wk-analysis-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s5) var(--s4)}
 #page-reports .wk-ana-tools{display:flex;align-items:flex-start;justify-content:flex-end;gap:var(--s3);flex-wrap:wrap}
-#page-reports .wk-analysis-card{min-width:0;display:flex;flex-direction:column;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s3) var(--s4);border-top:1px solid var(--line);aspect-ratio:1/1;overflow:hidden}
+#page-reports .wk-analysis-card{min-width:0;display:flex;flex-direction:column;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s3) var(--s4);border-top:1px solid var(--line);height:13.5rem;overflow:hidden}
 #page-reports .wk-analysis-card-head{display:flex;align-items:center;justify-content:flex-start;gap:var(--s2);padding:0 0 var(--s2);border-bottom:0;min-height:0}
 #page-reports .wk-analysis-card-head h4{font-size:.76rem;font-weight:500;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #page-reports .wk-dico{width:1rem;height:1rem;stroke:currentColor;fill:none;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;color:var(--muted);flex:none}
@@ -2824,15 +2824,15 @@
 #page-reports .wk-grade-d{border-color:var(--line-2);background:var(--fill);color:var(--muted)}
 #page-reports .wk-rank-table{width:100%;min-width:0;table-layout:fixed}
 #page-reports .wk-rank-table th,#page-reports .wk-rank-table td{font-size:.68rem;padding:var(--s2)}
-#page-reports .wk-rank-table thead th:nth-child(1){width:4%}
-#page-reports .wk-rank-table thead th:nth-child(2){width:13%}
+#page-reports .wk-rank-table thead th:nth-child(1){width:5%}
+#page-reports .wk-rank-table thead th:nth-child(2){width:12%}
 #page-reports .wk-rank-table thead th:nth-child(3){width:12%}
-#page-reports .wk-rank-table thead th:nth-child(4){width:10%}
-#page-reports .wk-rank-table thead th:nth-child(5){width:10%}
-#page-reports .wk-rank-table thead th:nth-child(6){width:10%}
-#page-reports .wk-rank-table thead th:nth-child(7){width:16%}
-#page-reports .wk-rank-table thead th:nth-child(8){width:13%}
-#page-reports .wk-rank-table thead th:nth-child(9){width:12%}
+#page-reports .wk-rank-table thead th:nth-child(4){width:11%}
+#page-reports .wk-rank-table thead th:nth-child(5){width:11%}
+#page-reports .wk-rank-table thead th:nth-child(6){width:11%}
+#page-reports .wk-rank-table thead th:nth-child(7){width:15%}
+#page-reports .wk-rank-table thead th:nth-child(8){width:12%}
+#page-reports .wk-rank-table thead th:nth-child(9){width:11%}
 #page-reports .wk-rank-table [hidden]{display:none}
 #page-reports .wk-rank-sort{display:inline-flex;align-items:center;justify-content:center;gap:var(--s1);width:100%;border:0;background:none;padding:0;color:inherit;font:inherit;cursor:pointer}
 #page-reports .wk-rank-sort.on{color:var(--accent)}
@@ -2840,19 +2840,19 @@
 #page-reports .wk-rank-tools{display:flex;align-items:flex-start;justify-content:flex-end;gap:var(--s3);flex-wrap:wrap}
 #page-reports .wk-rank-seg button{font-size:.64rem}
 #page-reports .wk-rank-table tfoot td{padding:var(--s2);border:1px solid var(--line-2);background:var(--tint);font-weight:500;color:var(--accent);text-align:center}
-#page-reports .wk-rank-layout{display:grid;grid-template-columns:24rem minmax(0,1fr);gap:var(--s6);align-items:start}
+#page-reports .wk-rank-layout{display:grid;grid-template-columns:27rem minmax(0,1fr);gap:var(--s6);align-items:start}
 #page-reports .wk-rank-side .wk-podium{margin-top:var(--s2)}
-#page-reports .wk-podium{display:flex;align-items:flex-end;justify-content:center;gap:var(--s5);margin:var(--s4) 0 var(--s2)}
+#page-reports .wk-podium{display:flex;align-items:flex-end;justify-content:center;gap:var(--s5);margin:var(--s4) 0 var(--s2);max-width:85%;margin-left:auto;margin-right:auto}
 #page-reports .wk-pod{display:flex;flex-direction:column;align-items:center;gap:var(--s2);width:auto;flex:1}
 #page-reports .wk-pod .av,#page-reports .wk-pod b{font-size:.72rem}
 #page-reports .wk-pod .av{width:2.2rem;height:2.2rem}
 #page-reports .wk-pod b{font-weight:500}
 #page-reports .wk-pod i{font-style:normal;color:var(--muted);font-variant-numeric:tabular-nums}
-#page-reports .wk-pod .step{width:100%;display:flex;align-items:center;justify-content:center;background:var(--fill);border:1px solid var(--line);border-radius:var(--r-cell) var(--r-cell) 0 0;font-weight:300;color:var(--muted);font-variant-numeric:tabular-nums;margin-top:var(--s2)}
+#page-reports .wk-pod .step{width:100%;display:flex;align-items:center;justify-content:center;background:var(--track);border:1px solid var(--line);border-radius:var(--r-cell) var(--r-cell) 0 0;font-weight:300;color:var(--muted);font-variant-numeric:tabular-nums;margin-top:var(--s2)}
 #page-reports .wk-pod.p1 .step{height:3.6rem;background:var(--tint);border-color:var(--line-accent);color:var(--accent)}
 #page-reports .wk-pod.p2 .step{height:2.6rem}
 #page-reports .wk-pod.p3 .step{height:2rem}
-#page-reports .wk-crown{width:1rem;height:1rem;stroke:currentColor;fill:none;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;color:var(--warm)}
+#page-reports .wk-crown{width:1rem;height:1rem;stroke:none;fill:var(--warm);color:var(--warm)}
 #page-reports .wk-podium-note{color:var(--muted);text-align:center;margin-bottom:var(--s3)}
 #page-reports .wk-footnote{font-size:.64rem;color:var(--muted);line-height:1.7;margin-top:var(--s2)}
 #page-reports .wk-todo{margin-top:var(--s5);padding:var(--s4);background:var(--bg);border:1px dashed var(--line-dash);border-radius:var(--r-row)}
@@ -2889,7 +2889,7 @@
   #page-reports .wk-table-wrap{overflow:visible}
   #page-reports .wk-main-table,#page-reports .wk-talk-table,#page-reports .wk-rank-table{min-width:0!important}
   #page-reports .wk-analysis-grid{grid-template-columns:repeat(7,minmax(0,1fr));gap:var(--s1)}
-  #page-reports .wk-analysis-card{padding:var(--s1);aspect-ratio:auto;overflow:visible}
+  #page-reports .wk-analysis-card{padding:var(--s1);height:auto;overflow:visible}
   #page-reports .wk-ana-list{overflow:visible}
   #page-reports .wk-prog{display:none}
   #page-reports .wk-talk-table th,#page-reports .wk-talk-table td{padding:var(--s1)}
@@ -6081,7 +6081,6 @@
         </tbody>
       </table>
     </div>
-    <div class="wk-field-gap"><span>進住戶數：—　｜　裝潢戶數：—</span><span class="wk-source"><span class="chip wk-source-missing">需補欄位</span><small>需：進住戶數、裝潢戶數</small></span></div>
     <span class="wk-pageno">第 2 頁／週報表</span>
   </section>
 
@@ -6089,7 +6088,7 @@
     <div class="wk-section-head">
       <div class="wk-section-title"><h3 id="wkAnalysisTitle">來人分析表</h3><p>14 個維度・當週 25 組・累計 140 組・成交 10 戶</p></div>
       <div class="wk-ana-tools">
-        <span class="wk-source"><span class="chip wk-source-auto">自動</span><small>來客表＋勾勾表彙總</small><span class="chip wk-source-missing">需補欄位</span><small>缺口依各表標示</small></span>
+        
       </div>
     </div>
     <div class="wk-analysis-grid">
@@ -6114,10 +6113,10 @@
   <section class="wk-section" aria-labelledby="wkTalkTitle">
     <div class="wk-section-head">
       <div class="wk-section-title"><h3 id="wkTalkTitle">洽談說明</h3><p>當週來客與回籠客重點紀錄</p></div>
-      <span class="wk-source"><span class="chip wk-source-auto">自動</span><small>來客表・往來紀錄・購買紀錄</small></span>
+      
     </div>
     <div class="wk-talk-block">
-      <div class="wk-talk-head"><span class="wk-subtitle">當週來客洽談說明（08/24–08/30）</span><span class="wk-print-note">示範 10 筆／現場完整週報 25 筆</span></div>
+      <div class="wk-talk-head"><span class="wk-subtitle">當週來客洽談說明（08/24–08/30）</span></div>
       <div class="table-wrap wk-table-wrap"><table class="wk-talk-table"><colgroup><col span="10"></colgroup><thead><tr><th>項次</th><th>日期</th><th>姓名</th><th>媒體類別</th><th>職業</th><th>回客次數</th><th>洽談內容</th><th>介紹戶別</th><th>等級</th><th>業務員</th></tr></thead><tbody>
         <tr><td>1</td><td>08/24</td><td>王志明</td><td>Google</td><td>科技業</td><td>0</td><td>住北屯，夫妻同來想換屋，剛開始看，不說預算，給 A3-12F 與 B2-8F 比價，尚未決定。</td><td>A3-12F</td><td><span class="chip wk-grade wk-grade-b">B</span></td><td>張家豪</td></tr>
         <tr><td>2</td><td>08/24</td><td>黃雅雯</td><td>FB</td><td>醫護</td><td>0</td><td>目前租屋在太平，首購自住，偏好三房平車，對付款期程仔細詢問，先帶回全案付款試算。</td><td>B2-6F</td><td><span class="chip wk-grade wk-grade-c">C</span></td><td>吳姿瑩</td></tr>
@@ -6132,7 +6131,7 @@
       </tbody></table></div>
     </div>
     <div class="wk-talk-block">
-      <div class="wk-talk-head"><span class="wk-subtitle">當週回籠客洽談說明</span><span class="wk-source"><span class="chip wk-source-auto">自動</span><small>往來紀錄＋購買紀錄</small></span></div>
+      <div class="wk-talk-head"><span class="wk-subtitle">當週回籠客洽談說明</span></div>
       <div class="table-wrap wk-table-wrap"><table class="wk-talk-table"><colgroup><col span="10"></colgroup><thead><tr><th>項次</th><th>日期</th><th>姓名</th><th>媒體類別</th><th>職業</th><th>回客次數</th><th>洽談內容</th><th>介紹戶別</th><th>等級</th><th>業務員</th></tr></thead><tbody>
         <tr><td>1</td><td>08/29</td><td>許文彬</td><td>介紹</td><td>科技業</td><td>2</td><td>夫妻帶父母複看 A3 高樓層，確認車位動線與付款方式後接受現場條件，完成小訂並約下週補文件。</td><td>下訂 A3-16F</td><td><span class="chip wk-grade wk-grade-a">A</span></td><td>李承翰</td></tr>
         <tr><td>2</td><td>08/30</td><td>林佩珊</td><td>Google</td><td>醫護</td><td>3</td><td>再帶先生確認 B2 採光與廚房尺度，針對付款節點談妥保留條件，當日完成小訂並選定兩個車位。</td><td>下訂 B2-8F</td><td><span class="chip wk-grade wk-grade-a">A</span></td><td>張家豪</td></tr>
@@ -6144,8 +6143,8 @@
 
   <section class="wk-section" aria-labelledby="wkRankTitle">
     <div class="wk-section-head">
-      <div class="wk-section-title"><h3 id="wkRankTitle">銷售人員評比</h3><p>六位業務本週與總計接洽與成交拆分</p></div>
-      <div class="wk-rank-tools"><div class="seg wk-rank-seg" data-rank-seg><button type="button" data-rank-view-btn="w">本週</button><button type="button" class="on" data-rank-view-btn="t">總計</button></div><span class="wk-source"><span class="chip wk-source-auto">自動</span><small>銷控＋購買紀錄・來客表</small></span></div>
+      <div class="wk-section-title"><h3 id="wkRankTitle">銷售人員評比</h3></div>
+      <div class="wk-rank-tools"><div class="seg wk-rank-seg" data-rank-seg><button type="button" data-rank-view-btn="w">本週</button><button type="button" class="on" data-rank-view-btn="t">總計</button></div></div>
     </div>
     <div class="wk-rank-layout">
       <div class="wk-rank-side">
@@ -6173,7 +6172,6 @@
         <tr><td>6</td><td>郭士銘</td><td>業務專員</td><td>0</td><td>0</td><td>0</td><td>0 萬</td><td>13</td><td>13:0</td></tr>
       </tbody><tfoot data-rank-view="w" hidden><tr><td colspan="3">合計</td><td>2</td><td>2</td><td>0</td><td>13,508 萬</td><td>25</td><td>13:1</td></tr></tfoot><tfoot data-rank-view="t"><tr><td colspan="3">合計</td><td>10</td><td>10</td><td>8</td><td>55,247 萬</td><td>140</td><td>14:1</td></tr></tfoot></table></div>
     </div>
-    <p class="wk-footnote">口徑：共同成交依實際分潤拆分，戶數可為 0.5；成交比＝累計接洽來客數 : 實際成交戶數，未成交者保留「來客數 : 0」。</p>
     <div class="wk-todo">
       <div class="wk-todo-head"><h4>產出這份週報還缺什麼</h4><span class="wk-source"><span class="chip wk-source-missing">需補欄位</span><small>工程串接待辦</small></span></div>
       <ul class="wk-todo-list"><li>進住戶數／裝潢戶數</li><li>地坪資料</li><li>抗性分析欄位</li><li>建材分析欄位</li><li>賣點分析欄位</li><li>來人分析：男自來／夫婦同來等</li><li>產品分析：預售／新成屋偏好</li>
