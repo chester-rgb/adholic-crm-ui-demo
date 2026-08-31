@@ -2694,13 +2694,20 @@
 #page-reports .wk-meta div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
 #page-reports .wk-meta span{font-size:.64rem;color:var(--muted);letter-spacing:.06em}
 #page-reports .wk-meta b{font-size:.72rem;font-weight:500;font-variant-numeric:tabular-nums}
+#page-reports .wk-week-select .sel{width:100%}
+#page-reports .wk-week-select .sel-val{font-size:.68rem;color:var(--ink)}
+#page-reports .wk-week-select .sel-list [role="option"]{font-size:.68rem}
+#page-reports .wk-week-note{border-top:1px solid var(--line);margin-top:var(--s1);padding:var(--s2) var(--s3) var(--s1);font-size:.64rem;color:var(--muted);line-height:1.7}
+#page-reports .wk-week-action{font-size:.64rem;color:var(--accent)}
+#page-reports .wk-week-action .wk-missing-mark{color:var(--hot)}
+#page-reports .wk-media-bar{display:flex;align-items:center;gap:var(--s3);margin-bottom:var(--s4)}
+#page-reports .wk-media-bar .sel{width:auto;min-width:20rem;max-width:32rem}
+#page-reports .wk-media-bar small{font-size:.64rem;color:var(--muted)}
 #page-reports .table-wrap.wk-table-wrap{padding:0;background:var(--bg);border:1px solid var(--line-2);border-radius:var(--r-row);overflow:hidden}
 /* 主表固定不橫捲：欄寬平均分配、字級隨欄數縮 */
 #page-reports .wk-main-table{table-layout:fixed;width:100%}
 #page-reports .wk-main-table th,#page-reports .wk-main-table td{font-size:.64rem;padding:var(--s1);word-break:keep-all}
 #page-reports .wk-main-table .wk-stage{background:var(--panel);font-weight:500;width:2.6rem;text-align:center}
-#page-reports .wk-main-table tr.wk-stage-first > th:not(.wk-stage),
-#page-reports .wk-main-table tr.wk-stage-first > td{border-top:1px solid var(--line-2)}
 #page-reports .wk-table-wrap table{border-collapse:collapse;border-spacing:0;min-width:0}
 #page-reports .wk-main-table{width:100%;min-width:0;table-layout:fixed}
 #page-reports .wk-table-wrap th,#page-reports .wk-table-wrap td{border:1px solid var(--line);padding:var(--s1) var(--s2);text-align:center;vertical-align:middle;white-space:normal;line-height:1.45}
@@ -2711,22 +2718,29 @@
 #page-reports .wk-main-table tbody th[rowspan]{border-bottom:0}
 #page-reports .wk-rank-table tfoot tr:last-child > *{border-bottom:0}
 #page-reports .wk-table-wrap thead th{background:var(--fill);color:var(--ink);font-weight:500;letter-spacing:.04em}
-#page-reports .wk-table-wrap tbody tr:hover td{background:var(--bg)}
+#page-reports .wk-table-wrap tbody tr:hover{transform:none}
+#page-reports .wk-table-wrap tbody tr:hover td{background:var(--fill)}
 #page-reports .wk-table-wrap tbody th{font-size:.68rem;font-weight:500;text-align:left;background:var(--fill);font-variant-numeric:tabular-nums}
 #page-reports .wk-main-table th,#page-reports .wk-main-table td{font-size:.64rem;font-variant-numeric:tabular-nums}
+#page-reports .wk-main-table tbody th{letter-spacing:.1em}
 /* 項目欄統一置中，兩欄合計 5.4rem */
 #page-reports .wk-main-table thead th:first-child{width:5.4rem}
 #page-reports .wk-main-table tbody th:not(.wk-stage){width:2.8rem;text-align:center;padding-left:var(--s1)}
 #page-reports .wk-main-table tbody tr > th[colspan="2"]{width:5.4rem;text-align:center}
 #page-reports .wk-main-table .wk-date-row td{color:var(--muted)}
-#page-reports .wk-main-table .wk-group-start>*{border-top-color:var(--line-3)}
+#page-reports .wk-main-table .wk-group-start>*{border-top-color:var(--line-2)}
 #page-reports .wk-main-table .wk-week-total{background:var(--tint);color:var(--accent);font-weight:500}
-#page-reports .wk-main-table .wk-missing-cell{background:var(--hot-tint);color:var(--hot)}
+#page-reports .wk-main-table tr.wk-total-row > th:not(.wk-stage),#page-reports .wk-main-table tr.wk-total-row > td{background:var(--fill)}
+#page-reports .wk-main-table tr.wk-total-row > td.wk-week-total{background:var(--tint)}
+#page-reports .wk-trend{font-size:.58rem;margin-left:var(--s1);letter-spacing:0;font-weight:400}
+#page-reports .wk-trend.up{color:var(--accent)}
+#page-reports .wk-trend.down{color:var(--hot)}
+#page-reports .wk-trend.flat{color:var(--muted)}
 #page-reports .wk-weather{display:inline-flex;justify-content:center}
 #page-reports .wk-weather .chip{cursor:pointer;min-width:var(--s7);padding:0 var(--s2)}
 #page-reports .wk-weather .chip:hover,#page-reports .wk-weather .chip:focus-visible{border-color:var(--warm);background:var(--warm-tint);color:var(--warm)}
 #page-reports .wk-summary-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) minmax(0,1.2fr);gap:var(--s3);margin-top:var(--s4)}
-#page-reports .wk-summary-box{padding:var(--s3);border-top:1px solid var(--line-2);font-size:.68rem;line-height:1.7}
+#page-reports .wk-summary-box{padding:var(--s3) var(--s4);background:var(--bg);border:1px solid var(--line);border-radius:var(--r-row);border-top:1px solid var(--line);font-size:.68rem;line-height:1.7}
 #page-reports .wk-summary-box b{font-weight:500;color:var(--ink)}
 #page-reports .wk-summary-box p+p{margin-top:var(--s1)}
 #page-reports .wk-summary-box .wk-hot{color:var(--hot)}
@@ -2744,35 +2758,31 @@
 #page-reports .wk-prem-bar{display:flex;justify-content:flex-end;height:4px;border-radius:var(--r-mini);background:var(--track);overflow:hidden}
 #page-reports .wk-prem-bar i{display:block;height:100%;background:var(--hot);border-radius:var(--r-mini)}
 #page-reports .wk-field-gap{display:flex;align-items:center;gap:var(--s2);flex-wrap:wrap;margin-top:var(--s3);font-size:.68rem;color:var(--muted)}
-#page-reports .wk-media{margin-top:var(--s4);padding-top:var(--s4);border-top:1px solid var(--line);display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--s3);align-items:start}
 #page-reports .wk-subtitle{font-size:.72rem;font-weight:500;letter-spacing:.06em}
-#page-reports .wk-media-body{display:flex;flex-direction:column;gap:var(--s2)}
-#page-reports .wk-media .chips{flex-wrap:wrap;gap:var(--s2)}
-#page-reports .wk-response{margin-top:var(--s4);padding-top:var(--s4);border-top:1px solid var(--line)}
-#page-reports .wk-response-head{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);margin-bottom:var(--s2)}
-#page-reports .wk-response-copy{font-size:.72rem;line-height:1.8;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:var(--r-row);padding:var(--s3);min-height:var(--s8)}
-#page-reports .wk-signoff{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s3);margin-top:var(--s4);padding-top:var(--s3);border-top:1px solid var(--line);font-size:.68rem;color:var(--muted)}
-#page-reports .wk-signoff b{font-weight:500;color:var(--ink);margin-left:var(--s1)}
 #page-reports .wk-analysis-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s5) var(--s4)}
-#page-reports .wk-analysis-card{min-width:0;display:flex;flex-direction:column;background:none;border:0;border-top:1px solid var(--line-2);border-radius:0;padding-top:var(--s2);overflow:visible}
-#page-reports .wk-analysis-card-head{padding:0 0 var(--s2);border-bottom:0;min-height:0;display:flex;align-items:baseline;justify-content:space-between;gap:var(--s1)}
+#page-reports .wk-analysis-card{min-width:0;display:flex;flex-direction:column;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s3) var(--s4);border-top:1px solid var(--line);overflow:visible}
+#page-reports .wk-analysis-card-head{display:flex;align-items:center;justify-content:flex-start;gap:var(--s2);padding:0 0 var(--s2);border-bottom:0;min-height:0}
 #page-reports .wk-analysis-card-head h4{font-size:.7rem;font-weight:500;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#page-reports .wk-mini-table{width:100%;border-collapse:collapse;border-spacing:0;table-layout:fixed;font-size:.64rem}
-#page-reports .wk-mini-table th,#page-reports .wk-mini-table td{border-bottom:1px solid var(--line);padding:var(--s1);text-align:right;white-space:normal;line-height:1.35;font-variant-numeric:tabular-nums}
-#page-reports .wk-mini-table th{font-size:.64rem;color:var(--muted);font-weight:400;letter-spacing:0;background:none}
-#page-reports .wk-mini-table th:first-child,#page-reports .wk-mini-table td:first-child{text-align:left;width:40%}
-#page-reports .wk-analysis-card.wk-analysis-na .wk-mini-table td,#page-reports .wk-analysis-card.wk-analysis-na .wk-ana-foot{color:var(--muted)}
-#page-reports .wk-ana-lbl{display:block;line-height:1.35}
+#page-reports .wk-dico{width:1rem;height:1rem;stroke:currentColor;fill:none;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;color:var(--muted);flex:none}
+#page-reports .wk-ana-hero{display:flex;align-items:baseline;gap:var(--s2);margin-bottom:var(--s2)}
+#page-reports .wk-ana-hero b,#page-reports .wk-pod .step{font-size:1.17rem;}
+#page-reports .wk-ana-hero b{font-weight:300;font-variant-numeric:tabular-nums}
+#page-reports .wk-ana-hero span,#page-reports .wk-ana-na,#page-reports .wk-talk-table th,#page-reports .wk-talk-table td{font-size:.68rem}
+#page-reports .wk-ana-hero span{color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#page-reports .wk-ana-row,#page-reports .wk-pod i,#page-reports .wk-podium-note{font-size:.64rem}
+#page-reports .wk-ana-row{display:grid;grid-template-columns:minmax(0,1fr) 34% 1.5rem 1.1rem;gap:var(--s2);align-items:center;padding:var(--s1) 0}
+#page-reports .wk-ana-row+.wk-ana-row{border-top:1px solid var(--line)}
+#page-reports .wk-ana-row .l{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#page-reports .wk-ana-row b{font-weight:500;text-align:right;font-variant-numeric:tabular-nums}
+#page-reports .wk-ana-row i{font-style:normal;color:var(--accent);text-align:right;font-variant-numeric:tabular-nums}
 #page-reports .wk-ana-bar{display:block;height:3px;margin-top:var(--s1);border-radius:var(--r-mini);background:var(--track);overflow:hidden}
 #page-reports .wk-ana-bar i{display:block;height:100%;background:var(--chart-1)}
-#page-reports .wk-ana-foot{margin-top:auto;display:grid;grid-template-columns:40% repeat(3,minmax(0,1fr));padding-top:var(--s1);border-top:1px solid var(--line);font-size:.64rem;font-weight:500;color:var(--accent);font-variant-numeric:tabular-nums}
-#page-reports .wk-ana-foot span{padding:var(--s1)}
-#page-reports .wk-ana-foot b{font-weight:500;text-align:right;padding:var(--s1)}
+#page-reports .wk-ana-na{color:var(--muted)}
 #page-reports .wk-talk-block+.wk-talk-block{margin-top:var(--s5);padding-top:var(--s5);border-top:1px solid var(--line-2)}
 #page-reports .wk-talk-head{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);margin-bottom:var(--s2)}
 /* 洽談說明：欄寬改百分比配比，整張塞進頁寬不橫捲（洽談內容吃掉剩餘空間） */
 #page-reports .wk-talk-table{width:100%;min-width:0;table-layout:fixed}
-#page-reports .wk-talk-table th,#page-reports .wk-talk-table td{font-size:.64rem}
+#page-reports .wk-talk-table th,#page-reports .wk-talk-table td{padding:var(--s2);line-height:1.55;border-left:0;border-right:0}
 #page-reports .wk-talk-table thead th:nth-child(1){width:3%}
 #page-reports .wk-talk-table thead th:nth-child(2){width:6%}
 #page-reports .wk-talk-table thead th:nth-child(3){width:7%}
@@ -2785,7 +2795,7 @@
 #page-reports .wk-talk-table thead th:nth-child(10){width:5%}
 #page-reports .wk-talk-table thead th:nth-child(11){width:8%}
 #page-reports .wk-talk-table td{word-break:break-word}
-#page-reports .wk-talk-table td:nth-child(7){text-align:left;line-height:1.6}
+#page-reports .wk-talk-table td:nth-child(7){text-align:left}
 #page-reports .wk-grade{font-weight:500;min-width:var(--s7);display:inline-flex;justify-content:center}
 #page-reports .wk-grade-a{border-color:var(--hot);background:var(--hot-tint);color:var(--hot)}
 #page-reports .wk-grade-b{border-color:var(--warm);background:var(--warm-tint);color:var(--warm)}
@@ -2793,8 +2803,19 @@
 #page-reports .wk-grade-d{border-color:var(--line-2);background:var(--fill);color:var(--muted)}
 #page-reports .wk-rank-table{width:100%;min-width:0;table-layout:fixed}
 #page-reports .wk-rank-table th,#page-reports .wk-rank-table td{font-size:.68rem}
-#page-reports .wk-rank-table .wk-rank-missing{background:var(--hot-tint);color:var(--hot)}
 #page-reports .wk-rank-table tfoot td{padding:var(--s2);border:1px solid var(--line-2);background:var(--tint);font-weight:500;color:var(--accent);text-align:center}
+#page-reports .wk-podium{display:flex;align-items:flex-end;justify-content:center;gap:var(--s4);margin:var(--s4) 0 var(--s2)}
+#page-reports .wk-pod{display:flex;flex-direction:column;align-items:center;gap:var(--s1);width:7.5rem}
+#page-reports .wk-pod .av,#page-reports .wk-pod b{font-size:.72rem}
+#page-reports .wk-pod .av{width:2.2rem;height:2.2rem}
+#page-reports .wk-pod b{font-weight:500}
+#page-reports .wk-pod i{font-style:normal;color:var(--muted);font-variant-numeric:tabular-nums}
+#page-reports .wk-pod .step{width:100%;display:flex;align-items:center;justify-content:center;background:var(--fill);border:1px solid var(--line);border-radius:var(--r-cell) var(--r-cell) 0 0;font-weight:300;color:var(--muted);font-variant-numeric:tabular-nums;margin-top:var(--s1)}
+#page-reports .wk-pod.p1 .step{height:3.6rem;background:var(--tint);border-color:var(--line-accent);color:var(--accent)}
+#page-reports .wk-pod.p2 .step{height:2.6rem}
+#page-reports .wk-pod.p3 .step{height:2rem}
+#page-reports .wk-crown{width:1rem;height:1rem;stroke:currentColor;fill:none;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;color:var(--warm)}
+#page-reports .wk-podium-note{color:var(--muted);text-align:center;margin-bottom:var(--s3)}
 #page-reports .wk-footnote{font-size:.64rem;color:var(--muted);line-height:1.7;margin-top:var(--s2)}
 #page-reports .wk-todo{margin-top:var(--s5);padding:var(--s4);background:var(--bg);border:1px dashed var(--line-dash);border-radius:var(--r-row)}
 #page-reports .wk-todo-head{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);margin-bottom:var(--s3)}
@@ -2804,7 +2825,7 @@
 #page-reports .wk-todo-list li::before{content:'□';color:var(--hot)}
 #page-reports .wk-pageno{display:none}
 @media (max-width:1020px){
-  #page-reports .wk-meta,#page-reports .wk-signoff{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #page-reports .wk-meta{grid-template-columns:repeat(2,minmax(0,1fr))}
   #page-reports .wk-summary-grid{grid-template-columns:1fr}
   #page-reports .wk-analysis-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   #page-reports .wk-todo-list{grid-template-columns:1fr}
@@ -2826,8 +2847,9 @@
   #page-reports .wk-table-wrap{overflow:visible}
   #page-reports .wk-main-table,#page-reports .wk-talk-table,#page-reports .wk-rank-table{min-width:0!important}
   #page-reports .wk-analysis-grid{grid-template-columns:repeat(7,minmax(0,1fr));gap:var(--s1)}
+  #page-reports .wk-analysis-card{padding:var(--s1)}
+  #page-reports .wk-ana-hero{display:none}
   #page-reports .wk-ana-bar,#page-reports .wk-prem-bar{display:none}
-  #page-reports .wk-mini-table th,#page-reports .wk-mini-table td{padding:0 var(--s1)}
   #page-reports .wk-talk-table th,#page-reports .wk-talk-table td{padding:var(--s1)}
   #page-reports .wk-todo{display:none}
   #page-reports .wk-pageno{display:block;position:absolute;right:0;bottom:0;font-size:.64rem;color:var(--muted)}
@@ -5901,37 +5923,60 @@
   <section class="wk-section" aria-label="週報表">
     <div class="wk-meta wk-meta-6">
       <div><span>建案名稱</span><b>青園綠境</b></div>
-      <div><span>統計週數</span><b>第 35 週<i>08/24–08/30</i></b></div>
+      <div class="wk-week-select"><span>統計週數</span><div class="sel" data-wk-week>
+        <button type="button" class="sel-btn" aria-haspopup="listbox" aria-expanded="false"><span class="sel-val">第 35 週　08/24–08/30</span><svg class="ico chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></button>
+        <div class="sel-list" role="listbox" hidden>
+          <button type="button" role="option" data-v="31" aria-selected="false">第 31 週　07/27–08/02<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+          <button type="button" role="option" data-v="32" aria-selected="false">第 32 週　08/03–08/09<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+          <button type="button" role="option" data-v="33" aria-selected="false">第 33 週　08/10–08/16<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+          <button type="button" role="option" data-v="34" aria-selected="false">第 34 週　08/17–08/23<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+          <button type="button" role="option" data-v="35" aria-selected="true">第 35 週　08/24–08/30<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+          <div class="wk-week-note">起算日 2025-12-29（週一）・週一起、週日止<button type="button" class="wk-week-action" data-wk-start-date>調整起算日…<span class="wk-missing-mark" title="需補欄位：專案設定需新增『週報起算日』欄位">＊</span></button></div>
+        </div>
+      </div></div>
       <div><span>銷售單位</span><b>艾德霍客</b></div>
       <div><span>銷售期間</span><b>2026-03-01～2029-12-31</b></div>
       <div><span>銷售戶數</span><b>126 戶</b></div>
       <div><span>總銷金額</span><b>42.6 億</b></div>
     </div>
+    <div class="wk-media-bar"><span class="microlbl">本週廣告媒體</span><div class="sel multi" data-wk-media>
+      <input type="hidden" data-f="report:media" value="網路-FB、網路-google、戶外看板、指示牌">
+      <button type="button" class="sel-btn" aria-label="本週廣告媒體" aria-haspopup="listbox" aria-expanded="false"><span class="sel-val">網路-FB、網路-google、戶外看板、指示牌</span><svg class="ico chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></button>
+      <div class="sel-list" role="listbox" aria-multiselectable="true" hidden>
+        <button type="button" role="option" data-v="網路-FB" aria-selected="true">網路-FB<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+        <button type="button" role="option" data-v="網路-591" aria-selected="false">網路-591<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+        <button type="button" role="option" data-v="網路-google" aria-selected="true">網路-google<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+        <button type="button" role="option" data-v="報紙" aria-selected="false">報紙<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+        <button type="button" role="option" data-v="派報" aria-selected="false">派報<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+        <button type="button" role="option" data-v="戶外看板" aria-selected="true">戶外看板<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+        <button type="button" role="option" data-v="指示牌" aria-selected="true">指示牌<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+        <button type="button" role="option" data-v="車廂廣告" aria-selected="false">車廂廣告<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+        <button type="button" role="option" data-v="簡訊" aria-selected="false">簡訊<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+        <button type="button" role="option" data-v="電視廣告" aria-selected="false">電視廣告<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+        <button type="button" role="option" data-v="親友介紹" aria-selected="false">親友介紹<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+      </div>
+    </div><small>正式版寫入週報設定</small></div>
     <div class="table-wrap wk-table-wrap">
       <table class="wk-main-table">
         <colgroup><col><col span="10"></colgroup>
-        <thead><tr><th colspan="2">項目</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th><th>日</th><th>本週累計</th><th>上週累計</th><th>總累計</th></tr></thead>
+        <thead><tr><th colspan="2">項目</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th><th>日</th><th>本週累計</th><th>總累計</th></tr></thead>
         <tbody>
-          <tr class="wk-date-row"><th colspan="2">日期</th><td>08/24</td><td>08/25</td><td>08/26</td><td>08/27</td><td>08/28</td><td>08/29</td><td>08/30</td><td class="wk-week-total">第 35 週</td><td>至 08/23</td><td>至 08/30</td></tr>
-          <tr><th colspan="2">來人</th><td>2</td><td>2</td><td>3</td><td>2</td><td>3</td><td>6</td><td>7</td><td class="wk-week-total">25</td><td>115</td><td>140</td></tr>
-          <tr><th colspan="2">來電</th><td>1</td><td>2</td><td>1</td><td>1</td><td>2</td><td>2</td><td>2</td><td class="wk-week-total">11</td><td>41</td><td>52</td></tr>
-          <tr><th colspan="2">回客</th><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td class="wk-week-total">2</td><td>10</td><td>12</td></tr>
-          <tr class="wk-group-start wk-stage-first"><th class="wk-stage" rowspan="4">小訂</th><th>戶數</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>1 戶 / 2 車</td><td>1 戶 / 2 車</td><td class="wk-week-total">2 戶 / 4 車</td><td>8 戶 / 13 車</td><td>10 戶 / 17 車</td></tr>
-          <tr><th>房價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>6,520</td><td>6,148</td><td class="wk-week-total">12,668</td><td>51,112</td><td>63,780</td></tr>
-          <tr><th>車價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>420</td><td>420</td><td class="wk-week-total">840</td><td>4,135</td><td>4,975</td></tr>
-          <tr><th>總價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>6,940</td><td>6,568</td><td class="wk-week-total">13,508</td><td>55,247</td><td>68,755</td></tr>
-          <tr class="wk-group-start wk-stage-first"><th class="wk-stage wk-missing-mark" rowspan="4" title="需補欄位：系統尚無補足階段">補足</th><th>戶數</th><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td></tr>
-          <tr><th>房價</th><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td></tr>
-          <tr><th>車價</th><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td></tr>
-          <tr><th>總價</th><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td><td class="wk-missing-cell">—</td></tr>
-          <tr class="wk-group-start wk-stage-first"><th class="wk-stage" rowspan="4">簽約</th><th>戶數</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0 戶 / 0 車</td><td>8 戶 / 13 車</td><td>8 戶 / 13 車</td></tr>
-          <tr><th>房價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0</td><td>51,112</td><td>51,112</td></tr>
-          <tr><th>車價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0</td><td>4,135</td><td>4,135</td></tr>
-          <tr><th>總價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0</td><td>55,247</td><td>55,247</td></tr>
-          <tr class="wk-group-start wk-stage-first"><th class="wk-stage" rowspan="4">退戶</th><th>戶數</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0 戶 / 0 車</td><td>0 戶 / 0 車</td><td>0 戶 / 0 車</td></tr>
-          <tr><th>房價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0</td><td>0</td><td>0</td></tr>
-          <tr><th>車價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0</td><td>0</td><td>0</td></tr>
-          <tr><th>總價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0</td><td>0</td><td>0</td></tr>
+          <tr class="wk-date-row"><th colspan="2">日期</th><td>08/24</td><td>08/25</td><td>08/26</td><td>08/27</td><td>08/28</td><td>08/29</td><td>08/30</td><td class="wk-week-total">第 35 週</td><td>至 08/30</td></tr>
+          <tr><th colspan="2">來人</th><td>2</td><td>2</td><td>3</td><td>2</td><td>3</td><td>6</td><td>7</td><td class="wk-week-total">25<span class="wk-trend up">▲3</span></td><td>140</td></tr>
+          <tr><th colspan="2">來電</th><td>1</td><td>2</td><td>1</td><td>1</td><td>2</td><td>2</td><td>2</td><td class="wk-week-total">11<span class="wk-trend up">▲2</span></td><td>52</td></tr>
+          <tr><th colspan="2">回客</th><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td class="wk-week-total">2<span class="wk-trend down">▼1</span></td><td>12</td></tr>
+          <tr class="wk-group-start"><th class="wk-stage" rowspan="4">小訂</th><th>戶數</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>1 戶 / 2 車</td><td>1 戶 / 2 車</td><td class="wk-week-total">2 戶 / 4 車<span class="wk-trend down">▼1</span></td><td>10 戶 / 17 車</td></tr>
+          <tr><th>房價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>6,520</td><td>6,148</td><td class="wk-week-total">12,668</td><td>63,780</td></tr>
+          <tr><th>車價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>420</td><td>420</td><td class="wk-week-total">840</td><td>4,975</td></tr>
+          <tr class="wk-total-row"><th>總價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>6,940</td><td>6,568</td><td class="wk-week-total">13,508</td><td>68,755</td></tr>
+          <tr class="wk-group-start"><th class="wk-stage" rowspan="4">簽約</th><th>戶數</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0 戶 / 0 車<span class="wk-trend down">▼2</span></td><td>8 戶 / 13 車</td></tr>
+          <tr><th>房價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0</td><td>51,112</td></tr>
+          <tr><th>車價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0</td><td>4,135</td></tr>
+          <tr class="wk-total-row"><th>總價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0</td><td>55,247</td></tr>
+          <tr class="wk-group-start"><th class="wk-stage" rowspan="4">退戶</th><th>戶數</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0 戶 / 0 車<span class="wk-trend flat">─</span></td><td>0 戶 / 0 車</td></tr>
+          <tr><th>房價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0</td><td>0</td></tr>
+          <tr><th>車價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0</td><td>0</td></tr>
+          <tr class="wk-total-row"><th>總價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0</td><td>0</td></tr>
         </tbody>
       </table>
     </div>
@@ -5975,38 +6020,29 @@
       </div>
     </div>
     <div class="wk-field-gap"><span>進住戶數：—　｜　裝潢戶數：—</span><span class="wk-source"><span class="chip wk-source-missing">需補欄位</span><small>需：進住戶數、裝潢戶數</small></span></div>
-    <div class="wk-media">
-      <span class="wk-subtitle">本週廣告媒體</span>
-      <div class="wk-media-body"><div class="chips"><span class="chip">定點廣告 15 面</span><span class="chip">FB 粉專推播</span><span class="chip">Google 聯播網</span><span class="chip">Google 關鍵字</span><span class="chip">LINE</span><span class="chip">Mobile01</span></div><span class="wk-source"><span class="chip wk-source-manual">人工</span><small>人工填（未來可接投放端）</small></span></div>
-    </div>
-    <div class="wk-response">
-      <div class="wk-response-head"><span class="wk-subtitle">銷售反應</span><span class="wk-source"><span class="chip wk-source-manual">人工</span><small>專案經理撰寫</small></span><button class="pillbtn" type="button" data-demo-toast>編輯</button></div>
-      <div class="wk-response-copy">本週來人以北屯、西屯換屋族為主，三房含平車仍是主要詢問帶；週末兩組回籠客分別下訂 A3-16F 與 B2-8F。客戶對總價與車位加購較敏感，現場議價多落在表價下 1% 內。Google 關鍵字帶來的客群較能直接說出需求，建議下週延續品牌詞與三房關鍵字，並補強高樓層景觀與付款節點說明。</div>
-    </div>
-    <div class="wk-signoff"><span>核閱：<b>—</b></span><span>專案：<b>林曉青</b></span><span>製表：<b>張家豪</b></span><span>填表日期：<b>2026-08-30</b></span></div>
     <span class="wk-pageno">第 2 頁／週報表</span>
   </section>
 
   <section class="wk-section" aria-labelledby="wkAnalysisTitle">
     <div class="wk-section-head">
-      <div class="wk-section-title"><h3 id="wkAnalysisTitle">來人分析表</h3><p>14 個維度・當週母數 25 組・上週累計 115 組・累計成交 10 戶　｜　上週＝上週累計、成交＝累計成交，條長為當週佔比</p></div>
+      <div class="wk-section-title"><h3 id="wkAnalysisTitle">來人分析表</h3><p>14 個維度・當週母數 25 組・累計成交 10 戶　｜　大字＝當週最高佔比・藍字＝累計成交・條長＝當週佔比</p></div>
       <span class="wk-source"><span class="chip wk-source-auto">自動</span><small>來客表＋勾勾表彙總</small><span class="chip wk-source-missing">需補欄位</span><small>缺口依各表標示</small></span>
     </div>
     <div class="wk-analysis-grid">
-      <article class="wk-analysis-card"><div class="wk-analysis-card-head"><h4 title="勾勾表：居住區域（系統僅本區／鄰近區／外縣市三段）">區域分析</h4></div><table class="wk-mini-table"><thead><tr><th>項目</th><th>當週</th><th>上週</th><th>成交</th></tr></thead><tbody><tr><td><span class="wk-ana-lbl">本區（北屯）</span><span class="wk-ana-bar"><i style="width:56%"></i></span></td><td>14</td><td>62</td><td>6</td></tr><tr><td><span class="wk-ana-lbl">鄰近區</span><span class="wk-ana-bar"><i style="width:28%"></i></span></td><td>7</td><td>33</td><td>3</td></tr><tr><td><span class="wk-ana-lbl">外縣市</span><span class="wk-ana-bar"><i style="width:16%"></i></span></td><td>4</td><td>20</td><td>1</td></tr></tbody></table><div class="wk-ana-foot" aria-label="小計"><span>小計</span><b>25</b><b>115</b><b>10</b></div></article>
-      <article class="wk-analysis-card"><div class="wk-analysis-card-head"><h4 title="來客表：來源（與勾勾表「媒體來源」不同欄，不可混用）">廣告分析</h4></div><table class="wk-mini-table"><thead><tr><th>項目</th><th>當週</th><th>上週</th><th>成交</th></tr></thead><tbody><tr><td><span class="wk-ana-lbl">現場</span><span class="wk-ana-bar"><i style="width:12%"></i></span></td><td>3</td><td>14</td><td>1</td></tr><tr><td><span class="wk-ana-lbl">路過</span><span class="wk-ana-bar"><i style="width:8%"></i></span></td><td>2</td><td>9</td><td>0</td></tr><tr><td><span class="wk-ana-lbl">FB</span><span class="wk-ana-bar"><i style="width:32%"></i></span></td><td>8</td><td>34</td><td>3</td></tr><tr><td><span class="wk-ana-lbl">IG</span><span class="wk-ana-bar"><i style="width:8%"></i></span></td><td>2</td><td>10</td><td>1</td></tr><tr><td><span class="wk-ana-lbl">網路</span><span class="wk-ana-bar"><i style="width:12%"></i></span></td><td>3</td><td>13</td><td>1</td></tr><tr><td><span class="wk-ana-lbl">介紹</span><span class="wk-ana-bar"><i style="width:20%"></i></span></td><td>5</td><td>24</td><td>3</td></tr><tr><td><span class="wk-ana-lbl">看板</span><span class="wk-ana-bar"><i style="width:8%"></i></span></td><td>2</td><td>11</td><td>1</td></tr></tbody></table><div class="wk-ana-foot" aria-label="小計"><span>小計</span><b>25</b><b>115</b><b>10</b></div></article>
-      <article class="wk-analysis-card"><div class="wk-analysis-card-head"><h4 title="勾勾表：職業">職業分析</h4></div><table class="wk-mini-table"><thead><tr><th>項目</th><th>當週</th><th>上週</th><th>成交</th></tr></thead><tbody><tr><td><span class="wk-ana-lbl">軍公教</span><span class="wk-ana-bar"><i style="width:8%"></i></span></td><td>2</td><td>9</td><td>1</td></tr><tr><td><span class="wk-ana-lbl">科技業</span><span class="wk-ana-bar"><i style="width:24%"></i></span></td><td>6</td><td>28</td><td>3</td></tr><tr><td><span class="wk-ana-lbl">金融業</span><span class="wk-ana-bar"><i style="width:8%"></i></span></td><td>2</td><td>8</td><td>1</td></tr><tr><td><span class="wk-ana-lbl">服務業</span><span class="wk-ana-bar"><i style="width:16%"></i></span></td><td>4</td><td>18</td><td>1</td></tr><tr><td><span class="wk-ana-lbl">製造業</span><span class="wk-ana-bar"><i style="width:4%"></i></span></td><td>1</td><td>6</td><td>0</td></tr><tr><td><span class="wk-ana-lbl">自營商</span><span class="wk-ana-bar"><i style="width:28%"></i></span></td><td>7</td><td>32</td><td>3</td></tr><tr><td><span class="wk-ana-lbl">退休</span><span class="wk-ana-bar"><i style="width:4%"></i></span></td><td>1</td><td>5</td><td>1</td></tr><tr><td><span class="wk-ana-lbl">其他</span><span class="wk-ana-bar"><i style="width:8%"></i></span></td><td>2</td><td>9</td><td>0</td></tr></tbody></table><div class="wk-ana-foot" aria-label="小計"><span>小計</span><b>25</b><b>115</b><b>10</b></div></article>
-      <article class="wk-analysis-card"><div class="wk-analysis-card-head"><h4 title="勾勾表：購屋預算（系統上限 2500 萬以上）">價格分析</h4></div><table class="wk-mini-table"><thead><tr><th>項目</th><th>當週</th><th>上週</th><th>成交</th></tr></thead><tbody><tr><td><span class="wk-ana-lbl">1000 萬以下</span><span class="wk-ana-bar"><i style="width:8%"></i></span></td><td>2</td><td>11</td><td>0</td></tr><tr><td><span class="wk-ana-lbl">1000–1500 萬</span><span class="wk-ana-bar"><i style="width:24%"></i></span></td><td>6</td><td>28</td><td>2</td></tr><tr><td><span class="wk-ana-lbl">1500–2000 萬</span><span class="wk-ana-bar"><i style="width:36%"></i></span></td><td>9</td><td>41</td><td>4</td></tr><tr><td><span class="wk-ana-lbl">2000–2500 萬</span><span class="wk-ana-bar"><i style="width:24%"></i></span></td><td>6</td><td>26</td><td>3</td></tr><tr><td><span class="wk-ana-lbl">2500 萬以上</span><span class="wk-ana-bar"><i style="width:8%"></i></span></td><td>2</td><td>9</td><td>1</td></tr></tbody></table><div class="wk-ana-foot" aria-label="小計"><span>小計</span><b>25</b><b>115</b><b>10</b></div></article>
-      <article class="wk-analysis-card"><div class="wk-analysis-card-head"><h4 class="wk-missing-mark" title="需補欄位：需：預售／新成屋偏好">產品分析</h4></div><table class="wk-mini-table"><thead><tr><th>項目</th><th>當週</th><th>上週</th><th>成交</th></tr></thead><tbody><tr><td><span class="wk-ana-lbl">預售</span><span class="wk-ana-bar"><i style="width:80%"></i></span></td><td>20</td><td>93</td><td>8</td></tr><tr><td><span class="wk-ana-lbl">新成屋</span><span class="wk-ana-bar"><i style="width:12%"></i></span></td><td>3</td><td>12</td><td>1</td></tr><tr><td><span class="wk-ana-lbl">均可</span><span class="wk-ana-bar"><i style="width:8%"></i></span></td><td>2</td><td>10</td><td>1</td></tr></tbody></table><div class="wk-ana-foot" aria-label="小計"><span>小計</span><b>25</b><b>115</b><b>10</b></div></article>
-      <article class="wk-analysis-card"><div class="wk-analysis-card-head"><h4 class="wk-missing-mark" title="需補欄位：需：勾勾表加建材評價">建材分析</h4></div><table class="wk-mini-table"><thead><tr><th>項目</th><th>當週</th><th>上週</th><th>成交</th></tr></thead><tbody><tr><td><span class="wk-ana-lbl">很滿意</span><span class="wk-ana-bar"><i style="width:28%"></i></span></td><td>7</td><td>30</td><td>3</td></tr><tr><td><span class="wk-ana-lbl">普通</span><span class="wk-ana-bar"><i style="width:44%"></i></span></td><td>11</td><td>51</td><td>5</td></tr><tr><td><span class="wk-ana-lbl">很差</span><span class="wk-ana-bar"><i style="width:4%"></i></span></td><td>1</td><td>5</td><td>0</td></tr><tr><td><span class="wk-ana-lbl">不清楚</span><span class="wk-ana-bar"><i style="width:24%"></i></span></td><td>6</td><td>29</td><td>2</td></tr></tbody></table><div class="wk-ana-foot" aria-label="小計"><span>小計</span><b>25</b><b>115</b><b>10</b></div></article>
-      <article class="wk-analysis-card"><div class="wk-analysis-card-head"><h4 class="wk-missing-mark" title="需補欄位：需：勾勾表加抗性欄位">抗性分析</h4></div><table class="wk-mini-table"><thead><tr><th>項目</th><th>當週</th><th>上週</th><th>成交</th></tr></thead><tbody><tr><td><span class="wk-ana-lbl">總價</span><span class="wk-ana-bar"><i style="width:24%"></i></span></td><td>6</td><td>29</td><td>3</td></tr><tr><td><span class="wk-ana-lbl">車位</span><span class="wk-ana-bar"><i style="width:16%"></i></span></td><td>4</td><td>18</td><td>1</td></tr><tr><td><span class="wk-ana-lbl">建材</span><span class="wk-ana-bar"><i style="width:8%"></i></span></td><td>2</td><td>10</td><td>0</td></tr><tr><td><span class="wk-ana-lbl">格局</span><span class="wk-ana-bar"><i style="width:12%"></i></span></td><td>3</td><td>14</td><td>2</td></tr><tr><td><span class="wk-ana-lbl">產品規劃</span><span class="wk-ana-bar"><i style="width:12%"></i></span></td><td>3</td><td>12</td><td>1</td></tr><tr><td><span class="wk-ana-lbl">決策未到</span><span class="wk-ana-bar"><i style="width:16%"></i></span></td><td>4</td><td>17</td><td>2</td></tr><tr><td><span class="wk-ana-lbl">其他</span><span class="wk-ana-bar"><i style="width:12%"></i></span></td><td>3</td><td>15</td><td>1</td></tr></tbody></table><div class="wk-ana-foot" aria-label="小計"><span>小計</span><b>25</b><b>115</b><b>10</b></div></article>
-      <article class="wk-analysis-card"><div class="wk-analysis-card-head"><h4 title="勾勾表：年齡層（系統五段）">年齡分析</h4></div><table class="wk-mini-table"><thead><tr><th>項目</th><th>當週</th><th>上週</th><th>成交</th></tr></thead><tbody><tr><td><span class="wk-ana-lbl">25 歲以下</span><span class="wk-ana-bar"><i style="width:4%"></i></span></td><td>1</td><td>5</td><td>0</td></tr><tr><td><span class="wk-ana-lbl">26–30 歲</span><span class="wk-ana-bar"><i style="width:12%"></i></span></td><td>3</td><td>14</td><td>1</td></tr><tr><td><span class="wk-ana-lbl">31–40 歲</span><span class="wk-ana-bar"><i style="width:36%"></i></span></td><td>9</td><td>42</td><td>4</td></tr><tr><td><span class="wk-ana-lbl">41–50 歲</span><span class="wk-ana-bar"><i style="width:32%"></i></span></td><td>8</td><td>36</td><td>3</td></tr><tr><td><span class="wk-ana-lbl">51 歲以上</span><span class="wk-ana-bar"><i style="width:16%"></i></span></td><td>4</td><td>18</td><td>2</td></tr></tbody></table><div class="wk-ana-foot" aria-label="小計"><span>小計</span><b>25</b><b>115</b><b>10</b></div></article>
-      <article class="wk-analysis-card"><div class="wk-analysis-card-head"><h4 class="wk-missing-mark" title="需補欄位：需：同行關係／自來性別">來人分析</h4></div><table class="wk-mini-table"><thead><tr><th>項目</th><th>當週</th><th>上週</th><th>成交</th></tr></thead><tbody><tr><td><span class="wk-ana-lbl">男自來</span><span class="wk-ana-bar"><i style="width:16%"></i></span></td><td>4</td><td>18</td><td>1</td></tr><tr><td><span class="wk-ana-lbl">女自來</span><span class="wk-ana-bar"><i style="width:12%"></i></span></td><td>3</td><td>14</td><td>1</td></tr><tr><td><span class="wk-ana-lbl">夫婦同來</span><span class="wk-ana-bar"><i style="width:40%"></i></span></td><td>10</td><td>45</td><td>5</td></tr><tr><td><span class="wk-ana-lbl">家人同來</span><span class="wk-ana-bar"><i style="width:24%"></i></span></td><td>6</td><td>28</td><td>2</td></tr><tr><td><span class="wk-ana-lbl">朋友同來</span><span class="wk-ana-bar"><i style="width:8%"></i></span></td><td>2</td><td>10</td><td>1</td></tr></tbody></table><div class="wk-ana-foot" aria-label="小計"><span>小計</span><b>25</b><b>115</b><b>10</b></div></article>
-      <article class="wk-analysis-card wk-analysis-na"><div class="wk-analysis-card-head"><h4 class="wk-missing-mark" title="需補欄位：本案無地坪資料">地坪分析</h4></div><table class="wk-mini-table"><thead><tr><th>項目</th><th>當週</th><th>上週</th><th>成交</th></tr></thead><tbody><tr><td>本案不適用</td><td>—</td><td>—</td><td>—</td></tr></tbody></table><div class="wk-ana-foot" aria-label="小計"><span>小計</span><b>—</b><b>—</b><b>—</b></div></article>
-      <article class="wk-analysis-card"><div class="wk-analysis-card-head"><h4 title="勾勾表：坪數需求（可複選・系統四段）">建坪分析</h4></div><table class="wk-mini-table"><thead><tr><th>項目</th><th>當週</th><th>上週</th><th>成交</th></tr></thead><tbody><tr><td><span class="wk-ana-lbl">20 坪以下</span><span class="wk-ana-bar"><i style="width:8%"></i></span></td><td>2</td><td>9</td><td>0</td></tr><tr><td><span class="wk-ana-lbl">20–30 坪</span><span class="wk-ana-bar"><i style="width:28%"></i></span></td><td>7</td><td>32</td><td>3</td></tr><tr><td><span class="wk-ana-lbl">30–40 坪</span><span class="wk-ana-bar"><i style="width:40%"></i></span></td><td>10</td><td>46</td><td>4</td></tr><tr><td><span class="wk-ana-lbl">40 坪以上</span><span class="wk-ana-bar"><i style="width:24%"></i></span></td><td>6</td><td>28</td><td>3</td></tr></tbody></table><div class="wk-ana-foot" aria-label="小計"><span>小計</span><b>25</b><b>115</b><b>10</b></div></article>
-      <article class="wk-analysis-card"><div class="wk-analysis-card-head"><h4 title="勾勾表：需求房型">格局分析</h4></div><table class="wk-mini-table"><thead><tr><th>項目</th><th>當週</th><th>上週</th><th>成交</th></tr></thead><tbody><tr><td><span class="wk-ana-lbl">2 房</span><span class="wk-ana-bar"><i style="width:16%"></i></span></td><td>4</td><td>18</td><td>1</td></tr><tr><td><span class="wk-ana-lbl">3 房</span><span class="wk-ana-bar"><i style="width:44%"></i></span></td><td>11</td><td>52</td><td>5</td></tr><tr><td><span class="wk-ana-lbl">4 房</span><span class="wk-ana-bar"><i style="width:32%"></i></span></td><td>8</td><td>36</td><td>3</td></tr><tr><td><span class="wk-ana-lbl">店面</span><span class="wk-ana-bar"><i style="width:8%"></i></span></td><td>2</td><td>9</td><td>1</td></tr></tbody></table><div class="wk-ana-foot" aria-label="小計"><span>小計</span><b>25</b><b>115</b><b>10</b></div></article>
-      <article class="wk-analysis-card"><div class="wk-analysis-card-head"><h4 title="勾勾表：購屋目的">動機分析</h4></div><table class="wk-mini-table"><thead><tr><th>項目</th><th>當週</th><th>上週</th><th>成交</th></tr></thead><tbody><tr><td><span class="wk-ana-lbl">自住</span><span class="wk-ana-bar"><i style="width:40%"></i></span></td><td>10</td><td>46</td><td>4</td></tr><tr><td><span class="wk-ana-lbl">投資</span><span class="wk-ana-bar"><i style="width:20%"></i></span></td><td>5</td><td>23</td><td>2</td></tr><tr><td><span class="wk-ana-lbl">置產</span><span class="wk-ana-bar"><i style="width:24%"></i></span></td><td>6</td><td>28</td><td>2</td></tr><tr><td><span class="wk-ana-lbl">換屋</span><span class="wk-ana-bar"><i style="width:16%"></i></span></td><td>4</td><td>18</td><td>2</td></tr></tbody></table><div class="wk-ana-foot" aria-label="小計"><span>小計</span><b>25</b><b>115</b><b>10</b></div></article>
-      <article class="wk-analysis-card"><div class="wk-analysis-card-head"><h4 class="wk-missing-mark" title="需補欄位：需：勾勾表加賣點欄位">賣點分析</h4></div><table class="wk-mini-table"><thead><tr><th>項目</th><th>當週</th><th>上週</th><th>成交</th></tr></thead><tbody><tr><td><span class="wk-ana-lbl">地點</span><span class="wk-ana-bar"><i style="width:20%"></i></span></td><td>5</td><td>24</td><td>2</td></tr><tr><td><span class="wk-ana-lbl">規劃設計</span><span class="wk-ana-bar"><i style="width:16%"></i></span></td><td>4</td><td>19</td><td>2</td></tr><tr><td><span class="wk-ana-lbl">坪數足</span><span class="wk-ana-bar"><i style="width:12%"></i></span></td><td>3</td><td>13</td><td>1</td></tr><tr><td><span class="wk-ana-lbl">景觀</span><span class="wk-ana-bar"><i style="width:12%"></i></span></td><td>3</td><td>14</td><td>1</td></tr><tr><td><span class="wk-ana-lbl">環境佳</span><span class="wk-ana-bar"><i style="width:12%"></i></span></td><td>3</td><td>12</td><td>1</td></tr><tr><td><span class="wk-ana-lbl">品牌</span><span class="wk-ana-bar"><i style="width:16%"></i></span></td><td>4</td><td>18</td><td>2</td></tr><tr><td><span class="wk-ana-lbl">其他</span><span class="wk-ana-bar"><i style="width:12%"></i></span></td><td>3</td><td>15</td><td>1</td></tr></tbody></table><div class="wk-ana-foot" aria-label="小計"><span>小計</span><b>25</b><b>115</b><b>10</b></div></article>
+      <article class="wk-analysis-card"><div class="wk-analysis-card-head"><svg class="wk-dico" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-10.2A6.5 6.5 0 0 1 12 4.5a6.5 6.5 0 0 1 6.5 6.3C18.5 15.4 12 21 12 21Z"/><circle cx="12" cy="10.8" r="2.2"/></svg><h4 title="勾勾表：居住區域（系統僅本區／鄰近區／外縣市三段）">區域分析</h4></div><div class="wk-ana-hero"><b>56%</b><span>本區（北屯）</span></div><div class="wk-ana-row"><span class="l">本區（北屯）</span><span class="wk-ana-bar"><i style="width:56%"></i></span><b>14</b><i>6</i></div><div class="wk-ana-row"><span class="l">鄰近區</span><span class="wk-ana-bar"><i style="width:28%"></i></span><b>7</b><i>3</i></div><div class="wk-ana-row"><span class="l">外縣市</span><span class="wk-ana-bar"><i style="width:16%"></i></span><b>4</b><i>1</i></div></article>
+      <article class="wk-analysis-card"><div class="wk-analysis-card-head"><svg class="wk-dico" viewBox="0 0 24 24"><path d="M4 10v4h3l7 4V6l-7 4H4Z"/><path d="M17.5 9.5a4 4 0 0 1 0 5"/></svg><h4 title="來客表：來源（與勾勾表「媒體來源」不同欄，不可混用）">廣告分析</h4></div><div class="wk-ana-hero"><b>32%</b><span>FB</span></div><div class="wk-ana-row"><span class="l">現場</span><span class="wk-ana-bar"><i style="width:12%"></i></span><b>3</b><i>1</i></div><div class="wk-ana-row"><span class="l">路過</span><span class="wk-ana-bar"><i style="width:8%"></i></span><b>2</b><i>0</i></div><div class="wk-ana-row"><span class="l">FB</span><span class="wk-ana-bar"><i style="width:32%"></i></span><b>8</b><i>3</i></div><div class="wk-ana-row"><span class="l">IG</span><span class="wk-ana-bar"><i style="width:8%"></i></span><b>2</b><i>1</i></div><div class="wk-ana-row"><span class="l">網路</span><span class="wk-ana-bar"><i style="width:12%"></i></span><b>3</b><i>1</i></div><div class="wk-ana-row"><span class="l">介紹</span><span class="wk-ana-bar"><i style="width:20%"></i></span><b>5</b><i>3</i></div><div class="wk-ana-row"><span class="l">看板</span><span class="wk-ana-bar"><i style="width:8%"></i></span><b>2</b><i>1</i></div></article>
+      <article class="wk-analysis-card"><div class="wk-analysis-card-head"><svg class="wk-dico" viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="11" rx="2"/><path d="M9.5 8V6.5A1.5 1.5 0 0 1 11 5h2a1.5 1.5 0 0 1 1.5 1.5V8M4 12.5h16"/></svg><h4 title="勾勾表：職業">職業分析</h4></div><div class="wk-ana-hero"><b>28%</b><span>自營商</span></div><div class="wk-ana-row"><span class="l">軍公教</span><span class="wk-ana-bar"><i style="width:8%"></i></span><b>2</b><i>1</i></div><div class="wk-ana-row"><span class="l">科技業</span><span class="wk-ana-bar"><i style="width:24%"></i></span><b>6</b><i>3</i></div><div class="wk-ana-row"><span class="l">金融業</span><span class="wk-ana-bar"><i style="width:8%"></i></span><b>2</b><i>1</i></div><div class="wk-ana-row"><span class="l">服務業</span><span class="wk-ana-bar"><i style="width:16%"></i></span><b>4</b><i>1</i></div><div class="wk-ana-row"><span class="l">製造業</span><span class="wk-ana-bar"><i style="width:4%"></i></span><b>1</b><i>0</i></div><div class="wk-ana-row"><span class="l">自營商</span><span class="wk-ana-bar"><i style="width:28%"></i></span><b>7</b><i>3</i></div><div class="wk-ana-row"><span class="l">退休</span><span class="wk-ana-bar"><i style="width:4%"></i></span><b>1</b><i>1</i></div><div class="wk-ana-row"><span class="l">其他</span><span class="wk-ana-bar"><i style="width:8%"></i></span><b>2</b><i>0</i></div></article>
+      <article class="wk-analysis-card"><div class="wk-analysis-card-head"><svg class="wk-dico" viewBox="0 0 24 24"><path d="M12.5 3.5H20v7.5l-8 8-7.5-7.5Z"/><circle cx="16" cy="7.5" r="1.4"/></svg><h4 title="勾勾表：購屋預算（系統上限 2500 萬以上）">價格分析</h4></div><div class="wk-ana-hero"><b>36%</b><span>1500–2000 萬</span></div><div class="wk-ana-row"><span class="l">1000 萬以下</span><span class="wk-ana-bar"><i style="width:8%"></i></span><b>2</b><i>0</i></div><div class="wk-ana-row"><span class="l">1000–1500 萬</span><span class="wk-ana-bar"><i style="width:24%"></i></span><b>6</b><i>2</i></div><div class="wk-ana-row"><span class="l">1500–2000 萬</span><span class="wk-ana-bar"><i style="width:36%"></i></span><b>9</b><i>4</i></div><div class="wk-ana-row"><span class="l">2000–2500 萬</span><span class="wk-ana-bar"><i style="width:24%"></i></span><b>6</b><i>3</i></div><div class="wk-ana-row"><span class="l">2500 萬以上</span><span class="wk-ana-bar"><i style="width:8%"></i></span><b>2</b><i>1</i></div></article>
+      <article class="wk-analysis-card"><div class="wk-analysis-card-head"><svg class="wk-dico" viewBox="0 0 24 24"><path d="M6 20V5.5A1.5 1.5 0 0 1 7.5 4h9A1.5 1.5 0 0 1 18 5.5V20"/><path d="M4 20h16M9.5 8h1.5M13 8h1.5M9.5 11.5h1.5M13 11.5h1.5M9.5 15h1.5M13 15h1.5"/></svg><h4 class="wk-missing-mark" title="需補欄位：需：預售／新成屋偏好">產品分析</h4></div><div class="wk-ana-hero"><b>80%</b><span>預售</span></div><div class="wk-ana-row"><span class="l">預售</span><span class="wk-ana-bar"><i style="width:80%"></i></span><b>20</b><i>8</i></div><div class="wk-ana-row"><span class="l">新成屋</span><span class="wk-ana-bar"><i style="width:12%"></i></span><b>3</b><i>1</i></div><div class="wk-ana-row"><span class="l">均可</span><span class="wk-ana-bar"><i style="width:8%"></i></span><b>2</b><i>1</i></div></article>
+      <article class="wk-analysis-card"><div class="wk-analysis-card-head"><svg class="wk-dico" viewBox="0 0 24 24"><path d="m12 4 8 4-8 4-8-4 8-4Z"/><path d="m4 14 8 4 8-4"/></svg><h4 class="wk-missing-mark" title="需補欄位：需：勾勾表加建材評價">建材分析</h4></div><div class="wk-ana-hero"><b>44%</b><span>普通</span></div><div class="wk-ana-row"><span class="l">很滿意</span><span class="wk-ana-bar"><i style="width:28%"></i></span><b>7</b><i>3</i></div><div class="wk-ana-row"><span class="l">普通</span><span class="wk-ana-bar"><i style="width:44%"></i></span><b>11</b><i>5</i></div><div class="wk-ana-row"><span class="l">很差</span><span class="wk-ana-bar"><i style="width:4%"></i></span><b>1</b><i>0</i></div><div class="wk-ana-row"><span class="l">不清楚</span><span class="wk-ana-bar"><i style="width:24%"></i></span><b>6</b><i>2</i></div></article>
+      <article class="wk-analysis-card"><div class="wk-analysis-card-head"><svg class="wk-dico" viewBox="0 0 24 24"><path d="M12 4l7 2.5v5c0 4.5-3 7.5-7 8.5-4-1-7-4-7-8.5v-5L12 4Z"/><path d="M12 8.5v4M12 15.5h.01"/></svg><h4 class="wk-missing-mark" title="需補欄位：需：勾勾表加抗性欄位">抗性分析</h4></div><div class="wk-ana-hero"><b>24%</b><span>總價</span></div><div class="wk-ana-row"><span class="l">總價</span><span class="wk-ana-bar"><i style="width:24%"></i></span><b>6</b><i>3</i></div><div class="wk-ana-row"><span class="l">車位</span><span class="wk-ana-bar"><i style="width:16%"></i></span><b>4</b><i>1</i></div><div class="wk-ana-row"><span class="l">建材</span><span class="wk-ana-bar"><i style="width:8%"></i></span><b>2</b><i>0</i></div><div class="wk-ana-row"><span class="l">格局</span><span class="wk-ana-bar"><i style="width:12%"></i></span><b>3</b><i>2</i></div><div class="wk-ana-row"><span class="l">產品規劃</span><span class="wk-ana-bar"><i style="width:12%"></i></span><b>3</b><i>1</i></div><div class="wk-ana-row"><span class="l">決策未到</span><span class="wk-ana-bar"><i style="width:16%"></i></span><b>4</b><i>2</i></div><div class="wk-ana-row"><span class="l">其他</span><span class="wk-ana-bar"><i style="width:12%"></i></span><b>3</b><i>1</i></div></article>
+      <article class="wk-analysis-card"><div class="wk-analysis-card-head"><svg class="wk-dico" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M5 20c.9-4 3.7-6.1 7-6.1s6.1 2.1 7 6.1"/></svg><h4 title="勾勾表：年齡層（系統五段）">年齡分析</h4></div><div class="wk-ana-hero"><b>36%</b><span>31–40 歲</span></div><div class="wk-ana-row"><span class="l">25 歲以下</span><span class="wk-ana-bar"><i style="width:4%"></i></span><b>1</b><i>0</i></div><div class="wk-ana-row"><span class="l">26–30 歲</span><span class="wk-ana-bar"><i style="width:12%"></i></span><b>3</b><i>1</i></div><div class="wk-ana-row"><span class="l">31–40 歲</span><span class="wk-ana-bar"><i style="width:36%"></i></span><b>9</b><i>4</i></div><div class="wk-ana-row"><span class="l">41–50 歲</span><span class="wk-ana-bar"><i style="width:32%"></i></span><b>8</b><i>3</i></div><div class="wk-ana-row"><span class="l">51 歲以上</span><span class="wk-ana-bar"><i style="width:16%"></i></span><b>4</b><i>2</i></div></article>
+      <article class="wk-analysis-card"><div class="wk-analysis-card-head"><svg class="wk-dico" viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3.2"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5"/><circle cx="17" cy="9.5" r="2.4"/><path d="M15.8 14.3c2.4.2 4.1 1.7 4.7 4.2"/></svg><h4 class="wk-missing-mark" title="需補欄位：需：同行關係／自來性別">來人分析</h4></div><div class="wk-ana-hero"><b>40%</b><span>夫婦同來</span></div><div class="wk-ana-row"><span class="l">男自來</span><span class="wk-ana-bar"><i style="width:16%"></i></span><b>4</b><i>1</i></div><div class="wk-ana-row"><span class="l">女自來</span><span class="wk-ana-bar"><i style="width:12%"></i></span><b>3</b><i>1</i></div><div class="wk-ana-row"><span class="l">夫婦同來</span><span class="wk-ana-bar"><i style="width:40%"></i></span><b>10</b><i>5</i></div><div class="wk-ana-row"><span class="l">家人同來</span><span class="wk-ana-bar"><i style="width:24%"></i></span><b>6</b><i>2</i></div><div class="wk-ana-row"><span class="l">朋友同來</span><span class="wk-ana-bar"><i style="width:8%"></i></span><b>2</b><i>1</i></div></article>
+      <article class="wk-analysis-card wk-analysis-na"><div class="wk-analysis-card-head"><svg class="wk-dico" viewBox="0 0 24 24"><path d="M4 6.5 9.5 4l5 2.5L20 4v13.5L14.5 20l-5-2.5L4 20V6.5Z"/><path d="M9.5 4v13.5M14.5 6.5V20"/></svg><h4 class="wk-missing-mark" title="需補欄位：本案無地坪資料">地坪分析</h4></div><p class="wk-ana-na">本案不適用</p></article>
+      <article class="wk-analysis-card"><div class="wk-analysis-card-head"><svg class="wk-dico" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="1.5"/><path d="m8.5 15.5 7-7"/><path d="M8.5 12.5v3h3M15.5 11.5v-3h-3"/></svg><h4 title="勾勾表：坪數需求（可複選・系統四段）">建坪分析</h4></div><div class="wk-ana-hero"><b>40%</b><span>30–40 坪</span></div><div class="wk-ana-row"><span class="l">20 坪以下</span><span class="wk-ana-bar"><i style="width:8%"></i></span><b>2</b><i>0</i></div><div class="wk-ana-row"><span class="l">20–30 坪</span><span class="wk-ana-bar"><i style="width:28%"></i></span><b>7</b><i>3</i></div><div class="wk-ana-row"><span class="l">30–40 坪</span><span class="wk-ana-bar"><i style="width:40%"></i></span><b>10</b><i>4</i></div><div class="wk-ana-row"><span class="l">40 坪以上</span><span class="wk-ana-bar"><i style="width:24%"></i></span><b>6</b><i>3</i></div></article>
+      <article class="wk-analysis-card"><div class="wk-analysis-card-head"><svg class="wk-dico" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M12 4v7M12 11h8M4 14h5M9 14v6"/></svg><h4 title="勾勾表：需求房型">格局分析</h4></div><div class="wk-ana-hero"><b>44%</b><span>3 房</span></div><div class="wk-ana-row"><span class="l">2 房</span><span class="wk-ana-bar"><i style="width:16%"></i></span><b>4</b><i>1</i></div><div class="wk-ana-row"><span class="l">3 房</span><span class="wk-ana-bar"><i style="width:44%"></i></span><b>11</b><i>5</i></div><div class="wk-ana-row"><span class="l">4 房</span><span class="wk-ana-bar"><i style="width:32%"></i></span><b>8</b><i>3</i></div><div class="wk-ana-row"><span class="l">店面</span><span class="wk-ana-bar"><i style="width:8%"></i></span><b>2</b><i>1</i></div></article>
+      <article class="wk-analysis-card"><div class="wk-analysis-card-head"><svg class="wk-dico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1.2"/></svg><h4 title="勾勾表：購屋目的">動機分析</h4></div><div class="wk-ana-hero"><b>40%</b><span>自住</span></div><div class="wk-ana-row"><span class="l">自住</span><span class="wk-ana-bar"><i style="width:40%"></i></span><b>10</b><i>4</i></div><div class="wk-ana-row"><span class="l">投資</span><span class="wk-ana-bar"><i style="width:20%"></i></span><b>5</b><i>2</i></div><div class="wk-ana-row"><span class="l">置產</span><span class="wk-ana-bar"><i style="width:24%"></i></span><b>6</b><i>2</i></div><div class="wk-ana-row"><span class="l">換屋</span><span class="wk-ana-bar"><i style="width:16%"></i></span><b>4</b><i>2</i></div></article>
+      <article class="wk-analysis-card"><div class="wk-analysis-card-head"><svg class="wk-dico" viewBox="0 0 24 24"><path d="m12 4.5 2.2 4.6 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5L4.8 9.8l5-.7L12 4.5Z"/></svg><h4 class="wk-missing-mark" title="需補欄位：需：勾勾表加賣點欄位">賣點分析</h4></div><div class="wk-ana-hero"><b>20%</b><span>地點</span></div><div class="wk-ana-row"><span class="l">地點</span><span class="wk-ana-bar"><i style="width:20%"></i></span><b>5</b><i>2</i></div><div class="wk-ana-row"><span class="l">規劃設計</span><span class="wk-ana-bar"><i style="width:16%"></i></span><b>4</b><i>2</i></div><div class="wk-ana-row"><span class="l">坪數足</span><span class="wk-ana-bar"><i style="width:12%"></i></span><b>3</b><i>1</i></div><div class="wk-ana-row"><span class="l">景觀</span><span class="wk-ana-bar"><i style="width:12%"></i></span><b>3</b><i>1</i></div><div class="wk-ana-row"><span class="l">環境佳</span><span class="wk-ana-bar"><i style="width:12%"></i></span><b>3</b><i>1</i></div><div class="wk-ana-row"><span class="l">品牌</span><span class="wk-ana-bar"><i style="width:16%"></i></span><b>4</b><i>2</i></div><div class="wk-ana-row"><span class="l">其他</span><span class="wk-ana-bar"><i style="width:12%"></i></span><b>3</b><i>1</i></div></article>
     </div>
     <span class="wk-pageno">第 3 頁／來人分析表</span>
   </section>
@@ -6045,20 +6081,26 @@
   <section class="wk-section" aria-labelledby="wkRankTitle">
     <div class="wk-section-head">
       <div class="wk-section-title"><h3 id="wkRankTitle">銷售人員評比</h3><p>六位業務累計接洽與成交拆分</p></div>
-      <span class="wk-source"><span class="chip wk-source-auto">自動</span><small>銷控＋購買紀錄・來客表</small><span class="chip wk-source-missing">需補欄位</span><small>需：補足階段</small></span>
+      <span class="wk-source"><span class="chip wk-source-auto">自動</span><small>銷控＋購買紀錄・來客表</small></span>
     </div>
-    <div class="table-wrap wk-table-wrap"><table class="wk-rank-table"><thead><tr><th>序號</th><th>業務員</th><th>職稱</th><th>小訂戶</th><th class="wk-rank-missing">補足戶</th><th>實際成交戶數</th><th>簽約戶</th><th>累計簽約金額</th><th>累計接洽來客數</th><th>成交比</th><th>備註</th></tr></thead><tbody>
-      <tr><td>1</td><td>張家豪</td><td>專案副理</td><td>2.5</td><td class="wk-rank-missing">—</td><td>2.5</td><td>2</td><td>13,500 萬</td><td>30</td><td>12:1</td><td>共同成交 1 戶</td></tr>
-      <tr><td>2</td><td>吳姿瑩</td><td>業務主任</td><td>2</td><td class="wk-rank-missing">—</td><td>2</td><td>1.5</td><td>10,500 萬</td><td>28</td><td>14:1</td><td>—</td></tr>
-      <tr><td>3</td><td>陳冠廷</td><td>業務主任</td><td>1.5</td><td class="wk-rank-missing">—</td><td>1.5</td><td>1.5</td><td>10,300 萬</td><td>22</td><td>15:1</td><td>共同成交 1 戶</td></tr>
-      <tr><td>4</td><td>周家瑜</td><td>業務專員</td><td>2</td><td class="wk-rank-missing">—</td><td>2</td><td>1.5</td><td>10,447 萬</td><td>24</td><td>12:1</td><td>—</td></tr>
-      <tr><td>5</td><td>李承翰</td><td>業務專員</td><td>2</td><td class="wk-rank-missing">—</td><td>2</td><td>1.5</td><td>10,500 萬</td><td>23</td><td>12:1</td><td>本週下訂 A3-16F</td></tr>
-      <tr><td>6</td><td>郭士銘</td><td>業務專員</td><td>0</td><td class="wk-rank-missing">—</td><td>0</td><td>0</td><td>0 萬</td><td>13</td><td>13:0</td><td>本週持續追蹤 3 組</td></tr>
-    </tbody><tfoot><tr><td colspan="3">合計</td><td>10</td><td class="wk-rank-missing">—</td><td>10</td><td>8</td><td>55,247 萬</td><td>140</td><td>14:1</td><td>—</td></tr></tfoot></table></div>
+    <div class="wk-podium">
+      <div class="wk-pod p2"><span class="av">吳</span><b>吳姿瑩</b><i>2 戶</i><div class="step">2</div></div>
+      <div class="wk-pod p1"><svg class="wk-crown" viewBox="0 0 24 24"><path d="M5 16.5 4 8l4.5 3L12 6l3.5 5L20 8l-1 8.5H5Z"/></svg><span class="av">張</span><b>張家豪</b><i>2.5 戶</i><div class="step">1</div></div>
+      <div class="wk-pod p3"><span class="av">陳</span><b>陳冠廷</b><i>1.5 戶</i><div class="step">3</div></div>
+    </div>
+    <p class="wk-podium-note">以實際成交戶數排名・同戶數依累計簽約金額排序</p>
+    <div class="table-wrap wk-table-wrap"><table class="wk-rank-table"><thead><tr><th>序號</th><th>業務員</th><th>職稱</th><th>小訂戶</th><th>實際成交戶數</th><th>簽約戶</th><th>累計簽約金額</th><th>累計接洽來客數</th><th>成交比</th><th>備註</th></tr></thead><tbody>
+      <tr><td>1</td><td>張家豪</td><td>專案副理</td><td>2.5</td><td>2.5</td><td>2</td><td>13,500 萬</td><td>30</td><td>12:1</td><td>共同成交 1 戶</td></tr>
+      <tr><td>2</td><td>吳姿瑩</td><td>業務主任</td><td>2</td><td>2</td><td>1.5</td><td>10,500 萬</td><td>28</td><td>14:1</td><td>—</td></tr>
+      <tr><td>3</td><td>陳冠廷</td><td>業務主任</td><td>1.5</td><td>1.5</td><td>1.5</td><td>10,300 萬</td><td>22</td><td>15:1</td><td>共同成交 1 戶</td></tr>
+      <tr><td>4</td><td>周家瑜</td><td>業務專員</td><td>2</td><td>2</td><td>1.5</td><td>10,447 萬</td><td>24</td><td>12:1</td><td>—</td></tr>
+      <tr><td>5</td><td>李承翰</td><td>業務專員</td><td>2</td><td>2</td><td>1.5</td><td>10,500 萬</td><td>23</td><td>12:1</td><td>本週下訂 A3-16F</td></tr>
+      <tr><td>6</td><td>郭士銘</td><td>業務專員</td><td>0</td><td>0</td><td>0</td><td>0 萬</td><td>13</td><td>13:0</td><td>本週持續追蹤 3 組</td></tr>
+    </tbody><tfoot><tr><td colspan="3">合計</td><td>10</td><td>10</td><td>8</td><td>55,247 萬</td><td>140</td><td>14:1</td><td>—</td></tr></tfoot></table></div>
     <p class="wk-footnote">口徑：共同成交依實際分潤拆分，戶數可為 0.5；成交比＝累計接洽來客數 : 實際成交戶數，未成交者保留「來客數 : 0」。</p>
     <div class="wk-todo">
       <div class="wk-todo-head"><h4>產出這份週報還缺什麼</h4><span class="wk-source"><span class="chip wk-source-missing">需補欄位</span><small>工程串接待辦</small></span></div>
-      <ul class="wk-todo-list"><li>補足階段與補足日期／金額</li><li>進住戶數／裝潢戶數</li><li>地坪資料</li><li>抗性分析欄位</li><li>建材分析欄位</li><li>賣點分析欄位</li><li>來人分析：男自來／夫婦同來等</li><li>產品分析：預售／新成屋偏好</li>
+      <ul class="wk-todo-list"><li>進住戶數／裝潢戶數</li><li>地坪資料</li><li>抗性分析欄位</li><li>建材分析欄位</li><li>賣點分析欄位</li><li>來人分析：男自來／夫婦同來等</li><li>產品分析：預售／新成屋偏好</li>
               <li class="wk-gap-scale">級距落差（欄位有、切法不同）：現場區域切到行政區、價格切到 6000 萬以上、年齡切 8 段、建坪切到 80 坪以上；系統目前分別是三段／2500 萬以上／五段／四段。要完全對上現場週報，需調勾勾表選項而非新增欄位。</li></ul>
     </div>
     <span class="wk-pageno">第 5 頁／銷售人員評比</span>
@@ -10191,6 +10233,62 @@
       if(!c||!wz.contains(c))return;
       wz.querySelectorAll('.chip').forEach(function(x){x.classList.remove('on')});
       c.classList.add('on');
+    });
+  }
+  var page=document.getElementById('page-reports');
+  if(page){
+    function wkClose(except){
+      page.querySelectorAll('.sel.open').forEach(function(box){
+        if(box===except)return;
+        box.classList.remove('open');
+        var list=box.querySelector('.sel-list'),btn=box.querySelector('.sel-btn');
+        if(list)list.hidden=true;
+        if(btn)btn.setAttribute('aria-expanded','false');
+      });
+    }
+    page.addEventListener('click',function(e){
+      var start=e.target.closest('[data-wk-start-date]');
+      if(start){
+        e.stopPropagation();
+        wkClose();
+        toast('示意：正式版於專案設定調整起算日');
+        return;
+      }
+      var mediaOpt=e.target.closest('[data-wk-media] [role="option"]');
+      if(mediaOpt){
+        e.stopPropagation();
+        mediaOpt.setAttribute('aria-selected',mediaOpt.getAttribute('aria-selected')==='true'?'false':'true');
+        mselSync(mediaOpt.closest('.sel.multi'));
+        return;
+      }
+      var weekOpt=e.target.closest('[data-wk-week] [role="option"]');
+      if(weekOpt){
+        e.stopPropagation();
+        var weekBox=weekOpt.closest('[data-wk-week]');
+        weekBox.querySelectorAll('[role="option"]').forEach(function(opt){opt.setAttribute('aria-selected',String(opt===weekOpt))});
+        weekBox.querySelector('.sel-val').textContent=weekOpt.textContent.trim();
+        wkClose();
+        toast('示意：正式版載入該週資料');
+        return;
+      }
+      var btn=e.target.closest('[data-wk-week] .sel-btn,[data-wk-media] .sel-btn');
+      if(btn){
+        e.stopPropagation();
+        var box=btn.closest('.sel'),list=box.querySelector('.sel-list'),open=box.classList.contains('open');
+        wkClose(box);
+        box.classList.toggle('open',!open);
+        list.hidden=open;
+        btn.setAttribute('aria-expanded',String(!open));
+      }
+    });
+    page.addEventListener('keydown',function(e){
+      if(e.key!=='Escape')return;
+      var box=e.target.closest('.sel.open');
+      if(!box)return;
+      e.preventDefault();
+      wkClose();
+      var btn=box.querySelector('.sel-btn');
+      if(btn)btn.focus();
     });
   }
 })();
