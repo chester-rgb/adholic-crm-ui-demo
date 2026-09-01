@@ -2783,6 +2783,12 @@
 #page-reports .dr-summary .microlbl{margin-bottom:0}
 #page-reports .dr-summary .chip{font-size:.64rem}
 #page-reports .dr-summary-hint{font-size:.64rem;line-height:1.7;color:var(--muted)}
+#page-reports .dr-link{background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer;text-align:inherit;border-bottom:1px solid var(--line-2)}
+#page-reports .dr-link:hover{color:var(--accent);border-bottom-color:var(--line-accent)}
+#page-reports .dr-link:focus-visible{outline:2px solid var(--line-accent);outline-offset:2px;border-radius:var(--r-mini)}
+#page-reports .dr-sumbox{width:100%;min-height:4.5rem;resize:vertical;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-row);padding:var(--s3);font:inherit;font-size:.74rem;line-height:1.8;color:var(--ink)}
+#page-reports .dr-sumbox:focus{outline:none;border-color:var(--line-accent)}
+#page-reports .dr-weather{display:flex;align-items:center;gap:var(--s3)}
 @media (max-width:1020px){
   #page-reports .dr-cards{grid-template-columns:repeat(3,minmax(0,1fr))}
   #page-reports .dr-mid{grid-template-columns:1fr}
@@ -7108,12 +7114,12 @@
     <section class="dr-panel" aria-labelledby="drTodoTitle">
       <div class="dr-section-head"><h3 id="drTodoTitle">今日要追的人</h3><span>6 筆</span></div>
       <div class="dr-todo">
-        <div class="dr-todo-row" data-state="overdue"><span class="dot hot" aria-hidden="true"></span><b>陳威宇</b><span>回訪未跟進・3 天</span><i>逾期</i></div>
-        <div class="dr-todo-row" data-state="overdue"><span class="dot hot" aria-hidden="true"></span><b>林佳蓉</b><span>A 級未指派</span><i>逾期</i></div>
-        <div class="dr-todo-row" data-state="today"><span class="dot warm" aria-hidden="true"></span><b>許文彬</b><span>約看未回覆・今日到期</span><i>今日</i></div>
-        <div class="dr-todo-row" data-state="today"><span class="dot warm" aria-hidden="true"></span><b>周美玲</b><span>報價後未追・2 天</span><i>今日</i></div>
-        <div class="dr-todo-row"><span class="dot" aria-hidden="true"></span><b>郭建宏</b><span>首訪待建檔</span><i>明日</i></div>
-        <div class="dr-todo-row"><span class="dot" aria-hidden="true"></span><b>張淑芬</b><span>待補勾勾表</span><i>明日</i></div>
+        <div class="dr-todo-row" data-state="overdue"><span class="dot hot" aria-hidden="true"></span><b><button type="button" class="dr-link" data-goto-lead="陳威宇">陳威宇</button></b><span>回訪未跟進・3 天</span><i>逾期</i></div>
+        <div class="dr-todo-row" data-state="overdue"><span class="dot hot" aria-hidden="true"></span><b><button type="button" class="dr-link" data-goto-lead="林佳蓉">林佳蓉</button></b><span>A 級未指派</span><i>逾期</i></div>
+        <div class="dr-todo-row" data-state="today"><span class="dot warm" aria-hidden="true"></span><b><button type="button" class="dr-link" data-goto-lead="許文彬">許文彬</button></b><span>約看未回覆・今日到期</span><i>今日</i></div>
+        <div class="dr-todo-row" data-state="today"><span class="dot warm" aria-hidden="true"></span><b><button type="button" class="dr-link" data-goto-lead="周美玲">周美玲</button></b><span>報價後未追・2 天</span><i>今日</i></div>
+        <div class="dr-todo-row"><span class="dot" aria-hidden="true"></span><b><button type="button" class="dr-link" data-goto-lead="郭建宏">郭建宏</button></b><span>首訪待建檔</span><i>明日</i></div>
+        <div class="dr-todo-row"><span class="dot" aria-hidden="true"></span><b><button type="button" class="dr-link" data-goto-lead="張淑芬">張淑芬</button></b><span>待補勾勾表</span><i>明日</i></div>
       </div>
       <p class="dr-note">依往來紀錄與指派狀態自動產生 <span class="wk-missing-mark" title="需補欄位：跟進 SLA 天數需於專案設定">＊</span></p>
     </section>
@@ -7124,13 +7130,13 @@
         <table class="dr-table">
           <thead><tr><th>時間</th><th>姓名</th><th>來源</th><th>需求房型</th><th>等級</th><th>負責業務</th><th>狀態</th></tr></thead>
           <tbody>
-            <tr><td>10:20</td><td>陳威宇</td><td>FB</td><td>3房</td><td><span class="chip wk-grade wk-grade-a">A</span></td><td>張家豪</td><td>已下訂</td></tr>
-            <tr><td>11:05</td><td>林佳蓉</td><td>介紹</td><td>3房</td><td><span class="chip wk-grade wk-grade-a">A</span></td><td>吳姿瑩</td><td>待追蹤</td></tr>
-            <tr><td>13:40</td><td>許文彬</td><td>網路</td><td>4房</td><td><span class="chip wk-grade wk-grade-b">B</span></td><td>陳冠廷</td><td>待追蹤</td></tr>
-            <tr><td>14:15</td><td>周美玲</td><td>現場</td><td>2房</td><td><span class="chip wk-grade wk-grade-b">B</span></td><td>周家瑜</td><td>待追蹤</td></tr>
-            <tr><td>15:30</td><td>郭建宏</td><td>看板</td><td>3房</td><td><span class="chip wk-grade wk-grade-c">C</span></td><td>張家豪</td><td>首訪</td></tr>
-            <tr><td>16:45</td><td>張淑芬</td><td>IG</td><td>2房</td><td><span class="chip wk-grade wk-grade-c">C</span></td><td>吳姿瑩</td><td>首訪</td></tr>
-            <tr><td>17:20</td><td>王志明</td><td>路過</td><td>店面</td><td><span class="chip wk-grade wk-grade-d">D</span></td><td>陳冠廷</td><td>首訪</td></tr>
+            <tr><td>10:20</td><td><button type="button" class="dr-link" data-goto-lead="陳威宇">陳威宇</button></td><td>FB</td><td>3房</td><td><span class="chip wk-grade wk-grade-a">A</span></td><td><button type="button" class="dr-link" data-goto-staff="張家豪">張家豪</button></td><td>已下訂</td></tr>
+            <tr><td>11:05</td><td><button type="button" class="dr-link" data-goto-lead="林佳蓉">林佳蓉</button></td><td>介紹</td><td>3房</td><td><span class="chip wk-grade wk-grade-a">A</span></td><td><button type="button" class="dr-link" data-goto-staff="吳姿瑩">吳姿瑩</button></td><td>待追蹤</td></tr>
+            <tr><td>13:40</td><td><button type="button" class="dr-link" data-goto-lead="許文彬">許文彬</button></td><td>網路</td><td>4房</td><td><span class="chip wk-grade wk-grade-b">B</span></td><td><button type="button" class="dr-link" data-goto-staff="陳冠廷">陳冠廷</button></td><td>待追蹤</td></tr>
+            <tr><td>14:15</td><td><button type="button" class="dr-link" data-goto-lead="周美玲">周美玲</button></td><td>現場</td><td>2房</td><td><span class="chip wk-grade wk-grade-b">B</span></td><td><button type="button" class="dr-link" data-goto-staff="周家瑜">周家瑜</button></td><td>待追蹤</td></tr>
+            <tr><td>15:30</td><td><button type="button" class="dr-link" data-goto-lead="郭建宏">郭建宏</button></td><td>看板</td><td>3房</td><td><span class="chip wk-grade wk-grade-c">C</span></td><td><button type="button" class="dr-link" data-goto-staff="張家豪">張家豪</button></td><td>首訪</td></tr>
+            <tr><td>16:45</td><td><button type="button" class="dr-link" data-goto-lead="張淑芬">張淑芬</button></td><td>IG</td><td>2房</td><td><span class="chip wk-grade wk-grade-c">C</span></td><td><button type="button" class="dr-link" data-goto-staff="吳姿瑩">吳姿瑩</button></td><td>首訪</td></tr>
+            <tr><td>17:20</td><td><button type="button" class="dr-link" data-goto-lead="王志明">王志明</button></td><td>路過</td><td>店面</td><td><span class="chip wk-grade wk-grade-d">D</span></td><td><button type="button" class="dr-link" data-goto-staff="陳冠廷">陳冠廷</button></td><td>首訪</td></tr>
           </tbody>
         </table>
       </div>
@@ -7139,10 +7145,10 @@
 
   <div class="acard sumcard dr-summary">
     <h3>現場摘要（今日）</h3>
-    <span class="microlbl">天氣</span>
-    <span class="chips" id="reportsWeather"><span class="chip on">晴</span><span class="chip">多雲</span><span class="chip">陰</span><span class="chip">雨</span></span>
-    <p class="sumtext">午後來人集中，兩組回訪指名 A3 棟三房高樓層；陳威宇複看後當場下訂 12F。車位配比詢問度偏高，明日備妥車位圖。</p>
-    <div class="sumfoot"><span class="dr-summary-hint">需 lead:update・AI 產草稿後由專案經理確認 <span class="wk-missing-mark" title="需補欄位：AI 摘要需接往來紀錄">＊</span></span><button class="pillbtn" data-act="saveSummary">儲存摘要</button></div>
+    <div class="dr-weather"><span class="microlbl">天氣</span>
+      <span class="chips" id="reportsWeather"><span class="chip on">晴</span><span class="chip">多雲</span><span class="chip">陰</span><span class="chip">雨</span></span></div>
+    <textarea class="dr-sumbox" rows="3" placeholder="輸入今日現場摘要…">午後來人集中，兩組回訪指名 A3 棟三房高樓層；陳威宇複看後當場下訂 12F。車位配比詢問度偏高，明日備妥車位圖。</textarea>
+    <div class="sumfoot"><span class="dr-summary-hint">需 lead:update・由專案經理填寫</span><button class="pillbtn" data-act="saveSummary">儲存摘要</button></div>
   </div>
 </div>
 
@@ -7286,24 +7292,24 @@
     <div class="wk-talk-block">
       <div class="wk-talk-head"><span class="wk-subtitle">當週來客洽談說明（08/24–08/30）</span></div>
       <div class="table-wrap wk-table-wrap"><table class="wk-talk-table"><colgroup><col span="10"></colgroup><thead><tr><th>項次</th><th>日期</th><th>姓名</th><th>媒體類別</th><th>職業</th><th>回客次數</th><th>洽談內容</th><th>介紹戶別</th><th>等級</th><th>業務員</th></tr></thead><tbody>
-        <tr><td>1</td><td>08/24</td><td>王志明</td><td>Google</td><td>科技業</td><td>0</td><td>住北屯，夫妻同來想換屋，剛開始看，不說預算，給 A3-12F 與 B2-8F 比價，尚未決定。</td><td>A3-12F</td><td><span class="chip wk-grade wk-grade-b">B</span></td><td>張家豪</td></tr>
-        <tr><td>2</td><td>08/24</td><td>黃雅雯</td><td>FB</td><td>醫護</td><td>0</td><td>目前租屋在太平，首購自住，偏好三房平車，對付款期程仔細詢問，先帶回全案付款試算。</td><td>B2-6F</td><td><span class="chip wk-grade wk-grade-c">C</span></td><td>吳姿瑩</td></tr>
-        <tr><td>3</td><td>08/25</td><td>林俊豪</td><td>戶外定點</td><td>自營商</td><td>0</td><td>路過接待中心進場，父母同住需四房，重視客餐廳尺度與雙車位，認為高樓層總價偏高。</td><td>A1-9F</td><td><span class="chip wk-grade wk-grade-b">B</span></td><td>陳冠廷</td></tr>
-        <tr><td>4</td><td>08/25</td><td>陳怡君</td><td>接待看板</td><td>軍公教</td><td>0</td><td>住北區，單獨來看給小孩成家，需求兩房含車位，對品牌有印象，回去先和家人確認自備款。</td><td>C1-5F</td><td><span class="chip wk-grade wk-grade-c">C</span></td><td>周家瑜</td></tr>
-        <tr><td>5</td><td>08/26</td><td>許文彬</td><td>介紹</td><td>科技業</td><td>1</td><td>已購客介紹，夫妻鎖定三房高樓層，工作地點在潭子，喜歡景觀但希望車位能改選近電梯位置。</td><td>A3-16F</td><td><span class="chip wk-grade wk-grade-a">A</span></td><td>李承翰</td></tr>
-        <tr><td>6</td><td>08/27</td><td>蔡佩珊</td><td>591</td><td>服務業</td><td>0</td><td>與姐姐同來，投資兼自住，先比較區域租金與未來轉售性，對二房低總價有興趣但不急決定。</td><td>C2-10F</td><td><span class="chip wk-grade wk-grade-c">C</span></td><td>郭士銘</td></tr>
-        <tr><td>7</td><td>08/28</td><td>張淑芬</td><td>FB</td><td>家管</td><td>0</td><td>夫妻為退休換屋，從南屯搬近小孩，要求安靜與採光，三房格局可接受，覺得交屋時間稍晚。</td><td>B1-11F</td><td><span class="chip wk-grade wk-grade-b">B</span></td><td>吳姿瑩</td></tr>
-        <tr><td>8</td><td>08/29</td><td>李承恩</td><td>Google</td><td>科技業</td><td>0</td><td>首換客，帶兩位小孩同行，需求三房以上與雙衛浴，喜歡公設規劃，現場要求試算不同付款方案。</td><td>B2-12F</td><td><span class="chip wk-grade wk-grade-b">B</span></td><td>張家豪</td></tr>
-        <tr><td>9</td><td>08/29</td><td>周美玲</td><td>戶外定點</td><td>服務業</td><td>0</td><td>住附近社區，陪女兒首購，先看兩房與小三房，覺得車位價格超出預期，留下資料後離場。</td><td>C1-7F</td><td><span class="chip wk-grade wk-grade-d">D</span></td><td>周家瑜</td></tr>
-        <tr><td>10</td><td>08/30</td><td>郭建宏</td><td>Mobile01</td><td>自營商</td><td>0</td><td>自行研究後來場，對建材品牌與結構工法問得很細，偏好 A 棟四房，需再帶合夥人共同確認。</td><td>A1-13F</td><td><span class="chip wk-grade wk-grade-b">B</span></td><td>陳冠廷</td></tr>
+        <tr><td>1</td><td>08/24</td><td><button type="button" class="dr-link" data-goto-lead="王志明">王志明</button></td><td>Google</td><td>科技業</td><td>0</td><td>住北屯，夫妻同來想換屋，剛開始看，不說預算，給 A3-12F 與 B2-8F 比價，尚未決定。</td><td>A3-12F</td><td><span class="chip wk-grade wk-grade-b">B</span></td><td><button type="button" class="dr-link" data-goto-staff="張家豪">張家豪</button></td></tr>
+        <tr><td>2</td><td>08/24</td><td><button type="button" class="dr-link" data-goto-lead="黃雅雯">黃雅雯</button></td><td>FB</td><td>醫護</td><td>0</td><td>目前租屋在太平，首購自住，偏好三房平車，對付款期程仔細詢問，先帶回全案付款試算。</td><td>B2-6F</td><td><span class="chip wk-grade wk-grade-c">C</span></td><td><button type="button" class="dr-link" data-goto-staff="吳姿瑩">吳姿瑩</button></td></tr>
+        <tr><td>3</td><td>08/25</td><td><button type="button" class="dr-link" data-goto-lead="林俊豪">林俊豪</button></td><td>戶外定點</td><td>自營商</td><td>0</td><td>路過接待中心進場，父母同住需四房，重視客餐廳尺度與雙車位，認為高樓層總價偏高。</td><td>A1-9F</td><td><span class="chip wk-grade wk-grade-b">B</span></td><td><button type="button" class="dr-link" data-goto-staff="陳冠廷">陳冠廷</button></td></tr>
+        <tr><td>4</td><td>08/25</td><td><button type="button" class="dr-link" data-goto-lead="陳怡君">陳怡君</button></td><td>接待看板</td><td>軍公教</td><td>0</td><td>住北區，單獨來看給小孩成家，需求兩房含車位，對品牌有印象，回去先和家人確認自備款。</td><td>C1-5F</td><td><span class="chip wk-grade wk-grade-c">C</span></td><td><button type="button" class="dr-link" data-goto-staff="周家瑜">周家瑜</button></td></tr>
+        <tr><td>5</td><td>08/26</td><td><button type="button" class="dr-link" data-goto-lead="許文彬">許文彬</button></td><td>介紹</td><td>科技業</td><td>1</td><td>已購客介紹，夫妻鎖定三房高樓層，工作地點在潭子，喜歡景觀但希望車位能改選近電梯位置。</td><td>A3-16F</td><td><span class="chip wk-grade wk-grade-a">A</span></td><td><button type="button" class="dr-link" data-goto-staff="李承翰">李承翰</button></td></tr>
+        <tr><td>6</td><td>08/27</td><td><button type="button" class="dr-link" data-goto-lead="蔡佩珊">蔡佩珊</button></td><td>591</td><td>服務業</td><td>0</td><td>與姐姐同來，投資兼自住，先比較區域租金與未來轉售性，對二房低總價有興趣但不急決定。</td><td>C2-10F</td><td><span class="chip wk-grade wk-grade-c">C</span></td><td><button type="button" class="dr-link" data-goto-staff="郭士銘">郭士銘</button></td></tr>
+        <tr><td>7</td><td>08/28</td><td><button type="button" class="dr-link" data-goto-lead="張淑芬">張淑芬</button></td><td>FB</td><td>家管</td><td>0</td><td>夫妻為退休換屋，從南屯搬近小孩，要求安靜與採光，三房格局可接受，覺得交屋時間稍晚。</td><td>B1-11F</td><td><span class="chip wk-grade wk-grade-b">B</span></td><td><button type="button" class="dr-link" data-goto-staff="吳姿瑩">吳姿瑩</button></td></tr>
+        <tr><td>8</td><td>08/29</td><td><button type="button" class="dr-link" data-goto-lead="李承恩">李承恩</button></td><td>Google</td><td>科技業</td><td>0</td><td>首換客，帶兩位小孩同行，需求三房以上與雙衛浴，喜歡公設規劃，現場要求試算不同付款方案。</td><td>B2-12F</td><td><span class="chip wk-grade wk-grade-b">B</span></td><td><button type="button" class="dr-link" data-goto-staff="張家豪">張家豪</button></td></tr>
+        <tr><td>9</td><td>08/29</td><td><button type="button" class="dr-link" data-goto-lead="周美玲">周美玲</button></td><td>戶外定點</td><td>服務業</td><td>0</td><td>住附近社區，陪女兒首購，先看兩房與小三房，覺得車位價格超出預期，留下資料後離場。</td><td>C1-7F</td><td><span class="chip wk-grade wk-grade-d">D</span></td><td><button type="button" class="dr-link" data-goto-staff="周家瑜">周家瑜</button></td></tr>
+        <tr><td>10</td><td>08/30</td><td><button type="button" class="dr-link" data-goto-lead="郭建宏">郭建宏</button></td><td>Mobile01</td><td>自營商</td><td>0</td><td>自行研究後來場，對建材品牌與結構工法問得很細，偏好 A 棟四房，需再帶合夥人共同確認。</td><td>A1-13F</td><td><span class="chip wk-grade wk-grade-b">B</span></td><td><button type="button" class="dr-link" data-goto-staff="陳冠廷">陳冠廷</button></td></tr>
       </tbody></table></div>
     </div>
     <div class="wk-talk-block">
       <div class="wk-talk-head"><span class="wk-subtitle">當週回籠客洽談說明</span></div>
       <div class="table-wrap wk-table-wrap"><table class="wk-talk-table"><colgroup><col span="10"></colgroup><thead><tr><th>項次</th><th>日期</th><th>姓名</th><th>媒體類別</th><th>職業</th><th>回客次數</th><th>洽談內容</th><th>介紹戶別</th><th>等級</th><th>業務員</th></tr></thead><tbody>
-        <tr><td>1</td><td>08/29</td><td>許文彬</td><td>介紹</td><td>科技業</td><td>2</td><td>夫妻帶父母複看 A3 高樓層，確認車位動線與付款方式後接受現場條件，完成小訂並約下週補文件。</td><td>下訂 A3-16F</td><td><span class="chip wk-grade wk-grade-a">A</span></td><td>李承翰</td></tr>
-        <tr><td>2</td><td>08/30</td><td>林佩珊</td><td>Google</td><td>醫護</td><td>3</td><td>再帶先生確認 B2 採光與廚房尺度，針對付款節點談妥保留條件，當日完成小訂並選定兩個車位。</td><td>下訂 B2-8F</td><td><span class="chip wk-grade wk-grade-a">A</span></td><td>張家豪</td></tr>
-        <tr><td>3</td><td>08/30</td><td>邱國華</td><td>戶外定點</td><td>軍公教</td><td>2</td><td>帶成年子女再看四房，家人認同格局但仍比較北屯另一案，留下 A1-10F 價格試算，預計下週回覆。</td><td>A1-10F</td><td><span class="chip wk-grade wk-grade-b">B</span></td><td>郭士銘</td></tr>
+        <tr><td>1</td><td>08/29</td><td><button type="button" class="dr-link" data-goto-lead="許文彬">許文彬</button></td><td>介紹</td><td>科技業</td><td>2</td><td>夫妻帶父母複看 A3 高樓層，確認車位動線與付款方式後接受現場條件，完成小訂並約下週補文件。</td><td>下訂 A3-16F</td><td><span class="chip wk-grade wk-grade-a">A</span></td><td><button type="button" class="dr-link" data-goto-staff="李承翰">李承翰</button></td></tr>
+        <tr><td>2</td><td>08/30</td><td><button type="button" class="dr-link" data-goto-lead="林佩珊">林佩珊</button></td><td>Google</td><td>醫護</td><td>3</td><td>再帶先生確認 B2 採光與廚房尺度，針對付款節點談妥保留條件，當日完成小訂並選定兩個車位。</td><td>下訂 B2-8F</td><td><span class="chip wk-grade wk-grade-a">A</span></td><td><button type="button" class="dr-link" data-goto-staff="張家豪">張家豪</button></td></tr>
+        <tr><td>3</td><td>08/30</td><td><button type="button" class="dr-link" data-goto-lead="邱國華">邱國華</button></td><td>戶外定點</td><td>軍公教</td><td>2</td><td>帶成年子女再看四房，家人認同格局但仍比較北屯另一案，留下 A1-10F 價格試算，預計下週回覆。</td><td>A1-10F</td><td><span class="chip wk-grade wk-grade-b">B</span></td><td><button type="button" class="dr-link" data-goto-staff="郭士銘">郭士銘</button></td></tr>
       </tbody></table></div>
     </div>
     <span class="wk-pageno">第 4 頁／洽談說明</span>
@@ -7317,27 +7323,27 @@
     <div class="wk-rank-layout">
       <div class="wk-rank-side">
         <div class="wk-podium">
-          <div class="wk-pod p2"><span class="av">吳</span><b>吳姿瑩</b><i>2 戶</i><div class="step">2</div></div>
-          <div class="wk-pod p1"><svg class="wk-crown" viewBox="0 0 24 24"><path d="M5 16.5 4 8l4.5 3L12 6l3.5 5L20 8l-1 8.5H5Z"/></svg><span class="av">張</span><b>張家豪</b><i>2.5 戶</i><div class="step">1</div></div>
-          <div class="wk-pod p3"><span class="av">陳</span><b>陳冠廷</b><i>1.5 戶</i><div class="step">3</div></div>
+          <div class="wk-pod p2"><span class="av">吳</span><b><button type="button" class="dr-link" data-goto-staff="吳姿瑩">吳姿瑩</button></b><i>2 戶</i><div class="step">2</div></div>
+          <div class="wk-pod p1"><svg class="wk-crown" viewBox="0 0 24 24"><path d="M5 16.5 4 8l4.5 3L12 6l3.5 5L20 8l-1 8.5H5Z"/></svg><span class="av">張</span><b><button type="button" class="dr-link" data-goto-staff="張家豪">張家豪</button></b><i>2.5 戶</i><div class="step">1</div></div>
+          <div class="wk-pod p3"><span class="av">陳</span><b><button type="button" class="dr-link" data-goto-staff="陳冠廷">陳冠廷</button></b><i>1.5 戶</i><div class="step">3</div></div>
         </div>
         <p class="wk-podium-note">依表頭排序欄位顯示前三名</p>
       </div>
       <div class="table-wrap wk-table-wrap"><table class="wk-rank-table"><thead><tr><th>序號</th><th>業務員</th><th>職稱</th><th><button type="button" class="wk-rank-sort" data-rank-sort="3">小訂數量<span class="wk-sort-dir"></span></button></th><th aria-sort="descending"><button type="button" class="wk-rank-sort on" data-rank-sort="4">成交戶數<span class="wk-sort-dir">↓</span></button></th><th><button type="button" class="wk-rank-sort" data-rank-sort="5">簽約數量<span class="wk-sort-dir"></span></button></th><th><button type="button" class="wk-rank-sort" data-rank-sort="6">銷售金額<span class="wk-sort-dir"></span></button></th><th><button type="button" class="wk-rank-sort" data-rank-sort="7">來客數量<span class="wk-sort-dir"></span></button></th><th><button type="button" class="wk-rank-sort" data-rank-sort="8">成交比<span class="wk-sort-dir"></span></button></th></tr></thead>
       <tbody data-rank-view="w" hidden>
-        <tr><td>1</td><td>張家豪</td><td>專案副理</td><td>1</td><td>1</td><td>0</td><td>6,940 萬</td><td>6</td><td>6:1</td></tr>
-        <tr><td>2</td><td>吳姿瑩</td><td>業務主任</td><td>1</td><td>1</td><td>0</td><td>6,568 萬</td><td>5</td><td>5:1</td></tr>
-        <tr><td>3</td><td>陳冠廷</td><td>業務主任</td><td>0</td><td>0</td><td>0</td><td>—</td><td>4</td><td>—</td></tr>
-        <tr><td>4</td><td>周家瑜</td><td>業務專員</td><td>0</td><td>0</td><td>0</td><td>—</td><td>4</td><td>—</td></tr>
-        <tr><td>5</td><td>李承翰</td><td>業務專員</td><td>0</td><td>0</td><td>0</td><td>—</td><td>3</td><td>—</td></tr>
-        <tr><td>6</td><td>郭士銘</td><td>業務專員</td><td>0</td><td>0</td><td>0</td><td>—</td><td>3</td><td>—</td></tr>
+        <tr><td>1</td><td><button type="button" class="dr-link" data-goto-staff="張家豪">張家豪</button></td><td>專案副理</td><td>1</td><td>1</td><td>0</td><td>6,940 萬</td><td>6</td><td>6:1</td></tr>
+        <tr><td>2</td><td><button type="button" class="dr-link" data-goto-staff="吳姿瑩">吳姿瑩</button></td><td>業務主任</td><td>1</td><td>1</td><td>0</td><td>6,568 萬</td><td>5</td><td>5:1</td></tr>
+        <tr><td>3</td><td><button type="button" class="dr-link" data-goto-staff="陳冠廷">陳冠廷</button></td><td>業務主任</td><td>0</td><td>0</td><td>0</td><td>—</td><td>4</td><td>—</td></tr>
+        <tr><td>4</td><td><button type="button" class="dr-link" data-goto-staff="周家瑜">周家瑜</button></td><td>業務專員</td><td>0</td><td>0</td><td>0</td><td>—</td><td>4</td><td>—</td></tr>
+        <tr><td>5</td><td><button type="button" class="dr-link" data-goto-staff="李承翰">李承翰</button></td><td>業務專員</td><td>0</td><td>0</td><td>0</td><td>—</td><td>3</td><td>—</td></tr>
+        <tr><td>6</td><td><button type="button" class="dr-link" data-goto-staff="郭士銘">郭士銘</button></td><td>業務專員</td><td>0</td><td>0</td><td>0</td><td>—</td><td>3</td><td>—</td></tr>
       </tbody><tbody data-rank-view="t">
-        <tr><td>1</td><td>張家豪</td><td>專案副理</td><td>2.5</td><td>2.5</td><td>2</td><td>13,500 萬</td><td>30</td><td>12:1</td></tr>
-        <tr><td>2</td><td>吳姿瑩</td><td>業務主任</td><td>2</td><td>2</td><td>1.5</td><td>10,500 萬</td><td>28</td><td>14:1</td></tr>
-        <tr><td>3</td><td>陳冠廷</td><td>業務主任</td><td>1.5</td><td>1.5</td><td>1.5</td><td>10,300 萬</td><td>22</td><td>15:1</td></tr>
-        <tr><td>4</td><td>周家瑜</td><td>業務專員</td><td>2</td><td>2</td><td>1.5</td><td>10,447 萬</td><td>24</td><td>12:1</td></tr>
-        <tr><td>5</td><td>李承翰</td><td>業務專員</td><td>2</td><td>2</td><td>1.5</td><td>10,500 萬</td><td>23</td><td>12:1</td></tr>
-        <tr><td>6</td><td>郭士銘</td><td>業務專員</td><td>0</td><td>0</td><td>0</td><td>0 萬</td><td>13</td><td>13:0</td></tr>
+        <tr><td>1</td><td><button type="button" class="dr-link" data-goto-staff="張家豪">張家豪</button></td><td>專案副理</td><td>2.5</td><td>2.5</td><td>2</td><td>13,500 萬</td><td>30</td><td>12:1</td></tr>
+        <tr><td>2</td><td><button type="button" class="dr-link" data-goto-staff="吳姿瑩">吳姿瑩</button></td><td>業務主任</td><td>2</td><td>2</td><td>1.5</td><td>10,500 萬</td><td>28</td><td>14:1</td></tr>
+        <tr><td>3</td><td><button type="button" class="dr-link" data-goto-staff="陳冠廷">陳冠廷</button></td><td>業務主任</td><td>1.5</td><td>1.5</td><td>1.5</td><td>10,300 萬</td><td>22</td><td>15:1</td></tr>
+        <tr><td>4</td><td><button type="button" class="dr-link" data-goto-staff="周家瑜">周家瑜</button></td><td>業務專員</td><td>2</td><td>2</td><td>1.5</td><td>10,447 萬</td><td>24</td><td>12:1</td></tr>
+        <tr><td>5</td><td><button type="button" class="dr-link" data-goto-staff="李承翰">李承翰</button></td><td>業務專員</td><td>2</td><td>2</td><td>1.5</td><td>10,500 萬</td><td>23</td><td>12:1</td></tr>
+        <tr><td>6</td><td><button type="button" class="dr-link" data-goto-staff="郭士銘">郭士銘</button></td><td>業務專員</td><td>0</td><td>0</td><td>0</td><td>0 萬</td><td>13</td><td>13:0</td></tr>
       </tbody><tfoot data-rank-view="w" hidden><tr><td colspan="3">合計</td><td>2</td><td>2</td><td>0</td><td>13,508 萬</td><td>25</td><td>13:1</td></tr></tfoot><tfoot data-rank-view="t"><tr><td colspan="3">合計</td><td>10</td><td>10</td><td>8</td><td>55,247 萬</td><td>140</td><td>14:1</td></tr></tfoot></table></div>
     </div>
     <div class="wk-todo">
@@ -11768,6 +11774,26 @@
   }
   var page=document.getElementById('page-reports');
   if(page){
+    page.addEventListener('click',function(e){
+      var b=e.target.closest('[data-goto-lead]');
+      if(b){
+        var nm=b.dataset.gotoLead;
+        var navBtn=document.querySelector('[data-page="leadsall"]'); if(navBtn) navBtn.click();
+        setTimeout(function(){
+          var rows=[].slice.call(document.querySelectorAll('#page-leadsall tbody tr'));
+          var hit=rows.filter(function(r){var n=r.querySelector('.name');return n&&n.textContent.indexOf(nm)>=0})[0];
+          if(hit){ hit.click(); }
+          else toast('示意：正式版依來客 ID 直接開啟「'+nm+'」的詳情');
+        },80);
+        return;
+      }
+      var s=e.target.closest('[data-goto-staff]');
+      if(s){
+        var staffName=s.dataset.gotoStaff;
+        var staffNav=document.querySelector('[data-page="staff"]'); if(staffNav) staffNav.click();
+        toast('示意：正式版直接開啟「'+staffName+'」的成員資料');
+      }
+    });
     var drDp=page.querySelector('.dr-datepick');
     var drSelected=drDp?Date.parse(drDp.dataset.date+'T00:00:00Z'):0;
     var drDpView=drDp?drDp.dataset.date.slice(0,7):'';
@@ -11990,7 +12016,9 @@
       if(rank===1&&wkCrown)box.appendChild(wkCrown.cloneNode(true));
       var name=row.cells[1].textContent.trim();
       var avatar=document.createElement('span');avatar.className='av';avatar.textContent=name.charAt(0);box.appendChild(avatar);
-      var label=document.createElement('b');label.textContent=name;box.appendChild(label);
+      var label=document.createElement('b');
+      var staffLink=document.createElement('button');staffLink.type='button';staffLink.className='dr-link';staffLink.dataset.gotoStaff=name;staffLink.textContent=name;
+      label.appendChild(staffLink);box.appendChild(label);
       var value=document.createElement('i');value.textContent=rankDisplay(row,wkRankCol);box.appendChild(value);
       var step=document.createElement('div');step.className='step';step.textContent=String(rank);box.appendChild(step);
       return box;
