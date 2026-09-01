@@ -2734,7 +2734,9 @@
 /* 搜尋框佔滿整排並強制斷行，讓十顆篩選鈕排成完整一列（Enson 2026-09-02） */
 /* 十顆篩選鈕排一列：容器 1272px、鈕寬合計 1196px，間距收到 --s1 才塞得下 */
 #page-leadsall .leadsall-filters{gap:var(--s1)}
-#page-leadsall .searchwrap.lafull{flex:1 1 100%; width:auto; min-width:9rem; height:var(--ctrl-h)}
+/* 十一顆篩選鈕＋搜尋要塞進同一排：只收這一排的左右內距（1.05→.75rem），共用 .pillbtn 本體不動 */
+#page-leadsall .leadsall-filters .pillbtn{padding:0 .7rem}
+#page-leadsall .searchwrap.lafull{flex:0 1 11rem; margin-left:auto; width:11rem; min-width:0; height:var(--ctrl-h)}
 #page-leadsall .searchwrap.lafull .searchbox{position:static; width:100%; flex-direction:row}
 #page-leadsall .searchwrap.lafull .searchbox.open{border-color:var(--line)}
 #page-leadsall .searchwrap.lafull .searchbox:focus-within{border-color:var(--accent)}
@@ -3080,7 +3082,7 @@
 #page-reports .wk-todo-list li::before{content:'□';color:var(--hot)}
 #page-reports .wk-pageno{display:none}
 #page-reports .mo-monthly{page:mo-monthly;min-width:0}
-#page-reports .mo-cards{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--s3);margin-bottom:var(--sec-gap)}
+#page-reports .mo-cards{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-auto-rows:1fr;gap:var(--s3);margin-bottom:var(--sec-gap)}
 #page-reports .mo-cards > div{grid-column:span 2;min-width:0;display:flex;flex-direction:column;gap:var(--s2);padding:var(--s4);background:var(--bg);border:1px solid var(--line);border-radius:var(--r-row)}
 #page-reports .mo-cards > .mo-project-card{background:var(--tint);border-color:var(--line-accent)}
 #page-reports .mo-label{font-size:.7rem;color:var(--muted);letter-spacing:.06em;line-height:1.1}
@@ -3116,8 +3118,13 @@
 #page-reports .mo-progress-number b{font-size:1.06rem;font-weight:500}
 #page-reports .mo-progress-number small{align-self:flex-end;margin-left:auto;font-size:.64rem;color:var(--muted)}
 #page-reports .mo-progress .wk-prog{display:flex;gap:var(--s1);height:1.3rem;background:none;border-radius:0;overflow:visible;position:static;margin:0 0 var(--s5)}
+/* 去化條原本只設了容器，格子與亮條沒樣式＝畫面上是一條 21px 的空白；比照表頭進度條補齊 */
+#page-reports .mo-progress .wk-prog i{flex:1;height:100%;border-radius:0;background:var(--track);overflow:hidden;position:relative}
+#page-reports .mo-progress .wk-prog i:first-child{border-radius:var(--r-row) 0 0 var(--r-row)}
+#page-reports .mo-progress .wk-prog i:last-child{border-radius:0 var(--r-row) var(--r-row) 0}
+#page-reports .mo-progress .wk-prog i u{position:absolute;left:0;top:0;bottom:0;background:var(--chart-1)}
 #page-reports .mo-progress-lines{display:flex;flex-direction:column;margin-top:auto}
-#page-reports .mo-progress-row{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s3);padding:var(--s2) 0;border-top:1px solid var(--line);font-size:.74rem}
+#page-reports .mo-progress-row{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s3);padding:var(--s2) 0;border-top:1px solid var(--line);font-size:.74rem;}
 #page-reports .mo-progress-row span:first-child{color:var(--muted)}
 #page-reports .mo-progress-row b{font-size:.76rem;font-weight:500;text-align:right}
 #page-reports .mo-analysis{margin-bottom:var(--sec-gap)}
@@ -3134,8 +3141,59 @@
 #page-reports .mo-ana-row .mo-n{text-align:center;font-weight:400}
 #page-reports .mo-ana-row .mo-current{color:var(--accent);font-weight:500}
 #page-reports .mo-summary{margin-bottom:var(--sec-gap)}
-#page-reports .mo-summary h3{margin-bottom:var(--s2);font-size:.9rem}
+#page-reports .mo-summary h3{margin-bottom:var(--s2);font-size:.9rem;}
 #page-reports .mo-summary-hint{font-size:.64rem;line-height:1.7;color:var(--muted)}
+#page-reports .mo-cards > .mo-media-card{grid-column:span 4;position:relative;background:var(--tint);border-color:var(--line-accent)}
+#page-reports .mo-stat-head{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--s2)}
+#page-reports .mo-stat-head>span{font-size:.7rem;color:var(--muted);letter-spacing:.06em;line-height:1.1}
+#page-reports .mo-sublbl{display:block;font-size:.64rem;color:var(--muted);letter-spacing:.04em}
+#page-reports .mo-card-foot > .mo-trend-tag.mo-flat{color:var(--muted)}
+#page-reports .mo-cards .wk-prog{display:flex;gap:var(--s1);height:1.3rem;background:none;border-radius:0;overflow:visible;position:static;margin:auto 0}
+#page-reports .mo-cards .wk-prog i{flex:1;height:100%;border-radius:0;background:var(--track);overflow:hidden;position:relative}
+#page-reports .mo-cards .wk-prog i:first-child{border-radius:var(--r-row) 0 0 var(--r-row)}
+#page-reports .mo-cards .wk-prog i:last-child{border-radius:0 var(--r-row) var(--r-row) 0}
+#page-reports .mo-cards .wk-prog i u{position:absolute;left:0;top:0;bottom:0;background:var(--chart-1)}
+#page-reports .mo-ratio-card{position:relative}
+#page-reports .mo-ratio-card>.mo-stat{position:absolute;top:var(--s4);right:var(--s4)}
+#page-reports .mo-ratio-scope{position:absolute;right:var(--s4);bottom:var(--s4);font-size:.64rem;color:var(--muted);line-height:1.1}
+#page-reports .mo-heads{display:grid;grid-template-columns:repeat(5,1.04rem);gap:0;color:var(--muted);justify-content:start;align-content:end;align-self:flex-start;flex:none;margin-top:auto}
+#page-reports .mo-head{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
+#page-reports .mo-head.on{color:var(--muted);stroke-width:1.1}
+#page-reports .mo-head.solid{stroke:none;fill:var(--accent)}
+#page-reports .mo-media-card .chips{display:flex;flex-wrap:wrap;gap:var(--s2);align-content:flex-start;justify-content:flex-start;margin:0}
+#page-reports .mo-media-card .chip{display:inline-flex;align-items:center;line-height:1;padding:var(--s2) var(--s3);font-size:.74rem}
+#page-reports .mo-media-card .chips .chip{background:var(--bg);border-color:var(--line-3);color:var(--ink)}
+#page-reports .mo-media-card .chip button{border:0;background:none;color:var(--muted);cursor:pointer;padding:0;margin-left:var(--s1);font-size:.64rem;line-height:1}
+#page-reports .mo-media-add{border:1px dashed var(--line-2);background:none;color:var(--muted);cursor:pointer}
+#page-reports .mo-media-add:hover{border-color:var(--line-accent);color:var(--accent);background:var(--tint)}
+#page-reports .mo-media-pick{position:static}
+#page-reports .mo-media-pick .sel-list{left:var(--s4);right:var(--s4);top:auto}#page-reports .mo-media-pick .sel-list [role="option"]{font-size:.74rem}
+#page-reports .mo-trend .mo-trend-table th:first-child{width:6.5rem}
+#page-reports .mo-main,#page-reports .mo-media-perf{min-width:0;background:var(--panel);border-radius:var(--r-card);padding:var(--s5);margin-bottom:var(--sec-gap)}
+#page-reports .mo-main-table{width:100%;min-width:52rem;table-layout:fixed;border-collapse:collapse;border-spacing:0}
+#page-reports .mo-main-table th,#page-reports .mo-main-table td{border:1px solid var(--line);padding:var(--s2);text-align:center;vertical-align:middle;white-space:normal;word-break:keep-all;line-height:1.45;font-size:.76rem;font-variant-numeric:tabular-nums}
+#page-reports .mo-main-table tr>*:first-child{border-left:0}
+#page-reports .mo-main-table tr>*:last-child{border-right:0}
+#page-reports .mo-main-table thead tr:first-child>*{border-top:0}
+#page-reports .mo-main-table tbody tr:last-child>*{border-bottom:0}
+#page-reports .mo-main-table thead th{background:var(--fill);color:var(--ink);font-weight:500;letter-spacing:.04em}
+#page-reports .mo-main-table tbody tr:hover{transform:none}
+#page-reports .mo-main-table tbody tr:hover td{background:var(--fill)}
+#page-reports .mo-main-table tbody th{font-size:.76rem;font-weight:500;text-align:left;background:var(--fill);font-variant-numeric:tabular-nums;letter-spacing:.1em}
+#page-reports .mo-main-table .mo-stage{background:var(--panel);font-weight:500;width:2.6rem;text-align:center}
+#page-reports .mo-main-table tbody th[rowspan]{border-bottom:0}
+#page-reports .mo-main-table thead th:first-child{width:5.4rem}
+#page-reports .mo-main-table tbody th:not(.mo-stage){width:2.8rem;text-align:center;padding-left:var(--s1)}
+#page-reports .mo-main-table tbody tr>th[colspan="2"]{width:5.4rem;text-align:center}
+#page-reports .mo-main-table .mo-date-row td{color:var(--muted)}
+#page-reports .mo-main-table tbody td.mo-nodata{color:var(--line-3)}
+#page-reports .mo-main-table .mo-group-start>*{border-top-color:var(--line-2)}
+#page-reports .mo-main-table .mo-month-total{background:var(--tint);color:var(--accent);font-weight:500}
+#page-reports .mo-main-table tr.mo-total-row>th:not(.mo-stage),#page-reports .mo-main-table tr.mo-total-row>td{background:var(--fill)}
+#page-reports .mo-main-table tr.mo-total-row>td.mo-month-total{background:var(--tint)}
+#page-reports .mo-main-table tbody th,#page-reports .mo-main-table tbody td{height:2.1rem}
+#page-reports .mo-main-table thead th.mo-month-total{background:var(--tint);color:var(--accent)}
+#page-reports .mo-media-perf .mo-trend-table{min-width:56rem}
 @media (max-width:1020px){
   #page-reports .wk-meta{grid-template-columns:repeat(2,minmax(0,1fr))}
   #page-reports .wk-meta.wk-meta-6 > div{grid-column:span 6}
@@ -3144,6 +3202,7 @@
   #page-reports .wk-rank-layout{grid-template-columns:1fr}
   #page-reports .wk-todo-list{grid-template-columns:1fr}
   #page-reports .mo-cards > div{grid-column:span 6}
+  #page-reports .mo-cards > .mo-media-card{grid-column:span 12}
   #page-reports .mo-trend,#page-reports .mo-ana{grid-template-columns:1fr}
 }
 @page{size:A4 landscape;margin:var(--s4)}
@@ -3170,14 +3229,18 @@
   #page-reports .wk-talk-table th,#page-reports .wk-talk-table td{padding:var(--s1)}
   #page-reports .wk-todo{display:none}
   #page-reports .wk-pageno{display:block;position:absolute;right:0;bottom:0;font-size:.64rem;color:var(--muted)}
-  #page-reports .mo-monthly,#page-reports .mo-panel,#page-reports .mo-analysis-card,#page-reports .mo-summary{background:var(--bg);box-shadow:none}
+  #page-reports .mo-monthly,#page-reports .mo-panel,#page-reports .mo-main,#page-reports .mo-media-perf,#page-reports .mo-analysis-card,#page-reports .mo-summary{background:var(--bg);box-shadow:none}
   #page-reports .mo-cards{gap:var(--s2);margin-bottom:var(--s4)}
   #page-reports .mo-cards > div{grid-column:span 4;padding:var(--s3)}
+  #page-reports .mo-cards .wk-prog,#page-reports .mo-heads{display:none}
+  #page-reports .mo-media-card .sel-list{display:none!important}
   #page-reports .mo-monthstep button,#page-reports .mo-summary .pillbtn{display:none!important}
   #page-reports .mo-trend{grid-template-columns:1fr;gap:var(--s4);margin-bottom:var(--s4)}
-  #page-reports .mo-panel,#page-reports .mo-analysis-card,#page-reports .mo-summary{break-inside:avoid}
+  #page-reports .mo-panel,#page-reports .mo-media-perf,#page-reports .mo-analysis-card,#page-reports .mo-summary{break-inside:avoid}
   #page-reports .mo-panel{padding:var(--s3)}
   #page-reports .mo-progress .wk-prog{display:flex!important}
+  #page-reports .mo-table-wrap{overflow:visible}
+  #page-reports .mo-main-table,#page-reports .mo-media-perf .mo-trend-table{min-width:0!important}
   #page-reports .mo-analysis{margin-bottom:var(--s4)}
   #page-reports .mo-ana{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s2)}
   #page-reports .mo-analysis-card{padding:var(--s2)}
@@ -7066,8 +7129,8 @@
       </div>
     </div>
   </div>
-  <button class="pillbtn" data-act="dd" data-opts="全部建案|青園綠境|恆山千隅|秴楓">建案：全部建案 ▾</button>
-  <button class="pillbtn" data-act="ddCity">縣市：全部縣市 ▾</button>
+  <button class="pillbtn" data-act="dd" data-opts="全部|青園綠境|恆山千隅|秴楓">建案：全部 ▾</button>
+  <button class="pillbtn" data-act="ddCity">縣市：全部 ▾</button>
   <button class="pillbtn" data-act="ddDist" disabled>行政區：先選縣市 ▾</button>
   <button class="pillbtn" data-act="dd" data-opts="全部|現場|FB|IG|網路|介紹|看板|路過">來源：全部 ▾</button>
   <button class="pillbtn" data-act="laGrade">分級：全部 ▾</button>
@@ -7563,27 +7626,85 @@
         <b data-mo-label>2026-08</b>
         <button type="button" data-mo-step="1" aria-label="後一個月">›</button>
       </div>
-      <div class="mo-card-foot mo-end"><span data-mo-days>31 日</span></div>
+      <div class="mo-card-foot mo-end"><span data-mo-days><span data-mo-day-count>31 日</span>・資料截至 08/30<span class="wk-missing-mark" title="示意：本月尚未結束，數字為月中結算">＊</span></span></div>
     </div>
     <div class="mo-kpi-card">
-      <span class="mo-label">來人（本月）</span>
-      <b class="mo-stat">118 <i class="wk-unit">組</i></b>
-      <div class="mo-card-foot"><span>累計 140 組</span><span class="mo-trend-tag">▲12%</span></div>
+      <div class="mo-stat-head"><span>來人／回客<small class="mo-sublbl">（本月）</small></span><b class="mo-stat">118 <i class="wk-unit">組</i>／10 <i class="wk-unit">組</i></b></div>
+      <div class="mo-card-foot"><span>累計 140 組／12 組</span><span class="mo-trend-tag">＋108 組</span></div>
     </div>
     <div class="mo-kpi-card">
-      <span class="mo-label">成交（本月）</span>
-      <b class="mo-stat">8 <i class="wk-unit">戶</i>／13 <i class="wk-unit">車</i></b>
-      <div class="mo-card-foot"><span>累計 10 戶</span><span class="mo-trend-tag">▲33%</span></div>
+      <div class="mo-stat-head"><span>來電<small class="mo-sublbl">（本月）</small></span><b class="mo-stat">44 <i class="wk-unit">通</i></b></div>
+      <div class="mo-card-foot"><span>累計 52 通</span><span class="mo-trend-tag">＋40 通</span></div>
     </div>
     <div class="mo-kpi-card">
-      <span class="mo-label">銷售金額（本月）</span>
-      <b class="mo-stat">5.5 <i class="wk-unit">億</i></b>
-      <div class="mo-card-foot"><span>累計 5.5 億</span><span class="mo-trend-tag">▲33%</span></div>
+      <div class="mo-stat-head"><span>下訂／簽約<small class="mo-sublbl">（本月）</small></span><b class="mo-stat">8 <i class="wk-unit">戶</i>／8 <i class="wk-unit">戶</i></b></div>
+      <div class="mo-card-foot"><span>累計 10 戶／8 戶</span><span class="mo-trend-tag">＋7 戶</span></div>
     </div>
     <div class="mo-kpi-card">
-      <span class="mo-label">成交比例（本月）</span>
+      <div class="mo-stat-head"><span>退戶<small class="mo-sublbl">（本月）</small></span><b class="mo-stat">0 <i class="wk-unit">戶</i></b></div>
+      <div class="mo-card-foot"><span>累計 0 戶</span><span class="mo-trend-tag mo-flat">─ 0 戶</span></div>
+    </div>
+    <div class="mo-sales-card">
+      <div class="mo-stat-head"><span>銷售戶數</span><b class="mo-stat">126 <i class="wk-unit">戶</i></b></div>
+      <span class="wk-prog" aria-label="已簽約 8 戶，去化率 6%"><i><u style="width:100%"></u></i><i><u style="width:20%"></u></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      <div class="mo-card-foot"><span>已簽約 8 戶・6%</span></div>
+    </div>
+    <div class="mo-sales-card">
+      <div class="mo-stat-head"><span>總銷金額</span><b class="mo-stat">42.6 <i class="wk-unit">億</i></b></div>
+      <span class="wk-prog" aria-label="已簽約 5.5 億，去化率 13%"><i><u style="width:100%"></u></i><i><u style="width:100%"></u></i><i><u style="width:60%"></u></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      <div class="mo-card-foot"><span>已簽約 5.5 億・13%</span></div>
+    </div>
+    <div class="mo-kpi-card mo-prem-card">
+      <div class="mo-stat-head"><span>溢價金額</span><b class="mo-stat wk-hot">−230 <i class="wk-unit">萬</i></b></div>
+      <div class="mo-card-foot"><span>溢價率 <b class="wk-hot">−0.4%</b></span></div>
+    </div>
+    <div class="mo-kpi-card mo-ratio-card">
+      <span class="mo-label">本月成交比</span>
       <b class="mo-stat">15:1</b>
-      <div class="mo-card-foot"><span>累計 14:1</span><span class="mo-trend-tag mo-down">▼7%</span></div>
+      <div class="mo-heads" aria-hidden="true">
+        <svg class="mo-head solid" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.9"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+        <svg class="mo-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+        <svg class="mo-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+        <svg class="mo-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+        <svg class="mo-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+        <svg class="mo-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+        <svg class="mo-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+        <svg class="mo-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+        <svg class="mo-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+        <svg class="mo-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+        <svg class="mo-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+        <svg class="mo-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+        <svg class="mo-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+        <svg class="mo-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+        <svg class="mo-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+      </div>
+      <small class="mo-ratio-scope">本月</small>
+    </div>
+    <div class="mo-kpi-card mo-media-card">
+      <span class="mo-label">本月廣告媒體</span>
+      <div class="chips" data-mo-media-chips>
+        <span class="chip">網路-FB<button type="button" data-mo-media-x="網路-FB" aria-label="移除 網路-FB">×</button></span>
+        <span class="chip">網路-google<button type="button" data-mo-media-x="網路-google" aria-label="移除 網路-google">×</button></span>
+        <span class="chip">戶外看板<button type="button" data-mo-media-x="戶外看板" aria-label="移除 戶外看板">×</button></span>
+        <span class="chip">指示牌<button type="button" data-mo-media-x="指示牌" aria-label="移除 指示牌">×</button></span>
+        <button type="button" class="chip mo-media-add" data-mo-media-open aria-haspopup="listbox" aria-expanded="false">＋ 調整</button>
+      </div>
+      <div class="sel multi mo-media-pick" data-mo-media>
+        <input type="hidden" data-f="report:monthly-media" value="網路-FB、網路-google、戶外看板、指示牌">
+        <div class="sel-list" role="listbox" aria-multiselectable="true" hidden>
+          <button type="button" role="option" data-v="網路-FB" aria-selected="true">網路-FB<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+          <button type="button" role="option" data-v="網路-591" aria-selected="false">網路-591<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+          <button type="button" role="option" data-v="網路-google" aria-selected="true">網路-google<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+          <button type="button" role="option" data-v="報紙" aria-selected="false">報紙<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+          <button type="button" role="option" data-v="派報" aria-selected="false">派報<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+          <button type="button" role="option" data-v="戶外看板" aria-selected="true">戶外看板<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+          <button type="button" role="option" data-v="指示牌" aria-selected="true">指示牌<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+          <button type="button" role="option" data-v="車廂廣告" aria-selected="false">車廂廣告<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+          <button type="button" role="option" data-v="簡訊" aria-selected="false">簡訊<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+          <button type="button" role="option" data-v="電視廣告" aria-selected="false">電視廣告<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+          <button type="button" role="option" data-v="親友介紹" aria-selected="false">親友介紹<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -7592,15 +7713,15 @@
       <div class="mo-section-head"><h3>近六個月走勢</h3></div>
       <div class="mo-table-wrap">
         <table class="mo-trend-table">
-          <thead><tr><th>月份</th><th>來人</th><th>成交</th><th>成交比</th></tr></thead>
+          <thead><tr><th>月份</th><th>來人</th><th>來電</th><th>回客</th><th>小訂</th><th>簽約</th><th>銷售金額</th><th>成交比</th></tr></thead>
           <tbody>
-            <tr><td>2026-03</td><td>0</td><td>0</td><td>—</td></tr>
-            <tr><td>2026-04</td><td>2</td><td>0</td><td>—</td></tr>
-            <tr><td>2026-05</td><td>4</td><td>0</td><td>—</td></tr>
-            <tr><td>2026-06</td><td>6</td><td>1</td><td>6:1</td></tr>
-            <tr><td>2026-07</td><td>10</td><td>1</td><td>10:1</td></tr>
-            <tr><td>2026-08</td><td>118</td><td>8</td><td>15:1</td></tr>
-            <tr><td>合計</td><td>140 組</td><td>10 戶</td><td>14:1</td></tr>
+            <tr><td>2026-03</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>—</td><td>—</td></tr>
+            <tr><td>2026-04</td><td>2</td><td>1</td><td>0</td><td>0</td><td>0</td><td>—</td><td>—</td></tr>
+            <tr><td>2026-05</td><td>4</td><td>1</td><td>0</td><td>0</td><td>0</td><td>—</td><td>—</td></tr>
+            <tr><td>2026-06</td><td>6</td><td>2</td><td>1</td><td>1</td><td>0</td><td>—</td><td>6:1</td></tr>
+            <tr><td>2026-07</td><td>10</td><td>4</td><td>1</td><td>1</td><td>0</td><td>—</td><td>10:1</td></tr>
+            <tr><td>2026-08</td><td>118</td><td>44</td><td>10</td><td>8</td><td>8</td><td>55,247 萬</td><td>15:1</td></tr>
+            <tr><td>合計</td><td>140 組</td><td>52 通</td><td>12 組</td><td>10 戶</td><td>8 戶</td><td>55,247 萬</td><td>14:1</td></tr>
           </tbody>
         </table>
       </div>
@@ -7617,6 +7738,55 @@
         <div class="mo-progress-row"><span>依本月速度預估完銷</span><b>約 15 個月 <span class="wk-missing-mark" title="需補欄位：完銷預估需接銷控與目標設定">＊</span></b></div>
       </div>
     </article>
+  </section>
+
+  <section class="mo-main" aria-label="月度明細表">
+    <div class="mo-section-head"><h3>月度明細表</h3></div>
+    <div class="mo-table-wrap">
+      <table class="mo-main-table">
+        <colgroup><col><col span="8"></colgroup>
+        <thead><tr><th colspan="2">項目</th><th>第31週</th><th>第32週</th><th>第33週</th><th>第34週</th><th>第35週</th><th class="mo-month-total">本月累計</th><th>總累計</th></tr></thead>
+        <tbody>
+          <tr class="mo-date-row"><th colspan="2">日期</th><td>08/01–08/02</td><td>08/03–08/09</td><td>08/10–08/16</td><td>08/17–08/23</td><td>08/24–08/30</td><td class="mo-month-total">08/01–08/30</td><td>至 08/30</td></tr>
+          <tr><th colspan="2">來人</th><td>8</td><td>26</td><td>29</td><td>30</td><td>25</td><td class="mo-month-total">118</td><td>140</td></tr>
+          <tr><th colspan="2">來電</th><td>4</td><td>10</td><td>10</td><td>9</td><td>11</td><td class="mo-month-total">44</td><td>52</td></tr>
+          <tr><th colspan="2">回客</th><td>1</td><td>2</td><td>3</td><td>2</td><td>2</td><td class="mo-month-total">10</td><td>12</td></tr>
+          <tr class="mo-group-start"><th class="mo-stage" rowspan="4">小訂</th><th>戶數</th><td class="mo-nodata">—</td><td>2 戶 / 3 車</td><td>2 戶 / 3 車</td><td>2 戶 / 3 車</td><td>2 戶 / 4 車</td><td class="mo-month-total">8 戶 / 13 車</td><td>10 戶 / 17 車</td></tr>
+          <tr><th>房價</th><td class="mo-nodata">—</td><td>12,900</td><td>13,100</td><td>13,112</td><td>12,668</td><td class="mo-month-total">51,780</td><td>63,780</td></tr>
+          <tr><th>車價</th><td class="mo-nodata">—</td><td>1,050</td><td>1,050</td><td>1,035</td><td>840</td><td class="mo-month-total">3,975</td><td>4,975</td></tr>
+          <tr class="mo-total-row"><th>總價</th><td class="mo-nodata">—</td><td>13,950</td><td>14,150</td><td>14,147</td><td>13,508</td><td class="mo-month-total">55,755</td><td>68,755</td></tr>
+          <tr class="mo-group-start"><th class="mo-stage" rowspan="4">簽約</th><th>戶數</th><td class="mo-nodata">—</td><td>2 戶 / 3 車</td><td>3 戶 / 5 車</td><td>3 戶 / 5 車</td><td class="mo-nodata">—</td><td class="mo-month-total">8 戶 / 13 車</td><td>8 戶 / 13 車</td></tr>
+          <tr><th>房價</th><td class="mo-nodata">—</td><td>12,800</td><td>19,200</td><td>19,112</td><td>0</td><td class="mo-month-total">51,112</td><td>51,112</td></tr>
+          <tr><th>車價</th><td class="mo-nodata">—</td><td>1,020</td><td>1,560</td><td>1,555</td><td>0</td><td class="mo-month-total">4,135</td><td>4,135</td></tr>
+          <tr class="mo-total-row"><th>總價</th><td class="mo-nodata">—</td><td>13,820</td><td>20,760</td><td>20,667</td><td>0</td><td class="mo-month-total">55,247</td><td>55,247</td></tr>
+          <tr class="mo-group-start"><th class="mo-stage" rowspan="4">退戶</th><th>戶數</th><td class="mo-nodata">—</td><td class="mo-nodata">—</td><td class="mo-nodata">—</td><td class="mo-nodata">—</td><td class="mo-nodata">—</td><td class="mo-month-total">0 戶 / 0 車</td><td>0 戶 / 0 車</td></tr>
+          <tr><th>房價</th><td class="mo-nodata">—</td><td class="mo-nodata">—</td><td class="mo-nodata">—</td><td class="mo-nodata">—</td><td class="mo-nodata">—</td><td class="mo-month-total">0</td><td>0</td></tr>
+          <tr><th>車價</th><td class="mo-nodata">—</td><td class="mo-nodata">—</td><td class="mo-nodata">—</td><td class="mo-nodata">—</td><td class="mo-nodata">—</td><td class="mo-month-total">0</td><td>0</td></tr>
+          <tr class="mo-total-row"><th>總價</th><td class="mo-nodata">—</td><td class="mo-nodata">—</td><td class="mo-nodata">—</td><td class="mo-nodata">—</td><td class="mo-nodata">—</td><td class="mo-month-total">0</td><td>0</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="mo-note">金額單位：萬元</p>
+  </section>
+
+  <section class="mo-media-perf">
+    <div class="mo-section-head"><h3>媒體效益月結</h3><span class="wk-missing-mark" title="需補欄位：系統尚無廣告花費登錄，花費／每組成本／每成交成本為示意">＊</span></div>
+    <div class="mo-table-wrap">
+      <table class="mo-trend-table">
+        <thead><tr><th>媒體</th><th>本月來人</th><th>佔比</th><th>本月成交</th><th>本月花費＊</th><th>每組來人成本＊</th><th>每成交成本＊</th></tr></thead>
+        <tbody>
+          <tr><td>FB</td><td>36</td><td>30.5%</td><td>2</td><td>43.2 萬</td><td>1.20 萬</td><td>21.6 萬</td></tr>
+          <tr><td>介紹</td><td>24</td><td>20.3%</td><td>2</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>現場</td><td>14</td><td>11.9%</td><td>1</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>網路</td><td>13</td><td>11.0%</td><td>1</td><td>19.5 萬</td><td>1.50 萬</td><td>19.5 萬</td></tr>
+          <tr><td>看板</td><td>11</td><td>9.3%</td><td>1</td><td>33.0 萬</td><td>3.00 萬</td><td>33.0 萬</td></tr>
+          <tr><td>IG</td><td>10</td><td>8.5%</td><td>1</td><td>9.0 萬</td><td>0.90 萬</td><td>9.0 萬</td></tr>
+          <tr><td>路過</td><td>10</td><td>8.5%</td><td>0</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>合計</td><td>118</td><td>100.0%</td><td>8</td><td>104.7 萬</td><td>1.50 萬（付費 70 組）</td><td>20.9 萬（付費 5 戶）</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="mo-note">介紹／現場／路過為無花費來源，不計入付費成本；花費欄位待系統補上廣告費登錄</p>
   </section>
 
   <section class="mo-analysis" aria-labelledby="moAnalysisTitle">
@@ -7684,7 +7854,9 @@
     var monthStamp=Date.UTC(2026,7,1);
     var monthBox=monthly.querySelector('[data-mo-month]');
     var monthLabel=monthly.querySelector('[data-mo-label]');
-    var monthDays=monthly.querySelector('[data-mo-days]');
+    var monthDays=monthly.querySelector('[data-mo-day-count]');
+    var moMedia=monthly.querySelector('[data-mo-media]');
+    var moMediaChips=monthly.querySelector('[data-mo-media-chips]');
     function drawMonth(){
       var date=new Date(monthStamp),year=date.getUTCFullYear(),month=date.getUTCMonth();
       var value=year+'-'+String(month+1).padStart(2,'0');
@@ -7692,7 +7864,69 @@
       monthLabel.textContent=value;
       monthDays.textContent=new Date(Date.UTC(year,month+1,0)).getUTCDate()+' 日';
     }
+    function moMediaClose(){
+      if(!moMedia)return;
+      moMedia.classList.remove('mo-open');
+      var list=moMedia.querySelector('.sel-list');
+      var button=monthly.querySelector('[data-mo-media-open]');
+      if(list)list.hidden=true;
+      if(button)button.setAttribute('aria-expanded','false');
+    }
+    function moMediaDraw(){
+      if(!moMedia||!moMediaChips)return;
+      var on=[].slice.call(moMedia.querySelectorAll('[role="option"][aria-selected="true"]')).map(function(opt){return opt.dataset.v});
+      var input=moMedia.querySelector('input[data-f]');
+      if(input)input.value=on.join('、');
+      var frag=document.createDocumentFragment();
+      on.forEach(function(v){
+        var chip=document.createElement('span');
+        chip.className='chip';
+        chip.textContent=v;
+        var remove=document.createElement('button');
+        remove.type='button';
+        remove.dataset.moMediaX=v;
+        remove.setAttribute('aria-label','移除 '+v);
+        remove.textContent='×';
+        chip.appendChild(remove);
+        frag.appendChild(chip);
+      });
+      var add=document.createElement('button');
+      add.type='button';
+      add.className='chip mo-media-add';
+      add.dataset.moMediaOpen='';
+      add.setAttribute('aria-haspopup','listbox');
+      add.setAttribute('aria-expanded',String(moMedia.classList.contains('mo-open')));
+      add.textContent='＋ 調整';
+      frag.appendChild(add);
+      moMediaChips.replaceChildren(frag);
+    }
     monthly.addEventListener('click',function(e){
+      var mediaX=e.target.closest('[data-mo-media-x]');
+      if(mediaX){
+        e.stopPropagation();
+        if(moMedia)moMedia.querySelectorAll('[role="option"]').forEach(function(opt){
+          if(opt.dataset.v===mediaX.dataset.moMediaX)opt.setAttribute('aria-selected','false');
+        });
+        moMediaDraw();
+        return;
+      }
+      var mediaOpen=e.target.closest('[data-mo-media-open]');
+      if(mediaOpen&&moMedia){
+        e.stopPropagation();
+        var mediaList=moMedia.querySelector('.sel-list'),mediaIsOpen=moMedia.classList.contains('mo-open');
+        moMedia.classList.toggle('mo-open',!mediaIsOpen);
+        mediaList.hidden=mediaIsOpen;
+        mediaOpen.setAttribute('aria-expanded',String(!mediaIsOpen));
+        return;
+      }
+      var mediaOpt=e.target.closest('[data-mo-media] [role="option"]');
+      if(mediaOpt){
+        e.stopPropagation();
+        mediaOpt.setAttribute('aria-selected',mediaOpt.getAttribute('aria-selected')==='true'?'false':'true');
+        moMediaDraw();
+        return;
+      }
+      if(!e.target.closest('[data-mo-media]'))moMediaClose();
       var step=e.target.closest('[data-mo-step]');
       if(step){
         var date=new Date(monthStamp);
@@ -7707,6 +7941,14 @@
         if(window.toast)window.toast('月度摘要已儲存 <b>2026-08</b>');
       }
     });
+    monthly.addEventListener('keydown',function(e){
+      if(e.key!=='Escape'||!moMedia||!moMedia.classList.contains('mo-open'))return;
+      e.preventDefault();
+      moMediaClose();
+      var button=monthly.querySelector('[data-mo-media-open]');
+      if(button)button.focus();
+    });
+    document.addEventListener('click',function(e){if(!monthly.contains(e.target))moMediaClose()});
     var printBtn=document.querySelector('#page-reports [data-act="printRep"]');
     if(printBtn){
       printBtn.addEventListener('click',function(e){
@@ -7730,6 +7972,7 @@
         setTimeout(restore,0);
       },true);
     }
+    moMediaDraw();
     drawMonth();
   })();
   </script>
@@ -10518,7 +10761,7 @@
     ['金門縣','金城鎮,金湖鎮,金沙鎮,金寧鄉,烈嶼鄉,烏坵鄉'],
     ['連江縣','南竿鄉,北竿鄉,莒光鄉,東引鄉']
   ];
-  var laCity='全部縣市', laDist='', laProj='', laFrom='', laTo='', laCross=false, laStale=false, laUn=false, laGrade='', laSrc='', laRel='', laGift='', laQ='';
+  var laCity='全部', laDist='', laProj='', laFrom='', laTo='', laCross=false, laStale=false, laUn=false, laGrade='', laSrc='', laRel='', laGift='', laQ='';
   /* demo 今天；新增來客與日期選擇器上界都以它為準 */
   var TODAY='2026-08-26';
   /* 建案所在區位——列上的 data-city/data-dist 由此推導，縣市與行政區篩選才有東西可比 */
@@ -10535,9 +10778,9 @@
   function laSetCity(x){
     laCity=x; laDist='';
     var cb=$('#page-leadsall [data-act="ddCity"]'), db=$('#page-leadsall [data-act="ddDist"]');
-    if(cb){ cb.textContent='縣市：'+x+' ▾'; laMark(cb, x!=='全部縣市') }
+    if(cb){ cb.textContent='縣市：'+x+' ▾'; laMark(cb, x!=='全部') }
     if(db){
-      var none = (x==='全部縣市');
+      var none = (x==='全部');
       db.disabled=none;
       db.textContent = none ? '行政區：先選縣市 ▾' : '行政區：全部 ▾';
       laMark(db,false);
@@ -10552,7 +10795,7 @@
       var d=tr.dataset.date||'';
       /* 建案篩的是「歸屬」不是全文——足跡欄寫著別案名字，全文比對會誤中 */
       var ok = (!laProj || tr.dataset.proj===laProj)
-            && (!laCity || laCity==='全部縣市' || tr.dataset.city===laCity)
+            && (!laCity || laCity==='全部' || tr.dataset.city===laCity)
             && (!laDist || laDist==='全部' || tr.dataset.dist===laDist)
             && (!laFrom || d>=laFrom) && (!laTo || d<=laTo)
             && (!laCross || tr.dataset.cross==='1')
@@ -10589,7 +10832,7 @@
     var cnt=$('#page-leadsall .sec .cnt');
     if(cnt){
       if(cnt.dataset.all==null) cnt.dataset.all=cnt.textContent;
-      cnt.textContent = (laProj||laFrom||laTo||laCross||laStale||laUn||laGrade||laSrc||laRel||laGift||laQ||(laCity&&laCity!=='全部縣市')||laDist) ? (n+' 筆') : cnt.dataset.all;
+      cnt.textContent = (laProj||laFrom||laTo||laCross||laStale||laUn||laGrade||laSrc||laRel||laGift||laQ||(laCity&&laCity!=='全部')||laDist) ? (n+' 筆') : cnt.dataset.all;
     }
   }
   /* 常用組合＝把整排條件存成一個名字，點一下整組套回來 */
@@ -10614,7 +10857,7 @@
   function laSummary(){
     var parts=[];
     if(laProj) parts.push(laProj);
-    if(laCity!=='全部縣市'){
+    if(laCity!=='全部'){
       var d=($('#page-leadsall [data-act="ddDist"]').textContent.split('：')[1]||'').replace('▾','').trim();
       parts.push(laCity + (d && d!=='全部' ? '・'+d : ''));
     }
@@ -10633,9 +10876,9 @@
     var v=LA_SAVED[i]; if(!v) return;
     laApplyingSaved=true;
     var projBtn=$$('#page-leadsall [data-act="dd"]').filter(function(b){return b.textContent.indexOf('建案')===0})[0];
-    if(projBtn){ laProj=v.proj||''; projBtn.textContent='建案：'+(v.proj||'全部建案')+' ▾'; laMark(projBtn,!!v.proj) }
-    laSetCity(v.city||'全部縣市');
-    if(v.city && v.city!=='全部縣市' && v.dist && v.dist!=='全部'){
+    if(projBtn){ laProj=v.proj||''; projBtn.textContent='建案：'+(v.proj||'全部')+' ▾'; laMark(projBtn,!!v.proj) }
+    laSetCity(v.city||'全部');
+    if(v.city && v.city!=='全部' && v.dist && v.dist!=='全部'){
       var db=$('#page-leadsall [data-act="ddDist"]');
       db.textContent='行政區：'+v.dist+' ▾'; laMark(db,true); laDist=v.dist;
     }
@@ -13632,7 +13875,7 @@ try{ /* collect */
         b.textContent=pre+'：'+x+' ▾';
         /* 有選過就把按鈕點亮，一整排灰按鈕看不出哪個條件在作用 */
         if(b.closest('#page-leadsall')) laMark(b, x!==b.dataset.opts.split('|')[0]);
-        if(pre==='建案'){ laProj = (x==='全部建案') ? '' : x; laFilterRows() }
+        if(pre==='建案'){ laProj = (x==='全部') ? '' : x; laFilterRows() }
         if(pre==='來源'){ laSrc = (x==='全部') ? '' : x; laFilterRows() }
         if(pre==='關聯'){ laRel = (x==='全部') ? '' : x; laFilterRows() }
         if(pre==='贈品'){ laGift = (x==='全部') ? '' : x; laFilterRows() }
@@ -13640,7 +13883,7 @@ try{ /* collect */
       });
     } else if(act==='ddCity'){
       e.stopPropagation();
-      pickMenu(b, ['全部縣市'].concat(TW_AREA.map(function(a){return a[0]})), null, function(x){
+      pickMenu(b, ['全部'].concat(TW_AREA.map(function(a){return a[0]})), null, function(x){
         laSetCity(x); laFilterRows(); toast('條件已更新：縣市 <b>'+x+'</b>');
       });
     } else if(act==='ddDist'){
@@ -13679,7 +13922,7 @@ try{ /* collect */
         var first=x.dataset.opts.split('|')[0];
         x.textContent=pre+'：'+first+' ▾'; laMark(x,false);
       });
-      laSetCity('全部縣市');
+      laSetCity('全部');
       var xb=$('#page-leadsall [data-act="laCross"]');
       if(xb){ laCross=false; xb.setAttribute('aria-pressed','false'); laMark(xb,false) }
       laProj=''; laUn=false; laGrade=''; laSrc=''; laRel=''; laGift=''; laQ='';
