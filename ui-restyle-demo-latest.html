@@ -994,6 +994,13 @@
   #page-analytics .ana2-tabs button[disabled]:hover{color:var(--muted)}
   #page-analytics .ana2-legend{ display:flex; align-items:center; justify-content:flex-end; gap:var(--s2); flex-wrap:wrap; font-size:.68rem; color:var(--muted)}
   #page-analytics .ana2-legend > span{white-space:nowrap}
+  /* 產生方式標記：數字是排程算好的、判讀句是 AI 草稿；沿用共用 .chip 只加修飾子 */
+  #page-analytics .ana2-legend .chip.ana2-auto,#page-analytics .ana2-verdict .chip.ana2-ai,#page-analytics .ana2-legend .chip.ana2-ai{font-size:.64rem; letter-spacing:.04em; flex:none}
+  #page-analytics .chip.ana2-auto{border-color:var(--line-accent); background:var(--tint); color:var(--accent)}
+  #page-analytics .chip.ana2-ai{border-color:var(--line-2); background:var(--fill); color:var(--muted)}
+  /* 三顆頁首控制項（期間／建案／檢視身分）收成一組靠右，rolebtn 的 auto 邊距改由容器承擔 */
+  #page-analytics .ana2-filters{display:flex; align-items:center; gap:var(--s2); margin-left:auto; flex:none; flex-wrap:wrap}
+  #page-analytics .ana2-filters .ana2-rolebtn{margin-left:0}
   #page-analytics .engnote{display:flex; align-items:center; justify-content:flex-end; gap:var(--s1); flex-wrap:wrap; margin-left:auto}
   #page-analytics .engnote .chip{font-size:.64rem; letter-spacing:.04em}
   #page-analytics .engnote .chip.eng-new{border-color:var(--warm); background:var(--warm-tint); color:var(--warm)}
@@ -5318,12 +5325,19 @@
           <div class="ana2-title">
             <h2>分析</h2>
             <span class="note">回答：哪裡不對、為什麼、現在要做什麼</span>
+            <span class="note">所有數字為系統自動彙總；只有判讀句是 AI 草稿，須人審後才可對外</span>
           </div>
-          <button class="pillbtn ana2-rolebtn" type="button" id="ana2RoleBtn">檢視身分：系統管理員 ▾</button>
-          <div class="ana2-legend" aria-label="工程備註圖例">
+          <div class="ana2-filters">
+            <button class="pillbtn" data-act="dd" data-opts="本月|上月|本季|近 12 週|開案至今">期間：本月 ▾</button>
+            <button class="pillbtn" data-act="dd" data-opts="全部|青園綠境|恆山千隅|秴楓">建案：全部 ▾</button>
+            <button class="pillbtn ana2-rolebtn" type="button" id="ana2RoleBtn">檢視身分：系統管理員 ▾</button>
+          </div>
+          <div class="ana2-legend" aria-label="工程備註與產生方式圖例">
             <span><span class="chip eng-new">🆕 新增功能</span>正式系統沒有</span>
             <span><span class="chip eng-upgrade">升級</span>改既有功能</span>
             <span><span class="chip eng-schema">⚙ 動結構</span>需補資料／設定</span>
+            <span><span class="chip ana2-auto">⚡ 自動彙總</span>排程算好，不需人工</span>
+            <span><span class="chip ana2-ai">✎ AI 草稿</span>文字須人審後才可對外</span>
           </div>
         </div>
 
@@ -5348,7 +5362,7 @@
                   <small>需：SLA 設定、往來紀錄結構化</small>
                 </div>
               </div>
-              <div class="ana2-verdict"><span class="dot warm"></span><b>量體正常，但有 7 組新名單尚未首次跟進。</b></div>
+              <div class="ana2-verdict"><span class="dot warm"></span><span class="chip ana2-ai" title="這句由 AI 產生草稿，須專案經理確認後才可對外">✎</span><b>量體正常，但有 7 組新名單尚未首次跟進。</b></div>
               <div class="ana2-action-grid">
                 <div>
                   <div class="ana2-subhead">待處理清單</div>
@@ -5519,7 +5533,7 @@
                 <div><h3>B1 供需缺口對照</h3><span class="ana2-caption">有效需求 vs 目前可售・資料截至 2026-08-26 14:30</span></div>
                 <div class="engnote"><span class="chip eng-new">🆕 新增功能</span></div>
               </div>
-              <div class="ana2-verdict"><span class="dot warm"></span><span><b>2 房需求比庫存多 15 個百分點</b>；4 房供給反而多 16 個百分點，下一檔不宜再用單一客群訴求。</span></div>
+              <div class="ana2-verdict"><span class="dot warm"></span><span class="chip ana2-ai" title="這句由 AI 產生草稿，須專案經理確認後才可對外">✎</span><span><b>2 房需求比庫存多 15 個百分點</b>；4 房供給反而多 16 個百分點，下一檔不宜再用單一客群訴求。</span></div>
               <div class="ana2-mirror" role="img" aria-label="以中軸0向左右展開，呈現2房、3房、4房與店面的需求占比和可售占比背靠背橫條圖">
                 <div class="ana2-mirror-head"><span>需求占比</span><span>0｜房型｜0</span><span>可售占比</span><span>缺口</span></div>
                 <div class="ana2-mirror-row gap">
@@ -5638,7 +5652,7 @@
                 <div><h3>B4 調價彈性回放</h3><span class="ana2-caption">事件研究：07/14 表價 −3% 前後 30 天・只報前後差異，不宣稱因果</span></div>
                 <div class="engnote"><span class="chip eng-new">🆕 新增功能</span><span class="chip eng-schema">⚙ 動結構</span><small>需：price_history</small></div>
               </div>
-              <div class="ana2-verdict"><span class="dot"></span><span><b>上次讓 3% 換到週去化翻倍</b>（0.7 → 1.5 戶/週）——這次建議同幅度、只放滯銷 8 戶。</span></div>
+              <div class="ana2-verdict"><span class="dot"></span><span class="chip ana2-ai" title="這句由 AI 產生草稿，須專案經理確認後才可對外">✎</span><span><b>上次讓 3% 換到週去化翻倍</b>（0.7 → 1.5 戶/週）——這次建議同幅度、只放滯銷 8 戶。</span></div>
               <div class="ana2-pace-chart">
                 <svg viewBox="0 0 560 150" role="img" aria-label="調價日前後三十天的週去化戶數，調價日以垂直虛線標記，調價後柱體明顯升高">
                   <line x1="280" y1="10" x2="280" y2="140" stroke="var(--line-3)" stroke-width="1" stroke-dasharray="4 4"/>
@@ -5674,7 +5688,7 @@
                   <span class="chip eng-schema">⚙ 動結構</span><small>需：媒體花費登錄表或 Meta API</small>
                 </div>
               </div>
-              <div class="ana2-verdict"><span class="dot warm"></span><span><b>FB 帶來 32% 量體，60 日淨簽僅 3.1%。</b>先查承接與素材訴求，不因名單量大直接加碼。</span></div>
+              <div class="ana2-verdict"><span class="dot warm"></span><span class="chip ana2-ai" title="這句由 AI 產生草稿，須專案經理確認後才可對外">✎</span><span><b>FB 帶來 32% 量體，60 日淨簽僅 3.1%。</b>先查承接與素材訴求，不因名單量大直接加碼。</span></div>
               <div class="ana2-media-split">
                 <div class="ana2-source-quadrant">
                   <div class="ana2-subhead">量體占比 × W 日淨簽率・泡泡＝成熟樣本數</div>
@@ -5838,7 +5852,7 @@
                     <b>AD-0817</b><span class="chip warm">主訴求：低總價首購</span>
                     <div class="ana2-caption">檔期 08/01–08/21・FB・花費佔比 34%・已進客 47 組（填答率 68%）</div>
                   </div>
-                  <div class="ana2-verdict"><span class="dot warm"></span><span><b>錯配 2 維</b>：主打首購，但購屋目的「投資」42%、預算眾數高一個級距——下一輪改打自住換屋。</span></div>
+                  <div class="ana2-verdict"><span class="dot warm"></span><span class="chip ana2-ai" title="這句由 AI 產生草稿，須專案經理確認後才可對外">✎</span><span><b>錯配 2 維</b>：主打首購，但購屋目的「投資」42%、預算眾數高一個級距——下一輪改打自住換屋。</span></div>
                   <div class="ana2-caption">錯配維度 ≥3 且花費佔比 &gt;20% 才觸發「換訴求」提示；樣本 &lt;20 組不貼標籤；填答率 &lt;60% 整卡降信心標注。素材層歸因需 UTM（utm_content=素材編號）——未接前為來源層粗歸因。</div>
                 </div>
                 <div>
@@ -5896,7 +5910,7 @@
               </div>
               <div class="ana2-order-layout">
                 <div>
-                  <div class="ana2-verdict"><span class="dot"></span><span>池內 <b>168 組</b>・檔期還剩 6 週——超過 150 組門檻，<b>本檔期來得及點火</b>。</span></div>
+                  <div class="ana2-verdict"><span class="dot"></span><span class="chip ana2-ai" title="這句由 AI 產生草稿，須專案經理確認後才可對外">✎</span><span>池內 <b>168 組</b>・檔期還剩 6 週——超過 150 組門檻，<b>本檔期來得及點火</b>。</span></div>
                   <div class="ana2-subhead">入池條件（全部同時成立）</div>
                   <div class="ana2-caption">品質分 40–79（太低不值、太高該人追）・最後往來 &gt;30 天・欲購屋時間 3 個月內～半年內・無購買紀錄未退戶。</div>
                   <div class="ana2-subhead">分數帶分布</div>
@@ -5957,7 +5971,7 @@
                 <div><h3>D1 業務戰力矩陣</h3><span class="ana2-caption">四段漏斗×客質調整・近 90 日成熟 cohort・資料截至 2026-08-26 14:30</span></div>
                 <div class="engnote"><span class="chip eng-upgrade">升級</span><small>升級自：業務排行</small><span class="chip eng-new">🆕 新增功能</span><small>客質調整指數</small></div>
               </div>
-              <div class="ana2-verdict"><span class="dot warm"></span><span><b>陳冠廷促回率 41% 掉出團隊 P25</b>——本月教練重點：首訪後 48 小時電訪；郭士銘樣本不足暫不評。</span></div>
+              <div class="ana2-verdict"><span class="dot warm"></span><span class="chip ana2-ai" title="這句由 AI 產生草稿，須專案經理確認後才可對外">✎</span><span><b>陳冠廷促回率 41% 掉出團隊 P25</b>——本月教練重點：首訪後 48 小時電訪；郭士銘樣本不足暫不評。</span></div>
               <div class="ana2-source-table-wrap">
                 <table class="ana2-table ana2-matrix">
                   <thead><tr><th>業務</th><th>接客量</th><th>促回率</th><th>回訪→下訂</th><th>下訂→簽約</th><th>客質調整指數</th></tr></thead>
@@ -6137,7 +6151,7 @@
                 </div>
                 <div>
                   <div class="ana2-subhead">我的卡點</div>
-                  <div class="ana2-verdict"><span class="dot warm"></span><span><b>回籠正常、下訂偏低</b>——回訪 8 組只收斡 1 組（團隊 P50：31%）。</span></div>
+                  <div class="ana2-verdict"><span class="dot warm"></span><span class="chip ana2-ai" title="這句由 AI 產生草稿，須專案經理確認後才可對外">✎</span><span><b>回籠正常、下訂偏低</b>——回訪 8 組只收斡 1 組（團隊 P50：31%）。</span></div>
                   <div class="ana2-caption">看不到他人實名與數字；比較對象是匿名 P25／P50／P75 帶。</div>
                 </div>
               </div>
@@ -6154,7 +6168,7 @@
                 <div><h3>E1 Cohort 熟成矩陣</h3><span class="ana2-caption">同一批客走到哪・分母＝該月首次進案組數（電話去重）</span></div>
                 <div class="engnote"><span class="chip eng-new">🆕 新增功能</span><small>吸收：來客漏斗＋轉換卡</small></div>
               </div>
-              <div class="ana2-verdict"><span class="dot warm"></span><span><b>6 月批 30 日下訂率 11%</b>，比前三批中位低 42%——卡在回訪→下訂，不是來人問題。</span></div>
+              <div class="ana2-verdict"><span class="dot warm"></span><span class="chip ana2-ai" title="這句由 AI 產生草稿，須專案經理確認後才可對外">✎</span><span><b>6 月批 30 日下訂率 11%</b>，比前三批中位低 42%——卡在回訪→下訂，不是來人問題。</span></div>
               <div class="ana2-source-table-wrap">
                 <table class="ana2-table ana2-cohortmx">
                   <thead><tr><th>進案月</th><th>組數</th><th>7 日回籠</th><th>30 日下訂</th><th>60 日簽約</th><th>90 日淨簽</th></tr></thead>
@@ -6283,7 +6297,7 @@
                     <div class="ana2-reason-row"><span>婚姻狀況</span><span class="ana2-reason-track"><i class="ana2-reason-fill" style="--reason:48%"></i></span><b>1.1×</b></div>
                     <div class="ana2-reason-row"><span>稱謂</span><span class="ana2-reason-track"><i class="ana2-reason-fill" style="--reason:43%"></i></span><b>1.0×</b></div>
                   </div>
-                  <div class="ana2-verdict"><span class="dot"></span><span><b>lift 低又填答低的欄直接砍</b>——問卷變短 → 填答率升 → 客層資料變乾淨，正循環的起點。</span></div>
+                  <div class="ana2-verdict"><span class="dot"></span><span class="chip ana2-ai" title="這句由 AI 產生草稿，須專案經理確認後才可對外">✎</span><span><b>lift 低又填答低的欄直接砍</b>——問卷變短 → 填答率升 → 客層資料變乾淨，正循環的起點。</span></div>
                 </div>
               </div>
               <div class="ana2-caption">按範本版本分開算（不同版本欄位不可混）；單一業務平均填答率 &lt;60% → 提示現場流程未落實，不是客人不願填。</div>
