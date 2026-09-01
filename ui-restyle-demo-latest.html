@@ -1572,15 +1572,28 @@
   #drawer .rel-person:focus-visible{outline:2px solid var(--line-accent);outline-offset:var(--s1);border-radius:var(--r-mini)}
   #drawer .rel-chips{display:flex;align-items:center;gap:var(--s1);flex-wrap:wrap}
   #drawer .rel-remove{height:auto;padding:var(--s1) var(--s3);color:var(--muted)}
+  #drawer .rel-remove:hover{color:var(--hot);border-color:var(--line-hot)}
   #drawer .rel-form{
-    display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
     align-items:end;gap:var(--s3);padding:var(--s4);background:var(--panel);border-radius:var(--r-row)
   }
   #drawer .rel-field{display:grid;gap:var(--s1);color:var(--muted)}
   #drawer .rel-field .sel{color:var(--ink)}
-  #drawer .rel-add{white-space:nowrap}
-  #drawer .rel-note{margin-top:var(--s3);color:var(--muted)}
-  #drawer .rel-note .wk-missing-mark{color:var(--hot);cursor:help}
+  #drawer .rel-add{grid-column:1/-1;justify-self:end;white-space:nowrap}
+  #drawer .rel-search{width:100%;box-sizing:border-box;margin-bottom:var(--s2);
+    padding:var(--s2);border:1px solid var(--line);border-radius:var(--r-cell);
+    background:var(--bg);font:inherit;font-size:.72rem;color:var(--ink)}
+  #drawer .rel-search:focus{outline:none;border-color:var(--line-accent)}
+  #drawer .rel-empty{padding:var(--s2);font-size:.72rem;color:var(--muted)}
+  #drawer .rel-opts{max-height:11rem;overflow-y:auto}
+  #drawer .rel-opts [hidden]{display:none}
+  #drawer input.rel-note{width:100%;box-sizing:border-box;padding:var(--s2) var(--s3);
+    border:1px solid var(--line);border-radius:var(--r-cell);background:var(--bg);
+    font:inherit;font-size:.72rem;color:var(--ink)}
+  #drawer input.rel-note:focus{outline:none;border-color:var(--line-accent)}
+  #drawer .rel-note-text{font-size:.7rem;color:var(--muted)}
+  #drawer p.rel-note{margin-top:var(--s3);color:var(--muted)}
+  #drawer p.rel-note .wk-missing-mark{color:var(--hot);cursor:help}
   #relDlg .rel-intro{margin-bottom:var(--s3);color:var(--muted)}
   #relDlg .rel-table-wrap{margin-bottom:var(--s3)}
   #relDlg .rel-table-wrap table{min-width:0}
@@ -8430,29 +8443,41 @@
       <div class="rel-list" id="relList">
         <div class="rel-row">
           <button type="button" class="dr-link rel-person" data-goto-lead="林佳蓉">林佳蓉</button>
-          <span class="chips rel-chips"><span class="chip">介紹人</span></span>
+          <span class="chips rel-chips"><span class="chip">介紹人</span><span class="rel-note-text">同社區介紹</span></span>
           <button type="button" class="pillbtn rel-remove">解除</button>
         </div>
         <div class="rel-row">
           <button type="button" class="dr-link rel-person" data-goto-lead="黃淑珊">黃淑珊</button>
-          <span class="chips rel-chips"><span class="chip">親屬</span><span class="chip">同住</span></span>
+          <span class="chips rel-chips"><span class="chip">親屬</span><span class="chip">同住</span><span class="rel-note-text">胞姊</span></span>
           <button type="button" class="pillbtn rel-remove">解除</button>
         </div>
         <div class="rel-row">
           <button type="button" class="dr-link rel-person" data-goto-lead="許文彬">許文彬</button>
-          <span class="chips rel-chips"><span class="chip">同事</span></span>
+          <span class="chips rel-chips"><span class="chip">同事</span><span class="rel-note-text">前同事</span></span>
           <button type="button" class="pillbtn rel-remove">解除</button>
         </div>
       </div>
       <div class="dsec">新增關聯</div>
       <div class="rel-form">
-        <label class="rel-field"><span>選擇對象</span>
-          <select id="relTargetSelect">
-            <option value="">請選擇</option>
-            <option>林佳蓉</option><option>黃淑珊</option><option>許文彬</option><option>王思穎</option>
-            <option>蔡明翰</option><option>楊雅筑</option><option value="陳威宇::2">陳威宇（編號 2）</option>
-          </select>
-        </label>
+        <div class="rel-field"><span>選擇對象</span>
+          <div class="sel rel-pick" id="relTargetPick">
+            <input type="hidden" id="relTargetValue" value="">
+            <button type="button" class="sel-btn" aria-label="選擇對象" aria-haspopup="listbox" aria-expanded="false"><span class="sel-val empty">請選擇</span><svg class="ico chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></button>
+            <div class="sel-list" role="listbox" hidden>
+              <input type="text" class="rel-search" placeholder="輸入姓名搜尋…" aria-label="搜尋來客">
+              <div class="rel-opts">
+                <button type="button" role="option" data-v="林佳蓉" aria-selected="false">林佳蓉<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+                <button type="button" role="option" data-v="黃淑珊" aria-selected="false">黃淑珊<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+                <button type="button" role="option" data-v="許文彬" aria-selected="false">許文彬<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+                <button type="button" role="option" data-v="王思穎" aria-selected="false">王思穎<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+                <button type="button" role="option" data-v="蔡明翰" aria-selected="false">蔡明翰<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+                <button type="button" role="option" data-v="楊雅筑" aria-selected="false">楊雅筑<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+                <button type="button" role="option" data-v="陳威宇::2" aria-selected="false">陳威宇（編號 2）<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+              </div>
+              <div class="rel-empty" hidden>找不到符合的來客</div>
+            </div>
+          </div>
+        </div>
         <div class="rel-field"><span>選擇關係</span>
           <span class="sel multi">
             <input type="hidden" data-f="relation" value="">
@@ -8468,6 +8493,9 @@
               <button type="button" role="option" data-v="同住" aria-selected="false">同住<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
             </span>
           </span>
+        </div>
+        <div class="rel-field"><span>備註</span>
+          <input type="text" class="rel-note" id="relNoteInput" placeholder="例：大學同學、同社區鄰居" maxlength="30">
         </div>
         <button type="button" class="pillbtn solid rel-add" id="relAddBtn">新增關聯</button>
       </div>
@@ -14078,10 +14106,82 @@ try{(function(){
     var drawer=document.getElementById('drawer');
     var list=document.getElementById('relList');
     var addBtn=document.getElementById('relAddBtn');
-    var target=document.getElementById('relTargetSelect');
-    if(!overviewBtn||!mask||!dlg||!closeBtn||!drawer||!list||!addBtn||!target) return;
-    var targetBtn=target.closest('.sel')&&target.closest('.sel').querySelector('.sel-btn');
-    if(targetBtn) targetBtn.setAttribute('aria-label','選擇對象');
+    var targetPick=document.getElementById('relTargetPick');
+    var target=document.getElementById('relTargetValue');
+    var noteInput=document.getElementById('relNoteInput');
+    if(!overviewBtn||!mask||!dlg||!closeBtn||!drawer||!list||!addBtn||!targetPick||!target||!noteInput) return;
+    var targetBtn=targetPick.querySelector('.sel-btn');
+    var targetList=targetPick.querySelector('.sel-list');
+    var targetLabel=targetPick.querySelector('.sel-val');
+    var targetSearch=targetPick.querySelector('.rel-search');
+    var targetEmpty=targetPick.querySelector('.rel-empty');
+    var targetOptions=[].slice.call(targetPick.querySelectorAll('.rel-opts [role="option"]'));
+
+    function resetTargetFilter(){
+      targetSearch.value='';
+      targetOptions.forEach(function(option){ option.hidden=false });
+      targetEmpty.hidden=true;
+    }
+    function closeTargetPick(focusButton){
+      targetPick.classList.remove('open','up');
+      targetList.hidden=true;
+      targetBtn.setAttribute('aria-expanded','false');
+      resetTargetFilter();
+      if(focusButton) targetBtn.focus();
+    }
+    function openTargetPick(){
+      document.querySelectorAll('#drawer .sel.open').forEach(function(box){
+        if(box===targetPick) return;
+        box.classList.remove('open','up');
+        var pop=box.querySelector('.sel-list'); if(pop) pop.hidden=true;
+        var button=box.querySelector('.sel-btn'); if(button) button.setAttribute('aria-expanded','false');
+      });
+      targetPick.classList.add('open');
+      targetList.hidden=false;
+      targetBtn.setAttribute('aria-expanded','true');
+      var host=drawer.querySelector('.dbody')||drawer;
+      var room=host.getBoundingClientRect().bottom-targetPick.getBoundingClientRect().bottom;
+      var gap=parseFloat(getComputedStyle(targetPick).getPropertyValue('--s2'))||0;
+      targetPick.classList.toggle('up',room<targetList.offsetHeight+gap);
+      setTimeout(function(){ targetSearch.focus() },0);
+    }
+    function resetTarget(){
+      target.value='';
+      targetLabel.textContent='請選擇';
+      targetLabel.classList.add('empty');
+      targetOptions.forEach(function(option){ option.setAttribute('aria-selected','false') });
+      closeTargetPick(false);
+    }
+    targetBtn.addEventListener('click',function(event){
+      event.stopPropagation();
+      targetPick.classList.contains('open')?closeTargetPick(true):openTargetPick();
+    });
+    targetList.addEventListener('click',function(event){
+      event.stopPropagation();
+      var option=event.target.closest('.rel-opts [role="option"]');
+      if(!option) return;
+      target.value=option.dataset.v;
+      targetLabel.textContent=option.textContent.trim();
+      targetLabel.classList.remove('empty');
+      targetOptions.forEach(function(item){ item.setAttribute('aria-selected',String(item===option)) });
+      closeTargetPick(true);
+    });
+    targetSearch.addEventListener('input',function(){
+      var query=targetSearch.value.trim().toLowerCase();
+      var visible=0;
+      targetOptions.forEach(function(option){
+        var match=option.textContent.toLowerCase().indexOf(query)>-1;
+        option.hidden=!match;
+        if(match) visible+=1;
+      });
+      targetEmpty.hidden=visible>0;
+    });
+    targetSearch.addEventListener('keydown',function(event){
+      if(event.key==='Escape'){ event.preventDefault(); closeTargetPick(true) }
+    });
+    document.addEventListener('click',function(event){
+      if(!targetPick.contains(event.target)) closeTargetPick(false);
+    },true);
 
     function rowLeadName(row){
       var name=row.querySelector('.name');
@@ -14095,8 +14195,8 @@ try{(function(){
         return rowLeadName(row)===name;
       });
       mask.classList.remove('show');
-      if(hits[index-1]) openDrawer(hits[index-1]);
-      else toast('示意：正式版依來客 ID 直接開啟「'+name+'」的詳情');
+      if(hits[index-1]) window.openDrawer(hits[index-1]);
+      else window.toast('示意：正式版依來客 ID 直接開啟「'+name+'」的詳情');
     }
     function closeOverview(){ mask.classList.remove('show') }
     overviewBtn.addEventListener('click',function(){ mask.classList.add('show'); closeBtn.focus() });
@@ -14113,7 +14213,7 @@ try{(function(){
       if(removeBtn){
         var row=removeBtn.closest('.rel-row');
         var name=row.querySelector('[data-goto-lead]').textContent.trim();
-        row.remove(); toast('已解除與 <b>'+name+'</b> 的關聯');
+        row.remove(); window.toast('已解除與 <b>'+name+'</b> 的關聯');
         return;
       }
       var link=event.target.closest('#d5 [data-goto-lead]');
@@ -14122,13 +14222,15 @@ try{(function(){
 
     addBtn.addEventListener('click',function(){
       var raw=target.value;
+      var note=noteInput.value.trim();
       var relInput=document.querySelector('#d5 .sel.multi input[data-f="relation"]');
       var relations=relInput ? relInput.value.split('、').filter(Boolean) : [];
-      if(!raw){ toast('請先選擇關聯對象'); return }
-      if(!relations.length){ toast('請至少選擇一種關係'); return }
+      if(!raw){ window.toast('請先選擇關聯對象'); return }
+      if(!relations.length){ window.toast('請至少選擇一種關係'); return }
 
       var parts=raw.split('::');
-      var display=(target.options[target.selectedIndex]||{}).text||parts[0];
+      var selected=targetOptions.filter(function(option){ return option.dataset.v===raw })[0];
+      var display=selected?selected.textContent.trim():parts[0];
       var row=document.createElement('div'); row.className='rel-row';
       var link=document.createElement('button');
       link.type='button'; link.className='dr-link rel-person'; link.dataset.gotoLead=parts[0]; link.textContent=display;
@@ -14137,18 +14239,22 @@ try{(function(){
       relations.forEach(function(relation){
         var chip=document.createElement('span'); chip.className='chip'; chip.textContent=relation; chips.appendChild(chip);
       });
+      if(note){
+        var noteText=document.createElement('span'); noteText.className='rel-note-text'; noteText.textContent=note; chips.appendChild(noteText);
+      }
       var remove=document.createElement('button');
       remove.type='button'; remove.className='pillbtn rel-remove'; remove.textContent='解除';
       row.appendChild(link); row.appendChild(chips); row.appendChild(remove);
       list.insertBefore(row,list.firstChild);
 
-      target.selectedIndex=0; target.dispatchEvent(new Event('change',{bubbles:true}));
+      resetTarget();
+      noteInput.value='';
       var multi=document.querySelector('#d5 .sel.multi');
       if(multi){
         multi.querySelectorAll('[role="option"]').forEach(function(option){option.setAttribute('aria-selected','false')});
-        mselSync(multi);
+        window.mselSync(multi);
       }
-      toast('已新增與 <b>'+display+'</b> 的關聯');
+      window.toast('已新增與 <b>'+display+'</b> 的關聯');
     });
   })();
 
