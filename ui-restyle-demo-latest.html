@@ -1556,6 +1556,46 @@
   #drawer .hist .h:first-child::before{background:var(--accent); border-color:var(--accent)}
   #drawer .hist .h:first-child{border-color:var(--line-accent)}
   #drawer .buyrow .meta{font-size:.7rem; color:var(--muted)}
+
+  /* ── 來客詳情：關聯圖譜 ── */
+  #page-leadsall .rel-badge{display:inline-flex;align-items:center;justify-content:center;
+    min-width:1.1rem;height:1.1rem;margin-left:var(--s2);padding:0 var(--s1);
+    border-radius:var(--r-pill);background:var(--tint);color:var(--accent);
+    font-size:.64rem;font-weight:500;font-variant-numeric:tabular-nums;cursor:help}
+  #drawer .rel-list{display:flex;flex-direction:column;gap:var(--s2)}
+  #drawer .rel-row{
+    display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr) auto;
+    align-items:center;gap:var(--s3);padding:var(--s3) 0;border-bottom:1px solid var(--line)
+  }
+  #drawer .rel-person{font:inherit;font-weight:500;color:var(--ink);text-align:left;justify-self:start;border-bottom:1px solid var(--line-2)}
+  #drawer .rel-person:hover{color:var(--accent);border-bottom-color:var(--line-accent)}
+  #drawer .rel-person:focus-visible{outline:2px solid var(--line-accent);outline-offset:var(--s1);border-radius:var(--r-mini)}
+  #drawer .rel-chips{display:flex;align-items:center;gap:var(--s1);flex-wrap:wrap}
+  #drawer .rel-remove{height:auto;padding:var(--s1) var(--s3);color:var(--muted)}
+  #drawer .rel-form{
+    display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;
+    align-items:end;gap:var(--s3);padding:var(--s4);background:var(--panel);border-radius:var(--r-row)
+  }
+  #drawer .rel-field{display:grid;gap:var(--s1);color:var(--muted)}
+  #drawer .rel-field .sel{color:var(--ink)}
+  #drawer .rel-add{white-space:nowrap}
+  #drawer .rel-note{margin-top:var(--s3);color:var(--muted)}
+  #drawer .rel-note .wk-missing-mark{color:var(--hot);cursor:help}
+  #relDlg .rel-intro{margin-bottom:var(--s3);color:var(--muted)}
+  #relDlg .rel-table-wrap{margin-bottom:var(--s3)}
+  #relDlg .rel-table-wrap table{min-width:0}
+  #relDlg .rel-count{display:inline-flex;justify-content:center;min-width:1.7rem;background:var(--tint);color:var(--accent);font-variant-numeric:tabular-nums}
+  #relDlg .rel-link{font:inherit;color:inherit;text-align:left;border-bottom:1px solid var(--line-2)}
+  #relDlg .rel-link:hover{color:var(--accent);border-bottom-color:var(--line-accent)}
+  #relDlg .rel-link:focus-visible{outline:2px solid var(--line-accent);outline-offset:var(--s1);border-radius:var(--r-mini)}
+  #relDlg .rel-note{color:var(--muted)}
+  #relDlg .rel-note .wk-missing-mark{color:var(--hot);cursor:help}
+  @media (max-width:760px){
+    #drawer .rel-row{grid-template-columns:minmax(0,1fr) auto}
+    #drawer .rel-chips{grid-column:1/-1;grid-row:2}
+    #drawer .rel-form{grid-template-columns:1fr}
+    #drawer .rel-add{justify-content:center}
+  }
   .hist{display:flex; flex-direction:column; gap:.6rem}
   .hist .h{background:var(--bg); border:1px solid var(--line); border-radius:var(--r-row); padding:.55rem .8rem; font-size:.76rem}
   .hist .h .top{display:flex; align-items:center; gap:.5rem; margin-bottom:.1rem}
@@ -6965,6 +7005,7 @@
     <span class="sb-btn" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/></svg></span>
     <input class="qsearch" id="laSearch" type="search" aria-label="搜尋來客" placeholder="搜尋姓名、電話…">
   </div></div>
+  <button class="pillbtn" id="relOverviewBtn" type="button">關聯總覽</button>
 </div>
 <div class="leadsall-saved" id="laSaved">
   <span class="sv-lbl">常用組合</span>
@@ -7003,7 +7044,7 @@
       <tbody id="rows">
         <tr data-date="2026-08-19" data-created="2026-08-19 14:22" data-proj="青園綠境" data-cross="1" data-city="臺中市" data-dist="北屯區">
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
-          <td><span class="name">陳威宇<span class="tag">回訪 ×2</span></span></td>
+          <td><span class="name">陳威宇<span class="rel-badge" title="有 3 筆關聯">3</span><span class="tag">回訪 ×2</span></span></td>
           <td><span class="grade a">A 級</span></td>
           <td>0912-334-268</td><td><span class="badge">來客</span></td><td>FB</td>
           <td><span class="chip">青園綠境</span></td>
@@ -7013,7 +7054,7 @@
         </tr>
         <tr data-date="2026-08-18" data-created="2026-08-18 10:05" data-proj="青園綠境" data-cross="0" data-city="臺中市" data-dist="北屯區">
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
-          <td><span class="name">林佳蓉</span></td>
+          <td><span class="name">林佳蓉<span class="rel-badge" title="有 4 筆關聯">4</span></span></td>
           <td><span class="grade b">B 級</span></td>
           <td>0987-221-903</td><td><span class="badge">來客</span></td><td>現場</td>
           <td><span class="chip">青園綠境</span></td>
@@ -7023,7 +7064,7 @@
         </tr>
         <tr data-date="2026-08-17" data-created="2026-08-17 16:40" data-proj="秴楓" data-cross="0" data-city="臺中市" data-dist="南屯區">
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
-          <td><span class="name">黃淑珊</span></td>
+          <td><span class="name">黃淑珊<span class="rel-badge" title="有 2 筆關聯">2</span></span></td>
           <td><span class="grade d">D 級</span></td>
           <td>0933-108-574</td><td><span class="badge call">來電</span></td><td>網路</td>
           <td><span class="chip">秴楓</span></td>
@@ -7033,7 +7074,7 @@
         </tr>
         <tr data-date="2026-08-16" data-created="2026-08-16 11:18" data-proj="恆山千隅" data-cross="1" data-city="臺中市" data-dist="西屯區">
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
-          <td><span class="name">許文彬<span class="tag">回訪 ×3</span></span></td>
+          <td><span class="name">許文彬<span class="rel-badge" title="有 2 筆關聯">2</span><span class="tag">回訪 ×3</span></span></td>
           <td><span class="grade a">A 級</span></td>
           <td>0921-877-130</td><td><span class="badge">來客</span></td><td>介紹</td>
           <td><span class="chip">恆山千隅</span></td>
@@ -7043,7 +7084,7 @@
         </tr>
         <tr data-date="2026-08-15" data-created="2026-08-15 15:02" data-proj="青園綠境" data-cross="0" data-city="臺中市" data-dist="北屯區">
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
-          <td><span class="name">王思穎</span></td>
+          <td><span class="name">王思穎<span class="rel-badge" title="有 1 筆關聯">1</span></span></td>
           <td><span class="grade c">C 級</span></td>
           <td>0955-462-821</td><td><span class="badge">來客</span></td><td>看板</td>
           <td><span class="chip">青園綠境</span></td>
@@ -7053,7 +7094,7 @@
         </tr>
         <tr data-date="2026-08-14" data-created="2026-08-14 09:47" data-proj="青園綠境" data-cross="1" data-city="臺中市" data-dist="北屯區">
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
-          <td><span class="name">蔡明翰</span></td>
+          <td><span class="name">蔡明翰<span class="rel-badge" title="有 1 筆關聯">1</span></span></td>
           <td><span class="grade b">B 級</span></td>
           <td>0910-664-359</td><td><span class="badge call">來電</span></td><td>IG</td>
           <td><span class="chip">青園綠境</span></td>
@@ -8265,6 +8306,28 @@
   </div>
 </div>
 
+<div class="dlg-mask sheet-mask" id="relDlgMask">
+  <div class="dlg sheet" id="relDlg" role="dialog" aria-modal="true" aria-labelledby="relDlgTitle">
+    <h3 id="relDlgTitle">關聯總覽<button class="circlebtn close" id="relDlgClose" type="button" aria-label="關閉關聯總覽">×</button></h3>
+    <p class="rel-intro">依關聯人數排序・同一群組代表彼此可連通</p>
+    <div class="table-wrap rel-table-wrap">
+      <table>
+        <thead><tr><th>排名</th><th>客戶</th><th>關聯人數</th><th>關係組成</th><th>群組</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><button type="button" class="dr-link rel-link" data-goto-lead="林佳蓉">林佳蓉</button></td><td><span class="chip rel-count">4</span></td><td>介紹人×2・親屬×1・朋友×1</td><td>群組 A</td></tr>
+          <tr><td>2</td><td><button type="button" class="dr-link rel-link" data-goto-lead="陳威宇">陳威宇</button></td><td><span class="chip rel-count">3</span></td><td>被介紹×1・親屬×1・同事×1</td><td>群組 A</td></tr>
+          <tr><td>3</td><td><button type="button" class="dr-link rel-link" data-goto-lead="黃淑珊">黃淑珊</button></td><td><span class="chip rel-count">2</span></td><td>親屬×1・同住×1</td><td>群組 A</td></tr>
+          <tr><td>4</td><td><button type="button" class="dr-link rel-link" data-goto-lead="許文彬">許文彬</button></td><td><span class="chip rel-count">2</span></td><td>同事×1・同學×1</td><td>群組 B</td></tr>
+          <tr><td>5</td><td><button type="button" class="dr-link rel-link" data-goto-lead="王思穎">王思穎</button></td><td><span class="chip rel-count">1</span></td><td>被介紹×1</td><td>群組 B</td></tr>
+          <tr><td>6</td><td><button type="button" class="dr-link rel-link" data-goto-lead="蔡明翰">蔡明翰</button></td><td><span class="chip rel-count">1</span></td><td>朋友×1</td><td>群組 A</td></tr>
+          <tr><td>7</td><td><button type="button" class="dr-link rel-link" data-goto-lead="楊雅筑">楊雅筑</button></td><td><span class="chip rel-count">0</span></td><td>—</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="rel-note">群組由關聯關係遞移計算 <span class="wk-missing-mark" title="需補欄位：關聯資料表與連通分量計算，目前為前端示意">＊</span></p>
+  </div>
+</div>
+
 <div class="dlg-mask sheet-mask" id="drawerMask">
 <div class="dlg sheet leaddlg" id="drawer" role="dialog" aria-labelledby="leadDlgName" aria-label="來客詳情">
   <div class="dhead">
@@ -8276,6 +8339,7 @@
     <button data-pane="d4">購買紀錄</button>
     <button data-pane="d1">基本資料</button>
     <button data-pane="d2">負責業務</button>
+    <button data-pane="d5">關聯</button>
   </div>
   <div class="dbody">
     <div class="dpane" id="d1">
@@ -8360,6 +8424,54 @@
         <button class="pillbtn" data-demo-toast>設定交屋日</button>
         <button class="danger-link" data-demo-toast>退戶</button>
       </div>
+    </div>
+    <div class="dpane" id="d5">
+      <div class="dsec">已建立的關聯</div>
+      <div class="rel-list" id="relList">
+        <div class="rel-row">
+          <button type="button" class="dr-link rel-person" data-goto-lead="林佳蓉">林佳蓉</button>
+          <span class="chips rel-chips"><span class="chip">介紹人</span></span>
+          <button type="button" class="pillbtn rel-remove">解除</button>
+        </div>
+        <div class="rel-row">
+          <button type="button" class="dr-link rel-person" data-goto-lead="黃淑珊">黃淑珊</button>
+          <span class="chips rel-chips"><span class="chip">親屬</span><span class="chip">同住</span></span>
+          <button type="button" class="pillbtn rel-remove">解除</button>
+        </div>
+        <div class="rel-row">
+          <button type="button" class="dr-link rel-person" data-goto-lead="許文彬">許文彬</button>
+          <span class="chips rel-chips"><span class="chip">同事</span></span>
+          <button type="button" class="pillbtn rel-remove">解除</button>
+        </div>
+      </div>
+      <div class="dsec">新增關聯</div>
+      <div class="rel-form">
+        <label class="rel-field"><span>選擇對象</span>
+          <select id="relTargetSelect">
+            <option value="">請選擇</option>
+            <option>林佳蓉</option><option>黃淑珊</option><option>許文彬</option><option>王思穎</option>
+            <option>蔡明翰</option><option>楊雅筑</option><option value="陳威宇::2">陳威宇（編號 2）</option>
+          </select>
+        </label>
+        <div class="rel-field"><span>選擇關係</span>
+          <span class="sel multi">
+            <input type="hidden" data-f="relation" value="">
+            <button type="button" class="sel-btn" aria-label="選擇關係" aria-haspopup="listbox" aria-expanded="false"><span class="sel-val empty">未選擇</span><svg class="ico chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></button>
+            <span class="sel-list" role="listbox" aria-multiselectable="true" hidden>
+              <button type="button" role="option" data-v="介紹人" aria-selected="false">介紹人<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+              <button type="button" role="option" data-v="被介紹" aria-selected="false">被介紹<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+              <button type="button" role="option" data-v="配偶" aria-selected="false">配偶<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+              <button type="button" role="option" data-v="親屬" aria-selected="false">親屬<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+              <button type="button" role="option" data-v="同事" aria-selected="false">同事<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+              <button type="button" role="option" data-v="同學" aria-selected="false">同學<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+              <button type="button" role="option" data-v="朋友" aria-selected="false">朋友<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+              <button type="button" role="option" data-v="同住" aria-selected="false">同住<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+            </span>
+          </span>
+        </div>
+        <button type="button" class="pillbtn solid rel-add" id="relAddBtn">新增關聯</button>
+      </div>
+      <p class="rel-note">關聯為雙向，於對方的關聯頁同步顯示 <span class="wk-missing-mark" title="需補欄位：關聯資料表（來客ID×來客ID×關係類型），目前為前端示意">＊</span></p>
     </div>
   </div>
 </div>
@@ -11166,6 +11278,8 @@
     lab.textContent = on.length? on.join('、') : '未選擇';
     lab.classList.toggle('empty', !on.length);
   }
+  window.mselSync=mselSync;
+  window.openDrawer=openDrawer;  /* 同上：關聯總覽點姓名需跨 IIFE 呼叫 */  /* 跟 toast、askConfirm 一樣：宣告在 IIFE 內，外層（關聯分頁）要用得掛上全域 */
   function closeAllPops(except){
     $$('#drawer .sel.open').forEach(function(w){
       if(w===except) return;
@@ -13952,6 +14066,89 @@ try{(function(){
       ic.innerHTML=ICO[c.dataset.page]||FALLBACK;
       var go=document.createElement('span'); go.className='fcirc fgo'; go.innerHTML=ARROW;
       bay.appendChild(ic); bay.appendChild(go); c.appendChild(bay);
+    });
+  })();
+
+  /* 來客關聯：前端示意資料的新增、解除、總覽與跳轉 */
+  (function(){
+    var overviewBtn=document.getElementById('relOverviewBtn');
+    var mask=document.getElementById('relDlgMask');
+    var dlg=document.getElementById('relDlg');
+    var closeBtn=document.getElementById('relDlgClose');
+    var drawer=document.getElementById('drawer');
+    var list=document.getElementById('relList');
+    var addBtn=document.getElementById('relAddBtn');
+    var target=document.getElementById('relTargetSelect');
+    if(!overviewBtn||!mask||!dlg||!closeBtn||!drawer||!list||!addBtn||!target) return;
+    var targetBtn=target.closest('.sel')&&target.closest('.sel').querySelector('.sel-btn');
+    if(targetBtn) targetBtn.setAttribute('aria-label','選擇對象');
+
+    function rowLeadName(row){
+      var name=row.querySelector('.name');
+      return name ? [].slice.call(name.childNodes).filter(function(node){return node.nodeType===3})
+        .map(function(node){return node.nodeValue}).join('').trim() : '';
+    }
+    function gotoLead(link){
+      var name=link.dataset.gotoLead;
+      var index=Math.max(1,parseInt(link.dataset.relIndex||'1',10));
+      var hits=[].slice.call(document.querySelectorAll('#page-leadsall tbody tr')).filter(function(row){
+        return rowLeadName(row)===name;
+      });
+      mask.classList.remove('show');
+      if(hits[index-1]) openDrawer(hits[index-1]);
+      else toast('示意：正式版依來客 ID 直接開啟「'+name+'」的詳情');
+    }
+    function closeOverview(){ mask.classList.remove('show') }
+    overviewBtn.addEventListener('click',function(){ mask.classList.add('show'); closeBtn.focus() });
+    closeBtn.addEventListener('click',closeOverview);
+    mask.addEventListener('click',function(event){ if(event.target===mask) closeOverview() });
+    dlg.addEventListener('click',function(event){
+      var link=event.target.closest('[data-goto-lead]');
+      if(!link) return;
+      event.preventDefault(); gotoLead(link);
+    });
+
+    drawer.addEventListener('click',function(event){
+      var removeBtn=event.target.closest('.rel-remove');
+      if(removeBtn){
+        var row=removeBtn.closest('.rel-row');
+        var name=row.querySelector('[data-goto-lead]').textContent.trim();
+        row.remove(); toast('已解除與 <b>'+name+'</b> 的關聯');
+        return;
+      }
+      var link=event.target.closest('#d5 [data-goto-lead]');
+      if(link){ event.preventDefault(); gotoLead(link) }
+    });
+
+    addBtn.addEventListener('click',function(){
+      var raw=target.value;
+      var relInput=document.querySelector('#d5 .sel.multi input[data-f="relation"]');
+      var relations=relInput ? relInput.value.split('、').filter(Boolean) : [];
+      if(!raw){ toast('請先選擇關聯對象'); return }
+      if(!relations.length){ toast('請至少選擇一種關係'); return }
+
+      var parts=raw.split('::');
+      var display=(target.options[target.selectedIndex]||{}).text||parts[0];
+      var row=document.createElement('div'); row.className='rel-row';
+      var link=document.createElement('button');
+      link.type='button'; link.className='dr-link rel-person'; link.dataset.gotoLead=parts[0]; link.textContent=display;
+      if(parts[1]) link.dataset.relIndex=parts[1];
+      var chips=document.createElement('span'); chips.className='chips rel-chips';
+      relations.forEach(function(relation){
+        var chip=document.createElement('span'); chip.className='chip'; chip.textContent=relation; chips.appendChild(chip);
+      });
+      var remove=document.createElement('button');
+      remove.type='button'; remove.className='pillbtn rel-remove'; remove.textContent='解除';
+      row.appendChild(link); row.appendChild(chips); row.appendChild(remove);
+      list.insertBefore(row,list.firstChild);
+
+      target.selectedIndex=0; target.dispatchEvent(new Event('change',{bubbles:true}));
+      var multi=document.querySelector('#d5 .sel.multi');
+      if(multi){
+        multi.querySelectorAll('[role="option"]').forEach(function(option){option.setAttribute('aria-selected','false')});
+        mselSync(multi);
+      }
+      toast('已新增與 <b>'+display+'</b> 的關聯');
     });
   })();
 
