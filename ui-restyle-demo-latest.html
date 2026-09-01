@@ -2688,19 +2688,21 @@
 #page-reports .wk-meta.wk-meta-6{grid-template-columns:repeat(12,minmax(0,1fr));grid-auto-rows:1fr;gap:var(--s3);padding:0;background:none;border-radius:0}
 #page-reports .wk-meta.wk-meta-6 > div{background:var(--bg);border:1px solid var(--line);border-radius:var(--r-row);padding:var(--s3) var(--s4);gap:var(--s2)}
 #page-reports .wk-meta.wk-meta-6 > div{grid-column:span 2}
-#page-reports .wk-meta.wk-meta-6 > .wk-kpi-card{grid-column:span 3}
-#page-reports .wk-meta.wk-meta-6 > .wk-prem-card{grid-column:span 2}
-#page-reports .wk-meta.wk-meta-6 > .wk-media-card{grid-column:span 4}
+#page-reports .wk-meta.wk-meta-6 > .wk-ratio-card{grid-column:span 4;display:flex;flex-direction:column;gap:var(--s2)}
 #page-reports .wk-meta.wk-meta-6 > div > b{font-size:.83rem;display:flex;align-items:baseline;gap:var(--s2);flex-wrap:wrap}
-#page-reports .wk-meta.wk-meta-6 > div > b i{font-style:normal;font-size:.68rem;font-weight:400;color:var(--muted);letter-spacing:.02em}
+#page-reports .wk-meta.wk-meta-6 > div > b i:not(.wk-vendor-inline){font-style:normal;font-size:.68rem;font-weight:400;color:var(--muted);letter-spacing:.02em}
 #page-reports .wk-meta.wk-meta-6 > .wk-balanced > b{margin:auto 0}
 #page-reports .wk-meta.wk-meta-6 > .wk-week-card > .datepick{margin:auto 0}
-#page-reports .wk-meta.wk-meta-6 > div > .wk-cardsub{margin-top:0}
+#page-reports .wk-meta.wk-meta-6 > div > .wk-cardsub{margin-top:auto}
+#page-reports .wk-vendor-inline{display:block;font-style:normal;font-weight:400;color:var(--muted);font-size:.72rem}
+#page-reports .wk-meta.wk-meta-6 > .wk-balanced > b{flex-direction:column;align-items:flex-start;gap:0}
 #page-reports .wk-stat-head{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--s2)}
 #page-reports .wk-stat-head>span{font-size:.64rem;color:var(--muted);letter-spacing:.06em}
 #page-reports .wk-meta .wk-stat-val{font-size:1.01rem;font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap}
 #page-reports .wk-meta .wk-prog{display:flex;gap:var(--s1);height:1.3rem;background:none;border-radius:0;overflow:visible;position:static;margin:auto 0}
-#page-reports .wk-meta .wk-prog i{flex:1;height:100%;border-radius:var(--r-pill);background:var(--track);overflow:hidden;position:relative}
+#page-reports .wk-meta .wk-prog i{flex:1;height:100%;border-radius:0;background:var(--track);overflow:hidden;position:relative}
+#page-reports .wk-meta .wk-prog i:first-child{border-radius:var(--r-row) 0 0 var(--r-row)}
+#page-reports .wk-meta .wk-prog i:last-child{border-radius:0 var(--r-row) var(--r-row) 0}
 #page-reports .wk-meta .wk-prog i u{position:absolute;left:0;top:0;bottom:0;background:var(--chart-1)}
 #page-reports .wk-prog-cap{display:flex;justify-content:space-between;font-size:.58rem;color:var(--muted)}
 #page-reports .wk-dp{width:100%}
@@ -2715,8 +2717,6 @@
 #page-reports .sel-mini .sel-list [role="option"]{display:flex;align-items:center;width:100%;text-align:left;color:var(--ink);padding:var(--s1) var(--s2);border-radius:var(--r-mini);cursor:pointer}
 #page-reports .sel-mini .sel-list [role="option"]:hover{background:var(--panel)}
 #page-reports .sel-mini .sel-list [role="option"][aria-selected="true"]{color:var(--accent);font-weight:500;background:var(--tint)}
-#page-reports .wk-meta.wk-meta-6 b.wk-dates{display:flex;flex-direction:column;gap:0;font-size:.83rem}
-#page-reports .wk-dates span{font-size:.83rem;font-variant-numeric:tabular-nums}
 #page-reports .wk-meta small{font-size:.58rem;color:var(--muted);letter-spacing:.02em}
 #page-reports .wk-cardsub{font-size:.68rem;color:var(--muted)}
 #page-reports .wk-missing-mark{color:var(--hot);cursor:help}
@@ -2771,9 +2771,10 @@
 #page-reports .wk-weather{display:inline-flex;justify-content:center}
 #page-reports .wk-weather .chip{cursor:pointer;min-width:var(--s7);padding:0 var(--s2)}
 #page-reports .wk-weather .chip:hover,#page-reports .wk-weather .chip:focus-visible{border-color:var(--warm);background:var(--warm-tint);color:var(--warm)}
-#page-reports .wk-meta > .wk-ratio-card{display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--s4);align-items:stretch}
-#page-reports .wk-ratio-side{display:flex;flex-direction:column;justify-content:space-between;gap:var(--s2)}
-#page-reports .wk-heads{display:grid;grid-template-columns:repeat(10,1.1rem);grid-auto-rows:1.1rem;gap:0;color:var(--muted);height:100%;align-content:center;justify-content:start}
+#page-reports .wk-ratio-view{display:flex;flex-direction:column;gap:var(--s2);flex:1}
+#page-reports .wk-ratio-view[hidden]{display:none}
+#page-reports .wk-ratio-top{display:flex;align-items:center;justify-content:space-between;gap:var(--s2)}
+#page-reports .wk-heads{display:grid;grid-template-columns:repeat(10,1rem);gap:0;color:var(--muted);justify-content:start;align-content:start;flex:1}
 #page-reports .wk-head.on{color:var(--muted);stroke-width:1.1}
 #page-reports .wk-head{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
 #page-reports .wk-head.solid{stroke:none;fill:var(--accent)}
@@ -2869,9 +2870,7 @@
 @media (max-width:1020px){
   #page-reports .wk-meta{grid-template-columns:repeat(2,minmax(0,1fr))}
   #page-reports .wk-meta.wk-meta-6 > div{grid-column:span 6}
-  #page-reports .wk-meta.wk-meta-6 > .wk-kpi-card{grid-column:span 12}
-  #page-reports .wk-meta.wk-meta-6 > .wk-prem-card{grid-column:span 12}
-  #page-reports .wk-meta.wk-meta-6 > .wk-media-card{grid-column:span 12}
+  #page-reports .wk-meta.wk-meta-6 > .wk-ratio-card{grid-column:span 12}
   #page-reports .wk-analysis-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   #page-reports .wk-rank-layout{grid-template-columns:1fr}
   #page-reports .wk-todo-list{grid-template-columns:1fr}
@@ -5968,8 +5967,7 @@
 <div id="reportsWeekly" style="display:none">
   <section class="wk-section" aria-label="週報表">
     <div class="wk-meta wk-meta-6">
-      <div class="wk-balanced"><span>建案名稱</span><b>青園綠境</b><small class="wk-cardsub">台中市北屯區・預售建案</small></div>
-      <div class="wk-balanced"><span>銷售單位</span><b>艾德霍客</b><small class="wk-cardsub">專案經理・林曉青</small></div>
+      <div class="wk-balanced"><span>建案名稱 / 銷售單位</span><b>青園綠境<i class="wk-vendor-inline">艾德霍客</i></b><small class="wk-cardsub">台中市北屯區・預售建案 <span class="wk-missing-mark" title="需補欄位：建案設定尚無行政區／產品型態欄位，此行為示意">＊</span></small></div>
       <div class="wk-week-card">
         <span>統計期間</span>
         <div class="datepick wk-dp" data-start="2026-08-24">
@@ -5990,66 +5988,73 @@
         </div>
         <small class="wk-cardsub">7 日</small>
       </div>
-      <div class="wk-balanced"><span>銷售期間</span><b class="wk-dates"><span>2026-03-01</span><span>～ 2029-12-31</span></b><small class="wk-cardsub">共 46 個月</small></div>
+      <div class="wk-kpi-card"><div class="wk-stat-head"><span>來人</span><b class="wk-stat-val">25 組</b></div><small class="wk-cardsub">累計 140 組</small></div>
+      <div class="wk-kpi-card"><div class="wk-stat-head"><span>回客</span><b class="wk-stat-val">2 組</b></div><small class="wk-cardsub">累計 12 組</small></div>
+      <div class="wk-kpi-card"><div class="wk-stat-head"><span>來電</span><b class="wk-stat-val">11 通</b></div><small class="wk-cardsub">累計 52 通</small></div>
+      <div class="wk-kpi-card"><div class="wk-stat-head"><span>下訂／簽約</span><b class="wk-stat-val">2 戶／0 戶</b></div><small class="wk-cardsub">累計 10 戶／8 戶</small></div>
+      <div class="wk-kpi-card wk-ratio-card">
+        <div class="wk-ratio-view" data-view="w">
+          <div class="wk-ratio-top"><b class="wk-stat-val">35:1</b><div class="seg" aria-label="成交比例檢視"><button type="button" class="on" data-ratio-view="w">本週</button><button type="button" data-ratio-view="t">累計</button></div></div>
+          <div class="wk-heads" aria-hidden="true">
+          <svg class="wk-head solid" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.9"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          </div>
+        </div>
+        <div class="wk-ratio-view" data-view="t" hidden>
+          <div class="wk-ratio-top"><b class="wk-stat-val">14:1</b><div class="seg" aria-label="成交比例檢視"><button type="button" data-ratio-view="w">本週</button><button type="button" class="on" data-ratio-view="t">累計</button></div></div>
+          <div class="wk-heads" aria-hidden="true">
+          <svg class="wk-head solid" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.9"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          </div>
+        </div>
+      </div>
       <div><div class="wk-stat-head"><span>銷售戶數</span><b class="wk-stat-val">126 戶</b></div><span class="wk-prog"><i><u style="width:100%"></u></i><i><u style="width:20%"></u></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><small class="wk-prog-cap"><span>已簽約 8 戶</span><span>6%</span></small></div>
       <div><div class="wk-stat-head"><span>總銷金額</span><b class="wk-stat-val">42.6 億</b></div><span class="wk-prog"><i><u style="width:100%"></u></i><i><u style="width:100%"></u></i><i><u style="width:60%"></u></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><small class="wk-prog-cap"><span>已簽約 5.5 億</span><span>13%</span></small></div>
-      <div class="wk-kpi-card wk-ratio-card">
-        <div class="wk-ratio-side"><span class="microlbl">成交比例・本週</span><b class="wk-stat-val">35:1</b></div><div class="wk-heads" aria-hidden="true">
-          <svg class="wk-head solid" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.9"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-        </div>
-      </div>
-      <div class="wk-kpi-card wk-ratio-card">
-        <div class="wk-ratio-side"><span class="microlbl">成交比例・累計</span><b class="wk-stat-val">14:1</b></div><div class="wk-heads" aria-hidden="true">
-          <svg class="wk-head solid" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.9"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-        </div>
-      </div>
       <div class="wk-kpi-card wk-prem-card">
         <div class="wk-stat-head"><span class="microlbl">溢價（開案至今）</span><b class="wk-stat-val wk-hot">−230 萬</b></div>
         <div class="wk-prem-sub"><p>平均每戶 <b class="wk-hot">−29 萬</b><small>（成交 8 戶）</small></p><p>佔簽約金額 <b class="wk-hot">0.4%</b><small>（55,247 萬）</small></p></div>
@@ -6198,6 +6203,7 @@
       <div class="wk-todo-head"><h4>產出這份週報還缺什麼</h4><span class="wk-source"><span class="chip wk-source-missing">需補欄位</span><small>工程串接待辦</small></span></div>
       <ul class="wk-todo-list">
         <li>地坪資料</li>
+        <li>建案基本資料：行政區／產品型態（合併卡副行目前為示意）</li>
         <li>抗性分析欄位（勾勾表）</li>
         <li>賣點分析欄位（勾勾表）</li>
         <li>來人分析：同行關係／自來性別（男自來、夫婦同來等）</li>
@@ -10558,6 +10564,16 @@
       }
       if(e.target.closest('.wk-dp .dp-panel')){
         e.stopPropagation();
+        return;
+      }
+      var ratioViewBtn=e.target.closest('[data-ratio-view]');
+      if(ratioViewBtn){
+        e.stopPropagation();
+        var ratioCard=ratioViewBtn.closest('.wk-ratio-card');
+        if(!ratioCard)return;
+        var ratioView=ratioViewBtn.dataset.ratioView;
+        ratioCard.querySelectorAll('.wk-ratio-view[data-view]').forEach(function(view){view.hidden=view.dataset.view!==ratioView});
+        ratioCard.querySelectorAll('[data-ratio-view]').forEach(function(btn){btn.classList.toggle('on',btn.dataset.ratioView===ratioView)});
         return;
       }
       var rankViewBtn=e.target.closest('[data-rank-view-btn]');
