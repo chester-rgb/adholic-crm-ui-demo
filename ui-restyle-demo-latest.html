@@ -2731,7 +2731,10 @@
 /* 清除是破壞性的，滑上去轉紅框 */
 #page-leadsall [data-act="laClear"]:hover{border-color:var(--line-hot);background:var(--hot-tint);color:var(--hot)}
 /* 搜尋改成一整條到底：接在篩選鈕後面，吃掉整列剩下的寬度 */
-#page-leadsall .searchwrap.lafull{flex:1 1 12rem; width:auto; min-width:9rem; height:var(--ctrl-h)}
+/* 搜尋框佔滿整排並強制斷行，讓十顆篩選鈕排成完整一列（Enson 2026-09-02） */
+/* 十顆篩選鈕排一列：容器 1272px、鈕寬合計 1196px，間距收到 --s1 才塞得下 */
+#page-leadsall .leadsall-filters{gap:var(--s1)}
+#page-leadsall .searchwrap.lafull{flex:1 1 100%; width:auto; min-width:9rem; height:var(--ctrl-h)}
 #page-leadsall .searchwrap.lafull .searchbox{position:static; width:100%; flex-direction:row}
 #page-leadsall .searchwrap.lafull .searchbox.open{border-color:var(--line)}
 #page-leadsall .searchwrap.lafull .searchbox:focus-within{border-color:var(--accent)}
@@ -5224,8 +5227,8 @@
               <tr class="gift-row"><td>家電包（三機）</td><td>18 萬</td><td>2026-06-01～2026-08-31</td><td><span class="chip gift-status gift-status-active">啟用中</span></td><td><button type="button" class="gift-sent" data-gift-recipients="家電包（三機）">5 戶</button></td><td>冰箱・洗衣機・冷氣</td><td><span class="gift-ops"><button type="button" class="pillbtn" data-demo-toast>編輯</button><button type="button" class="pillbtn gift-toggle">停用</button></span></td></tr>
               <tr class="gift-row"><td>裝潢金</td><td>30 萬</td><td>2026-08-01～2026-09-30</td><td><span class="chip gift-status gift-status-active">啟用中</span></td><td><button type="button" class="gift-sent" data-gift-recipients="裝潢金">2 戶</button></td><td>簽約後分兩期撥付</td><td><span class="gift-ops"><button type="button" class="pillbtn" data-demo-toast>編輯</button><button type="button" class="pillbtn gift-toggle">停用</button></span></td></tr>
               <tr class="gift-row"><td>車位折抵</td><td>25 萬</td><td>2026-08-15～2026-09-15</td><td><span class="chip gift-status gift-status-active">啟用中</span></td><td><button type="button" class="gift-sent" data-gift-recipients="車位折抵">1 戶</button></td><td>限平面車位</td><td><span class="gift-ops"><button type="button" class="pillbtn" data-demo-toast>編輯</button><button type="button" class="pillbtn gift-toggle">停用</button></span></td></tr>
-              <tr class="gift-row gift-ended"><td>管理費補貼兩年</td><td>12 萬</td><td>2026-03-01～2026-05-31</td><td><span class="chip gift-status gift-status-ended">已結束</span></td><td><button type="button" class="gift-sent" data-gift-recipients="管理費補貼兩年">3 戶</button></td><td>潛銷期方案</td><td><span class="gift-ops"><button type="button" class="pillbtn" data-demo-toast>編輯</button><button type="button" class="pillbtn gift-toggle">啟用</button></span></td></tr>
-              <tr class="gift-row gift-ended"><td>全屋窗簾</td><td>8 萬</td><td>2026-03-01～2026-05-31</td><td><span class="chip gift-status gift-status-ended">已結束</span></td><td><button type="button" class="gift-sent" data-gift-recipients="全屋窗簾">2 戶</button></td><td>潛銷期方案</td><td><span class="gift-ops"><button type="button" class="pillbtn" data-demo-toast>編輯</button><button type="button" class="pillbtn gift-toggle">啟用</button></span></td></tr>
+              <tr class="gift-row gift-ended"><td>管理費補貼兩年</td><td>12 萬</td><td>2026-03-01～2026-05-31</td><td><span class="chip gift-status gift-status-ended">已結束</span></td><td><button type="button" class="gift-sent" data-gift-recipients="管理費補貼兩年">1 戶</button></td><td>潛銷期方案</td><td><span class="gift-ops"><button type="button" class="pillbtn" data-demo-toast>編輯</button><button type="button" class="pillbtn gift-toggle">啟用</button></span></td></tr>
+              <tr class="gift-row gift-ended"><td>全屋窗簾</td><td>8 萬</td><td>2026-03-01～2026-05-31</td><td><span class="chip gift-status gift-status-ended">已結束</span></td><td><button type="button" class="gift-sent" data-gift-recipients="全屋窗簾">1 戶</button></td><td>潛銷期方案</td><td><span class="gift-ops"><button type="button" class="pillbtn" data-demo-toast>編輯</button><button type="button" class="pillbtn gift-toggle">啟用</button></span></td></tr>
               <tr class="gift-row"><td>訂金加碼</td><td>5 萬</td><td>2026-09-01～2026-09-30</td><td><span class="chip gift-status gift-status-upcoming">未開始</span></td><td>—</td><td>下檔期預備</td><td><span class="gift-ops"><button type="button" class="pillbtn" data-demo-toast>編輯</button><button type="button" class="pillbtn gift-toggle">啟用</button></span></td></tr>
             </tbody>
           </table></div>
@@ -7033,6 +7036,7 @@
   <h2>來客名單</h2>
   <span class="cnt">1,268 筆</span>
   <div class="acts">
+    <button class="circlebtn soft" id="relOverviewBtn" type="button" aria-label="關聯總覽" data-tip="關聯總覽"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8.5" r="3.2"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5"/><circle cx="17" cy="9.5" r="2.4"/><path d="M15.8 14.3c2.4.2 4.1 1.7 4.7 4.2"/></svg></button>
     <button class="pillbtn iconpill" data-act="openImport" aria-label="匯入 Excel"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4M7.5 8.5L12 4l4.5 4.5"/><path d="M4 17v2.5A1.5 1.5 0 0 0 5.5 21h13a1.5 1.5 0 0 0 1.5-1.5V17"/></svg><span class="lbl">匯入 Excel</span></button>
     <button class="pillbtn iconpill" id="exportAll" aria-label="匯出 Excel"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v12M7.5 11.5L12 16l4.5-4.5"/><path d="M4 17v2.5A1.5 1.5 0 0 0 5.5 21h13a1.5 1.5 0 0 0 1.5-1.5V17"/></svg><span class="lbl">匯出 Excel</span></button>
     <button class="pillbtn solid invite" id="addLeadBtn" aria-label="新增來客"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16"/></svg><span class="lbl">新增來客</span></button>
@@ -7067,15 +7071,15 @@
   <button class="pillbtn" data-act="ddDist" disabled>行政區：先選縣市 ▾</button>
   <button class="pillbtn" data-act="dd" data-opts="全部|現場|FB|IG|網路|介紹|看板|路過">來源：全部 ▾</button>
   <button class="pillbtn" data-act="laGrade">分級：全部 ▾</button>
+  <button class="pillbtn" data-act="dd" data-gift-filter title="贈品綁定單筆成交；同一人在不同建案的來客紀錄各自獨立計算" data-opts="全部|家電包（三機）|裝潢金|車位折抵|管理費補貼兩年|全屋窗簾|未取得贈品">贈品：全部 ▾</button>
   <button class="pillbtn" data-act="laStale">久未跟進</button>
   <button class="pillbtn" data-act="laUn">未指派</button>
   <button class="pillbtn" data-act="laCross" aria-pressed="false">跨案</button>
+  <button class="pillbtn" data-act="dd" data-rel-filter data-opts="全部|有關聯|無關聯|關聯 2 人以上|關聯 3 人以上">關聯：全部 ▾</button>
   <div class="searchwrap lafull"><div class="searchbox open" id="laSearchBox">
     <span class="sb-btn" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/></svg></span>
     <input class="qsearch" id="laSearch" type="search" aria-label="搜尋來客" placeholder="搜尋姓名、電話…">
   </div></div>
-  <button class="pillbtn" id="relOverviewBtn" type="button">關聯總覽</button>
-  <button class="pillbtn" data-act="dd" data-gift-filter data-opts="全部|家電包（三機）|裝潢金|車位折抵|管理費補貼兩年|全屋窗簾|未取得贈品">贈品：全部 ▾</button>
 </div>
 <div class="leadsall-saved" id="laSaved">
   <span class="sv-lbl">常用組合</span>
@@ -7112,7 +7116,7 @@
         </tr>
       </thead>
       <tbody id="rows">
-        <tr data-date="2026-08-19" data-created="2026-08-19 14:22" data-proj="青園綠境" data-cross="1" data-city="臺中市" data-dist="北屯區">
+        <tr data-date="2026-08-19" data-created="2026-08-19 14:22" data-proj="青園綠境" data-cross="1" data-city="臺中市" data-dist="北屯區" data-gifts="家電包（三機）|車位折抵">
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
           <td><span class="name">陳威宇<span class="rel-badge" title="有 3 筆關聯">3</span><span class="tag">回訪 ×2</span></span></td>
           <td><span class="grade a">A 級</span></td>
@@ -7122,7 +7126,7 @@
           <td>2026-08-19</td><td class="assignee">張家豪</td>
           <td class="ops"><span class="rowact"><button class="iconop" data-act="assign" aria-label="指派陳威宇" data-tip="指派"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.7-3.2 2.5-5 5.5-5s4.8 1.8 5.5 5M18 8v6M15 11h6"/></svg></button><button class="iconop del" data-act="del" aria-label="刪除陳威宇" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></span></td>
         </tr>
-        <tr data-date="2026-08-18" data-created="2026-08-18 10:05" data-proj="青園綠境" data-cross="0" data-city="臺中市" data-dist="北屯區">
+        <tr data-date="2026-08-18" data-created="2026-08-18 10:05" data-proj="青園綠境" data-cross="0" data-city="臺中市" data-dist="北屯區" data-gifts="家電包（三機）|裝潢金">
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
           <td><span class="name">林佳蓉<span class="rel-badge" title="有 4 筆關聯">4</span></span></td>
           <td><span class="grade b">B 級</span></td>
@@ -7132,7 +7136,7 @@
           <td>2026-08-18</td><td class="assignee">吳姿瑩</td>
           <td class="ops"><span class="rowact"><button class="iconop" data-act="assign" aria-label="指派林佳蓉" data-tip="指派"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.7-3.2 2.5-5 5.5-5s4.8 1.8 5.5 5M18 8v6M15 11h6"/></svg></button><button class="iconop del" data-act="del" aria-label="刪除林佳蓉" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></span></td>
         </tr>
-        <tr data-date="2026-08-17" data-created="2026-08-17 16:40" data-proj="秴楓" data-cross="0" data-city="臺中市" data-dist="南屯區">
+        <tr data-date="2026-08-17" data-created="2026-08-17 16:40" data-proj="秴楓" data-cross="0" data-city="臺中市" data-dist="南屯區" data-gifts="家電包（三機）">
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
           <td><span class="name">黃淑珊<span class="rel-badge" title="有 2 筆關聯">2</span></span></td>
           <td><span class="grade d">D 級</span></td>
@@ -7142,7 +7146,7 @@
           <td>2026-08-17</td><td class="assignee"><span class="unassigned">未指派</span></td>
           <td class="ops"><span class="rowact"><button class="iconop" data-act="assign" aria-label="指派黃淑珊" data-tip="指派"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.7-3.2 2.5-5 5.5-5s4.8 1.8 5.5 5M18 8v6M15 11h6"/></svg></button><button class="iconop del" data-act="del" aria-label="刪除黃淑珊" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></span></td>
         </tr>
-        <tr data-date="2026-08-16" data-created="2026-08-16 11:18" data-proj="恆山千隅" data-cross="1" data-city="臺中市" data-dist="西屯區">
+        <tr data-date="2026-08-16" data-created="2026-08-16 11:18" data-proj="恆山千隅" data-cross="1" data-city="臺中市" data-dist="西屯區" data-gifts="家電包（三機）|管理費補貼兩年">
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
           <td><span class="name">許文彬<span class="rel-badge" title="有 2 筆關聯">2</span><span class="tag">回訪 ×3</span></span></td>
           <td><span class="grade a">A 級</span></td>
@@ -7152,7 +7156,7 @@
           <td>2026-08-16</td><td class="assignee">張家豪</td>
           <td class="ops"><span class="rowact"><button class="iconop" data-act="assign" aria-label="指派許文彬" data-tip="指派"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.7-3.2 2.5-5 5.5-5s4.8 1.8 5.5 5M18 8v6M15 11h6"/></svg></button><button class="iconop del" data-act="del" aria-label="刪除許文彬" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></span></td>
         </tr>
-        <tr data-date="2026-08-15" data-created="2026-08-15 15:02" data-proj="青園綠境" data-cross="0" data-city="臺中市" data-dist="北屯區">
+        <tr data-date="2026-08-15" data-created="2026-08-15 15:02" data-proj="青園綠境" data-cross="0" data-city="臺中市" data-dist="北屯區" data-gifts="家電包（三機）">
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
           <td><span class="name">王思穎<span class="rel-badge" title="有 1 筆關聯">1</span></span></td>
           <td><span class="grade c">C 級</span></td>
@@ -7162,7 +7166,7 @@
           <td>2026-08-15</td><td class="assignee"><span class="unassigned">未指派</span></td>
           <td class="ops"><span class="rowact"><button class="iconop" data-act="assign" aria-label="指派王思穎" data-tip="指派"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.7-3.2 2.5-5 5.5-5s4.8 1.8 5.5 5M18 8v6M15 11h6"/></svg></button><button class="iconop del" data-act="del" aria-label="刪除王思穎" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></span></td>
         </tr>
-        <tr data-date="2026-08-14" data-created="2026-08-14 09:47" data-proj="青園綠境" data-cross="1" data-city="臺中市" data-dist="北屯區">
+        <tr data-date="2026-08-14" data-created="2026-08-14 09:47" data-proj="青園綠境" data-cross="1" data-city="臺中市" data-dist="北屯區" data-gifts="全屋窗簾">
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
           <td><span class="name">蔡明翰<span class="rel-badge" title="有 1 筆關聯">1</span></span></td>
           <td><span class="grade b">B 級</span></td>
@@ -7172,7 +7176,7 @@
           <td>2026-08-14</td><td class="assignee">吳姿瑩</td>
           <td class="ops"><span class="rowact"><button class="iconop" data-act="assign" aria-label="指派蔡明翰" data-tip="指派"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.7-3.2 2.5-5 5.5-5s4.8 1.8 5.5 5M18 8v6M15 11h6"/></svg></button><button class="iconop del" data-act="del" aria-label="刪除蔡明翰" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></span></td>
         </tr>
-        <tr data-date="2026-08-13" data-created="2026-08-13 15:40" data-proj="恆山千隅" data-cross="1" data-city="臺中市" data-dist="西屯區">
+        <tr data-date="2026-08-13" data-created="2026-08-13 15:40" data-proj="恆山千隅" data-cross="1" data-city="臺中市" data-dist="西屯區" data-gifts="裝潢金">
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
           <td><span class="name">陳威宇<span class="tag">回訪 ×2</span></span></td>
           <td><span class="grade a">A 級</span></td>
@@ -7182,7 +7186,7 @@
           <td>2026-08-13</td><td class="assignee">吳姿瑩</td>
           <td class="ops"><span class="rowact"><button class="iconop" data-act="assign" aria-label="指派陳威宇" data-tip="指派"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.7-3.2 2.5-5 5.5-5s4.8 1.8 5.5 5M18 8v6M15 11h6"/></svg></button><button class="iconop del" data-act="del" aria-label="刪除陳威宇" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></span></td>
         </tr>
-        <tr data-date="2026-08-12" data-created="2026-08-12 17:33" data-proj="恆山千隅" data-cross="0" data-city="臺中市" data-dist="西屯區">
+        <tr data-date="2026-08-12" data-created="2026-08-12 17:33" data-proj="恆山千隅" data-cross="0" data-city="臺中市" data-dist="西屯區" data-gifts="">
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
           <td><span class="name">楊雅筑</span></td>
           <td><span class="grade b">B 級</span></td>
@@ -7192,7 +7196,7 @@
           <td>2026-08-12</td><td class="assignee">張家豪</td>
           <td class="ops"><span class="rowact"><button class="iconop" data-act="assign" aria-label="指派楊雅筑" data-tip="指派"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.7-3.2 2.5-5 5.5-5s4.8 1.8 5.5 5M18 8v6M15 11h6"/></svg></button><button class="iconop del" data-act="del" aria-label="刪除楊雅筑" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></span></td>
         </tr>
-        <tr data-date="2026-08-11" data-created="2026-08-11 13:20" data-proj="秴楓" data-cross="0" data-city="臺中市" data-dist="南屯區">
+        <tr data-date="2026-08-11" data-created="2026-08-11 13:20" data-proj="秴楓" data-cross="0" data-city="臺中市" data-dist="南屯區" data-gifts="">
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
           <td><span class="name"><span class="stale-dot" title="久未跟進"></span>郭俊廷</span></td>
           <td><span class="grade d">D 級</span></td>
@@ -7202,7 +7206,7 @@
           <td>2026-08-11</td><td class="assignee">陳冠廷</td>
           <td class="ops"><span class="rowact"><button class="iconop" data-act="assign" aria-label="指派郭俊廷" data-tip="指派"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.7-3.2 2.5-5 5.5-5s4.8 1.8 5.5 5M18 8v6M15 11h6"/></svg></button><button class="iconop del" data-act="del" aria-label="刪除郭俊廷" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></span></td>
         </tr>
-        <tr data-date="2026-08-09" data-created="2026-08-09 10:12" data-proj="恆山千隅" data-cross="1" data-city="臺中市" data-dist="西屯區">
+        <tr data-date="2026-08-09" data-created="2026-08-09 10:12" data-proj="恆山千隅" data-cross="1" data-city="臺中市" data-dist="西屯區" data-gifts="">
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
           <td><span class="name"><span class="stale-dot" title="久未跟進"></span>蔡明翰</span></td>
           <td><span class="grade b">B 級</span></td>
@@ -7212,7 +7216,7 @@
           <td>2026-08-09</td><td class="assignee">吳姿瑩</td>
           <td class="ops"><span class="rowact"><button class="iconop" data-act="assign" aria-label="指派蔡明翰" data-tip="指派"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.7-3.2 2.5-5 5.5-5s4.8 1.8 5.5 5M18 8v6M15 11h6"/></svg></button><button class="iconop del" data-act="del" aria-label="刪除蔡明翰" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></span></td>
         </tr>
-        <tr data-date="2026-08-05" data-created="2026-08-05 14:26" data-proj="秴楓" data-cross="1" data-city="臺中市" data-dist="南屯區">
+        <tr data-date="2026-08-05" data-created="2026-08-05 14:26" data-proj="秴楓" data-cross="1" data-city="臺中市" data-dist="南屯區" data-gifts="">
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
           <td><span class="name"><span class="stale-dot" title="久未跟進"></span>許文彬<span class="tag">回訪 ×3</span></span></td>
           <td><span class="grade a">A 級</span></td>
@@ -7222,7 +7226,7 @@
           <td>2026-08-05</td><td class="assignee">周家瑜</td>
           <td class="ops"><span class="rowact"><button class="iconop" data-act="assign" aria-label="指派許文彬" data-tip="指派"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.7-3.2 2.5-5 5.5-5s4.8 1.8 5.5 5M18 8v6M15 11h6"/></svg></button><button class="iconop del" data-act="del" aria-label="刪除許文彬" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></span></td>
         </tr>
-        <tr data-date="2026-07-30" data-created="2026-07-30 09:05" data-proj="秴楓" data-cross="1" data-city="臺中市" data-dist="南屯區">
+        <tr data-date="2026-07-30" data-created="2026-07-30 09:05" data-proj="秴楓" data-cross="1" data-city="臺中市" data-dist="南屯區" data-gifts="">
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
           <td><span class="name"><span class="stale-dot" title="久未跟進"></span>蔡明翰</span></td>
           <td><span class="grade b">B 級</span></td>
@@ -10514,7 +10518,7 @@
     ['金門縣','金城鎮,金湖鎮,金沙鎮,金寧鄉,烈嶼鄉,烏坵鄉'],
     ['連江縣','南竿鄉,北竿鄉,莒光鄉,東引鄉']
   ];
-  var laCity='全部縣市', laDist='', laProj='', laFrom='', laTo='', laCross=false, laStale=false, laUn=false, laGrade='', laSrc='', laQ='';
+  var laCity='全部縣市', laDist='', laProj='', laFrom='', laTo='', laCross=false, laStale=false, laUn=false, laGrade='', laSrc='', laRel='', laGift='', laQ='';
   /* demo 今天；新增來客與日期選擇器上界都以它為準 */
   var TODAY='2026-08-26';
   /* 建案所在區位——列上的 data-city/data-dist 由此推導，縣市與行政區篩選才有東西可比 */
@@ -10557,6 +10561,19 @@
             && (!laGrade || (tr.children[2]||{textContent:''}).textContent.trim()===laGrade)
             && (!laSrc || (tr.children[5]||{textContent:''}).textContent.trim()===laSrc)
             && (!laQ || ((tr.children[1]||{textContent:''}).textContent+(tr.children[3]||{textContent:''}).textContent).indexOf(laQ)>-1);
+      if(laRel){
+        var badge=tr.querySelector('.rel-badge');
+        var relCount=badge?parseInt(badge.textContent,10)||0:0;
+        if(laRel==='有關聯' && relCount<1) ok=false;
+        if(laRel==='無關聯' && relCount>0) ok=false;
+        if(laRel==='關聯 2 人以上' && relCount<2) ok=false;
+        if(laRel==='關聯 3 人以上' && relCount<3) ok=false;
+      }
+      if(laGift){
+        var gifts=(tr.dataset.gifts||'');
+        if(laGift==='未取得贈品'){ if(gifts) ok=false }
+        else if(gifts.split('|').indexOf(laGift)<0) ok=false;
+      }
       tr.style.display = ok ? '' : 'none';
       if(ok) n++;
     });
@@ -10572,7 +10589,7 @@
     var cnt=$('#page-leadsall .sec .cnt');
     if(cnt){
       if(cnt.dataset.all==null) cnt.dataset.all=cnt.textContent;
-      cnt.textContent = (laProj||laFrom||laTo||laCross||laStale||laUn||laGrade||laSrc||laQ||(laCity&&laCity!=='全部縣市')||laDist) ? (n+' 筆') : cnt.dataset.all;
+      cnt.textContent = (laProj||laFrom||laTo||laCross||laStale||laUn||laGrade||laSrc||laRel||laGift||laQ||(laCity&&laCity!=='全部縣市')||laDist) ? (n+' 筆') : cnt.dataset.all;
     }
   }
   /* 常用組合＝把整排條件存成一個名字，點一下整組套回來 */
@@ -13490,7 +13507,7 @@ try{ /* collect */
       '建立',function(v){
         if(!v.nm){ toast('請輸入姓名'); return false }
         var tb=document.querySelector('#page-leadsall tbody');
-        var tr=document.createElement('tr'); tr.dataset.date=TODAY; tr.dataset.created=TODAY+' 14:00'; tr.dataset.proj=v.proj; tr.dataset.cross='0';
+        var tr=document.createElement('tr'); tr.dataset.date=TODAY; tr.dataset.created=TODAY+' 14:00'; tr.dataset.proj=v.proj; tr.dataset.cross='0'; tr.dataset.gifts='';
         var ar=LA_AREA[v.proj]||['臺中市','北屯區']; tr.dataset.city=ar[0]; tr.dataset.dist=ar[1];
         tr.innerHTML='<td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>'
           +'<td><span class="name">'+v.nm+'</span></td>'
@@ -13617,8 +13634,9 @@ try{ /* collect */
         if(b.closest('#page-leadsall')) laMark(b, x!==b.dataset.opts.split('|')[0]);
         if(pre==='建案'){ laProj = (x==='全部建案') ? '' : x; laFilterRows() }
         if(pre==='來源'){ laSrc = (x==='全部') ? '' : x; laFilterRows() }
-        if(b.hasAttribute('data-gift-filter')) toast('示意：正式版依成交贈品關聯表篩選');
-        else toast('條件已更新：'+pre+' <b>'+x+'</b>');
+        if(pre==='關聯'){ laRel = (x==='全部') ? '' : x; laFilterRows() }
+        if(pre==='贈品'){ laGift = (x==='全部') ? '' : x; laFilterRows() }
+        toast('條件已更新：'+pre+' <b>'+x+'</b>');
       });
     } else if(act==='ddCity'){
       e.stopPropagation();
@@ -13664,7 +13682,7 @@ try{ /* collect */
       laSetCity('全部縣市');
       var xb=$('#page-leadsall [data-act="laCross"]');
       if(xb){ laCross=false; xb.setAttribute('aria-pressed','false'); laMark(xb,false) }
-      laProj=''; laUn=false; laGrade=''; laSrc=''; laQ='';
+      laProj=''; laUn=false; laGrade=''; laSrc=''; laRel=''; laGift=''; laQ='';
       var gb=$('#page-leadsall [data-act="laGrade"]'); if(gb){ gb.textContent='分級：全部 ▾'; laMark(gb,false) }
       var ub=$('#page-leadsall [data-act="laUn"]'); if(ub) laMark(ub,false);
       var sq=$('#laSearch'); if(sq) sq.value='';
