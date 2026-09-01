@@ -2695,6 +2695,7 @@
 #page-reports .wk-meta.wk-meta-6 > .wk-balanced > b{margin:auto 0}
 #page-reports .wk-meta.wk-meta-6 > .wk-week-card > .datepick{margin:auto 0}
 #page-reports .wk-meta.wk-meta-6 > div > .wk-cardsub{font-size:.74rem;margin-top:auto}
+#page-reports .wk-meta.wk-meta-6 > .wk-ratio-card > .wk-ratio-scope{font-size:.64rem}
 #page-reports .wk-vendor-inline{display:block;font-style:normal;font-weight:400;color:var(--muted);font-size:.9rem}
 #page-reports .wk-meta.wk-meta-6 > .wk-balanced > b{flex-direction:column;align-items:flex-start;gap:0}
 #page-reports .wk-stat-head{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--s2)}
@@ -2706,6 +2707,16 @@
 #page-reports .wk-trend-tag.down{color:var(--hot)}
 #page-reports .wk-trend-tag.flat{color:var(--muted)}
 #page-reports .wk-meta .wk-stat-val{font-size:1.06rem;font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap}
+#page-reports .wk-meta.wk-meta-6 > div > span,
+#page-reports .wk-meta.wk-meta-6 > div > b,
+#page-reports .wk-meta.wk-meta-6 > .wk-week-card .wk-dp .dp-val,
+#page-reports .wk-meta.wk-meta-6 > div .wk-stat-head > span,
+#page-reports .wk-meta.wk-meta-6 > div .wk-stat-head .wk-stat-val,
+#page-reports .wk-meta.wk-meta-6 > div .wk-sublbl,
+#page-reports .wk-meta.wk-meta-6 > div .wk-kpi-foot .wk-cardsub,
+#page-reports .wk-meta.wk-meta-6 > div .wk-kpi-foot .wk-trend-tag,
+#page-reports .wk-meta.wk-meta-6 > div .wk-prog-cap,
+#page-reports .wk-meta.wk-meta-6 > .wk-ratio-card > .wk-ratio-scope,
 #page-reports .wk-meta .wk-prog{display:flex;gap:var(--s1);height:1.3rem;background:none;border-radius:0;overflow:visible;position:static;margin:auto 0}
 #page-reports .wk-meta .wk-prog i{flex:1;height:100%;border-radius:0;background:var(--track);overflow:hidden;position:relative}
 #page-reports .wk-meta .wk-prog i:first-child{border-radius:var(--r-row) 0 0 var(--r-row)}
@@ -2786,9 +2797,6 @@
 #page-reports .wk-head{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
 #page-reports .wk-head.solid{stroke:none;fill:var(--accent)}
 #page-reports .wk-hot{color:var(--hot)}
-#page-reports .wk-prem-sub{display:flex;align-items:center;margin:auto 0;font-size:.74rem;color:var(--muted)}
-#page-reports .wk-prem-sub p{margin:0}
-#page-reports .wk-prem-sub b{font:inherit;font-weight:500}
 #page-reports .wk-field-gap{display:flex;align-items:center;gap:var(--s2);flex-wrap:wrap;margin-top:var(--s3);font-size:.74rem;color:var(--muted)}
 #page-reports .wk-subtitle{font-size:.78rem;font-weight:500;letter-spacing:.06em}
 #page-reports .wk-analysis-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s5) var(--s4)}
@@ -6022,7 +6030,7 @@
       <div><div class="wk-stat-head"><span>總銷金額</span><b class="wk-stat-val">42.6 億</b></div><span class="wk-prog"><i><u style="width:100%"></u></i><i><u style="width:100%"></u></i><i><u style="width:60%"></u></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><small class="wk-prog-cap"><span>已簽約 5.5 億</span><span>13%</span></small></div>
       <div class="wk-kpi-card wk-prem-card">
         <div class="wk-stat-head"><span class="microlbl">溢價金額</span><b class="wk-stat-val wk-hot">−230 萬</b></div>
-        <div class="wk-prem-sub"><p>溢價率 <b class="wk-hot">−0.4%</b></p></div>
+        <div class="wk-kpi-foot"><small class="wk-cardsub">溢價率 <b class="wk-hot">−0.4%</b></small></div>
       </div>
       <div class="wk-kpi-card wk-media-card">
         <span class="microlbl">本週廣告媒體</span>
