@@ -2695,10 +2695,16 @@
 #page-reports .wk-meta.wk-meta-6 > .wk-balanced > b{margin:auto 0}
 #page-reports .wk-meta.wk-meta-6 > .wk-week-card > .datepick{margin:auto 0}
 #page-reports .wk-meta.wk-meta-6 > div > .wk-cardsub{margin-top:auto}
-#page-reports .wk-vendor-inline{display:block;font-style:normal;font-weight:400;color:var(--muted);font-size:.72rem}
+#page-reports .wk-vendor-inline{display:block;font-style:normal;font-weight:400;color:var(--muted);font-size:.83rem}
 #page-reports .wk-meta.wk-meta-6 > .wk-balanced > b{flex-direction:column;align-items:flex-start;gap:0}
 #page-reports .wk-stat-head{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--s2)}
 #page-reports .wk-stat-head>span{font-size:.64rem;color:var(--muted);letter-spacing:.06em}
+#page-reports .wk-sublbl{display:block;font-size:.58rem;color:var(--muted);letter-spacing:.04em}
+#page-reports .wk-kpi-foot{display:flex;justify-content:space-between;align-items:baseline;gap:var(--s2);margin-top:auto}
+#page-reports .wk-trend-tag{font-size:.58rem;font-weight:500;letter-spacing:0}
+#page-reports .wk-trend-tag.up{color:var(--accent)}
+#page-reports .wk-trend-tag.down{color:var(--hot)}
+#page-reports .wk-trend-tag.flat{color:var(--muted)}
 #page-reports .wk-meta .wk-stat-val{font-size:1.01rem;font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap}
 #page-reports .wk-meta .wk-prog{display:flex;gap:var(--s1);height:1.3rem;background:none;border-radius:0;overflow:visible;position:static;margin:auto 0}
 #page-reports .wk-meta .wk-prog i{flex:1;height:100%;border-radius:0;background:var(--track);overflow:hidden;position:relative}
@@ -2772,8 +2778,6 @@
 #page-reports .wk-weather{display:inline-flex;justify-content:center}
 #page-reports .wk-weather .chip{cursor:pointer;min-width:var(--s7);padding:0 var(--s2)}
 #page-reports .wk-weather .chip:hover,#page-reports .wk-weather .chip:focus-visible{border-color:var(--warm);background:var(--warm-tint);color:var(--warm)}
-#page-reports .wk-ratio-view{display:flex;flex-direction:column;gap:var(--s2);flex:1}
-#page-reports .wk-ratio-view[hidden]{display:none}
 #page-reports .wk-ratio-top{display:flex;align-items:center;justify-content:space-between;gap:var(--s2)}
 #page-reports .wk-heads{display:grid;grid-template-columns:repeat(10,1rem);gap:0;color:var(--muted);justify-content:start;align-content:start;flex:1}
 #page-reports .wk-head.on{color:var(--muted);stroke-width:1.1}
@@ -5989,14 +5993,13 @@
         </div>
         <small class="wk-cardsub">7 日</small>
       </div>
-      <div class="wk-kpi-card"><div class="wk-stat-head"><span>來人</span><b class="wk-stat-val">25 組</b></div><small class="wk-cardsub">累計 140 組</small></div>
-      <div class="wk-kpi-card"><div class="wk-stat-head"><span>回客</span><b class="wk-stat-val">2 組</b></div><small class="wk-cardsub">累計 12 組</small></div>
-      <div class="wk-kpi-card"><div class="wk-stat-head"><span>來電</span><b class="wk-stat-val">11 通</b></div><small class="wk-cardsub">累計 52 通</small></div>
-      <div class="wk-kpi-card"><div class="wk-stat-head"><span>下訂／簽約</span><b class="wk-stat-val">2 戶／0 戶</b></div><small class="wk-cardsub">累計 10 戶／8 戶</small></div>
+      <div class="wk-kpi-card"><div class="wk-stat-head"><span>來人／回客<small class="wk-sublbl">(本週)</small></span><b class="wk-stat-val">25 組／2 組</b></div><div class="wk-kpi-foot"><small class="wk-cardsub">累計 140 組／12 組</small><small class="wk-trend-tag up">▲14%</small></div></div>
+      <div class="wk-kpi-card"><div class="wk-stat-head"><span>來電<small class="wk-sublbl">(本週)</small></span><b class="wk-stat-val">11 通</b></div><div class="wk-kpi-foot"><small class="wk-cardsub">累計 52 通</small><small class="wk-trend-tag up">▲22%</small></div></div>
+      <div class="wk-kpi-card"><div class="wk-stat-head"><span>下訂／簽約<small class="wk-sublbl">(本週)</small></span><b class="wk-stat-val">2 戶／0 戶</b></div><div class="wk-kpi-foot"><small class="wk-cardsub">累計 10 戶／8 戶</small><small class="wk-trend-tag down">▼33%</small></div></div>
+      <div class="wk-kpi-card"><div class="wk-stat-head"><span>退戶<small class="wk-sublbl">(本週)</small></span><b class="wk-stat-val">0 戶</b></div><div class="wk-kpi-foot"><small class="wk-cardsub">累計 0 戶</small><small class="wk-trend-tag flat">─ 0%</small></div></div>
       <div class="wk-kpi-card wk-ratio-card">
-        <div class="wk-ratio-view" data-view="w">
-          <div class="wk-ratio-top"><b class="wk-stat-val">35:1</b><div class="seg" aria-label="成交比例檢視"><button type="button" class="on" data-ratio-view="w">本週</button><button type="button" data-ratio-view="t">累計</button></div></div>
-          <div class="wk-heads" aria-hidden="true">
+        <div class="wk-ratio-top"><span></span><b class="wk-stat-val">14:1</b></div>
+        <div class="wk-heads" aria-hidden="true">
           <svg class="wk-head solid" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.9"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
           <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
           <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
@@ -6011,53 +6014,12 @@
           <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
           <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
           <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          </div>
-        </div>
-        <div class="wk-ratio-view" data-view="t" hidden>
-          <div class="wk-ratio-top"><b class="wk-stat-val">14:1</b><div class="seg" aria-label="成交比例檢視"><button type="button" data-ratio-view="w">本週</button><button type="button" class="on" data-ratio-view="t">累計</button></div></div>
-          <div class="wk-heads" aria-hidden="true">
-          <svg class="wk-head solid" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.9"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          </div>
         </div>
       </div>
       <div><div class="wk-stat-head"><span>銷售戶數</span><b class="wk-stat-val">126 戶</b></div><span class="wk-prog"><i><u style="width:100%"></u></i><i><u style="width:20%"></u></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><small class="wk-prog-cap"><span>已簽約 8 戶</span><span>6%</span></small></div>
       <div><div class="wk-stat-head"><span>總銷金額</span><b class="wk-stat-val">42.6 億</b></div><span class="wk-prog"><i><u style="width:100%"></u></i><i><u style="width:100%"></u></i><i><u style="width:60%"></u></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><small class="wk-prog-cap"><span>已簽約 5.5 億</span><span>13%</span></small></div>
       <div class="wk-kpi-card wk-prem-card">
-        <div class="wk-stat-head"><span class="microlbl">溢價（開案至今）</span><b class="wk-stat-val wk-hot">−230 萬</b></div>
+        <div class="wk-stat-head"><span class="microlbl">溢價金額</span><b class="wk-stat-val wk-hot">−230 萬</b></div>
         <div class="wk-prem-sub"><p>平均每戶 <b class="wk-hot">−29 萬</b><small>（成交 8 戶）</small></p><p>佔簽約金額 <b class="wk-hot">0.4%</b><small>（55,247 萬）</small></p></div>
       </div>
       <div class="wk-kpi-card wk-media-card">
@@ -10565,16 +10527,6 @@
       }
       if(e.target.closest('.wk-dp .dp-panel')){
         e.stopPropagation();
-        return;
-      }
-      var ratioViewBtn=e.target.closest('[data-ratio-view]');
-      if(ratioViewBtn){
-        e.stopPropagation();
-        var ratioCard=ratioViewBtn.closest('.wk-ratio-card');
-        if(!ratioCard)return;
-        var ratioView=ratioViewBtn.dataset.ratioView;
-        ratioCard.querySelectorAll('.wk-ratio-view[data-view]').forEach(function(view){view.hidden=view.dataset.view!==ratioView});
-        ratioCard.querySelectorAll('[data-ratio-view]').forEach(function(btn){btn.classList.toggle('on',btn.dataset.ratioView===ratioView)});
         return;
       }
       var rankViewBtn=e.target.closest('[data-rank-view-btn]');
