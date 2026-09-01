@@ -3002,7 +3002,7 @@
   font-size:.83rem; color:var(--ink);
   transition:background .18s ease-out, border-color .18s ease-out, color .18s ease-out;
 }
-/* 標題平均斷行：8 字的「完整客戶詳細資料」會配成 4/4，不會斷成 6/2（Annie 2026-08-31） */
+/* 標題平均斷行：長名稱平均配行，不會斷成 6/2（Annie 2026-08-31） */
 #page-templates .tpl-tile .tn{text-wrap:balance; line-height:1.45}
 #page-templates .tpl-tile .n{font-size:.7rem; color:var(--muted); font-variant-numeric:tabular-nums; display:flex; align-items:baseline; gap:var(--s2)}
 #page-templates .tpl-tile:hover{background:var(--fill)}
@@ -4858,7 +4858,7 @@
           <button class="feat" data-page="prices"><b>價格表<span class="go">→</span></b><span>三層價格與溢價、批次調底價</span><span class="fm"><b class="warn">58 戶底價待補</b></span></button>
           <button class="feat" data-page="analytics"><b>分析<span class="go">→</span></b><span>來客來源與轉換分析</span><span class="fm">本月成交 6・轉換 8.8%</span></button>
           <button class="feat" data-page="reports"><b>業務報表<span class="go">→</span></b><span>日報／週報／月報與目標達成</span><span class="fm">今日 14 組・下訂 2 戶</span></button>
-          <button class="feat" data-page="templates"><b>勾勾表範本<span class="go">→</span></b><span>設定來客名單動態欄位</span><span class="fm">完整客戶詳細資料 v1・17 欄</span></button>
+          <button class="feat" data-page="templates"><b>勾勾表範本<span class="go">→</span></b><span>設定來客名單動態欄位</span><span class="fm">完整來客表 v1・17 欄</span></button>
           <button class="feat" data-act="openImport"><b>Excel 匯入<span class="go">→</span></b><span>從舊 Excel 匯入來客</span><span class="fm">.xlsx／.csv・單次 5,000 列</span></button>
           <button class="feat" data-page="commission"><b>業務獎金<span class="go">→</span></b><span>獎金方案、明細與發放</span><span class="fm">標準跳趴案・5 位業務</span></button>
         </div>
@@ -12005,10 +12005,10 @@ try{ /* templates */
     return fs.map(function(f){ return {label:f.label,key:f.key,type:f.type,opts:f.opts.slice(),req:f.req,sys:f.sys} });
   }
 
-  /* 三份示意範本。「完整客戶詳細資料」的欄位／型別／選項／順序與正式系統逐項對齊，
+  /* 三份示意範本。「完整來客表」的欄位／型別／選項／順序與正式系統逐項對齊，
      勾勾表是給客戶勾的表，所以不含客資分級（分級在客戶分級頁判定）。 */
   var TPL=[
-    {id:'full', name:'完整客戶詳細資料', active:true, fields:fromKeys(
+    {id:'full', name:'完整來客表', active:true, fields:fromKeys(
       ['title','age_range','area','marital','job','income','house_type','house_own','family_size',
        'room_type','budget','purpose','timeline','media','parking','revisit','note'])},
     {id:'std', name:'標準來客表', active:false, fields:fromKeys(
