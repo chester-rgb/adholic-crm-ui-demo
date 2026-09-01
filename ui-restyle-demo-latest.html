@@ -2725,6 +2725,74 @@
 #page-reports .sumfoot{display:flex;align-items:center;justify-content:space-between;gap:var(--s2)}
 #page-reports .sumhint{font-size:.66rem;color:var(--muted)}
 #page-reports .rowsub{font-size:.7rem;color:var(--muted)}
+#page-reports .dr-head{display:flex;align-items:center;justify-content:space-between;gap:var(--s4);margin-bottom:var(--s4)}
+#page-reports .dr-datepick{width:17rem}
+#page-reports .dr-datepick .dp-btn{width:100%;justify-content:space-between}
+#page-reports .dr-datepick .dp-val{flex:1;text-align:center;font-size:.76rem}
+#page-reports .dr-datepick .dp-panel{left:0;right:auto}
+#page-reports .dr-datepick .dp-panel[hidden]{display:none}
+#page-reports .dr-datepick .dp-day.out{visibility:visible;color:var(--muted)}
+#page-reports .dr-datepick .dp-day.dr-selected{background:var(--accent);color:var(--on-accent)}
+#page-reports .dr-updated{font-size:.7rem;color:var(--muted);font-variant-numeric:tabular-nums}
+#page-reports .dr-cards{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-auto-rows:1fr;gap:var(--grid-gap);margin-bottom:var(--sec-gap)}
+#page-reports .dr-cards > div{display:flex;flex-direction:column;gap:var(--s4);min-width:0;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s4)}
+#page-reports .dr-kpi-head{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--s2)}
+#page-reports .dr-kpi-head > span{font-size:.7rem;color:var(--muted);letter-spacing:.06em;line-height:1.1}
+#page-reports .dr-kpi-head > span small{display:block;margin-top:var(--s1);font-size:.64rem;letter-spacing:.04em}
+#page-reports .dr-kpi-head > b{font-size:1.06rem;font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap;line-height:1.1}
+#page-reports .dr-kpi-head > b .wk-unit{font-style:normal;font-size:.74rem;font-weight:400}
+#page-reports .dr-kpi-foot{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s2);margin-top:auto;font-size:.64rem;line-height:1.1}
+#page-reports .dr-kpi-foot > span:first-child{color:var(--muted)}
+#page-reports .dr-trend{font-weight:500;white-space:nowrap}
+#page-reports .dr-trend.dr-up{color:var(--accent)}
+#page-reports .dr-trend.dr-flat{color:var(--muted)}
+#page-reports .dr-mid{display:grid;grid-template-columns:22rem minmax(0,1fr);gap:var(--grid-gap);margin-bottom:var(--sec-gap)}
+#page-reports .dr-panel{min-width:0;background:var(--panel);border-radius:var(--r-card);padding:var(--s5)}
+#page-reports .dr-section-head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s3);margin-bottom:var(--s4)}
+#page-reports .dr-section-head h3{font-size:.9rem;font-weight:500;letter-spacing:.08em}
+#page-reports .dr-section-head span{font-size:.7rem;color:var(--muted)}
+#page-reports .dr-todo{display:flex;flex-direction:column}
+#page-reports .dr-todo-row{display:grid;grid-template-columns:auto 4rem minmax(0,1fr) auto;align-items:center;gap:var(--s2);padding:var(--s3) 0;font-size:.74rem;border-top:1px solid var(--line)}
+#page-reports .dr-todo-row:first-child{border-top:0;padding-top:0}
+#page-reports .dr-todo-row > .dot{background:var(--line-3)}
+#page-reports .dr-todo-row > .dot.hot{background:var(--hot)}
+#page-reports .dr-todo-row > .dot.warm{background:var(--warm)}
+#page-reports .dr-todo-row b{font-size:.76rem;font-weight:500;white-space:nowrap}
+#page-reports .dr-todo-row > span:not(.dot){min-width:0;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#page-reports .dr-todo-row i{font-size:.7rem;font-style:normal;color:var(--muted);white-space:nowrap}
+#page-reports .dr-todo-row[data-state="overdue"] i{color:var(--hot)}
+#page-reports .dr-todo-row[data-state="today"] i{color:var(--warm)}
+#page-reports .dr-note{margin-top:var(--s3);padding-top:var(--s3);border-top:1px solid var(--line);font-size:.64rem;line-height:1.7;color:var(--muted)}
+#page-reports .dr-table-wrap{padding:0;background:var(--bg);border:1px solid var(--line-2);border-radius:var(--r-row);overflow-x:auto}
+#page-reports .dr-table{width:100%;min-width:42rem;table-layout:fixed;border-collapse:collapse;border-spacing:0}
+#page-reports .dr-table th,#page-reports .dr-table td{padding:var(--s3) var(--s2);border-bottom:1px solid var(--line);font-size:.74rem;line-height:1.45;text-align:center;white-space:nowrap;font-variant-numeric:tabular-nums}
+#page-reports .dr-table th{background:var(--fill);font-weight:500;letter-spacing:.04em}
+#page-reports .dr-table .chip{font-size:.64rem}
+#page-reports .dr-table tbody tr:last-child td{border-bottom:0}
+#page-reports .dr-table tbody tr:hover{transform:none}
+#page-reports .dr-table tbody tr:hover td{background:var(--fill)}
+#page-reports .dr-table th:nth-child(1){width:11%}
+#page-reports .dr-table th:nth-child(2){width:14%}
+#page-reports .dr-table th:nth-child(3){width:12%}
+#page-reports .dr-table th:nth-child(4){width:14%}
+#page-reports .dr-table th:nth-child(5){width:10%}
+#page-reports .dr-table th:nth-child(6){width:20%}
+#page-reports .dr-table th:nth-child(7){width:19%}
+#page-reports .dr-summary{margin-bottom:var(--sec-gap)}
+#page-reports .dr-summary h3{margin-bottom:var(--s2);font-size:.9rem}
+#page-reports .dr-summary .microlbl{margin-bottom:0}
+#page-reports .dr-summary .chip{font-size:.64rem}
+#page-reports .dr-summary-hint{font-size:.64rem;line-height:1.7;color:var(--muted)}
+@media (max-width:1020px){
+  #page-reports .dr-cards{grid-template-columns:repeat(3,minmax(0,1fr))}
+  #page-reports .dr-mid{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  #page-reports .dr-head{align-items:flex-start;flex-direction:column}
+  #page-reports .dr-datepick{width:100%}
+  #page-reports .dr-cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #page-reports .dr-summary .sumfoot{align-items:flex-start;flex-direction:column}
+}
 #page-reports #reportsWeekly{min-width:0}
 #page-reports .wk-toolbar{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--s4);margin-bottom:var(--s4)}
 #page-reports .wk-toolbar-copy{display:flex;flex-direction:column;gap:var(--s1)}
@@ -6989,36 +7057,92 @@
 <div class="sec pagebar"><h2>業務報表</h2><div class="acts"><div class="seg" id="reportsSeg"><button class="on" data-rep="daily">日報</button><button data-rep="weekly">週報</button><button data-rep="monthly">月報</button></div><button class="pillbtn iconpill" data-act="printRep" aria-label="列印或另存 PDF"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8V4.5h10V8"/><path d="M7 15.5H5A1.5 1.5 0 0 1 3.5 14v-4A1.5 1.5 0 0 1 5 8.5h14A1.5 1.5 0 0 1 20.5 10v4a1.5 1.5 0 0 1-1.5 1.5h-2"/><path d="M7 13h10v7H7z"/></svg><span class="lbl">列印 PDF</span></button></div></div>
 
 <div id="reportsDaily">
-  <div class="block kpis">
-    <div class="kpi"><span class="v"><span class="num" data-n="14">14</span><small>組</small></span><span class="k">來人</span></div>
-    <div class="kpi"><span class="v"><span class="num" data-n="6">6</span></span><span class="k">來電</span></div>
-    <div class="kpi"><span class="v"><span class="num">9 / 5</span></span><span class="k">新客 / 回訪</span></div>
-    <div class="kpi"><span class="v"><span class="num" data-n="2">2</span><small>戶</small><span class="bub">4,180 萬</span></span><span class="k"><span class="dot ac"></span>下訂（戶）</span></div>
-    <div class="kpi"><span class="v"><span class="num" data-n="1">1</span><small>戶</small></span><span class="k">簽約</span></div>
-    <div class="kpi"><span class="v"><span class="num">0</span><small>戶</small></span><span class="k">退戶</span></div>
+  <div class="dr-head">
+    <div class="datepick dr-datepick" data-date="2026-08-30">
+      <button type="button" class="dp-btn" aria-haspopup="dialog" aria-expanded="false">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg>
+        <span class="dp-val">2026-08-30（六）</span>
+        <svg class="ico chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg>
+      </button>
+      <div class="dp-panel" role="dialog" aria-label="選擇日報日期" hidden>
+        <div class="dp-head">
+          <button type="button" class="dp-nav" data-mv="-1" aria-label="上個月">‹</button>
+          <b class="dr-dp-title"></b>
+          <button type="button" class="dp-nav" data-mv="1" aria-label="下個月">›</button>
+        </div>
+        <div class="dp-week"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div>
+        <div class="dp-grid"></div>
+      </div>
+    </div>
+    <span class="dr-updated">更新於 18:02　<span class="wk-missing-mark" title="需補欄位：正式版由排程每 15 分鐘重算">＊</span></span>
   </div>
 
-  <div class="block"></div>
+  <div class="dr-cards" aria-label="當日關鍵指標">
+    <div>
+      <div class="dr-kpi-head"><span>來人<small>(今日)</small></span><b>7 <i class="wk-unit">組</i></b></div>
+      <div class="dr-kpi-foot"><span>昨日 6 組</span><span class="dr-trend dr-up">▲17%</span></div>
+    </div>
+    <div>
+      <div class="dr-kpi-head"><span>來電<small>(今日)</small></span><b>2 <i class="wk-unit">通</i></b></div>
+      <div class="dr-kpi-foot"><span>昨日 2 通</span><span class="dr-trend dr-flat">─ 0%</span></div>
+    </div>
+    <div>
+      <div class="dr-kpi-head"><span>回客<small>(今日)</small></span><b>1 <i class="wk-unit">組</i></b></div>
+      <div class="dr-kpi-foot"><span>昨日 0 組</span><span class="dr-trend dr-up">▲100%</span></div>
+    </div>
+    <div>
+      <div class="dr-kpi-head"><span>新增名單<small>(今日)</small></span><b>5 <i class="wk-unit">筆</i></b></div>
+      <div class="dr-kpi-foot"><span>昨日 4 筆</span><span class="dr-trend dr-up">▲25%</span></div>
+    </div>
+    <div>
+      <div class="dr-kpi-head"><span>今日下訂<small>(今日)</small></span><b>1 <i class="wk-unit">戶</i>／2 <i class="wk-unit">車</i></b></div>
+      <div class="dr-kpi-foot"><span>金額 6,148 萬</span><span class="dr-trend dr-up">▲—</span></div>
+    </div>
+    <div>
+      <div class="dr-kpi-head"><span>今日退戶<small>(今日)</small></span><b>0 <i class="wk-unit">戶</i></b></div>
+      <div class="dr-kpi-foot"><span>昨日 0 戶</span><span class="dr-trend dr-flat">─ 0%</span></div>
+    </div>
+  </div>
 
-  <div class="block anagrid">
-    <div class="acard span2">
-      <h3>業務別成績 <small>2026-08-21 日報</small></h3>
-      <div class="table-wrap"><table>
-        <thead><tr><th>業務</th><th>來客組數</th><th>下訂戶數</th><th>下訂金額（萬）</th></tr></thead>
-        <tbody>
-          <tr><td>張家豪</td><td>6</td><td>1</td><td>2,380</td></tr>
-          <tr><td>吳姿瑩</td><td>5</td><td>1</td><td>1,800</td></tr>
-          <tr><td>陳冠廷</td><td>3</td><td>0</td><td>—</td></tr>
-        </tbody>
-      </table></div>
-    </div>
-    <div class="acard sumcard">
-      <h3>現場摘要 </h3>
-      <span class="microlbl">天氣</span>
-      <span class="chips" id="reportsWeather"><span class="chip on">晴</span><span class="chip">多雲</span><span class="chip">陰</span><span class="chip">雨</span></span>
-      <p class="sumtext">午後來人集中，兩組回訪皆指名 A3 棟三房高樓層；陳威宇複看後當場下訂 12F。現場車位配比詢問度偏高，建議明日早會補充話術；傍晚雷陣雨，晚場來人略減。</p>
-      <div class="sumfoot"><span class="sumhint">需 lead:update・更新於 2026-08-21 18:02</span><button class="pillbtn" data-act="saveSummary">儲存摘要</button></div>
-    </div>
+  <div class="dr-mid">
+    <section class="dr-panel" aria-labelledby="drTodoTitle">
+      <div class="dr-section-head"><h3 id="drTodoTitle">今日要追的人</h3><span>6 筆</span></div>
+      <div class="dr-todo">
+        <div class="dr-todo-row" data-state="overdue"><span class="dot hot" aria-hidden="true"></span><b>陳威宇</b><span>回訪未跟進・3 天</span><i>逾期</i></div>
+        <div class="dr-todo-row" data-state="overdue"><span class="dot hot" aria-hidden="true"></span><b>林佳蓉</b><span>A 級未指派</span><i>逾期</i></div>
+        <div class="dr-todo-row" data-state="today"><span class="dot warm" aria-hidden="true"></span><b>許文彬</b><span>約看未回覆・今日到期</span><i>今日</i></div>
+        <div class="dr-todo-row" data-state="today"><span class="dot warm" aria-hidden="true"></span><b>周美玲</b><span>報價後未追・2 天</span><i>今日</i></div>
+        <div class="dr-todo-row"><span class="dot" aria-hidden="true"></span><b>郭建宏</b><span>首訪待建檔</span><i>明日</i></div>
+        <div class="dr-todo-row"><span class="dot" aria-hidden="true"></span><b>張淑芬</b><span>待補勾勾表</span><i>明日</i></div>
+      </div>
+      <p class="dr-note">依往來紀錄與指派狀態自動產生 <span class="wk-missing-mark" title="需補欄位：跟進 SLA 天數需於專案設定">＊</span></p>
+    </section>
+
+    <section class="dr-panel dr-visits" aria-labelledby="drVisitsTitle">
+      <div class="dr-section-head"><h3 id="drVisitsTitle">當日來客明細</h3><span>共 7 組</span></div>
+      <div class="table-wrap dr-table-wrap">
+        <table class="dr-table">
+          <thead><tr><th>時間</th><th>姓名</th><th>來源</th><th>需求房型</th><th>等級</th><th>負責業務</th><th>狀態</th></tr></thead>
+          <tbody>
+            <tr><td>10:20</td><td>陳威宇</td><td>FB</td><td>3房</td><td><span class="chip wk-grade wk-grade-a">A</span></td><td>張家豪</td><td>已下訂</td></tr>
+            <tr><td>11:05</td><td>林佳蓉</td><td>介紹</td><td>3房</td><td><span class="chip wk-grade wk-grade-a">A</span></td><td>吳姿瑩</td><td>待追蹤</td></tr>
+            <tr><td>13:40</td><td>許文彬</td><td>網路</td><td>4房</td><td><span class="chip wk-grade wk-grade-b">B</span></td><td>陳冠廷</td><td>待追蹤</td></tr>
+            <tr><td>14:15</td><td>周美玲</td><td>現場</td><td>2房</td><td><span class="chip wk-grade wk-grade-b">B</span></td><td>周家瑜</td><td>待追蹤</td></tr>
+            <tr><td>15:30</td><td>郭建宏</td><td>看板</td><td>3房</td><td><span class="chip wk-grade wk-grade-c">C</span></td><td>張家豪</td><td>首訪</td></tr>
+            <tr><td>16:45</td><td>張淑芬</td><td>IG</td><td>2房</td><td><span class="chip wk-grade wk-grade-c">C</span></td><td>吳姿瑩</td><td>首訪</td></tr>
+            <tr><td>17:20</td><td>王志明</td><td>路過</td><td>店面</td><td><span class="chip wk-grade wk-grade-d">D</span></td><td>陳冠廷</td><td>首訪</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <div class="acard sumcard dr-summary">
+    <h3>現場摘要（今日）</h3>
+    <span class="microlbl">天氣</span>
+    <span class="chips" id="reportsWeather"><span class="chip on">晴</span><span class="chip">多雲</span><span class="chip">陰</span><span class="chip">雨</span></span>
+    <p class="sumtext">午後來人集中，兩組回訪指名 A3 棟三房高樓層；陳威宇複看後當場下訂 12F。車位配比詢問度偏高，明日備妥車位圖。</p>
+    <div class="sumfoot"><span class="dr-summary-hint">需 lead:update・AI 產草稿後由專案經理確認 <span class="wk-missing-mark" title="需補欄位：AI 摘要需接往來紀錄">＊</span></span><button class="pillbtn" data-act="saveSummary">儲存摘要</button></div>
   </div>
 </div>
 
@@ -11644,6 +11768,92 @@
   }
   var page=document.getElementById('page-reports');
   if(page){
+    var drDp=page.querySelector('.dr-datepick');
+    var drSelected=drDp?Date.parse(drDp.dataset.date+'T00:00:00Z'):0;
+    var drDpView=drDp?drDp.dataset.date.slice(0,7):'';
+    var DR_DAY=86400000;
+    function drDateValue(text){
+      var match=String(text||'').match(/(\d{4})-(\d{2})-(\d{2})/);
+      return match?Date.UTC(Number(match[1]),Number(match[2])-1,Number(match[3])):0;
+    }
+    function drDateIso(stamp){
+      var date=new Date(stamp);
+      return date.getUTCFullYear()+'-'+String(date.getUTCMonth()+1).padStart(2,'0')+'-'+String(date.getUTCDate()).padStart(2,'0');
+    }
+    function drDateLabel(stamp){
+      var date=new Date(stamp),days='日一二三四五六';
+      return drDateIso(stamp)+'（'+days.charAt(date.getUTCDay())+'）';
+    }
+    function drClose(){
+      if(!drDp)return;
+      drDp.classList.remove('open');
+      var panel=drDp.querySelector('.dp-panel'),btn=drDp.querySelector('.dp-btn');
+      if(panel)panel.hidden=true;
+      if(btn)btn.setAttribute('aria-expanded','false');
+    }
+    function drDraw(){
+      if(!drDp)return;
+      var parts=drDpView.split('-'),year=Number(parts[0]),month=Number(parts[1])-1;
+      var monthStart=Date.UTC(year,month,1);
+      var gridStart=monthStart-((new Date(monthStart).getUTCDay()+6)%7)*DR_DAY;
+      var title=drDp.querySelector('.dr-dp-title'),grid=drDp.querySelector('.dp-grid');
+      if(title)title.textContent=year+' 年 '+(month+1)+' 月';
+      if(!grid)return;
+      var html='';
+      for(var i=0;i<42;i++){
+        var stamp=gridStart+i*DR_DAY,date=new Date(stamp),iso=drDateIso(stamp);
+        var classes=['dp-day'];
+        if(date.getUTCMonth()!==month)classes.push('out');
+        if(stamp===drSelected)classes.push('dr-selected');
+        html+='<button type="button" class="'+classes.join(' ')+'" data-d="'+iso+'" aria-pressed="'+String(stamp===drSelected)+'">'+date.getUTCDate()+'</button>';
+      }
+      grid.innerHTML=html;
+    }
+    if(drDp){
+      page.addEventListener('click',function(e){
+        var dayBtn=e.target.closest('.dr-datepick .dp-day[data-d]');
+        if(dayBtn){
+          e.stopPropagation();
+          drSelected=drDateValue(dayBtn.dataset.d);
+          drDp.dataset.date=dayBtn.dataset.d;
+          drDpView=dayBtn.dataset.d.slice(0,7);
+          drDp.querySelector('.dp-val').textContent=drDateLabel(drSelected);
+          drDraw();
+          drClose();
+          toast('示意：正式版載入該日資料');
+          return;
+        }
+        var nav=e.target.closest('.dr-datepick .dp-nav[data-mv]');
+        if(nav){
+          e.stopPropagation();
+          var viewParts=drDpView.split('-');
+          var nextView=new Date(Date.UTC(Number(viewParts[0]),Number(viewParts[1])-1+Number(nav.dataset.mv),1));
+          drDpView=nextView.getUTCFullYear()+'-'+String(nextView.getUTCMonth()+1).padStart(2,'0');
+          drDraw();
+          return;
+        }
+        var dpBtn=e.target.closest('.dr-datepick .dp-btn');
+        if(dpBtn){
+          e.stopPropagation();
+          var panel=drDp.querySelector('.dp-panel'),isOpen=drDp.classList.contains('open');
+          drDp.classList.toggle('open',!isOpen);
+          panel.hidden=isOpen;
+          dpBtn.setAttribute('aria-expanded',String(!isOpen));
+          if(!isOpen){drDpView=drDateIso(drSelected).slice(0,7);drDraw()}
+          return;
+        }
+        if(e.target.closest('.dr-datepick .dp-panel')){e.stopPropagation();return}
+        drClose();
+      });
+      page.addEventListener('keydown',function(e){
+        if(e.key!=='Escape'||!drDp.classList.contains('open'))return;
+        e.preventDefault();
+        drClose();
+        drDp.querySelector('.dp-btn').focus();
+      });
+      document.addEventListener('click',function(e){if(!drDp.contains(e.target))drClose()});
+      drDraw();
+    }
     var wkMedia=page.querySelector('[data-wk-media]');
     var wkMediaChips=page.querySelector('[data-wk-media-chips]');
     const ORIGIN='2025-12-29';
