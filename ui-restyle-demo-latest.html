@@ -38,7 +38,7 @@
     --ph-1:#2C4257; --ph-2:#43607A; --ph-3:#6E8CA3; --ph-4:#A9BECD;
     --sans:'MiSans TC',-apple-system,'Noto Sans TC',sans-serif;
     /* 圓角刻度：pill＝形狀、14 容器、8 迷你 */
-    --r-pill:999px; --r-card:14px; --r-row:14px; --r-cell:14px; --r-mini:8px;
+    --r-pill:999px; --r-card:1.75rem; --r-row:14px; --r-cell:10px; --r-mini:8px;
     /* 間距刻度（8pt 系，全站只准取這裡） */
     --s1:.25rem; --s2:.5rem; --s3:.75rem; --s4:1rem; --s5:1.25rem; --s6:1.5rem; --s7:2rem; --s8:2.5rem;
     --pad-x:var(--s7); --sec-gap:2.25rem; --head-gap:var(--s4);
@@ -6572,7 +6572,9 @@
               <h3>圓角刻度（角色固定）</h3>
               <ul class="grules">
                 <li><b>r-pill＝999px</b>——形狀：按鈕、chip、導覽、開關</li>
-                <li><b>r-card＝r-row＝r-cell＝14px</b>——容器統一弧度：卡片、列、格、對話框、tile、銷控格、抽屜</li>
+                <li><b>r-card＝1.75rem（28px）</b>——卡片：成員卡、建案卡、對話框；成員卡的凹槽弧＝圓鈕半徑 1.4rem ＋ 內距 .35rem，與圓鈕同心</li>
+                <li><b>r-row＝14px</b>——列與容器：表格外框、tile、抽屜</li>
+                <li><b>r-cell＝10px</b>——格：銷控格、選單項目</li>
                 <li><b>r-mini＝8px</b>——迷你：tooltip、code 等元件</li>
               </ul>
             </div>
