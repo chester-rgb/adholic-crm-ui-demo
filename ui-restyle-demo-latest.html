@@ -2686,7 +2686,7 @@
 #page-reports .wk-section-head>.wk-source{justify-content:flex-end}
 #page-reports .wk-meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s2);margin-bottom:var(--s4);padding:var(--s3);background:var(--bg);border-radius:var(--r-row)}
 #page-reports .wk-meta.wk-meta-6{grid-template-columns:repeat(12,minmax(0,1fr));grid-auto-rows:1fr;gap:var(--s3);padding:0;background:none;border-radius:0}
-#page-reports .wk-meta.wk-meta-6 > div{background:var(--bg);border:1px solid var(--line);border-radius:var(--r-row);padding:var(--s3) var(--s4);gap:var(--s2)}
+#page-reports .wk-meta.wk-meta-6 > div{background:var(--bg);border:1px solid var(--line);border-radius:var(--r-row);padding:var(--s4);gap:var(--s2)}
 #page-reports .wk-meta.wk-meta-6 > div{grid-column:span 2}
 #page-reports .wk-meta.wk-meta-6 > .wk-media-card{grid-column:span 4}
 #page-reports .wk-meta.wk-meta-6 > .wk-ratio-card{grid-column:span 2;position:relative;display:flex;flex-direction:column;gap:var(--s2)}
@@ -2730,7 +2730,7 @@
 #page-reports .wk-meta>div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
 #page-reports .wk-meta>div>span{font-size:.7rem;color:var(--muted);letter-spacing:.06em}
 #page-reports .wk-meta b{font-size:.78rem;font-weight:500;font-variant-numeric:tabular-nums}
-#page-reports .wk-kpi-card{background:var(--bg);border:1px solid var(--line);border-radius:var(--r-row);padding:var(--s3) var(--s4);display:flex;flex-direction:column;gap:var(--s3);justify-content:flex-start}
+#page-reports .wk-meta.wk-meta-6 > .wk-kpi-card{background:var(--bg);border:1px solid var(--line);border-radius:var(--r-row);padding:var(--s4);display:flex;flex-direction:column;gap:var(--s3);justify-content:flex-start}
 #page-reports .wk-week-card .sel{width:100%}
 #page-reports .wk-week-card .sel-val{font-size:.74rem;color:var(--ink)}
 #page-reports .wk-week-card .sel-list [role="option"]{font-size:.74rem}
@@ -2779,17 +2779,16 @@
 #page-reports .wk-weather .chip{cursor:pointer;min-width:var(--s7);padding:0 var(--s2)}
 #page-reports .wk-weather .chip:hover,#page-reports .wk-weather .chip:focus-visible{border-color:var(--warm);background:var(--warm-tint);color:var(--warm)}
 #page-reports .wk-ratio-top{display:flex;align-items:center;justify-content:space-between;gap:var(--s2)}
-#page-reports .wk-heads{display:grid;grid-template-columns:repeat(8,.8rem);gap:0;color:var(--muted);justify-content:start;align-content:start;align-self:flex-start;flex:none}
-#page-reports .wk-meta.wk-meta-6 > .wk-ratio-card > .wk-stat-val{position:absolute;top:var(--s3);right:var(--s4);font-size:1.06rem;}
-#page-reports .wk-meta.wk-meta-6 > .wk-ratio-card > .wk-ratio-scope{position:absolute;right:var(--s4);bottom:var(--s3);margin-top:0}
+#page-reports .wk-heads{display:grid;grid-template-columns:repeat(7,1.04rem);gap:0;color:var(--muted);justify-content:start;align-content:start;align-self:flex-start;flex:none}
+#page-reports .wk-meta.wk-meta-6 > .wk-ratio-card > .wk-stat-val{position:absolute;top:var(--s4);right:var(--s4);font-size:1.06rem;}
+#page-reports .wk-meta.wk-meta-6 > .wk-ratio-card > .wk-ratio-scope{position:absolute;right:var(--s4);bottom:var(--s4);margin-top:0}
 #page-reports .wk-head.on{color:var(--muted);stroke-width:1.1}
 #page-reports .wk-head{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
 #page-reports .wk-head.solid{stroke:none;fill:var(--accent)}
 #page-reports .wk-hot{color:var(--hot)}
-#page-reports .wk-prem-sub{display:flex;flex-direction:column;gap:var(--s2);margin:auto 0;font-size:.74rem;color:var(--muted)}
+#page-reports .wk-prem-sub{display:flex;align-items:center;margin:auto 0;font-size:.74rem;color:var(--muted)}
 #page-reports .wk-prem-sub p{margin:0}
 #page-reports .wk-prem-sub b{font:inherit;font-weight:500}
-#page-reports .wk-prem-sub small{font-size:.64rem;}
 #page-reports .wk-field-gap{display:flex;align-items:center;gap:var(--s2);flex-wrap:wrap;margin-top:var(--s3);font-size:.74rem;color:var(--muted)}
 #page-reports .wk-subtitle{font-size:.78rem;font-weight:500;letter-spacing:.06em}
 #page-reports .wk-analysis-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s5) var(--s4)}
@@ -5974,7 +5973,7 @@
 <div id="reportsWeekly" style="display:none">
   <section class="wk-section" aria-label="週報表">
     <div class="wk-meta wk-meta-6">
-      <div class="wk-balanced"><span>建案名稱 / 銷售單位</span><b>青園綠境<i class="wk-vendor-inline">青園建設<span class="wk-missing-mark" title="需補欄位：建案設定尚無業主名稱欄位，此為示意">＊</span></i></b><small class="wk-cardsub">艾德霍客</small></div>
+      <div class="wk-balanced"><span>建案名稱 / 銷售單位</span><b>青園綠境<i class="wk-vendor-inline">青園建設<span class="wk-missing-mark" title="需補欄位：建案設定尚無業主名稱欄位，此為示意">＊</span></i></b><div class="wk-kpi-foot"><span></span><small class="wk-cardsub">艾德霍客</small></div></div>
       <div class="wk-week-card">
         <span>統計期間</span>
         <div class="datepick wk-dp" data-start="2026-08-24">
@@ -5993,7 +5992,7 @@
             <div class="dp-grid"></div>
           </div>
         </div>
-        <small class="wk-cardsub">7 日</small>
+        <div class="wk-kpi-foot"><span></span><small class="wk-cardsub">7 日</small></div>
       </div>
       <div class="wk-kpi-card"><div class="wk-stat-head"><span>來人／回客<small class="wk-sublbl">(本週)</small></span><b class="wk-stat-val">25 組／2 組</b></div><div class="wk-kpi-foot"><small class="wk-cardsub">累計 140 組／12 組</small><small class="wk-trend-tag up">▲14%</small></div></div>
       <div class="wk-kpi-card"><div class="wk-stat-head"><span>來電<small class="wk-sublbl">(本週)</small></span><b class="wk-stat-val">11 通</b></div><div class="wk-kpi-foot"><small class="wk-cardsub">累計 52 通</small><small class="wk-trend-tag up">▲22%</small></div></div>
@@ -6023,7 +6022,7 @@
       <div><div class="wk-stat-head"><span>總銷金額</span><b class="wk-stat-val">42.6 億</b></div><span class="wk-prog"><i><u style="width:100%"></u></i><i><u style="width:100%"></u></i><i><u style="width:60%"></u></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><small class="wk-prog-cap"><span>已簽約 5.5 億</span><span>13%</span></small></div>
       <div class="wk-kpi-card wk-prem-card">
         <div class="wk-stat-head"><span class="microlbl">溢價金額</span><b class="wk-stat-val wk-hot">−230 萬</b></div>
-        <div class="wk-prem-sub"><p>平均每戶 <b class="wk-hot">−29 萬</b><small>（成交 8 戶）</small></p><p>佔簽約金額 <b class="wk-hot">0.4%</b><small>（55,247 萬）</small></p></div>
+        <div class="wk-prem-sub"><p>溢價率 <b class="wk-hot">−0.4%</b></p></div>
       </div>
       <div class="wk-kpi-card wk-media-card">
         <span class="microlbl">本週廣告媒體</span>
