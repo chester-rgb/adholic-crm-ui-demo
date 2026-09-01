@@ -4686,6 +4686,42 @@
     .matrix-flip-a .pcell,.matrix-flip-b .pcell{animation:none}
   }
 
+  /* 贈品方案：沿用價格表的區段、表格、chip 與按鈕語彙，只補本功能的排列。 */
+  #page-prices .gift-sec{display:block;margin:var(--sec-gap) 0 0}
+  #page-prices .gift-sec-head{display:flex;align-items:center;justify-content:space-between;gap:var(--s4);margin-bottom:var(--s3)}
+  #page-prices .gift-sec-head h3{font-weight:500}
+  #page-prices .gift-table{min-width:calc(var(--s8) * 18)}
+  #page-prices .gift-row.gift-ended{opacity:.72}
+  #page-prices .gift-status-active{border-color:var(--line-accent);background:var(--tint);color:var(--accent)}
+  #page-prices .gift-status-ended{border-color:var(--line-2);color:var(--muted)}
+  #page-prices .gift-status-upcoming{border-color:var(--warm);background:var(--warm-tint);color:var(--warm)}
+  #page-prices .gift-sent{color:var(--accent);border-bottom:1px solid var(--line-accent)}
+  #page-prices .gift-sent:hover{border-bottom-color:var(--accent)}
+  #page-prices .gift-ops{display:flex;align-items:center;gap:var(--s2);white-space:nowrap}
+  #page-prices .gift-note{margin-top:var(--s3);color:var(--muted)}
+  #page-prices .gift-note .wk-missing-mark{color:var(--hot);cursor:help}
+
+  /* 成交贈品：記錄綁戶別、日期與核准人；選擇器沿用 drawer 既有 .sel。 */
+  #drawer .gift-title{display:flex;align-items:center}
+  #drawer .gift-total{margin-left:auto;color:var(--ink);letter-spacing:normal}
+  #drawer .gift-given{display:flex;flex-direction:column;gap:var(--s2)}
+  #drawer .gift-given-row{display:grid;grid-template-columns:auto auto minmax(0,1fr) auto;align-items:center;gap:var(--s2);padding:var(--s2) 0;border-bottom:1px solid var(--line)}
+  #drawer .gift-given-row b{font-weight:500}
+  #drawer .gift-meta{color:var(--muted)}
+  #drawer .gift-add{display:grid;grid-template-columns:repeat(2,minmax(0,1fr)) auto;align-items:end;gap:var(--s3);margin-top:var(--s4)}
+  #drawer .gift-field{display:grid;gap:var(--s1);min-width:0;color:var(--muted)}
+  #drawer .gift-field .sel{color:var(--ink)}
+  #drawer .gift-note{margin-top:var(--s3);color:var(--muted)}
+  #drawer .gift-note .wk-missing-mark{color:var(--hot);cursor:help}
+
+  /* 收禮名單：沿用關聯總覽的 sheet 表格，只補副標與姓名連結。 */
+  #giftDlg .gift-subtitle{display:block;margin-top:var(--s1);color:var(--muted);font-weight:400}
+  #giftDlg .gift-table-wrap{margin-bottom:var(--s3)}
+  #giftDlg .gift-table-wrap table{min-width:0}
+  #giftDlg .gift-link{font:inherit;color:inherit;text-align:left;border-bottom:1px solid var(--line-2)}
+  #giftDlg .gift-link:hover{color:var(--accent);border-bottom-color:var(--line-accent)}
+  #giftDlg .gift-link:focus-visible{outline:2px solid var(--line-accent);outline-offset:var(--s1);border-radius:var(--r-mini)}
+
   /* ══ 戶別編輯面板（照舊版逐欄重建）══ */
   .unitdlg .udsum{font-size:.72rem; color:var(--muted); margin:-.2rem 0 var(--s5); letter-spacing:.02em}
   .unitdlg .fld.full{grid-column:1/-1}
@@ -5175,6 +5211,23 @@
         <div class="mx-bulk" id="priceBulk"><b>已選 <span id="pBulkN">0</span> 戶</b>
           <button class="pillbtn" id="pBulkClear" type="button">清除</button>
           <button class="pillbtn" id="pBulkAdj" type="button">批次調整底價</button></div>
+
+        <section class="sec gift-sec">
+          <div class="gift-sec-head"><h3>贈品方案</h3>
+            <button class="pillbtn solid" id="giftAddBtn" type="button" data-demo-toast>新增贈品</button></div>
+          <div class="table-wrap"><table class="gift-table">
+            <thead><tr><th>贈品名稱</th><th>價值</th><th>適用檔期</th><th>狀態</th><th>已送出</th><th>備註</th><th>操作</th></tr></thead>
+            <tbody id="giftRows">
+              <tr class="gift-row"><td>家電包（三機）</td><td>18 萬</td><td>2026-06-01～2026-08-31</td><td><span class="chip gift-status gift-status-active">啟用中</span></td><td><button type="button" class="gift-sent" data-gift-recipients="家電包（三機）">5 戶</button></td><td>冰箱・洗衣機・冷氣</td><td><span class="gift-ops"><button type="button" class="pillbtn" data-demo-toast>編輯</button><button type="button" class="pillbtn gift-toggle">停用</button></span></td></tr>
+              <tr class="gift-row"><td>裝潢金</td><td>30 萬</td><td>2026-08-01～2026-09-30</td><td><span class="chip gift-status gift-status-active">啟用中</span></td><td><button type="button" class="gift-sent" data-gift-recipients="裝潢金">2 戶</button></td><td>簽約後分兩期撥付</td><td><span class="gift-ops"><button type="button" class="pillbtn" data-demo-toast>編輯</button><button type="button" class="pillbtn gift-toggle">停用</button></span></td></tr>
+              <tr class="gift-row"><td>車位折抵</td><td>25 萬</td><td>2026-08-15～2026-09-15</td><td><span class="chip gift-status gift-status-active">啟用中</span></td><td><button type="button" class="gift-sent" data-gift-recipients="車位折抵">1 戶</button></td><td>限平面車位</td><td><span class="gift-ops"><button type="button" class="pillbtn" data-demo-toast>編輯</button><button type="button" class="pillbtn gift-toggle">停用</button></span></td></tr>
+              <tr class="gift-row gift-ended"><td>管理費補貼兩年</td><td>12 萬</td><td>2026-03-01～2026-05-31</td><td><span class="chip gift-status gift-status-ended">已結束</span></td><td><button type="button" class="gift-sent" data-gift-recipients="管理費補貼兩年">3 戶</button></td><td>潛銷期方案</td><td><span class="gift-ops"><button type="button" class="pillbtn" data-demo-toast>編輯</button><button type="button" class="pillbtn gift-toggle">啟用</button></span></td></tr>
+              <tr class="gift-row gift-ended"><td>全屋窗簾</td><td>8 萬</td><td>2026-03-01～2026-05-31</td><td><span class="chip gift-status gift-status-ended">已結束</span></td><td><button type="button" class="gift-sent" data-gift-recipients="全屋窗簾">2 戶</button></td><td>潛銷期方案</td><td><span class="gift-ops"><button type="button" class="pillbtn" data-demo-toast>編輯</button><button type="button" class="pillbtn gift-toggle">啟用</button></span></td></tr>
+              <tr class="gift-row"><td>訂金加碼</td><td>5 萬</td><td>2026-09-01～2026-09-30</td><td><span class="chip gift-status gift-status-upcoming">未開始</span></td><td>—</td><td>下檔期預備</td><td><span class="gift-ops"><button type="button" class="pillbtn" data-demo-toast>編輯</button><button type="button" class="pillbtn gift-toggle">啟用</button></span></td></tr>
+            </tbody>
+          </table></div>
+          <p class="gift-note">停用的贈品不再出現在成交記錄的選項中，但歷史記錄仍保留 <span class="wk-missing-mark" title="需補欄位：贈品主檔（名稱/價值/檔期起訖/狀態）與成交贈品關聯表">＊</span></p>
+        </section>
       </section>
 
       <section class="view" id="page-analytics">
@@ -7019,6 +7072,7 @@
     <input class="qsearch" id="laSearch" type="search" aria-label="搜尋來客" placeholder="搜尋姓名、電話…">
   </div></div>
   <button class="pillbtn" id="relOverviewBtn" type="button">關聯總覽</button>
+  <button class="pillbtn" data-act="dd" data-gift-filter data-opts="全部|家電包（三機）|裝潢金|車位折抵|管理費補貼兩年|全屋窗簾|未取得贈品">贈品：全部 ▾</button>
 </div>
 <div class="leadsall-saved" id="laSaved">
   <span class="sv-lbl">常用組合</span>
@@ -8341,6 +8395,24 @@
   </div>
 </div>
 
+<div class="dlg-mask sheet-mask" id="giftDlgMask">
+  <div class="dlg sheet" id="giftDlg" role="dialog" aria-modal="true" aria-labelledby="giftDlgTitle">
+    <h3 id="giftDlgTitle"><span>收禮名單<small class="gift-subtitle" id="giftDlgSubtitle">家電包（三機）</small></span><button class="circlebtn close" id="giftDlgClose" type="button" aria-label="關閉收禮名單">×</button></h3>
+    <div class="table-wrap gift-table-wrap">
+      <table>
+        <thead><tr><th>客戶</th><th>戶別</th><th>成交日</th><th>核准人</th></tr></thead>
+        <tbody>
+          <tr><td><button type="button" class="dr-link gift-link" data-goto-lead="陳威宇">陳威宇</button></td><td>A3-12F</td><td>2026-08-30</td><td>林曉青</td></tr>
+          <tr><td><button type="button" class="dr-link gift-link" data-goto-lead="林佳蓉">林佳蓉</button></td><td>B2-8F</td><td>2026-08-29</td><td>林曉青</td></tr>
+          <tr><td><button type="button" class="dr-link gift-link" data-goto-lead="許文彬">許文彬</button></td><td>A1-15F</td><td>2026-08-22</td><td>林曉青</td></tr>
+          <tr><td><button type="button" class="dr-link gift-link" data-goto-lead="黃淑珊">黃淑珊</button></td><td>B1-9F</td><td>2026-08-15</td><td>林曉青</td></tr>
+          <tr><td><button type="button" class="dr-link gift-link" data-goto-lead="王思穎">王思穎</button></td><td>A2-11F</td><td>2026-08-08</td><td>林曉青</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
 <div class="dlg-mask sheet-mask" id="drawerMask">
 <div class="dlg sheet leaddlg" id="drawer" role="dialog" aria-labelledby="leadDlgName" aria-label="來客詳情">
   <div class="dhead">
@@ -8432,6 +8504,42 @@
         <div class="buyrow" data-kind="unit"><b>8F・A4</b><span class="meta">35.2 坪・三房</span><span class="p">3,350 萬</span></div>
         <div class="buyrow" data-kind="park"><b>B1・P05</b><span class="meta">平面・大</span><span class="p">220 萬</span></div>
       </div>
+      <div class="dsec gift-title">成交贈品 <span class="gift-total" id="giftTotal">合計 43 萬</span></div>
+      <div class="gift-given" id="giftGiven">
+        <div class="gift-given-row" data-gift-value="18">
+          <b>家電包（三機）</b><span class="chip">18 萬</span>
+          <span class="gift-meta">A3-12F・2026-08-30 核准：林曉青</span>
+          <button type="button" class="rel-remove gift-remove">移除</button>
+        </div>
+        <div class="gift-given-row" data-gift-value="25">
+          <b>車位折抵</b><span class="chip">25 萬</span>
+          <span class="gift-meta">A3-12F・2026-08-30 核准：林曉青</span>
+          <button type="button" class="rel-remove gift-remove">移除</button>
+        </div>
+      </div>
+      <div class="gift-add">
+        <div class="gift-field"><span>選擇贈品</span>
+          <span class="sel multi">
+            <input type="hidden" data-f="gift" value="">
+            <button type="button" class="sel-btn" aria-label="選擇贈品" aria-haspopup="listbox" aria-expanded="false"><span class="sel-val empty">未選擇</span><svg class="ico chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></button>
+            <span class="sel-list" role="listbox" aria-multiselectable="true" hidden>
+              <button type="button" role="option" data-v="家電包（三機）" data-gift-value="18" data-gift-price="18 萬" aria-selected="false">家電包（三機）・18 萬<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+              <button type="button" role="option" data-v="裝潢金" data-gift-value="30" data-gift-price="30 萬" aria-selected="false">裝潢金・30 萬<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+              <button type="button" role="option" data-v="車位折抵" data-gift-value="25" data-gift-price="25 萬" aria-selected="false">車位折抵・25 萬<svg class="ico tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
+            </span>
+          </span>
+        </div>
+        <div class="gift-field"><span>對應戶別</span>
+          <select id="giftUnitSelect" aria-label="對應戶別">
+            <option value="">請選擇</option>
+            <option value="A3-12F">A3-12F</option>
+            <option value="B2-8F">B2-8F</option>
+            <option value="A1-15F">A1-15F</option>
+          </select>
+        </div>
+        <button class="pillbtn solid" id="giftGiveBtn" type="button">記錄贈品</button>
+      </div>
+      <p class="gift-note">贈品綁定成交戶別與核准人，供日後查核 <span class="wk-missing-mark" title="需補欄位：成交贈品關聯表（成交ID×贈品ID×核准人×日期）">＊</span></p>
       <div class="dfoot" style="padding:.8rem 0 0; border-top:none">
         <button class="pillbtn solid" data-demo-toast>設定簽約日</button>
         <button class="pillbtn" data-demo-toast>設定交屋日</button>
@@ -13506,7 +13614,8 @@ try{ /* collect */
         if(b.closest('#page-leadsall')) laMark(b, x!==b.dataset.opts.split('|')[0]);
         if(pre==='建案'){ laProj = (x==='全部建案') ? '' : x; laFilterRows() }
         if(pre==='來源'){ laSrc = (x==='全部') ? '' : x; laFilterRows() }
-        toast('條件已更新：'+pre+' <b>'+x+'</b>');
+        if(b.hasAttribute('data-gift-filter')) toast('示意：正式版依成交贈品關聯表篩選');
+        else toast('條件已更新：'+pre+' <b>'+x+'</b>');
       });
     } else if(act==='ddCity'){
       e.stopPropagation();
@@ -14256,6 +14365,119 @@ try{(function(){
       }
       window.toast('已新增與 <b>'+display+'</b> 的關聯');
     });
+  })();
+
+  /* 贈品方案：主檔狀態、收禮名單與成交綁定的前端示意。跨 IIFE 只走已掛 window 的入口。 */
+  (function(){
+    var page=document.getElementById('page-prices');
+    var rows=document.getElementById('giftRows');
+    var addBtn=document.getElementById('giftAddBtn');
+    var dialogMask=document.getElementById('giftDlgMask');
+    var dialog=document.getElementById('giftDlg');
+    var dialogClose=document.getElementById('giftDlgClose');
+    var dialogSubtitle=document.getElementById('giftDlgSubtitle');
+    var drawer=document.getElementById('drawer');
+    var given=document.getElementById('giftGiven');
+    var total=document.getElementById('giftTotal');
+    var giveBtn=document.getElementById('giftGiveBtn');
+    var unitSelect=document.getElementById('giftUnitSelect');
+    var multi=document.querySelector('#d4 .sel.multi input[data-f="gift"]');
+    if(!page||!rows||!addBtn||!dialogMask||!dialog||!dialogClose||!dialogSubtitle||!drawer||!given||!total||!giveBtn||!unitSelect||!multi) return;
+
+    function giftName(row){ return row.children[0].textContent.trim() }
+    function closeDialog(){ dialogMask.classList.remove('show') }
+    function leadName(row){
+      var name=row.querySelector('.name');
+      return name?[].slice.call(name.childNodes).filter(function(node){return node.nodeType===3})
+        .map(function(node){return node.nodeValue}).join('').trim():'';
+    }
+    function openLead(name){
+      closeDialog();
+      var hit=[].slice.call(document.querySelectorAll('#page-leadsall tbody tr')).filter(function(row){
+        return leadName(row)===name;
+      })[0];
+      if(hit) window.openDrawer(hit);
+      else window.toast('示意：正式版依來客 ID 直接開啟「'+name+'」的詳情');
+    }
+    function updateTotal(){
+      var sum=[].slice.call(given.querySelectorAll('.gift-given-row')).reduce(function(value,row){
+        return value+(parseFloat(row.dataset.giftValue)||0);
+      },0);
+      total.textContent='合計 '+sum.toLocaleString('zh-TW')+' 萬';
+    }
+    function today(){
+      var now=new Date();
+      return now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')+'-'+String(now.getDate()).padStart(2,'0');
+    }
+    function appendGift(option,unit){
+      var row=document.createElement('div');
+      row.className='gift-given-row';
+      row.dataset.giftValue=option.dataset.giftValue;
+      var name=document.createElement('b'); name.textContent=option.dataset.v;
+      var price=document.createElement('span'); price.className='chip'; price.textContent=option.dataset.giftPrice;
+      var meta=document.createElement('span'); meta.className='gift-meta'; meta.textContent=unit+'・'+today()+' 核准：林曉青';
+      var remove=document.createElement('button'); remove.type='button'; remove.className='rel-remove gift-remove'; remove.textContent='移除';
+      row.appendChild(name); row.appendChild(price); row.appendChild(meta); row.appendChild(remove);
+      given.appendChild(row);
+    }
+
+    addBtn.addEventListener('click',function(event){
+      event.stopPropagation();
+      window.toast('示意：正式版開啟贈品建立表單');
+    });
+    page.addEventListener('click',function(event){
+      var recipients=event.target.closest('[data-gift-recipients]');
+      if(recipients){
+        dialogSubtitle.textContent=recipients.dataset.giftRecipients;
+        dialogMask.classList.add('show');
+        dialogClose.focus();
+        return;
+      }
+      var toggle=event.target.closest('.gift-toggle');
+      if(!toggle) return;
+      var row=toggle.closest('.gift-row');
+      var status=row.querySelector('.gift-status');
+      var enabling=toggle.textContent.trim()==='啟用';
+      status.className='chip gift-status '+(enabling?'gift-status-active':'gift-status-ended');
+      status.textContent=enabling?'啟用中':'已停用';
+      row.classList.toggle('gift-ended',!enabling);
+      toggle.textContent=enabling?'停用':'啟用';
+      window.toast('已'+(enabling?'啟用':'停用')+' <b>'+giftName(row)+'</b>');
+    });
+
+    dialogClose.addEventListener('click',closeDialog);
+    dialogMask.addEventListener('click',function(event){ if(event.target===dialogMask) closeDialog() });
+    dialog.addEventListener('click',function(event){
+      var link=event.target.closest('[data-goto-lead]');
+      if(!link) return;
+      event.preventDefault();
+      openLead(link.dataset.gotoLead);
+    });
+
+    given.addEventListener('click',function(event){
+      var remove=event.target.closest('.gift-remove');
+      if(!remove) return;
+      event.stopPropagation();
+      var row=remove.closest('.gift-given-row');
+      var name=row.querySelector('b').textContent.trim();
+      row.remove();
+      updateTotal();
+      window.toast('已移除成交贈品 <b>'+name+'</b>');
+    });
+    giveBtn.addEventListener('click',function(){
+      var box=multi.closest('.sel.multi');
+      var selected=[].slice.call(box.querySelectorAll('[role="option"][aria-selected="true"]'));
+      if(!selected.length){ window.toast('請先選擇贈品'); return }
+      if(!unitSelect.value){ window.toast('請先選擇對應戶別'); return }
+      selected.forEach(function(option){ appendGift(option,unitSelect.value) });
+      box.querySelectorAll('[role="option"]').forEach(function(option){ option.setAttribute('aria-selected','false') });
+      window.mselSync(box);
+      unitSelect.value='';
+      unitSelect.dispatchEvent(new Event('change',{bubbles:true}));
+      updateTotal();
+      window.toast('已記錄 <b>'+selected.length+'</b> 筆成交贈品');
+    });
+    updateTotal();
   })();
 
   /* ── 功能卡拖曳排序：長按 240ms 或拖動 8px 進入拖曳，順序記在 localStorage ──
