@@ -3020,6 +3020,63 @@
 #page-reports .wk-todo-list li{display:flex;align-items:baseline;gap:var(--s2);font-size:.74rem;color:var(--ink)}
 #page-reports .wk-todo-list li::before{content:'□';color:var(--hot)}
 #page-reports .wk-pageno{display:none}
+#page-reports .mo-monthly{page:mo-monthly;min-width:0}
+#page-reports .mo-cards{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--s3);margin-bottom:var(--sec-gap)}
+#page-reports .mo-cards > div{grid-column:span 2;min-width:0;display:flex;flex-direction:column;gap:var(--s2);padding:var(--s4);background:var(--bg);border:1px solid var(--line);border-radius:var(--r-row)}
+#page-reports .mo-cards > .mo-project-card{background:var(--tint);border-color:var(--line-accent)}
+#page-reports .mo-label{font-size:.7rem;color:var(--muted);letter-spacing:.06em;line-height:1.1}
+#page-reports .mo-project{display:flex;flex-direction:column;align-items:flex-start;gap:var(--s1);font-size:.9rem;font-weight:500;line-height:1.1}
+#page-reports .mo-vendor{font-size:.74rem;font-weight:400;color:var(--muted)}
+#page-reports .mo-stat{font-size:1.06rem;font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap;line-height:1.1}
+#page-reports .mo-stat .wk-unit{font-style:normal;font-size:.74rem;font-weight:400}
+#page-reports .mo-card-foot{display:flex;justify-content:space-between;align-items:baseline;gap:var(--s2);margin-top:auto;font-size:.64rem;line-height:1.1}
+#page-reports .mo-card-foot > span:first-child{color:var(--muted)}
+#page-reports .mo-card-foot > .mo-trend-tag{color:var(--accent);font-weight:500;white-space:nowrap}
+#page-reports .mo-card-foot > .mo-trend-tag.mo-down{color:var(--hot)}
+#page-reports .mo-card-foot.mo-end{justify-content:flex-end}
+#page-reports .mo-monthstep{display:grid;grid-template-columns:var(--ctrl-h) minmax(0,1fr) var(--ctrl-h);align-items:center;gap:var(--s1);margin:auto 0}
+#page-reports .mo-monthstep button{width:var(--ctrl-h);height:var(--ctrl-h);display:grid;place-items:center;padding:0;border:1px solid var(--line);border-radius:var(--r-pill);background:var(--bg);color:var(--ink);font:inherit;font-size:.9rem;cursor:pointer}
+#page-reports .mo-monthstep button:hover{border-color:var(--line-accent);color:var(--accent);background:var(--tint)}
+#page-reports .mo-monthstep button:focus-visible{outline:2px solid var(--line-accent);outline-offset:2px}
+#page-reports .mo-monthstep b{text-align:center;font-size:.78rem;font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap}
+#page-reports .mo-trend{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--grid-gap);margin-bottom:var(--sec-gap)}
+#page-reports .mo-panel{min-width:0;display:flex;flex-direction:column;background:var(--panel);border-radius:var(--r-card);padding:var(--s5)}
+#page-reports .mo-section-head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s3);margin-bottom:var(--s4)}
+#page-reports .mo-section-head h3{font-size:.9rem;font-weight:500;letter-spacing:.08em}
+#page-reports .mo-table-wrap{padding:0;background:var(--bg);border:1px solid var(--line-2);border-radius:var(--r-row);overflow-x:auto}
+#page-reports .mo-trend-table{width:100%;min-width:0;border-collapse:collapse;border-spacing:0;table-layout:fixed}
+#page-reports .mo-trend-table th,#page-reports .mo-trend-table td{padding:var(--s2);border-bottom:1px solid var(--line);font-size:.74rem;line-height:1.45;text-align:center;white-space:nowrap;font-variant-numeric:tabular-nums}
+#page-reports .mo-trend-table th{background:var(--fill);font-weight:500;letter-spacing:.04em}
+#page-reports .mo-trend-table tbody tr:last-child > *{border-bottom:0;background:var(--tint);color:var(--accent);font-weight:500}
+#page-reports .mo-trend-table tbody tr:hover{transform:none}
+#page-reports .mo-trend-table tbody tr:hover td{background:var(--fill)}
+#page-reports .mo-note{margin-top:var(--s3);font-size:.64rem;line-height:1.7;color:var(--muted)}
+#page-reports .mo-progress-top{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s3)}
+#page-reports .mo-progress-top h3{font-size:.9rem;font-weight:500;letter-spacing:.08em}
+#page-reports .mo-progress-number{display:flex;align-items:baseline;gap:var(--s2);margin:var(--s5) 0 var(--s4);font-variant-numeric:tabular-nums}
+#page-reports .mo-progress-number b{font-size:1.06rem;font-weight:500}
+#page-reports .mo-progress-number small{align-self:flex-end;margin-left:auto;font-size:.64rem;color:var(--muted)}
+#page-reports .mo-progress .wk-prog{display:flex;gap:var(--s1);height:1.3rem;background:none;border-radius:0;overflow:visible;position:static;margin:0 0 var(--s5)}
+#page-reports .mo-progress-lines{display:flex;flex-direction:column;margin-top:auto}
+#page-reports .mo-progress-row{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s3);padding:var(--s2) 0;border-top:1px solid var(--line);font-size:.74rem}
+#page-reports .mo-progress-row span:first-child{color:var(--muted)}
+#page-reports .mo-progress-row b{font-size:.76rem;font-weight:500;text-align:right}
+#page-reports .mo-analysis{margin-bottom:var(--sec-gap)}
+#page-reports .mo-analysis > .mo-section-head{margin-bottom:var(--s4)}
+#page-reports .mo-ana{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s4)}
+#page-reports .mo-analysis-card{min-width:0;display:flex;flex-direction:column;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s3) var(--s4)}
+#page-reports .mo-analysis-card-head{display:flex;align-items:center;gap:var(--s2);padding-bottom:var(--s2)}
+#page-reports .mo-analysis-card-head h4{font-size:.83rem;font-weight:500;margin:0}
+#page-reports .mo-ana-cols,#page-reports .mo-ana-row{display:grid;grid-template-columns:minmax(0,1fr) 2.8rem 2.8rem 2.8rem;gap:var(--s3);align-items:center}
+#page-reports .mo-ana-cols{padding-bottom:var(--s1);font-size:.7rem;color:var(--muted)}
+#page-reports .mo-ana-cols span:not(:first-child){text-align:center}
+#page-reports .mo-ana-list{min-height:0}
+#page-reports .mo-ana-row{padding:var(--s2) 0;border-top:1px solid var(--line);font-size:.74rem;line-height:1.35;font-variant-numeric:tabular-nums}
+#page-reports .mo-ana-row .mo-n{text-align:center;font-weight:400}
+#page-reports .mo-ana-row .mo-current{color:var(--accent);font-weight:500}
+#page-reports .mo-summary{margin-bottom:var(--sec-gap)}
+#page-reports .mo-summary h3{margin-bottom:var(--s2);font-size:.9rem}
+#page-reports .mo-summary-hint{font-size:.64rem;line-height:1.7;color:var(--muted)}
 @media (max-width:1020px){
   #page-reports .wk-meta{grid-template-columns:repeat(2,minmax(0,1fr))}
   #page-reports .wk-meta.wk-meta-6 > div{grid-column:span 6}
@@ -3027,8 +3084,11 @@
   #page-reports .wk-analysis-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   #page-reports .wk-rank-layout{grid-template-columns:1fr}
   #page-reports .wk-todo-list{grid-template-columns:1fr}
+  #page-reports .mo-cards > div{grid-column:span 6}
+  #page-reports .mo-trend,#page-reports .mo-ana{grid-template-columns:1fr}
 }
 @page{size:A4 landscape;margin:var(--s4)}
+@page mo-monthly{size:A4 portrait;margin:var(--s4)}
 @media print{
   body:has(#page-reports.view.on){background:var(--bg)}
   body:has(#page-reports.view.on) .app{display:block}
@@ -3051,6 +3111,18 @@
   #page-reports .wk-talk-table th,#page-reports .wk-talk-table td{padding:var(--s1)}
   #page-reports .wk-todo{display:none}
   #page-reports .wk-pageno{display:block;position:absolute;right:0;bottom:0;font-size:.64rem;color:var(--muted)}
+  #page-reports .mo-monthly,#page-reports .mo-panel,#page-reports .mo-analysis-card,#page-reports .mo-summary{background:var(--bg);box-shadow:none}
+  #page-reports .mo-cards{gap:var(--s2);margin-bottom:var(--s4)}
+  #page-reports .mo-cards > div{grid-column:span 4;padding:var(--s3)}
+  #page-reports .mo-monthstep button,#page-reports .mo-summary .pillbtn{display:none!important}
+  #page-reports .mo-trend{grid-template-columns:1fr;gap:var(--s4);margin-bottom:var(--s4)}
+  #page-reports .mo-panel,#page-reports .mo-analysis-card,#page-reports .mo-summary{break-inside:avoid}
+  #page-reports .mo-panel{padding:var(--s3)}
+  #page-reports .mo-progress .wk-prog{display:flex!important}
+  #page-reports .mo-analysis{margin-bottom:var(--s4)}
+  #page-reports .mo-ana{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s2)}
+  #page-reports .mo-analysis-card{padding:var(--s2)}
+  #page-reports .mo-sumbox{resize:none}
   #page-reports *{animation:none!important;transition:none!important;transform:none!important}
 }
 /* — templates — */
@@ -7362,38 +7434,190 @@
   </section>
 </div>
 
-<div id="reportsMonthly" style="display:none">
-  <div class="block kpis">
-    <div class="kpi"><span class="v"><span class="num" data-n="6">6</span><small>戶</small><span class="bub">已達 4</span></span><span class="k">本月目標</span></div>
-    <div class="kpi"><span class="v"><span class="num">3,275</span><small>萬</small></span><span class="k">均總價</span></div>
-    <div class="kpi"><span class="v"><span class="num">78.6</span><small>萬/坪</small></span><span class="k">均價</span></div>
-    <div class="kpi"><span class="v"><span class="num">1.31</span><small>億</small></span><span class="k">本月下訂總額</span></div>
+<div id="reportsMonthly" class="mo-monthly" style="display:none">
+  <div class="mo-meta mo-cards" aria-label="月報基本資料與關鍵指標">
+    <div class="mo-project-card">
+      <span class="mo-label">建案名稱 / 銷售單位</span>
+      <b class="mo-project">青園綠境<small class="mo-vendor">青園建設<span class="wk-missing-mark" title="需補欄位：建案設定尚無業主名稱欄位，此為示意">＊</span></small></b>
+      <div class="mo-card-foot mo-end"><small class="wk-cardsub">艾德霍客</small></div>
+    </div>
+    <div class="mo-month-card">
+      <span class="mo-label">統計月份</span>
+      <div class="mo-monthstep" data-mo-month="2026-08">
+        <button type="button" data-mo-step="-1" aria-label="前一個月">‹</button>
+        <b data-mo-label>2026-08</b>
+        <button type="button" data-mo-step="1" aria-label="後一個月">›</button>
+      </div>
+      <div class="mo-card-foot mo-end"><span data-mo-days>31 日</span></div>
+    </div>
+    <div class="mo-kpi-card">
+      <span class="mo-label">來人（本月）</span>
+      <b class="mo-stat">118 <i class="wk-unit">組</i></b>
+      <div class="mo-card-foot"><span>累計 140 組</span><span class="mo-trend-tag">▲12%</span></div>
+    </div>
+    <div class="mo-kpi-card">
+      <span class="mo-label">成交（本月）</span>
+      <b class="mo-stat">8 <i class="wk-unit">戶</i>／13 <i class="wk-unit">車</i></b>
+      <div class="mo-card-foot"><span>累計 10 戶</span><span class="mo-trend-tag">▲33%</span></div>
+    </div>
+    <div class="mo-kpi-card">
+      <span class="mo-label">銷售金額（本月）</span>
+      <b class="mo-stat">5.5 <i class="wk-unit">億</i></b>
+      <div class="mo-card-foot"><span>累計 5.5 億</span><span class="mo-trend-tag">▲33%</span></div>
+    </div>
+    <div class="mo-kpi-card">
+      <span class="mo-label">成交比例（本月）</span>
+      <b class="mo-stat">15:1</b>
+      <div class="mo-card-foot"><span>累計 14:1</span><span class="mo-trend-tag mo-down">▼7%</span></div>
+    </div>
   </div>
 
-  <div class="block anagrid">
-    <div class="acard span2">
-      <h3>溢價分析 <small>成交價 vs 表價底價，2026-08</small></h3>
-      <div class="buyrow"><b>平均溢價幅度</b><span class="rowsub">已簽約與下訂戶合計</span><span class="p">+1.9%</span></div>
-      <div class="buyrow"><b>平均每戶溢價</b><span class="rowsub">溢價總額 ÷ 納入戶數</span><span class="p">+38 萬</span></div>
-      <div class="buyrow"><b>溢價總額</b><span class="rowsub">當月累計</span><span class="p">+156 萬</span></div>
-      <div class="buyrow"><b>納入計算</b><span class="rowsub">當月下訂與簽約</span><span class="p">4 戶</span></div>
-      <div class="table-wrap"><table>
-        <thead><tr><th>業務</th><th>溢價貢獻（萬）</th></tr></thead>
-        <tbody>
-          <tr><td>張家豪</td><td>+86</td></tr>
-          <tr><td>吳姿瑩</td><td>+52</td></tr>
-          <tr><td>陳冠廷</td><td>+18</td></tr>
-        </tbody>
-      </table></div>
+  <section class="mo-trend" aria-label="月度走勢">
+    <article class="mo-panel">
+      <div class="mo-section-head"><h3>近六個月走勢</h3></div>
+      <div class="mo-table-wrap">
+        <table class="mo-trend-table">
+          <thead><tr><th>月份</th><th>來人</th><th>成交</th><th>成交比</th></tr></thead>
+          <tbody>
+            <tr><td>2026-03</td><td>0</td><td>0</td><td>—</td></tr>
+            <tr><td>2026-04</td><td>2</td><td>0</td><td>—</td></tr>
+            <tr><td>2026-05</td><td>4</td><td>0</td><td>—</td></tr>
+            <tr><td>2026-06</td><td>6</td><td>1</td><td>6:1</td></tr>
+            <tr><td>2026-07</td><td>10</td><td>1</td><td>10:1</td></tr>
+            <tr><td>2026-08</td><td>118</td><td>8</td><td>15:1</td></tr>
+            <tr><td>合計</td><td>140 組</td><td>10 戶</td><td>14:1</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="mo-note">開案 2026-03，前三個月為潛銷期</p>
+    </article>
+
+    <article class="mo-panel mo-progress">
+      <div class="mo-progress-top"><h3>去化進度</h3></div>
+      <div class="mo-progress-number"><b>已簽約 8 戶 ／ 126 戶</b><small>6%</small></div>
+      <span class="wk-prog" aria-label="去化進度 6%"><i><u style="width:100%"></u></i><i><u style="width:20%"></u></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      <div class="mo-progress-lines">
+        <div class="mo-progress-row"><span>本月新增簽約</span><b>8 戶</b></div>
+        <div class="mo-progress-row"><span>可售餘屋</span><b>118 戶</b></div>
+        <div class="mo-progress-row"><span>依本月速度預估完銷</span><b>約 15 個月 <span class="wk-missing-mark" title="需補欄位：完銷預估需接銷控與目標設定">＊</span></b></div>
+      </div>
+    </article>
+  </section>
+
+  <section class="mo-analysis" aria-labelledby="moAnalysisTitle">
+    <div class="mo-section-head"><h3 id="moAnalysisTitle">月度來人分析</h3></div>
+    <div class="mo-ana">
+      <article class="mo-analysis-card">
+        <div class="mo-analysis-card-head"><h4 title="勾勾表：居住區域（系統僅本區／鄰近區／外縣市三段）">區域</h4></div>
+        <div class="mo-ana-cols"><span></span><span>本月</span><span>累計</span><span>成交</span></div>
+        <div class="mo-ana-list">
+          <div class="mo-ana-row" data-mo-current="66" data-mo-total="76" data-mo-deal="6"><span>本區</span><b class="mo-n mo-current">66</b><b class="mo-n">76</b><b class="mo-n">6</b></div>
+          <div class="mo-ana-row" data-mo-current="34" data-mo-total="40" data-mo-deal="3"><span>鄰近區</span><b class="mo-n mo-current">34</b><b class="mo-n">40</b><b class="mo-n">3</b></div>
+          <div class="mo-ana-row" data-mo-current="18" data-mo-total="24" data-mo-deal="1"><span>外縣市</span><b class="mo-n mo-current">18</b><b class="mo-n">24</b><b class="mo-n">1</b></div>
+        </div>
+      </article>
+
+      <article class="mo-analysis-card">
+        <div class="mo-analysis-card-head"><h4 title="來客表：來源（與勾勾表「媒體來源」不同欄，不可混用）">廣告</h4></div>
+        <div class="mo-ana-cols"><span></span><span>本月</span><span>累計</span><span>成交</span></div>
+        <div class="mo-ana-list">
+          <div class="mo-ana-row" data-mo-current="36" data-mo-total="42" data-mo-deal="3"><span>FB</span><b class="mo-n mo-current">36</b><b class="mo-n">42</b><b class="mo-n">3</b></div>
+          <div class="mo-ana-row" data-mo-current="24" data-mo-total="29" data-mo-deal="3"><span>介紹</span><b class="mo-n mo-current">24</b><b class="mo-n">29</b><b class="mo-n">3</b></div>
+          <div class="mo-ana-row" data-mo-current="14" data-mo-total="17" data-mo-deal="1"><span>現場</span><b class="mo-n mo-current">14</b><b class="mo-n">17</b><b class="mo-n">1</b></div>
+          <div class="mo-ana-row" data-mo-current="13" data-mo-total="16" data-mo-deal="1"><span>網路</span><b class="mo-n mo-current">13</b><b class="mo-n">16</b><b class="mo-n">1</b></div>
+          <div class="mo-ana-row" data-mo-current="10" data-mo-total="12" data-mo-deal="1"><span>IG</span><b class="mo-n mo-current">10</b><b class="mo-n">12</b><b class="mo-n">1</b></div>
+          <div class="mo-ana-row" data-mo-current="11" data-mo-total="13" data-mo-deal="1"><span>看板</span><b class="mo-n mo-current">11</b><b class="mo-n">13</b><b class="mo-n">1</b></div>
+          <div class="mo-ana-row" data-mo-current="10" data-mo-total="11" data-mo-deal="0"><span>路過</span><b class="mo-n mo-current">10</b><b class="mo-n">11</b><b class="mo-n">0</b></div>
+        </div>
+      </article>
+
+      <article class="mo-analysis-card">
+        <div class="mo-analysis-card-head"><h4 title="勾勾表：購屋預算（系統上限 2500 萬以上）">價格</h4></div>
+        <div class="mo-ana-cols"><span></span><span>本月</span><span>累計</span><span>成交</span></div>
+        <div class="mo-ana-list">
+          <div class="mo-ana-row" data-mo-current="42" data-mo-total="50" data-mo-deal="4"><span>1500-2000萬</span><b class="mo-n mo-current">42</b><b class="mo-n">50</b><b class="mo-n">4</b></div>
+          <div class="mo-ana-row" data-mo-current="28" data-mo-total="34" data-mo-deal="2"><span>1000-1500萬</span><b class="mo-n mo-current">28</b><b class="mo-n">34</b><b class="mo-n">2</b></div>
+          <div class="mo-ana-row" data-mo-current="27" data-mo-total="32" data-mo-deal="3"><span>2000-2500萬</span><b class="mo-n mo-current">27</b><b class="mo-n">32</b><b class="mo-n">3</b></div>
+          <div class="mo-ana-row" data-mo-current="11" data-mo-total="13" data-mo-deal="0"><span>1000萬以下</span><b class="mo-n mo-current">11</b><b class="mo-n">13</b><b class="mo-n">0</b></div>
+          <div class="mo-ana-row" data-mo-current="10" data-mo-total="11" data-mo-deal="1"><span>2500萬以上</span><b class="mo-n mo-current">10</b><b class="mo-n">11</b><b class="mo-n">1</b></div>
+        </div>
+      </article>
+
+      <article class="mo-analysis-card">
+        <div class="mo-analysis-card-head"><h4 title="勾勾表：購屋目的">動機</h4></div>
+        <div class="mo-ana-cols"><span></span><span>本月</span><span>累計</span><span>成交</span></div>
+        <div class="mo-ana-list">
+          <div class="mo-ana-row" data-mo-current="47" data-mo-total="56" data-mo-deal="4"><span>自住</span><b class="mo-n mo-current">47</b><b class="mo-n">56</b><b class="mo-n">4</b></div>
+          <div class="mo-ana-row" data-mo-current="28" data-mo-total="34" data-mo-deal="2"><span>置產</span><b class="mo-n mo-current">28</b><b class="mo-n">34</b><b class="mo-n">2</b></div>
+          <div class="mo-ana-row" data-mo-current="24" data-mo-total="28" data-mo-deal="2"><span>投資</span><b class="mo-n mo-current">24</b><b class="mo-n">28</b><b class="mo-n">2</b></div>
+          <div class="mo-ana-row" data-mo-current="19" data-mo-total="22" data-mo-deal="2"><span>換屋</span><b class="mo-n mo-current">19</b><b class="mo-n">22</b><b class="mo-n">2</b></div>
+        </div>
+      </article>
     </div>
-    <div class="acard">
-      <h3>銷售里程碑 <small>2026-08 當月</small></h3>
-      <div class="buyrow"><b>來訪</b><span class="rowsub">當月累計新進</span><span class="p">68 組</span></div>
-      <div class="buyrow"><b>回訪</b><span class="rowsub">回訪率 35%</span><span class="p">24 組</span></div>
-      <div class="buyrow"><b>下訂</b><span class="rowsub">回訪轉下訂 17%</span><span class="p">4 戶</span></div>
-      <div class="buyrow"><b>簽約</b><span class="rowsub">下訂轉簽約 75%</span><span class="p">3 戶</span></div>
-    </div>
+  </section>
+
+  <div class="acard mo-summary">
+    <h3>月度摘要（2026-08）</h3>
+    <textarea class="mo-sumbox dr-sumbox" rows="4">本月來人 118 組、成交 8 戶，成交比 15:1 較上月放寬。介紹客佔比 20% 但成交貢獻 38%，建議下月加碼舊客回饋方案。價格帶集中 1500-2000 萬，2500 萬以上僅 10 組、成交 1 戶，高總價去化需再觀察。</textarea>
+    <div class="sumfoot"><span class="mo-summary-hint">需 lead:update・由專案經理填寫</span><button class="pillbtn" type="button" data-act="saveSummary">儲存摘要</button></div>
   </div>
+
+  <script>
+  (function(){
+    var monthly=document.getElementById('reportsMonthly');
+    if(!monthly)return;
+    var monthStamp=Date.UTC(2026,7,1);
+    var monthBox=monthly.querySelector('[data-mo-month]');
+    var monthLabel=monthly.querySelector('[data-mo-label]');
+    var monthDays=monthly.querySelector('[data-mo-days]');
+    function drawMonth(){
+      var date=new Date(monthStamp),year=date.getUTCFullYear(),month=date.getUTCMonth();
+      var value=year+'-'+String(month+1).padStart(2,'0');
+      monthBox.dataset.moMonth=value;
+      monthLabel.textContent=value;
+      monthDays.textContent=new Date(Date.UTC(year,month+1,0)).getUTCDate()+' 日';
+    }
+    monthly.addEventListener('click',function(e){
+      var step=e.target.closest('[data-mo-step]');
+      if(step){
+        var date=new Date(monthStamp);
+        monthStamp=Date.UTC(date.getUTCFullYear(),date.getUTCMonth()+Number(step.dataset.moStep),1);
+        drawMonth();
+        if(window.toast)window.toast('示意：正式版載入該月資料');
+        return;
+      }
+      var save=e.target.closest('[data-act="saveSummary"]');
+      if(save){
+        e.stopPropagation();
+        if(window.toast)window.toast('月度摘要已儲存 <b>2026-08</b>');
+      }
+    });
+    var printBtn=document.querySelector('#page-reports [data-act="printRep"]');
+    if(printBtn){
+      printBtn.addEventListener('click',function(e){
+        if(getComputedStyle(monthly).display==='none')return;
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        var weekly=document.getElementById('reportsWeekly');
+        var wkValue=weekly?weekly.style.getPropertyValue('display'):'',wkPriority=weekly?weekly.style.getPropertyPriority('display'):'';
+        var moValue=monthly.style.getPropertyValue('display'),moPriority=monthly.style.getPropertyPriority('display');
+        if(weekly)weekly.style.setProperty('display','none','important');
+        monthly.style.setProperty('display','block','important');
+        var restored=false;
+        function restore(){
+          if(restored)return;
+          restored=true;
+          if(weekly){if(wkValue)weekly.style.setProperty('display',wkValue,wkPriority);else weekly.style.removeProperty('display')}
+          if(moValue)monthly.style.setProperty('display',moValue,moPriority);else monthly.style.removeProperty('display');
+        }
+        window.addEventListener('afterprint',restore,{once:true});
+        window.print();
+        setTimeout(restore,0);
+      },true);
+    }
+    drawMonth();
+  })();
+  </script>
 </div>
 </section>
 
