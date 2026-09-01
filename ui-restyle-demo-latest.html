@@ -2844,6 +2844,7 @@
 #page-reports .wk-main-table tbody th:not(.wk-stage){width:2.8rem;text-align:center;padding-left:var(--s1)}
 #page-reports .wk-main-table tbody tr > th[colspan="2"]{width:5.4rem;text-align:center}
 #page-reports .wk-main-table .wk-date-row td{color:var(--muted)}
+#page-reports .wk-main-table tbody td.wk-nodata{color:var(--line-3)}
 #page-reports .wk-main-table .wk-group-start>*{border-top-color:var(--line-2)}
 #page-reports .wk-main-table .wk-week-total{background:var(--tint);color:var(--accent);font-weight:500}
 #page-reports .wk-main-table tr.wk-total-row > th:not(.wk-stage),#page-reports .wk-main-table tr.wk-total-row > td{background:var(--fill)}
@@ -2854,7 +2855,7 @@
 #page-reports .wk-weather .chip{cursor:pointer;min-width:var(--s7);padding:0 var(--s2)}
 #page-reports .wk-weather .chip:hover,#page-reports .wk-weather .chip:focus-visible{border-color:var(--warm);background:var(--warm-tint);color:var(--warm)}
 #page-reports .wk-ratio-top{display:flex;align-items:center;justify-content:space-between;gap:var(--s2)}
-#page-reports .wk-heads{display:grid;grid-template-columns:repeat(7,1.04rem);gap:0;color:var(--muted);justify-content:start;align-content:start;align-self:flex-start;flex:none}
+#page-reports .wk-heads{display:grid;grid-template-columns:repeat(7,1.04rem);gap:0;color:var(--muted);justify-content:start;align-content:end;align-self:flex-start;flex:none;margin-top:auto}
 #page-reports .wk-meta.wk-meta-6 > .wk-ratio-card > .wk-stat-val{position:absolute;top:var(--s4);right:var(--s4);font-size:1.06rem;}
 #page-reports .wk-meta.wk-meta-6 > .wk-ratio-card > .wk-ratio-scope{position:absolute;right:var(--s4);bottom:var(--s4);margin-top:0}
 #page-reports .wk-head.on{color:var(--muted);stroke-width:1.1}
@@ -7050,6 +7051,7 @@
       <div class="wk-kpi-card"><div class="wk-stat-head"><span>下訂／簽約<small class="wk-sublbl">(本週)</small></span><b class="wk-stat-val">2 <i class="wk-unit">戶</i>／0 <i class="wk-unit">戶</i></b></div><div class="wk-kpi-foot"><small class="wk-cardsub">累計 10 戶／8 戶</small><small class="wk-trend-tag down">▼33%</small></div></div>
       <div class="wk-kpi-card"><div class="wk-stat-head"><span>退戶<small class="wk-sublbl">(本週)</small></span><b class="wk-stat-val">0 <i class="wk-unit">戶</i></b></div><div class="wk-kpi-foot"><small class="wk-cardsub">累計 0 戶</small><small class="wk-trend-tag flat">─ 0%</small></div></div>
       <div class="wk-kpi-card wk-ratio-card">
+        <span class="microlbl">全案成交比</span>
         <b class="wk-stat-val">14:1</b>
         <div class="wk-heads" aria-hidden="true">
           <svg class="wk-head solid" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.9"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
@@ -7067,7 +7069,6 @@
           <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
           <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
         </div>
-        <small class="wk-cardsub wk-ratio-scope">全案</small>
       </div>
       <div><div class="wk-stat-head"><span>銷售戶數</span><b class="wk-stat-val">126 <i class="wk-unit">戶</i></b></div><span class="wk-prog"><i><u style="width:100%"></u></i><i><u style="width:20%"></u></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><small class="wk-prog-cap"><span>已簽約 8 戶</span><span>6%</span></small></div>
       <div><div class="wk-stat-head"><span>總銷金額</span><b class="wk-stat-val">42.6 <i class="wk-unit">億</i></b></div><span class="wk-prog"><i><u style="width:100%"></u></i><i><u style="width:100%"></u></i><i><u style="width:60%"></u></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><small class="wk-prog-cap"><span>已簽約 5.5 億</span><span>13%</span></small></div>
@@ -7111,18 +7112,18 @@
           <tr><th colspan="2">來人</th><td>2</td><td>2</td><td>3</td><td>2</td><td>3</td><td>6</td><td>7</td><td class="wk-week-total">25</td><td>140</td></tr>
           <tr><th colspan="2">來電</th><td>1</td><td>2</td><td>1</td><td>1</td><td>2</td><td>2</td><td>2</td><td class="wk-week-total">11</td><td>52</td></tr>
           <tr><th colspan="2">回客</th><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td class="wk-week-total">2</td><td>12</td></tr>
-          <tr class="wk-group-start"><th class="wk-stage" rowspan="4">小訂</th><th>戶數</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>1 戶 / 2 車</td><td>1 戶 / 2 車</td><td class="wk-week-total">2 戶 / 4 車</td><td>10 戶 / 17 車</td></tr>
-          <tr><th>房價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>6,520</td><td>6,148</td><td class="wk-week-total">12,668</td><td>63,780</td></tr>
-          <tr><th>車價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>420</td><td>420</td><td class="wk-week-total">840</td><td>4,975</td></tr>
-          <tr class="wk-total-row"><th>總價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>6,940</td><td>6,568</td><td class="wk-week-total">13,508</td><td>68,755</td></tr>
-          <tr class="wk-group-start"><th class="wk-stage" rowspan="4">簽約</th><th>戶數</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0 戶 / 0 車</td><td>8 戶 / 13 車</td></tr>
-          <tr><th>房價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0</td><td>51,112</td></tr>
-          <tr><th>車價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0</td><td>4,135</td></tr>
-          <tr class="wk-total-row"><th>總價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0</td><td>55,247</td></tr>
-          <tr class="wk-group-start"><th class="wk-stage" rowspan="4">退戶</th><th>戶數</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0 戶 / 0 車</td><td>0 戶 / 0 車</td></tr>
-          <tr><th>房價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0</td><td>0</td></tr>
-          <tr><th>車價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0</td><td>0</td></tr>
-          <tr class="wk-total-row"><th>總價</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="wk-week-total">0</td><td>0</td></tr>
+          <tr class="wk-group-start"><th class="wk-stage" rowspan="4">小訂</th><th>戶數</th><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td>1 戶 / 2 車</td><td>1 戶 / 2 車</td><td class="wk-week-total">2 戶 / 4 車</td><td>10 戶 / 17 車</td></tr>
+          <tr><th>房價</th><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td>6,520</td><td>6,148</td><td class="wk-week-total">12,668</td><td>63,780</td></tr>
+          <tr><th>車價</th><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td>420</td><td>420</td><td class="wk-week-total">840</td><td>4,975</td></tr>
+          <tr class="wk-total-row"><th>總價</th><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td>6,940</td><td>6,568</td><td class="wk-week-total">13,508</td><td>68,755</td></tr>
+          <tr class="wk-group-start"><th class="wk-stage" rowspan="4">簽約</th><th>戶數</th><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-week-total">0 戶 / 0 車</td><td>8 戶 / 13 車</td></tr>
+          <tr><th>房價</th><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-week-total">0</td><td>51,112</td></tr>
+          <tr><th>車價</th><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-week-total">0</td><td>4,135</td></tr>
+          <tr class="wk-total-row"><th>總價</th><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-week-total">0</td><td>55,247</td></tr>
+          <tr class="wk-group-start"><th class="wk-stage" rowspan="4">退戶</th><th>戶數</th><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-week-total">0 戶 / 0 車</td><td>0 戶 / 0 車</td></tr>
+          <tr><th>房價</th><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-week-total">0</td><td>0</td></tr>
+          <tr><th>車價</th><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-week-total">0</td><td>0</td></tr>
+          <tr class="wk-total-row"><th>總價</th><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-nodata">—</td><td class="wk-week-total">0</td><td>0</td></tr>
         </tbody>
       </table>
     </div>
