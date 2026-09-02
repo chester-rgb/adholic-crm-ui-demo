@@ -2640,7 +2640,6 @@
 /* — reports — */
 #page-reports #reportsWeather .chip{cursor:pointer}
 #page-reports #reportsWeather .chip.on{border-color:var(--accent);color:var(--accent);background:var(--tint)}
-#page-reports .sumcard .chips{display:inline-flex;margin:var(--s2) 0 var(--s3)}
 #page-reports .sumtext{font-size:.76rem;line-height:1.7;color:var(--ink);background:var(--fill);border-radius:var(--r-row);padding:var(--s3);margin:0 0 var(--s3)}
 #page-reports .sumfoot{display:flex;align-items:center;justify-content:space-between;gap:var(--s2)}
 #page-reports .sumhint{font-size:.66rem;color:var(--muted)}
@@ -2698,17 +2697,15 @@
 #page-reports .dr-table th:nth-child(5){width:10%}
 #page-reports .dr-table th:nth-child(6){width:20%}
 #page-reports .dr-table th:nth-child(7){width:19%}
-#page-reports .dr-summary{margin-bottom:var(--sec-gap)}
-#page-reports .dr-summary h3{margin-bottom:var(--s2);font-size:.9rem}
-#page-reports .dr-summary .microlbl{margin-bottom:0}
-#page-reports .dr-summary .chip{font-size:.64rem}
-#page-reports .dr-summary-hint{font-size:.64rem;line-height:1.7;color:var(--muted)}
+#page-reports .dr-weather .microlbl{margin-bottom:0}
+#page-reports .dr-weather .chip{font-size:.64rem}
 #page-reports .dr-link{background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer;text-align:inherit;border-bottom:1px solid var(--line-2)}
 #page-reports .dr-link:hover{color:var(--accent);border-bottom-color:var(--line-accent)}
 #page-reports .dr-link:focus-visible{outline:2px solid var(--line-accent);outline-offset:2px;border-radius:var(--r-mini)}
 #page-reports .dr-sumbox{width:100%;min-height:4.5rem;resize:vertical;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-row);padding:var(--s3);font:inherit;font-size:.74rem;line-height:1.8;color:var(--ink)}
 #page-reports .dr-sumbox:focus{outline:none;border-color:var(--line-accent)}
-#page-reports .dr-weather{display:flex;align-items:center;gap:var(--s3)}
+#page-reports .dr-weather{display:flex;align-items:center;gap:var(--s3);flex:none}
+#page-reports .dr-weather .chips{display:inline-flex;gap:var(--s1)}
 @media (max-width:1020px){
   #page-reports .dr-cards{grid-template-columns:repeat(3,minmax(0,1fr))}
   #page-reports .dr-mid{grid-template-columns:1fr}
@@ -2717,7 +2714,6 @@
   #page-reports .dr-head{align-items:flex-start;flex-direction:column}
   #page-reports .dr-datepick{width:100%}
   #page-reports .dr-cards{grid-template-columns:repeat(2,minmax(0,1fr))}
-  #page-reports .dr-summary .sumfoot{align-items:flex-start;flex-direction:column}
 }
 #page-reports #reportsWeekly{min-width:0}
 #page-reports .wk-toolbar{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--s4);margin-bottom:var(--s4)}
@@ -6075,14 +6071,14 @@
             <div class="ax-verdict"><span class="dot ac"></span><span class="dot ac"></span><span class="dot warm"></span><span>近 2 個 cohort 回訪率低於 12 週中位 84%——單條件成立亮黃燈；A+B 佔比未同步下滑，<b>暫不發降溫警報</b>。</span></div>
             <div class="ax-body">
               <div class="ax-chart">
-                <svg viewBox="0 0 560 150" role="img" aria-label="14 天到場回訪率與往左平移三週的週成交組數雙線圖，兩線走勢高度重疊">
-                  <line class="grid" x1="20" y1="40" x2="500" y2="40"/>
-                  <line class="grid" x1="20" y1="85" x2="500" y2="85"/>
-                  <line class="axis" x1="20" y1="130" x2="500" y2="130"/>
-                  <polyline class="l1" points="20,52 80,48 140,44 200,58 260,72 320,68 380,84 440,96 500,92"/>
-                  <polyline class="l2" points="20,58 80,50 140,50 200,62 260,78 320,74 380,90 440,102 500,100"/>
-                  <circle class="pt warm" cx="440" cy="96" r="4"/>
-                  <circle class="pt hollow" cx="500" cy="92" r="4"/>
+                <svg viewBox="0 0 560 84" role="img" aria-label="14 天到場回訪率與往左平移三週的週成交組數雙線圖，兩線走勢高度重疊">
+                  <line class="grid" x1="20" y1="22.4" x2="540" y2="22.4"/>
+                  <line class="grid" x1="20" y1="47.6" x2="540" y2="47.6"/>
+                  <line class="axis" x1="20" y1="72.8" x2="540" y2="72.8"/>
+                  <polyline class="l1" points="20,29.1 85,26.9 150,24.6 215,32.5 280,40.3 345,38.1 410,47.0 475,53.8 540,51.5"/>
+                  <polyline class="l2" points="20,32.5 85,28.0 150,28.0 215,34.7 280,43.7 345,41.4 410,50.4 475,57.1 540,56.0"/>
+                  <circle class="pt warm" cx="475" cy="53.8" r="3"/>
+                  <circle class="pt hollow" cx="540" cy="51.5" r="3"/>
                 </svg>
                 <div class="ax-axis"><span>前 8 週</span><span>本週</span></div>
                 <div class="ax-keys"><span class="ax-key">14 天回訪率（空心＝發酵中）</span><span class="ax-key k2">週成交組數（左移 3 週）</span></div>
@@ -7264,6 +7260,8 @@
         <div class="dp-grid"></div>
       </div>
     </div>
+    <div class="dr-weather"><span class="microlbl">天氣</span>
+      <span class="chips" id="reportsWeather"><span class="chip on">晴</span><span class="chip">多雲</span><span class="chip">陰</span><span class="chip">雨</span></span></div>
     <span class="dr-updated">更新於 18:02　<span class="wk-missing-mark" title="需補欄位：正式版由排程每 15 分鐘重算">＊</span></span>
   </div>
 
@@ -7327,13 +7325,6 @@
     </section>
   </div>
 
-  <div class="acard sumcard dr-summary">
-    <h3>現場摘要（今日）</h3>
-    <div class="dr-weather"><span class="microlbl">天氣</span>
-      <span class="chips" id="reportsWeather"><span class="chip on">晴</span><span class="chip">多雲</span><span class="chip">陰</span><span class="chip">雨</span></span></div>
-    <textarea class="dr-sumbox" rows="3" placeholder="輸入今日現場摘要…">午後來人集中，兩組回訪指名 A3 棟三房高樓層；陳威宇複看後當場下訂 12F。車位配比詢問度偏高，明日備妥車位圖。</textarea>
-    <div class="sumfoot"><span class="dr-summary-hint">需 lead:update・由專案經理填寫</span><button class="pillbtn" data-act="saveSummary">儲存摘要</button></div>
-  </div>
 </div>
 
 <div id="reportsWeekly" style="display:none">
@@ -14099,9 +14090,6 @@ try{ /* collect */
       } else {
         busy(b,900,function(){ toast('已送出列印——正式版另存 PDF 日報') });
       }
-    } else if(act==='saveSummary'){
-      var ta=document.querySelector('#page-reports textarea, #page-reports .summary');
-      toast('現場摘要已儲存 <b>2026-08-21</b>');
     } else if(act==='dlTpl'){
       /* 範本欄位直接取自欄位對應的正本 IMP_FIELDS——原本手寫一份，
          結果少了「來訪日期」「來客/來電」兩個必填欄，照官方範本填完反而過不了 */
