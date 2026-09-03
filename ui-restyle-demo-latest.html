@@ -2982,7 +2982,8 @@
 #page-reports .mo-spark-svg path:not(.area):not(.mo-hair){fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
 #page-reports .mo-spark-svg .mo-hair{fill:none;stroke:var(--line-accent);stroke-width:1;stroke-linecap:butt;vector-effect:non-scaling-stroke}
 /* 上排（來客／回客／來電）＝逐日柱：一根柱＝一天，高度＝件數，不內插 */
-#page-reports .mo-spark-svg.mo-bars .mo-hair{stroke:var(--accent);stroke-width:3;stroke-linecap:round}
+#page-reports .mo-spark-svg.mo-bars .mo-hair{stroke:var(--chart-3);stroke-width:3;stroke-linecap:round}
+#page-reports .mo-spark-svg.mo-bars .mo-hair-on{stroke:var(--accent)}   /* 滑到的那一天才是深的 */
 #page-reports .mo-spark-svg .l1{stroke:var(--accent)}
 #page-reports .mo-spark-svg .l2{stroke:var(--chart-3)}
 #page-reports .mo-spark-svg .l3{stroke:var(--line-3)}
@@ -7700,7 +7701,8 @@
         </div>
         <div class="mo-spark-plot" style="--mx:48.34%;--my:24.00%" data-spark data-vals="4,4,3,2,2,3,5,6,5,4,2,2,4,5,6,6,4,2,2,4,6,6,6,3,2,2,3,5,5,5" data-max="6" data-unit="組">
           <svg class="mo-spark-svg mo-bars" viewBox="0 -20 300 100" role="img" aria-label="來客逐日走勢，2026-08 合計 118 組" preserveAspectRatio="none">
-            <path class="mo-hair" d="M6.0,70 L6.0,26.0 M15.9,70 L15.9,26.0 M25.9,70 L25.9,37.0 M35.8,70 L35.8,48.0 M45.7,70 L45.7,48.0 M55.7,70 L55.7,37.0 M65.6,70 L65.6,15.0 M75.5,70 L75.5,4.0 M85.4,70 L85.4,15.0 M95.4,70 L95.4,26.0 M105.3,70 L105.3,48.0 M115.2,70 L115.2,48.0 M125.2,70 L125.2,26.0 M135.1,70 L135.1,15.0 M145.0,70 L145.0,4.0 M155.0,70 L155.0,4.0 M164.9,70 L164.9,26.0 M174.8,70 L174.8,48.0 M184.8,70 L184.8,48.0 M194.7,70 L194.7,26.0 M204.6,70 L204.6,4.0 M214.6,70 L214.6,4.0 M224.5,70 L224.5,4.0 M234.4,70 L234.4,37.0 M244.3,70 L244.3,48.0 M254.3,70 L254.3,48.0 M264.2,70 L264.2,37.0 M274.1,70 L274.1,15.0 M284.1,70 L284.1,15.0 M294.0,70 L294.0,15.0"/></svg>
+            <path class="mo-hair" d="M6.0,70 L6.0,26.0 M15.9,70 L15.9,26.0 M25.9,70 L25.9,37.0 M35.8,70 L35.8,48.0 M45.7,70 L45.7,48.0 M55.7,70 L55.7,37.0 M65.6,70 L65.6,15.0 M75.5,70 L75.5,4.0 M85.4,70 L85.4,15.0 M95.4,70 L95.4,26.0 M105.3,70 L105.3,48.0 M115.2,70 L115.2,48.0 M125.2,70 L125.2,26.0 M135.1,70 L135.1,15.0 M145.0,70 L145.0,4.0 M155.0,70 L155.0,4.0 M164.9,70 L164.9,26.0 M174.8,70 L174.8,48.0 M184.8,70 L184.8,48.0 M194.7,70 L194.7,26.0 M204.6,70 L204.6,4.0 M214.6,70 L214.6,4.0 M224.5,70 L224.5,4.0 M234.4,70 L234.4,37.0 M244.3,70 L244.3,48.0 M254.3,70 L254.3,48.0 M264.2,70 L264.2,37.0 M274.1,70 L274.1,15.0 M284.1,70 L284.1,15.0 M294.0,70 L294.0,15.0"/>
+            <path class="mo-hair mo-hair-on" d="M145.0,70 L145.0,4.0"/></svg>
           <span class="mo-spark-dot"></span>
           <span class="mo-spark-tip">08/30 · 5 組</span>
         </div>
@@ -7713,7 +7715,8 @@
         </div>
         <div class="mo-spark-plot" style="--mx:51.66%;--my:24.00%" data-spark data-vals="0,1,0,0,0,1,0,1,0,0,1,0,0,1,0,1,0,0,1,0,0,1,0,0,0,0,0,1,0,1" data-max="1" data-unit="組">
           <svg class="mo-spark-svg mo-bars" viewBox="0 -20 300 100" role="img" aria-label="回客逐日走勢，2026-08 合計 10 組" preserveAspectRatio="none">
-            <path class="mo-hair" d="M15.9,70 L15.9,4.0 M55.7,70 L55.7,4.0 M75.5,70 L75.5,4.0 M105.3,70 L105.3,4.0 M135.1,70 L135.1,4.0 M155.0,70 L155.0,4.0 M184.8,70 L184.8,4.0 M214.6,70 L214.6,4.0 M274.1,70 L274.1,4.0 M294.0,70 L294.0,4.0"/></svg>
+            <path class="mo-hair" d="M15.9,70 L15.9,4.0 M55.7,70 L55.7,4.0 M75.5,70 L75.5,4.0 M105.3,70 L105.3,4.0 M135.1,70 L135.1,4.0 M155.0,70 L155.0,4.0 M184.8,70 L184.8,4.0 M214.6,70 L214.6,4.0 M274.1,70 L274.1,4.0 M294.0,70 L294.0,4.0"/>
+            <path class="mo-hair mo-hair-on" d="M155.0,70 L155.0,4.0"/></svg>
           <span class="mo-spark-dot"></span>
           <span class="mo-spark-tip">08/30 · 1 組</span>
         </div>
@@ -7726,7 +7729,8 @@
         </div>
         <div class="mo-spark-plot" style="--mx:48.34%;--my:24.00%" data-spark data-vals="2,2,1,1,2,1,2,2,1,1,2,1,1,2,2,1,1,1,2,1,2,1,1,1,2,1,1,2,2,2" data-max="2" data-unit="通">
           <svg class="mo-spark-svg mo-bars" viewBox="0 -20 300 100" role="img" aria-label="來電逐日走勢，2026-08 合計 44 通" preserveAspectRatio="none">
-            <path class="mo-hair" d="M6.0,70 L6.0,4.0 M15.9,70 L15.9,4.0 M25.9,70 L25.9,37.0 M35.8,70 L35.8,37.0 M45.7,70 L45.7,4.0 M55.7,70 L55.7,37.0 M65.6,70 L65.6,4.0 M75.5,70 L75.5,4.0 M85.4,70 L85.4,37.0 M95.4,70 L95.4,37.0 M105.3,70 L105.3,4.0 M115.2,70 L115.2,37.0 M125.2,70 L125.2,37.0 M135.1,70 L135.1,4.0 M145.0,70 L145.0,4.0 M155.0,70 L155.0,37.0 M164.9,70 L164.9,37.0 M174.8,70 L174.8,37.0 M184.8,70 L184.8,4.0 M194.7,70 L194.7,37.0 M204.6,70 L204.6,4.0 M214.6,70 L214.6,37.0 M224.5,70 L224.5,37.0 M234.4,70 L234.4,37.0 M244.3,70 L244.3,4.0 M254.3,70 L254.3,37.0 M264.2,70 L264.2,37.0 M274.1,70 L274.1,4.0 M284.1,70 L284.1,4.0 M294.0,70 L294.0,4.0"/></svg>
+            <path class="mo-hair" d="M6.0,70 L6.0,4.0 M15.9,70 L15.9,4.0 M25.9,70 L25.9,37.0 M35.8,70 L35.8,37.0 M45.7,70 L45.7,4.0 M55.7,70 L55.7,37.0 M65.6,70 L65.6,4.0 M75.5,70 L75.5,4.0 M85.4,70 L85.4,37.0 M95.4,70 L95.4,37.0 M105.3,70 L105.3,4.0 M115.2,70 L115.2,37.0 M125.2,70 L125.2,37.0 M135.1,70 L135.1,4.0 M145.0,70 L145.0,4.0 M155.0,70 L155.0,37.0 M164.9,70 L164.9,37.0 M174.8,70 L174.8,37.0 M184.8,70 L184.8,4.0 M194.7,70 L194.7,37.0 M204.6,70 L204.6,4.0 M214.6,70 L214.6,37.0 M224.5,70 L224.5,37.0 M234.4,70 L234.4,37.0 M244.3,70 L244.3,4.0 M254.3,70 L254.3,37.0 M264.2,70 L264.2,37.0 M274.1,70 L274.1,4.0 M284.1,70 L284.1,4.0 M294.0,70 L294.0,4.0"/>
+            <path class="mo-hair mo-hair-on" d="M145.0,70 L145.0,4.0"/></svg>
           <span class="mo-spark-dot"></span>
           <span class="mo-spark-tip">08/30 · 2 通</span>
         </div>
@@ -7740,6 +7744,7 @@
         <div class="mo-spark-plot" style="--mx:48.34%;--my:24.00%" data-spark data-vals="3,2,2,1,1,2,3,3,3,2,1,1,2,3,4,4,2,1,1,2,4,4,4,2,1,1,2,3,3,3" data-max="4" data-unit="組">
           <svg class="mo-spark-svg mo-bars" viewBox="0 -20 300 100" role="img" aria-label="廣告名單逐日走勢，2026-08 合計 70 組" preserveAspectRatio="none">
             <path class="mo-hair" d="M6.0,70 L6.0,20.5 M15.9,70 L15.9,37.0 M25.9,70 L25.9,37.0 M35.8,70 L35.8,53.5 M45.7,70 L45.7,53.5 M55.7,70 L55.7,37.0 M65.6,70 L65.6,20.5 M75.5,70 L75.5,20.5 M85.4,70 L85.4,20.5 M95.4,70 L95.4,37.0 M105.3,70 L105.3,53.5 M115.2,70 L115.2,53.5 M125.2,70 L125.2,37.0 M135.1,70 L135.1,20.5 M145.0,70 L145.0,4.0 M155.0,70 L155.0,4.0 M164.9,70 L164.9,37.0 M174.8,70 L174.8,53.5 M184.8,70 L184.8,53.5 M194.7,70 L194.7,37.0 M204.6,70 L204.6,4.0 M214.6,70 L214.6,4.0 M224.5,70 L224.5,4.0 M234.4,70 L234.4,37.0 M244.3,70 L244.3,53.5 M254.3,70 L254.3,53.5 M264.2,70 L264.2,37.0 M274.1,70 L274.1,20.5 M284.1,70 L284.1,20.5 M294.0,70 L294.0,20.5"/>
+            <path class="mo-hair mo-hair-on" d="M145.0,70 L145.0,4.0"/>
           </svg>
           <span class="mo-spark-dot"></span>
           <span class="mo-spark-tip">08/30 · 3 組</span>
@@ -7754,6 +7759,7 @@
         <div class="mo-spark-plot" style="--mx:48.34%;--my:24.00%" data-spark data-vals="0,0,0,0,0,0,0,1,1,0,0,0,0,0,1,1,0,0,0,0,0,1,1,0,0,0,0,0,1,1" data-max="1" data-unit="戶">
           <svg class="mo-spark-svg mo-bars" viewBox="0 -20 300 100" role="img" aria-label="下訂逐日走勢，2026-08 合計 8 戶" preserveAspectRatio="none">
             <path class="mo-hair" d="M75.5,70 L75.5,4.0 M85.4,70 L85.4,4.0 M145.0,70 L145.0,4.0 M155.0,70 L155.0,4.0 M214.6,70 L214.6,4.0 M224.5,70 L224.5,4.0 M284.1,70 L284.1,4.0 M294.0,70 L294.0,4.0"/>
+            <path class="mo-hair mo-hair-on" d="M145.0,70 L145.0,4.0"/>
           </svg>
           <span class="mo-spark-dot"></span>
           <span class="mo-spark-tip">08/30 · 1 戶</span>
@@ -7768,6 +7774,7 @@
         <div class="mo-spark-plot" style="--mx:48.34%;--my:24.00%" data-spark data-vals="0,0,0,0,0,0,0,1,1,0,0,1,0,0,1,1,0,0,1,0,1,1,0,0,0,0,0,0,0,0" data-max="1" data-unit="戶">
           <svg class="mo-spark-svg mo-bars" viewBox="0 -20 300 100" role="img" aria-label="簽約逐日走勢，2026-08 合計 8 戶" preserveAspectRatio="none">
             <path class="mo-hair" d="M75.5,70 L75.5,4.0 M85.4,70 L85.4,4.0 M115.2,70 L115.2,4.0 M145.0,70 L145.0,4.0 M155.0,70 L155.0,4.0 M184.8,70 L184.8,4.0 M204.6,70 L204.6,4.0 M214.6,70 L214.6,4.0"/>
+            <path class="mo-hair mo-hair-on" d="M145.0,70 L145.0,4.0"/>
           </svg>
           <span class="mo-spark-dot"></span>
           <span class="mo-spark-tip">08/30 · 0 戶</span>
@@ -8313,6 +8320,7 @@
       var max=Number(plot.dataset.max)||1, unit=plot.dataset.unit;
       var dot=plot.querySelector('.mo-spark-dot');
       var tip=plot.querySelector('.mo-spark-tip');
+      var on=plot.querySelector('.mo-hair-on');
       var n=vals.length;
       /* 預設指著當月最高的那天；很多天並列最高時取最靠近月中的，
          否則像回客／來電這種天天同值的卡，標記會貼在最左緣看起來像卡片邊框 */
@@ -8329,6 +8337,7 @@
         plot.style.setProperty('--mx',(xv/300*100).toFixed(2)+'%');
         plot.style.setProperty('--my',((yv+20)/100*100).toFixed(2)+'%');
         tip.textContent='08/'+String(i+1).padStart(2,'0')+' · '+v+' '+unit;
+        if(on)on.setAttribute('d', v>0 ? 'M'+xv.toFixed(1)+',70 L'+xv.toFixed(1)+','+yv.toFixed(1) : '');
         /* 標籤置中於標記線，但夾在圖框內，否則頭尾兩天會溢出卡片 */
         var w=plot.clientWidth,half=tip.offsetWidth/2;
         if(w>0&&half>0)plot.style.setProperty('--tipx',Math.min(Math.max(xv/300*w,half),w-half).toFixed(1)+'px');
