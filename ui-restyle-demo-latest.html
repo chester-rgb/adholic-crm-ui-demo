@@ -2641,7 +2641,6 @@
 #page-reports #reportsWeather .chip{cursor:pointer}
 #page-reports #reportsWeather .chip.on{border-color:var(--accent);color:var(--accent);background:var(--tint)}
 #page-reports .sumtext{font-size:.76rem;line-height:1.7;color:var(--ink);background:var(--fill);border-radius:var(--r-row);padding:var(--s3);margin:0 0 var(--s3)}
-#page-reports .sumfoot{display:flex;align-items:center;justify-content:space-between;gap:var(--s2)}
 #page-reports .sumhint{font-size:.66rem;color:var(--muted)}
 #page-reports .rowsub{font-size:.7rem;color:var(--muted)}
 #page-reports .dr-head{display:flex;align-items:center;justify-content:space-between;gap:var(--s4);margin-bottom:var(--s4)}
@@ -2662,7 +2661,8 @@
 #page-reports .dr-kpi-foot{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s2);margin-top:auto;font-size:.64rem;line-height:1.1}
 #page-reports .dr-kpi-foot > span:first-child{color:var(--muted)}
 #page-reports .dr-trend{font-weight:500;white-space:nowrap}
-#page-reports .dr-trend.dr-up{color:var(--accent)}
+#page-reports .dr-trend.dr-up{color:var(--hot)}
+#page-reports .dr-trend.dr-down{color:var(--heat5)}
 #page-reports .dr-trend.dr-flat{color:var(--muted)}
 #page-reports .dr-mid{display:grid;grid-template-columns:22rem minmax(0,1fr);gap:var(--grid-gap);margin-bottom:var(--sec-gap)}
 #page-reports .dr-panel{min-width:0;background:var(--panel);border-radius:var(--r-card);padding:var(--s5)}
@@ -2701,8 +2701,6 @@
 #page-reports .dr-link{background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer;text-align:inherit;border-bottom:1px solid var(--line-2)}
 #page-reports .dr-link:hover{color:var(--accent);border-bottom-color:var(--line-accent)}
 #page-reports .dr-link:focus-visible{outline:2px solid var(--line-accent);outline-offset:2px;border-radius:var(--r-mini)}
-#page-reports .dr-sumbox{width:100%;min-height:4.5rem;resize:vertical;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-row);padding:var(--s3);font:inherit;font-size:.74rem;line-height:1.8;color:var(--ink)}
-#page-reports .dr-sumbox:focus{outline:none;border-color:var(--line-accent)}
 #page-reports .dr-weather{display:flex;align-items:center;gap:var(--s3);flex:none}
 #page-reports .dr-weather .chips{display:inline-flex;gap:var(--s1)}
 @media (max-width:1020px){
@@ -2756,9 +2754,12 @@
 #page-reports .wk-sublbl{display:block;font-size:.64rem;color:var(--muted);letter-spacing:.04em}
 #page-reports .wk-kpi-foot{display:flex;justify-content:space-between;align-items:baseline;gap:var(--s2);margin-top:auto}
 #page-reports .wk-trend-tag{font-size:.64rem;font-weight:500;letter-spacing:0}
-#page-reports .wk-trend-tag.up{color:var(--accent)}
-#page-reports .wk-trend-tag.down{color:var(--hot)}
+#page-reports .wk-trend-tag.up,#page-reports .mo-card-foot > .mo-trend-tag{color:var(--hot)}
+#page-reports .wk-trend-tag.down,#page-reports .mo-card-foot > .mo-trend-tag.mo-down{color:var(--heat5)}
 #page-reports .wk-trend-tag.flat{color:var(--muted)}
+#page-reports .wk-trend.up{color:var(--hot)}
+#page-reports .wk-trend.down{color:var(--heat5)}
+#page-reports .wk-trend.flat{color:var(--muted)}
 #page-reports .wk-meta .wk-stat-val{font-size:1.06rem;font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap}
 #page-reports .wk-meta.wk-meta-6 > div > span,
 #page-reports .wk-meta.wk-meta-6 > div > b,
@@ -2863,11 +2864,12 @@
 #page-reports .wk-pod .step{font-size:.9rem;}
 #page-reports .wk-ana-na,#page-reports .wk-talk-table th,#page-reports .wk-talk-table td{font-size:.74rem}
 #page-reports .wk-pod i,#page-reports .wk-podium-note{font-size:.7rem;}
-#page-reports .wk-ana-cols{display:grid;grid-template-columns:minmax(0,1fr) 2.2rem 2.4rem 1.8rem;gap:var(--s3);font-size:.64rem;color:var(--muted);padding-bottom:var(--s1)}
-#page-reports .wk-ana-cols button{background:none;border:0;padding:0;font-size:.7rem;color:var(--muted);cursor:pointer;text-align:center;font-weight:400}
+#page-reports .wk-ana-cols{display:grid;grid-template-columns:minmax(0,1fr) 2.6rem 2.6rem 2.6rem;gap:var(--s3);font-size:.64rem;color:var(--muted);padding-bottom:var(--s1)}
+#page-reports .wk-ana-cols button{position:relative;background:none;border:0;padding:0;font-size:.7rem;color:var(--muted);cursor:pointer;text-align:center;font-weight:400}
 #page-reports .wk-ana-cols button.on{color:var(--accent);font-weight:500}
+#page-reports .wk-ana-cols button.on::after{content:'▼';position:absolute;left:calc(100% + .1em);top:0;font-size:.64rem;line-height:inherit}
 #page-reports .wk-ana-list{flex:1;min-height:0;overflow-y:auto}
-#page-reports .wk-ana-row{display:grid;grid-template-columns:minmax(0,1fr) 2.2rem 2.4rem 1.8rem;gap:var(--s3);align-items:center;font-size:.76rem;padding:var(--s1) 0}
+#page-reports .wk-ana-row{display:grid;grid-template-columns:minmax(0,1fr) 2.6rem 2.6rem 2.6rem;gap:var(--s3);align-items:center;font-size:.76rem;padding:var(--s1) 0}
 #page-reports .wk-ana-row:hover{background:var(--fill)}
 #page-reports .wk-ana-row+.wk-ana-row{border-top:1px solid var(--line)}
 #page-reports .wk-ana-row .l{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -2947,8 +2949,7 @@
 #page-reports .mo-stat .wk-unit{font-style:normal;font-size:.74rem;font-weight:400}
 #page-reports .mo-card-foot{display:flex;justify-content:space-between;align-items:baseline;gap:var(--s2);margin-top:auto;font-size:.64rem;line-height:1.1}
 #page-reports .mo-card-foot > span:first-child{color:var(--muted)}
-#page-reports .mo-card-foot > .mo-trend-tag{color:var(--accent);font-weight:500;white-space:nowrap}
-#page-reports .mo-card-foot > .mo-trend-tag.mo-down{color:var(--hot)}
+#page-reports .mo-card-foot > .mo-trend-tag{font-weight:500;white-space:nowrap}
 #page-reports .mo-card-foot.mo-end{justify-content:flex-end}
 #page-reports .mo-cards .mo-card-foot .wk-cardsub{font-size:.64rem;line-height:1.1}
 #page-reports .mo-monthstep{display:grid;grid-template-columns:var(--ctrl-h) minmax(0,1fr) var(--ctrl-h);align-items:center;gap:var(--s1);margin:0}
@@ -2956,10 +2957,35 @@
 #page-reports .mo-monthstep button:hover{border-color:var(--line-accent);color:var(--accent);background:var(--tint)}
 #page-reports .mo-monthstep button:focus-visible{outline:2px solid var(--line-accent);outline-offset:2px}
 #page-reports .mo-monthstep b{text-align:center;font-size:.78rem;font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap}
-#page-reports .mo-trend{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--grid-gap);margin-bottom:var(--sec-gap)}
-#page-reports .mo-panel{min-width:0;display:flex;flex-direction:column;background:var(--panel);border-radius:var(--r-card);padding:var(--s5)}
 #page-reports .mo-section-head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s3);margin-bottom:var(--s4)}
 #page-reports .mo-section-head h3{font-size:.9rem;font-weight:500;letter-spacing:.08em}
+#page-reports .mo-spark-range{font-size:.64rem;color:var(--muted)}
+#page-reports .mo-spark-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:1fr;gap:var(--grid-gap)}
+#page-reports .mo-spark-card{min-width:0;height:100%;display:flex;flex-direction:column;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s3) var(--s4)}
+#page-reports .mo-spark-head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s2)}
+#page-reports .mo-spark-total{font-size:1.06rem;font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap}
+#page-reports .mo-spark-total .wk-unit{font-size:.74rem;font-style:normal;font-weight:400}
+/* 折線圖沿用參考設計：漸層面積＋虛線指示＋圓點＋膠囊標籤＋日期刻度（Enson 2026-09-03 給的參考圖）
+   ⚠️ SVG 用 preserveAspectRatio="none" 會被橫向拉寬，裡面放文字或圓形會一起變形，
+   所以虛線／圓點／膠囊／刻度一律做在 HTML 層，用絕對定位疊上去 */
+#page-reports .mo-spark-plot{position:relative;margin-top:var(--s3)}
+#page-reports .mo-spark-svg{display:block;width:100%;height:6.5rem;overflow:visible}
+#page-reports .mo-spark-svg .area{stroke:none}
+#page-reports .mo-spark-svg .area{stroke-width:0}
+#page-reports .mo-spark-mark{position:absolute;top:0;bottom:0;left:var(--mx);width:0;border-left:1px dashed var(--line-2)}
+#page-reports .mo-spark-dot{position:absolute;left:var(--mx);top:var(--my);width:.45rem;height:.45rem;margin:-.225rem 0 0 -.225rem;border-radius:50%;background:var(--accent)}
+#page-reports .mo-spark-tip{position:absolute;top:0;right:0;padding:0 var(--s2);border-radius:var(--r-pill);background:var(--tint);color:var(--accent);font-size:.64rem;line-height:1.7;white-space:nowrap;font-variant-numeric:tabular-nums}
+#page-reports .mo-spark-axis{display:flex;justify-content:space-between;margin-top:var(--s2);font-size:.64rem;color:var(--muted);letter-spacing:.04em;font-variant-numeric:tabular-nums}
+#page-reports .mo-spark-svg path:not(.area){fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+#page-reports .mo-spark-svg .l1{stroke:var(--accent)}
+#page-reports .mo-spark-svg .l2{stroke:var(--chart-3)}
+#page-reports .mo-spark-svg .l3{stroke:var(--line-3)}
+#page-reports .mo-spark-foot{display:flex;align-items:center;gap:var(--s3);flex-wrap:wrap}
+#page-reports .mo-spark-key{display:inline-flex;align-items:center;gap:var(--s1);font-size:.64rem;color:var(--muted);white-space:nowrap}
+#page-reports .mo-spark-key::before{content:'';width:10px;height:2px;border-radius:var(--r-mini);background:var(--accent);flex:none}
+#page-reports .mo-spark-key.k2::before{background:var(--chart-3)}
+#page-reports .mo-spark-key.k3::before{background:var(--line-3)}
+#page-reports .mo-spark-card .mo-note{margin-top:var(--s2)}
 #page-reports .mo-table-wrap{padding:0;background:var(--bg);border:1px solid var(--line-2);border-radius:var(--r-row);overflow-x:auto}
 #page-reports .mo-trend-table{width:100%;min-width:0;border-collapse:collapse;border-spacing:0;table-layout:fixed}
 #page-reports .mo-trend-table th,#page-reports .mo-trend-table td{padding:var(--s2);border-bottom:1px solid var(--line);font-size:.74rem;line-height:1.45;text-align:center;white-space:nowrap;font-variant-numeric:tabular-nums}
@@ -2968,42 +2994,57 @@
 #page-reports .mo-trend-table tbody tr:hover{transform:none}
 #page-reports .mo-trend-table tbody tr:hover td{background:var(--fill)}
 #page-reports .mo-note{margin-top:var(--s3);font-size:.64rem;line-height:1.7;color:var(--muted)}
-#page-reports .mo-progress-top{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s3)}
-#page-reports .mo-progress-top h3{font-size:.9rem;font-weight:500;letter-spacing:.08em}
-#page-reports .mo-progress-number{display:flex;align-items:baseline;gap:var(--s2);margin:var(--s5) 0 var(--s4);font-variant-numeric:tabular-nums}
-#page-reports .mo-progress-number b{font-size:1.06rem;font-weight:500}
-#page-reports .mo-progress-number small{align-self:flex-end;margin-left:auto;font-size:.64rem;color:var(--muted)}
-#page-reports .mo-progress .wk-prog{display:flex;gap:var(--s1);height:1.3rem;background:none;border-radius:0;overflow:visible;position:static;margin:0 0 var(--s5)}
-/* 去化條原本只設了容器，格子與亮條沒樣式＝畫面上是一條 21px 的空白；比照表頭進度條補齊 */
-#page-reports .mo-progress .wk-prog i{flex:1;height:100%;border-radius:0;background:var(--track);overflow:hidden;position:relative}
-#page-reports .mo-progress .wk-prog i:first-child{border-radius:var(--r-row) 0 0 var(--r-row)}
-#page-reports .mo-progress .wk-prog i:last-child{border-radius:0 var(--r-row) var(--r-row) 0}
-#page-reports .mo-progress .wk-prog i u{position:absolute;left:0;top:0;bottom:0;background:var(--chart-1)}
-#page-reports .mo-progress-lines{display:flex;flex-direction:column;margin-top:auto}
-#page-reports .mo-progress-row{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s3);padding:var(--s2) 0;border-top:1px solid var(--line);font-size:.74rem;}
-#page-reports .mo-progress-row span:first-child{color:var(--muted)}
-#page-reports .mo-progress-row b{font-size:.76rem;font-weight:500;text-align:right}
-#page-reports .mo-analysis{margin-bottom:var(--sec-gap)}
 #page-reports .mo-analysis > .mo-section-head{margin-bottom:var(--s4)}
-#page-reports .mo-ana{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s4)}
-#page-reports .mo-ana>article{min-width:0;display:flex;flex-direction:column;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s3) var(--s4)}
-#page-reports .mo-ana-head{display:flex;align-items:center;gap:var(--s2);padding-bottom:var(--s2)}
-#page-reports .mo-ana-head h4{font-size:.83rem;font-weight:500;margin:0}
-#page-reports .mo-ana-cols,#page-reports .mo-ana-row{display:grid;grid-template-columns:minmax(0,1fr) 2.8rem 2.8rem 2.8rem;gap:var(--s3);align-items:center}
-#page-reports .mo-ana-cols{padding-bottom:var(--s1);font-size:.7rem;color:var(--muted)}
-#page-reports .mo-ana-cols span:not(:first-child){text-align:center}
-#page-reports .mo-ana-list{min-height:0}
-#page-reports .mo-ana-row{padding:var(--s2) 0;border-top:1px solid var(--line);font-size:.74rem;line-height:1.35;font-variant-numeric:tabular-nums}
-#page-reports .mo-ana-row .mo-n{text-align:center;font-weight:400}
-#page-reports .mo-ana-row .mo-current{color:var(--accent);font-weight:500}
-#page-reports .mo-summary-hint{font-size:.64rem;line-height:1.7;color:var(--muted)}
-#page-reports .mo-rank,#page-reports .mo-narrative,#page-reports .mo-todo{min-width:0;background:var(--panel);border-radius:var(--r-card);padding:var(--s5);margin-bottom:var(--sec-gap)}
+#page-reports .mo-ana{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s5) var(--s4)}
+#page-reports .mo-ana>article{min-width:0;height:21.5rem;display:flex;flex-direction:column;overflow:hidden;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s3) var(--s4)}
+#page-reports .mo-ana-head{display:flex;align-items:center;gap:var(--s2);padding:0 0 var(--s2)}
+#page-reports .mo-ana-head h4{min-width:0;margin:0;overflow:hidden;font-size:.83rem;font-weight:500;text-overflow:ellipsis;white-space:nowrap}
+#page-reports .mo-ana-cols,#page-reports .mo-ana-row{display:grid;grid-template-columns:minmax(0,1fr) 2.6rem 2.6rem 2.6rem;gap:var(--s3);align-items:center}
+#page-reports .mo-ana-cols{padding-bottom:var(--s1);font-size:.64rem;color:var(--muted)}
+#page-reports .mo-ana-cols button{position:relative;padding:0;border:0;background:none;color:var(--muted);font-size:.7rem;font-weight:400;text-align:center;cursor:pointer}
+#page-reports .mo-ana-cols button.on{color:var(--accent);font-weight:500}
+#page-reports .mo-ana-cols button.on::after{content:'▼';position:absolute;left:calc(100% + .1em);top:0;font-size:.64rem;line-height:inherit}
+#page-reports .mo-ana-cols button:disabled{cursor:not-allowed}
+#page-reports .mo-ana-list{flex:1;min-height:0;overflow-y:auto}
+#page-reports .mo-ana-row{padding:var(--s1) 0;border-top:1px solid var(--line);font-size:.76rem;font-variant-numeric:tabular-nums}
+#page-reports .mo-ana-row:hover{background:var(--fill)}
+#page-reports .mo-ana-row .mo-n{color:var(--muted);font-weight:400;text-align:center}
+#page-reports .mo-ana-row > span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#page-reports .mo-analysis-card[data-ana-on="c"] .mo-ana-row b:nth-of-type(1),#page-reports .mo-analysis-card[data-ana-on="t"] .mo-ana-row b:nth-of-type(2),#page-reports .mo-analysis-card[data-ana-on="d"] .mo-ana-row b:nth-of-type(3){color:var(--accent);font-weight:500}
 #page-reports .mo-rank-view[hidden]{display:none}
-#page-reports .mo-rank .mo-trend-table{min-width:56rem}
-#page-reports .mo-narrative-block{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--s2) var(--s3);align-items:end}
-#page-reports .mo-narrative-block+.mo-narrative-block{margin-top:var(--s4);padding-top:var(--s4);border-top:1px solid var(--line)}
-#page-reports .mo-narrative-block .mo-label{grid-column:1/-1}
-#page-reports .mo-narrative .sumfoot{margin-top:var(--s4)}
+#page-reports .mo-rank-layout{display:grid;grid-template-columns:27rem minmax(0,1fr);gap:var(--s6);align-items:start}
+#page-reports .mo-rank .mo-trend-table{min-width:0}
+#page-reports .mo-rank-table{width:100%;min-width:0;table-layout:fixed}
+#page-reports .mo-rank-table th,#page-reports .mo-rank-table td{font-size:.74rem;padding:var(--s2)}
+#page-reports .mo-rank-table thead th:nth-child(1){width:5%}
+#page-reports .mo-rank-table thead th:nth-child(2){width:12%}
+#page-reports .mo-rank-table thead th:nth-child(3){width:12%}
+#page-reports .mo-rank-table thead th:nth-child(4){width:11%}
+#page-reports .mo-rank-table thead th:nth-child(5){width:11%}
+#page-reports .mo-rank-table thead th:nth-child(6){width:11%}
+#page-reports .mo-rank-table thead th:nth-child(7){width:15%}
+#page-reports .mo-rank-table thead th:nth-child(8){width:12%}
+#page-reports .mo-rank-table thead th:nth-child(9){width:11%}
+#page-reports .mo-sort,#page-reports .mo-rank-sort{display:inline-flex;align-items:center;justify-content:center;gap:var(--s1);width:100%;padding:0;border:0;background:none;color:inherit;font:inherit;cursor:pointer}
+#page-reports .mo-sort.on,#page-reports .mo-rank-sort.on{color:var(--accent)}
+#page-reports .mo-sort-dir{min-width:var(--s2);font-size:.64rem;color:var(--muted)}
+#page-reports .mo-sort:hover,#page-reports .mo-rank-sort:hover{color:var(--accent)}
+#page-reports .mo-sort:focus-visible,#page-reports .mo-rank-sort:focus-visible{outline:2px solid var(--line-accent);outline-offset:2px;border-radius:var(--r-mini)}
+#page-reports .mo-media-perf .mo-trend-table tfoot td,#page-reports .mo-rank-table tfoot td{padding:var(--s2);border:1px solid var(--line-2);background:var(--tint);color:var(--accent);font-weight:500;text-align:center}
+#page-reports .mo-media-perf .mo-sort-table tbody tr:last-child > *,#page-reports .mo-rank-table tbody tr:last-child > *{background:var(--bg);color:var(--ink);font-weight:400}
+#page-reports .mo-rank-side .mo-podium{margin-top:var(--s2)}
+#page-reports .mo-podium{display:flex;align-items:flex-end;justify-content:center;gap:var(--s5);max-width:72%;margin:var(--s4) auto var(--s2)}
+#page-reports .mo-pod{display:flex;flex:1;flex-direction:column;align-items:center;gap:var(--s2);width:auto}
+#page-reports .mo-pod .av,#page-reports .mo-pod b{font-size:.78rem}
+#page-reports .mo-pod .av{width:2.2rem;height:2.2rem}
+#page-reports .mo-pod b{font-weight:500}
+#page-reports .mo-pod i{font-size:.7rem;font-style:normal;color:var(--muted);font-variant-numeric:tabular-nums}
+#page-reports .mo-pod .step{width:100%;display:flex;align-items:center;justify-content:center;margin-top:var(--s2);border:1px solid var(--line-3);border-radius:var(--r-cell) var(--r-cell) 0 0;background:var(--track);color:var(--muted);font-size:.9rem;font-weight:300;font-variant-numeric:tabular-nums}
+#page-reports .mo-pod.p1 .step{height:3.6rem;border-color:var(--line-accent);background:var(--tint);color:var(--accent)}
+#page-reports .mo-pod.p2 .step{height:2.6rem}
+#page-reports .mo-pod.p3 .step{height:2rem}
+#page-reports .mo-crown{width:1rem;height:1rem;stroke:none;fill:var(--warm);color:var(--warm)}
+#page-reports .mo-podium-note{margin-bottom:var(--s3);font-size:.7rem;color:var(--muted);text-align:center}
 #page-reports .mo-todo-head{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);margin-bottom:var(--s3)}
 #page-reports .mo-todo h4{font-size:.76rem;font-weight:500;letter-spacing:.05em}
 #page-reports .mo-source{display:inline-flex;align-items:center;gap:var(--s1);flex-wrap:wrap}
@@ -3040,8 +3081,6 @@
 #page-reports .mo-media-add:hover{border-color:var(--line-accent);color:var(--accent);background:var(--tint)}
 #page-reports .mo-media-pick{position:static}
 #page-reports .mo-media-pick .sel-list{left:var(--s4);right:var(--s4);top:auto}#page-reports .mo-media-pick .sel-list [role="option"]{font-size:.74rem}
-#page-reports .mo-trend .mo-trend-table th:first-child{width:6.5rem}
-#page-reports .mo-main,#page-reports .mo-media-perf{min-width:0;background:var(--panel);border-radius:var(--r-card);padding:var(--s5);margin-bottom:var(--sec-gap)}
 #page-reports .mo-main-table{width:100%;min-width:52rem;table-layout:fixed;border-collapse:collapse;border-spacing:0}
 #page-reports .mo-main-table th,#page-reports .mo-main-table td{border:1px solid var(--line);padding:var(--s2);text-align:center;vertical-align:middle;white-space:normal;word-break:keep-all;line-height:1.45;font-size:.76rem;font-variant-numeric:tabular-nums}
 #page-reports .mo-main-table tr>*:first-child{border-left:0}
@@ -3075,7 +3114,10 @@
   #page-reports .wk-todo-list{grid-template-columns:1fr}
   #page-reports .mo-cards > div{grid-column:span 6}
   #page-reports .mo-cards > .mo-media-card{grid-column:span 12}
-  #page-reports .mo-trend,#page-reports .mo-ana,#page-reports .mo-todo-list{grid-template-columns:1fr}
+  #page-reports .mo-spark-grid{grid-template-columns:1fr}
+  #page-reports .mo-ana{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #page-reports .mo-rank-layout{grid-template-columns:1fr}
+  #page-reports .mo-todo-list{grid-template-columns:1fr}
 }
 @page{size:A4 landscape;margin:var(--s4)}
 @page mo-monthly{size:A4 portrait;margin:var(--s4)}
@@ -3102,22 +3144,17 @@
   #page-reports .wk-talk-table th,#page-reports .wk-talk-table td{padding:var(--s1)}
   #page-reports .wk-todo{display:none}
   #page-reports .wk-pageno{display:block;position:absolute;right:0;bottom:0;font-size:.64rem;color:var(--muted)}
-  #page-reports .mo-monthly,#page-reports .mo-panel,#page-reports .mo-main,#page-reports .mo-media-perf,#page-reports .mo-ana>article,#page-reports .mo-rank,#page-reports .mo-narrative,#page-reports .mo-todo{background:var(--bg);box-shadow:none}
+  #page-reports .mo-monthly,#page-reports .mo-spark-card,#page-reports .mo-ana>article{background:var(--bg);box-shadow:none}
   #page-reports .mo-cards{gap:var(--s2)}
   #page-reports .mo-cards > div{grid-column:span 4;padding:var(--s3)}
   #page-reports .mo-cards .wk-prog,#page-reports .mo-heads{display:none}
   #page-reports .mo-media-card .sel-list{display:none!important}
-  #page-reports .mo-monthstep button,#page-reports .mo-narrative .pillbtn{display:none!important}
-  #page-reports .mo-trend{grid-template-columns:1fr;gap:var(--s4);margin-bottom:var(--s4)}
-  #page-reports .mo-panel,#page-reports .mo-media-perf,#page-reports .mo-ana>article,#page-reports .mo-rank,#page-reports .mo-narrative,#page-reports .mo-todo{break-inside:avoid}
-  #page-reports .mo-panel{padding:var(--s3)}
-  #page-reports .mo-progress .wk-prog{display:flex!important}
+  #page-reports .mo-monthstep button{display:none!important}
+  #page-reports .mo-ana>article{break-inside:avoid}
   #page-reports .mo-table-wrap{overflow:visible}
   #page-reports .mo-main-table,#page-reports .mo-media-perf .mo-trend-table,#page-reports .mo-rank .mo-trend-table{min-width:0!important}
-  #page-reports .mo-analysis{margin-bottom:var(--s4)}
   #page-reports .mo-ana{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s2)}
   #page-reports .mo-ana>article{padding:var(--s2)}
-  #page-reports .mo-sumbox{resize:none}
   #page-reports *{animation:none!important;transition:none!important;transform:none!important}
 }
 /* — templates — */
@@ -7271,27 +7308,27 @@
   <div class="dr-cards" aria-label="當日關鍵指標">
     <div>
       <div class="dr-kpi-head"><span>來人<small>(今日)</small></span><b>7 <i class="wk-unit">組</i></b></div>
-      <div class="dr-kpi-foot"><span>昨日 6 組</span><span class="dr-trend dr-up">▲17%</span></div>
+      <div class="dr-kpi-foot"><span>昨日 6 組</span><span class="dr-trend dr-up">＋1 組</span></div>
     </div>
     <div>
       <div class="dr-kpi-head"><span>來電<small>(今日)</small></span><b>2 <i class="wk-unit">通</i></b></div>
-      <div class="dr-kpi-foot"><span>昨日 2 通</span><span class="dr-trend dr-flat">─ 0%</span></div>
+      <div class="dr-kpi-foot"><span>昨日 2 通</span><span class="dr-trend dr-flat">─ 0 通</span></div>
     </div>
     <div>
       <div class="dr-kpi-head"><span>回客<small>(今日)</small></span><b>1 <i class="wk-unit">組</i></b></div>
-      <div class="dr-kpi-foot"><span>昨日 0 組</span><span class="dr-trend dr-up">▲100%</span></div>
+      <div class="dr-kpi-foot"><span>昨日 0 組</span><span class="dr-trend dr-up">＋1 組</span></div>
     </div>
     <div>
       <div class="dr-kpi-head"><span>新增名單<small>(今日)</small></span><b>5 <i class="wk-unit">筆</i></b></div>
-      <div class="dr-kpi-foot"><span>昨日 4 筆</span><span class="dr-trend dr-up">▲25%</span></div>
+      <div class="dr-kpi-foot"><span>昨日 4 筆</span><span class="dr-trend dr-up">＋1 筆</span></div>
     </div>
     <div>
       <div class="dr-kpi-head"><span>今日下訂<small>(今日)</small></span><b>1 <i class="wk-unit">戶</i>／2 <i class="wk-unit">車</i></b></div>
-      <div class="dr-kpi-foot"><span>金額 6,148 萬</span><span class="dr-trend dr-up">▲—</span></div>
+      <div class="dr-kpi-foot"><span>金額 6,148 萬</span><span class="dr-trend dr-flat">─ 0 戶</span></div>
     </div>
     <div>
       <div class="dr-kpi-head"><span>今日退戶<small>(今日)</small></span><b>0 <i class="wk-unit">戶</i></b></div>
-      <div class="dr-kpi-foot"><span>昨日 0 戶</span><span class="dr-trend dr-flat">─ 0%</span></div>
+      <div class="dr-kpi-foot"><span>昨日 0 戶</span><span class="dr-trend dr-flat">─ 0 戶</span></div>
     </div>
   </div>
 
@@ -7354,19 +7391,19 @@
         </div>
         <div class="wk-kpi-foot"><span></span><small class="wk-cardsub">7 日</small></div>
       </div>
-      <div class="wk-kpi-card"><div class="wk-stat-head"><span>來人／回客<small class="wk-sublbl">(本週)</small></span><b class="wk-stat-val">25 <i class="wk-unit">組</i>／2 <i class="wk-unit">組</i></b></div><div class="wk-kpi-foot"><small class="wk-cardsub">累計 140 組／12 組</small><small class="wk-trend-tag up">▲14%</small></div></div>
-      <div class="wk-kpi-card"><div class="wk-stat-head"><span>來電<small class="wk-sublbl">(本週)</small></span><b class="wk-stat-val">11 <i class="wk-unit">通</i></b></div><div class="wk-kpi-foot"><small class="wk-cardsub">累計 52 通</small><small class="wk-trend-tag up">▲22%</small></div></div>
-      <div class="wk-kpi-card"><div class="wk-stat-head"><span>下訂／簽約<small class="wk-sublbl">(本週)</small></span><b class="wk-stat-val">2 <i class="wk-unit">戶</i>／0 <i class="wk-unit">戶</i></b></div><div class="wk-kpi-foot"><small class="wk-cardsub">累計 10 戶／8 戶</small><small class="wk-trend-tag down">▼33%</small></div></div>
-      <div class="wk-kpi-card"><div class="wk-stat-head"><span>退戶<small class="wk-sublbl">(本週)</small></span><b class="wk-stat-val">0 <i class="wk-unit">戶</i></b></div><div class="wk-kpi-foot"><small class="wk-cardsub">累計 0 戶</small><small class="wk-trend-tag flat">─ 0%</small></div></div>
+      <div class="wk-kpi-card"><div class="wk-stat-head"><span>來人／回客<small class="wk-sublbl">(本週)</small></span><b class="wk-stat-val">25 <i class="wk-unit">組</i>／2 <i class="wk-unit">組</i></b></div><div class="wk-kpi-foot"><small class="wk-cardsub">累計 140 組／12 組</small><small class="wk-trend-tag up">＋3 組</small></div></div>
+      <div class="wk-kpi-card"><div class="wk-stat-head"><span>來電<small class="wk-sublbl">(本週)</small></span><b class="wk-stat-val">11 <i class="wk-unit">通</i></b></div><div class="wk-kpi-foot"><small class="wk-cardsub">累計 52 通</small><small class="wk-trend-tag up">＋2 通</small></div></div>
+      <div class="wk-kpi-card"><div class="wk-stat-head"><span>下訂／簽約<small class="wk-sublbl">(本週)</small></span><b class="wk-stat-val">2 <i class="wk-unit">戶</i>／0 <i class="wk-unit">戶</i></b></div><div class="wk-kpi-foot"><small class="wk-cardsub">累計 10 戶／8 戶</small><small class="wk-trend-tag down">−1 戶</small></div></div>
+      <div class="wk-kpi-card"><div class="wk-stat-head"><span>退戶<small class="wk-sublbl">(本週)</small></span><b class="wk-stat-val">0 <i class="wk-unit">戶</i></b></div><div class="wk-kpi-foot"><small class="wk-cardsub">累計 0 戶</small><small class="wk-trend-tag flat">─ 0 戶</small></div></div>
       <div><div class="wk-stat-head"><span>銷售戶數</span><b class="wk-stat-val">126 <i class="wk-unit">戶</i></b></div><span class="wk-prog"><i><u style="width:100%"></u></i><i><u style="width:20%"></u></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><small class="wk-prog-cap"><span>已簽約 8 戶</span><span>6%</span></small></div>
       <div><div class="wk-stat-head"><span>總銷金額</span><b class="wk-stat-val">42.6 <i class="wk-unit">億</i></b></div><span class="wk-prog"><i><u style="width:100%"></u></i><i><u style="width:100%"></u></i><i><u style="width:60%"></u></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><small class="wk-prog-cap"><span>已簽約 5.5 億</span><span>13%</span></small></div>
       <div class="wk-kpi-card wk-prem-card">
-        <div class="wk-stat-head"><span class="microlbl">溢價金額</span><b class="wk-stat-val wk-hot">−230 <i class="wk-unit">萬</i></b></div>
-        <div class="wk-kpi-foot"><small class="wk-cardsub">溢價率 <b class="wk-hot">−0.4%</b></small></div>
+        <div class="wk-stat-head"><span class="microlbl">溢價金額<small class="wk-sublbl">(本週)</small></span><b class="wk-stat-val wk-hot">−127 <i class="wk-unit">萬</i></b></div>
+        <div class="wk-kpi-foot"><small class="wk-cardsub">溢價率 <b class="wk-hot">−0.9%</b></small></div>
       </div>
       <div class="wk-kpi-card wk-ratio-card">
-        <span class="microlbl">全案成交比</span>
-        <b class="wk-stat-val">14:1</b>
+        <span class="microlbl">成交比<small class="wk-sublbl">(本週)</small></span>
+        <b class="wk-stat-val">13:1</b>
         <div class="wk-heads" aria-hidden="true">
           <svg class="wk-head solid" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.9"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
           <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
@@ -7381,8 +7418,8 @@
           <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
           <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
           <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
-          <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
         </div>
+        <small class="wk-ratio-scope">本週</small>
       </div>
       <div class="wk-kpi-card wk-media-card">
         <span class="microlbl">本週廣告媒體</span>
@@ -7558,37 +7595,37 @@
       <div class="mo-card-foot mo-end"><span data-mo-days><span data-mo-day-count>31 日</span>・資料截至 08/30<span class="wk-missing-mark" title="示意：本月尚未結束，數字為月中結算">＊</span></span></div>
     </div>
     <div class="mo-kpi-card">
-      <div class="mo-stat-head"><span>來人／回客<small class="wk-sublbl">（本月）</small></span><b class="mo-stat">118 <i class="wk-unit">組</i>／10 <i class="wk-unit">組</i></b></div>
+      <div class="mo-stat-head"><span>來人／回客<small class="wk-sublbl">(本月)</small></span><b class="mo-stat">118 <i class="wk-unit">組</i>／10 <i class="wk-unit">組</i></b></div>
       <div class="mo-card-foot"><span>累計 140 組／12 組</span><span class="mo-trend-tag">＋108 組</span></div>
     </div>
     <div class="mo-kpi-card">
-      <div class="mo-stat-head"><span>來電<small class="wk-sublbl">（本月）</small></span><b class="mo-stat">44 <i class="wk-unit">通</i></b></div>
+      <div class="mo-stat-head"><span>來電<small class="wk-sublbl">(本月)</small></span><b class="mo-stat">44 <i class="wk-unit">通</i></b></div>
       <div class="mo-card-foot"><span>累計 52 通</span><span class="mo-trend-tag">＋40 通</span></div>
     </div>
     <div class="mo-kpi-card">
-      <div class="mo-stat-head"><span>下訂／簽約<small class="wk-sublbl">（本月）</small></span><b class="mo-stat">8 <i class="wk-unit">戶</i>／8 <i class="wk-unit">戶</i></b></div>
+      <div class="mo-stat-head"><span>下訂／簽約<small class="wk-sublbl">(本月)</small></span><b class="mo-stat">8 <i class="wk-unit">戶</i>／8 <i class="wk-unit">戶</i></b></div>
       <div class="mo-card-foot"><span>累計 10 戶／8 戶</span><span class="mo-trend-tag">＋7 戶</span></div>
     </div>
     <div class="mo-kpi-card">
-      <div class="mo-stat-head"><span>退戶<small class="wk-sublbl">（本月）</small></span><b class="mo-stat">0 <i class="wk-unit">戶</i></b></div>
+      <div class="mo-stat-head"><span>退戶<small class="wk-sublbl">(本月)</small></span><b class="mo-stat">0 <i class="wk-unit">戶</i></b></div>
       <div class="mo-card-foot"><span>累計 0 戶</span><span class="mo-trend-tag mo-flat">─ 0 戶</span></div>
     </div>
     <div class="mo-sales-card">
       <div class="mo-stat-head"><span>銷售戶數</span><b class="mo-stat">126 <i class="wk-unit">戶</i></b></div>
       <span class="wk-prog" aria-label="已簽約 8 戶，去化率 6%"><i><u style="width:100%"></u></i><i><u style="width:20%"></u></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
-      <div class="mo-card-foot"><span>已簽約 8 戶・6%</span></div>
+      <div class="mo-card-foot"><span>已簽約 8 戶</span><small class="wk-cardsub">6%</small></div>
     </div>
     <div class="mo-sales-card">
       <div class="mo-stat-head"><span>總銷金額</span><b class="mo-stat">42.6 <i class="wk-unit">億</i></b></div>
       <span class="wk-prog" aria-label="已簽約 5.5 億，去化率 13%"><i><u style="width:100%"></u></i><i><u style="width:100%"></u></i><i><u style="width:60%"></u></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
-      <div class="mo-card-foot"><span>已簽約 5.5 億・13%</span></div>
+      <div class="mo-card-foot"><span>已簽約 5.5 億</span><small class="wk-cardsub">13%</small></div>
     </div>
     <div class="mo-kpi-card mo-prem-card">
-      <div class="mo-stat-head"><span>溢價金額</span><b class="mo-stat wk-hot">−230 <i class="wk-unit">萬</i></b></div>
+      <div class="mo-stat-head"><span>溢價金額<small class="wk-sublbl">(本月)</small></span><b class="mo-stat wk-hot">−230 <i class="wk-unit">萬</i></b></div>
       <div class="mo-card-foot"><span>溢價率 <b class="wk-hot">−0.4%</b></span></div>
     </div>
     <div class="mo-kpi-card mo-ratio-card">
-      <span class="mo-label">本月成交比</span>
+      <span class="mo-label">成交比<small class="wk-sublbl">(本月)</small></span>
       <b class="mo-stat">15:1</b>
       <div class="mo-heads" aria-hidden="true">
         <svg class="mo-head solid" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.9"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
@@ -7638,39 +7675,82 @@
   </div>
   </section>
 
-  <section class="mo-trend" aria-label="月度走勢">
-    <article class="mo-panel">
-      <div class="mo-section-head"><h3>近六個月走勢</h3></div>
-      <div class="mo-table-wrap">
-        <table class="mo-trend-table">
-          <thead><tr><th>月份</th><th>來人</th><th>來電</th><th>回客</th><th>小訂</th><th>簽約</th><th>銷售金額</th><th>成交比</th></tr></thead>
-          <tbody>
-            <tr><td>2026-03</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>—</td><td>—</td></tr>
-            <tr><td>2026-04</td><td>2</td><td>1</td><td>0</td><td>0</td><td>0</td><td>—</td><td>—</td></tr>
-            <tr><td>2026-05</td><td>4</td><td>1</td><td>0</td><td>0</td><td>0</td><td>—</td><td>—</td></tr>
-            <tr><td>2026-06</td><td>6</td><td>2</td><td>1</td><td>1</td><td>0</td><td>—</td><td>6:1</td></tr>
-            <tr><td>2026-07</td><td>10</td><td>4</td><td>1</td><td>1</td><td>0</td><td>—</td><td>10:1</td></tr>
-            <tr><td>2026-08</td><td>118</td><td>44</td><td>10</td><td>8</td><td>8</td><td>55,247 萬</td><td>15:1</td></tr>
-            <tr><td>合計</td><td>140 組</td><td>52 通</td><td>12 組</td><td>10 戶</td><td>8 戶</td><td>55,247 萬</td><td>14:1</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="mo-note">開案 2026-03，前三個月為潛銷期</p>
-    </article>
-
-    <article class="mo-panel mo-progress">
-      <div class="mo-progress-top"><h3>去化進度</h3></div>
-      <div class="mo-progress-number"><b>已簽約 8 戶 ／ 126 戶</b><small>6%</small></div>
-      <span class="wk-prog" aria-label="去化進度 6%"><i><u style="width:100%"></u></i><i><u style="width:20%"></u></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
-      <div class="mo-progress-lines">
-        <div class="mo-progress-row"><span>本月新增簽約</span><b>8 戶</b></div>
-        <div class="mo-progress-row"><span>可售餘屋</span><b>118 戶</b></div>
-        <div class="mo-progress-row"><span>依本月速度預估完銷</span><b>約 15 個月 <span class="wk-missing-mark" title="需補欄位：完銷預估需接銷控與目標設定">＊</span></b></div>
-      </div>
-    </article>
+  <section class="mo-section mo-spark" aria-label="本月每日走勢">
+    <div class="mo-section-head"><h3>本月走勢</h3><span class="mo-spark-range">08/01 – 08/30・每日</span></div>
+    <div class="mo-spark-grid">
+      <article class="mo-spark-card">
+        <div class="mo-spark-head">
+          <span class="mo-label">來客與回客</span>
+          <b class="mo-spark-total">128 <i class="wk-unit">組</i></b>
+        </div>
+        <div class="mo-spark-plot" style="--mx:98%;--my:30%">
+          <svg class="mo-spark-svg" viewBox="0 -20 300 100" role="img" aria-label="來人與回客逐日折線" preserveAspectRatio="none">
+            <defs><linearGradient id="moSparkFill1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--accent)" stop-opacity="0.22"/><stop offset="1" stop-color="var(--accent)" stop-opacity="0"/></linearGradient></defs>
+            <path class="area" fill="url(#moSparkFill1)" d="M6.0,35.7 C9.3,35.7 12.6,35.7 15.9,35.7 C19.2,35.7 22.6,52.9 25.9,52.9 C29.2,52.9 32.5,52.9 35.8,52.9 C39.1,52.9 42.4,44.3 45.7,44.3 C49.0,44.3 52.3,44.3 55.7,44.3 C59.0,44.3 62.3,44.3 65.6,44.3 C68.9,44.3 72.2,22.9 75.5,18.6 C78.8,14.3 82.1,10.0 85.4,10.0 C88.8,10.0 92.1,39.7 95.4,44.3 C98.7,48.9 102.0,52.9 105.3,52.9 C108.6,52.9 111.9,47.1 115.2,44.3 C118.6,41.4 121.9,35.7 125.2,35.7 C128.5,35.7 131.8,44.3 135.1,44.3 C138.4,44.3 141.7,10.0 145.0,10.0 C148.3,10.0 151.7,10.0 155.0,10.0 C158.3,10.0 161.6,44.3 164.9,44.3 C168.2,44.3 171.5,44.3 174.8,44.3 C178.1,44.3 181.4,44.3 184.8,44.3 C188.1,44.3 191.4,35.7 194.7,35.7 C198.0,35.7 201.3,44.3 204.6,44.3 C207.9,44.3 211.2,10.0 214.6,10.0 C217.9,10.0 221.2,10.0 224.5,10.0 C227.8,10.0 231.1,52.9 234.4,52.9 C237.7,52.9 241.0,52.9 244.3,52.9 C247.7,52.9 251.0,44.3 254.3,44.3 C257.6,44.3 260.9,52.9 264.2,52.9 C267.5,52.9 270.8,48.6 274.1,44.3 C277.4,40.0 280.8,22.9 284.1,18.6 C287.4,14.3 290.7,12.9 294.0,10.0 L294.0,80 L6.0,80 Z"/>
+          <path class="l1" d="M6.0,35.7 C9.3,35.7 12.6,35.7 15.9,35.7 C19.2,35.7 22.6,52.9 25.9,52.9 C29.2,52.9 32.5,52.9 35.8,52.9 C39.1,52.9 42.4,44.3 45.7,44.3 C49.0,44.3 52.3,44.3 55.7,44.3 C59.0,44.3 62.3,44.3 65.6,44.3 C68.9,44.3 72.2,22.9 75.5,18.6 C78.8,14.3 82.1,10.0 85.4,10.0 C88.8,10.0 92.1,39.7 95.4,44.3 C98.7,48.9 102.0,52.9 105.3,52.9 C108.6,52.9 111.9,47.1 115.2,44.3 C118.6,41.4 121.9,35.7 125.2,35.7 C128.5,35.7 131.8,44.3 135.1,44.3 C138.4,44.3 141.7,10.0 145.0,10.0 C148.3,10.0 151.7,10.0 155.0,10.0 C158.3,10.0 161.6,44.3 164.9,44.3 C168.2,44.3 171.5,44.3 174.8,44.3 C178.1,44.3 181.4,44.3 184.8,44.3 C188.1,44.3 191.4,35.7 194.7,35.7 C198.0,35.7 201.3,44.3 204.6,44.3 C207.9,44.3 211.2,10.0 214.6,10.0 C217.9,10.0 221.2,10.0 224.5,10.0 C227.8,10.0 231.1,52.9 234.4,52.9 C237.7,52.9 241.0,52.9 244.3,52.9 C247.7,52.9 251.0,44.3 254.3,44.3 C257.6,44.3 260.9,52.9 264.2,52.9 C267.5,52.9 270.8,48.6 274.1,44.3 C277.4,40.0 280.8,22.9 284.1,18.6 C287.4,14.3 290.7,12.9 294.0,10.0"/>
+          <path class="l2" d="M6.0,70.0 C9.3,67.1 12.6,61.4 15.9,61.4 C19.2,61.4 22.6,70.0 25.9,70.0 C29.2,70.0 32.5,70.0 35.8,70.0 C39.1,70.0 42.4,70.0 45.7,70.0 C49.0,70.0 52.3,61.4 55.7,61.4 C59.0,61.4 62.3,70.0 65.6,70.0 C68.9,70.0 72.2,61.4 75.5,61.4 C78.8,61.4 82.1,70.0 85.4,70.0 C88.8,70.0 92.1,70.0 95.4,70.0 C98.7,70.0 102.0,61.4 105.3,61.4 C108.6,61.4 111.9,70.0 115.2,70.0 C118.6,70.0 121.9,70.0 125.2,70.0 C128.5,70.0 131.8,61.4 135.1,61.4 C138.4,61.4 141.7,70.0 145.0,70.0 C148.3,70.0 151.7,61.4 155.0,61.4 C158.3,61.4 161.6,70.0 164.9,70.0 C168.2,70.0 171.5,70.0 174.8,70.0 C178.1,70.0 181.4,61.4 184.8,61.4 C188.1,61.4 191.4,70.0 194.7,70.0 C198.0,70.0 201.3,70.0 204.6,70.0 C207.9,70.0 211.2,61.4 214.6,61.4 C217.9,61.4 221.2,70.0 224.5,70.0 C227.8,70.0 231.1,70.0 234.4,70.0 C237.7,70.0 241.0,70.0 244.3,70.0 C247.7,70.0 251.0,70.0 254.3,70.0 C257.6,70.0 260.9,70.0 264.2,70.0 C267.5,70.0 270.8,61.4 274.1,61.4 C277.4,61.4 280.8,70.0 284.1,70.0 C287.4,70.0 290.7,64.3 294.0,61.4"/>
+          </svg>
+          <span class="mo-spark-mark"></span>
+          <span class="mo-spark-dot"></span>
+          <span class="mo-spark-tip">08/30 · 7 組</span>
+        </div>
+        <div class="mo-spark-axis"><span>08/01</span><span>08/07</span><span>08/13</span><span>08/19</span><span>08/25</span><span>08/30</span></div>
+        <div class="mo-spark-foot">
+          <span class="mo-spark-key k1">來人 118</span>
+          <span class="mo-spark-key k2">回客 10</span>
+        </div>
+        <p class="mo-note">單位：組・08/01–08/02 為檔期前兩天</p>
+      </article>
+      <article class="mo-spark-card">
+        <div class="mo-spark-head">
+          <span class="mo-label">來電</span>
+          <b class="mo-spark-total">44 <i class="wk-unit">通</i></b>
+        </div>
+        <div class="mo-spark-plot" style="--mx:98%;--my:30%">
+          <svg class="mo-spark-svg" viewBox="0 -20 300 100" role="img" aria-label="來電逐日折線" preserveAspectRatio="none">
+            <defs><linearGradient id="moSparkFill2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--accent)" stop-opacity="0.22"/><stop offset="1" stop-color="var(--accent)" stop-opacity="0"/></linearGradient></defs>
+            <path class="area" fill="url(#moSparkFill2)" d="M6.0,10.0 C9.3,10.0 12.6,10.0 15.9,10.0 C19.2,10.0 22.6,40.0 25.9,40.0 C29.2,40.0 32.5,40.0 35.8,40.0 C39.1,40.0 42.4,10.0 45.7,10.0 C49.0,10.0 52.3,40.0 55.7,40.0 C59.0,40.0 62.3,10.0 65.6,10.0 C68.9,10.0 72.2,10.0 75.5,10.0 C78.8,10.0 82.1,40.0 85.4,40.0 C88.8,40.0 92.1,40.0 95.4,40.0 C98.7,40.0 102.0,10.0 105.3,10.0 C108.6,10.0 111.9,40.0 115.2,40.0 C118.6,40.0 121.9,40.0 125.2,40.0 C128.5,40.0 131.8,10.0 135.1,10.0 C138.4,10.0 141.7,10.0 145.0,10.0 C148.3,10.0 151.7,40.0 155.0,40.0 C158.3,40.0 161.6,40.0 164.9,40.0 C168.2,40.0 171.5,40.0 174.8,40.0 C178.1,40.0 181.4,10.0 184.8,10.0 C188.1,10.0 191.4,40.0 194.7,40.0 C198.0,40.0 201.3,10.0 204.6,10.0 C207.9,10.0 211.2,40.0 214.6,40.0 C217.9,40.0 221.2,40.0 224.5,40.0 C227.8,40.0 231.1,40.0 234.4,40.0 C237.7,40.0 241.0,10.0 244.3,10.0 C247.7,10.0 251.0,40.0 254.3,40.0 C257.6,40.0 260.9,40.0 264.2,40.0 C267.5,40.0 270.8,10.0 274.1,10.0 C277.4,10.0 280.8,10.0 284.1,10.0 C287.4,10.0 290.7,10.0 294.0,10.0 L294.0,80 L6.0,80 Z"/>
+          <path class="l1" d="M6.0,10.0 C9.3,10.0 12.6,10.0 15.9,10.0 C19.2,10.0 22.6,40.0 25.9,40.0 C29.2,40.0 32.5,40.0 35.8,40.0 C39.1,40.0 42.4,10.0 45.7,10.0 C49.0,10.0 52.3,40.0 55.7,40.0 C59.0,40.0 62.3,10.0 65.6,10.0 C68.9,10.0 72.2,10.0 75.5,10.0 C78.8,10.0 82.1,40.0 85.4,40.0 C88.8,40.0 92.1,40.0 95.4,40.0 C98.7,40.0 102.0,10.0 105.3,10.0 C108.6,10.0 111.9,40.0 115.2,40.0 C118.6,40.0 121.9,40.0 125.2,40.0 C128.5,40.0 131.8,10.0 135.1,10.0 C138.4,10.0 141.7,10.0 145.0,10.0 C148.3,10.0 151.7,40.0 155.0,40.0 C158.3,40.0 161.6,40.0 164.9,40.0 C168.2,40.0 171.5,40.0 174.8,40.0 C178.1,40.0 181.4,10.0 184.8,10.0 C188.1,10.0 191.4,40.0 194.7,40.0 C198.0,40.0 201.3,10.0 204.6,10.0 C207.9,10.0 211.2,40.0 214.6,40.0 C217.9,40.0 221.2,40.0 224.5,40.0 C227.8,40.0 231.1,40.0 234.4,40.0 C237.7,40.0 241.0,10.0 244.3,10.0 C247.7,10.0 251.0,40.0 254.3,40.0 C257.6,40.0 260.9,40.0 264.2,40.0 C267.5,40.0 270.8,10.0 274.1,10.0 C277.4,10.0 280.8,10.0 284.1,10.0 C287.4,10.0 290.7,10.0 294.0,10.0"/>
+          </svg>
+          <span class="mo-spark-mark"></span>
+          <span class="mo-spark-dot"></span>
+          <span class="mo-spark-tip">08/30 · 2 通</span>
+        </div>
+        <div class="mo-spark-axis"><span>08/01</span><span>08/07</span><span>08/13</span><span>08/19</span><span>08/25</span><span>08/30</span></div>
+        <div class="mo-spark-foot">
+          <span class="mo-spark-key k1">來電 44</span>
+        </div>
+        <p class="mo-note">單位：通・08/01–08/02 為檔期前兩天</p>
+      </article>
+      <article class="mo-spark-card">
+        <div class="mo-spark-head">
+          <span class="mo-label">下訂・簽約・退戶</span>
+          <b class="mo-spark-total">8／8／0 <i class="wk-unit">戶</i></b>
+        </div>
+        <div class="mo-spark-plot" style="--mx:98%;--my:30%">
+          <svg class="mo-spark-svg" viewBox="0 -20 300 100" role="img" aria-label="下訂、簽約與退戶逐日折線" preserveAspectRatio="none">
+            <defs><linearGradient id="moSparkFill3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--accent)" stop-opacity="0.22"/><stop offset="1" stop-color="var(--accent)" stop-opacity="0"/></linearGradient></defs>
+            <path class="area" fill="url(#moSparkFill3)" d="M6.0,70.0 C9.3,70.0 12.6,70.0 15.9,70.0 C19.2,70.0 22.6,70.0 25.9,70.0 C29.2,70.0 32.5,70.0 35.8,70.0 C39.1,70.0 42.4,70.0 45.7,70.0 C49.0,70.0 52.3,70.0 55.7,70.0 C59.0,70.0 62.3,70.0 65.6,70.0 C68.9,70.0 72.2,10.0 75.5,10.0 C78.8,10.0 82.1,10.0 85.4,10.0 C88.8,10.0 92.1,70.0 95.4,70.0 C98.7,70.0 102.0,70.0 105.3,70.0 C108.6,70.0 111.9,70.0 115.2,70.0 C118.6,70.0 121.9,70.0 125.2,70.0 C128.5,70.0 131.8,70.0 135.1,70.0 C138.4,70.0 141.7,10.0 145.0,10.0 C148.3,10.0 151.7,10.0 155.0,10.0 C158.3,10.0 161.6,70.0 164.9,70.0 C168.2,70.0 171.5,70.0 174.8,70.0 C178.1,70.0 181.4,70.0 184.8,70.0 C188.1,70.0 191.4,70.0 194.7,70.0 C198.0,70.0 201.3,70.0 204.6,70.0 C207.9,70.0 211.2,10.0 214.6,10.0 C217.9,10.0 221.2,10.0 224.5,10.0 C227.8,10.0 231.1,70.0 234.4,70.0 C237.7,70.0 241.0,70.0 244.3,70.0 C247.7,70.0 251.0,70.0 254.3,70.0 C257.6,70.0 260.9,70.0 264.2,70.0 C267.5,70.0 270.8,70.0 274.1,70.0 C277.4,70.0 280.8,10.0 284.1,10.0 C287.4,10.0 290.7,10.0 294.0,10.0 L294.0,80 L6.0,80 Z"/>
+          <path class="l1" d="M6.0,70.0 C9.3,70.0 12.6,70.0 15.9,70.0 C19.2,70.0 22.6,70.0 25.9,70.0 C29.2,70.0 32.5,70.0 35.8,70.0 C39.1,70.0 42.4,70.0 45.7,70.0 C49.0,70.0 52.3,70.0 55.7,70.0 C59.0,70.0 62.3,70.0 65.6,70.0 C68.9,70.0 72.2,10.0 75.5,10.0 C78.8,10.0 82.1,10.0 85.4,10.0 C88.8,10.0 92.1,70.0 95.4,70.0 C98.7,70.0 102.0,70.0 105.3,70.0 C108.6,70.0 111.9,70.0 115.2,70.0 C118.6,70.0 121.9,70.0 125.2,70.0 C128.5,70.0 131.8,70.0 135.1,70.0 C138.4,70.0 141.7,10.0 145.0,10.0 C148.3,10.0 151.7,10.0 155.0,10.0 C158.3,10.0 161.6,70.0 164.9,70.0 C168.2,70.0 171.5,70.0 174.8,70.0 C178.1,70.0 181.4,70.0 184.8,70.0 C188.1,70.0 191.4,70.0 194.7,70.0 C198.0,70.0 201.3,70.0 204.6,70.0 C207.9,70.0 211.2,10.0 214.6,10.0 C217.9,10.0 221.2,10.0 224.5,10.0 C227.8,10.0 231.1,70.0 234.4,70.0 C237.7,70.0 241.0,70.0 244.3,70.0 C247.7,70.0 251.0,70.0 254.3,70.0 C257.6,70.0 260.9,70.0 264.2,70.0 C267.5,70.0 270.8,70.0 274.1,70.0 C277.4,70.0 280.8,10.0 284.1,10.0 C287.4,10.0 290.7,10.0 294.0,10.0"/>
+          <path class="l2" d="M6.0,70.0 C9.3,70.0 12.6,70.0 15.9,70.0 C19.2,70.0 22.6,70.0 25.9,70.0 C29.2,70.0 32.5,70.0 35.8,70.0 C39.1,70.0 42.4,70.0 45.7,70.0 C49.0,70.0 52.3,70.0 55.7,70.0 C59.0,70.0 62.3,70.0 65.6,70.0 C68.9,70.0 72.2,10.0 75.5,10.0 C78.8,10.0 82.1,10.0 85.4,10.0 C88.8,10.0 92.1,70.0 95.4,70.0 C98.7,70.0 102.0,70.0 105.3,70.0 C108.6,70.0 111.9,10.0 115.2,10.0 C118.6,10.0 121.9,70.0 125.2,70.0 C128.5,70.0 131.8,70.0 135.1,70.0 C138.4,70.0 141.7,10.0 145.0,10.0 C148.3,10.0 151.7,10.0 155.0,10.0 C158.3,10.0 161.6,70.0 164.9,70.0 C168.2,70.0 171.5,70.0 174.8,70.0 C178.1,70.0 181.4,10.0 184.8,10.0 C188.1,10.0 191.4,70.0 194.7,70.0 C198.0,70.0 201.3,10.0 204.6,10.0 C207.9,10.0 211.2,10.0 214.6,10.0 C217.9,10.0 221.2,70.0 224.5,70.0 C227.8,70.0 231.1,70.0 234.4,70.0 C237.7,70.0 241.0,70.0 244.3,70.0 C247.7,70.0 251.0,70.0 254.3,70.0 C257.6,70.0 260.9,70.0 264.2,70.0 C267.5,70.0 270.8,70.0 274.1,70.0 C277.4,70.0 280.8,70.0 284.1,70.0 C287.4,70.0 290.7,70.0 294.0,70.0"/>
+          <path class="l3" d="M6.0,70.0 C9.3,70.0 12.6,70.0 15.9,70.0 C19.2,70.0 22.6,70.0 25.9,70.0 C29.2,70.0 32.5,70.0 35.8,70.0 C39.1,70.0 42.4,70.0 45.7,70.0 C49.0,70.0 52.3,70.0 55.7,70.0 C59.0,70.0 62.3,70.0 65.6,70.0 C68.9,70.0 72.2,70.0 75.5,70.0 C78.8,70.0 82.1,70.0 85.4,70.0 C88.8,70.0 92.1,70.0 95.4,70.0 C98.7,70.0 102.0,70.0 105.3,70.0 C108.6,70.0 111.9,70.0 115.2,70.0 C118.6,70.0 121.9,70.0 125.2,70.0 C128.5,70.0 131.8,70.0 135.1,70.0 C138.4,70.0 141.7,70.0 145.0,70.0 C148.3,70.0 151.7,70.0 155.0,70.0 C158.3,70.0 161.6,70.0 164.9,70.0 C168.2,70.0 171.5,70.0 174.8,70.0 C178.1,70.0 181.4,70.0 184.8,70.0 C188.1,70.0 191.4,70.0 194.7,70.0 C198.0,70.0 201.3,70.0 204.6,70.0 C207.9,70.0 211.2,70.0 214.6,70.0 C217.9,70.0 221.2,70.0 224.5,70.0 C227.8,70.0 231.1,70.0 234.4,70.0 C237.7,70.0 241.0,70.0 244.3,70.0 C247.7,70.0 251.0,70.0 254.3,70.0 C257.6,70.0 260.9,70.0 264.2,70.0 C267.5,70.0 270.8,70.0 274.1,70.0 C277.4,70.0 280.8,70.0 284.1,70.0 C287.4,70.0 290.7,70.0 294.0,70.0"/>
+          </svg>
+          <span class="mo-spark-mark"></span>
+          <span class="mo-spark-dot"></span>
+          <span class="mo-spark-tip">08/30 · 1 戶</span>
+        </div>
+        <div class="mo-spark-axis"><span>08/01</span><span>08/07</span><span>08/13</span><span>08/19</span><span>08/25</span><span>08/30</span></div>
+        <div class="mo-spark-foot">
+          <span class="mo-spark-key k1">下訂 8</span>
+          <span class="mo-spark-key k2">簽約 8</span>
+          <span class="mo-spark-key k3">退戶 0</span>
+        </div>
+        <p class="mo-note">單位：戶・08/01–08/02 為檔期前兩天</p>
+      </article>
+    </div>
   </section>
 
-  <section class="mo-main" aria-label="月度明細表">
+  <section class="mo-section mo-main" aria-label="月度明細表">
     <div class="mo-section-head"><h3>月度明細表</h3></div>
     <div class="mo-table-wrap">
       <table class="mo-main-table">
@@ -7699,32 +7779,32 @@
     <p class="mo-note">金額單位：萬元</p>
   </section>
 
-  <section class="mo-media-perf">
-    <div class="mo-section-head"><h3>媒體效益月結</h3><span class="wk-missing-mark" title="需補欄位：系統尚無廣告花費登錄，花費／每組成本／每成交成本為示意">＊</span></div>
+  <section class="mo-section mo-media-perf">
+    <div class="mo-section-head"><h3>媒體效益月結</h3></div>
     <div class="mo-table-wrap">
-      <table class="mo-trend-table">
-        <thead><tr><th>媒體</th><th>本月來人</th><th>佔比</th><th>本月成交</th><th>本月花費＊</th><th>每組來人成本＊</th><th>每成交成本＊</th></tr></thead>
+      <table class="mo-trend-table mo-sort-table">
+        <thead><tr><th>媒體</th><th aria-sort="descending"><button type="button" class="mo-sort on" data-mo-sort="1"><span>本月來人</span><span class="mo-sort-dir">↓</span></button></th><th><button type="button" class="mo-sort" data-mo-sort="2"><span>佔比</span><span class="mo-sort-dir"></span></button></th><th><button type="button" class="mo-sort" data-mo-sort="3"><span>本月成交</span><span class="mo-sort-dir"></span></button></th></tr></thead>
         <tbody>
-          <tr><td>FB</td><td>36</td><td>30.5%</td><td>2</td><td>43.2 萬</td><td>1.20 萬</td><td>21.6 萬</td></tr>
-          <tr><td>介紹</td><td>24</td><td>20.3%</td><td>2</td><td>—</td><td>—</td><td>—</td></tr>
-          <tr><td>現場</td><td>14</td><td>11.9%</td><td>1</td><td>—</td><td>—</td><td>—</td></tr>
-          <tr><td>網路</td><td>13</td><td>11.0%</td><td>1</td><td>19.5 萬</td><td>1.50 萬</td><td>19.5 萬</td></tr>
-          <tr><td>看板</td><td>11</td><td>9.3%</td><td>1</td><td>33.0 萬</td><td>3.00 萬</td><td>33.0 萬</td></tr>
-          <tr><td>IG</td><td>10</td><td>8.5%</td><td>1</td><td>9.0 萬</td><td>0.90 萬</td><td>9.0 萬</td></tr>
-          <tr><td>路過</td><td>10</td><td>8.5%</td><td>0</td><td>—</td><td>—</td><td>—</td></tr>
-          <tr><td>合計</td><td>118</td><td>100.0%</td><td>8</td><td>104.7 萬</td><td>1.50 萬（付費 70 組）</td><td>20.9 萬（付費 5 戶）</td></tr>
+          <tr><td>FB</td><td>36</td><td>30.5%</td><td>2</td></tr>
+          <tr><td>介紹</td><td>24</td><td>20.3%</td><td>2</td></tr>
+          <tr><td>現場</td><td>14</td><td>11.9%</td><td>1</td></tr>
+          <tr><td>網路</td><td>13</td><td>11.0%</td><td>1</td></tr>
+          <tr><td>看板</td><td>11</td><td>9.3%</td><td>1</td></tr>
+          <tr><td>IG</td><td>10</td><td>8.5%</td><td>1</td></tr>
+          <tr><td>路過</td><td>10</td><td>8.5%</td><td>0</td></tr>
         </tbody>
+        <tfoot><tr><td>合計</td><td>118</td><td>100.0%</td><td>8</td></tr></tfoot>
       </table>
     </div>
-    <p class="mo-note">介紹／現場／路過為無花費來源，不計入付費成本；花費欄位待系統補上廣告費登錄</p>
+    <p class="mo-note">佔比分母為本月來人 118 組；成交為本月簽約戶數</p>
   </section>
 
-  <section class="mo-analysis" aria-labelledby="moAnalysisTitle">
+  <section class="mo-section mo-analysis" aria-labelledby="moAnalysisTitle">
     <div class="mo-section-head"><h3 id="moAnalysisTitle">月度來人分析</h3></div>
     <div class="mo-ana">
-      <article class="mo-analysis-card">
-        <div class="mo-ana-head"><h4 title="勾勾表：居住區域（系統僅本區／鄰近區／外縣市三段）">區域</h4></div>
-        <div class="mo-ana-cols"><span></span><span>本月</span><span>累計</span><span>成交</span></div>
+      <article class="mo-analysis-card" data-ana-on="c">
+        <div class="mo-ana-head"><svg class="wk-dico" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-10.2A6.5 6.5 0 0 1 12 4.5a6.5 6.5 0 0 1 6.5 6.3C18.5 15.4 12 21 12 21Z"/><circle cx="12" cy="10.8" r="2.2"/></svg><h4 title="勾勾表：居住區域（系統僅本區／鄰近區／外縣市三段）">區域</h4></div>
+        <div class="mo-ana-cols"><span></span><button type="button" class="on" data-k="c">本月</button><button type="button" data-k="t">累計</button><button type="button" data-k="d">成交</button></div>
         <div class="mo-ana-list">
           <div class="mo-ana-row" data-mo-current="66" data-mo-total="76" data-mo-deal="6"><span>本區</span><b class="mo-n mo-current">66</b><b class="mo-n">76</b><b class="mo-n">6</b></div>
           <div class="mo-ana-row" data-mo-current="34" data-mo-total="40" data-mo-deal="3"><span>鄰近區</span><b class="mo-n mo-current">34</b><b class="mo-n">40</b><b class="mo-n">3</b></div>
@@ -7732,9 +7812,9 @@
         </div>
       </article>
 
-      <article class="mo-analysis-card">
-        <div class="mo-ana-head"><h4 title="來客表：來源（與勾勾表「媒體來源」不同欄，不可混用）">廣告</h4></div>
-        <div class="mo-ana-cols"><span></span><span>本月</span><span>累計</span><span>成交</span></div>
+      <article class="mo-analysis-card" data-ana-on="c">
+        <div class="mo-ana-head"><svg class="wk-dico" viewBox="0 0 24 24"><path d="M4 10v4h3l7 4V6l-7 4H4Z"/><path d="M17.5 9.5a4 4 0 0 1 0 5"/></svg><h4 title="來客表：來源（與勾勾表「媒體來源」不同欄，不可混用）">廣告</h4></div>
+        <div class="mo-ana-cols"><span></span><button type="button" class="on" data-k="c">本月</button><button type="button" data-k="t">累計</button><button type="button" data-k="d">成交</button></div>
         <div class="mo-ana-list">
           <div class="mo-ana-row" data-mo-current="36" data-mo-total="42" data-mo-deal="3"><span>FB</span><b class="mo-n mo-current">36</b><b class="mo-n">42</b><b class="mo-n">3</b></div>
           <div class="mo-ana-row" data-mo-current="24" data-mo-total="29" data-mo-deal="3"><span>介紹</span><b class="mo-n mo-current">24</b><b class="mo-n">29</b><b class="mo-n">3</b></div>
@@ -7746,9 +7826,9 @@
         </div>
       </article>
 
-      <article class="mo-analysis-card">
-        <div class="mo-ana-head"><h4 title="勾勾表：職業">職業</h4></div>
-        <div class="mo-ana-cols"><span></span><span>本月</span><span>累計</span><span>成交</span></div>
+      <article class="mo-analysis-card" data-ana-on="c">
+        <div class="mo-ana-head"><svg class="wk-dico" viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="11" rx="2"/><path d="M9.5 8V6.5A1.5 1.5 0 0 1 11 5h2a1.5 1.5 0 0 1 1.5 1.5V8M4 12.5h16"/></svg><h4 title="勾勾表：職業">職業</h4></div>
+        <div class="mo-ana-cols"><span></span><button type="button" class="on" data-k="c">本月</button><button type="button" data-k="t">累計</button><button type="button" data-k="d">成交</button></div>
         <div class="mo-ana-list">
           <div class="mo-ana-row" data-mo-current="33" data-mo-total="39" data-mo-deal="3"><span>自營商</span><b class="mo-n mo-current">33</b><b class="mo-n">39</b><b class="mo-n">3</b></div>
           <div class="mo-ana-row" data-mo-current="29" data-mo-total="34" data-mo-deal="3"><span>科技業</span><b class="mo-n mo-current">29</b><b class="mo-n">34</b><b class="mo-n">3</b></div>
@@ -7761,9 +7841,9 @@
         </div>
       </article>
 
-      <article class="mo-analysis-card">
-        <div class="mo-ana-head"><h4 title="勾勾表：購屋預算（系統上限 2500 萬以上）">價格</h4></div>
-        <div class="mo-ana-cols"><span></span><span>本月</span><span>累計</span><span>成交</span></div>
+      <article class="mo-analysis-card" data-ana-on="c">
+        <div class="mo-ana-head"><svg class="wk-dico" viewBox="0 0 24 24"><path d="M12.5 3.5H20v7.5l-8 8-7.5-7.5Z"/><circle cx="16" cy="7.5" r="1.4"/></svg><h4 title="勾勾表：購屋預算（系統上限 2500 萬以上）">價格</h4></div>
+        <div class="mo-ana-cols"><span></span><button type="button" class="on" data-k="c">本月</button><button type="button" data-k="t">累計</button><button type="button" data-k="d">成交</button></div>
         <div class="mo-ana-list">
           <div class="mo-ana-row" data-mo-current="42" data-mo-total="50" data-mo-deal="4"><span>1500-2000萬</span><b class="mo-n mo-current">42</b><b class="mo-n">50</b><b class="mo-n">4</b></div>
           <div class="mo-ana-row" data-mo-current="28" data-mo-total="34" data-mo-deal="2"><span>1000-1500萬</span><b class="mo-n mo-current">28</b><b class="mo-n">34</b><b class="mo-n">2</b></div>
@@ -7773,9 +7853,9 @@
         </div>
       </article>
 
-      <article class="mo-analysis-card">
-        <div class="mo-ana-head"><h4 title="勾勾表：年齡（系統五段）">年齡</h4></div>
-        <div class="mo-ana-cols"><span></span><span>本月</span><span>累計</span><span>成交</span></div>
+      <article class="mo-analysis-card" data-ana-on="c">
+        <div class="mo-ana-head"><svg class="wk-dico" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg><h4 title="勾勾表：年齡（系統五段）">年齡</h4></div>
+        <div class="mo-ana-cols"><span></span><button type="button" class="on" data-k="c">本月</button><button type="button" data-k="t">累計</button><button type="button" data-k="d">成交</button></div>
         <div class="mo-ana-list">
           <div class="mo-ana-row" data-mo-current="43" data-mo-total="51" data-mo-deal="4"><span>31-40歲</span><b class="mo-n mo-current">43</b><b class="mo-n">51</b><b class="mo-n">4</b></div>
           <div class="mo-ana-row" data-mo-current="37" data-mo-total="44" data-mo-deal="3"><span>41-50歲</span><b class="mo-n mo-current">37</b><b class="mo-n">44</b><b class="mo-n">3</b></div>
@@ -7785,9 +7865,9 @@
         </div>
       </article>
 
-      <article class="mo-analysis-card">
-        <div class="mo-ana-head"><h4 title="勾勾表：需求建坪（系統四段）">建坪</h4></div>
-        <div class="mo-ana-cols"><span></span><span>本月</span><span>累計</span><span>成交</span></div>
+      <article class="mo-analysis-card" data-ana-on="c">
+        <div class="mo-ana-head"><svg class="wk-dico" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="1.5"/><path d="m8.5 15.5 7-7"/><path d="M8.5 12.5v3h3M15.5 11.5v-3h-3"/></svg><h4 title="勾勾表：需求建坪（系統四段）">建坪</h4></div>
+        <div class="mo-ana-cols"><span></span><button type="button" class="on" data-k="c">本月</button><button type="button" data-k="t">累計</button><button type="button" data-k="d">成交</button></div>
         <div class="mo-ana-list">
           <div class="mo-ana-row" data-mo-current="47" data-mo-total="56" data-mo-deal="4"><span>30-40坪</span><b class="mo-n mo-current">47</b><b class="mo-n">56</b><b class="mo-n">4</b></div>
           <div class="mo-ana-row" data-mo-current="33" data-mo-total="39" data-mo-deal="3"><span>20-30坪</span><b class="mo-n mo-current">33</b><b class="mo-n">39</b><b class="mo-n">3</b></div>
@@ -7796,9 +7876,9 @@
         </div>
       </article>
 
-      <article class="mo-analysis-card">
-        <div class="mo-ana-head"><h4 title="勾勾表：需求格局">格局</h4></div>
-        <div class="mo-ana-cols"><span></span><span>本月</span><span>累計</span><span>成交</span></div>
+      <article class="mo-analysis-card" data-ana-on="c">
+        <div class="mo-ana-head"><svg class="wk-dico" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M12 4v7M12 11h8M4 14h5M9 14v6"/></svg><h4 title="勾勾表：需求格局">格局</h4></div>
+        <div class="mo-ana-cols"><span></span><button type="button" class="on" data-k="c">本月</button><button type="button" data-k="t">累計</button><button type="button" data-k="d">成交</button></div>
         <div class="mo-ana-list">
           <div class="mo-ana-row" data-mo-current="53" data-mo-total="63" data-mo-deal="5"><span>3房</span><b class="mo-n mo-current">53</b><b class="mo-n">63</b><b class="mo-n">5</b></div>
           <div class="mo-ana-row" data-mo-current="37" data-mo-total="44" data-mo-deal="3"><span>4房</span><b class="mo-n mo-current">37</b><b class="mo-n">44</b><b class="mo-n">3</b></div>
@@ -7807,9 +7887,9 @@
         </div>
       </article>
 
-      <article class="mo-analysis-card">
-        <div class="mo-ana-head"><h4 title="勾勾表：購屋目的">動機</h4></div>
-        <div class="mo-ana-cols"><span></span><span>本月</span><span>累計</span><span>成交</span></div>
+      <article class="mo-analysis-card" data-ana-on="c">
+        <div class="mo-ana-head"><svg class="wk-dico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1.2"/></svg><h4 title="勾勾表：購屋目的">動機</h4></div>
+        <div class="mo-ana-cols"><span></span><button type="button" class="on" data-k="c">本月</button><button type="button" data-k="t">累計</button><button type="button" data-k="d">成交</button></div>
         <div class="mo-ana-list">
           <div class="mo-ana-row" data-mo-current="47" data-mo-total="56" data-mo-deal="4"><span>自住</span><b class="mo-n mo-current">47</b><b class="mo-n">56</b><b class="mo-n">4</b></div>
           <div class="mo-ana-row" data-mo-current="28" data-mo-total="34" data-mo-deal="2"><span>置產</span><b class="mo-n mo-current">28</b><b class="mo-n">34</b><b class="mo-n">2</b></div>
@@ -7818,14 +7898,15 @@
         </div>
       </article>
 
-      <article class="mo-analysis-card">
-        <div class="mo-ana-head"><h4 title="本案為大樓，無地坪需求">地坪<span class="wk-missing-mark" title="需補欄位：地坪資料，系統尚無此欄位">＊</span></h4></div>
+      <article class="mo-analysis-card" data-ana-on="c">
+        <div class="mo-ana-head"><svg class="wk-dico" viewBox="0 0 24 24"><path d="M4 6.5 9.5 4l5 2.5L20 4v13.5L14.5 20l-5-2.5L4 20V6.5Z"/><path d="M9.5 4v13.5M14.5 6.5V20"/></svg><h4 title="本案為大樓，無地坪需求">地坪<span class="wk-missing-mark" title="需補欄位：地坪資料，系統尚無此欄位">＊</span></h4></div>
+        <div class="mo-ana-cols"><span></span><button type="button" class="on" data-k="c" disabled>本月</button><button type="button" data-k="t" disabled>累計</button><button type="button" data-k="d" disabled>成交</button></div>
         <p class="mo-note">本案不適用</p>
       </article>
 
-      <article class="mo-analysis-card">
-        <div class="mo-ana-head"><h4>來人<span class="wk-missing-mark" title="需補欄位：同行關係／自來性別，勾勾表尚無此欄位">＊</span></h4></div>
-        <div class="mo-ana-cols"><span></span><span>本月</span><span>累計</span><span>成交</span></div>
+      <article class="mo-analysis-card" data-ana-on="c">
+        <div class="mo-ana-head"><svg class="wk-dico" viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3.2"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5"/><circle cx="17" cy="9.5" r="2.4"/><path d="M15.8 14.3c2.4.2 4.1 1.7 4.7 4.2"/></svg><h4>來人<span class="wk-missing-mark" title="需補欄位：同行關係／自來性別，勾勾表尚無此欄位">＊</span></h4></div>
+        <div class="mo-ana-cols"><span></span><button type="button" class="on" data-k="c">本月</button><button type="button" data-k="t">累計</button><button type="button" data-k="d">成交</button></div>
         <div class="mo-ana-list">
           <div class="mo-ana-row" data-mo-current="46" data-mo-total="55" data-mo-deal="5"><span>夫婦同來</span><b class="mo-n mo-current">46</b><b class="mo-n">55</b><b class="mo-n">5</b></div>
           <div class="mo-ana-row" data-mo-current="29" data-mo-total="34" data-mo-deal="2"><span>家人同來</span><b class="mo-n mo-current">29</b><b class="mo-n">34</b><b class="mo-n">2</b></div>
@@ -7835,9 +7916,9 @@
         </div>
       </article>
 
-      <article class="mo-analysis-card">
-        <div class="mo-ana-head"><h4>賣點<span class="wk-missing-mark" title="需補欄位：賣點分析，勾勾表尚無此欄位">＊</span></h4></div>
-        <div class="mo-ana-cols"><span></span><span>本月</span><span>累計</span><span>成交</span></div>
+      <article class="mo-analysis-card" data-ana-on="c">
+        <div class="mo-ana-head"><svg class="wk-dico" viewBox="0 0 24 24"><path d="m12 4.5 2.2 4.6 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5L4.8 9.8l5-.7L12 4.5Z"/></svg><h4>賣點<span class="wk-missing-mark" title="需補欄位：賣點分析，勾勾表尚無此欄位">＊</span></h4></div>
+        <div class="mo-ana-cols"><span></span><button type="button" class="on" data-k="c">本月</button><button type="button" data-k="t">累計</button><button type="button" data-k="d">成交</button></div>
         <div class="mo-ana-list">
           <div class="mo-ana-row" data-mo-current="24" data-mo-total="29" data-mo-deal="2"><span>地點</span><b class="mo-n mo-current">24</b><b class="mo-n">29</b><b class="mo-n">2</b></div>
           <div class="mo-ana-row" data-mo-current="19" data-mo-total="23" data-mo-deal="2"><span>規劃設計</span><b class="mo-n mo-current">19</b><b class="mo-n">23</b><b class="mo-n">2</b></div>
@@ -7849,9 +7930,9 @@
         </div>
       </article>
 
-      <article class="mo-analysis-card">
-        <div class="mo-ana-head"><h4>抗性<span class="wk-missing-mark" title="需補欄位：抗性分析，勾勾表尚無此欄位">＊</span></h4></div>
-        <div class="mo-ana-cols"><span></span><span>本月</span><span>累計</span><span>成交</span></div>
+      <article class="mo-analysis-card" data-ana-on="c">
+        <div class="mo-ana-head"><svg class="wk-dico" viewBox="0 0 24 24"><path d="M12 4l7 2.5v5c0 4.5-3 7.5-7 8.5-4-1-7-4-7-8.5v-5L12 4Z"/><path d="M12 8.5v4M12 15.5h.01"/></svg><h4>抗性<span class="wk-missing-mark" title="需補欄位：抗性分析，勾勾表尚無此欄位">＊</span></h4></div>
+        <div class="mo-ana-cols"><span></span><button type="button" class="on" data-k="c">本月</button><button type="button" data-k="t">累計</button><button type="button" data-k="d">成交</button></div>
         <div class="mo-ana-list">
           <div class="mo-ana-row" data-mo-current="29" data-mo-total="35" data-mo-deal="3"><span>總價</span><b class="mo-n mo-current">29</b><b class="mo-n">35</b><b class="mo-n">3</b></div>
           <div class="mo-ana-row" data-mo-current="19" data-mo-total="22" data-mo-deal="1"><span>車位</span><b class="mo-n mo-current">19</b><b class="mo-n">22</b><b class="mo-n">1</b></div>
@@ -7865,7 +7946,7 @@
     </div>
   </section>
 
-  <section class="mo-rank">
+  <section class="mo-section mo-rank">
     <div class="mo-section-head">
       <h3>月度業務排行</h3>
       <div class="seg" role="tablist" aria-label="月度業務排行範圍">
@@ -7873,62 +7954,54 @@
         <button type="button" role="tab" aria-selected="false" data-mo-rank="total">總計</button>
       </div>
     </div>
-    <div class="mo-rank-view" data-mo-rank-view="month">
-      <div class="mo-table-wrap">
-        <table class="mo-trend-table">
-          <thead><tr><th>序號</th><th>業務員</th><th>職稱</th><th>小訂數量</th><th>成交戶數</th><th>簽約數量</th><th>銷售金額</th><th>來客數量</th><th>成交比</th></tr></thead>
-          <tbody>
-            <tr><td>1</td><td>張家豪</td><td>專案副理</td><td>2</td><td>2</td><td>2</td><td>13,500 萬</td><td>25</td><td>13:1</td></tr>
-            <tr><td>2</td><td>李承翰</td><td>業務專員</td><td>2</td><td>2</td><td>1.5</td><td>10,500 萬</td><td>20</td><td>10:1</td></tr>
-            <tr><td>3</td><td>吳姿瑩</td><td>業務主任</td><td>1.5</td><td>1.5</td><td>1.5</td><td>10,500 萬</td><td>24</td><td>16:1</td></tr>
-            <tr><td>4</td><td>周家瑜</td><td>業務專員</td><td>1.5</td><td>1.5</td><td>1.5</td><td>10,447 萬</td><td>20</td><td>13:1</td></tr>
-            <tr><td>5</td><td>陳冠廷</td><td>業務主任</td><td>1</td><td>1</td><td>1.5</td><td>10,300 萬</td><td>18</td><td>18:1</td></tr>
-            <tr><td>6</td><td>郭士銘</td><td>業務專員</td><td>0</td><td>0</td><td>0</td><td>—</td><td>11</td><td>—</td></tr>
-            <tr><td>合計</td><td></td><td></td><td>8</td><td>8</td><td>8</td><td>55,247 萬</td><td>118</td><td>15:1</td></tr>
-          </tbody>
-        </table>
+    <div class="mo-rank-layout">
+      <div class="mo-rank-side">
+        <div class="mo-podium">
+          <div class="mo-pod p2"><span class="av">李</span><b><button type="button" class="dr-link" data-goto-staff="李承翰">李承翰</button></b><i>2 戶</i><div class="step">2</div></div>
+          <div class="mo-pod p1"><svg class="mo-crown" viewBox="0 0 24 24"><path d="M5 16.5 4 8l4.5 3L12 6l3.5 5L20 8l-1 8.5H5Z"/></svg><span class="av">張</span><b><button type="button" class="dr-link" data-goto-staff="張家豪">張家豪</button></b><i>2 戶</i><div class="step">1</div></div>
+          <div class="mo-pod p3"><span class="av">吳</span><b><button type="button" class="dr-link" data-goto-staff="吳姿瑩">吳姿瑩</button></b><i>1.5 戶</i><div class="step">3</div></div>
+        </div>
+        <p class="mo-podium-note">依表頭排序欄位顯示前三名</p>
       </div>
-    </div>
-    <div class="mo-rank-view" data-mo-rank-view="total" hidden>
-      <div class="mo-table-wrap">
-        <table class="mo-trend-table">
-          <thead><tr><th>序號</th><th>業務員</th><th>職稱</th><th>小訂數量</th><th>成交戶數</th><th>簽約數量</th><th>銷售金額</th><th>來客數量</th><th>成交比</th></tr></thead>
-          <tbody>
-            <tr><td>1</td><td>張家豪</td><td>專案副理</td><td>2.5</td><td>2.5</td><td>2</td><td>13,500 萬</td><td>30</td><td>12:1</td></tr>
-            <tr><td>2</td><td>吳姿瑩</td><td>業務主任</td><td>2</td><td>2</td><td>1.5</td><td>10,500 萬</td><td>28</td><td>14:1</td></tr>
-            <tr><td>3</td><td>周家瑜</td><td>業務專員</td><td>2</td><td>2</td><td>1.5</td><td>10,447 萬</td><td>24</td><td>12:1</td></tr>
-            <tr><td>4</td><td>李承翰</td><td>業務專員</td><td>2</td><td>2</td><td>1.5</td><td>10,500 萬</td><td>23</td><td>12:1</td></tr>
-            <tr><td>5</td><td>陳冠廷</td><td>業務主任</td><td>1.5</td><td>1.5</td><td>1.5</td><td>10,300 萬</td><td>22</td><td>15:1</td></tr>
-            <tr><td>6</td><td>郭士銘</td><td>業務專員</td><td>0</td><td>0</td><td>0</td><td>0 萬</td><td>13</td><td>13:0</td></tr>
-            <tr><td>合計</td><td></td><td></td><td>10</td><td>10</td><td>8</td><td>55,247 萬</td><td>140</td><td>14:1</td></tr>
-          </tbody>
-        </table>
+      <div>
+        <div class="mo-rank-view" data-mo-rank-view="month">
+          <div class="mo-table-wrap">
+            <table class="mo-trend-table mo-rank-table">
+              <thead><tr><th>序號</th><th>業務員</th><th>職稱</th><th><button type="button" class="mo-rank-sort" data-mo-rank-sort="3"><span>小訂數量</span><span class="mo-sort-dir"></span></button></th><th aria-sort="descending"><button type="button" class="mo-rank-sort on" data-mo-rank-sort="4"><span>成交戶數</span><span class="mo-sort-dir">↓</span></button></th><th>簽約數量</th><th><button type="button" class="mo-rank-sort" data-mo-rank-sort="6"><span>銷售金額</span><span class="mo-sort-dir"></span></button></th><th><button type="button" class="mo-rank-sort" data-mo-rank-sort="7"><span>來客數量</span><span class="mo-sort-dir"></span></button></th><th>成交比</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td><button type="button" class="dr-link" data-goto-staff="張家豪">張家豪</button></td><td>專案副理</td><td>2</td><td>2</td><td>2</td><td>13,500 萬</td><td>25</td><td>13:1</td></tr>
+                <tr><td>2</td><td><button type="button" class="dr-link" data-goto-staff="李承翰">李承翰</button></td><td>業務專員</td><td>2</td><td>2</td><td>1.5</td><td>10,500 萬</td><td>20</td><td>10:1</td></tr>
+                <tr><td>3</td><td><button type="button" class="dr-link" data-goto-staff="吳姿瑩">吳姿瑩</button></td><td>業務主任</td><td>1.5</td><td>1.5</td><td>1.5</td><td>10,500 萬</td><td>24</td><td>16:1</td></tr>
+                <tr><td>4</td><td><button type="button" class="dr-link" data-goto-staff="周家瑜">周家瑜</button></td><td>業務專員</td><td>1.5</td><td>1.5</td><td>1.5</td><td>10,447 萬</td><td>20</td><td>13:1</td></tr>
+                <tr><td>5</td><td><button type="button" class="dr-link" data-goto-staff="陳冠廷">陳冠廷</button></td><td>業務主任</td><td>1</td><td>1</td><td>1.5</td><td>10,300 萬</td><td>18</td><td>18:1</td></tr>
+                <tr><td>6</td><td><button type="button" class="dr-link" data-goto-staff="郭士銘">郭士銘</button></td><td>業務專員</td><td>0</td><td>0</td><td>0</td><td>—</td><td>11</td><td>—</td></tr>
+              </tbody>
+              <tfoot><tr><td colspan="3">合計</td><td>8</td><td>8</td><td>8</td><td>55,247 萬</td><td>118</td><td>15:1</td></tr></tfoot>
+            </table>
+          </div>
+        </div>
+        <div class="mo-rank-view" data-mo-rank-view="total" hidden>
+          <div class="mo-table-wrap">
+            <table class="mo-trend-table mo-rank-table">
+              <thead><tr><th>序號</th><th>業務員</th><th>職稱</th><th><button type="button" class="mo-rank-sort" data-mo-rank-sort="3"><span>小訂數量</span><span class="mo-sort-dir"></span></button></th><th aria-sort="descending"><button type="button" class="mo-rank-sort on" data-mo-rank-sort="4"><span>成交戶數</span><span class="mo-sort-dir">↓</span></button></th><th>簽約數量</th><th><button type="button" class="mo-rank-sort" data-mo-rank-sort="6"><span>銷售金額</span><span class="mo-sort-dir"></span></button></th><th><button type="button" class="mo-rank-sort" data-mo-rank-sort="7"><span>來客數量</span><span class="mo-sort-dir"></span></button></th><th>成交比</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td><button type="button" class="dr-link" data-goto-staff="張家豪">張家豪</button></td><td>專案副理</td><td>2.5</td><td>2.5</td><td>2</td><td>13,500 萬</td><td>30</td><td>12:1</td></tr>
+                <tr><td>2</td><td><button type="button" class="dr-link" data-goto-staff="吳姿瑩">吳姿瑩</button></td><td>業務主任</td><td>2</td><td>2</td><td>1.5</td><td>10,500 萬</td><td>28</td><td>14:1</td></tr>
+                <tr><td>3</td><td><button type="button" class="dr-link" data-goto-staff="周家瑜">周家瑜</button></td><td>業務專員</td><td>2</td><td>2</td><td>1.5</td><td>10,447 萬</td><td>24</td><td>12:1</td></tr>
+                <tr><td>4</td><td><button type="button" class="dr-link" data-goto-staff="李承翰">李承翰</button></td><td>業務專員</td><td>2</td><td>2</td><td>1.5</td><td>10,500 萬</td><td>23</td><td>12:1</td></tr>
+                <tr><td>5</td><td><button type="button" class="dr-link" data-goto-staff="陳冠廷">陳冠廷</button></td><td>業務主任</td><td>1.5</td><td>1.5</td><td>1.5</td><td>10,300 萬</td><td>22</td><td>15:1</td></tr>
+                <tr><td>6</td><td><button type="button" class="dr-link" data-goto-staff="郭士銘">郭士銘</button></td><td>業務專員</td><td>0</td><td>0</td><td>0</td><td>0 萬</td><td>13</td><td>13:0</td></tr>
+              </tbody>
+              <tfoot><tr><td colspan="3">合計</td><td>10</td><td>10</td><td>8</td><td>55,247 萬</td><td>140</td><td>14:1</td></tr></tfoot>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
     <p class="mo-note">小訂／成交含共同接待對分，故出現 .5；成交比＝來客數量÷成交戶數<span class="wk-missing-mark" title="需補欄位：業務個人月拆分需依銷控與往來紀錄按月切分">＊</span></p>
   </section>
 
-  <section class="mo-narrative">
-    <div class="mo-section-head"><h3>月度敘事（給業主）</h3><span class="chip">AI 產草稿・需人審</span></div>
-    <div class="mo-narrative-block">
-      <span class="mo-label">本月結論</span>
-      <textarea class="mo-sumbox dr-sumbox" rows="3">本月來人 118 組、成交 8 戶，成交比 15:1。介紹客佔量體 20% 卻貢獻 25% 成交，是本月最有效率的來源。</textarea>
-      <button class="pillbtn" type="button" data-mo-ai>產生草稿</button>
-    </div>
-    <div class="mo-narrative-block">
-      <span class="mo-label">抗性與對策</span>
-      <textarea class="mo-sumbox dr-sumbox" rows="3">最大抗性為總價（29 組，佔 25%），其次車位（19 組）。建議下月維持現行讓價幅度，改以付款節點彈性回應總價壓力。</textarea>
-      <button class="pillbtn" type="button" data-mo-ai>產生草稿</button>
-    </div>
-    <div class="mo-narrative-block">
-      <span class="mo-label">下月建議</span>
-      <textarea class="mo-sumbox dr-sumbox" rows="3">加碼舊客回饋方案帶動介紹；看板每成交成本 33 萬為全案最高，建議檢視點位或縮減。</textarea>
-      <button class="pillbtn" type="button" data-mo-ai>產生草稿</button>
-    </div>
-    <div class="sumfoot"><span class="mo-summary-hint">需 lead:update・數字為系統自動彙總，文字須專案經理確認後才對外</span><button class="pillbtn" type="button" data-act="saveSummary">儲存敘事</button></div>
-  </section>
-
-  <section class="mo-todo">
+  <section class="mo-section mo-todo">
     <div class="mo-todo-head"><h4>產出這份月報還缺什麼</h4><span class="mo-source"><span class="chip mo-source-missing">需補欄位</span><small>工程串接待辦</small></span></div>
     <ul class="mo-todo-list">
       <li>廣告花費登錄（本月花費／每組成本／每成交成本目前為示意，系統無花費欄位）</li>
@@ -7953,6 +8026,9 @@
     var monthDays=monthly.querySelector('[data-mo-day-count]');
     var moMedia=monthly.querySelector('[data-mo-media]');
     var moMediaChips=monthly.querySelector('[data-mo-media-chips]');
+    var moMediaSortCol=1,moMediaSortDir='desc';
+    var moRankView='month',moRankCol=4,moRankDir='desc';
+    var moCrown=monthly.querySelector('.mo-crown');
     function drawMonth(){
       var date=new Date(monthStamp),year=date.getUTCFullYear(),month=date.getUTCMonth();
       var value=year+'-'+String(month+1).padStart(2,'0');
@@ -8005,6 +8081,104 @@
       monthly.querySelectorAll('[data-mo-rank-view]').forEach(function(panel){
         panel.hidden=panel.dataset.moRankView!==view;
       });
+      moRankView=view;
+      moRankSort(moRankCol,moRankDir);
+    }
+    function moSortValue(row,col){
+      var raw=row.cells[col].textContent.trim();
+      if(raw==='—')return null;
+      var value=Number(raw.replace(/,/g,'').replace(/[^\d.-]/g,''));
+      return Number.isFinite(value)?value:null;
+    }
+    function moMediaSort(col,dir){
+      var table=monthly.querySelector('.mo-sort-table');
+      if(!table)return;
+      var body=table.tBodies[0],rows=[].slice.call(body.rows);
+      rows.forEach(function(row,i){if(!row.hasAttribute('data-mo-order'))row.setAttribute('data-mo-order',String(i))});
+      rows.sort(function(a,b){
+        var av=moSortValue(a,col),bv=moSortValue(b,col);
+        if(av===null&&bv===null)return Number(a.dataset.moOrder)-Number(b.dataset.moOrder);
+        if(av===null)return 1;
+        if(bv===null)return -1;
+        var delta=dir==='asc'?av-bv:bv-av;
+        return delta||Number(a.dataset.moOrder)-Number(b.dataset.moOrder);
+      });
+      rows.forEach(function(row){body.appendChild(row)});
+      moMediaSortCol=col;moMediaSortDir=dir;
+      table.querySelectorAll('.mo-sort').forEach(function(button){
+        var on=Number(button.dataset.moSort)===col;
+        button.classList.toggle('on',on);
+        button.querySelector('.mo-sort-dir').textContent=on?(dir==='asc'?'↑':'↓'):'';
+        var th=button.closest('th');
+        if(on)th.setAttribute('aria-sort',dir==='asc'?'ascending':'descending');else th.removeAttribute('aria-sort');
+      });
+    }
+    function moAnaApply(card,metric){
+      if(!card)return;
+      var key=metric==='c'?'moCurrent':metric==='t'?'moTotal':'moDeal';
+      var rows=[].slice.call(card.querySelectorAll('.mo-ana-row'));
+      rows.forEach(function(row,i){if(!row.hasAttribute('data-ana-order'))row.setAttribute('data-ana-order',String(i))});
+      rows.sort(function(a,b){return Number(b.dataset[key])-Number(a.dataset[key])||Number(a.dataset.anaOrder)-Number(b.dataset.anaOrder)});
+      var list=card.querySelector('.mo-ana-list');
+      rows.forEach(function(row){list.appendChild(row)});
+      card.setAttribute('data-ana-on',metric);
+      card.querySelectorAll('.mo-ana-cols button[data-k]').forEach(function(button){button.classList.toggle('on',button.dataset.k===metric)});
+    }
+    function moRankValue(row,col){
+      var raw=row.cells[col].textContent.trim();
+      if(raw==='—')return null;
+      var value=Number(raw.replace(/,/g,'').replace(/[^\d.-]/g,''));
+      return Number.isFinite(value)?value:null;
+    }
+    function moRankDisplay(row,col){
+      var raw=row.cells[col].textContent.trim();
+      if(raw==='—')return raw;
+      if(col===3||col===4)return raw+' 戶';
+      if(col===7)return raw+' 組';
+      return raw;
+    }
+    function moPodNode(rank,row){
+      var box=document.createElement('div');
+      box.className='mo-pod p'+rank;
+      if(rank===1&&moCrown)box.appendChild(moCrown.cloneNode(true));
+      var name=row.cells[1].textContent.trim();
+      var avatar=document.createElement('span');avatar.className='av';avatar.textContent=name.charAt(0);box.appendChild(avatar);
+      var label=document.createElement('b');
+      var staffLink=document.createElement('button');staffLink.type='button';staffLink.className='dr-link';staffLink.dataset.gotoStaff=name;staffLink.textContent=name;
+      label.appendChild(staffLink);box.appendChild(label);
+      var value=document.createElement('i');value.textContent=moRankDisplay(row,moRankCol);box.appendChild(value);
+      var step=document.createElement('div');step.className='step';step.textContent=String(rank);box.appendChild(step);
+      return box;
+    }
+    function moPodDraw(rows){
+      var podium=monthly.querySelector('.mo-podium');
+      if(!podium||rows.length<3)return;
+      podium.replaceChildren(moPodNode(2,rows[1]),moPodNode(1,rows[0]),moPodNode(3,rows[2]));
+    }
+    function moRankSort(col,dir){
+      var view=monthly.querySelector('[data-mo-rank-view="'+moRankView+'"]');
+      var table=view&&view.querySelector('.mo-rank-table');
+      if(!table)return;
+      var body=table.tBodies[0],rows=[].slice.call(body.rows);
+      rows.forEach(function(row,i){if(!row.hasAttribute('data-mo-order'))row.setAttribute('data-mo-order',String(i))});
+      rows.sort(function(a,b){
+        var av=moRankValue(a,col),bv=moRankValue(b,col);
+        if(av===null&&bv===null)return Number(a.dataset.moOrder)-Number(b.dataset.moOrder);
+        if(av===null)return 1;
+        if(bv===null)return -1;
+        var delta=dir==='asc'?av-bv:bv-av;
+        return delta||Number(a.dataset.moOrder)-Number(b.dataset.moOrder);
+      });
+      rows.forEach(function(row,i){row.cells[0].textContent=String(i+1);body.appendChild(row)});
+      moRankCol=col;moRankDir=dir;
+      table.querySelectorAll('.mo-rank-sort').forEach(function(button){
+        var on=Number(button.dataset.moRankSort)===col;
+        button.classList.toggle('on',on);
+        button.querySelector('.mo-sort-dir').textContent=on?(dir==='asc'?'↑':'↓'):'';
+        var th=button.closest('th');
+        if(on)th.setAttribute('aria-sort',dir==='asc'?'ascending':'descending');else th.removeAttribute('aria-sort');
+      });
+      moPodDraw(rows);
     }
     monthly.addEventListener('click',function(e){
       var mediaX=e.target.closest('[data-mo-media-x]');
@@ -8033,6 +8207,20 @@
         return;
       }
       if(!e.target.closest('[data-mo-media]'))moMediaClose();
+      var anaButton=e.target.closest('.mo-analysis-card .mo-ana-cols button[data-k]');
+      if(anaButton&&!anaButton.disabled){
+        e.stopPropagation();
+        moAnaApply(anaButton.closest('.mo-analysis-card'),anaButton.dataset.k);
+        return;
+      }
+      var mediaSort=e.target.closest('.mo-sort[data-mo-sort]');
+      if(mediaSort){
+        e.stopPropagation();
+        var mediaCol=Number(mediaSort.dataset.moSort);
+        var mediaDir=mediaCol===moMediaSortCol?(moMediaSortDir==='desc'?'asc':'desc'):'desc';
+        moMediaSort(mediaCol,mediaDir);
+        return;
+      }
       var step=e.target.closest('[data-mo-step]');
       if(step){
         var date=new Date(monthStamp);
@@ -8046,15 +8234,13 @@
         moRankShow(rank.dataset.moRank);
         return;
       }
-      var ai=e.target.closest('[data-mo-ai]');
-      if(ai){
-        if(window.toast)window.toast('示意：AI 產生草稿後仍須專案經理確認');
-        return;
-      }
-      var save=e.target.closest('[data-act="saveSummary"]');
-      if(save){
+      var rankSort=e.target.closest('.mo-rank-sort[data-mo-rank-sort]');
+      if(rankSort){
         e.stopPropagation();
-        if(window.toast)window.toast('月度敘事已儲存 <b>2026-08</b>');
+        var rankCol=Number(rankSort.dataset.moRankSort);
+        var rankDir=rankCol===moRankCol?(moRankDir==='desc'?'asc':'desc'):'desc';
+        moRankSort(rankCol,rankDir);
+        return;
       }
     });
     monthly.addEventListener('keydown',function(e){
@@ -8089,6 +8275,10 @@
       },true);
     }
     moMediaDraw();
+    moMediaSort(1,'desc');
+    monthly.querySelectorAll('.mo-analysis-card').forEach(function(card){
+      if(card.querySelector('.mo-ana-row'))moAnaApply(card,'c');
+    });
     moRankShow('month');
     drawMonth();
   })();
