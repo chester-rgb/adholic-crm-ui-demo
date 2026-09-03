@@ -2858,7 +2858,7 @@
 #page-reports .wk-analysis-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s5) var(--s4)}
 #page-reports .wk-ana-tools{display:flex;align-items:flex-start;justify-content:flex-end;gap:var(--s3);flex-wrap:wrap}
 #page-reports .wk-analysis-card{min-width:0;display:flex;flex-direction:column;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s3) var(--s4);border-top:1px solid var(--line);height:21.5rem;overflow:hidden}
-#page-reports .wk-analysis-card-head{display:flex;align-items:center;justify-content:flex-start;gap:var(--s2);padding:0 0 var(--s2);border-bottom:0;min-height:0}
+#page-reports .wk-analysis-card-head{display:flex;align-items:center;justify-content:flex-start;gap:var(--s2);border-bottom:0;min-height:0}
 #page-reports .wk-analysis-card-head h4{font-size:.83rem;font-weight:500;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #page-reports .wk-dico{width:1rem;height:1rem;stroke:currentColor;fill:none;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;color:var(--muted);flex:none}
 #page-reports .wk-pod .step{font-size:.9rem;}
@@ -2867,7 +2867,6 @@
 #page-reports .wk-ana-cols{display:grid;grid-template-columns:minmax(0,1fr) 2.6rem 2.6rem 2.6rem;gap:var(--s3);font-size:.64rem;color:var(--muted);padding-bottom:var(--s1)}
 #page-reports .wk-ana-cols button{position:relative;background:none;border:0;padding:0;font-size:.7rem;color:var(--muted);cursor:pointer;text-align:center;font-weight:400}
 #page-reports .wk-ana-cols button.on{color:var(--accent);font-weight:500}
-#page-reports .wk-ana-cols button.on::after{content:'▼';position:absolute;left:calc(100% + .1em);top:0;font-size:.64rem;line-height:inherit}
 #page-reports .wk-ana-list{flex:1;min-height:0;overflow-y:auto}
 #page-reports .wk-ana-row{display:grid;grid-template-columns:minmax(0,1fr) 2.6rem 2.6rem 2.6rem;gap:var(--s3);align-items:center;font-size:.76rem;padding:var(--s1) 0}
 #page-reports .wk-ana-row:hover{background:var(--fill)}
@@ -2875,6 +2874,8 @@
 #page-reports .wk-ana-row .l{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #page-reports .wk-ana-row .n{font-weight:400;text-align:center;font-variant-numeric:tabular-nums;color:var(--muted)}
 #page-reports .wk-analysis-card[data-ana-on="w"] .wk-ana-row .nw,#page-reports .wk-analysis-card[data-ana-on="t"] .wk-ana-row .nt,#page-reports .wk-analysis-card[data-ana-on="d"] .wk-ana-row .nd{color:var(--accent);font-weight:500}
+#page-reports .wk-ana-row.top3 .n,#page-reports .mo-ana-row.top3 .mo-n{font-weight:500}
+#page-reports .wk-ana-row.top3 .l,#page-reports .mo-ana-row.top3 > span:first-child{font-weight:500}
 #page-reports .wk-ana-na{font-size:.78rem;color:var(--muted)}
 #page-reports .wk-talk-block+.wk-talk-block{margin-top:var(--s5);padding-top:var(--s5);border-top:1px solid var(--line-2)}
 #page-reports .wk-talk-head{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);margin-bottom:var(--s2)}
@@ -2986,7 +2987,6 @@
 #page-reports .mo-spark-key::before{content:'';width:10px;height:2px;border-radius:var(--r-mini);background:var(--accent);flex:none}
 #page-reports .mo-spark-key.k2::before{background:var(--chart-3)}
 #page-reports .mo-spark-key.k3::before{background:var(--line-3)}
-#page-reports .mo-spark-card .mo-note{margin-top:var(--s2)}
 #page-reports .mo-table-wrap{padding:0;background:var(--bg);border:1px solid var(--line-2);border-radius:var(--r-row);overflow-x:auto}
 #page-reports .mo-trend-table{width:100%;min-width:0;border-collapse:collapse;border-spacing:0;table-layout:fixed}
 #page-reports .mo-trend-table th,#page-reports .mo-trend-table td{padding:var(--s2);border-bottom:1px solid var(--line);font-size:.74rem;line-height:1.45;text-align:center;white-space:nowrap;font-variant-numeric:tabular-nums}
@@ -2998,13 +2998,23 @@
 #page-reports .mo-analysis > .mo-section-head{margin-bottom:var(--s4)}
 #page-reports .mo-ana{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s5) var(--s4)}
 #page-reports .mo-ana>article{min-width:0;height:21.5rem;display:flex;flex-direction:column;overflow:hidden;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s3) var(--s4)}
-#page-reports .mo-ana-head{display:flex;align-items:center;gap:var(--s2);padding:0 0 var(--s2)}
+#page-reports .mo-ana-head{display:flex;align-items:center;gap:var(--s2)}
 #page-reports .mo-ana-head h4{min-width:0;margin:0;overflow:hidden;font-size:.83rem;font-weight:500;text-overflow:ellipsis;white-space:nowrap}
+#page-reports .wk-analysis-card-head,#page-reports .mo-ana-head{
+  margin:calc(var(--s3) * -1) calc(var(--s4) * -1) 0;
+  padding:var(--s2) var(--s4);
+  background:var(--fill);
+  border-radius:var(--r-card) var(--r-card) 0 0}
 #page-reports .mo-ana-cols,#page-reports .mo-ana-row{display:grid;grid-template-columns:minmax(0,1fr) 2.6rem 2.6rem 2.6rem;gap:var(--s3);align-items:center}
 #page-reports .mo-ana-cols{padding-bottom:var(--s1);font-size:.64rem;color:var(--muted)}
+#page-reports .wk-ana-cols,#page-reports .mo-ana-cols{margin-top:var(--s2)}
 #page-reports .mo-ana-cols button{position:relative;padding:0;border:0;background:none;color:var(--muted);font-size:.7rem;font-weight:400;text-align:center;cursor:pointer}
 #page-reports .mo-ana-cols button.on{color:var(--accent);font-weight:500}
-#page-reports .mo-ana-cols button.on::after{content:'▼';position:absolute;left:calc(100% + .1em);top:0;font-size:.64rem;line-height:inherit}
+#page-reports .wk-ana-cols button.on::after,#page-reports .mo-ana-cols button.on::after{
+  content:'';position:absolute;left:calc(100% + .25em);top:50%;
+  width:0;height:0;margin-top:-1px;
+  border-left:3px solid transparent;border-right:3px solid transparent;
+  border-top:4px solid var(--accent);opacity:.7}
 #page-reports .mo-ana-cols button:disabled{cursor:not-allowed}
 #page-reports .mo-ana-list{flex:1;min-height:0;overflow-y:auto}
 #page-reports .mo-ana-row{padding:var(--s1) 0;border-top:1px solid var(--line);font-size:.76rem;font-variant-numeric:tabular-nums}
@@ -3097,7 +3107,6 @@
 #page-reports .mo-main-table thead th:first-child{width:5.4rem}
 #page-reports .mo-main-table tbody th:not(.mo-stage){width:2.8rem;text-align:center;padding-left:var(--s1)}
 #page-reports .mo-main-table tbody tr>th[colspan="2"]{width:5.4rem;text-align:center}
-#page-reports .mo-main-table .mo-date-row td{color:var(--muted)}
 #page-reports .mo-main-table tbody td.mo-nodata{color:var(--line-3)}
 #page-reports .mo-main-table .mo-group-start>*{border-top-color:var(--line-2)}
 #page-reports .mo-main-table .mo-month-total{background:var(--tint);color:var(--accent);font-weight:500}
@@ -7151,7 +7160,7 @@
         </tr>
       </thead>
       <tbody id="rows">
-        <tr data-date="2026-08-19" data-created="2026-08-19 14:22" data-proj="青園綠境" data-cross="1" data-city="臺中市" data-dist="北屯區" data-gifts="家電包（三機）|車位折抵">
+        <tr data-date="2026-08-19" data-created="2026-08-19 14:22" data-proj="青園綠境" data-cross="1" data-city="臺中市" data-dist="北屯區" data-gifts="家電包（三機）|車位折抵" data-ad-lead="是">
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
           <td><span class="name">陳威宇<span class="rel-badge" title="有 3 筆關聯">3</span><span class="tag">回訪 ×2</span></span></td>
           <td><span class="grade a">A 級</span></td>
@@ -7161,7 +7170,7 @@
           <td>2026-08-19</td><td class="assignee">張家豪</td>
           <td class="ops"><span class="rowact"><button class="iconop" data-act="assign" aria-label="指派陳威宇" data-tip="指派"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.7-3.2 2.5-5 5.5-5s4.8 1.8 5.5 5M18 8v6M15 11h6"/></svg></button><button class="iconop del" data-act="del" aria-label="刪除陳威宇" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></span></td>
         </tr>
-        <tr data-date="2026-08-18" data-created="2026-08-18 10:05" data-proj="青園綠境" data-cross="0" data-city="臺中市" data-dist="北屯區" data-gifts="家電包（三機）|裝潢金">
+        <tr data-date="2026-08-18" data-created="2026-08-18 10:05" data-proj="青園綠境" data-cross="0" data-city="臺中市" data-dist="北屯區" data-gifts="家電包（三機）|裝潢金" data-ad-lead="否">
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
           <td><span class="name">林佳蓉<span class="rel-badge" title="有 4 筆關聯">4</span></span></td>
           <td><span class="grade b">B 級</span></td>
@@ -7171,7 +7180,7 @@
           <td>2026-08-18</td><td class="assignee">吳姿瑩</td>
           <td class="ops"><span class="rowact"><button class="iconop" data-act="assign" aria-label="指派林佳蓉" data-tip="指派"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.7-3.2 2.5-5 5.5-5s4.8 1.8 5.5 5M18 8v6M15 11h6"/></svg></button><button class="iconop del" data-act="del" aria-label="刪除林佳蓉" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></span></td>
         </tr>
-        <tr data-date="2026-08-17" data-created="2026-08-17 16:40" data-proj="秴楓" data-cross="0" data-city="臺中市" data-dist="南屯區" data-gifts="家電包（三機）">
+        <tr data-date="2026-08-17" data-created="2026-08-17 16:40" data-proj="秴楓" data-cross="0" data-city="臺中市" data-dist="南屯區" data-gifts="家電包（三機）" data-ad-lead="是">
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
           <td><span class="name">黃淑珊<span class="rel-badge" title="有 2 筆關聯">2</span></span></td>
           <td><span class="grade d">D 級</span></td>
@@ -7181,7 +7190,7 @@
           <td>2026-08-17</td><td class="assignee"><span class="unassigned">未指派</span></td>
           <td class="ops"><span class="rowact"><button class="iconop" data-act="assign" aria-label="指派黃淑珊" data-tip="指派"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.7-3.2 2.5-5 5.5-5s4.8 1.8 5.5 5M18 8v6M15 11h6"/></svg></button><button class="iconop del" data-act="del" aria-label="刪除黃淑珊" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></span></td>
         </tr>
-        <tr data-date="2026-08-16" data-created="2026-08-16 11:18" data-proj="恆山千隅" data-cross="1" data-city="臺中市" data-dist="西屯區" data-gifts="家電包（三機）|管理費補貼兩年">
+        <tr data-date="2026-08-16" data-created="2026-08-16 11:18" data-proj="恆山千隅" data-cross="1" data-city="臺中市" data-dist="西屯區" data-gifts="家電包（三機）|管理費補貼兩年" data-ad-lead="否">
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
           <td><span class="name">許文彬<span class="rel-badge" title="有 2 筆關聯">2</span><span class="tag">回訪 ×3</span></span></td>
           <td><span class="grade a">A 級</span></td>
@@ -7191,7 +7200,7 @@
           <td>2026-08-16</td><td class="assignee">張家豪</td>
           <td class="ops"><span class="rowact"><button class="iconop" data-act="assign" aria-label="指派許文彬" data-tip="指派"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.7-3.2 2.5-5 5.5-5s4.8 1.8 5.5 5M18 8v6M15 11h6"/></svg></button><button class="iconop del" data-act="del" aria-label="刪除許文彬" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></span></td>
         </tr>
-        <tr data-date="2026-08-15" data-created="2026-08-15 15:02" data-proj="青園綠境" data-cross="0" data-city="臺中市" data-dist="北屯區" data-gifts="家電包（三機）">
+        <tr data-date="2026-08-15" data-created="2026-08-15 15:02" data-proj="青園綠境" data-cross="0" data-city="臺中市" data-dist="北屯區" data-gifts="家電包（三機）" data-ad-lead="是">
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
           <td><span class="name">王思穎<span class="rel-badge" title="有 1 筆關聯">1</span></span></td>
           <td><span class="grade c">C 級</span></td>
@@ -7201,7 +7210,7 @@
           <td>2026-08-15</td><td class="assignee"><span class="unassigned">未指派</span></td>
           <td class="ops"><span class="rowact"><button class="iconop" data-act="assign" aria-label="指派王思穎" data-tip="指派"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.7-3.2 2.5-5 5.5-5s4.8 1.8 5.5 5M18 8v6M15 11h6"/></svg></button><button class="iconop del" data-act="del" aria-label="刪除王思穎" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></span></td>
         </tr>
-        <tr data-date="2026-08-14" data-created="2026-08-14 09:47" data-proj="青園綠境" data-cross="1" data-city="臺中市" data-dist="北屯區" data-gifts="全屋窗簾">
+        <tr data-date="2026-08-14" data-created="2026-08-14 09:47" data-proj="青園綠境" data-cross="1" data-city="臺中市" data-dist="北屯區" data-gifts="全屋窗簾" data-ad-lead="是">
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
           <td><span class="name">蔡明翰<span class="rel-badge" title="有 1 筆關聯">1</span></span></td>
           <td><span class="grade b">B 級</span></td>
@@ -7211,7 +7220,7 @@
           <td>2026-08-14</td><td class="assignee">吳姿瑩</td>
           <td class="ops"><span class="rowact"><button class="iconop" data-act="assign" aria-label="指派蔡明翰" data-tip="指派"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.7-3.2 2.5-5 5.5-5s4.8 1.8 5.5 5M18 8v6M15 11h6"/></svg></button><button class="iconop del" data-act="del" aria-label="刪除蔡明翰" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></span></td>
         </tr>
-        <tr data-date="2026-08-13" data-created="2026-08-13 15:40" data-proj="恆山千隅" data-cross="1" data-city="臺中市" data-dist="西屯區" data-gifts="裝潢金">
+        <tr data-date="2026-08-13" data-created="2026-08-13 15:40" data-proj="恆山千隅" data-cross="1" data-city="臺中市" data-dist="西屯區" data-gifts="裝潢金" data-ad-lead="是">
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
           <td><span class="name">陳威宇<span class="tag">回訪 ×2</span></span></td>
           <td><span class="grade a">A 級</span></td>
@@ -7221,7 +7230,7 @@
           <td>2026-08-13</td><td class="assignee">吳姿瑩</td>
           <td class="ops"><span class="rowact"><button class="iconop" data-act="assign" aria-label="指派陳威宇" data-tip="指派"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.7-3.2 2.5-5 5.5-5s4.8 1.8 5.5 5M18 8v6M15 11h6"/></svg></button><button class="iconop del" data-act="del" aria-label="刪除陳威宇" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></span></td>
         </tr>
-        <tr data-date="2026-08-12" data-created="2026-08-12 17:33" data-proj="恆山千隅" data-cross="0" data-city="臺中市" data-dist="西屯區" data-gifts="">
+        <tr data-date="2026-08-12" data-created="2026-08-12 17:33" data-proj="恆山千隅" data-cross="0" data-city="臺中市" data-dist="西屯區" data-gifts="" data-ad-lead="否">
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
           <td><span class="name">楊雅筑</span></td>
           <td><span class="grade b">B 級</span></td>
@@ -7231,7 +7240,7 @@
           <td>2026-08-12</td><td class="assignee">張家豪</td>
           <td class="ops"><span class="rowact"><button class="iconop" data-act="assign" aria-label="指派楊雅筑" data-tip="指派"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.7-3.2 2.5-5 5.5-5s4.8 1.8 5.5 5M18 8v6M15 11h6"/></svg></button><button class="iconop del" data-act="del" aria-label="刪除楊雅筑" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></span></td>
         </tr>
-        <tr data-date="2026-08-11" data-created="2026-08-11 13:20" data-proj="秴楓" data-cross="0" data-city="臺中市" data-dist="南屯區" data-gifts="">
+        <tr data-date="2026-08-11" data-created="2026-08-11 13:20" data-proj="秴楓" data-cross="0" data-city="臺中市" data-dist="南屯區" data-gifts="" data-ad-lead="是">
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
           <td><span class="name"><span class="stale-dot" title="久未跟進"></span>郭俊廷</span></td>
           <td><span class="grade d">D 級</span></td>
@@ -7241,7 +7250,7 @@
           <td>2026-08-11</td><td class="assignee">陳冠廷</td>
           <td class="ops"><span class="rowact"><button class="iconop" data-act="assign" aria-label="指派郭俊廷" data-tip="指派"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.7-3.2 2.5-5 5.5-5s4.8 1.8 5.5 5M18 8v6M15 11h6"/></svg></button><button class="iconop del" data-act="del" aria-label="刪除郭俊廷" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></span></td>
         </tr>
-        <tr data-date="2026-08-09" data-created="2026-08-09 10:12" data-proj="恆山千隅" data-cross="1" data-city="臺中市" data-dist="西屯區" data-gifts="">
+        <tr data-date="2026-08-09" data-created="2026-08-09 10:12" data-proj="恆山千隅" data-cross="1" data-city="臺中市" data-dist="西屯區" data-gifts="" data-ad-lead="是">
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
           <td><span class="name"><span class="stale-dot" title="久未跟進"></span>蔡明翰</span></td>
           <td><span class="grade b">B 級</span></td>
@@ -7251,7 +7260,7 @@
           <td>2026-08-09</td><td class="assignee">吳姿瑩</td>
           <td class="ops"><span class="rowact"><button class="iconop" data-act="assign" aria-label="指派蔡明翰" data-tip="指派"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.7-3.2 2.5-5 5.5-5s4.8 1.8 5.5 5M18 8v6M15 11h6"/></svg></button><button class="iconop del" data-act="del" aria-label="刪除蔡明翰" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></span></td>
         </tr>
-        <tr data-date="2026-08-05" data-created="2026-08-05 14:26" data-proj="秴楓" data-cross="1" data-city="臺中市" data-dist="南屯區" data-gifts="">
+        <tr data-date="2026-08-05" data-created="2026-08-05 14:26" data-proj="秴楓" data-cross="1" data-city="臺中市" data-dist="南屯區" data-gifts="" data-ad-lead="否">
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
           <td><span class="name"><span class="stale-dot" title="久未跟進"></span>許文彬<span class="tag">回訪 ×3</span></span></td>
           <td><span class="grade a">A 級</span></td>
@@ -7261,7 +7270,7 @@
           <td>2026-08-05</td><td class="assignee">周家瑜</td>
           <td class="ops"><span class="rowact"><button class="iconop" data-act="assign" aria-label="指派許文彬" data-tip="指派"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.7-3.2 2.5-5 5.5-5s4.8 1.8 5.5 5M18 8v6M15 11h6"/></svg></button><button class="iconop del" data-act="del" aria-label="刪除許文彬" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></span></td>
         </tr>
-        <tr data-date="2026-07-30" data-created="2026-07-30 09:05" data-proj="秴楓" data-cross="1" data-city="臺中市" data-dist="南屯區" data-gifts="">
+        <tr data-date="2026-07-30" data-created="2026-07-30 09:05" data-proj="秴楓" data-cross="1" data-city="臺中市" data-dist="南屯區" data-gifts="" data-ad-lead="是">
           <td><input type="checkbox" class="rowck" aria-label="選取此筆"></td>
           <td><span class="name"><span class="stale-dot" title="久未跟進"></span>蔡明翰</span></td>
           <td><span class="grade b">B 級</span></td>
@@ -7687,105 +7696,99 @@
         <div class="mo-spark-plot" style="--mx:98%;--my:30.0%" data-spark data-vals="4,4,2,2,3,3,3,6,7,3,2,3,4,3,7,7,3,3,3,4,3,7,7,2,2,3,2,3,6,7" data-max="7" data-unit="組">
           <svg class="mo-spark-svg" viewBox="0 -20 300 100" role="img" aria-label="來客逐日走勢，2026-08 合計 118 組" preserveAspectRatio="none">
             <defs><linearGradient id="moSparkFill1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--accent)" stop-opacity="0.22"/><stop offset="1" stop-color="var(--accent)" stop-opacity="0"/></linearGradient></defs>
-            <path class="area" fill="url(#moSparkFill1)" d="M6.0,35.7 C7.7,35.7 12.6,32.9 15.9,35.7 C19.2,38.6 22.6,50.0 25.9,52.9 C29.2,55.7 32.5,54.3 35.8,52.9 C39.1,51.4 42.4,45.7 45.7,44.3 C49.0,42.9 52.3,44.3 55.7,44.3 C59.0,44.3 62.3,48.6 65.6,44.3 C68.9,40.0 72.2,24.3 75.5,18.6 C78.8,12.9 82.1,5.7 85.4,10.0 C88.8,14.3 92.1,37.1 95.4,44.3 C98.7,51.4 102.0,52.9 105.3,52.9 C108.6,52.9 111.9,47.1 115.2,44.3 C118.6,41.4 121.9,35.7 125.2,35.7 C128.5,35.7 131.8,48.6 135.1,44.3 C138.4,40.0 141.7,15.7 145.0,10.0 C148.3,4.3 151.7,4.3 155.0,10.0 C158.3,15.7 161.6,38.6 164.9,44.3 C168.2,50.0 171.5,44.3 174.8,44.3 C178.1,44.3 181.4,45.7 184.8,44.3 C188.1,42.9 191.4,35.7 194.7,35.7 C198.0,35.7 201.3,48.6 204.6,44.3 C207.9,40.0 211.2,15.7 214.6,10.0 C217.9,4.3 221.2,2.9 224.5,10.0 C227.8,17.1 231.1,45.7 234.4,52.9 C237.7,60.0 241.0,54.3 244.3,52.9 C247.7,51.4 251.0,44.3 254.3,44.3 C257.6,44.3 260.9,52.9 264.2,52.9 C267.5,52.9 270.8,50.0 274.1,44.3 C277.4,38.6 280.8,24.3 284.1,18.6 C287.4,12.9 292.3,11.4 294.0,10.0 L294.0,80 L6.0,80 Z"/>
-            <path class="l1" d="M6.0,35.7 C7.7,35.7 12.6,32.9 15.9,35.7 C19.2,38.6 22.6,50.0 25.9,52.9 C29.2,55.7 32.5,54.3 35.8,52.9 C39.1,51.4 42.4,45.7 45.7,44.3 C49.0,42.9 52.3,44.3 55.7,44.3 C59.0,44.3 62.3,48.6 65.6,44.3 C68.9,40.0 72.2,24.3 75.5,18.6 C78.8,12.9 82.1,5.7 85.4,10.0 C88.8,14.3 92.1,37.1 95.4,44.3 C98.7,51.4 102.0,52.9 105.3,52.9 C108.6,52.9 111.9,47.1 115.2,44.3 C118.6,41.4 121.9,35.7 125.2,35.7 C128.5,35.7 131.8,48.6 135.1,44.3 C138.4,40.0 141.7,15.7 145.0,10.0 C148.3,4.3 151.7,4.3 155.0,10.0 C158.3,15.7 161.6,38.6 164.9,44.3 C168.2,50.0 171.5,44.3 174.8,44.3 C178.1,44.3 181.4,45.7 184.8,44.3 C188.1,42.9 191.4,35.7 194.7,35.7 C198.0,35.7 201.3,48.6 204.6,44.3 C207.9,40.0 211.2,15.7 214.6,10.0 C217.9,4.3 221.2,2.9 224.5,10.0 C227.8,17.1 231.1,45.7 234.4,52.9 C237.7,60.0 241.0,54.3 244.3,52.9 C247.7,51.4 251.0,44.3 254.3,44.3 C257.6,44.3 260.9,52.9 264.2,52.9 C267.5,52.9 270.8,50.0 274.1,44.3 C277.4,38.6 280.8,24.3 284.1,18.6 C287.4,12.9 292.3,11.4 294.0,10.0"/>
+            <path class="area" fill="url(#moSparkFill1)" d="M6.0,35.7 C8.7,35.7 10.5,31.0 15.9,35.7 C21.4,40.4 20.4,48.1 25.9,52.9 C31.3,57.6 30.3,55.2 35.8,52.9 C41.3,50.5 40.3,46.6 45.7,44.3 C51.2,41.9 50.2,44.3 55.7,44.3 C61.1,44.3 60.1,51.4 65.6,44.3 C71.0,37.2 70.1,28.0 75.5,18.6 C81.0,9.1 80.0,2.9 85.4,10.0 C90.9,17.1 89.9,32.5 95.4,44.3 C100.8,56.1 99.8,52.9 105.3,52.9 C110.8,52.9 109.8,49.0 115.2,44.3 C120.7,39.6 119.7,35.7 125.2,35.7 C130.6,35.7 129.6,51.4 135.1,44.3 C140.6,37.2 139.6,19.4 145.0,10.0 C150.5,2.0 149.5,2.0 155.0,10.0 C160.4,19.4 159.4,34.9 164.9,44.3 C170.4,53.7 169.4,44.3 174.8,44.3 C180.3,44.3 179.3,46.6 184.8,44.3 C190.2,41.9 189.2,35.7 194.7,35.7 C200.2,35.7 199.2,51.4 204.6,44.3 C210.1,37.2 209.1,19.4 214.6,10.0 C220.0,2.0 219.0,2.0 224.5,10.0 C229.9,21.8 229.0,41.1 234.4,52.9 C239.9,64.6 238.9,55.2 244.3,52.9 C249.8,50.5 248.8,44.3 254.3,44.3 C259.7,44.3 258.7,52.9 264.2,52.9 C269.7,52.9 268.7,53.7 274.1,44.3 C279.6,34.9 278.6,28.0 284.1,18.6 C289.5,9.1 291.3,12.4 294.0,10.0 L294.0,80 L6.0,80 Z"/>
+            <path class="l1" d="M6.0,35.7 C8.7,35.7 10.5,31.0 15.9,35.7 C21.4,40.4 20.4,48.1 25.9,52.9 C31.3,57.6 30.3,55.2 35.8,52.9 C41.3,50.5 40.3,46.6 45.7,44.3 C51.2,41.9 50.2,44.3 55.7,44.3 C61.1,44.3 60.1,51.4 65.6,44.3 C71.0,37.2 70.1,28.0 75.5,18.6 C81.0,9.1 80.0,2.9 85.4,10.0 C90.9,17.1 89.9,32.5 95.4,44.3 C100.8,56.1 99.8,52.9 105.3,52.9 C110.8,52.9 109.8,49.0 115.2,44.3 C120.7,39.6 119.7,35.7 125.2,35.7 C130.6,35.7 129.6,51.4 135.1,44.3 C140.6,37.2 139.6,19.4 145.0,10.0 C150.5,2.0 149.5,2.0 155.0,10.0 C160.4,19.4 159.4,34.9 164.9,44.3 C170.4,53.7 169.4,44.3 174.8,44.3 C180.3,44.3 179.3,46.6 184.8,44.3 C190.2,41.9 189.2,35.7 194.7,35.7 C200.2,35.7 199.2,51.4 204.6,44.3 C210.1,37.2 209.1,19.4 214.6,10.0 C220.0,2.0 219.0,2.0 224.5,10.0 C229.9,21.8 229.0,41.1 234.4,52.9 C239.9,64.6 238.9,55.2 244.3,52.9 C249.8,50.5 248.8,44.3 254.3,44.3 C259.7,44.3 258.7,52.9 264.2,52.9 C269.7,52.9 268.7,53.7 274.1,44.3 C279.6,34.9 278.6,28.0 284.1,18.6 C289.5,9.1 291.3,12.4 294.0,10.0"/>
           </svg>
           <span class="mo-spark-mark"></span>
           <span class="mo-spark-dot"></span>
           <span class="mo-spark-tip">08/30 · 7 組</span>
         </div>
         <div class="mo-spark-axis"><span>08/01</span><span>08/07</span><span>08/13</span><span>08/19</span><span>08/25</span><span>08/30</span></div>
-        <p class="mo-note">單位：組・08/01–08/02 為檔期前兩天</p>
       </article>
       <article class="mo-spark-card">
         <div class="mo-spark-head">
           <span class="mo-label">回客</span>
           <b class="mo-spark-total">10 <i class="wk-unit">組</i></b>
         </div>
-        <div class="mo-spark-plot" style="--mx:98%;--my:30.0%" data-spark data-vals="0,1,0,0,0,1,0,1,0,0,1,0,0,1,0,1,0,0,1,0,0,1,0,0,0,0,0,1,0,1" data-max="1" data-unit="組">
+        <div class="mo-spark-plot" style="--mx:98%;--my:70.0%" data-spark data-vals="0,1,0,0,0,1,0,1,0,0,1,0,0,1,0,1,0,0,1,0,0,1,0,0,0,0,0,1,0,1" data-max="3" data-unit="組">
           <svg class="mo-spark-svg" viewBox="0 -20 300 100" role="img" aria-label="回客逐日走勢，2026-08 合計 10 組" preserveAspectRatio="none">
             <defs><linearGradient id="moSparkFill2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--accent)" stop-opacity="0.22"/><stop offset="1" stop-color="var(--accent)" stop-opacity="0"/></linearGradient></defs>
-            <path class="area" fill="url(#moSparkFill2)" d="M6.0,70.0 C7.7,60.0 12.6,10.0 15.9,10.0 C19.2,10.0 22.6,60.0 25.9,70.0 C29.2,78.0 32.5,70.0 35.8,70.0 C39.1,70.0 42.4,78.0 45.7,70.0 C49.0,60.0 52.3,10.0 55.7,10.0 C59.0,10.0 62.3,70.0 65.6,70.0 C68.9,70.0 72.2,10.0 75.5,10.0 C78.8,10.0 82.1,60.0 85.4,70.0 C88.8,78.0 92.1,78.0 95.4,70.0 C98.7,60.0 102.0,10.0 105.3,10.0 C108.6,10.0 111.9,60.0 115.2,70.0 C118.6,78.0 121.9,78.0 125.2,70.0 C128.5,60.0 131.8,10.0 135.1,10.0 C138.4,10.0 141.7,70.0 145.0,70.0 C148.3,70.0 151.7,10.0 155.0,10.0 C158.3,10.0 161.6,60.0 164.9,70.0 C168.2,78.0 171.5,78.0 174.8,70.0 C178.1,60.0 181.4,10.0 184.8,10.0 C188.1,10.0 191.4,60.0 194.7,70.0 C198.0,78.0 201.3,78.0 204.6,70.0 C207.9,60.0 211.2,10.0 214.6,10.0 C217.9,10.0 221.2,60.0 224.5,70.0 C227.8,78.0 231.1,70.0 234.4,70.0 C237.7,70.0 241.0,70.0 244.3,70.0 C247.7,70.0 251.0,70.0 254.3,70.0 C257.6,70.0 260.9,78.0 264.2,70.0 C267.5,60.0 270.8,10.0 274.1,10.0 C277.4,10.0 280.8,70.0 284.1,70.0 C287.4,70.0 292.3,20.0 294.0,10.0 L294.0,80 L6.0,80 Z"/>
-            <path class="l1" d="M6.0,70.0 C7.7,60.0 12.6,10.0 15.9,10.0 C19.2,10.0 22.6,60.0 25.9,70.0 C29.2,78.0 32.5,70.0 35.8,70.0 C39.1,70.0 42.4,78.0 45.7,70.0 C49.0,60.0 52.3,10.0 55.7,10.0 C59.0,10.0 62.3,70.0 65.6,70.0 C68.9,70.0 72.2,10.0 75.5,10.0 C78.8,10.0 82.1,60.0 85.4,70.0 C88.8,78.0 92.1,78.0 95.4,70.0 C98.7,60.0 102.0,10.0 105.3,10.0 C108.6,10.0 111.9,60.0 115.2,70.0 C118.6,78.0 121.9,78.0 125.2,70.0 C128.5,60.0 131.8,10.0 135.1,10.0 C138.4,10.0 141.7,70.0 145.0,70.0 C148.3,70.0 151.7,10.0 155.0,10.0 C158.3,10.0 161.6,60.0 164.9,70.0 C168.2,78.0 171.5,78.0 174.8,70.0 C178.1,60.0 181.4,10.0 184.8,10.0 C188.1,10.0 191.4,60.0 194.7,70.0 C198.0,78.0 201.3,78.0 204.6,70.0 C207.9,60.0 211.2,10.0 214.6,10.0 C217.9,10.0 221.2,60.0 224.5,70.0 C227.8,78.0 231.1,70.0 234.4,70.0 C237.7,70.0 241.0,70.0 244.3,70.0 C247.7,70.0 251.0,70.0 254.3,70.0 C257.6,70.0 260.9,78.0 264.2,70.0 C267.5,60.0 270.8,10.0 274.1,10.0 C277.4,10.0 280.8,70.0 284.1,70.0 C287.4,70.0 292.3,20.0 294.0,10.0"/>
+            <path class="area" fill="url(#moSparkFill2)" d="M6.0,70.0 C8.7,64.5 10.5,50.0 15.9,50.0 C21.4,50.0 20.4,64.5 25.9,70.0 C31.3,75.5 30.3,70.0 35.8,70.0 C41.3,70.0 40.3,75.5 45.7,70.0 C51.2,64.5 50.2,50.0 55.7,50.0 C61.1,50.0 60.1,70.0 65.6,70.0 C71.0,70.0 70.1,50.0 75.5,50.0 C81.0,50.0 80.0,64.5 85.4,70.0 C90.9,75.5 89.9,75.5 95.4,70.0 C100.8,64.5 99.8,50.0 105.3,50.0 C110.8,50.0 109.8,64.5 115.2,70.0 C120.7,75.5 119.7,75.5 125.2,70.0 C130.6,64.5 129.6,50.0 135.1,50.0 C140.6,50.0 139.6,70.0 145.0,70.0 C150.5,70.0 149.5,50.0 155.0,50.0 C160.4,50.0 159.4,64.5 164.9,70.0 C170.4,75.5 169.4,75.5 174.8,70.0 C180.3,64.5 179.3,50.0 184.8,50.0 C190.2,50.0 189.2,64.5 194.7,70.0 C200.2,75.5 199.2,75.5 204.6,70.0 C210.1,64.5 209.1,50.0 214.6,50.0 C220.0,50.0 219.0,64.5 224.5,70.0 C229.9,75.5 229.0,70.0 234.4,70.0 C239.9,70.0 238.9,70.0 244.3,70.0 C249.8,70.0 248.8,70.0 254.3,70.0 C259.7,70.0 258.7,75.5 264.2,70.0 C269.7,64.5 268.7,50.0 274.1,50.0 C279.6,50.0 278.6,70.0 284.1,70.0 C289.5,70.0 291.3,55.5 294.0,50.0 L294.0,80 L6.0,80 Z"/>
+            <path class="l1" d="M6.0,70.0 C8.7,64.5 10.5,50.0 15.9,50.0 C21.4,50.0 20.4,64.5 25.9,70.0 C31.3,75.5 30.3,70.0 35.8,70.0 C41.3,70.0 40.3,75.5 45.7,70.0 C51.2,64.5 50.2,50.0 55.7,50.0 C61.1,50.0 60.1,70.0 65.6,70.0 C71.0,70.0 70.1,50.0 75.5,50.0 C81.0,50.0 80.0,64.5 85.4,70.0 C90.9,75.5 89.9,75.5 95.4,70.0 C100.8,64.5 99.8,50.0 105.3,50.0 C110.8,50.0 109.8,64.5 115.2,70.0 C120.7,75.5 119.7,75.5 125.2,70.0 C130.6,64.5 129.6,50.0 135.1,50.0 C140.6,50.0 139.6,70.0 145.0,70.0 C150.5,70.0 149.5,50.0 155.0,50.0 C160.4,50.0 159.4,64.5 164.9,70.0 C170.4,75.5 169.4,75.5 174.8,70.0 C180.3,64.5 179.3,50.0 184.8,50.0 C190.2,50.0 189.2,64.5 194.7,70.0 C200.2,75.5 199.2,75.5 204.6,70.0 C210.1,64.5 209.1,50.0 214.6,50.0 C220.0,50.0 219.0,64.5 224.5,70.0 C229.9,75.5 229.0,70.0 234.4,70.0 C239.9,70.0 238.9,70.0 244.3,70.0 C249.8,70.0 248.8,70.0 254.3,70.0 C259.7,70.0 258.7,75.5 264.2,70.0 C269.7,64.5 268.7,50.0 274.1,50.0 C279.6,50.0 278.6,70.0 284.1,70.0 C289.5,70.0 291.3,55.5 294.0,50.0"/>
           </svg>
           <span class="mo-spark-mark"></span>
           <span class="mo-spark-dot"></span>
           <span class="mo-spark-tip">08/30 · 1 組</span>
         </div>
         <div class="mo-spark-axis"><span>08/01</span><span>08/07</span><span>08/13</span><span>08/19</span><span>08/25</span><span>08/30</span></div>
-        <p class="mo-note">單位：組・08/01–08/02 為檔期前兩天</p>
       </article>
       <article class="mo-spark-card">
         <div class="mo-spark-head">
           <span class="mo-label">來電</span>
           <b class="mo-spark-total">44 <i class="wk-unit">通</i></b>
         </div>
-        <div class="mo-spark-plot" style="--mx:98%;--my:30.0%" data-spark data-vals="2,2,1,1,2,1,2,2,1,1,2,1,1,2,2,1,1,1,2,1,2,1,1,1,2,1,1,2,2,2" data-max="2" data-unit="通">
+        <div class="mo-spark-plot" style="--mx:98%;--my:50.0%" data-spark data-vals="2,2,1,1,2,1,2,2,1,1,2,1,1,2,2,1,1,1,2,1,2,1,1,1,2,1,1,2,2,2" data-max="3" data-unit="通">
           <svg class="mo-spark-svg" viewBox="0 -20 300 100" role="img" aria-label="來電逐日走勢，2026-08 合計 44 通" preserveAspectRatio="none">
             <defs><linearGradient id="moSparkFill3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--accent)" stop-opacity="0.22"/><stop offset="1" stop-color="var(--accent)" stop-opacity="0"/></linearGradient></defs>
-            <path class="area" fill="url(#moSparkFill3)" d="M6.0,10.0 C7.7,10.0 12.6,5.0 15.9,10.0 C19.2,15.0 22.6,35.0 25.9,40.0 C29.2,45.0 32.5,45.0 35.8,40.0 C39.1,35.0 42.4,10.0 45.7,10.0 C49.0,10.0 52.3,40.0 55.7,40.0 C59.0,40.0 62.3,15.0 65.6,10.0 C68.9,5.0 72.2,5.0 75.5,10.0 C78.8,15.0 82.1,35.0 85.4,40.0 C88.8,45.0 92.1,45.0 95.4,40.0 C98.7,35.0 102.0,10.0 105.3,10.0 C108.6,10.0 111.9,35.0 115.2,40.0 C118.6,45.0 121.9,45.0 125.2,40.0 C128.5,35.0 131.8,15.0 135.1,10.0 C138.4,5.0 141.7,5.0 145.0,10.0 C148.3,15.0 151.7,35.0 155.0,40.0 C158.3,45.0 161.6,40.0 164.9,40.0 C168.2,40.0 171.5,45.0 174.8,40.0 C178.1,35.0 181.4,10.0 184.8,10.0 C188.1,10.0 191.4,40.0 194.7,40.0 C198.0,40.0 201.3,10.0 204.6,10.0 C207.9,10.0 211.2,35.0 214.6,40.0 C217.9,45.0 221.2,40.0 224.5,40.0 C227.8,40.0 231.1,45.0 234.4,40.0 C237.7,35.0 241.0,10.0 244.3,10.0 C247.7,10.0 251.0,35.0 254.3,40.0 C257.6,45.0 260.9,45.0 264.2,40.0 C267.5,35.0 270.8,15.0 274.1,10.0 C277.4,5.0 280.8,10.0 284.1,10.0 C287.4,10.0 292.3,10.0 294.0,10.0 L294.0,80 L6.0,80 Z"/>
-            <path class="l1" d="M6.0,10.0 C7.7,10.0 12.6,5.0 15.9,10.0 C19.2,15.0 22.6,35.0 25.9,40.0 C29.2,45.0 32.5,45.0 35.8,40.0 C39.1,35.0 42.4,10.0 45.7,10.0 C49.0,10.0 52.3,40.0 55.7,40.0 C59.0,40.0 62.3,15.0 65.6,10.0 C68.9,5.0 72.2,5.0 75.5,10.0 C78.8,15.0 82.1,35.0 85.4,40.0 C88.8,45.0 92.1,45.0 95.4,40.0 C98.7,35.0 102.0,10.0 105.3,10.0 C108.6,10.0 111.9,35.0 115.2,40.0 C118.6,45.0 121.9,45.0 125.2,40.0 C128.5,35.0 131.8,15.0 135.1,10.0 C138.4,5.0 141.7,5.0 145.0,10.0 C148.3,15.0 151.7,35.0 155.0,40.0 C158.3,45.0 161.6,40.0 164.9,40.0 C168.2,40.0 171.5,45.0 174.8,40.0 C178.1,35.0 181.4,10.0 184.8,10.0 C188.1,10.0 191.4,40.0 194.7,40.0 C198.0,40.0 201.3,10.0 204.6,10.0 C207.9,10.0 211.2,35.0 214.6,40.0 C217.9,45.0 221.2,40.0 224.5,40.0 C227.8,40.0 231.1,45.0 234.4,40.0 C237.7,35.0 241.0,10.0 244.3,10.0 C247.7,10.0 251.0,35.0 254.3,40.0 C257.6,45.0 260.9,45.0 264.2,40.0 C267.5,35.0 270.8,15.0 274.1,10.0 C277.4,5.0 280.8,10.0 284.1,10.0 C287.4,10.0 292.3,10.0 294.0,10.0"/>
+            <path class="area" fill="url(#moSparkFill3)" d="M6.0,30.0 C8.7,30.0 10.5,24.5 15.9,30.0 C21.4,35.5 20.4,44.5 25.9,50.0 C31.3,55.5 30.3,55.5 35.8,50.0 C41.3,44.5 40.3,30.0 45.7,30.0 C51.2,30.0 50.2,50.0 55.7,50.0 C61.1,50.0 60.1,35.5 65.6,30.0 C71.0,24.5 70.1,24.5 75.5,30.0 C81.0,35.5 80.0,44.5 85.4,50.0 C90.9,55.5 89.9,55.5 95.4,50.0 C100.8,44.5 99.8,30.0 105.3,30.0 C110.8,30.0 109.8,44.5 115.2,50.0 C120.7,55.5 119.7,55.5 125.2,50.0 C130.6,44.5 129.6,35.5 135.1,30.0 C140.6,24.5 139.6,24.5 145.0,30.0 C150.5,35.5 149.5,44.5 155.0,50.0 C160.4,55.5 159.4,50.0 164.9,50.0 C170.4,50.0 169.4,55.5 174.8,50.0 C180.3,44.5 179.3,30.0 184.8,30.0 C190.2,30.0 189.2,50.0 194.7,50.0 C200.2,50.0 199.2,30.0 204.6,30.0 C210.1,30.0 209.1,44.5 214.6,50.0 C220.0,55.5 219.0,50.0 224.5,50.0 C229.9,50.0 229.0,55.5 234.4,50.0 C239.9,44.5 238.9,30.0 244.3,30.0 C249.8,30.0 248.8,44.5 254.3,50.0 C259.7,55.5 258.7,55.5 264.2,50.0 C269.7,44.5 268.7,35.5 274.1,30.0 C279.6,24.5 278.6,30.0 284.1,30.0 C289.5,30.0 291.3,30.0 294.0,30.0 L294.0,80 L6.0,80 Z"/>
+            <path class="l1" d="M6.0,30.0 C8.7,30.0 10.5,24.5 15.9,30.0 C21.4,35.5 20.4,44.5 25.9,50.0 C31.3,55.5 30.3,55.5 35.8,50.0 C41.3,44.5 40.3,30.0 45.7,30.0 C51.2,30.0 50.2,50.0 55.7,50.0 C61.1,50.0 60.1,35.5 65.6,30.0 C71.0,24.5 70.1,24.5 75.5,30.0 C81.0,35.5 80.0,44.5 85.4,50.0 C90.9,55.5 89.9,55.5 95.4,50.0 C100.8,44.5 99.8,30.0 105.3,30.0 C110.8,30.0 109.8,44.5 115.2,50.0 C120.7,55.5 119.7,55.5 125.2,50.0 C130.6,44.5 129.6,35.5 135.1,30.0 C140.6,24.5 139.6,24.5 145.0,30.0 C150.5,35.5 149.5,44.5 155.0,50.0 C160.4,55.5 159.4,50.0 164.9,50.0 C170.4,50.0 169.4,55.5 174.8,50.0 C180.3,44.5 179.3,30.0 184.8,30.0 C190.2,30.0 189.2,50.0 194.7,50.0 C200.2,50.0 199.2,30.0 204.6,30.0 C210.1,30.0 209.1,44.5 214.6,50.0 C220.0,55.5 219.0,50.0 224.5,50.0 C229.9,50.0 229.0,55.5 234.4,50.0 C239.9,44.5 238.9,30.0 244.3,30.0 C249.8,30.0 248.8,44.5 254.3,50.0 C259.7,55.5 258.7,55.5 264.2,50.0 C269.7,44.5 268.7,35.5 274.1,30.0 C279.6,24.5 278.6,30.0 284.1,30.0 C289.5,30.0 291.3,30.0 294.0,30.0"/>
           </svg>
           <span class="mo-spark-mark"></span>
           <span class="mo-spark-dot"></span>
           <span class="mo-spark-tip">08/30 · 2 通</span>
         </div>
         <div class="mo-spark-axis"><span>08/01</span><span>08/07</span><span>08/13</span><span>08/19</span><span>08/25</span><span>08/30</span></div>
-        <p class="mo-note">單位：通・08/01–08/02 為檔期前兩天</p>
+      </article>
+      <article class="mo-spark-card">
+        <div class="mo-spark-head">
+          <span class="mo-label">廣告名單</span>
+          <b class="mo-spark-total">70 <i class="wk-unit">組</i></b>
+        </div>
+        <div class="mo-spark-plot" style="--mx:98%;--my:30.0%" data-spark data-vals="3,2,1,1,2,2,2,3,4,2,1,2,2,2,4,4,2,2,2,2,2,4,4,1,1,2,1,2,4,4" data-max="4" data-unit="組">
+          <svg class="mo-spark-svg" viewBox="0 -20 300 100" role="img" aria-label="廣告名單逐日走勢，2026-08 合計 70 組" preserveAspectRatio="none">
+            <defs><linearGradient id="moSparkFill4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--accent)" stop-opacity="0.22"/><stop offset="1" stop-color="var(--accent)" stop-opacity="0"/></linearGradient></defs>
+            <path class="area" fill="url(#moSparkFill4)" d="M6.0,25.0 C8.7,29.1 10.5,31.8 15.9,40.0 C21.4,48.2 20.4,50.9 25.9,55.0 C31.3,59.1 30.3,59.1 35.8,55.0 C41.3,50.9 40.3,44.1 45.7,40.0 C51.2,35.9 50.2,40.0 55.7,40.0 C61.1,40.0 60.1,44.1 65.6,40.0 C71.0,35.9 70.1,33.2 75.5,25.0 C81.0,16.8 80.0,5.9 85.4,10.0 C90.9,14.1 89.9,27.6 95.4,40.0 C100.8,52.4 99.8,55.0 105.3,55.0 C110.8,55.0 109.8,44.1 115.2,40.0 C120.7,35.9 119.7,40.0 125.2,40.0 C130.6,40.0 129.6,48.2 135.1,40.0 C140.6,31.8 139.6,18.2 145.0,10.0 C150.5,2.0 149.5,2.0 155.0,10.0 C160.4,18.2 159.4,31.8 164.9,40.0 C170.4,48.2 169.4,40.0 174.8,40.0 C180.3,40.0 179.3,40.0 184.8,40.0 C190.2,40.0 189.2,40.0 194.7,40.0 C200.2,40.0 199.2,48.2 204.6,40.0 C210.1,31.8 209.1,18.2 214.6,10.0 C220.0,2.0 219.0,2.0 224.5,10.0 C229.9,22.4 229.0,42.6 234.4,55.0 C239.9,67.4 238.9,59.1 244.3,55.0 C249.8,50.9 248.8,40.0 254.3,40.0 C259.7,40.0 258.7,55.0 264.2,55.0 C269.7,55.0 268.7,52.4 274.1,40.0 C279.6,27.6 278.6,18.2 284.1,10.0 C289.5,2.0 291.3,10.0 294.0,10.0 L294.0,80 L6.0,80 Z"/>
+            <path class="l1" d="M6.0,25.0 C8.7,29.1 10.5,31.8 15.9,40.0 C21.4,48.2 20.4,50.9 25.9,55.0 C31.3,59.1 30.3,59.1 35.8,55.0 C41.3,50.9 40.3,44.1 45.7,40.0 C51.2,35.9 50.2,40.0 55.7,40.0 C61.1,40.0 60.1,44.1 65.6,40.0 C71.0,35.9 70.1,33.2 75.5,25.0 C81.0,16.8 80.0,5.9 85.4,10.0 C90.9,14.1 89.9,27.6 95.4,40.0 C100.8,52.4 99.8,55.0 105.3,55.0 C110.8,55.0 109.8,44.1 115.2,40.0 C120.7,35.9 119.7,40.0 125.2,40.0 C130.6,40.0 129.6,48.2 135.1,40.0 C140.6,31.8 139.6,18.2 145.0,10.0 C150.5,2.0 149.5,2.0 155.0,10.0 C160.4,18.2 159.4,31.8 164.9,40.0 C170.4,48.2 169.4,40.0 174.8,40.0 C180.3,40.0 179.3,40.0 184.8,40.0 C190.2,40.0 189.2,40.0 194.7,40.0 C200.2,40.0 199.2,48.2 204.6,40.0 C210.1,31.8 209.1,18.2 214.6,10.0 C220.0,2.0 219.0,2.0 224.5,10.0 C229.9,22.4 229.0,42.6 234.4,55.0 C239.9,67.4 238.9,59.1 244.3,55.0 C249.8,50.9 248.8,40.0 254.3,40.0 C259.7,40.0 258.7,55.0 264.2,55.0 C269.7,55.0 268.7,52.4 274.1,40.0 C279.6,27.6 278.6,18.2 284.1,10.0 C289.5,2.0 291.3,10.0 294.0,10.0"/>
+          </svg>
+          <span class="mo-spark-mark"></span>
+          <span class="mo-spark-dot"></span>
+          <span class="mo-spark-tip">08/30 · 4 組</span>
+        </div>
+        <div class="mo-spark-axis"><span>08/01</span><span>08/07</span><span>08/13</span><span>08/19</span><span>08/25</span><span>08/30</span></div>
       </article>
       <article class="mo-spark-card">
         <div class="mo-spark-head">
           <span class="mo-label">下訂</span>
           <b class="mo-spark-total">8 <i class="wk-unit">戶</i></b>
         </div>
-        <div class="mo-spark-plot" style="--mx:98%;--my:30.0%" data-spark data-vals="0,0,0,0,0,0,0,1,1,0,0,0,0,0,1,1,0,0,0,0,0,1,1,0,0,0,0,0,1,1" data-max="1" data-unit="戶">
+        <div class="mo-spark-plot" style="--mx:98%;--my:70.0%" data-spark data-vals="0,0,0,0,0,0,0,1,1,0,0,0,0,0,1,1,0,0,0,0,0,1,1,0,0,0,0,0,1,1" data-max="3" data-unit="戶">
           <svg class="mo-spark-svg" viewBox="0 -20 300 100" role="img" aria-label="下訂逐日走勢，2026-08 合計 8 戶" preserveAspectRatio="none">
-            <defs><linearGradient id="moSparkFill4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--accent)" stop-opacity="0.22"/><stop offset="1" stop-color="var(--accent)" stop-opacity="0"/></linearGradient></defs>
-            <path class="area" fill="url(#moSparkFill4)" d="M6.0,70.0 C7.7,70.0 12.6,70.0 15.9,70.0 C19.2,70.0 22.6,70.0 25.9,70.0 C29.2,70.0 32.5,70.0 35.8,70.0 C39.1,70.0 42.4,70.0 45.7,70.0 C49.0,70.0 52.3,70.0 55.7,70.0 C59.0,70.0 62.3,78.0 65.6,70.0 C68.9,60.0 72.2,20.0 75.5,10.0 C78.8,2.0 82.1,2.0 85.4,10.0 C88.8,20.0 92.1,60.0 95.4,70.0 C98.7,78.0 102.0,70.0 105.3,70.0 C108.6,70.0 111.9,70.0 115.2,70.0 C118.6,70.0 121.9,70.0 125.2,70.0 C128.5,70.0 131.8,78.0 135.1,70.0 C138.4,60.0 141.7,20.0 145.0,10.0 C148.3,2.0 151.7,2.0 155.0,10.0 C158.3,20.0 161.6,60.0 164.9,70.0 C168.2,78.0 171.5,70.0 174.8,70.0 C178.1,70.0 181.4,70.0 184.8,70.0 C188.1,70.0 191.4,70.0 194.7,70.0 C198.0,70.0 201.3,78.0 204.6,70.0 C207.9,60.0 211.2,20.0 214.6,10.0 C217.9,2.0 221.2,2.0 224.5,10.0 C227.8,20.0 231.1,60.0 234.4,70.0 C237.7,78.0 241.0,70.0 244.3,70.0 C247.7,70.0 251.0,70.0 254.3,70.0 C257.6,70.0 260.9,70.0 264.2,70.0 C267.5,70.0 270.8,78.0 274.1,70.0 C277.4,60.0 280.8,20.0 284.1,10.0 C287.4,2.0 292.3,10.0 294.0,10.0 L294.0,80 L6.0,80 Z"/>
-            <path class="l1" d="M6.0,70.0 C7.7,70.0 12.6,70.0 15.9,70.0 C19.2,70.0 22.6,70.0 25.9,70.0 C29.2,70.0 32.5,70.0 35.8,70.0 C39.1,70.0 42.4,70.0 45.7,70.0 C49.0,70.0 52.3,70.0 55.7,70.0 C59.0,70.0 62.3,78.0 65.6,70.0 C68.9,60.0 72.2,20.0 75.5,10.0 C78.8,2.0 82.1,2.0 85.4,10.0 C88.8,20.0 92.1,60.0 95.4,70.0 C98.7,78.0 102.0,70.0 105.3,70.0 C108.6,70.0 111.9,70.0 115.2,70.0 C118.6,70.0 121.9,70.0 125.2,70.0 C128.5,70.0 131.8,78.0 135.1,70.0 C138.4,60.0 141.7,20.0 145.0,10.0 C148.3,2.0 151.7,2.0 155.0,10.0 C158.3,20.0 161.6,60.0 164.9,70.0 C168.2,78.0 171.5,70.0 174.8,70.0 C178.1,70.0 181.4,70.0 184.8,70.0 C188.1,70.0 191.4,70.0 194.7,70.0 C198.0,70.0 201.3,78.0 204.6,70.0 C207.9,60.0 211.2,20.0 214.6,10.0 C217.9,2.0 221.2,2.0 224.5,10.0 C227.8,20.0 231.1,60.0 234.4,70.0 C237.7,78.0 241.0,70.0 244.3,70.0 C247.7,70.0 251.0,70.0 254.3,70.0 C257.6,70.0 260.9,70.0 264.2,70.0 C267.5,70.0 270.8,78.0 274.1,70.0 C277.4,60.0 280.8,20.0 284.1,10.0 C287.4,2.0 292.3,10.0 294.0,10.0"/>
+            <defs><linearGradient id="moSparkFill5" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--accent)" stop-opacity="0.22"/><stop offset="1" stop-color="var(--accent)" stop-opacity="0"/></linearGradient></defs>
+            <path class="area" fill="url(#moSparkFill5)" d="M6.0,70.0 C8.7,70.0 10.5,70.0 15.9,70.0 C21.4,70.0 20.4,70.0 25.9,70.0 C31.3,70.0 30.3,70.0 35.8,70.0 C41.3,70.0 40.3,70.0 45.7,70.0 C51.2,70.0 50.2,70.0 55.7,70.0 C61.1,70.0 60.1,75.5 65.6,70.0 C71.0,64.5 70.1,55.5 75.5,50.0 C81.0,44.5 80.0,44.5 85.4,50.0 C90.9,55.5 89.9,64.5 95.4,70.0 C100.8,75.5 99.8,70.0 105.3,70.0 C110.8,70.0 109.8,70.0 115.2,70.0 C120.7,70.0 119.7,70.0 125.2,70.0 C130.6,70.0 129.6,75.5 135.1,70.0 C140.6,64.5 139.6,55.5 145.0,50.0 C150.5,44.5 149.5,44.5 155.0,50.0 C160.4,55.5 159.4,64.5 164.9,70.0 C170.4,75.5 169.4,70.0 174.8,70.0 C180.3,70.0 179.3,70.0 184.8,70.0 C190.2,70.0 189.2,70.0 194.7,70.0 C200.2,70.0 199.2,75.5 204.6,70.0 C210.1,64.5 209.1,55.5 214.6,50.0 C220.0,44.5 219.0,44.5 224.5,50.0 C229.9,55.5 229.0,64.5 234.4,70.0 C239.9,75.5 238.9,70.0 244.3,70.0 C249.8,70.0 248.8,70.0 254.3,70.0 C259.7,70.0 258.7,70.0 264.2,70.0 C269.7,70.0 268.7,75.5 274.1,70.0 C279.6,64.5 278.6,55.5 284.1,50.0 C289.5,44.5 291.3,50.0 294.0,50.0 L294.0,80 L6.0,80 Z"/>
+            <path class="l1" d="M6.0,70.0 C8.7,70.0 10.5,70.0 15.9,70.0 C21.4,70.0 20.4,70.0 25.9,70.0 C31.3,70.0 30.3,70.0 35.8,70.0 C41.3,70.0 40.3,70.0 45.7,70.0 C51.2,70.0 50.2,70.0 55.7,70.0 C61.1,70.0 60.1,75.5 65.6,70.0 C71.0,64.5 70.1,55.5 75.5,50.0 C81.0,44.5 80.0,44.5 85.4,50.0 C90.9,55.5 89.9,64.5 95.4,70.0 C100.8,75.5 99.8,70.0 105.3,70.0 C110.8,70.0 109.8,70.0 115.2,70.0 C120.7,70.0 119.7,70.0 125.2,70.0 C130.6,70.0 129.6,75.5 135.1,70.0 C140.6,64.5 139.6,55.5 145.0,50.0 C150.5,44.5 149.5,44.5 155.0,50.0 C160.4,55.5 159.4,64.5 164.9,70.0 C170.4,75.5 169.4,70.0 174.8,70.0 C180.3,70.0 179.3,70.0 184.8,70.0 C190.2,70.0 189.2,70.0 194.7,70.0 C200.2,70.0 199.2,75.5 204.6,70.0 C210.1,64.5 209.1,55.5 214.6,50.0 C220.0,44.5 219.0,44.5 224.5,50.0 C229.9,55.5 229.0,64.5 234.4,70.0 C239.9,75.5 238.9,70.0 244.3,70.0 C249.8,70.0 248.8,70.0 254.3,70.0 C259.7,70.0 258.7,70.0 264.2,70.0 C269.7,70.0 268.7,75.5 274.1,70.0 C279.6,64.5 278.6,55.5 284.1,50.0 C289.5,44.5 291.3,50.0 294.0,50.0"/>
           </svg>
           <span class="mo-spark-mark"></span>
           <span class="mo-spark-dot"></span>
           <span class="mo-spark-tip">08/30 · 1 戶</span>
         </div>
         <div class="mo-spark-axis"><span>08/01</span><span>08/07</span><span>08/13</span><span>08/19</span><span>08/25</span><span>08/30</span></div>
-        <p class="mo-note">單位：戶・08/01–08/02 為檔期前兩天</p>
       </article>
       <article class="mo-spark-card">
         <div class="mo-spark-head">
           <span class="mo-label">簽約</span>
           <b class="mo-spark-total">8 <i class="wk-unit">戶</i></b>
         </div>
-        <div class="mo-spark-plot" style="--mx:98%;--my:90.0%" data-spark data-vals="0,0,0,0,0,0,0,1,1,0,0,1,0,0,1,1,0,0,1,0,1,1,0,0,0,0,0,0,0,0" data-max="1" data-unit="戶">
+        <div class="mo-spark-plot" style="--mx:98%;--my:90.0%" data-spark data-vals="0,0,0,0,0,0,0,1,1,0,0,1,0,0,1,1,0,0,1,0,1,1,0,0,0,0,0,0,0,0" data-max="3" data-unit="戶">
           <svg class="mo-spark-svg" viewBox="0 -20 300 100" role="img" aria-label="簽約逐日走勢，2026-08 合計 8 戶" preserveAspectRatio="none">
-            <defs><linearGradient id="moSparkFill5" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--accent)" stop-opacity="0.22"/><stop offset="1" stop-color="var(--accent)" stop-opacity="0"/></linearGradient></defs>
-            <path class="area" fill="url(#moSparkFill5)" d="M6.0,70.0 C7.7,70.0 12.6,70.0 15.9,70.0 C19.2,70.0 22.6,70.0 25.9,70.0 C29.2,70.0 32.5,70.0 35.8,70.0 C39.1,70.0 42.4,70.0 45.7,70.0 C49.0,70.0 52.3,70.0 55.7,70.0 C59.0,70.0 62.3,78.0 65.6,70.0 C68.9,60.0 72.2,20.0 75.5,10.0 C78.8,2.0 82.1,2.0 85.4,10.0 C88.8,20.0 92.1,60.0 95.4,70.0 C98.7,78.0 102.0,78.0 105.3,70.0 C108.6,60.0 111.9,10.0 115.2,10.0 C118.6,10.0 121.9,60.0 125.2,70.0 C128.5,78.0 131.8,78.0 135.1,70.0 C138.4,60.0 141.7,20.0 145.0,10.0 C148.3,2.0 151.7,2.0 155.0,10.0 C158.3,20.0 161.6,60.0 164.9,70.0 C168.2,78.0 171.5,78.0 174.8,70.0 C178.1,60.0 181.4,10.0 184.8,10.0 C188.1,10.0 191.4,70.0 194.7,70.0 C198.0,70.0 201.3,20.0 204.6,10.0 C207.9,2.0 211.2,2.0 214.6,10.0 C217.9,20.0 221.2,60.0 224.5,70.0 C227.8,78.0 231.1,70.0 234.4,70.0 C237.7,70.0 241.0,70.0 244.3,70.0 C247.7,70.0 251.0,70.0 254.3,70.0 C257.6,70.0 260.9,70.0 264.2,70.0 C267.5,70.0 270.8,70.0 274.1,70.0 C277.4,70.0 280.8,70.0 284.1,70.0 C287.4,70.0 292.3,70.0 294.0,70.0 L294.0,80 L6.0,80 Z"/>
-            <path class="l1" d="M6.0,70.0 C7.7,70.0 12.6,70.0 15.9,70.0 C19.2,70.0 22.6,70.0 25.9,70.0 C29.2,70.0 32.5,70.0 35.8,70.0 C39.1,70.0 42.4,70.0 45.7,70.0 C49.0,70.0 52.3,70.0 55.7,70.0 C59.0,70.0 62.3,78.0 65.6,70.0 C68.9,60.0 72.2,20.0 75.5,10.0 C78.8,2.0 82.1,2.0 85.4,10.0 C88.8,20.0 92.1,60.0 95.4,70.0 C98.7,78.0 102.0,78.0 105.3,70.0 C108.6,60.0 111.9,10.0 115.2,10.0 C118.6,10.0 121.9,60.0 125.2,70.0 C128.5,78.0 131.8,78.0 135.1,70.0 C138.4,60.0 141.7,20.0 145.0,10.0 C148.3,2.0 151.7,2.0 155.0,10.0 C158.3,20.0 161.6,60.0 164.9,70.0 C168.2,78.0 171.5,78.0 174.8,70.0 C178.1,60.0 181.4,10.0 184.8,10.0 C188.1,10.0 191.4,70.0 194.7,70.0 C198.0,70.0 201.3,20.0 204.6,10.0 C207.9,2.0 211.2,2.0 214.6,10.0 C217.9,20.0 221.2,60.0 224.5,70.0 C227.8,78.0 231.1,70.0 234.4,70.0 C237.7,70.0 241.0,70.0 244.3,70.0 C247.7,70.0 251.0,70.0 254.3,70.0 C257.6,70.0 260.9,70.0 264.2,70.0 C267.5,70.0 270.8,70.0 274.1,70.0 C277.4,70.0 280.8,70.0 284.1,70.0 C287.4,70.0 292.3,70.0 294.0,70.0"/>
-          </svg>
-          <span class="mo-spark-mark"></span>
-          <span class="mo-spark-dot"></span>
-          <span class="mo-spark-tip">08/30 · 0 戶</span>
-        </div>
-        <div class="mo-spark-axis"><span>08/01</span><span>08/07</span><span>08/13</span><span>08/19</span><span>08/25</span><span>08/30</span></div>
-        <p class="mo-note">單位：戶・08/01–08/02 為檔期前兩天</p>
-      </article>
-      <article class="mo-spark-card">
-        <div class="mo-spark-head">
-          <span class="mo-label">退戶</span>
-          <b class="mo-spark-total">0 <i class="wk-unit">戶</i></b>
-        </div>
-        <div class="mo-spark-plot" style="--mx:98%;--my:90%" data-spark data-vals="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0" data-max="0" data-unit="戶">
-          <svg class="mo-spark-svg" viewBox="0 -20 300 100" role="img" aria-label="退戶逐日走勢，2026-08 合計 0 戶" preserveAspectRatio="none">
             <defs><linearGradient id="moSparkFill6" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--accent)" stop-opacity="0.22"/><stop offset="1" stop-color="var(--accent)" stop-opacity="0"/></linearGradient></defs>
-            <path class="area" fill="url(#moSparkFill6)" d="M6.0,70.0 C7.7,70.0 12.6,70.0 15.9,70.0 C19.2,70.0 22.6,70.0 25.9,70.0 C29.2,70.0 32.5,70.0 35.8,70.0 C39.1,70.0 42.4,70.0 45.7,70.0 C49.0,70.0 52.3,70.0 55.7,70.0 C59.0,70.0 62.3,70.0 65.6,70.0 C68.9,70.0 72.2,70.0 75.5,70.0 C78.8,70.0 82.1,70.0 85.4,70.0 C88.8,70.0 92.1,70.0 95.4,70.0 C98.7,70.0 102.0,70.0 105.3,70.0 C108.6,70.0 111.9,70.0 115.2,70.0 C118.6,70.0 121.9,70.0 125.2,70.0 C128.5,70.0 131.8,70.0 135.1,70.0 C138.4,70.0 141.7,70.0 145.0,70.0 C148.3,70.0 151.7,70.0 155.0,70.0 C158.3,70.0 161.6,70.0 164.9,70.0 C168.2,70.0 171.5,70.0 174.8,70.0 C178.1,70.0 181.4,70.0 184.8,70.0 C188.1,70.0 191.4,70.0 194.7,70.0 C198.0,70.0 201.3,70.0 204.6,70.0 C207.9,70.0 211.2,70.0 214.6,70.0 C217.9,70.0 221.2,70.0 224.5,70.0 C227.8,70.0 231.1,70.0 234.4,70.0 C237.7,70.0 241.0,70.0 244.3,70.0 C247.7,70.0 251.0,70.0 254.3,70.0 C257.6,70.0 260.9,70.0 264.2,70.0 C267.5,70.0 270.8,70.0 274.1,70.0 C277.4,70.0 280.8,70.0 284.1,70.0 C287.4,70.0 292.3,70.0 294.0,70.0 L294.0,80 L6.0,80 Z"/>
-            <path class="l1" d="M6.0,70.0 C7.7,70.0 12.6,70.0 15.9,70.0 C19.2,70.0 22.6,70.0 25.9,70.0 C29.2,70.0 32.5,70.0 35.8,70.0 C39.1,70.0 42.4,70.0 45.7,70.0 C49.0,70.0 52.3,70.0 55.7,70.0 C59.0,70.0 62.3,70.0 65.6,70.0 C68.9,70.0 72.2,70.0 75.5,70.0 C78.8,70.0 82.1,70.0 85.4,70.0 C88.8,70.0 92.1,70.0 95.4,70.0 C98.7,70.0 102.0,70.0 105.3,70.0 C108.6,70.0 111.9,70.0 115.2,70.0 C118.6,70.0 121.9,70.0 125.2,70.0 C128.5,70.0 131.8,70.0 135.1,70.0 C138.4,70.0 141.7,70.0 145.0,70.0 C148.3,70.0 151.7,70.0 155.0,70.0 C158.3,70.0 161.6,70.0 164.9,70.0 C168.2,70.0 171.5,70.0 174.8,70.0 C178.1,70.0 181.4,70.0 184.8,70.0 C188.1,70.0 191.4,70.0 194.7,70.0 C198.0,70.0 201.3,70.0 204.6,70.0 C207.9,70.0 211.2,70.0 214.6,70.0 C217.9,70.0 221.2,70.0 224.5,70.0 C227.8,70.0 231.1,70.0 234.4,70.0 C237.7,70.0 241.0,70.0 244.3,70.0 C247.7,70.0 251.0,70.0 254.3,70.0 C257.6,70.0 260.9,70.0 264.2,70.0 C267.5,70.0 270.8,70.0 274.1,70.0 C277.4,70.0 280.8,70.0 284.1,70.0 C287.4,70.0 292.3,70.0 294.0,70.0"/>
+            <path class="area" fill="url(#moSparkFill6)" d="M6.0,70.0 C8.7,70.0 10.5,70.0 15.9,70.0 C21.4,70.0 20.4,70.0 25.9,70.0 C31.3,70.0 30.3,70.0 35.8,70.0 C41.3,70.0 40.3,70.0 45.7,70.0 C51.2,70.0 50.2,70.0 55.7,70.0 C61.1,70.0 60.1,75.5 65.6,70.0 C71.0,64.5 70.1,55.5 75.5,50.0 C81.0,44.5 80.0,44.5 85.4,50.0 C90.9,55.5 89.9,64.5 95.4,70.0 C100.8,75.5 99.8,75.5 105.3,70.0 C110.8,64.5 109.8,50.0 115.2,50.0 C120.7,50.0 119.7,64.5 125.2,70.0 C130.6,75.5 129.6,75.5 135.1,70.0 C140.6,64.5 139.6,55.5 145.0,50.0 C150.5,44.5 149.5,44.5 155.0,50.0 C160.4,55.5 159.4,64.5 164.9,70.0 C170.4,75.5 169.4,75.5 174.8,70.0 C180.3,64.5 179.3,50.0 184.8,50.0 C190.2,50.0 189.2,70.0 194.7,70.0 C200.2,70.0 199.2,55.5 204.6,50.0 C210.1,44.5 209.1,44.5 214.6,50.0 C220.0,55.5 219.0,64.5 224.5,70.0 C229.9,75.5 229.0,70.0 234.4,70.0 C239.9,70.0 238.9,70.0 244.3,70.0 C249.8,70.0 248.8,70.0 254.3,70.0 C259.7,70.0 258.7,70.0 264.2,70.0 C269.7,70.0 268.7,70.0 274.1,70.0 C279.6,70.0 278.6,70.0 284.1,70.0 C289.5,70.0 291.3,70.0 294.0,70.0 L294.0,80 L6.0,80 Z"/>
+            <path class="l1" d="M6.0,70.0 C8.7,70.0 10.5,70.0 15.9,70.0 C21.4,70.0 20.4,70.0 25.9,70.0 C31.3,70.0 30.3,70.0 35.8,70.0 C41.3,70.0 40.3,70.0 45.7,70.0 C51.2,70.0 50.2,70.0 55.7,70.0 C61.1,70.0 60.1,75.5 65.6,70.0 C71.0,64.5 70.1,55.5 75.5,50.0 C81.0,44.5 80.0,44.5 85.4,50.0 C90.9,55.5 89.9,64.5 95.4,70.0 C100.8,75.5 99.8,75.5 105.3,70.0 C110.8,64.5 109.8,50.0 115.2,50.0 C120.7,50.0 119.7,64.5 125.2,70.0 C130.6,75.5 129.6,75.5 135.1,70.0 C140.6,64.5 139.6,55.5 145.0,50.0 C150.5,44.5 149.5,44.5 155.0,50.0 C160.4,55.5 159.4,64.5 164.9,70.0 C170.4,75.5 169.4,75.5 174.8,70.0 C180.3,64.5 179.3,50.0 184.8,50.0 C190.2,50.0 189.2,70.0 194.7,70.0 C200.2,70.0 199.2,55.5 204.6,50.0 C210.1,44.5 209.1,44.5 214.6,50.0 C220.0,55.5 219.0,64.5 224.5,70.0 C229.9,75.5 229.0,70.0 234.4,70.0 C239.9,70.0 238.9,70.0 244.3,70.0 C249.8,70.0 248.8,70.0 254.3,70.0 C259.7,70.0 258.7,70.0 264.2,70.0 C269.7,70.0 268.7,70.0 274.1,70.0 C279.6,70.0 278.6,70.0 284.1,70.0 C289.5,70.0 291.3,70.0 294.0,70.0"/>
           </svg>
           <span class="mo-spark-mark"></span>
           <span class="mo-spark-dot"></span>
           <span class="mo-spark-tip">08/30 · 0 戶</span>
         </div>
         <div class="mo-spark-axis"><span>08/01</span><span>08/07</span><span>08/13</span><span>08/19</span><span>08/25</span><span>08/30</span></div>
-        <p class="mo-note">單位：戶・08/01–08/02 為檔期前兩天</p>
       </article>
     </div>
   </section>
@@ -7795,9 +7798,8 @@
     <div class="mo-table-wrap">
       <table class="mo-main-table">
         <colgroup><col><col span="8"></colgroup>
-        <thead><tr><th colspan="2">項目</th><th>第31週</th><th>第32週</th><th>第33週</th><th>第34週</th><th>第35週</th><th class="mo-month-total">本月累計</th><th>總累計</th></tr></thead>
+        <thead><tr><th colspan="2">項目</th><th>08/01–08/02</th><th>08/03–08/09</th><th>08/10–08/16</th><th>08/17–08/23</th><th>08/24–08/30</th><th class="mo-month-total">本月累計</th><th>總累計</th></tr></thead>
         <tbody>
-          <tr class="mo-date-row"><th colspan="2">日期</th><td>08/01–08/02</td><td>08/03–08/09</td><td>08/10–08/16</td><td>08/17–08/23</td><td>08/24–08/30</td><td class="mo-month-total">08/01–08/30</td><td>至 08/30</td></tr>
           <tr><th colspan="2">來人</th><td>8</td><td>26</td><td>29</td><td>30</td><td>25</td><td class="mo-month-total">118</td><td>140</td></tr>
           <tr><th colspan="2">來電</th><td>4</td><td>10</td><td>10</td><td>9</td><td>11</td><td class="mo-month-total">44</td><td>52</td></tr>
           <tr><th colspan="2">回客</th><td>1</td><td>2</td><td>3</td><td>2</td><td>2</td><td class="mo-month-total">10</td><td>12</td></tr>
@@ -8044,14 +8046,15 @@
   <section class="mo-section mo-todo">
     <div class="mo-todo-head"><h4>產出這份月報還缺什麼</h4><span class="mo-source"><span class="chip mo-source-missing">需補欄位</span><small>工程串接待辦</small></span></div>
     <ul class="mo-todo-list">
-      <li>廣告花費登錄（本月花費／每組成本／每成交成本目前為示意，系統無花費欄位）</li>
+      <li>廣告花費登錄：系統無花費欄位，媒體效益月結目前只能出量體與成交，出不了 CPL／CPA</li>
+      <li>廣告名單欄位：本次新增於勾勾表，正式系統尚未建立，需同步後端與匯入範本</li>
+      <li>逐日資料：本月走勢是以日為單位，系統目前只有週彙總，需要每日快照才能真的畫出來</li>
       <li>建案基本資料：業主名稱（合併卡灰字目前為示意）</li>
       <li>地坪資料</li>
       <li>抗性分析欄位（勾勾表）</li>
       <li>賣點分析欄位（勾勾表）</li>
       <li>來人分析：同行關係／自來性別（男自來、夫婦同來等）</li>
       <li>業務個人月拆分（個人月小訂／月來客需依銷控與往來紀錄按月切分）</li>
-      <li>完銷預估需接銷控與目標設定</li>
       <li>月結鎖帳：月報需可鎖定當月數字，避免事後異動導致業主拿到的版本對不上</li>
     </ul>
   </section>
@@ -8160,7 +8163,7 @@
       rows.forEach(function(row,i){if(!row.hasAttribute('data-ana-order'))row.setAttribute('data-ana-order',String(i))});
       rows.sort(function(a,b){return Number(b.dataset[key])-Number(a.dataset[key])||Number(a.dataset.anaOrder)-Number(b.dataset.anaOrder)});
       var list=card.querySelector('.mo-ana-list');
-      rows.forEach(function(row){list.appendChild(row)});
+      rows.forEach(function(row,i){row.classList.toggle('top3',i<3);list.appendChild(row)});
       card.setAttribute('data-ana-on',metric);
       card.querySelectorAll('.mo-ana-cols button[data-k]').forEach(function(button){button.classList.toggle('on',button.dataset.k===metric)});
     }
@@ -11904,7 +11907,7 @@
   var TPL_SEED={title:'先生', age_range:'31-40歲', area:'本區', marital:'已婚有子', job:'科技業',
     income:'12-20萬', house_type:'大樓', house_own:'自有', family_size:'4', room_type:'3房',
     budget:'2500萬以上', purpose:'自住', timeline:'三個月內', media:'網路-FB',
-    parking:'需要', revisit:'是', note:'關注貸款成數與車位配置'};
+    ad_lead:'是', parking:'需要', revisit:'是', note:'關注貸款成數與車位配置'};
   var SRC2MEDIA={'FB':'網路-FB','IG':'網路-FB','網路':'網路-google','介紹':'親友介紹','看板':'戶外看板'};
   var LEAD_VALS={};
   function leadKey(){ return ($('#drawer [data-lead-name]')||{textContent:''}).textContent.trim() }
@@ -11914,6 +11917,7 @@
       var v={}; Object.keys(TPL_SEED).forEach(function(x){ v[x]=TPL_SEED[x] });
       var src=($('#drawer [data-lead-field="source"]')||{textContent:''}).textContent.trim();
       if(SRC2MEDIA[src]) v.media=SRC2MEDIA[src];
+      if(activeLeadRow&&activeLeadRow.dataset.adLead)v.ad_lead=activeLeadRow.dataset.adLead;
       LEAD_VALS[k]=v;
     }
     return LEAD_VALS[k];
@@ -13112,7 +13116,7 @@
       rows.forEach(function(row,i){if(!row.hasAttribute('data-ana-order'))row.setAttribute('data-ana-order',String(i))});
       rows.sort(function(a,b){return Number(b.dataset[metric])-Number(a.dataset[metric])||Number(a.dataset.anaOrder)-Number(b.dataset.anaOrder)});
       var list=card.querySelector('.wk-ana-list')||card;
-      rows.forEach(function(row){list.appendChild(row)});
+      rows.forEach(function(row,i){row.classList.toggle('top3',i<3);list.appendChild(row)});
       card.setAttribute('data-ana-on',metric);
       card.querySelectorAll('.wk-ana-cols button[data-k]').forEach(function(btn){btn.classList.toggle('on',btn.dataset.k===metric)});
     }
@@ -13309,6 +13313,7 @@ try{ /* templates */
     ]},
     {g:'來源', f:[
       L('媒體來源(可複選)','media','多選',['網路-FB','網路-591','網路-google','報紙','派報','戶外看板','指示牌','車廂廣告','簡訊','電視廣告','親友介紹']),
+      L('廣告名單','ad_lead','單選',['是','否']),
       L('介紹戶別','referrer','文字')
     ]},
     {g:'職業與收入', f:[
@@ -13371,7 +13376,7 @@ try{ /* templates */
   var TPL=[
     {id:'full', name:'完整來客表', active:true, fields:fromKeys(
       ['title','age_range','area','marital','job','income','house_type','house_own','family_size',
-       'room_type','budget','purpose','timeline','media','parking','revisit','note'])},
+       'room_type','budget','purpose','timeline','media','ad_lead','parking','revisit','note'])},
     {id:'std', name:'標準來客表', active:false, fields:fromKeys(
       ['title','age_range','area','job','room_type','budget','purpose','timeline','media','parking','note'],
       ['room_type','timeline'])},
@@ -13734,6 +13739,7 @@ try{ /* import */
     ['現住房屋形態','公寓',0], ['現住房屋','自有',0], ['居住人口(人)','1',0],
     ['需求房型','2房',0], ['購屋預算(可複選)','選項1、選項2',0], ['購屋目的','自住',0],
     ['欲購屋時間','一個月內',0], ['媒體來源(可複選)','選項1、選項2',0],
+    ['廣告名單','是',0],
     ['車位需求','需要',0], ['是否再訪','是',0], ['備註','範例文字',0]
   ];
   function impTarget(f){ return f[0] + (f[2] ? '（核心）' : '') }
