@@ -3136,25 +3136,40 @@
   #page-reports .mo-rank-layout{grid-template-columns:1fr}
   #page-reports .mo-todo-list{grid-template-columns:1fr}
 }
-@page{size:A4 landscape;margin:var(--s4)}
-@page mo-monthly{size:A4 portrait;margin:var(--s4)}
+/* @page 的 margin 不吃 CSS 變數（規格不允許），只能寫實值——
+   這是全檔唯一容許 magic number 的地方。12mm 約等於 --s4(1rem) 的紙本對應值 */
+@page{size:A4 landscape;margin:10mm}
+@page mo-monthly{size:A4 portrait;margin:10mm}
 @media print{
   body:has(#page-reports.view.on){background:var(--bg)}
-  body:has(#page-reports.view.on) .app{display:block}
+  /* .app 的 min-height:100vh 是螢幕版撐滿視窗用的；在紙上 vh＝整頁高，
+     內容剛好填滿一頁時會再擠出一張空白頁 */
+  body:has(#page-reports.view.on) .app{display:block;min-height:0}
   body:has(#page-reports.view.on) .rail,body:has(#page-reports.view.on) .topbar{display:none!important}
   body:has(#page-reports.view.on) .page-holder{padding:0}
   body:has(#page-reports.view.on) .view:not(.on){display:none!important}
   #page-reports .seg,#page-reports .pillbtn,#page-reports .wk-source,#page-reports [data-demo-toast]{display:none!important}
-  #page-reports #reportsDaily,#page-reports #reportsMonthly{display:none!important}
-  #page-reports #reportsWeekly{display:block!important}
+  /* 不再強制只印週報。三份報表的顯示是分頁鈕用 inline style.display 控制的，
+     原本這裡用 !important 蓋過 inline，導致不管螢幕在看哪一份、印出來都是週報。
+     移除後，列印跟著螢幕狀態走——所見即所印 */
   #page-reports,#page-reports .wk-section,#page-reports .mo-section,#page-reports .wk-analysis-card,#page-reports .table-wrap.wk-table-wrap{background:var(--bg);box-shadow:none}
   #page-reports .wk-toolbar,#page-reports .wk-legend{display:none}
+  /* 頁面工具列（標題＋日/週/月切換＋列印鈕）在紙上沒有意義，
+     而且它會自己佔掉第一頁只印「業務報表」四個字 */
+  #page-reports > .sec.pagebar{display:none}
   #page-reports .wk-section{break-inside:avoid;break-after:page;border-radius:0;padding:0;margin:0;min-height:calc(100vh - var(--s8))}
   #page-reports .mo-section{break-inside:avoid;border-radius:0;padding:0;margin:0}
   #page-reports .wk-section:last-of-type{break-after:auto}
   #page-reports .wk-table-wrap{overflow:visible}
   #page-reports .wk-main-table,#page-reports .wk-talk-table,#page-reports .wk-rank-table{min-width:0!important}
-  #page-reports .wk-analysis-grid{grid-template-columns:repeat(7,minmax(0,1fr));gap:var(--s1)}
+  /* 12 張分析卡在 A4 橫式可用寬 1032px 下：7 欄每張只有 142px，內容需要 165px，
+     整頁會被撐出 22px 而被裁掉。改 6 欄剛好 168px，且 12 張正好兩列不留孤兒格 */
+  #page-reports .wk-analysis-grid{grid-template-columns:repeat(6,minmax(0,1fr));gap:var(--s1)}
+  /* 分析卡頭用負邊界向外撐滿卡緣（-16px＝--s4，對齊螢幕版的卡片內距）。
+     列印時卡片內距被收成 --s1(4px)，負邊界沒跟著收，卡頭每邊就突出 12px，
+     一路把卡片、格線、整頁撐爆。負邊界與內距一起收成列印用的尺度 */
+  #page-reports .wk-analysis-card-head,#page-reports .mo-ana-head{
+    margin:calc(var(--s1) * -1) calc(var(--s1) * -1) 0;padding:var(--s1) var(--s2)}
   #page-reports .wk-analysis-card{padding:var(--s1);height:auto;overflow:visible}
   #page-reports .wk-ana-list{overflow:visible}
   #page-reports .wk-prog{display:none}
@@ -3170,8 +3185,16 @@
   #page-reports .mo-ana>article{break-inside:avoid}
   #page-reports .mo-table-wrap{overflow:visible}
   #page-reports .mo-main-table,#page-reports .mo-media-perf .mo-trend-table,#page-reports .mo-rank .mo-trend-table{min-width:0!important}
+  /* 日報的當日來客明細表也要解除 min-width，否則超出容器 43px 被裁掉 */
+  #page-reports .dr-table-wrap{overflow:visible}
+  #page-reports .dr-table-wrap table{min-width:0!important}
   #page-reports .mo-ana{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s2)}
-  #page-reports .mo-ana>article{padding:var(--s2)}
+  /* A4 直式可用寬 703px、兩欄各 347px，但卡片內容需要 354px。
+     內距由 --s2 收成 --s1，左右各省 4px 剛好補上這 8px */
+  #page-reports .mo-ana>article{padding:var(--s1)}
+  /* 對話框、抽屜與遮罩不該印出來——實測「編輯成員」會整個蓋在來人分析表上 */
+  .dlg-mask,.drawer,.drawer-mask,.tour,.tourmask,.onboard,.palette,.palette-mask,
+  #staffEditMask,#staffEditDrawer,.usermenu,.statmenu,.floattip,.hovercard,#batchbar{display:none!important}
   #page-reports *{animation:none!important;transition:none!important;transform:none!important}
 }
 /* — templates — */
@@ -8337,29 +8360,6 @@
       if(button)button.focus();
     });
     document.addEventListener('click',function(e){if(!monthly.contains(e.target))moMediaClose()});
-    var printBtn=document.querySelector('#page-reports [data-act="printRep"]');
-    if(printBtn){
-      printBtn.addEventListener('click',function(e){
-        if(getComputedStyle(monthly).display==='none')return;
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        var weekly=document.getElementById('reportsWeekly');
-        var wkValue=weekly?weekly.style.getPropertyValue('display'):'',wkPriority=weekly?weekly.style.getPropertyPriority('display'):'';
-        var moValue=monthly.style.getPropertyValue('display'),moPriority=monthly.style.getPropertyPriority('display');
-        if(weekly)weekly.style.setProperty('display','none','important');
-        monthly.style.setProperty('display','block','important');
-        var restored=false;
-        function restore(){
-          if(restored)return;
-          restored=true;
-          if(weekly){if(wkValue)weekly.style.setProperty('display',wkValue,wkPriority);else weekly.style.removeProperty('display')}
-          if(moValue)monthly.style.setProperty('display',moValue,moPriority);else monthly.style.removeProperty('display');
-        }
-        window.addEventListener('afterprint',restore,{once:true});
-        window.print();
-        setTimeout(restore,0);
-      },true);
-    }
     moMediaDraw();
     moMediaSort(1,'desc');
     monthly.querySelectorAll('.mo-analysis-card').forEach(function(card){
@@ -14452,13 +14452,12 @@ try{ /* collect */
       if(!laUn){ laUn=true; var ub3=$('#page-leadsall [data-act="laUn"]'); if(ub3) laMark(ub3,true); laFilterRows(); }
       toast('只顯示<b>未指派</b>來客');
     } else if(act==='printRep'){
-      var wkOn=document.getElementById('reportsWeekly');
-      if(wkOn && getComputedStyle(wkOn).display!=='none'){
-        toast('列印為 A4 橫式四頁，對應現場週報第 2–5 頁');
-        setTimeout(function(){ window.print() },260);
-      } else {
-        busy(b,900,function(){ toast('已送出列印——正式版另存 PDF 日報') });
-      }
+      /* 三份都能印，印的就是螢幕上這一份。月報是 A4 直式（具名頁 mo-monthly），
+         日報與週報是 A4 橫式 */
+      var repOn=document.querySelector('#reportsSeg button.on'),
+          repKey=repOn?repOn.getAttribute('data-rep'):'weekly';
+      toast(repKey==='monthly'?'列印為 A4 直式':'列印為 A4 橫式');
+      setTimeout(function(){ window.print() },260);
     } else if(act==='dlTpl'){
       /* 範本欄位直接取自欄位對應的正本 IMP_FIELDS——原本手寫一份，
          結果少了「來訪日期」「來客/來電」兩個必填欄，照官方範本填完反而過不了 */
