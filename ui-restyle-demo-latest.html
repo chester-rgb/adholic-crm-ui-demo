@@ -2489,12 +2489,6 @@
   /* 篩選那顆樣式不動（灰底無框），只把高度拉到跟旁邊的控件一樣 */
   #page-staff #staffCards{gap:var(--s4)}
   #page-staff .staff-view-pane[hidden]{display:none}
-  /* 整列可點開彈窗，游標與 hover 要說得出來 */
-  #page-staff .staff-row{cursor:pointer}
-  #page-staff .staff-row:hover td{background:var(--fill)}
-  #page-staff .staff-row:focus-visible{outline:2px solid var(--accent); outline-offset:-2px}
-  /* 刪除與重寄靠左，取消／儲存留在右邊 */
-  #staffEditDrawer .staff-dfoot #staffEditCancel{margin-left:auto}
   #page-staff .staff-row[hidden]{display:none}
   #page-staff .staff-row.staff-disabled{filter:opacity(.55) saturate(.35)}
   /* 頭像＋姓名這組排版是三張表共用的（人員管理／操作紀錄／已刪來客），
@@ -5003,7 +4997,7 @@
 
         <div class="usermenu setmenu" id="gearMenu">
           <div class="ulbl" style="border-top:none">系統設定</div>
-          <button class="urow" data-page="staff"><span>人員列表</span></button>
+          <button class="urow" data-page="staff"><span>人員管理</span></button>
           <button class="urow" data-page="perms"><span>權限管理</span></button>
           <button class="urow" data-page="audit"><span>操作紀錄</span></button>
           <button class="urow" data-page="trash"><span>已刪來客</span></button>
@@ -7087,49 +7081,54 @@
               <button data-attr="代銷公司">代銷公司</button>
               <button data-attr="協力廠商">協力廠商</button>
             </div>
+            <div class="seg staff-view-seg" id="staffViewSeg" aria-label="檢視方式">
+              <button class="on" data-staff-view="cards" aria-pressed="true" aria-label="卡片檢視" data-tip="卡片"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg></button>
+              <button data-staff-view="list" aria-pressed="false" aria-label="列表檢視" data-tip="列表"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h.01M4 12h.01M4 18h.01M9 6h11M9 12h11M9 18h11"/></svg></button>
+            </div>
           </div>
         </div>
 
+        <div class="block leadrow staff-view-pane" id="staffCards" aria-label="成員卡片"></div>
 
-        <div class="table-wrap staff-view-pane" id="staffTableWrap">
+        <div class="table-wrap staff-view-pane" id="staffTableWrap" hidden>
           <table class="staff-table">
-            <thead><tr><th>姓名</th><th>角色</th><th>所屬單位</th><th>可存取建案</th><th>最後登入</th><th>狀態</th></tr></thead>
+            <thead><tr><th>姓名</th><th>角色</th><th>屬性</th><th>所屬單位</th><th>聯絡電話</th><th>可存取建案</th><th>最後登入</th><th>狀態</th><th>操作</th></tr></thead>
             <tbody id="staffRows">
-              <tr data-fam="林" tabindex="0" class="staff-row" data-attr="建設公司" data-email="lin@adholic.example" data-phone="0900-000-001" data-unit="艾德霍客" data-status="enabled" data-online="true">
-                <td><span class="staff-person"><span class="av">林</span><span><b class="staff-name"><span class="fam">林</span>曉青</b><small>你</small></span></span></td><td><span class="st-role admin">系統管理員</span></td><td data-staff-unit>艾德霍客</td><td><span class="chip">全部建案</span></td><td class="staff-contact">今天 09:12</td><td><button class="switch" type="button" role="switch" aria-checked="true" aria-label="林曉青 啟用狀態" data-staff-toggle data-tip="點一下停用"><span class="knob"></span></button></td>
+              <tr data-fam="林" class="staff-row" data-attr="建設公司" data-email="lin@adholic.example" data-phone="0900-000-001" data-unit="艾德霍客" data-status="enabled" data-online="true">
+                <td><span class="staff-person"><span class="av">林</span><span><b class="staff-name"><span class="fam">林</span>曉青</b><small>你</small></span></span></td><td><span class="st-role admin">系統管理員</span></td><td><span class="chip" data-staff-attr>建設公司</span></td><td data-staff-unit>艾德霍客</td><td class="staff-contact" data-staff-phone>0900-000-001</td><td><span class="chip">全部建案</span></td><td class="staff-contact">今天 09:12</td><td><button class="switch" type="button" role="switch" aria-checked="true" aria-label="林曉青 啟用狀態" data-staff-toggle data-tip="點一下停用"><span class="knob"></span></button></td><td class="ops"><span class="rowact"><button class="iconop" data-staff-edit aria-label="編輯林曉青" data-tip="編輯"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19l-4 1"/></svg></button><button class="iconop del" data-staff-del aria-label="刪除林曉青" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></span></td>
               </tr>
-              <tr data-fam="許" tabindex="0" class="staff-row" data-attr="建設公司" data-email="enson@adholic.example" data-phone="0900-000-002" data-unit="艾德霍客" data-status="enabled">
-                <td><span class="staff-person"><span class="av">許</span><span><b class="staff-name"><span class="fam">許</span>庭瑋</b></span></span></td><td><span class="st-role admin">系統管理員</span></td><td data-staff-unit>艾德霍客</td><td><span class="chip">全部建案</span></td><td class="staff-contact">今天 08:02</td><td><button class="switch" type="button" role="switch" aria-checked="true" aria-label="許庭瑋 啟用狀態" data-staff-toggle data-tip="點一下停用"><span class="knob"></span></button></td>
+              <tr data-fam="許" class="staff-row" data-attr="建設公司" data-email="enson@adholic.example" data-phone="0900-000-002" data-unit="艾德霍客" data-status="enabled">
+                <td><span class="staff-person"><span class="av">許</span><span><b class="staff-name"><span class="fam">許</span>庭瑋</b></span></span></td><td><span class="st-role admin">系統管理員</span></td><td><span class="chip" data-staff-attr>建設公司</span></td><td data-staff-unit>艾德霍客</td><td class="staff-contact" data-staff-phone>0900-000-002</td><td><span class="chip">全部建案</span></td><td class="staff-contact">今天 08:02</td><td><button class="switch" type="button" role="switch" aria-checked="true" aria-label="許庭瑋 啟用狀態" data-staff-toggle data-tip="點一下停用"><span class="knob"></span></button></td><td class="ops"><span class="rowact"><button class="iconop" data-staff-edit aria-label="編輯許庭瑋" data-tip="編輯"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19l-4 1"/></svg></button><button class="iconop del" data-staff-del aria-label="刪除許庭瑋" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></span></td>
               </tr>
-              <tr data-fam="周" tabindex="0" class="staff-row" data-attr="建設公司" data-email="chou@adholic.example" data-phone="0900-000-003" data-unit="艾德霍客" data-status="enabled">
-                <td><span class="staff-person"><span class="av">周</span><span><b class="staff-name"><span class="fam">周</span>育賢</b></span></span></td><td><span class="st-role normal">專案經理</span></td><td data-staff-unit>艾德霍客</td><td><span class="chip">全部建案</span></td><td class="staff-contact">08-18 17:40</td><td><button class="switch" type="button" role="switch" aria-checked="true" aria-label="周育賢 啟用狀態" data-staff-toggle data-tip="點一下停用"><span class="knob"></span></button></td>
+              <tr data-fam="周" class="staff-row" data-attr="建設公司" data-email="chou@adholic.example" data-phone="0900-000-003" data-unit="艾德霍客" data-status="enabled">
+                <td><span class="staff-person"><span class="av">周</span><span><b class="staff-name"><span class="fam">周</span>育賢</b></span></span></td><td><span class="st-role normal">專案經理</span></td><td><span class="chip" data-staff-attr>建設公司</span></td><td data-staff-unit>艾德霍客</td><td class="staff-contact" data-staff-phone>0900-000-003</td><td><span class="chip">全部建案</span></td><td class="staff-contact">08-18 17:40</td><td><button class="switch" type="button" role="switch" aria-checked="true" aria-label="周育賢 啟用狀態" data-staff-toggle data-tip="點一下停用"><span class="knob"></span></button></td><td class="ops"><span class="rowact"><button class="iconop" data-staff-edit aria-label="編輯周育賢" data-tip="編輯"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19l-4 1"/></svg></button><button class="iconop del" data-staff-del aria-label="刪除周育賢" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></span></td>
               </tr>
-              <tr data-fam="王" tabindex="0" class="staff-row" data-attr="建設公司" data-email="wang@adholic.example" data-phone="0900-000-004" data-unit="艾德霍客" data-status="enabled">
-                <td><span class="staff-person"><span class="av">王</span><span><b class="staff-name"><span class="fam">王</span>毅群</b></span></span></td><td><span class="st-role normal">底價檢視</span></td><td data-staff-unit>艾德霍客</td><td><span class="chip">全部建案</span></td><td class="staff-contact">08-20 14:31</td><td><button class="switch" type="button" role="switch" aria-checked="true" aria-label="王毅群 啟用狀態" data-staff-toggle data-tip="點一下停用"><span class="knob"></span></button></td>
+              <tr data-fam="王" class="staff-row" data-attr="建設公司" data-email="wang@adholic.example" data-phone="0900-000-004" data-unit="艾德霍客" data-status="enabled">
+                <td><span class="staff-person"><span class="av">王</span><span><b class="staff-name"><span class="fam">王</span>毅群</b></span></span></td><td><span class="st-role normal">底價檢視</span></td><td><span class="chip" data-staff-attr>建設公司</span></td><td data-staff-unit>艾德霍客</td><td class="staff-contact" data-staff-phone>0900-000-004</td><td><span class="chip">全部建案</span></td><td class="staff-contact">08-20 14:31</td><td><button class="switch" type="button" role="switch" aria-checked="true" aria-label="王毅群 啟用狀態" data-staff-toggle data-tip="點一下停用"><span class="knob"></span></button></td><td class="ops"><span class="rowact"><button class="iconop" data-staff-edit aria-label="編輯王毅群" data-tip="編輯"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19l-4 1"/></svg></button><button class="iconop del" data-staff-del aria-label="刪除王毅群" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></span></td>
               </tr>
-              <tr data-fam="張" tabindex="0" class="staff-row" data-attr="代銷公司" data-email="chang@adholic.example" data-phone="0900-000-005" data-unit="青園綠境" data-status="enabled">
-                <td><span class="staff-person"><span class="av">張</span><span><b class="staff-name"><span class="fam">張</span>家豪</b></span></span></td><td><span class="st-role normal">業務人員</span></td><td data-staff-unit>青園綠境</td><td><span class="chip">青園綠境</span></td><td class="staff-contact">今天 08:47</td><td><button class="switch" type="button" role="switch" aria-checked="true" aria-label="張家豪 啟用狀態" data-staff-toggle data-tip="點一下停用"><span class="knob"></span></button></td>
+              <tr data-fam="張" class="staff-row" data-attr="代銷公司" data-email="chang@adholic.example" data-phone="0900-000-005" data-unit="青園綠境" data-status="enabled">
+                <td><span class="staff-person"><span class="av">張</span><span><b class="staff-name"><span class="fam">張</span>家豪</b></span></span></td><td><span class="st-role normal">業務人員</span></td><td><span class="chip" data-staff-attr>代銷公司</span></td><td data-staff-unit>青園綠境</td><td class="staff-contact" data-staff-phone>0900-000-005</td><td><span class="chip">青園綠境</span></td><td class="staff-contact">今天 08:47</td><td><button class="switch" type="button" role="switch" aria-checked="true" aria-label="張家豪 啟用狀態" data-staff-toggle data-tip="點一下停用"><span class="knob"></span></button></td><td class="ops"><span class="rowact"><button class="iconop" data-staff-edit aria-label="編輯張家豪" data-tip="編輯"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19l-4 1"/></svg></button><button class="iconop del" data-staff-del aria-label="刪除張家豪" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></span></td>
               </tr>
-              <tr data-fam="吳" tabindex="0" class="staff-row" data-attr="代銷公司" data-email="wu@adholic.example" data-phone="0900-000-006" data-unit="青園綠境" data-status="enabled" data-online="true">
-                <td><span class="staff-person"><span class="av">吳</span><span><b class="staff-name"><span class="fam">吳</span>姿瑩</b></span></span></td><td><span class="st-role normal">業務人員</span></td><td data-staff-unit>青園綠境</td><td><span class="chip">青園綠境</span></td><td class="staff-contact">昨天 21:05</td><td><button class="switch" type="button" role="switch" aria-checked="true" aria-label="吳姿瑩 啟用狀態" data-staff-toggle data-tip="點一下停用"><span class="knob"></span></button></td>
+              <tr data-fam="吳" class="staff-row" data-attr="代銷公司" data-email="wu@adholic.example" data-phone="0900-000-006" data-unit="青園綠境" data-status="enabled" data-online="true">
+                <td><span class="staff-person"><span class="av">吳</span><span><b class="staff-name"><span class="fam">吳</span>姿瑩</b></span></span></td><td><span class="st-role normal">業務人員</span></td><td><span class="chip" data-staff-attr>代銷公司</span></td><td data-staff-unit>青園綠境</td><td class="staff-contact" data-staff-phone>0900-000-006</td><td><span class="chip">青園綠境</span></td><td class="staff-contact">昨天 21:05</td><td><button class="switch" type="button" role="switch" aria-checked="true" aria-label="吳姿瑩 啟用狀態" data-staff-toggle data-tip="點一下停用"><span class="knob"></span></button></td><td class="ops"><span class="rowact"><button class="iconop" data-staff-edit aria-label="編輯吳姿瑩" data-tip="編輯"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19l-4 1"/></svg></button><button class="iconop del" data-staff-del aria-label="刪除吳姿瑩" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></span></td>
               </tr>
-              <tr data-fam="陳" tabindex="0" class="staff-row" data-attr="代銷公司" data-email="chen@adholic.example" data-phone="0900-000-007" data-unit="恆山千隅" data-status="enabled">
-                <td><span class="staff-person"><span class="av">陳</span><span><b class="staff-name"><span class="fam">陳</span>冠廷</b></span></span></td><td><span class="st-role normal">業務人員</span></td><td data-staff-unit>恆山千隅</td><td><span class="chip">恆山千隅</span><span class="chip">青園綠境</span><span class="chip">秴楓</span></td><td class="staff-contact">今天 10:26</td><td><button class="switch" type="button" role="switch" aria-checked="true" aria-label="陳冠廷 啟用狀態" data-staff-toggle data-tip="點一下停用"><span class="knob"></span></button></td>
+              <tr data-fam="陳" class="staff-row" data-attr="代銷公司" data-email="chen@adholic.example" data-phone="0900-000-007" data-unit="恆山千隅" data-status="enabled">
+                <td><span class="staff-person"><span class="av">陳</span><span><b class="staff-name"><span class="fam">陳</span>冠廷</b></span></span></td><td><span class="st-role normal">業務人員</span></td><td><span class="chip" data-staff-attr>代銷公司</span></td><td data-staff-unit>恆山千隅</td><td class="staff-contact" data-staff-phone>0900-000-007</td><td><span class="chip">恆山千隅</span><span class="chip">青園綠境</span><span class="chip">秴楓</span></td><td class="staff-contact">今天 10:26</td><td><button class="switch" type="button" role="switch" aria-checked="true" aria-label="陳冠廷 啟用狀態" data-staff-toggle data-tip="點一下停用"><span class="knob"></span></button></td><td class="ops"><span class="rowact"><button class="iconop" data-staff-edit aria-label="編輯陳冠廷" data-tip="編輯"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19l-4 1"/></svg></button><button class="iconop del" data-staff-del aria-label="刪除陳冠廷" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></span></td>
               </tr>
-              <tr data-fam="郭" tabindex="0" class="staff-row" data-attr="代銷公司" data-email="kuo@adholic.example" data-phone="0900-000-008" data-unit="秴楓" data-status="enabled" data-online="true">
-                <td><span class="staff-person"><span class="av">郭</span><span><b class="staff-name"><span class="fam">郭</span>士銘</b></span></span></td><td><span class="st-role normal">業務人員</span></td><td data-staff-unit>秴楓</td><td><span class="chip">秴楓</span><span class="chip">青園綠境</span><span class="chip">恆山千隅</span><span class="chip">和風麗景</span><span class="chip">大城富御</span></td><td class="staff-contact">08-19 19:22</td><td><button class="switch" type="button" role="switch" aria-checked="true" aria-label="郭士銘 啟用狀態" data-staff-toggle data-tip="點一下停用"><span class="knob"></span></button></td>
+              <tr data-fam="郭" class="staff-row" data-attr="代銷公司" data-email="kuo@adholic.example" data-phone="0900-000-008" data-unit="秴楓" data-status="enabled" data-online="true">
+                <td><span class="staff-person"><span class="av">郭</span><span><b class="staff-name"><span class="fam">郭</span>士銘</b></span></span></td><td><span class="st-role normal">業務人員</span></td><td><span class="chip" data-staff-attr>代銷公司</span></td><td data-staff-unit>秴楓</td><td class="staff-contact" data-staff-phone>0900-000-008</td><td><span class="chip">秴楓</span><span class="chip">青園綠境</span><span class="chip">恆山千隅</span><span class="chip">和風麗景</span><span class="chip">大城富御</span></td><td class="staff-contact">08-19 19:22</td><td><button class="switch" type="button" role="switch" aria-checked="true" aria-label="郭士銘 啟用狀態" data-staff-toggle data-tip="點一下停用"><span class="knob"></span></button></td><td class="ops"><span class="rowact"><button class="iconop" data-staff-edit aria-label="編輯郭士銘" data-tip="編輯"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19l-4 1"/></svg></button><button class="iconop del" data-staff-del aria-label="刪除郭士銘" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></span></td>
               </tr>
-              <tr data-fam="王" tabindex="0" class="staff-row" data-attr="協力廠商" data-email="wangpin@adholic.example" data-phone="0900-000-009" data-unit="青園綠境" data-status="invited" data-invite-days="4">
-                <td><span class="staff-person"><span class="av inv">王</span><span><b class="staff-name"><span class="fam">王</span>品臻</b></span></span></td><td><span class="st-role normal">業務人員</span></td><td data-staff-unit>青園綠境</td><td><span class="chip">青園綠境</span></td><td class="staff-contact">尚未登入</td><td><span class="staff-status invited"><span class="dot warm"></span><span data-staff-status>邀請中</span></span></td>
+              <tr data-fam="王" class="staff-row" data-attr="協力廠商" data-email="wangpin@adholic.example" data-phone="0900-000-009" data-unit="青園綠境" data-status="invited" data-invite-days="4">
+                <td><span class="staff-person"><span class="av inv">王</span><span><b class="staff-name"><span class="fam">王</span>品臻</b></span></span></td><td><span class="st-role normal">業務人員</span></td><td><span class="chip" data-staff-attr>協力廠商</span></td><td data-staff-unit>青園綠境</td><td class="staff-contact" data-staff-phone>0900-000-009</td><td><span class="chip">青園綠境</span></td><td class="staff-contact">尚未登入</td><td><span class="staff-status invited"><span class="dot warm"></span><span data-staff-status>邀請中</span></span></td><td class="ops"><span class="rowact"><button class="iconop" data-staff-resend aria-label="重寄邀請給王品臻" data-tip="重寄邀請"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20 4v4.5h-4.5"/></svg></button><button class="iconop" data-staff-edit aria-label="編輯成員" data-tip="編輯"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19l-4 1"/></svg></button><button class="iconop del" data-staff-del aria-label="刪除成員" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></span></td>
               </tr>
-              <tr data-fam="蔡" tabindex="0" class="staff-row" data-attr="代銷公司" data-email="tsai@adholic.example" data-phone="0900-000-010" data-unit="秴楓" data-status="invited" data-invite-days="1">
-                <td><span class="staff-person"><span class="av inv">蔡</span><span><b class="staff-name"><span class="fam">蔡</span>承翰</b></span></span></td><td><span class="st-role normal">業務人員</span></td><td data-staff-unit>秴楓</td><td><span class="chip">秴楓</span></td><td class="staff-contact">尚未登入</td><td><span class="staff-status invited"><span class="dot warm"></span><span data-staff-status>邀請中</span></span></td>
+              <tr data-fam="蔡" class="staff-row" data-attr="代銷公司" data-email="tsai@adholic.example" data-phone="0900-000-010" data-unit="秴楓" data-status="invited" data-invite-days="1">
+                <td><span class="staff-person"><span class="av inv">蔡</span><span><b class="staff-name"><span class="fam">蔡</span>承翰</b></span></span></td><td><span class="st-role normal">業務人員</span></td><td><span class="chip" data-staff-attr>代銷公司</span></td><td data-staff-unit>秴楓</td><td class="staff-contact" data-staff-phone>0900-000-010</td><td><span class="chip">秴楓</span></td><td class="staff-contact">尚未登入</td><td><span class="staff-status invited"><span class="dot warm"></span><span data-staff-status>邀請中</span></span></td><td class="ops"><span class="rowact"><button class="iconop" data-staff-resend aria-label="重寄邀請給蔡承翰" data-tip="重寄邀請"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20 4v4.5h-4.5"/></svg></button><button class="iconop" data-staff-edit aria-label="編輯成員" data-tip="編輯"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19l-4 1"/></svg></button><button class="iconop del" data-staff-del aria-label="刪除成員" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></span></td>
               </tr>
-              <tr tabindex="0" class="staff-row" data-attr="協力廠商" data-email="owner@chingyuan.example" data-phone="0900-000-011" data-unit="青園建設" data-status="enabled">
-                <td><span class="staff-person"><span class="av">青</span><span><b class="staff-name">青園建設</b></span></span></td><td><span class="st-role external">業主檢視</span></td><td data-staff-unit>青園建設</td><td><span class="chip">青園綠境</span></td><td class="staff-contact">08-19 15:08</td><td><button class="switch" type="button" role="switch" aria-checked="true" aria-label="青園建設 啟用狀態" data-staff-toggle data-tip="點一下停用"><span class="knob"></span></button></td>
+              <tr class="staff-row" data-attr="協力廠商" data-email="owner@chingyuan.example" data-phone="0900-000-011" data-unit="青園建設" data-status="enabled">
+                <td><span class="staff-person"><span class="av">青</span><span><b class="staff-name">青園建設</b></span></span></td><td><span class="st-role external">業主檢視</span></td><td><span class="chip" data-staff-attr>協力廠商</span></td><td data-staff-unit>青園建設</td><td class="staff-contact" data-staff-phone>0900-000-011</td><td><span class="chip">青園綠境</span></td><td class="staff-contact">08-19 15:08</td><td><button class="switch" type="button" role="switch" aria-checked="true" aria-label="青園建設 啟用狀態" data-staff-toggle data-tip="點一下停用"><span class="knob"></span></button></td><td class="ops"><span class="rowact"><button class="iconop" data-staff-edit aria-label="編輯青園建設" data-tip="編輯"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19l-4 1"/></svg></button><button class="iconop del" data-staff-del aria-label="刪除青園建設" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></span></td>
               </tr>
               <tr data-fam="李" class="staff-row staff-disabled" data-attr="代銷公司" data-email="lee@adholic.example" data-phone="0900-000-012" data-unit="恆山千隅" data-status="disabled">
-                <td><span class="staff-person"><span class="av dim">李</span><span><b class="staff-name"><span class="fam">李</span>孟儒</b></span></span></td><td><span class="st-role normal">業務人員</span></td><td data-staff-unit>恆山千隅</td><td><span class="chip">恆山千隅</span></td><td class="staff-contact">08-11 09:34</td><td><button class="switch" type="button" role="switch" aria-checked="false" aria-label="李孟儒 啟用狀態" data-staff-toggle data-tip="點一下啟用"><span class="knob"></span></button></td>
+                <td><span class="staff-person"><span class="av dim">李</span><span><b class="staff-name"><span class="fam">李</span>孟儒</b></span></span></td><td><span class="st-role normal">業務人員</span></td><td><span class="chip" data-staff-attr>代銷公司</span></td><td data-staff-unit>恆山千隅</td><td class="staff-contact" data-staff-phone>0900-000-012</td><td><span class="chip">恆山千隅</span></td><td class="staff-contact">08-11 09:34</td><td><button class="switch" type="button" role="switch" aria-checked="false" aria-label="李孟儒 啟用狀態" data-staff-toggle data-tip="點一下啟用"><span class="knob"></span></button></td><td class="ops"><span class="rowact"><button class="iconop" data-staff-edit aria-label="編輯李孟儒" data-tip="編輯"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19l-4 1"/></svg></button><button class="iconop del" data-staff-del aria-label="刪除李孟儒" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></span></td>
               </tr>
             </tbody>
           </table>
@@ -9357,9 +9356,7 @@
       <span id="staffStatusText">啟用此成員</span>
     </div>
   </form>
-  <div class="dfoot staff-dfoot">
-    <button class="pillbtn" id="staffResendBtn" type="button" data-staff-resend hidden>重寄邀請</button>
-    <button class="danger-link" id="staffDelBtn" type="button" data-staff-del>刪除成員</button>
+  <div class="dfoot">
     <button class="pillbtn" id="staffEditCancel" type="button">取消</button>
     <button class="pillbtn solid" id="staffEditSave" type="button">儲存</button>
   </div>
@@ -9559,7 +9556,7 @@
     <div class="f">
       <label for="pfPhone">聯絡電話<span class="opt">選填</span></label>
       <input id="pfPhone" type="tel" value="0900-000-001" autocomplete="off">
-      <span class="hint">姓名與 Email 由系統管理員在人員列表維護，這裡只能改頭像與電話。</span>
+      <span class="hint">姓名與 Email 由系統管理員在人員管理維護，這裡只能改頭像與電話。</span>
     </div>
     <div class="cf-acts">
       <button class="pillbtn" id="pfCancel" type="button">取消</button>
@@ -12312,7 +12309,7 @@
     {g:'功能',t:'業務報表',m:'日報／週報／月報',p:'reports'},
     {g:'功能',t:'業務獎金',m:'方案・級距・結算',p:'commission'},
     {g:'功能',t:'勾勾表範本',m:'動態欄位版本制',p:'templates'},
-    {g:'功能',t:'人員列表',m:'成員・權限・啟用狀態',p:'staff'},
+    {g:'功能',t:'人員管理',m:'成員・權限・啟用狀態',p:'staff'},
     {g:'功能',t:'權限設定',m:'角色與可見範圍',p:'perms'},
     {g:'功能',t:'最新消息',m:'公告・置頂',p:'news'},
     {g:'功能',t:'建案總覽',m:'全部建案',p:'projects'},
@@ -12508,7 +12505,7 @@
       rows.sort(function(a,b){ return rank(a)-rank(b) || lastSeen(b)-lastSeen(a) });
       rows.forEach(function(r){ tbody.appendChild(r) });
     })();
-    /* 人員列表只有列表一種檢視——卡片牆已移除，詳細資料改由點列開彈窗 */
+    var viewSeg=$('#staffViewSeg'), cards=$('#staffCards'), tableWrap=$('#staffTableWrap'), viewMode='cards';
     var editMask=$('#staffEditMask'), editDrawer=$('#staffEditDrawer'), editForm=$('#staffEditForm');
     var nameInput=$('#staffName'), emailInput=$('#staffEmail'), phoneInput=$('#staffPhone');
     var attrInput=$('#staffAttr'), unitInput=$('#staffUnit'), roleInput=$('#staffRole');
@@ -12530,6 +12527,85 @@
       return rows.find(function(row){return row.dataset.email===email})||null;
     }
     function notifyStaffChanged(){ document.dispatchEvent(new CustomEvent('staff:changed')) }
+    function renderStaffCards(){
+      if(projObserver) projObserver.disconnect();
+      cards.replaceChildren();
+      rows.forEach(function(row,index){
+        var name=rowName(row), status=row.dataset.status||'enabled', online=row.dataset.online==='true';
+        var role=row.querySelector('.st-role'), last=row.cells[6].textContent.trim();
+        var projects=[].slice.call(row.cells[5].querySelectorAll('.chip')).map(function(x){return x.textContent.trim()});
+        if(!projects.length) projects=[row.cells[5].textContent.trim()];
+        var project=projects[0];
+        var card=make('article','lead'+(index===0?' hotlead':'')+(status==='invited'?' invited':'')+(status==='disabled'?' off':''));
+        card.dataset.attr=row.dataset.attr||''; card.dataset.email=row.dataset.email||'';
+        card.dataset.phone=row.dataset.phone||''; card.dataset.unit=row.dataset.unit||''; card.dataset.status=status;
+
+        var bay=make('div','bay');
+        var jump=make('button','cbtn'); jump.type='button';
+        jump.setAttribute('aria-label',status==='invited'?'重寄邀請給'+name:'編輯'+name);
+        jump.dataset.tip=status==='invited'?'重寄邀請':'編輯';
+        jump.innerHTML=status==='invited'
+          ? '<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20 4v4.5h-4.5"/></svg>'
+          : '<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19l-4 1"/></svg>';
+        if(status==='invited') jump.setAttribute('data-staff-resend',''); else jump.dataset.staffEdit='';
+        var del=make('button','cbtn del'); del.type='button';
+        del.setAttribute('aria-label','刪除'+name); del.dataset.tip='刪除'; del.dataset.staffDel='';
+        del.innerHTML='<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg>';
+        bay.appendChild(jump); bay.appendChild(del); card.appendChild(bay);
+
+        var head=make('div','head'), avatar=make('span','av'+(online?' online':''),name.charAt(0));
+        avatar.setAttribute('aria-label',online?'上線':'離線');
+        var identity=make('div','st-id'), nameEl=make('div','st-name');
+        var fam=row.dataset.fam||'';
+        if(fam && name.indexOf(fam)===0){
+          nameEl.appendChild(make('span','fam',fam));
+          nameEl.appendChild(document.createTextNode(name.slice(fam.length)));
+        } else nameEl.appendChild(document.createTextNode(name));
+
+        identity.appendChild(nameEl);
+        var sub=make('span','st-unit',row.dataset.unit||'未設定單位');
+        if(index===0) sub.appendChild(make('span','st-me','你'));
+        identity.appendChild(sub);
+        head.appendChild(avatar); head.appendChild(identity); card.appendChild(head);
+
+        var meta=make('div','st-meta');
+        var fields=make('div','st-fields');
+        var fc=make('div','st-col'); fc.appendChild(make('span','microlbl','可存取建案'));
+        var pw=make('div','st-projs');
+        pw.dataset.all=projects.join('\u0001');
+        projects.forEach(function(n){ pw.appendChild(make('span','chip'+(n==='全部建案'?' strong':''),n)) });
+        fc.appendChild(pw);
+        if(projObserver) projObserver.observe(pw);
+        fields.appendChild(fc);
+        meta.appendChild(fields);
+        card.appendChild(meta);
+
+        var foot=make('div','st-foot');
+        foot.appendChild(make('span','microlbl','聯絡電話'));
+        foot.appendChild(make('span','microlbl','最後登入'));
+        foot.appendChild(make('span','st-val',row.dataset.phone||'未設定'));
+        foot.appendChild(make('span','st-last',last));
+        var tags=make('div','st-chips');
+        tags.appendChild(role.cloneNode(true));
+        tags.appendChild(make('span','chip',row.dataset.attr||'未設定屬性'));
+        foot.appendChild(tags);
+        if(status==='invited'){
+          var d=+(row.dataset.inviteDays||'1');
+          foot.appendChild(make('span','st-flag warm', d>0 ? '邀請中・'+d+' 天' : '邀請中・剛寄出'));
+        }
+        else {
+          var on=status!=='disabled';
+          var sw=make('button','switch'); sw.type='button'; sw.setAttribute('role','switch');
+          sw.setAttribute('aria-checked',String(on)); sw.setAttribute('aria-label',name+' 啟用狀態');
+          sw.dataset.staffToggle=''; sw.dataset.tip=on?'點一下停用':'點一下啟用';
+          sw.appendChild(make('span','knob'));
+          foot.appendChild(sw);
+        }
+
+        card.appendChild(foot); cards.appendChild(card);
+      });
+      fitStaffProjects();
+    }
     /* 建案 chip 能排幾顆排幾顆，排不下的才收成「+N」（滑過看全部） */
     /* 建案 chip 能排幾顆排幾顆，排不下的收成「+N」（滑過看全部）。
        每個欄位各自掛 ResizeObserver：分頁還沒顯示時寬度是 0，量不出來，
@@ -12602,7 +12678,9 @@
       var st=on?'enabled':'disabled';
       row.dataset.status=st;
       row.classList.toggle('staff-disabled',!on);
-      [row].forEach(function(host){
+      var card=cards.querySelector('[data-email="'+row.dataset.email+'"]');
+      if(card){ card.dataset.status=st; card.classList.toggle('off',!on) }
+      [row,card].forEach(function(host){
         if(!host) return;
         var sw=host.querySelector('[data-staff-toggle]');
         if(!sw) return;
@@ -12623,10 +12701,9 @@
     /* 重寄邀請：也要先問過。舊連結會失效，這件事要講清楚 */
     $('#page-staff').addEventListener('click',function(e){
       var b=e.target.closest('[data-staff-resend]'); if(!b) return;
-      /* 卡片牆已移除；在彈窗裡按的時候就是針對目前開著的那一列 */
-      var row=b.closest('tr.staff-row')||currentRow;
+      var card=b.closest('.lead'), row=b.closest('tr.staff-row');
+      if(!row && card) row=rows.filter(function(r){return r.dataset.email===card.dataset.email})[0];
       if(!row) return;
-      if(b.closest('#staffEditDrawer')) closeStaffEdit(false);
       var nm=rowName(row), mail=row.dataset.email||'';
       askConfirm({
         title:'重寄邀請',
@@ -12635,7 +12712,7 @@
         body:'重新寄一封邀請信給 <b>'+nm+'</b>？<br>'+mail+'<br>舊連結會失效，對方要用新信裡的連結才能完成認證。',
         onOk:function(){
           row.dataset.inviteDays='0';
-          applyStaffFilters();
+          renderStaffCards(); applyStaffFilters();
           toast('已重寄邀請信給 <b>'+nm+'</b>');
         }
       });
@@ -12644,10 +12721,9 @@
     /* 刪除成員：自訂確認框，不用瀏覽器的 confirm() */
     $('#page-staff').addEventListener('click',function(e){
       var b=e.target.closest('[data-staff-del]'); if(!b) return;
-      /* 卡片牆已移除；在彈窗裡按的時候就是針對目前開著的那一列 */
-      var row=b.closest('tr.staff-row')||currentRow;
+      var card=b.closest('.lead'), row=b.closest('tr.staff-row');
+      if(!row && card) row=rows.filter(function(r){return r.dataset.email===card.dataset.email})[0];
       if(!row) return;
-      if(b.closest('#staffEditDrawer')) closeStaffEdit(false);
       var nm=rowName(row);
       askConfirm({
         title:'刪除成員',
@@ -12655,6 +12731,8 @@
         okText:'刪除',
         onOk:function(){
           var i=rows.indexOf(row); if(i>-1) rows.splice(i,1);
+          var c=cards.querySelector('[data-email="'+row.dataset.email+'"]');
+          if(c) c.remove();
           row.remove(); applyStaffFilters(); notifyStaffChanged();
           toast('已刪除 <b>'+nm+'</b>（示範資料，重新整理即復原）');
         }
@@ -12668,14 +12746,31 @@
         var role=row.querySelector('.st-role');
         var hay=[rowName(row),row.dataset.email,row.dataset.phone,row.dataset.unit,row.dataset.attr,role&&role.textContent].join(' ').toLowerCase();
         var show=(attr==='all'||row.dataset.attr===attr)&&(!q||hay.indexOf(q)>-1);
-        row.hidden=!show;
+        var card=cards.querySelector('[data-email="'+row.dataset.email+'"]');
+        row.hidden=!show; if(card) card.hidden=!show;
         /* 成員＝真的在用系統的人：邀請中（還沒認證）與停用都不算 */
         if(show){ shown++; if((row.dataset.status||'enabled')==='enabled') members++ }
       });
       cnt.textContent=members+' 人';
       empty.classList.toggle('show',shown===0);
     }
-    applyStaffFilters();
+    function setStaffView(mode,persist){
+      viewMode=mode==='list'?'list':'cards';
+      cards.hidden=viewMode!=='cards'; tableWrap.hidden=viewMode!=='list';
+      $$('#staffViewSeg button').forEach(function(button){
+        var on=button.dataset.staffView===viewMode;
+        button.classList.toggle('on',on); button.setAttribute('aria-pressed',String(on));
+      });
+      if(persist){try{localStorage.setItem('adholic-staff-view',viewMode)}catch(e){}}
+      applyStaffFilters();
+      if(viewMode==='cards') fitStaffProjects();
+    }
+    renderStaffCards();
+    var savedView=''; try{savedView=localStorage.getItem('adholic-staff-view')||''}catch(e){}
+    setStaffView(savedView==='list'?'list':'cards',false);
+    $$('#staffViewSeg button').forEach(function(button){
+      button.addEventListener('click',function(){setStaffView(button.dataset.staffView,true)});
+    });
     $$('#staffSeg button').forEach(function(button){
       button.addEventListener('click',function(){
         $$('#staffSeg button').forEach(function(other){other.classList.remove('on')});
@@ -12736,8 +12831,6 @@
       $('#staffEditTitle').textContent='編輯成員';
       $('#staffModeHint').textContent='變更成員基本資料、角色與登入狀態';
       editDrawer.setAttribute('aria-label','編輯成員'); saveBtn.textContent='儲存'; saveBtn.disabled=false;
-      $('#staffResendBtn').hidden=!isInvited;   /* 只有邀請中的成員才需要重寄 */
-      $('#staffDelBtn').hidden=false;
       showStaffDrawer();
     }
     function openStaffInvite(trigger){
@@ -12750,7 +12843,6 @@
       $('#staffPasswordLabel').textContent='初始密碼';
       $('#staffPasswordHint').textContent='留空就寄認證信，由對方自行設定密碼。';
       enabled.hidden=true; $('#staffStatusText').textContent='邀請中';
-      $('#staffResendBtn').hidden=true; $('#staffDelBtn').hidden=true;   /* 還沒建立的成員沒有可刪可重寄的對象 */
       $('#staffEditTitle').textContent='邀請成員';
       $('#staffModeHint').textContent='填寫資料並寄出認證邀請';
       editDrawer.setAttribute('aria-label','邀請成員'); saveBtn.textContent='送出邀請';
@@ -12783,13 +12875,13 @@
         tr.dataset.phone=phoneInput.value.trim()||'—'; tr.dataset.unit=unitInput.value.trim()||'—';
         tr.dataset.status='invited'; tr.dataset.inviteDays='0';
         tr.innerHTML='<td><span class="staff-person"><span class="av">'+nm.charAt(0)+'</span><span><b class="staff-name"><span class="fam">'+nm.charAt(0)+'</span>'+nm.slice(1)+'</b></span></span></td>'+
-          '<td><span class="st-role normal">'+roleInput.value+'</span></td>'+
-          '<td data-staff-unit>'+unitInput.value.trim()+'</td>'+
+          '<td><span class="st-role normal">'+roleInput.value+'</span></td><td><span class="chip" data-staff-attr>'+attrInput.value+'</span></td>'+
+          '<td data-staff-unit>'+unitInput.value.trim()+'</td><td class="staff-contact" data-staff-phone>'+(phoneInput.value.trim()||'—')+'</td>'+
           '<td><span class="chip">未指定</span></td><td class="staff-contact">尚未登入</td>'+
           '<td><span class="staff-status invited"><span class="dot warm"></span><span data-staff-status>邀請中</span></span></td>'+
           '<td class="ops"><span class="rowact"><button class="iconop" data-staff-resend aria-label="重寄邀請給'+nm+'" data-tip="重寄邀請"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20 4v4.5h-4.5"/></svg></button><button class="iconop" data-staff-edit aria-label="編輯'+nm+'" data-tip="編輯"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19l-4 1"/></svg></button><button class="iconop del" data-staff-del aria-label="刪除'+nm+'" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></span></td>';
         $('#staffRows').appendChild(tr); rows.push(tr);
-        closeStaffEdit(false); applyStaffFilters(); notifyStaffChanged();
+        closeStaffEdit(false); renderStaffCards(); applyStaffFilters(); notifyStaffChanged();
         if(lastTrigger&&document.contains(lastTrigger)) lastTrigger.focus();
         toast('已寄出邀請信給 <b>'+nm+'</b>（'+em+'），對方完成認證後才會加入');
         return;
@@ -12827,26 +12919,20 @@
       }
       /* 頭貼不在這裡改，沿用該成員原本的設定 */
       if(listAv) listAv.textContent=name.charAt(0);
-      currentRow.setAttribute('aria-label',name+'，按 Enter 編輯');
+      currentRow.querySelector('[data-staff-edit]').setAttribute('aria-label','編輯'+name);
       var changedPassword=!!passwordInput.value;
-      closeStaffEdit(false); applyStaffFilters(); notifyStaffChanged();
-      /* 操作欄已移除，焦點回到該列本身而不是列上的編輯鈕 */
-      var returnTrigger=findRow(editedEmail);
+      closeStaffEdit(false); renderStaffCards(); applyStaffFilters(); notifyStaffChanged();
+      var returnTrigger=viewMode==='cards'?cards.querySelector('[data-email="'+editedEmail+'"] [data-staff-edit]'):findRow(editedEmail).querySelector('[data-staff-edit]');
       if(returnTrigger) returnTrigger.focus();
       toast(changedPassword?'成員資料與密碼已更新，該成員已登出所有裝置':'成員資料已更新');
     }
-    /* 點整列就開彈窗——列上不再放編輯鈕，詳細資料與操作全部收進彈窗裡。
-       列上的啟用開關是快速操作，點它不該連帶開窗 */
     document.addEventListener('click',function(e){
-      var row=e.target.closest('#staffRows .staff-row');
-      if(!row || e.target.closest('[data-staff-toggle]')) return;
-      e.preventDefault(); openStaffEdit(row,row);
-    });
-    document.addEventListener('keydown',function(e){
-      if(e.key!=='Enter' && e.key!==' ') return;
-      var row=e.target.closest && e.target.closest('#staffRows .staff-row');
-      if(!row || e.target!==row) return;
-      e.preventDefault(); openStaffEdit(row,row);
+      var trigger=e.target.closest('[data-staff-edit]');
+      if(trigger){
+        var row=trigger.closest('#staffRows .staff-row');
+        if(!row){var card=trigger.closest('#staffCards .lead'); if(card) row=findRow(card.dataset.email)}
+        if(row){e.preventDefault(); openStaffEdit(row,trigger)}
+      }
     });
     $('#inviteBtn').addEventListener('click',function(){openStaffInvite(this)});
     enabled.addEventListener('click',function(){setEnabled(!enabled.classList.contains('on'))});
