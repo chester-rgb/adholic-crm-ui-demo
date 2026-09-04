@@ -247,7 +247,7 @@
   /* 頭像選單 */
   .usermenu{
     position:absolute; top:calc(100% + .6rem); right:0; width:17.5rem; z-index:48;
-    background:var(--bg); border:1px solid var(--line); border-radius:var(--r-row);
+    background:var(--bg); border:1px solid var(--line); border-radius:var(--r-card);
     box-shadow:var(--el1); padding:var(--s1); display:none;
   }
   .usermenu.show{display:block; animation:menuIn .18s var(--enter) backwards; transform-origin:top right}
@@ -803,7 +803,7 @@
   .sel{position:relative; width:100%}
   .sel > select{position:absolute; opacity:0; pointer-events:none; width:0; height:0}
   .sel-btn{
-    width:100%; height:var(--ctrl-h); border:1px solid var(--line); border-radius:var(--r-row);
+    width:100%; height:var(--ctrl-h); border:1px solid var(--line); border-radius:var(--r-pill);
     padding:0 var(--s2) 0 var(--s3); background:var(--bg); color:var(--ink);
     font:inherit; font-size:.83rem; display:flex; align-items:center; gap:var(--s2);
     transition:border-color .15s ease-out;
@@ -816,7 +816,7 @@
   .sel.up .sel-list{top:auto; bottom:calc(100% + var(--s2))}
   .sel-list{
     position:absolute; left:0; right:0; top:calc(100% + var(--s2)); z-index:8;
-    background:var(--bg); border:1px solid var(--line); border-radius:var(--r-row);
+    background:var(--bg); border:1px solid var(--line); border-radius:var(--r-card);
     box-shadow:var(--el1); padding:var(--s1); max-height:13rem; overflow-y:auto;
     animation:selDrop .16s var(--enter);
   }
@@ -1264,7 +1264,7 @@
   .palette-mask.show .palette{animation:menuIn .18s var(--enter) backwards}
   .palette{
     position:absolute; background:var(--bg); border:1px solid var(--line);
-    border-radius:var(--r-row); overflow:hidden; box-shadow:var(--el1);
+    border-radius:var(--r-card); overflow:hidden; box-shadow:var(--el1);
   }
   .palette .pquick{display:flex; flex-wrap:wrap; gap:.4rem; padding:.6rem .9rem; border-bottom:1px solid var(--line)}
   .palette .pquick > b{font-size:.66rem; color:var(--muted); letter-spacing:.16em; align-self:center; margin-right:.2rem; font-weight:400}
@@ -2681,7 +2681,7 @@
 #page-reports .dr-todo-row[data-state="overdue"] i{color:var(--hot)}
 #page-reports .dr-todo-row[data-state="today"] i{color:var(--warm)}
 #page-reports .dr-note{margin-top:var(--s3);padding-top:var(--s3);border-top:1px solid var(--line);font-size:.64rem;line-height:1.7;color:var(--muted)}
-#page-reports .dr-table-wrap{padding:0;background:var(--bg);border:1px solid var(--line-2);border-radius:var(--r-row);overflow-x:auto}
+#page-reports .dr-table-wrap{padding:0;background:var(--bg);border:1px solid var(--line-2);border-radius:var(--r-card);overflow-x:auto}
 #page-reports .dr-table{width:100%;min-width:42rem;table-layout:fixed;border-collapse:collapse;border-spacing:0}
 #page-reports .dr-table th,#page-reports .dr-table td{padding:var(--s3) var(--s2);border-bottom:1px solid var(--line);font-size:.74rem;line-height:1.45;text-align:center;white-space:nowrap;font-variant-numeric:tabular-nums}
 #page-reports .dr-table th{background:var(--fill);font-weight:500;letter-spacing:.04em}
@@ -2734,7 +2734,7 @@
 #page-reports .wk-meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s2);margin-bottom:var(--s4);padding:var(--s3);background:var(--bg);border-radius:var(--r-row)}
 #page-reports .wk-meta.wk-meta-6{grid-template-columns:repeat(12,minmax(0,1fr));grid-auto-rows:1fr;gap:var(--s3);padding:0;background:none;border-radius:0}
 /* 卡高與月報 .mo-cards > div 鎖同一個值（8.325rem＝週報統一 gap 後的自然高），兩份報表的表頭卡才不會各自漂（Enson 2026-09-02：月報的卡片寬高要和週報一致） */
-#page-reports .wk-meta.wk-meta-6 > div{background:var(--bg);border:1px solid var(--line);border-radius:var(--r-row);padding:var(--s4);gap:var(--s2);min-height:8.325rem}
+#page-reports .wk-meta.wk-meta-6 > div{background:var(--bg);border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s4);gap:var(--s2);min-height:8.325rem}
 #page-reports .wk-meta.wk-meta-6 > div{grid-column:span 2}
 #page-reports .wk-meta.wk-meta-6 > .wk-media-card{grid-column:span 4}
 #page-reports .wk-meta.wk-meta-6 > .wk-ratio-card{grid-column:span 2;position:relative;display:flex;flex-direction:column}
@@ -2795,7 +2795,7 @@
 #page-reports .wk-meta>div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
 #page-reports .wk-meta>div>span{font-size:.7rem;color:var(--muted);letter-spacing:.06em}
 #page-reports .wk-meta b{font-size:.78rem;font-weight:500;font-variant-numeric:tabular-nums}
-#page-reports .wk-meta.wk-meta-6 > .wk-kpi-card{background:var(--bg);border:1px solid var(--line);border-radius:var(--r-row);padding:var(--s4);display:flex;flex-direction:column;justify-content:flex-start}
+#page-reports .wk-meta.wk-meta-6 > .wk-kpi-card{background:var(--bg);border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s4);display:flex;flex-direction:column;justify-content:flex-start}
 #page-reports .wk-meta.wk-meta-6 > .wk-prem-card .wk-kpi-foot .wk-hot{font-size:.64rem;line-height:1.1}
 #page-reports .wk-week-card .sel{width:100%}
 #page-reports .wk-week-card .sel-val{font-size:.74rem;color:var(--ink)}
@@ -2810,7 +2810,7 @@
 #page-reports .wk-media-add:hover{border-color:var(--line-accent);color:var(--accent);background:var(--tint)}
 #page-reports .wk-media-pick{position:static}
 #page-reports .wk-media-pick .sel-list{left:var(--s4);right:var(--s4);top:auto}
-#page-reports .table-wrap.wk-table-wrap{padding:0;background:var(--bg);border:1px solid var(--line-2);border-radius:var(--r-row);overflow:hidden}
+#page-reports .table-wrap.wk-table-wrap{padding:0;background:var(--bg);border:1px solid var(--line-2);border-radius:var(--r-card);overflow:hidden}
 /* 主表固定不橫捲：欄寬平均分配、字級隨欄數縮 */
 #page-reports .wk-main-table{table-layout:fixed;width:100%}
 #page-reports .wk-main-table th,#page-reports .wk-main-table td{font-size:.76rem;padding:var(--s2);word-break:keep-all}
@@ -2857,7 +2857,7 @@
 #page-reports .wk-subtitle{font-size:.78rem;font-weight:500;letter-spacing:.06em}
 #page-reports .wk-analysis-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s5) var(--s4)}
 #page-reports .wk-ana-tools{display:flex;align-items:flex-start;justify-content:flex-end;gap:var(--s3);flex-wrap:wrap}
-#page-reports .wk-analysis-card{min-width:0;display:flex;flex-direction:column;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-row);padding:var(--s3) var(--s4);border-top:1px solid var(--line);height:21.5rem;overflow:hidden}
+#page-reports .wk-analysis-card{min-width:0;display:flex;flex-direction:column;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s3) var(--s4);border-top:1px solid var(--line);height:21.5rem;overflow:hidden}
 #page-reports .wk-analysis-card-head{display:flex;align-items:center;justify-content:flex-start;gap:var(--s2);border-bottom:0;min-height:0}
 #page-reports .wk-analysis-card-head h4{font-size:.83rem;font-weight:500;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #page-reports .wk-dico{width:1rem;height:1rem;stroke:currentColor;fill:none;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;color:var(--muted);flex:none}
@@ -2932,7 +2932,7 @@
 #page-reports .wk-crown{width:1rem;height:1rem;stroke:none;fill:var(--warm);color:var(--warm)}
 #page-reports .wk-podium-note{color:var(--muted);text-align:center;margin-bottom:var(--s3)}
 #page-reports .wk-footnote{font-size:.64rem;color:var(--muted);line-height:1.7;margin-top:var(--s2)}
-#page-reports .wk-todo{margin-top:var(--s5);padding:var(--s4);background:var(--bg);border:1px dashed var(--line-dash);border-radius:var(--r-row)}
+#page-reports .wk-todo{margin-top:var(--s5);padding:var(--s4);background:var(--bg);border:1px dashed var(--line-dash);border-radius:var(--r-card)}
 #page-reports .wk-todo-head{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);margin-bottom:var(--s3)}
 #page-reports .wk-todo h4{font-size:.76rem;font-weight:500;letter-spacing:.05em}
 #page-reports .wk-todo-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s2) var(--s4);list-style:none}
@@ -2942,7 +2942,7 @@
 #page-reports .mo-monthly{page:mo-monthly;min-width:0}
 #page-reports .mo-section{position:relative;background:var(--panel);border-radius:var(--r-card);padding:var(--s5);margin-bottom:var(--sec-gap);min-width:0}
 #page-reports .mo-cards{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-auto-rows:1fr;gap:var(--s3)}
-#page-reports .mo-cards > div{grid-column:span 2;min-width:0;min-height:8.325rem;display:flex;flex-direction:column;gap:var(--s2);padding:var(--s4);background:var(--bg);border:1px solid var(--line);border-radius:var(--r-row)}
+#page-reports .mo-cards > div{grid-column:span 2;min-width:0;min-height:8.325rem;display:flex;flex-direction:column;gap:var(--s2);padding:var(--s4);background:var(--bg);border:1px solid var(--line);border-radius:var(--r-card)}
 #page-reports .mo-label{font-size:.7rem;color:var(--muted);letter-spacing:.06em;line-height:1.1}
 #page-reports .mo-project-card > .mo-label,#page-reports .mo-month-card > .mo-label{margin-bottom:auto}
 #page-reports .mo-project{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:var(--s1);margin:0;font-size:.9rem;font-weight:500;line-height:1.1}
@@ -2962,7 +2962,7 @@
 #page-reports .mo-section-head h3{font-size:.9rem;font-weight:500;letter-spacing:.08em}
 #page-reports .mo-spark-range{font-size:.64rem;color:var(--muted)}
 #page-reports .mo-spark-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-auto-rows:1fr;gap:var(--grid-gap)}
-#page-reports .mo-spark-card{min-width:0;height:100%;display:flex;flex-direction:column;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-row);padding:var(--s3) var(--s4)}
+#page-reports .mo-spark-card{min-width:0;height:100%;display:flex;flex-direction:column;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s3) var(--s4)}
 #page-reports .mo-spark-head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s2)}
 #page-reports .mo-spark-total{font-size:1.06rem;font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap}
 #page-reports .mo-spark-total .wk-unit{font-size:.74rem;font-style:normal;font-weight:400}
@@ -2992,7 +2992,7 @@
 #page-reports .mo-spark-key::before{content:'';width:10px;height:2px;border-radius:var(--r-mini);background:var(--accent);flex:none}
 #page-reports .mo-spark-key.k2::before{background:var(--chart-3)}
 #page-reports .mo-spark-key.k3::before{background:var(--line-3)}
-#page-reports .mo-table-wrap{padding:0;background:var(--bg);border:1px solid var(--line-2);border-radius:var(--r-row);overflow-x:auto}
+#page-reports .mo-table-wrap{padding:0;background:var(--bg);border:1px solid var(--line-2);border-radius:var(--r-card);overflow-x:auto}
 #page-reports .mo-trend-table{width:100%;min-width:0;border-collapse:collapse;border-spacing:0;table-layout:fixed}
 #page-reports .mo-trend-table th,#page-reports .mo-trend-table td{padding:var(--s2);border-bottom:1px solid var(--line);font-size:.74rem;line-height:1.45;text-align:center;white-space:nowrap;font-variant-numeric:tabular-nums}
 #page-reports .mo-trend-table th{background:var(--fill);font-weight:500;letter-spacing:.04em}
@@ -3002,14 +3002,14 @@
 #page-reports .mo-note{margin-top:var(--s3);font-size:.64rem;line-height:1.7;color:var(--muted)}
 #page-reports .mo-analysis > .mo-section-head{margin-bottom:var(--s4)}
 #page-reports .mo-ana{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s5) var(--s4)}
-#page-reports .mo-ana>article{min-width:0;height:21.5rem;display:flex;flex-direction:column;overflow:hidden;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-row);padding:var(--s3) var(--s4)}
+#page-reports .mo-ana>article{min-width:0;height:21.5rem;display:flex;flex-direction:column;overflow:hidden;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s3) var(--s4)}
 #page-reports .mo-ana-head{display:flex;align-items:center;gap:var(--s2)}
 #page-reports .mo-ana-head h4{min-width:0;margin:0;overflow:hidden;font-size:.83rem;font-weight:500;text-overflow:ellipsis;white-space:nowrap}
 #page-reports .wk-analysis-card-head,#page-reports .mo-ana-head{
   margin:calc(var(--s3) * -1) calc(var(--s4) * -1) 0;
   padding:var(--s2) var(--s4);
   background:var(--fill);
-  border-radius:var(--r-row) var(--r-row) 0 0}
+  border-radius:var(--r-card) var(--r-card) 0 0}
 #page-reports .mo-ana-cols,#page-reports .mo-ana-row{display:grid;grid-template-columns:minmax(0,1fr) 2.6rem 2.6rem 2.6rem;gap:var(--s3);align-items:center}
 #page-reports .mo-ana-cols{padding-bottom:var(--s1);font-size:.64rem;color:var(--muted)}
 #page-reports .wk-ana-cols,#page-reports .mo-ana-cols{margin-top:var(--s2)}
@@ -3527,7 +3527,7 @@
      原本面板 28px、項目 10px、內距 5.6px，角落會空一大塊（Annie 2026-08-31 指出不順） */
   .statmenu{
     position:fixed; z-index:66; width:11rem; display:none;
-    background:var(--bg); border:1px solid var(--line); border-radius:var(--r-row);
+    background:var(--bg); border:1px solid var(--line); border-radius:var(--r-card);
     box-shadow:var(--el1); padding:var(--s1);
     /* 行政區最多 38 項，沒有上限會整個掉出畫面 */
     max-height:min(22rem,60vh); overflow-y:auto;
@@ -4553,7 +4553,7 @@
     .matrix-cell__pno{font-size:.7rem; font-weight:500; line-height:1.2; font-variant-numeric:tabular-nums}
     /* 價格歷史視窗：上半摘要卡（左標右值）＋下半異動紀錄 */
     .pricehist{width:min(34rem, calc(100vw - var(--pad-x) * 2))}
-    .pricehist .phsum{background:var(--panel); border-radius:var(--r-row); padding:var(--s4) var(--s5); margin-bottom:var(--s5)}
+    .pricehist .phsum{background:var(--panel); border-radius:var(--r-card); padding:var(--s4) var(--s5); margin-bottom:var(--s5)}
     .pricehist .phrow{display:flex; align-items:baseline; justify-content:space-between; gap:1.5rem; line-height:2.2}
     .pricehist .phrow i{font-style:normal; font-size:.78rem; color:var(--muted)}
     .pricehist .phrow b{font-weight:500; font-size:.86rem; font-variant-numeric:tabular-nums}
