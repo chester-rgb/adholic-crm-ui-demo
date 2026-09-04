@@ -3379,7 +3379,33 @@
 /* — trash — */
 #page-trash td .chip{margin-left:var(--s1)}
 /* — news — */
-#page-news .h.pin{border-color:var(--accent)}
+/* 最新消息＝一則一行：四張等重卡片直排看不出輕重，改成可掃描的清單，
+   內文預設收起、點列展開。分隔用髮絲線不用卡片框 */
+#page-news .hist{gap:0}
+#page-news .hist .h{display:grid;grid-template-columns:7rem minmax(0,1fr) auto 3.4rem;
+  grid-template-areas:"cat title by time" "cat body body body";
+  align-items:center;column-gap:var(--s3);row-gap:0;
+  background:none;border:0;border-radius:0;border-bottom:1px solid var(--line);
+  padding:var(--s3) 0;cursor:pointer}
+#page-news .hist .h:last-child{border-bottom:0}
+#page-news .hist .h:hover{background:var(--panel)}
+#page-news .hist .h > .top{grid-area:cat;margin:0;gap:var(--s2)}
+#page-news .hist .h > p{grid-area:title;margin:0;display:flex;align-items:center;gap:var(--s2);min-width:0}
+#page-news .hist .h > p > b{font-weight:500;font-size:.83rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#page-news .hist .h > .by{grid-area:by;font-size:.7rem;color:var(--muted)}
+#page-news .hist .h > time{grid-area:time;font-size:.7rem;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+#page-news .hist .h > .nbody{grid-area:body;font-size:.78rem;color:var(--muted);
+  max-height:0;overflow:hidden;opacity:0;transition:max-height .22s var(--enter),opacity .18s ease-out,margin .22s var(--enter)}
+#page-news .hist .h.open > .nbody{max-height:9rem;opacity:1;margin-top:var(--s2)}
+/* 類別色點取代大色塊，四則的輕重差別交給點的顏色 */
+#page-news .hist .h .ndot-cat{width:6px;height:6px;border-radius:50%;flex:none;background:var(--accent)}
+#page-news .hist .h .ndot-cat.warm{background:var(--warm)}
+#page-news .hist .h .ndot-cat.edu{background:var(--chart-3)}
+#page-news .hist .h > .top > .chip{border:0;background:none;padding:0;color:var(--muted);font-size:.7rem}
+/* 置頂改掛在標題後面，不佔類別欄寬度、也不推動標題左緣 */
+#page-news .hist .h .pinchip{flex:none;font-size:.64rem;line-height:1.8;padding:0 .5rem;
+  color:var(--accent);background:var(--tint);border:0}
+#page-news .h.pin{border-color:var(--line)}   /* 置頂只用左緣標記，底線不再變深 */
 #page-news .h .meta{display:flex;align-items:center;justify-content:space-between;gap:var(--s2);margin-top:var(--s2)}
 #page-news .h .top .by{margin-left:auto; font-size:.66rem; color:var(--muted)}
 #page-news .h .top time{margin-left:.6rem}
@@ -3646,6 +3672,17 @@
   #page-leadsall .emptyrow td{text-align:center; color:var(--muted); padding:1.6rem 1rem; font-size:.83rem}
   /* 通用表單對話框 */
   .formdlg .fld{display:flex; flex-direction:column; gap:.3rem; margin-bottom:.9rem}
+  /* 打勾型欄位：核取方塊與說明同一行。核取方塊本體沿用全站既有的
+     input[type=checkbox] 元件（580 行），這裡只擋掉表單彈窗那兩條把它撐大的覆蓋：
+     .formdlg input 的 padding／圓角／邊框，與 sheet-mask 那條 width:100% */
+  .formdlg .fld.fld-check{flex-direction:row; align-items:center; gap:var(--s2); cursor:pointer}
+  .dlg-mask.sheet-mask > .dlg.formdlg .fld.fld-check input[type=checkbox],
+  .formdlg .fld.fld-check input[type=checkbox]{
+    width:1rem; height:1rem; min-height:0; padding:0;
+    border:1px solid var(--line-2); border-radius:50%; background:var(--bg)}
+  .dlg-mask.sheet-mask > .dlg.formdlg .fld.fld-check input[type=checkbox]:checked,
+  .formdlg .fld.fld-check input[type=checkbox]:checked{background:var(--accent); border-color:var(--accent)}
+  .formdlg .fld.fld-check span{flex:1; min-width:0; color:var(--ink); font-size:.83rem}
   .formdlg .fld > span{font-size:.7rem; color:var(--muted); letter-spacing:.08em}
   .formdlg input, .formdlg textarea, .formdlg select{
     border:1px solid var(--line); border-radius:var(--r-cell); padding:.5rem .7rem;
@@ -3748,7 +3785,6 @@
   #page-news.view.on .hist .h:nth-child(2){animation-delay:.08s}
   #page-news.view.on .hist .h:nth-child(3){animation-delay:.16s}
   #page-news.view.on .hist .h:nth-child(n+4){animation-delay:.24s}
-  #page-news.view.on .hist::before{transform-origin:top; animation:grow .9s var(--enter) backwards .15s}
   #page-news .h .hacts{transform:translateX(8px)}
   #page-news .h:hover .hacts, #page-news .h:focus-within .hacts{transform:none}
   /* 頂欄搜尋列（取代行程條） */
@@ -3800,16 +3836,11 @@
   #page-leadsall td .interest{padding-bottom:0}
   /* 全建案名單：搜尋輸入框＋跨案標記 */
   #page-leadsall .chip.xcase{border-color:var(--line-accent); color:var(--accent); background:var(--tint)}
-  /* 最新消息：時間軸列表＋類別燈號 */
-  #page-news .hist{position:relative; padding-left:1.5rem}
-  #page-news .hist::before{content:''; position:absolute; left:.5rem; top:1.25rem; bottom:3.8rem; width:1px; background:var(--line-2)}
+  /* 最新消息：一則一行。原本的時間軸（左側縱線＋圓點）已移除——
+     四則都擠在同一週，點的間距由列高決定而非時間，那條軸看起來是刻度其實是等距列表 */
+  #page-news .hist{position:relative}
   #page-news .hist .h{position:relative}
-  #page-news .hist .h::before{
-    content:''; position:absolute; left:-1.22rem; top:.84rem; width:9px; height:9px;
-    border-radius:50%; background:var(--bg); border:2px solid var(--line-3);
-  }
-  #page-news .hist .h.pin{background:var(--tint)}
-  #page-news .hist .h.pin::before{background:var(--accent); border-color:var(--accent)}
+  #page-news .hist .h.pin{box-shadow:inset 2px 0 0 var(--accent)}
   #page-news .chip.pinchip{background:var(--accent); border-color:var(--accent); color:var(--on-accent)}
   #page-news .chip.warm{border-color:var(--warm); color:var(--warm)}
   #page-news .chip.edu{border-color:var(--line-accent); color:var(--accent)}
@@ -7458,7 +7489,6 @@
           <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
           <svg class="wk-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
         </div>
-        <small class="wk-ratio-scope">本週</small>
       </div>
       <div class="wk-kpi-card wk-media-card">
         <span class="microlbl">本週廣告媒體</span>
@@ -7683,7 +7713,6 @@
         <svg class="mo-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
         <svg class="mo-head on" viewBox="0 0 24 24"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0Z"/></svg>
       </div>
-      <small class="mo-ratio-scope">本月</small>
     </div>
     <div class="mo-kpi-card mo-media-card">
       <span class="mo-label">本月廣告媒體</span>
@@ -8914,8 +8943,11 @@
 <div class="block">
   <div class="hist">
     <div class="h pin">
-      <div class="top"><span class="chip pinchip">置頂</span><span class="chip">價格表</span><span class="by">林曉青</span><time>2026-08-19 09:30</time></div>
-      <p><b><span class="news-unread-dot" aria-label="未讀"></span>9 月起價格表新增車位溢價欄位</b><br>自 2026-09-01 起，全建案價格表新增「車位溢價」欄位，平面／機械車位加價規則由各案管理員自行設定；既有戶別售價不受影響，報表匯出將同步新增此欄。</p>
+      <div class="top"><span class="ndot-cat" aria-hidden="true"></span><span class="chip">價格表</span></div>
+      <p><b><span class="news-unread-dot" aria-label="未讀"></span>9 月起價格表新增車位溢價欄位</b><span class="chip pinchip">置頂</span></p>
+      <span class="by">林曉青</span>
+      <time datetime="2026-08-19" title="2026-08-19 09:30">08/19</time>
+      <div class="nbody">自 2026-09-01 起，全建案價格表新增「車位溢價」欄位，平面／機械車位加價規則由各案管理員自行設定；既有戶別售價不受影響，報表匯出將同步新增此欄。</div>
       <span class="hacts">
           <button class="iconop" data-act="nedit" aria-label="編輯公告" data-tip="編輯"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19l-4 1"/></svg></button>
           <button class="iconop" data-act="npin" aria-label="取消置頂" data-tip="取消置頂"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h8l-1 6 3 3v2H6v-2l3-3-1-6M12 14v7"/></svg></button>
@@ -8923,29 +8955,38 @@
         </span>
     </div>
     <div class="h">
-      <div class="top"><span class="chip warm">系統維護</span><span class="by">林曉青</span><time>2026-08-18 17:45</time></div>
-      <p><b><span class="news-unread-dot" aria-label="未讀"></span>系統維護公告</b><br>8/24（日）02:00-04:00 進行例行維護，期間暫停登入、名單匯入與報表匯出，維護完成後自動恢復；請各案避開此時段排定匯入作業。</p>
+      <div class="top"><span class="ndot-cat warm" aria-hidden="true"></span><span class="chip warm">系統維護</span></div>
+      <p><b><span class="news-unread-dot" aria-label="未讀"></span>系統維護公告</b></p>
+      <span class="by">林曉青</span>
+      <time datetime="2026-08-18" title="2026-08-18 17:45">08/18</time>
+      <div class="nbody">8/24（日）02:00-04:00 進行例行維護，期間暫停登入、名單匯入與報表匯出，維護完成後自動恢復；請各案避開此時段排定匯入作業。</div>
       <span class="hacts">
           <button class="iconop" data-act="nedit" aria-label="編輯公告" data-tip="編輯"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19l-4 1"/></svg></button>
-          <button class="iconop" data-act="npin" aria-label="置頂" data-tip="置頂"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h8l-1 6 3 3v2H6v-2l3-3-1-6M12 14v7"/></svg></button>
+          <button class="iconop" data-act="npin" aria-label="取消置頂" data-tip="取消置頂"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h8l-1 6 3 3v2H6v-2l3-3-1-6M12 14v7"/></svg></button>
           <button class="iconop del" data-act="ndel" aria-label="刪除公告" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button>
         </span>
     </div>
     <div class="h">
-      <div class="top"><span class="chip edu">教育訓練</span><span class="by">林曉青</span><time>2026-08-15 14:20</time></div>
-      <p><b>E01 教育訓練錄影上架</b><br>客資登錄、回訪紀錄與帶看流程示範已上架至「使用指引」頁，全長 48 分鐘；新進業務請於 8/31 前完成觀看。</p>
+      <div class="top"><span class="ndot-cat edu" aria-hidden="true"></span><span class="chip edu">教育訓練</span></div>
+      <p><b>E01 教育訓練錄影上架</b></p>
+      <span class="by">林曉青</span>
+      <time datetime="2026-08-15" title="2026-08-15 14:20">08/15</time>
+      <div class="nbody">客資登錄、回訪紀錄與帶看流程示範已上架至「使用指引」頁，全長 48 分鐘；新進業務請於 8/31 前完成觀看。</div>
       <span class="hacts">
           <button class="iconop" data-act="nedit" aria-label="編輯公告" data-tip="編輯"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19l-4 1"/></svg></button>
-          <button class="iconop" data-act="npin" aria-label="置頂" data-tip="置頂"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h8l-1 6 3 3v2H6v-2l3-3-1-6M12 14v7"/></svg></button>
+          <button class="iconop" data-act="npin" aria-label="取消置頂" data-tip="取消置頂"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h8l-1 6 3 3v2H6v-2l3-3-1-6M12 14v7"/></svg></button>
           <button class="iconop del" data-act="ndel" aria-label="刪除公告" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button>
         </span>
     </div>
     <div class="h">
-      <div class="top"><span class="chip">行政公告</span><span class="by">林曉青</span><time>2026-08-12 10:00</time></div>
-      <p><b>8 月獎金結算時程</b><br>業績認列至 8/31 止，9/3 前完成拆佣確認、9/5 結算、9/10 隨薪發放；拆佣異動逾期未送審者，一律延至次月處理。</p>
+      <div class="top"><span class="ndot-cat" aria-hidden="true"></span><span class="chip">行政公告</span></div>
+      <p><b>8 月獎金結算時程</b></p>
+      <span class="by">林曉青</span>
+      <time datetime="2026-08-12" title="2026-08-12 10:00">08/12</time>
+      <div class="nbody">業績認列至 8/31 止，9/3 前完成拆佣確認、9/5 結算、9/10 隨薪發放；拆佣異動逾期未送審者，一律延至次月處理。</div>
       <span class="hacts">
           <button class="iconop" data-act="nedit" aria-label="編輯公告" data-tip="編輯"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19l-4 1"/></svg></button>
-          <button class="iconop" data-act="npin" aria-label="置頂" data-tip="置頂"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h8l-1 6 3 3v2H6v-2l3-3-1-6M12 14v7"/></svg></button>
+          <button class="iconop" data-act="npin" aria-label="取消置頂" data-tip="取消置頂"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h8l-1 6 3 3v2H6v-2l3-3-1-6M12 14v7"/></svg></button>
           <button class="iconop del" data-act="ndel" aria-label="刪除公告" data-tip="刪除"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button>
         </span>
     </div>
@@ -14103,12 +14144,13 @@ try{ /* collect */
   $('#formCancel').addEventListener('click',closeForm);
   formMask.addEventListener('click',function(e){ if(e.target===formMask) closeForm() });
   $('#formOk').addEventListener('click',function(){
-    var v={}; $$('#formBody [name]').forEach(function(el){ v[el.name]=el.value.trim() });
+    var v={}; $$('#formBody [name]').forEach(function(el){ v[el.name]=el.type==='checkbox'?el.checked:el.value.trim() });
     if(formCb && formCb(v)!==false) closeForm();
   });
   function fld(label,name,type,val,opts){
     if(type==='select') return '<label class="fld"><span>'+label+'</span><select name="'+name+'">'+opts.map(function(o){return '<option'+(o===val?' selected':'')+'>'+o+'</option>'}).join('')+'</select></label>';
     if(type==='textarea') return '<label class="fld"><span>'+label+'</span><textarea name="'+name+'">'+(val||'')+'</textarea></label>';
+    if(type==='check') return '<label class="fld fld-check"><input name="'+name+'" type="checkbox"'+(val?' checked':'')+'><span>'+label+'</span></label>';
     return '<label class="fld"><span>'+label+'</span><input name="'+name+'" type="text" value="'+(val||'')+'"></label>';
   }
 
@@ -14221,11 +14263,23 @@ try{ /* collect */
   }
   function setNewsPinned(item,on){
     item.classList.toggle('pin',on);
-    var top=item.querySelector('.top'), chip=top&&top.querySelector('.pinchip');
-    if(on&&!chip){chip=document.createElement('span');chip.className='chip pinchip';chip.textContent='置頂';top.insertBefore(chip,top.firstChild)}
+    var host=item.querySelector('p'), chip=host&&host.querySelector('.pinchip');
+    if(on&&!chip){chip=document.createElement('span');chip.className='chip pinchip';chip.textContent='置頂';host.appendChild(chip)}
     if(!on&&chip) chip.remove();
     var pinButton=item.querySelector('[data-act="npin"]'), label=on?'取消置頂':'置頂';
     if(pinButton){pinButton.dataset.tip=label;pinButton.setAttribute('aria-label',label)}
+  }
+  /* 置頂只允許一則：換人置頂要先把舊的取消，並把新的搬到最上面。
+     圖示鈕與編輯表單的打勾都走這裡，避免兩套邏輯各寫一次 */
+  function newsPin(item,on){
+    var hist=item.parentElement; if(!hist) return;
+    if(on){
+      var old=hist.querySelector('.h.pin');
+      if(old&&old!==item) setNewsPinned(old,false);
+      setNewsPinned(item,true);
+      hist.insertBefore(item,hist.firstElementChild);
+      item.style.animation='rise .4s var(--enter) backwards';
+    }else setNewsPinned(item,false);
   }
   function addNewsUnread(){
     var unread=$('#newsUnread'); if(!unread) return;
@@ -14234,15 +14288,24 @@ try{ /* collect */
   }
   var pnB=$('#pubNewsBtn'); if(pnB) pnB.addEventListener('click',function(){
     openForm('發佈公告',
-      fld('類別','cat','select','行政公告',['行政公告','系統維護','教育訓練','價格表'])+fld('標題','ti')+fld('內容','bd','textarea'),
+      fld('類別','cat','select','行政公告',['行政公告','系統維護','教育訓練','價格表'])+fld('標題','ti')+fld('內容','bd','textarea')
+        +fld('置頂（每次登入都會看到）','pin','check',false),
       '發佈',function(v){
         if(!v.ti){ toast('請輸入標題'); return false }
         var hist=document.querySelector('#page-news .hist');
         var d=document.createElement('div'); d.className='h';
-        d.innerHTML='<div class="top"><span class="chip'+newsChipCls(v.cat)+'">'+v.cat+'</span><span class="by">林曉青</span><time>2026-08-21 14:00</time></div>'
-          +'<p><b><span class="news-unread-dot" aria-label="未讀"></span>'+v.ti+'</b><br>'+(v.bd||'')+'</p>'+newsActions(false);
+        var cls=newsChipCls(v.cat);
+        d.innerHTML='<div class="top"><span class="ndot-cat'+cls+'" aria-hidden="true"></span><span class="chip'+cls+'"></span></div>'
+          +'<p><b><span class="news-unread-dot" aria-label="未讀"></span></b></p>'
+          +'<span class="by">林曉青</span><time datetime="2026-08-21" title="2026-08-21 14:00">08/21</time>'
+          +'<div class="nbody"></div>'+newsActions(false);
+        /* 使用者輸入一律走 textContent，不拼進 innerHTML */
+        d.querySelector('.top .chip').textContent=v.cat;
+        d.querySelector('p b').appendChild(document.createTextNode(v.ti));
+        d.querySelector('.nbody').textContent=v.bd||'';
         var pin=hist.querySelector('.h.pin');
         if(pin && pin.nextElementSibling) hist.insertBefore(d, pin.nextElementSibling); else hist.insertBefore(d, hist.firstElementChild);
+        if(v.pin) newsPin(d,true);
         d.style.animation='rise .5s var(--enter) backwards';
         var cnt=document.querySelector('#page-news .pagebar .cnt'); if(cnt) cnt.textContent=(document.querySelectorAll('#page-news .hist .h').length)+' 筆';
         addNewsUnread();
@@ -14250,6 +14313,11 @@ try{ /* collect */
       });
   });
 
+  /* 點整列展開／收起內文；點到操作鈕不觸發 */
+  document.addEventListener('click',function(e){
+    var row=e.target.closest('#page-news .hist .h');
+    if(row && !e.target.closest('[data-act]')) row.classList.toggle('open');
+  });
   /* data-act 委派 */
   document.addEventListener('click',function(e){
     var b=e.target.closest('[data-act]'); if(!b) return;
@@ -14274,24 +14342,22 @@ try{ /* collect */
       var nm=(b.closest('.lead')||{}).querySelector? (b.closest('.lead').querySelector('.name').childNodes[0].nodeValue||'').trim():'';
       pickMenu(b,['今晚 20:00','明天 09:00','三天後 09:00'],null,function(x){ toast('已設提醒 <b>'+x+'</b>・'+nm) });
     } else if(act==='nedit'){
-      var h=b.closest('.h'), bb=h.querySelector('p b'), body=h.querySelector('p').childNodes;
-      var bodyText=''; for(var i=0;i<body.length;i++){ if(body[i].nodeType===3) bodyText+=body[i].nodeValue }
-      openForm('編輯公告', fld('標題','ti','text',bb.textContent)+fld('內容','bd','textarea',bodyText.trim()), '儲存', function(v){
-        h.querySelector('p').innerHTML='<b>'+v.ti+'</b><br>'+v.bd;
-        toast('公告已更新');
-      });
+      var h=b.closest('.h'), bb=h.querySelector('p b'), nb=h.querySelector('.nbody');
+      var wasPin=h.classList.contains('pin');
+      openForm('編輯公告',
+        fld('標題','ti','text',bb.textContent)+fld('內容','bd','textarea',nb?nb.textContent.trim():'')
+        +fld('置頂（每次登入都會看到）','pin','check',wasPin),
+        '儲存', function(v){
+          if(!v.ti){ toast('請輸入標題'); return false }
+          bb.textContent=v.ti;                      /* 用 textContent 不用 innerHTML，標題含 < > 不會被當標籤 */
+          if(nb) nb.textContent=v.bd||'';
+          if(v.pin!==wasPin){ newsPin(h,v.pin) }
+          toast(v.pin&&!wasPin?'公告已更新並置頂':'公告已更新');
+        });
     } else if(act==='npin'){
-      var h2=b.closest('.h'), hist=h2.parentElement, was=h2.classList.contains('pin');
-      var old=hist.querySelector('.h.pin');
-      if(!was){
-        if(old) setNewsPinned(old,false);
-        setNewsPinned(h2,true);
-        hist.insertBefore(h2, hist.firstElementChild);
-        h2.style.animation='rise .4s var(--enter) backwards';
-        toast('已置頂——一般使用者每次登入都會看到');
-      }else{
-        setNewsPinned(h2,false); toast('已取消置頂');
-      }
+      var h2=b.closest('.h'), was=h2.classList.contains('pin');
+      newsPin(h2,!was);
+      toast(was?'已取消置頂':'已置頂——一般使用者每次登入都會看到');
     } else if(act==='ndel'){
       var h3=b.closest('.h');
       softDelete(h3, h3.querySelector('p b').textContent.slice(0,12));
