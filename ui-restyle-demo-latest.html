@@ -4708,6 +4708,29 @@
   #drawer .gift-field .sel{color:var(--ink)}
   #drawer .gift-note{margin-top:var(--s3);color:var(--muted)}
   #drawer .gift-note .wk-missing-mark{color:var(--hot);cursor:help}
+  /* 購買紀錄（d4）重排：買的與贈的原本一個用卡片框、一個用髮絲線，統一成同一種列——
+     髮絲線分隔、左主右金、兩塊共用同一條右緣；細節與動作降到第二行不跟主體搶水平線 */
+  #d4 .buysum{display:flex;align-items:baseline;gap:var(--s3)}
+  #d4 .buysum-total{margin-left:auto;color:var(--ink);letter-spacing:normal;font-variant-numeric:tabular-nums}
+  #d4 .buyrow{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"name amount" "meta amount";
+    align-items:baseline;column-gap:var(--s3);row-gap:var(--s1);
+    background:none;border:0;border-radius:0;border-bottom:1px solid var(--line);padding:var(--s2) 0}
+  #d4 .buyrow:last-child{border-bottom:0}
+  #d4 .buyrow b{grid-area:name}
+  #d4 .buyrow .meta{grid-area:meta}
+  #d4 .buyrow .p{grid-area:amount;align-self:center;justify-self:end;margin-left:0}
+  #d4 .gift-given-row{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"name amount" "meta act";
+    align-items:baseline;column-gap:var(--s3);row-gap:var(--s1);font-size:.81rem}
+  #d4 .gift-given-row b{grid-area:name}
+  #d4 .gift-given-row .chip{grid-area:amount;justify-self:end;border:0;background:none;padding:0;
+    color:var(--ink);font-size:.81rem;font-variant-numeric:tabular-nums}
+  #d4 .gift-meta{grid-area:meta;font-size:.7rem}
+  #d4 .gift-remove{font-size:.7rem}
+  #d4 .gift-remove{grid-area:act;justify-self:end}
+  /* 操作說明降級：它是說明不是警示，原本整塊 --fill 底的視覺重量大於它的資訊價值 */
+  #d4 .dnote{background:none;padding:0}
+  /* 底部操作列補回分隔線（原本 inline 把它關掉，區塊邊界不清） */
+  #d4 .dfoot{padding:var(--s4) 0 0}
 
   /* 收禮名單：沿用關聯總覽的 sheet 表格，只補副標與姓名連結。 */
   #giftDlg .gift-subtitle{display:block;margin-top:var(--s1);color:var(--muted);font-weight:400}
@@ -9131,7 +9154,7 @@
         <button class="pillbtn iconpill solid" id="leadPurchaseBtn" type="button" aria-label="新增購買（下訂）"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span class="lbl">新增下訂</span></button>
       </div>
       <div class="dnote">從銷控表選擇待售戶別或車位；建立下訂後，銷控狀態會同步改為「已訂」。</div>
-      <div class="dsec" id="leadPurchaseSummary">主建物 1 戶・加購車位 1 個</div>
+      <div class="dsec buysum"><span id="leadPurchaseSummary">主建物 1 戶・加購車位 1 個</span><span class="buysum-total" id="leadPurchaseTotal">成交總額 3,570 萬</span></div>
       <div id="leadPurchaseList">
         <div class="buyrow" data-kind="unit"><b>8F・A4</b><span class="meta">35.2 坪・三房</span><span class="p">3,350 萬</span></div>
         <div class="buyrow" data-kind="park"><b>B1・P05</b><span class="meta">平面・大</span><span class="p">220 萬</span></div>
@@ -9172,7 +9195,7 @@
         <button class="pillbtn solid" id="giftGiveBtn" type="button">記錄贈品</button>
       </div>
       <p class="gift-note">贈品綁定成交戶別與核准人，供日後查核 <span class="wk-missing-mark" title="需補欄位：成交贈品關聯表（成交ID×贈品ID×核准人×日期）">＊</span></p>
-      <div class="dfoot" style="padding:.8rem 0 0; border-top:none">
+      <div class="dfoot">
         <button class="pillbtn solid" data-demo-toast>設定簽約日</button>
         <button class="pillbtn" data-demo-toast>設定交屋日</button>
         <button class="danger-link" data-demo-toast>退戶</button>
@@ -11866,6 +11889,13 @@
     var units=list.querySelectorAll('.buyrow[data-kind="unit"]').length;
     var parks=list.querySelectorAll('.buyrow[data-kind="park"]').length;
     sum.textContent='主建物 '+units+' 戶・加購車位 '+parks+' 個';
+    /* 成交總額直接讀列上的金額文字（demo 的金額一律以「萬」為單位） */
+    var total=$('#leadPurchaseTotal');
+    if(total){
+      var n=[].slice.call(list.querySelectorAll('.buyrow .p')).reduce(function(a,el){
+        return a+(parseFloat((el.textContent||'').replace(/[^\d.]/g,''))||0)},0);
+      total.textContent='成交總額 '+n.toLocaleString('en-US')+' 萬';
+    }
   }
   function openDrawer(row){
     if(row){
