@@ -15014,7 +15014,13 @@ try{ /* collect */
     /* 切進這頁就重算；切建案（.proj 卡）也重算——基本資料與各區塊都跟著換案 */
     var _navH=nav; nav=function(p,r){ _navH(p,r); if(p==='home') refresh() };
     document.addEventListener('click',function(e){ if(e.target.closest('[data-proj]')) setTimeout(refresh,0) });
-    setTimeout(refresh,0);   /* PRICEDATA 在這個閉包之後才定義，第一次計算延到 script 跑完 */
+    /* 第一次計算一定要等到 PRICEDATA 存在。它宣告在檔尾另一個 <script>（15742 行），
+       而這份 HTML 有 2.4MB，瀏覽器解析時會讓出 event loop——setTimeout(…,0) 有機會
+       在那個 <script> 執行「之前」就跑掉，結果戶數／車位／保留全部算成 0
+       （直接以 #home 重新整理就會踩到；先進別頁再點首頁則不會，因為 nav 會再算一次）。
+       改用 DOMContentLoaded：它保證在所有同步 script 跑完之後才觸發。 */
+    if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',refresh);
+    else refresh();
   })();
 })();
 
