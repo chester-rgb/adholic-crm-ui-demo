@@ -4170,7 +4170,12 @@
   #page-home .hm-head em{font-style:normal; color:var(--accent); margin-left:var(--s1)}
   #page-home .hm-head .hm-src{margin-left:auto; font-size:.7rem}
   /* 每個狀態一個區塊：自動填欄、各自高度，不硬撐等高（這是工作清單，不是 KPI 卡） */
-  #page-home .hm-blocks{display:grid; grid-template-columns:repeat(auto-fill,minmax(21rem,1fr)); gap:var(--grid-gap); align-items:start; margin-bottom:var(--sec-gap)}
+  #page-home .hm-blocks{display:grid; grid-template-columns:repeat(auto-fill,minmax(21rem,1fr)); gap:var(--grid-gap); align-items:stretch; margin-bottom:var(--sec-gap)}
+  /* 區塊固定高度、同排切齊；清單超過就在區塊內捲，標題與小字釘住不動（Enson 2026-09-08） */
+  #page-home .hm-blocks .dr-panel{display:flex; flex-direction:column; height:20rem; min-height:0}
+  #page-home .hm-blocks .dr-section-head{flex:none}
+  #page-home .hm-blocks .dr-todo{flex:1 1 auto; min-height:0; overflow-y:auto; overscroll-behavior:contain; scrollbar-gutter:stable}
+  #page-home .hm-blocks .dr-note{flex:none}
   #page-home .hm-sub{font-size:.7rem; color:var(--muted); letter-spacing:.06em; padding:var(--s3) 0 var(--s1); border-top:1px solid var(--line)}
   #page-home .hm-sub:first-child{border-top:0; padding-top:0}
   #page-home .hm-sub + .dr-todo-row{border-top:0; padding-top:var(--s1)}
