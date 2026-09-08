@@ -2588,21 +2588,26 @@
 #page-reports .dr-trend.dr-flat{color:var(--muted)}
 #page-reports .dr-mid{display:grid;grid-template-columns:22rem minmax(0,1fr);gap:var(--grid-gap);margin-bottom:var(--sec-gap)}
 :is(#page-reports,#page-home) .dr-panel{min-width:0;background:var(--panel);border-radius:var(--r-card);padding:var(--s5)}
-:is(#page-reports,#page-home) .dr-section-head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s3);margin-bottom:var(--s4)}
+/* 卡標題帶底色：用負邊界出血到卡緣，所以負值必須等於 .dr-panel 的內距（--s5）；
+   內距一改這裡要跟著改，否則標題會凸出卡片（週報分析卡踩過這個坑）。
+   上緣圓角＝卡片圓角，貼齊卡緣才同心。 */
+:is(#page-reports,#page-home) .dr-section-head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s3);
+  margin:calc(var(--s5) * -1) calc(var(--s5) * -1) var(--s4);padding:var(--s3) var(--s5);
+  background:var(--fill);border-radius:var(--r-card) var(--r-card) 0 0}
 :is(#page-reports,#page-home) .dr-section-head h3{font-size:.9rem;font-weight:500;letter-spacing:.08em}
-:is(#page-reports,#page-home) .dr-section-head span{font-size:.7rem;color:var(--muted)}
+:is(#page-reports,#page-home) .dr-section-head span{font-size:.66rem;color:var(--muted)}
 :is(#page-reports,#page-home) .dr-todo{display:flex;flex-direction:column}
-:is(#page-reports,#page-home) .dr-todo-row{display:grid;grid-template-columns:auto 4rem minmax(0,1fr) auto;align-items:center;gap:var(--s2);padding:var(--s3) 0;font-size:.74rem;border-top:1px solid var(--line)}
+:is(#page-reports,#page-home) .dr-todo-row{display:grid;grid-template-columns:auto 4rem minmax(0,1fr) auto;align-items:center;gap:var(--s2);padding:var(--s3) 0;font-size:.76rem;border-top:1px solid var(--line)}
 :is(#page-reports,#page-home) .dr-todo-row:first-child{border-top:0;padding-top:0}
 :is(#page-reports,#page-home) .dr-todo-row > .dot{background:var(--line-3)}
 :is(#page-reports,#page-home) .dr-todo-row > .dot.hot{background:var(--hot)}
 :is(#page-reports,#page-home) .dr-todo-row > .dot.warm{background:var(--warm)}
-:is(#page-reports,#page-home) .dr-todo-row b{font-size:.76rem;font-weight:500;white-space:nowrap}
+:is(#page-reports,#page-home) .dr-todo-row b{font-weight:500;white-space:nowrap}
 :is(#page-reports,#page-home) .dr-todo-row > span:not(.dot){min-width:0;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-:is(#page-reports,#page-home) .dr-todo-row i{font-size:.7rem;font-style:normal;color:var(--muted);white-space:nowrap}
+:is(#page-reports,#page-home) .dr-todo-row i{font-style:normal;color:var(--muted);white-space:nowrap}
 :is(#page-reports,#page-home) .dr-todo-row[data-state="overdue"] i{color:var(--hot)}
 :is(#page-reports,#page-home) .dr-todo-row[data-state="today"] i{color:var(--warm)}
-:is(#page-reports,#page-home) .dr-note{margin-top:var(--s3);padding-top:var(--s3);border-top:1px solid var(--line);font-size:.64rem;line-height:1.7;color:var(--muted)}
+:is(#page-reports,#page-home) .dr-note{margin-top:var(--s3);padding-top:var(--s3);border-top:1px solid var(--line);font-size:.66rem;line-height:1.7;color:var(--muted)}
 #page-reports .dr-table-wrap{padding:0;background:var(--bg);border:1px solid var(--line-2);border-radius:var(--r-card);overflow-x:auto}
 #page-reports .dr-table{width:100%;min-width:42rem;table-layout:fixed;border-collapse:collapse;border-spacing:0}
 #page-reports .dr-table th,#page-reports .dr-table td{padding:var(--s3) var(--s2);border-bottom:1px solid var(--line);font-size:.74rem;line-height:1.45;text-align:center;white-space:nowrap;font-variant-numeric:tabular-nums}
@@ -4164,11 +4169,6 @@
      沒有 hero、沒有功能磚（八張磚有七張是左欄已有的第二套導覽）。
      面板／清單列／小字全部沿用日報的 .dr-* 元件（選擇器已放寬成 :is(#page-reports,#page-home)），
      這裡只補首頁自己的三樣：去化一行、兩欄格線、整列可點的例外列。 */
-  #page-home .hm-head{display:flex; flex-wrap:wrap; align-items:baseline; gap:var(--s2) var(--s6);
-    font-size:.76rem; color:var(--muted); font-variant-numeric:tabular-nums}
-  #page-home .hm-head b{color:var(--ink); font-weight:500}
-  #page-home .hm-head em{font-style:normal; color:var(--accent); margin-left:var(--s1)}
-  #page-home .hm-head .hm-src{margin-left:auto; font-size:.7rem}
   /* 每個狀態一個區塊：自動填欄、各自高度，不硬撐等高（這是工作清單，不是 KPI 卡） */
   #page-home .hm-blocks{display:grid; grid-template-columns:repeat(auto-fill,minmax(21rem,1fr)); gap:var(--grid-gap); align-items:stretch; margin-bottom:var(--sec-gap)}
   /* 區塊固定高度、同排切齊；清單超過就在區塊內捲，標題與小字釘住不動（Enson 2026-09-08） */
@@ -4176,10 +4176,10 @@
   #page-home .hm-blocks .dr-section-head{flex:none}
   #page-home .hm-blocks .dr-todo{flex:1 1 auto; min-height:0; overflow-y:auto; overscroll-behavior:contain; scrollbar-gutter:stable}
   #page-home .hm-blocks .dr-note{flex:none}
-  #page-home .hm-sub{font-size:.7rem; color:var(--muted); letter-spacing:.06em; padding:var(--s3) 0 var(--s1); border-top:1px solid var(--line)}
+  #page-home .hm-sub{font-size:.66rem; color:var(--muted); letter-spacing:.06em; padding:var(--s3) 0 var(--s1); border-top:1px solid var(--line)}
   #page-home .hm-sub:first-child{border-top:0; padding-top:0}
   #page-home .hm-sub + .dr-todo-row{border-top:0; padding-top:var(--s1)}
-  #page-home .hm-empty{font-size:.74rem; color:var(--muted); padding:var(--s2) 0}
+  #page-home .hm-empty{font-size:.76rem; color:var(--muted); padding:var(--s2) 0}
   #page-home .dr-section-head .dr-link{margin-left:var(--s3)}
   /* 例外列整列是一顆按鈕：沿用 .dr-todo-row 的四欄格線（點｜數字｜說明｜去處） */
   #page-home button.dr-todo-row{width:100%; background:none; border:0; border-top:1px solid var(--line); border-radius:0;
@@ -4193,9 +4193,7 @@
   #page-home .dr-todo-row.hm-zero b, #page-home .dr-todo-row.hm-zero i{color:var(--muted)}
   #page-home .hm-ledger{display:flex; flex-wrap:wrap; align-items:baseline; gap:var(--s2) var(--s5);
     padding-top:var(--s4); border-top:1px solid var(--line);
-    font-size:.74rem; color:var(--muted); font-variant-numeric:tabular-nums}
-  #page-home .hm-ledger b{color:var(--ink); font-weight:500}
-  #page-home .hm-ledger .hm-lbl{color:var(--ink); letter-spacing:.06em}
+    font-size:.76rem; color:var(--muted); font-variant-numeric:tabular-nums}
   #page-home .hm-ledger .dr-link{margin-left:auto}
 
   /* KPI 卡下方小字：拆到各建案，本月新客再加上與上月的差
@@ -4921,16 +4919,12 @@
       <section class="view" id="page-home">
         <div class="sec pagebar">
           <h2 id="homeTitle">青園綠境</h2><span class="status selling pgstatus" id="homeStatus">銷售中</span>
-          <span class="note" id="homeNote">台中市北屯區・2026-03 開賣</span>
         </div>
 
         <!-- 建案首頁＝案場今日（Enson 2026-09-08 拍板 B 案，同日改成「每個狀態一個區塊」）。
              這頁不准手寫常數——去化來自 window.PRICEDATA、每個區塊的名單來自來客名單的列與 PRICEDATA、台帳引用日報。
              規則（分級跟進間隔、下訂後幾天要簽）是專案設定的示意預設值，區塊小字會標出來。
              全部由主閉包尾端的 JS 在每次切進這頁時當場算。 -->
-        <div class="block hm-head" id="hmHead" aria-label="去化"></div>
-
-        <div class="sec"><h2>今天要處理</h2><span class="note" id="hmExcN"></span></div>
         <div class="hm-blocks" id="hmBlocks"></div>
 
         <div class="block hm-ledger" id="hmLedger" aria-label="最近一份日報"></div>
@@ -6701,6 +6695,7 @@
               <div class="gtype"><span class="demo" style="font-size:.9rem">內文與表格，行高 1.7</span><span class="m">body｜.9rem・Regular 400</span></div>
               <div class="gtype"><span class="demo" style="font-size:.76rem">按鈕與 pill 文字</span><span class="m">控件｜.76rem・Regular 400</span></div>
               <div class="gtype"><span class="demo" style="font-size:.7rem; letter-spacing:.16em; color:var(--muted)">表頭與微標籤</span><span class="m">標籤｜.64–.7rem・字距 .14–.24em</span></div>
+              <div class="gtype"><span class="demo" style="font-size:.66rem; color:var(--muted)">卡片內只用三級：標題 .9／內容 .76／註記 .66</span><span class="m">卡內｜三級固定・同一列靠字重與顏色分層，不靠字級</span></div>
             </div>
           </div>
         </div>
@@ -14629,7 +14624,7 @@ try{ /* collect */
        分級跟進間隔 STALE_SLA（在來客名單那段）、下訂後 BOOK_SLA 天內要簽約（分析頁「卡單 >14 天標紅」同一條） */
   (function(){
     var home=document.getElementById('page-home'); if(!home) return;
-    var head=document.getElementById('hmHead'), blocks=document.getElementById('hmBlocks'), excN=document.getElementById('hmExcN'), ledger=document.getElementById('hmLedger');
+    var blocks=document.getElementById('hmBlocks'), ledger=document.getElementById('hmLedger');
     var BOOK_SLA=14;
     function projName(){ var t=document.getElementById('homeTitle'); return t?t.textContent.trim():'' }
     function esc(x){ return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;') }
@@ -14666,14 +14661,7 @@ try{ /* collect */
         if(v.st==='booked') booked.push([k,v]); if(v.st==='hold') hold.push([k,v]); });
       var pkBooked=0;
       Object.keys(K).forEach(function(k){ var v=K[k]; pk++; if(!v.floor) pkNoFloor++; if(v.st==='booked') pkBooked++; if(v.st==='booked'||v.st==='signed'||v.st==='done') pkSold++; });
-      var sold=c.booked+c.signed+c.done;
-      head.innerHTML=
-        '<span>去化 <b>'+sold+'</b>／'+tot+' 戶<em>'+(tot? Math.round(sold/tot*1000)/10 : 0)+'%</em></span>'+
-        '<span>車位 <b>'+pkSold+'</b>／'+pk+'</span>'+
-        '<span>待售 '+c.sale+'・保留 '+c.hold+'・下訂 '+c.booked+'・簽約 '+c.signed+'・交屋 '+c.done+'</span>'+
-        '<span class="hm-src">戶數與狀態來自銷控表</span>';
-
-      var rows=leadRows(), total=0, html='';
+      var rows=leadRows(), html='';
 
       /* ① 未指派 */
       var un=rows.filter(function(tr){return !!tr.querySelector('.unassigned')});
@@ -14682,7 +14670,6 @@ try{ /* collect */
         var d=daysSince(tr.dataset.date);
         return leadRow(tr, (leadGrade(tr)||'—')+' 級・來訪 '+md(tr.dataset.date), '第 '+d+' 天', 'overdue');
       }).join(''), '來訪後還沒有負責業務的來客，越早指派越早有人跟。');
-      total+=un.length;
 
       /* ② 久未跟進：依分級跟進間隔，分級各一段 */
       var stale=rows.map(function(tr){ return {tr:tr, st:leadStale(tr)} }).filter(function(x){return x.st.over>0});
@@ -14698,7 +14685,6 @@ try{ /* collect */
       html+=panel('久未跟進', stale.length+' 筆', 'stale', sb,
         '間隔＝分級跟進 SLA：A '+STALE_SLA.A+'・B '+STALE_SLA.B+'・C '+STALE_SLA.C+'・D '+STALE_SLA.D+' 天（專案設定的示意預設值）。'+
         '<span class="wk-missing-mark" title="需補欄位：最後聯絡日 last_contact_at。demo 沒有逐筆往來紀錄，先以來訪日起算">＊</span>目前以來訪日起算。');
-      total+=stale.length;
 
       /* ③ 下訂未簽約：下訂日起算，超過 BOOK_SLA 天標紅（分析頁「卡單 >14 天」同一條） */
       booked.sort(function(a,b){return (a[1].d1||'')<(b[1].d1||'')?-1:1});
@@ -14706,14 +14692,12 @@ try{ /* collect */
         var k=e[0], v=e[1], d=daysSince(v.d1);
         return unitRow('booked', k, custName(v.cust)+'・下訂 '+md(v.d1)+(v.deal?'・'+v.deal.toLocaleString()+' 萬':''), '第 '+d+' 天', d>BOOK_SLA?'overdue':'today');
       }).join(''), '下小訂後 '+BOOK_SLA+' 天內要簽約（示意預設值）；超過的標紅。');
-      total+=booked.length;
 
       /* ④ 保留中 */
       html+=panel('保留中', hold.length+' 戶', 'hold', hold.map(function(e){
         var k=e[0], v=e[1];
         return unitRow('hold', k, (v.room||'')+'・'+(v.ping||'—')+' 坪・表價 '+(v.list? v.list.toLocaleString()+' 萬':'—'), '到期＊');
       }).join(''), '<span class="wk-missing-mark" title="需補欄位：保留到期日，才能算倒數與自動釋回">＊</span>保留到期日尚無欄位，算不出倒數。');
-      total+=hold.length;
 
       /* ⑤ 跨案待確認：同一人跑 2 案以上，歸屬與保護期要先講清楚 */
       var cross=rows.filter(function(tr){return tr.dataset.cross==='1'});
@@ -14721,7 +14705,6 @@ try{ /* collect */
         var chips=[].slice.call(tr.querySelectorAll('.chips .chip')).map(function(x){return x.textContent.trim()}).join('・');
         return leadRow(tr, (leadGrade(tr)||'—')+' 級・也去過 '+(chips||'—'), '跨案');
       }).join(''), '足跡有第二個建案的來客。歸屬、保護期與能不能轉案，正式版依專案設定判。');
-      total+=cross.length;
 
       /* ⑥ 資料未齊（戶別）：底價／坪數／表價，逐戶檢查 PRICEDATA */
       var ud='';
@@ -14732,7 +14715,6 @@ try{ /* collect */
       if(noList.length)  ud+=unitRow('units','表價未填', noList.length+' 戶', '銷控表 →','today');
       var udN=noFloor.length+pkNoFloor+noPing.length+noList.length, udRows=(ud.match(/dr-todo-row/g)||[]).length;
       html+=panel('資料未齊（戶別）', udN+' 項', 'floor', ud, '檢查項：底價、坪數、表價。沒有底價就算不出溢價，獎金也算不了。'+(noFloor.length?'<br>底價未設依棟：'+byBuilding(noFloor)+'。':''));
-      total+=udRows;   /* 頁首總數算「列」：118 戶沒底價是一件事，不是 118 件 */
 
       /* ⑦ 客資未齊（來客）：現在能查的只有列上有的欄位；「建檔後幾天沒有往來紀錄」要等往來紀錄逐筆存 */
       var ld='';
@@ -14747,19 +14729,9 @@ try{ /* collect */
         '現在能查：電話、來源、分級。'+
         '<span class="wk-missing-mark" title="需補欄位：往來紀錄逐筆存（kind／at／by）與勾勾表必填欄位對應">＊</span>'+
         '「建檔 3 天內沒有往來紀錄」「勾勾表必填欄位有缺」要等往來紀錄逐筆存、勾勾表必填欄位對應後才判得出來。');
-      total+=ldN;
 
       blocks.innerHTML=html;
-      excN.textContent=total? total+' 項' : '沒有卡住的';
-
-      /* 台帳一行：引用日報前四張卡（來人／回客、來電、下訂、簽約） */
-      var dv=document.querySelector('#reportsDaily .dp-val'), date=dv? dv.textContent.trim().slice(5) : '';
-      var cards=[].slice.call(document.querySelectorAll('#reportsDaily .dr-cards > div')).slice(0,4);
-      ledger.innerHTML='<span class="hm-lbl">日報 '+date+'</span>'+cards.map(function(cd){
-        var lb=cd.querySelector('.dr-kpi-head > span'), v=cd.querySelector('.dr-kpi-head > b');
-        var label=lb? (lb.childNodes[0]&&lb.childNodes[0].nodeValue||'').trim() : '';
-        return '<span>'+label+' <b>'+(v? v.textContent.replace(/\s+/g,' ').trim() : '—')+'</b></span>';
-      }).join('')+'<button type="button" class="dr-link" data-act="hmDaily">看日報 →</button>';
+      ledger.innerHTML='<button type="button" class="dr-link" data-act="hmDaily">看日報 →</button>';
     }
     function goDaily(){
       nav('reports',true);
