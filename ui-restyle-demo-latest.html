@@ -4195,8 +4195,12 @@
   #page-home .hm-empty{font-size:.72rem; color:var(--muted); padding:var(--s2) 0}
   #page-home .dr-section-head .dr-link{margin-left:var(--s3)}
   /* 例外列整列是一顆按鈕：沿用 .dr-todo-row 的四欄格線（點｜數字｜說明｜去處） */
+  /* 整列可點的例外列。⚠ 不可寫 font:inherit——它會把 font-size 也重設成繼承，
+     而這條選擇器含 #id 權重贏過 .dr-todo-row 的 .72rem，結果整列掉回 body 的 .9rem
+     （下訂未簽約／保留中／資料未齊三張卡就是這樣變大的）。只正規化 button 的 UA 預設，
+     字級一律交給 .dr-todo-row 這個單一出處。 */
   #page-home button.dr-todo-row{width:100%; background:none; border:0; border-top:1px solid var(--line); border-radius:0;
-    font:inherit; color:inherit; text-align:left; cursor:pointer}
+    font-family:inherit; font-weight:inherit; letter-spacing:inherit; color:inherit; text-align:left; cursor:pointer}
   #page-home button.dr-todo-row:first-child{border-top:0}
   #page-home button.dr-todo-row i{color:var(--accent)}
   #page-home button.dr-todo-row:hover i, #page-home button.dr-todo-row:focus-visible i{text-decoration:underline; text-underline-offset:.2em}
