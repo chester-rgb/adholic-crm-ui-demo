@@ -409,37 +409,6 @@
   .proj.new:hover{color:var(--ink); border-color:var(--muted); transform:none}
   .proj.new .plus{font-weight:300; font-size:1.91rem; line-height:1}
 
-  /* ── 建案首頁 ── */
-  .collect{
-    background:var(--panel); border-radius:var(--r-card); padding:var(--s4) var(--card-pad);
-    display:flex; align-items:center; gap:var(--s4); flex-wrap:wrap;
-  }
-  .collect .t{display:flex; flex-direction:column; gap:.05rem; margin-right:.5rem}
-  .collect .t b{font-weight:500; letter-spacing:.06em}
-  .collect .t span{font-size:.7rem; color:var(--muted)}
-  .collect .url{
-    font-size:.76rem; color:var(--ink);
-    background:var(--fill); border:1px solid var(--line); border-radius:var(--r-pill);
-    height:var(--ctrl-h); display:inline-flex; align-items:center; padding:0 1rem;
-    font-variant-numeric:tabular-nums; letter-spacing:.02em;
-  }
-  .collect .acts{margin-left:auto; display:flex; gap:.5rem}
-
-  /* 固定四欄：8 張卡剛好兩排填滿，不會留空位（auto-fill 在寬螢幕會變 5 欄、第二排空 3 格）
-     卡片給 aspect-ratio 讓它接近方形，內容上下分置把版面撐滿（Annie 2026-08-31） */
-  .featrow{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:var(--grid-gap)}
-  @media (max-width:1180px){ .featrow{grid-template-columns:repeat(2,minmax(0,1fr))} }
-  @media (max-width:680px){ .featrow{grid-template-columns:1fr} }
-  .feat{
-    background:var(--panel); border-radius:var(--r-card); padding:var(--s4) var(--card-pad);
-    display:flex; flex-direction:column; gap:.1rem; text-align:left; min-height:5rem;
-    transition:transform .18s ease-out, box-shadow .18s ease-out;
-  }
-  .feat:hover{transform:translateY(-6px)}
-  .feat b{font-weight:500; letter-spacing:.06em; display:flex; align-items:center; gap:.5rem}
-  .feat b .go{margin-left:auto; color:var(--accent); font-weight:400}
-  .feat span{font-size:.72rem; color:var(--muted)}
-
   /* ── 來客卡 ── */
   .leadrow{display:grid; grid-template-columns:repeat(auto-fill,minmax(14.5rem,1fr)); gap:var(--grid-gap)}
   .lead{
@@ -1514,41 +1483,6 @@
 
 
   /* ══ Ron Design Lab 借用語彙（報告 §7 可搬清單）══ */
-
-  /* R-01 照片打底＋實色資訊墨卡＋pin（CoStar 語彙・建案首頁）
-     合規：底圖必須業主實景，demo 用標示過的佔位漸層，不得 AI 生成建物 */
-  .photohero{
-    position:relative; border-radius:var(--r-card); overflow:hidden;
-    min-height:13.5rem; display:flex; align-items:flex-end; padding:var(--s5);
-    background:linear-gradient(115deg,var(--ph-1) 0%,var(--ph-2) 38%,var(--ph-3) 62%,var(--ph-4) 100%);
-  }
-  .photohero::after{
-    content:''; position:absolute; inset:0; pointer-events:none;
-    background:linear-gradient(to top,rgba(20,32,44,.55) 0%,rgba(20,32,44,.12) 45%,transparent 70%);
-  }
-  .ph-slot{
-    position:absolute; top:var(--s4); left:var(--s5); z-index:2;
-    font-size:.66rem; letter-spacing:.14em; color:var(--on-accent);
-    background:rgba(16,26,36,.42); border:1px solid rgba(255,255,255,.28);
-    border-radius:var(--r-pill); padding:.15rem .7rem; backdrop-filter:blur(6px);
-  }
-  .mappin{
-    position:absolute; z-index:3; width:1.65rem; height:1.65rem; border-radius:50%;
-    background:var(--ink); color:var(--on-accent); font-size:.66rem; font-weight:500;
-    display:flex; align-items:center; justify-content:center;
-    box-shadow:0 2px 10px rgba(12,20,28,.45);
-    transition:transform .18s var(--spring), background .18s ease-out;
-  }
-  .mappin:hover{transform:scale(1.18); background:var(--accent)}
-
-  .glassrow{position:relative; z-index:2; display:flex; gap:.55rem; flex-wrap:wrap; width:100%}
-  .gcell{
-    flex:1 1 8rem; background:var(--ink);
-    border-radius:var(--r-row); padding:.6rem .8rem; color:var(--on-accent);
-  }
-  .gcell .v{font-weight:300; font-size:2.12rem; line-height:1.1; font-variant-numeric:tabular-nums; display:flex; align-items:baseline; gap:.35rem}
-  .gcell .v small{font-size:.74rem; font-weight:400; opacity:.8}
-  .gcell .k{font-size:.68rem; letter-spacing:.12em; opacity:.75; margin-top:.1rem}
 
   /* R-02 KPI 數字階梯（Netsuite 語彙・字級隨量體遞減＝把漏斗做進排版） */
   /* 2026-08-26 對齊全站語彙：控制列改 sec pagebar、區間改膠囊、漏斗改十段條 */
@@ -2653,22 +2587,22 @@
 #page-reports .dr-trend.dr-down{color:var(--heat5)}
 #page-reports .dr-trend.dr-flat{color:var(--muted)}
 #page-reports .dr-mid{display:grid;grid-template-columns:22rem minmax(0,1fr);gap:var(--grid-gap);margin-bottom:var(--sec-gap)}
-#page-reports .dr-panel{min-width:0;background:var(--panel);border-radius:var(--r-card);padding:var(--s5)}
-#page-reports .dr-section-head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s3);margin-bottom:var(--s4)}
-#page-reports .dr-section-head h3{font-size:.9rem;font-weight:500;letter-spacing:.08em}
-#page-reports .dr-section-head span{font-size:.7rem;color:var(--muted)}
-#page-reports .dr-todo{display:flex;flex-direction:column}
-#page-reports .dr-todo-row{display:grid;grid-template-columns:auto 4rem minmax(0,1fr) auto;align-items:center;gap:var(--s2);padding:var(--s3) 0;font-size:.74rem;border-top:1px solid var(--line)}
-#page-reports .dr-todo-row:first-child{border-top:0;padding-top:0}
-#page-reports .dr-todo-row > .dot{background:var(--line-3)}
-#page-reports .dr-todo-row > .dot.hot{background:var(--hot)}
-#page-reports .dr-todo-row > .dot.warm{background:var(--warm)}
-#page-reports .dr-todo-row b{font-size:.76rem;font-weight:500;white-space:nowrap}
-#page-reports .dr-todo-row > span:not(.dot){min-width:0;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#page-reports .dr-todo-row i{font-size:.7rem;font-style:normal;color:var(--muted);white-space:nowrap}
-#page-reports .dr-todo-row[data-state="overdue"] i{color:var(--hot)}
-#page-reports .dr-todo-row[data-state="today"] i{color:var(--warm)}
-#page-reports .dr-note{margin-top:var(--s3);padding-top:var(--s3);border-top:1px solid var(--line);font-size:.64rem;line-height:1.7;color:var(--muted)}
+:is(#page-reports,#page-home) .dr-panel{min-width:0;background:var(--panel);border-radius:var(--r-card);padding:var(--s5)}
+:is(#page-reports,#page-home) .dr-section-head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s3);margin-bottom:var(--s4)}
+:is(#page-reports,#page-home) .dr-section-head h3{font-size:.9rem;font-weight:500;letter-spacing:.08em}
+:is(#page-reports,#page-home) .dr-section-head span{font-size:.7rem;color:var(--muted)}
+:is(#page-reports,#page-home) .dr-todo{display:flex;flex-direction:column}
+:is(#page-reports,#page-home) .dr-todo-row{display:grid;grid-template-columns:auto 4rem minmax(0,1fr) auto;align-items:center;gap:var(--s2);padding:var(--s3) 0;font-size:.74rem;border-top:1px solid var(--line)}
+:is(#page-reports,#page-home) .dr-todo-row:first-child{border-top:0;padding-top:0}
+:is(#page-reports,#page-home) .dr-todo-row > .dot{background:var(--line-3)}
+:is(#page-reports,#page-home) .dr-todo-row > .dot.hot{background:var(--hot)}
+:is(#page-reports,#page-home) .dr-todo-row > .dot.warm{background:var(--warm)}
+:is(#page-reports,#page-home) .dr-todo-row b{font-size:.76rem;font-weight:500;white-space:nowrap}
+:is(#page-reports,#page-home) .dr-todo-row > span:not(.dot){min-width:0;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+:is(#page-reports,#page-home) .dr-todo-row i{font-size:.7rem;font-style:normal;color:var(--muted);white-space:nowrap}
+:is(#page-reports,#page-home) .dr-todo-row[data-state="overdue"] i{color:var(--hot)}
+:is(#page-reports,#page-home) .dr-todo-row[data-state="today"] i{color:var(--warm)}
+:is(#page-reports,#page-home) .dr-note{margin-top:var(--s3);padding-top:var(--s3);border-top:1px solid var(--line);font-size:.64rem;line-height:1.7;color:var(--muted)}
 #page-reports .dr-table-wrap{padding:0;background:var(--bg);border:1px solid var(--line-2);border-radius:var(--r-card);overflow-x:auto}
 #page-reports .dr-table{width:100%;min-width:42rem;table-layout:fixed;border-collapse:collapse;border-spacing:0}
 #page-reports .dr-table th,#page-reports .dr-table td{padding:var(--s3) var(--s2);border-bottom:1px solid var(--line);font-size:.74rem;line-height:1.45;text-align:center;white-space:nowrap;font-variant-numeric:tabular-nums}
@@ -2686,9 +2620,9 @@
 #page-reports .dr-table th:nth-child(7){width:19%}
 #page-reports .dr-weather .microlbl{margin-bottom:0}
 #page-reports .dr-weather .chip{font-size:.64rem}
-#page-reports .dr-link{background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer;text-align:inherit;border-bottom:1px solid var(--line-2)}
-#page-reports .dr-link:hover{color:var(--accent);border-bottom-color:var(--line-accent)}
-#page-reports .dr-link:focus-visible{outline:2px solid var(--line-accent);outline-offset:2px;border-radius:var(--r-mini)}
+:is(#page-reports,#page-home) .dr-link{background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer;text-align:inherit;border-bottom:1px solid var(--line-2)}
+:is(#page-reports,#page-home) .dr-link:hover{color:var(--accent);border-bottom-color:var(--line-accent)}
+:is(#page-reports,#page-home) .dr-link:focus-visible{outline:2px solid var(--line-accent);outline-offset:2px;border-radius:var(--r-mini)}
 #page-reports .dr-weather{display:flex;align-items:center;gap:var(--s3);flex:none}
 #page-reports .dr-weather .chips{display:inline-flex;gap:var(--s1)}
 @media (max-width:1020px){
@@ -2779,7 +2713,7 @@
 #page-reports .sel-mini .sel-list [role="option"][aria-selected="true"]{color:var(--accent);font-weight:500;background:var(--tint)}
 #page-reports .wk-meta small{font-size:.64rem;color:var(--muted);letter-spacing:.02em}
 #page-reports .wk-cardsub{font-size:.74rem;color:var(--muted)}
-#page-reports .wk-missing-mark{color:var(--hot);cursor:help}
+:is(#page-reports,#page-home) .wk-missing-mark{color:var(--hot);cursor:help}
 #page-reports .wk-meta>div{display:flex;flex-direction:column;gap:var(--s1);min-width:0}
 #page-reports .wk-meta>div>span{font-size:.7rem;color:var(--muted);letter-spacing:.06em}
 #page-reports .wk-meta b{font-size:.78rem;font-weight:500;font-variant-numeric:tabular-nums}
@@ -3464,7 +3398,6 @@
 
   /* ── v10 五頁改版（projects/home/leads/leadsall/news 專屬；參考 Attio/Linear 密度、URAGAWA 節奏） ── */
   /* 對外 demo 隱藏開發者入口（規範頁保留，網址 #guide 直達；Annie 2026-08-24 指示） */
-  #page-home .mappin{display:none}  /* 佔位漸層上無照片可標，先藏；實景照定稿後再啟用（Annie 2026-08-24） */
   .rail button .badge.unread{background:var(--hot)}
   .rail button .badge[hidden]{display:none}
   .rail .rail-proj{display:none}  /* 建案名已在頂欄品牌位大字顯示，直排小字為重複資訊（Annie 2026-08-24） */
@@ -3499,7 +3432,7 @@
   button:focus-visible, a:focus-visible, input:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
   .palette input:focus-visible{outline:none}
   .pillbtn:active, .circlebtn:active, .cbtn:active{transform:scale(.96)}
-  #page-projects .proj:active, #page-home .feat:active{transform:translateY(-1px) scale(.99)}
+  #page-projects .proj:active{transform:translateY(-1px) scale(.99)}
   /* 首次進站導覽：分步 coach-mark（遮罩色由 --ink 以 color-mix 調出，未新增 rgba；拉線位置由 JS 依目標實際座標計算） */
   .tour{position:fixed; inset:0; z-index:70; background:color-mix(in srgb, var(--ink) 72%, transparent); display:none}
   .tour.show{display:block; animation:fadein .25s ease-out both}
@@ -3642,8 +3575,6 @@
   @keyframes sweep{0%{transform:scaleX(0); opacity:1} 80%{transform:scaleX(1); opacity:1} 100%{transform:scaleX(1); opacity:0}}
   @keyframes rippleK{to{transform:scale(3.4); opacity:0}}
   #navsweep{position:fixed; top:0; left:0; right:0; height:2px; z-index:80; background:var(--accent); transform-origin:left; transform:scaleX(0); pointer-events:none}
-  .phcanvas{position:absolute; inset:0; width:100%; height:100%; z-index:0; pointer-events:none}
-  .photohero .glassrow{will-change:transform; transition:transform .25s ease-out}
   .pillbtn{position:relative; overflow:hidden}
   .ripple{position:absolute; border-radius:50%; background:var(--on-accent); opacity:.35; transform:scale(0); animation:rippleK .55s ease-out forwards; pointer-events:none}
   .pillbtn.solid .ripple{background:var(--accent-on-ink)}
@@ -3716,11 +3647,6 @@
   #page-projects .proj.new:hover .plus{transform:rotate(90deg)}
   #page-projects .hist .h.act{transition:transform .15s ease-out, background .15s ease-out}
   #page-projects .hist .h.act:hover{transform:translateX(4px)}
-  /* 建案首頁 */
-  #page-home .feat b .go{transition:transform .2s var(--spring)}
-  #page-home .feat:hover b .go{transform:translateX(5px)}
-  #page-home .collect .url{transition:background .18s ease-out, transform .2s var(--spring)}
-  #page-home .collect .url:hover{background:var(--tint); transform:scale(1.01)}
   /* 來客名單 */
   #page-leadsall .lead{transition:transform .2s var(--spring), box-shadow .2s ease-out}
   #page-leadsall .lead:hover{transform:translateY(-4px)}
@@ -3763,12 +3689,8 @@
   .view.on .salebar i,.view.on .gbar i{animation:barx .6s var(--enter) backwards .3s}
   .kpi .v small{font-size:.83rem; font-weight:400; color:var(--muted); align-self:flex-end; padding-bottom:.3rem}
   /* hover 卡面定義：白面＋髮絲框，跟白底拉開（Annie 2026-08-24） */
-  #page-projects .proj, #page-home .feat{transition:transform .18s ease-out, box-shadow .18s ease-out, background .18s ease-out}
+  #page-projects .proj{transition:transform .18s ease-out, box-shadow .18s ease-out, background .18s ease-out}
   #page-projects .proj:hover{background:var(--bg); outline:1px solid var(--line-2); outline-offset:-1px}
-  /* .feat 挖了凹槽，外框會在缺口處斷掉、外陰影會在缺口露灰霧——改用底色位移當回饋。
-     ⚠ 底色不可變成 --bg：凹槽本身就是用 --bg 畫的，卡片一變白缺口就消失了
-     （Annie 2026-08-31 指出「滑上去底色不會變白色」） */
-  #page-home .feat:hover{background:var(--fill)}
   /* 建案總覽：實景照位卡頭＋銷售進度條 */
   #page-projects .proj{overflow:hidden}
   #page-projects .proj:hover{transform:translateY(-6px); box-shadow:var(--el2)}
@@ -3782,13 +3704,6 @@
   #page-projects .salebar i{display:block; height:100%; width:var(--w,0%); background:var(--accent); border-radius:inherit; transform-origin:left}
   #page-projects .proj .go{transition:transform .18s ease-out}
   #page-projects .proj:hover .go{transform:translateX(3px)}
-  /* 建案首頁：墨卡微量條＋功能卡即時指標 */
-  #page-home .gcell .gbar{display:block; height:3px; border-radius:var(--r-mini); background:var(--muted); overflow:hidden; margin-top:.45rem}
-  #page-home .gcell .gbar i{display:block; height:100%; width:var(--w,0%); background:var(--accent-on-ink); border-radius:inherit; transform-origin:left}
-  #page-home .feat .fm{font-size:.72rem; color:var(--accent); font-variant-numeric:tabular-nums; letter-spacing:.03em; margin-top:.35rem}
-  #page-home .feat .fm b{font-weight:500}
-  #page-home .feat .fm b.warn{color:var(--warm)}
-  #page-home .feat .fm b.hotf{color:var(--hot)}
   /* 來客名單：表格加意願熱度欄 */
   #page-leadsall td .interest{padding-bottom:0}
   /* 全建案名單：搜尋輸入框＋跨案標記 */
@@ -4245,102 +4160,33 @@
      左圈＝該功能的圖示（與側欄同一顆，認得出來）
      右圈＝滑鼠移過去才長出的 45° 箭頭，明示「按下去會進到另一頁」
      空間永遠保留給兩顆圈，hover 只動凹槽本身，卡片文字不會重排 */
-  /* 凹槽寬度固定放兩顆圈（102px），與人員卡同比例——
-     只放一顆時槽寬只有 50px，兩個 28px 的假圓角幾乎把槽吃掉，缺口會變形
-     （Annie 2026-08-31 指出要參考人員管理卡片） */
-  #page-home .feat{
-    position:relative; padding-right:7.2rem; overflow:visible;
-    /* 不要硬做成方形：內容只有三行，撐成方形反而讓每張卡中間空一大塊。
-       固定四欄已經填滿整列寬度，高度就讓內容決定（Annie 2026-08-31） */
-    min-height:8.4rem; justify-content:space-between;
-    touch-action:none;                       /* 長按拖曳時不要被瀏覽器捲動搶走 */
-  }
-  #page-home .feat .fm{margin-top:auto}      /* 數字沉到卡片底部，上下把版面撐滿 */
-  /* 游標本身也是提示：可抓取 → 抓取中 */
-  #page-home .feat{cursor:grab}
-  #page-home .feat:active,#page-home .feat.dragging{cursor:grabbing}
-  #page-home .draghint{display:inline-flex; align-items:center; gap:.3rem}
-  #page-home .draghint .ico{height:.9rem; width:auto; fill:currentColor; stroke:none; opacity:.7}
-  /* 拖曳中的樣式 */
-  #page-home .feat.dragging{
-    z-index:20; cursor:grabbing; box-shadow:0 22px 48px rgba(28,43,58,.18);
-    transform:scale(1.03); transition:none;
-  }
-  #page-home .feat.dragging .fbay{background:transparent}
-  #page-home .feat.dragging .fbay::before,
-  #page-home .feat.dragging .fbay::after{opacity:0}
-  #page-home .featrow.reordering .feat:not(.dragging){transition:transform .22s var(--enter)}
-  #page-home .feat .fbay{
-    position:absolute; top:0; right:0; z-index:2; display:flex; align-items:flex-start;
-    background:var(--bg); padding:0 0 .35rem .35rem;
-    /* 槽的凸圓角要跟兩個假圓角同值，否則左下角是直角、缺口會有硬折
-       （凸圓角 28px − 內距 5.6px ＝ 22.4px ＝ 2.8rem 圓鈕的半徑，三者同心） */
-    border-bottom-left-radius:var(--r-card);
-  }
-  #page-home .feat .fbay::before,
-  #page-home .feat .fbay::after{
-    content:''; position:absolute; width:var(--r-card); height:var(--r-card);
-    background:radial-gradient(circle var(--r-card) at 0% 100%, transparent calc(var(--r-card) - .5px), var(--bg) var(--r-card));
-  }
-  #page-home .feat .fbay::before{right:100%; top:0}
-  #page-home .feat .fbay::after{top:100%; right:0}
-  #page-home .feat .fcirc{
-    width:2.8rem; height:2.8rem; border-radius:50%; flex:none;
-    display:inline-flex; align-items:center; justify-content:center;
-    transition:background .2s var(--enter), color .2s var(--enter),
-               width .26s var(--enter), margin .26s var(--enter), opacity .2s ease-out;
-  }
-  #page-home .feat .fcirc svg{width:1.15rem; height:1.15rem; stroke:currentColor; fill:none;
-    stroke-width:1.1; stroke-linecap:round; stroke-linejoin:round}
-  #page-home .feat .fcirc.fic{background:var(--tint); color:var(--accent)}
-  /* 箭頭圈常駐（比照人員卡的兩顆圓鈕），靜止是白底細框、滑鼠移過去才填成主色 */
-  #page-home .feat .fcirc.fgo{
-    margin-left:.4rem; background:var(--bg); color:var(--line-3);
-    border:1px solid var(--line);
-  }
-  #page-home .feat:hover .fcirc.fgo,
-  #page-home .feat:focus-visible .fcirc.fgo{
-    background:var(--accent); border-color:var(--accent); color:var(--on-accent);
-    transform:translate(2px,-2px);
-  }
-  /* 只有標題那一行要讓開第二顆圈的位置；說明與數字列維持滿寬
-     （量測：卡片 254px 時，hover 凹槽左緣會壓過標題右緣 25px） */
-  #page-home .feat b{padding-right:0}
-  #page-home .feat b .go{display:none}
-
-
-  /* ══ 建案首頁深色帶：近 12 週來客趨勢（Annie 2026-08-31 選定 T2）══
-     原本這塊是等實景照的空白漸層；照片來之前先讓它承載這頁最缺的東西——時間軸。
-     KPI 五格全是「當下數字」，沒有任何走勢可讀。 */
-  #page-home .photohero{min-height:20rem; display:flex; flex-direction:column; justify-content:flex-end}
-  #page-home .trend{position:absolute; left:var(--s7); right:var(--s7); top:5.4rem; bottom:8.2rem; pointer-events:none}
-  #page-home .trend svg{width:100%; height:100%; display:block; overflow:visible}
-  #page-home .trend .grid line{stroke:rgba(255,255,255,.06); stroke-width:1; vector-effect:non-scaling-stroke}
-  #page-home .trend .avg{stroke:rgba(255,255,255,.3); stroke-width:1; stroke-dasharray:3 5; vector-effect:non-scaling-stroke}
-  #page-home .trend .ln{fill:none; stroke:#fff; stroke-opacity:.95; stroke-width:2.2;
-    stroke-linecap:round; stroke-linejoin:round; vector-effect:non-scaling-stroke}
-  #page-home .trend .dot{fill:#fff}
-  #page-home .trend .ring{fill:none; stroke:rgba(255,255,255,.55); stroke-width:1; vector-effect:non-scaling-stroke}
-  #page-home .trhead{position:absolute; left:var(--s7); right:var(--s7); top:var(--s5);
-    display:flex; align-items:baseline; gap:var(--s5); z-index:2}
-  #page-home .trhead .eb{font-size:.6rem; letter-spacing:.28em; color:rgba(255,255,255,.42); flex:none}
-  #page-home .trhead .now{display:flex; align-items:baseline; gap:.35rem; color:#fff; flex:none}
-  #page-home .trhead .now b{font-size:1.91rem; font-weight:300; line-height:1}
-  #page-home .trhead .now em{font-style:normal; font-size:.68rem; color:rgba(255,255,255,.5)}
-  #page-home .trhead .delta{font-size:.68rem; flex:none; color:var(--heat5)}
-  #page-home .trhead .delta.dn{color:var(--heat1)}
-  #page-home .trhead .sum{margin-left:auto; font-size:.6rem; letter-spacing:.16em;
-    color:rgba(255,255,255,.36); white-space:nowrap}
-  #page-home .trfoot{position:absolute; left:var(--s7); right:var(--s7); bottom:7.3rem;
-    display:flex; justify-content:space-between; font-size:.58rem; letter-spacing:.2em;
-    color:rgba(255,255,255,.28); z-index:2}
-  #page-home .photohero .glassrow{position:relative; z-index:2}
-  /* 實景照還沒到，圖表期間先收起地圖標記；照片上線後恢復即可 */
-  #page-home .photohero .mappin{display:none}
-  @media (max-width:820px){
-    #page-home .photohero{min-height:24rem}
-    #page-home .trend{bottom:12rem} #page-home .trfoot{bottom:11.2rem}
-  }
+  /* ── 建案首頁＝案場今日（Enson 2026-09-08 拍板 B 案）──
+     沒有 hero、沒有功能磚（八張磚有七張是左欄已有的第二套導覽）。
+     面板／清單列／小字全部沿用日報的 .dr-* 元件（選擇器已放寬成 :is(#page-reports,#page-home)），
+     這裡只補首頁自己的三樣：去化一行、兩欄格線、整列可點的例外列。 */
+  #page-home .hm-head{display:flex; flex-wrap:wrap; align-items:baseline; gap:var(--s2) var(--s6);
+    font-size:.76rem; color:var(--muted); font-variant-numeric:tabular-nums}
+  #page-home .hm-head b{color:var(--ink); font-weight:500}
+  #page-home .hm-head em{font-style:normal; color:var(--accent); margin-left:var(--s1)}
+  #page-home .hm-head .hm-src{margin-left:auto; font-size:.7rem}
+  #page-home .hm-grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--grid-gap); margin-bottom:var(--sec-gap)}
+  @media (max-width:980px){ #page-home .hm-grid{grid-template-columns:1fr} }
+  /* 例外列整列是一顆按鈕：沿用 .dr-todo-row 的四欄格線（點｜數字｜說明｜去處） */
+  #page-home button.dr-todo-row{width:100%; background:none; border:0; border-top:1px solid var(--line); border-radius:0;
+    font:inherit; color:inherit; text-align:left; cursor:pointer}
+  #page-home button.dr-todo-row:first-child{border-top:0}
+  #page-home button.dr-todo-row i{color:var(--accent)}
+  #page-home button.dr-todo-row:hover i, #page-home button.dr-todo-row:focus-visible i{text-decoration:underline; text-underline-offset:.2em}
+  #page-home button.dr-todo-row:focus-visible{outline:2px solid var(--line-accent); outline-offset:-2px; border-radius:var(--r-mini)}
+  /* 數字是 0 的那列整列退到最淡：沒事就該安靜 */
+  #page-home .dr-todo-row.hm-zero > .dot{background:var(--line-2)}
+  #page-home .dr-todo-row.hm-zero b, #page-home .dr-todo-row.hm-zero i{color:var(--muted)}
+  #page-home .hm-ledger{display:flex; flex-wrap:wrap; align-items:baseline; gap:var(--s2) var(--s5);
+    padding-top:var(--s4); border-top:1px solid var(--line);
+    font-size:.74rem; color:var(--muted); font-variant-numeric:tabular-nums}
+  #page-home .hm-ledger b{color:var(--ink); font-weight:500}
+  #page-home .hm-ledger .hm-lbl{color:var(--ink); letter-spacing:.06em}
+  #page-home .hm-ledger .dr-link{margin-left:auto}
 
   /* KPI 卡下方小字：拆到各建案，本月新客再加上與上月的差
      （.kpi 是 column-reverse，要用 order 才會落在數字下方・Annie 2026-08-31） */
@@ -5068,43 +4914,25 @@
           <span class="note" id="homeNote">台中市北屯區・2026-03 開賣</span>
         </div>
 
-        <div class="block photohero">
-          <!-- 案場實景照位置・由業主提供（合規：真實標的不得 AI 生成）——製作備註，不顯示於介面 -->
-          <button class="mappin" style="left:19%;top:24%" data-demo-toast data-tip="A 棟・8F 以上已完銷">1</button>
-          <button class="mappin" style="left:44%;top:34%" data-demo-toast data-tip="接待中心入口・現場收客點">2</button>
-          <button class="mappin" style="left:63%;top:16%" data-demo-toast data-tip="B 棟・施工中，2027 Q1 完工">3</button>
-          <button class="mappin" style="left:81%;top:28%" data-demo-toast data-tip="鄰里公園綠帶・步行 3 分">4</button>
-          <div class="glassrow">
-            <div class="gcell"><div class="v"><span class="num" data-n="384">384</span><small>組</small></div><div class="k">累積來客</div></div>
-            <div class="gcell"><div class="v"><span class="num" data-n="72">72</span><small>戶</small></div><div class="k">總戶數</div></div>
-            <div class="gcell"><div class="v"><span class="num" data-n="14">14</span><small>戶／72・19.4%</small></div><div class="k">住宅已售</div><span class="gbar" aria-hidden="true"><i style="--w:19.4%"></i></span></div>
-            <div class="gcell"><div class="v"><span class="num" data-n="6">6</span><small>個／60・10%</small></div><div class="k">車位已售</div><span class="gbar" aria-hidden="true"><i style="--w:10%"></i></span></div>
-            <div class="gcell"><div class="v"><span class="num" data-n="19.6">19.6</span><small>億</small></div><div class="k">剩餘可售</div></div>
+        <!-- 建案首頁＝案場今日（Enson 2026-09-08 拍板 B 案）：沒有 hero、沒有功能磚，只回答「今天有什麼事卡住」。
+             這頁不准手寫常數——去化來自 window.PRICEDATA、例外數來自來客名單的列、要追的人與台帳引用日報。
+             全部由主 script 尾端的 JS 在每次切進這頁時當場算。 -->
+        <div class="block hm-head" id="hmHead" aria-label="去化"></div>
+
+        <div class="hm-grid">
+          <div class="dr-panel">
+            <div class="dr-section-head"><h3>今天要處理</h3><span id="hmExcN"></span></div>
+            <div class="dr-todo" id="hmExc"></div>
+            <p class="dr-note">數字由來客名單與銷控表當場算出；點一列就跳到已套好篩選的那一頁，看到的清單跟這個數字一樣。</p>
+          </div>
+          <div class="dr-panel">
+            <div class="dr-section-head"><h3>今日要追的人</h3><span id="hmTodoN"></span></div>
+            <div class="dr-todo" id="hmTodo"></div>
+            <p class="dr-note">與日報同一份清單，依往來紀錄與指派狀態自動產生。</p>
           </div>
         </div>
 
-        <div class="block collect">
-          <div class="t"><b>現場收客勾勾表</b></div>
-          <span class="url">crm.adholic.com.tw/collect/qygj-2026</span>
-          <div class="acts">
-            <button class="pillbtn" id="copyLink">複製連結</button>
-            <button class="pillbtn" id="qrBtn">QR Code</button>
-            <button class="pillbtn solid" data-page="collect"><span class="ic">↗</span>開啟</button>
-          </div>
-        </div>
-
-        
-        <div class="sec"><h2>功能</h2><span class="note draghint"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="6" r="1.3"/><circle cx="15" cy="6" r="1.3"/><circle cx="9" cy="12" r="1.3"/><circle cx="15" cy="12" r="1.3"/><circle cx="9" cy="18" r="1.3"/><circle cx="15" cy="18" r="1.3"/></svg>長按可拖曳排序，常用的放前面</span></div>
-        <div class="featrow">
-          <button class="feat" data-page="leadsall"><b>來客名單<span class="go">→</span></b><span>管理來客資料與動態欄位</span><span class="fm">384 累積・<b class="hotf">12 未指派</b></span></button>
-          <button class="feat" data-page="units"><b>銷控表<span class="go">→</span></b><span>戶別／車位銷售狀態</span><span class="fm">住宅 14／72・19.4%</span></button>
-          <button class="feat" data-page="prices"><b>價格表<span class="go">→</span></b><span>三層價格與溢價、批次調底價</span><span class="fm"><b class="warn">58 戶底價待補</b></span></button>
-          <button class="feat" data-page="analytics"><b>分析<span class="go">→</span></b><span>來客來源與轉換分析</span><span class="fm">本月成交 6・轉換 8.8%</span></button>
-          <button class="feat" data-page="reports"><b>業務報表<span class="go">→</span></b><span>日報／週報／月報與目標達成</span><span class="fm">今日 14 組・下訂 2 戶</span></button>
-          <button class="feat" data-page="templates"><b>勾勾表範本<span class="go">→</span></b><span>設定來客名單動態欄位</span><span class="fm">完整來客表 v1・17 欄</span></button>
-          <button class="feat" data-act="openImport"><b>Excel 匯入<span class="go">→</span></b><span>從舊 Excel 匯入來客</span><span class="fm">.xlsx／.csv・單次 5,000 列</span></button>
-          <button class="feat" data-page="commission"><b>業務獎金<span class="go">→</span></b><span>獎金方案、明細與發放</span><span class="fm">標準跳趴案・5 位業務</span></button>
-        </div>
+        <div class="block hm-ledger" id="hmLedger" aria-label="最近一份日報"></div>
       </section>
 
       <!-- ═══ 來客名單 ═══ -->
@@ -9931,7 +9759,6 @@
     if(d){ var lb=d.getAttribute('aria-label')||d.textContent.replace(/\s+/g,' ').trim().slice(0,14); toast('「'+lb+'」——正式系統在此執行實際功能') }
     if(!e.target.closest('.cluster')) closeMenus();
   });
-  $('#copyLink').addEventListener('click',function(){ toast('連結已複製：<b>collect/qygj-2026</b>') });
 
   /* 右上兩個選單：頭像＝個人帳號、齒輪＝系統設定，互斥開合 */
   var MENUS=['#userMenu','#gearMenu','#bellMenu'];
@@ -11263,6 +11090,32 @@
     if(src){ src=src.replace('▾','').trim(); if(src && src!=='全部') parts.push('來源 '+src) }
     return parts.length ? parts.join('・') : '全部來客';
   }
+  /* 首頁「今天要處理」的深連結：先清掉所有條件，再只套指定的幾項——
+     數字是在首頁算的，點進來看到的清單必須跟那個數字一模一樣 */
+  function laDeepLink(o){
+    o=o||{};
+    laApplyingSaved=true;
+    $$('#page-leadsall [data-act="dd"]').forEach(function(x){
+      var pre=x.textContent.split('：')[0], first=(x.dataset.opts||'').split('|')[0];
+      x.textContent=pre+'：'+first+' ▾'; laMark(x,false);
+    });
+    laSetCity('全部');
+    var xb=$('#page-leadsall [data-act="laCross"]');
+    if(xb){ laCross=false; xb.setAttribute('aria-pressed','false'); laMark(xb,false) }
+    laGrade=''; laSrc=''; laRel=''; laGift=''; laQ='';
+    var gb=$('#page-leadsall [data-act="laGrade"]'); if(gb){ gb.textContent='分級：全部 ▾'; laMark(gb,false) }
+    var sq=$('#laSearch'); if(sq) sq.value='';
+    if(window.laResetRange) window.laResetRange();
+    laProj=o.proj||'';
+    var projBtn=$$('#page-leadsall [data-act="dd"]').filter(function(b){return b.textContent.indexOf('建案')===0})[0];
+    if(projBtn){ projBtn.textContent='建案：'+(laProj||'全部')+' ▾'; laMark(projBtn,!!laProj) }
+    laUn=!!o.un; var ub=$('#page-leadsall [data-act="laUn"]'); if(ub) laMark(ub,laUn);
+    setStale(!!o.stale);
+    laApplyingSaved=false;
+    laActiveSaved=-1; laDrawSaved();
+    laFilterRows();
+  }
+  window.laDeepLink=laDeepLink;
   function laApplySaved(i){
     var v=LA_SAVED[i]; if(!v) return;
     laApplyingSaved=true;
@@ -14605,7 +14458,6 @@ try{ /* collect */
 
   /* 現場收客 QR 彈窗 */
   var qrMask=$('#qrMask');
-  $('#qrBtn').addEventListener('click',function(){ qrMask.classList.add('show') });
   $('#qrClose').addEventListener('click',function(){ qrMask.classList.remove('show') });
   qrMask.addEventListener('click',function(e){ if(e.target===qrMask) qrMask.classList.remove('show') });
 
@@ -14615,37 +14467,6 @@ try{ /* collect */
   /* 切頁不再放骨架閃爍與頂端掃光：沒有真的在載入，就不要演載入（Enson 2026-09-05）。
      skeleton() 與 #navsweep 保留在檔內，等真的接後端有等待時間再叫。 */
   nav=function(p,r){ _nav2(p,r) };
-
-  /* Hero Canvas 氛圍層（three.js 感，原生 2D） */
-  var phEl=document.querySelector('#page-home .photohero');
-  if(phEl && !reduced){
-    var cv=document.createElement('canvas'); cv.className='phcanvas'; phEl.insertBefore(cv, phEl.firstChild);
-    var ctx=cv.getContext('2d'), T0=0;
-    function cvSize(){ cv.width=phEl.clientWidth||1200; cv.height=phEl.clientHeight||220 }
-    cvSize(); window.addEventListener('resize',cvSize);
-    var rootCS=getComputedStyle(document.documentElement);
-    var cols=[rootCS.getPropertyValue('--ph-2').trim(), rootCS.getPropertyValue('--ph-4').trim(), rootCS.getPropertyValue('--accent-on-ink').trim()];
-    (function loop(){
-      T0+=.0045;
-      ctx.clearRect(0,0,cv.width,cv.height);
-      for(var i=0;i<3;i++){
-        var x=cv.width*(.18+.32*i)+Math.sin(T0*(1+i*.35)+i*2.1)*cv.width*.13;
-        var y=cv.height*.42+Math.cos(T0*(1.25+i*.2)+i)*cv.height*.26;
-        var rr=cv.width*.17;
-        var g=ctx.createRadialGradient(x,y,0,x,y,rr);
-        g.addColorStop(0,cols[i]||'#88a'); g.addColorStop(1,'transparent');
-        ctx.globalAlpha=.32; ctx.fillStyle=g;
-        ctx.beginPath(); ctx.arc(x,y,rr,0,7); ctx.fill();
-      }
-      requestAnimationFrame(loop);
-    })();
-    phEl.addEventListener('mousemove',function(e){
-      var r=phEl.getBoundingClientRect();
-      var gx=(e.clientX-r.left)/r.width-.5, gy=(e.clientY-r.top)/r.height-.5;
-      var g=phEl.querySelector('.glassrow'); if(g) g.style.transform='translate('+(-gx*10).toFixed(1)+'px,'+(-gy*7).toFixed(1)+'px)';
-    });
-    phEl.addEventListener('mouseleave',function(){ var g=phEl.querySelector('.glassrow'); if(g) g.style.transform='' });
-  }
 
   /* 按鈕漣漪 */
   document.addEventListener('click',function(e){
@@ -14776,6 +14597,99 @@ try{ /* collect */
 
   nav(pageFromHash(),false);
   window.addEventListener('hashchange',function(){nav(pageFromHash(),false)});
+
+  /* ══ 建案首頁＝案場今日：每次切進來當場算，不留手寫常數 ══ */
+  (function(){
+    var home=document.getElementById('page-home'); if(!home) return;
+    var head=document.getElementById('hmHead'), exc=document.getElementById('hmExc'), excN=document.getElementById('hmExcN'),
+        todo=document.getElementById('hmTodo'), todoN=document.getElementById('hmTodoN'), ledger=document.getElementById('hmLedger');
+    function projName(){ var t=document.getElementById('homeTitle'); return t?t.textContent.trim():'' }
+    /* 與 laFilterRows 同一組條件：略過空列與已刪除、只算本案 */
+    function leadRows(){
+      var pj=projName();
+      return [].slice.call(document.querySelectorAll('#page-leadsall tbody tr')).filter(function(tr){
+        return !tr.classList.contains('emptyrow') && tr.dataset.deleted!=='1' && (!pj || tr.dataset.proj===pj);
+      });
+    }
+    function refresh(){
+      /* 去化：PRICEDATA 逐戶算（st：sale 待售／hold 保留／booked 下訂／signed 簽約／done 交屋） */
+      var P=window.PRICEDATA||{}, U=P.units||{}, K=P.park||{}, c={sale:0,hold:0,booked:0,signed:0,done:0}, tot=0, noFloor=0;
+      Object.keys(U).forEach(function(k){ var v=U[k]; tot++; if(c[v.st]!==undefined) c[v.st]++; if(!v.floor) noFloor++; });
+      var sold=c.booked+c.signed+c.done, pk=0, pkSold=0;
+      Object.keys(K).forEach(function(k){ var v=K[k]; pk++; if(v.st==='booked'||v.st==='signed'||v.st==='done') pkSold++; });
+      head.innerHTML=
+        '<span>去化 <b>'+sold+'</b>／'+tot+' 戶<em>'+(tot? Math.round(sold/tot*1000)/10 : 0)+'%</em></span>'+
+        '<span>車位 <b>'+pkSold+'</b>／'+pk+'</span>'+
+        '<span>待售 '+c.sale+'・保留 '+c.hold+'・下訂 '+c.booked+'・簽約 '+c.signed+'・交屋 '+c.done+'</span>'+
+        '<span class="hm-src">戶數與狀態來自銷控表</span>';
+      /* 今天要處理：四條例外，每條的數字＝點進去那頁看到的筆數 */
+      var rows=leadRows();
+      var un=rows.filter(function(tr){return !!tr.querySelector('.unassigned')}).length;
+      var st=rows.filter(function(tr){return !!tr.querySelector('.stale-dot')}).length;
+      var items=[
+        {n:un,      u:'筆', t:'未指派來客',           go:'un',    dot:'hot',  to:'來客名單'},
+        {n:st,      u:'筆', t:'久未跟進（逾 14 天）',   go:'stale', dot:'warm', to:'來客名單'},
+        {n:noFloor, u:'戶', t:'底價待補',             go:'floor', dot:'warm', to:'價格表'},
+        {n:c.hold,  u:'戶', t:'保留中',               go:'hold',  dot:'',     to:'銷控表',
+         note:' <span class="wk-missing-mark" title="需補欄位：保留到期日，才能算倒數">＊</span>'}
+      ];
+      exc.innerHTML=items.map(function(it){
+        var zero=it.n===0;
+        return '<button type="button" class="dr-todo-row'+(zero?' hm-zero':'')+'" data-act="hmGo" data-go="'+it.go+'">'+
+          '<span class="dot'+(zero||!it.dot?'':' '+it.dot)+'" aria-hidden="true"></span>'+
+          '<b>'+it.n+' '+it.u+'</b><span>'+it.t+(it.note||'')+'</span><i>'+it.to+' →</i></button>';
+      }).join('');
+      var pending=items.filter(function(it){return it.n>0}).length;
+      excN.textContent=pending? pending+' 項' : '沒有卡住的';
+      /* 今日要追的人：直接引用日報那一份（DOM 複製，不另外維護一份名單） */
+      var src=document.querySelector('#reportsDaily .dr-todo');
+      todo.innerHTML=src? src.innerHTML : '';
+      var srcN=src && src.parentNode.querySelector('.dr-section-head span');
+      todoN.textContent=srcN? srcN.textContent : '';
+      /* 台帳一行：引用日報前四張卡（來人／回客、來電、下訂、簽約） */
+      var dv=document.querySelector('#reportsDaily .dp-val'), date=dv? dv.textContent.trim().slice(5) : '';
+      var cards=[].slice.call(document.querySelectorAll('#reportsDaily .dr-cards > div')).slice(0,4);
+      ledger.innerHTML='<span class="hm-lbl">日報 '+date+'</span>'+cards.map(function(cd){
+        var lb=cd.querySelector('.dr-kpi-head > span'), v=cd.querySelector('.dr-kpi-head > b');
+        var label=lb? (lb.childNodes[0]&&lb.childNodes[0].nodeValue||'').trim() : '';
+        return '<span>'+label+' <b>'+(v? v.textContent.replace(/\s+/g,' ').trim() : '—')+'</b></span>';
+      }).join('')+'<button type="button" class="dr-link" data-act="hmDaily">看日報 →</button>';
+    }
+    function goDaily(){
+      nav('reports',true);
+      var b=document.querySelector('#reportsSeg button[data-rep="daily"]'); if(b && !b.classList.contains('on')) b.click();
+    }
+    home.addEventListener('click',function(e){
+      var g=e.target.closest('[data-goto-lead]');
+      if(g){
+        var nm=g.dataset.gotoLead;
+        nav('leadsall',true);
+        /* 先把名單頁的篩選清掉——上一次從首頁深連結進去留下的條件會把這個人藏起來 */
+        if(window.laDeepLink) laDeepLink({});
+        setTimeout(function(){
+          var hit=[].slice.call(document.querySelectorAll('#page-leadsall tbody tr')).filter(function(r){
+            var n=r.querySelector('.name'); return n&&n.textContent.indexOf(nm)>=0 })[0];
+          if(hit && window.openDrawer) openDrawer(hit); else toast('示意：正式版依來客 ID 直接開啟「'+nm+'」的詳情');
+        },80);
+        return;
+      }
+      if(e.target.closest('[data-act="hmDaily"]')){ goDaily(); return }
+      var r=e.target.closest('[data-act="hmGo"]'); if(!r) return;
+      var go=r.dataset.go, pj=projName();
+      if(go==='un'){ nav('leadsall',true); if(window.laDeepLink) laDeepLink({proj:pj,un:true}); toast('只顯示 <b>'+pj+'</b> 的<b>未指派</b>來客'); }
+      else if(go==='stale'){ nav('leadsall',true); if(window.laDeepLink) laDeepLink({proj:pj,stale:true}); toast('只顯示 <b>'+pj+'</b> 的<b>久未跟進</b>來客'); }
+      else if(go==='floor'){ nav('prices',true); }
+      else if(go==='hold'){
+        nav('units',true);
+        var rst=document.getElementById('stReset'); if(rst && !rst.hidden) rst.click();
+        var hb=document.querySelector('#page-units .stbtn[data-st="hold"]'); if(hb && hb.getAttribute('aria-pressed')!=='true') hb.click();
+      }
+    });
+    /* 切進這頁就重算；切建案（.proj 卡）也重算——setProject 會改 #homeTitle */
+    var _navH=nav; nav=function(p,r){ _navH(p,r); if(p==='home') refresh() };
+    document.addEventListener('click',function(e){ if(e.target.closest('[data-proj]')) setTimeout(refresh,0) });
+    setTimeout(refresh,0);   /* PRICEDATA 在這個閉包之後才定義，第一次計算延到 script 跑完 */
+  })();
 })();
 
 /* ── 登入畫面：demo 用，任何密碼皆可進入；空白會示範錯誤狀態 ── */
@@ -14873,25 +14787,6 @@ try{(function(){
       obs.observe(mask,{attributes:true,attributeFilter:['class'],attributeOldValue:true});
     }
     document.querySelectorAll('.dlg-mask').forEach(hook);
-  })();
-
-  /* 功能卡的雙圈：圖示直接沿用側欄同一顆 SVG，側欄改了這裡自動同步 */
-  (function(){
-    var cards=document.querySelectorAll('#page-home .feat'); if(!cards.length) return;
-    var ICO={};
-    document.querySelectorAll('.rail [data-page] svg').forEach(function(sv){
-      var pg=sv.closest('[data-page]').dataset.page; if(pg && !ICO[pg]) ICO[pg]=sv.outerHTML;
-    });
-    var FALLBACK='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16M4 12h16M4 19h10"/></svg>';
-    var ARROW='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>';
-    cards.forEach(function(c){
-      if(c.querySelector('.fbay')) return;
-      var bay=document.createElement('span'); bay.className='fbay';
-      var ic=document.createElement('span'); ic.className='fcirc fic';
-      ic.innerHTML=ICO[c.dataset.page]||FALLBACK;
-      var go=document.createElement('span'); go.className='fcirc fgo'; go.innerHTML=ARROW;
-      bay.appendChild(ic); bay.appendChild(go); c.appendChild(bay);
-    });
   })();
 
   /* 來客關聯：前端示意資料的新增、解除、總覽與跳轉 */
@@ -15167,126 +15062,6 @@ try{(function(){
     });
     updateTotal();
   })();
-
-  /* ── 功能卡拖曳排序：長按 240ms 或拖動 8px 進入拖曳，順序記在 localStorage ──
-     常用的功能可以自己拉到前面，下次進來還在原位 */
-  (function(){
-    var row=document.querySelector('#page-home .featrow'); if(!row) return;
-    var KEY='crmFeatOrder';
-    function keyOf(c){ return c.dataset.page || c.dataset.act || (c.textContent||'').trim().slice(0,6) }
-    /* 還原上次的順序 */
-    try{
-      var saved=JSON.parse(localStorage.getItem(KEY)||'[]');
-      if(saved.length){
-        var map={}; [].slice.call(row.children).forEach(function(c){ map[keyOf(c)]=c });
-        saved.forEach(function(k){ if(map[k]) row.appendChild(map[k]) });
-      }
-    }catch(e){}
-    function save(){
-      try{ localStorage.setItem(KEY, JSON.stringify([].slice.call(row.children).map(keyOf))) }catch(e){}
-    }
-
-    var drag=null, hold=null, sx=0, sy=0, ox=0, oy=0, moved=false;
-    function begin(card,e){
-      hold=null; drag=card; moved=true;
-      var r=card.getBoundingClientRect();
-      ox=e.clientX-r.left; oy=e.clientY-r.top;
-      card.classList.add('dragging'); row.classList.add('reordering');
-      card.style.width=r.width+'px'; card.style.height=r.height+'px';
-      card.style.position='fixed'; card.style.left=r.left+'px'; card.style.top=r.top+'px';
-      /* 佔位：用一個同尺寸的隱形卡撐住格線 */
-      var ph=document.createElement('span'); ph.className='feat __ph';
-      ph.style.visibility='hidden'; ph.style.aspectRatio=getComputedStyle(card).aspectRatio;
-      card.__ph=ph; row.insertBefore(ph, card.nextSibling);
-    }
-    function move(e){
-      if(!drag) return;
-      drag.style.left=(e.clientX-ox)+'px'; drag.style.top=(e.clientY-oy)+'px';
-      /* 找游標所在的那張卡，把佔位移過去 */
-      var kids=[].slice.call(row.children).filter(function(c){return c!==drag&&c!==drag.__ph});
-      for(var i=0;i<kids.length;i++){
-        var r=kids[i].getBoundingClientRect();
-        if(e.clientX>r.left&&e.clientX<r.right&&e.clientY>r.top&&e.clientY<r.bottom){
-          var after = e.clientX > r.left+r.width/2;
-          row.insertBefore(drag.__ph, after? kids[i].nextSibling : kids[i]);
-          break;
-        }
-      }
-    }
-    function end(){
-      if(!drag){ hold=null; return }
-      var c=drag; drag=null;
-      row.insertBefore(c, c.__ph);
-      if(c.__ph) c.__ph.remove();
-      c.classList.remove('dragging');
-      c.style.position=c.style.left=c.style.top=c.style.width=c.style.height='';
-      setTimeout(function(){ row.classList.remove('reordering') },240);
-      save();
-      setTimeout(function(){ moved=false },0);
-    }
-    row.addEventListener('pointerdown',function(e){
-      var card=e.target.closest('.feat'); if(!card||card.classList.contains('__ph')) return;
-      sx=e.clientX; sy=e.clientY; moved=false;
-      hold=setTimeout(function(){ begin(card,{clientX:sx,clientY:sy}) },240);
-    });
-    document.addEventListener('pointermove',function(e){
-      if(hold&&!drag){
-        if(Math.abs(e.clientX-sx)>8||Math.abs(e.clientY-sy)>8){
-          clearTimeout(hold);
-          var card=document.elementFromPoint(sx,sy); card=card&&card.closest('.feat');
-          if(card) begin(card,{clientX:sx,clientY:sy});
-        }
-      }
-      if(drag) move(e);
-    });
-    document.addEventListener('pointerup',function(){ if(hold){clearTimeout(hold);hold=null} end() });
-    /* 拖曳過就不要觸發跳頁 */
-    row.addEventListener('click',function(e){ if(moved){ e.preventDefault(); e.stopPropagation() } },true);
-  })();
-
-  /* 建案首頁深色帶的 12 週來客趨勢：跟著切換建案重畫 */
-  (function(){
-    var hero=document.querySelector('#page-home .photohero'); if(!hero) return;
-    var LO_PAD=0.82, HI_PAD=1.08, PX=3;
-    function draw(k){
-      var W=(window.PROJTREND&&window.PROJTREND[k])||[17,20,22,25,28,31,33,36,39,42,44,47];
-      var n=W.length, tot=W.reduce(function(a,b){return a+b},0);
-      var avg=Math.round(tot/n), mn=Math.min.apply(0,W), mx=Math.max.apply(0,W);
-      var lo=mn*LO_PAD, hi=mx*HI_PAD;
-      var P=W.map(function(v,i){return [PX+(i/(n-1))*(100-PX*2), 100-((v-lo)/(hi-lo))*100]});
-      var d='M'+P[0][0].toFixed(2)+' '+P[0][1].toFixed(2);
-      for(var i=0;i<P.length-1;i++){var a=P[i],b=P[i+1],cx=(a[0]+b[0])/2;
-        d+=' C'+cx.toFixed(2)+' '+a[1].toFixed(2)+' '+cx.toFixed(2)+' '+b[1].toFixed(2)+' '+b[0].toFixed(2)+' '+b[1].toFixed(2)}
-      var area=d+' L'+P[n-1][0].toFixed(2)+' 100 L'+P[0][0].toFixed(2)+' 100 Z';
-      var avgY=100-((avg-lo)/(hi-lo))*100, last=P[n-1], pk=P[W.indexOf(mx)];
-      var svg='<svg viewBox="0 0 100 100" preserveAspectRatio="none" role="img" aria-label="近 12 週來客趨勢">'+
-        '<defs><linearGradient id="trg" x1="0" y1="0" x2="0" y2="1">'+
-        '<stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>'+
-        '</linearGradient></defs><g class="grid">'+
-        [0,33,66,100].map(function(y){return '<line x1="0" y1="'+y+'" x2="100" y2="'+y+'"/>'}).join('')+'</g>'+
-        '<path d="'+area+'" fill="url(#trg)"/>'+
-        '<line class="avg" x1="0" y1="'+avgY.toFixed(2)+'" x2="100" y2="'+avgY.toFixed(2)+'"/>'+
-        '<path class="ln" d="'+d+'"/>'+
-        '<circle class="ring" cx="'+pk[0].toFixed(2)+'" cy="'+pk[1].toFixed(2)+'" r="2.2"/>'+
-        '<circle class="ring" cx="'+last[0].toFixed(2)+'" cy="'+last[1].toFixed(2)+'" r="3.2"/>'+
-        '<circle class="dot" cx="'+last[0].toFixed(2)+'" cy="'+last[1].toFixed(2)+'" r="1.4"/></svg>';
-      var cur=W[n-1], prev=W[n-2], pct=prev? Math.round((cur-prev)/prev*100):0;
-      var el=hero.querySelector('.trend')||(function(){var e=document.createElement('div');e.className='trend';hero.insertBefore(e,hero.firstChild);return e})();
-      el.innerHTML=svg;
-      var hd=hero.querySelector('.trhead')||(function(){var e=document.createElement('div');e.className='trhead';hero.insertBefore(e,hero.firstChild);return e})();
-      hd.innerHTML='<span class="eb">WEEKLY LEADS</span>'+
-        '<span class="now"><b>'+cur+'</b><em>組・本週</em></span>'+
-        '<span class="delta'+(pct<0?' dn':'')+'">'+(pct<0?'▼ ':'▲ ')+Math.abs(pct)+'% vs 上週</span>'+
-        '<span class="sum">近 12 週合計 '+tot.toLocaleString()+' 組・平均 '+avg+' 組</span>';
-      var ft=hero.querySelector('.trfoot')||(function(){var e=document.createElement('div');e.className='trfoot';hero.appendChild(e);return e})();
-      ft.innerHTML='<span>W1</span><span>W4</span><span>W8</span><span>W12</span>';
-    }
-    window.__drawTrend=draw;
-    draw('qy');
-    /* 切換由 setProject 內部直接呼叫 __drawTrend，這裡不再另外攔截 */
-  })();
-
-
 
   /* ══ 矩陣互動：依 matrix-design-spec.md §5.6 / §7 / §9 / §10 ══ */
   (function(){
