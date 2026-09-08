@@ -4169,8 +4169,13 @@
   #page-home .hm-head b{color:var(--ink); font-weight:500}
   #page-home .hm-head em{font-style:normal; color:var(--accent); margin-left:var(--s1)}
   #page-home .hm-head .hm-src{margin-left:auto; font-size:.7rem}
-  #page-home .hm-grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--grid-gap); margin-bottom:var(--sec-gap)}
-  @media (max-width:980px){ #page-home .hm-grid{grid-template-columns:1fr} }
+  /* 每個狀態一個區塊：自動填欄、各自高度，不硬撐等高（這是工作清單，不是 KPI 卡） */
+  #page-home .hm-blocks{display:grid; grid-template-columns:repeat(auto-fill,minmax(21rem,1fr)); gap:var(--grid-gap); align-items:start; margin-bottom:var(--sec-gap)}
+  #page-home .hm-sub{font-size:.7rem; color:var(--muted); letter-spacing:.06em; padding:var(--s3) 0 var(--s1); border-top:1px solid var(--line)}
+  #page-home .hm-sub:first-child{border-top:0; padding-top:0}
+  #page-home .hm-sub + .dr-todo-row{border-top:0; padding-top:var(--s1)}
+  #page-home .hm-empty{font-size:.74rem; color:var(--muted); padding:var(--s2) 0}
+  #page-home .dr-section-head .dr-link{margin-left:var(--s3)}
   /* 例外列整列是一顆按鈕：沿用 .dr-todo-row 的四欄格線（點｜數字｜說明｜去處） */
   #page-home button.dr-todo-row{width:100%; background:none; border:0; border-top:1px solid var(--line); border-radius:0;
     font:inherit; color:inherit; text-align:left; cursor:pointer}
@@ -4914,23 +4919,14 @@
           <span class="note" id="homeNote">台中市北屯區・2026-03 開賣</span>
         </div>
 
-        <!-- 建案首頁＝案場今日（Enson 2026-09-08 拍板 B 案）：沒有 hero、沒有功能磚，只回答「今天有什麼事卡住」。
-             這頁不准手寫常數——去化來自 window.PRICEDATA、例外數來自來客名單的列、要追的人與台帳引用日報。
-             全部由主 script 尾端的 JS 在每次切進這頁時當場算。 -->
+        <!-- 建案首頁＝案場今日（Enson 2026-09-08 拍板 B 案，同日改成「每個狀態一個區塊」）。
+             這頁不准手寫常數——去化來自 window.PRICEDATA、每個區塊的名單來自來客名單的列與 PRICEDATA、台帳引用日報。
+             規則（分級跟進間隔、下訂後幾天要簽）是專案設定的示意預設值，區塊小字會標出來。
+             全部由主閉包尾端的 JS 在每次切進這頁時當場算。 -->
         <div class="block hm-head" id="hmHead" aria-label="去化"></div>
 
-        <div class="hm-grid">
-          <div class="dr-panel">
-            <div class="dr-section-head"><h3>今天要處理</h3><span id="hmExcN"></span></div>
-            <div class="dr-todo" id="hmExc"></div>
-            <p class="dr-note">數字由來客名單與銷控表當場算出；點一列就跳到已套好篩選的那一頁，看到的清單跟這個數字一樣。</p>
-          </div>
-          <div class="dr-panel">
-            <div class="dr-section-head"><h3>今日要追的人</h3><span id="hmTodoN"></span></div>
-            <div class="dr-todo" id="hmTodo"></div>
-            <p class="dr-note">與日報同一份清單，依往來紀錄與指派狀態自動產生。</p>
-          </div>
-        </div>
+        <div class="sec"><h2>今天要處理</h2><span class="note" id="hmExcN"></span></div>
+        <div class="hm-blocks" id="hmBlocks"></div>
 
         <div class="block hm-ledger" id="hmLedger" aria-label="最近一份日報"></div>
       </section>
@@ -6982,7 +6978,7 @@
 </div>
 
 <div class="notice" id="staleNotice">
-  目前只顯示「久未跟進」的來客（逾 14 天無互動・未成交）
+  目前只顯示「久未跟進」的來客（超過該分級的跟進間隔・未成交）
   <button id="showAll">顯示全部</button>
 </div>
 
@@ -10987,6 +10983,30 @@
   /* 可被指派的業務：單筆指派、批次指派、新增來客共用同一份，
      避免三處各寫死一份而互相對不上（原本列上的周家瑜就不在選單裡） */
   var LA_STAFF=['張家豪','吳姿瑩','陳冠廷','周家瑜','李承翰','郭士銘'];
+  /* ── 久未跟進＝依「分級跟進間隔」判定，不是固定 14 天（Enson 2026-09-08）──
+     間隔是專案設定的示意預設值，尚未拍板；正式版從專案設定讀。
+     最後互動日：demo 沒有逐筆往來紀錄（抽屜裡那三條是所有人共用的示意文字），
+     先拿 data-last（若有）否則以來訪日 data-date 起算——需補欄位：最後聯絡日 last_contact_at。
+     .stale-dot 只由 markStale() 產生：名單篩選、首頁區塊、列上紅點三處讀同一個判定。 */
+  var STALE_SLA={A:3,B:7,C:14,D:30};
+  function leadGrade(tr){ var g=tr.querySelector('.grade'); var m=g&&(g.textContent||'').trim().match(/^[ABCD]/); return m?m[0]:'' }
+  function daysSince(d){ if(!d) return null; var a=new Date(d.slice(0,10)+'T00:00:00'), b=new Date(TODAY+'T00:00:00'); return Math.round((b-a)/86400000) }
+  function leadStale(tr){
+    var g=leadGrade(tr), sla=STALE_SLA[g]||STALE_SLA.D, days=daysSince(tr.dataset.last||tr.dataset.date);
+    return {grade:g, sla:sla, days:days, over:(days!==null && days>sla)? days-sla : 0, proxy:!tr.dataset.last};
+  }
+  function markStale(){
+    $$('#page-leadsall tbody tr').forEach(function(tr){
+      if(tr.classList.contains('emptyrow')) return;
+      var nm=tr.querySelector('.name'); if(!nm) return;
+      var dot=nm.querySelector('.stale-dot'), st=leadStale(tr);
+      if(st.over>0){
+        if(!dot){ dot=document.createElement('span'); dot.className='stale-dot'; nm.insertBefore(dot,nm.firstChild) }
+        dot.title='久未跟進：'+st.grade+' 級間隔 '+st.sla+' 天，已 '+st.days+' 天';
+      } else if(dot) dot.remove();
+    });
+  }
+  markStale();
   function laMark(btn,on){
     if(btn) btn.classList.toggle('active', !!on);
     /* 手改任何一個條件，就不再算是「套著某個常用組合」 */
@@ -11110,6 +11130,7 @@
     var projBtn=$$('#page-leadsall [data-act="dd"]').filter(function(b){return b.textContent.indexOf('建案')===0})[0];
     if(projBtn){ projBtn.textContent='建案：'+(laProj||'全部')+' ▾'; laMark(projBtn,!!laProj) }
     laUn=!!o.un; var ub=$('#page-leadsall [data-act="laUn"]'); if(ub) laMark(ub,laUn);
+    if(o.cross && xb){ laCross=true; xb.setAttribute('aria-pressed','true'); laMark(xb,true) }
     setStale(!!o.stale);
     laApplyingSaved=false;
     laActiveSaved=-1; laDrawSaved();
@@ -14185,7 +14206,7 @@ try{ /* collect */
       });
     } else if(act==='laStale'){
       setStale(!laStale); laMark(b,laStale);
-      toast(laStale ? '只顯示<b>久未跟進</b>（逾 14 天）' : '已取消久未跟進篩選');
+      toast(laStale ? '只顯示<b>久未跟進</b>（超過分級跟進間隔）' : '已取消久未跟進篩選');
     } else if(act==='laUn'){
       laUn=!laUn; laMark(b,laUn); laFilterRows();
       toast(laUn ? '只顯示<b>未指派</b>來客' : '已取消未指派篩選');
@@ -14598,12 +14619,17 @@ try{ /* collect */
   nav(pageFromHash(),false);
   window.addEventListener('hashchange',function(){nav(pageFromHash(),false)});
 
-  /* ══ 建案首頁＝案場今日：每次切進來當場算，不留手寫常數 ══ */
+  /* ══ 建案首頁＝案場今日：每個狀態一個區塊，每次切進來當場算，不留手寫常數 ══
+     規則的示意預設值（專案設定，尚未拍板）：
+       分級跟進間隔 STALE_SLA（在來客名單那段）、下訂後 BOOK_SLA 天內要簽約（分析頁「卡單 >14 天標紅」同一條） */
   (function(){
     var home=document.getElementById('page-home'); if(!home) return;
-    var head=document.getElementById('hmHead'), exc=document.getElementById('hmExc'), excN=document.getElementById('hmExcN'),
-        todo=document.getElementById('hmTodo'), todoN=document.getElementById('hmTodoN'), ledger=document.getElementById('hmLedger');
+    var head=document.getElementById('hmHead'), blocks=document.getElementById('hmBlocks'), excN=document.getElementById('hmExcN'), ledger=document.getElementById('hmLedger');
+    var BOOK_SLA=14;
     function projName(){ var t=document.getElementById('homeTitle'); return t?t.textContent.trim():'' }
+    function esc(x){ return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;') }
+    function md(d){ return d? d.slice(5,10).replace('-','-') : '—' }
+    function custName(c){ return c? String(c).split('（')[0] : '—' }
     /* 與 laFilterRows 同一組條件：略過空列與已刪除、只算本案 */
     function leadRows(){
       var pj=projName();
@@ -14611,41 +14637,116 @@ try{ /* collect */
         return !tr.classList.contains('emptyrow') && tr.dataset.deleted!=='1' && (!pj || tr.dataset.proj===pj);
       });
     }
+    function leadName(tr){ var n=tr.querySelector('.name'); return n? [].slice.call(n.childNodes).filter(function(x){return x.nodeType===3}).map(function(x){return x.nodeValue}).join('').trim() : '' }
+    function leadRow(tr,desc,state,sev){
+      var nm=leadName(tr);
+      return '<div class="dr-todo-row"'+(sev?' data-state="'+sev+'"':'')+'><span class="dot'+(sev==='overdue'?' hot':sev==='today'?' warm':'')+'" aria-hidden="true"></span>'+
+        '<b><button type="button" class="dr-link" data-goto-lead="'+esc(nm)+'">'+esc(nm)+'</button></b><span>'+desc+'</span><i>'+state+'</i></div>';
+    }
+    function unitRow(go,label,desc,state,sev){
+      return '<button type="button" class="dr-todo-row" data-act="hmGo" data-go="'+go+'"'+(sev?' data-state="'+sev+'"':'')+'><span class="dot'+(sev==='overdue'?' hot':sev==='today'?' warm':'')+'" aria-hidden="true"></span>'+
+        '<b>'+label+'</b><span>'+desc+'</span><i>'+state+'</i></button>';
+    }
+    function panel(title,count,go,body,note){
+      return '<div class="dr-panel"><div class="dr-section-head"><h3>'+title+'</h3><span>'+count+(go?'<button type="button" class="dr-link" data-act="hmGo" data-go="'+go+'">全部 →</button>':'')+'</span></div>'+
+        '<div class="dr-todo">'+(body||'<p class="hm-empty">目前沒有</p>')+'</div>'+(note?'<p class="dr-note">'+note+'</p>':'')+'</div>';
+    }
     function refresh(){
+      if(typeof markStale==='function') markStale();   /* 紅點與這頁讀同一個判定 */
       /* 去化：PRICEDATA 逐戶算（st：sale 待售／hold 保留／booked 下訂／signed 簽約／done 交屋） */
-      var P=window.PRICEDATA||{}, U=P.units||{}, K=P.park||{}, c={sale:0,hold:0,booked:0,signed:0,done:0}, tot=0, noFloor=0;
-      Object.keys(U).forEach(function(k){ var v=U[k]; tot++; if(c[v.st]!==undefined) c[v.st]++; if(!v.floor) noFloor++; });
-      var sold=c.booked+c.signed+c.done, pk=0, pkSold=0;
-      Object.keys(K).forEach(function(k){ var v=K[k]; pk++; if(v.st==='booked'||v.st==='signed'||v.st==='done') pkSold++; });
+      var P=window.PRICEDATA||{}, U=P.units||{}, K=P.park||{}, c={sale:0,hold:0,booked:0,signed:0,done:0}, tot=0;
+      var noFloor=[], noPing=[], noList=[], booked=[], hold=[], pkNoFloor=0, pk=0, pkSold=0;
+      Object.keys(U).forEach(function(k){ var v=U[k]; tot++; if(c[v.st]!==undefined) c[v.st]++;
+        if(!v.floor) noFloor.push(k); if(!v.ping) noPing.push(k); if(!v.list) noList.push(k);
+        if(v.st==='booked') booked.push([k,v]); if(v.st==='hold') hold.push([k,v]); });
+      var pkBooked=0;
+      Object.keys(K).forEach(function(k){ var v=K[k]; pk++; if(!v.floor) pkNoFloor++; if(v.st==='booked') pkBooked++; if(v.st==='booked'||v.st==='signed'||v.st==='done') pkSold++; });
+      var sold=c.booked+c.signed+c.done;
       head.innerHTML=
         '<span>去化 <b>'+sold+'</b>／'+tot+' 戶<em>'+(tot? Math.round(sold/tot*1000)/10 : 0)+'%</em></span>'+
         '<span>車位 <b>'+pkSold+'</b>／'+pk+'</span>'+
         '<span>待售 '+c.sale+'・保留 '+c.hold+'・下訂 '+c.booked+'・簽約 '+c.signed+'・交屋 '+c.done+'</span>'+
         '<span class="hm-src">戶數與狀態來自銷控表</span>';
-      /* 今天要處理：四條例外，每條的數字＝點進去那頁看到的筆數 */
-      var rows=leadRows();
-      var un=rows.filter(function(tr){return !!tr.querySelector('.unassigned')}).length;
-      var st=rows.filter(function(tr){return !!tr.querySelector('.stale-dot')}).length;
-      var items=[
-        {n:un,      u:'筆', t:'未指派來客',           go:'un',    dot:'hot',  to:'來客名單'},
-        {n:st,      u:'筆', t:'久未跟進（逾 14 天）',   go:'stale', dot:'warm', to:'來客名單'},
-        {n:noFloor, u:'戶', t:'底價待補',             go:'floor', dot:'warm', to:'價格表'},
-        {n:c.hold,  u:'戶', t:'保留中',               go:'hold',  dot:'',     to:'銷控表',
-         note:' <span class="wk-missing-mark" title="需補欄位：保留到期日，才能算倒數">＊</span>'}
-      ];
-      exc.innerHTML=items.map(function(it){
-        var zero=it.n===0;
-        return '<button type="button" class="dr-todo-row'+(zero?' hm-zero':'')+'" data-act="hmGo" data-go="'+it.go+'">'+
-          '<span class="dot'+(zero||!it.dot?'':' '+it.dot)+'" aria-hidden="true"></span>'+
-          '<b>'+it.n+' '+it.u+'</b><span>'+it.t+(it.note||'')+'</span><i>'+it.to+' →</i></button>';
-      }).join('');
-      var pending=items.filter(function(it){return it.n>0}).length;
-      excN.textContent=pending? pending+' 項' : '沒有卡住的';
-      /* 今日要追的人：直接引用日報那一份（DOM 複製，不另外維護一份名單） */
-      var src=document.querySelector('#reportsDaily .dr-todo');
-      todo.innerHTML=src? src.innerHTML : '';
-      var srcN=src && src.parentNode.querySelector('.dr-section-head span');
-      todoN.textContent=srcN? srcN.textContent : '';
+
+      var rows=leadRows(), total=0, html='';
+
+      /* ① 未指派 */
+      var un=rows.filter(function(tr){return !!tr.querySelector('.unassigned')});
+      un.sort(function(a,b){return (a.dataset.date||'')<(b.dataset.date||'')?-1:1});
+      html+=panel('未指派', un.length+' 筆', 'un', un.map(function(tr){
+        var d=daysSince(tr.dataset.date);
+        return leadRow(tr, (leadGrade(tr)||'—')+' 級・來訪 '+md(tr.dataset.date), '第 '+d+' 天', 'overdue');
+      }).join(''), '來訪後還沒有負責業務的來客，越早指派越早有人跟。');
+      total+=un.length;
+
+      /* ② 久未跟進：依分級跟進間隔，分級各一段 */
+      var stale=rows.map(function(tr){ return {tr:tr, st:leadStale(tr)} }).filter(function(x){return x.st.over>0});
+      var byG={}; stale.forEach(function(x){ (byG[x.st.grade||'—']=byG[x.st.grade||'—']||[]).push(x) });
+      var sb=''; ['A','B','C','D','—'].forEach(function(g){
+        var arr=byG[g]; if(!arr) return;
+        arr.sort(function(a,b){return b.st.over-a.st.over});
+        sb+='<div class="hm-sub">'+g+' 級・間隔 '+(STALE_SLA[g]||STALE_SLA.D)+' 天・'+arr.length+' 筆</div>';
+        sb+=arr.map(function(x){
+          return leadRow(x.tr, '來訪 '+md(x.tr.dataset.date)+'・已 '+x.st.days+' 天', '逾 '+x.st.over+' 天', x.st.over>x.st.sla?'overdue':'today');
+        }).join('');
+      });
+      html+=panel('久未跟進', stale.length+' 筆', 'stale', sb,
+        '間隔＝分級跟進 SLA：A '+STALE_SLA.A+'・B '+STALE_SLA.B+'・C '+STALE_SLA.C+'・D '+STALE_SLA.D+' 天（專案設定的示意預設值）。'+
+        '<span class="wk-missing-mark" title="需補欄位：最後聯絡日 last_contact_at。demo 沒有逐筆往來紀錄，先以來訪日起算">＊</span>目前以來訪日起算。');
+      total+=stale.length;
+
+      /* ③ 下訂未簽約：下訂日起算，超過 BOOK_SLA 天標紅（分析頁「卡單 >14 天」同一條） */
+      booked.sort(function(a,b){return (a[1].d1||'')<(b[1].d1||'')?-1:1});
+      html+=panel('下訂未簽約', booked.length+' 戶'+(pkBooked?'・車位 '+pkBooked:''), 'booked', booked.map(function(e){
+        var k=e[0], v=e[1], d=daysSince(v.d1);
+        return unitRow('booked', k, custName(v.cust)+'・下訂 '+md(v.d1)+(v.deal?'・'+v.deal.toLocaleString()+' 萬':''), '第 '+d+' 天', d>BOOK_SLA?'overdue':'today');
+      }).join(''), '下小訂後 '+BOOK_SLA+' 天內要簽約（示意預設值）；超過的標紅。');
+      total+=booked.length;
+
+      /* ④ 保留中 */
+      html+=panel('保留中', hold.length+' 戶', 'hold', hold.map(function(e){
+        var k=e[0], v=e[1];
+        return unitRow('hold', k, (v.room||'')+'・'+(v.ping||'—')+' 坪・表價 '+(v.list? v.list.toLocaleString()+' 萬':'—'), '到期＊');
+      }).join(''), '<span class="wk-missing-mark" title="需補欄位：保留到期日，才能算倒數與自動釋回">＊</span>保留到期日尚無欄位，算不出倒數。');
+      total+=hold.length;
+
+      /* ⑤ 跨案待確認：同一人跑 2 案以上，歸屬與保護期要先講清楚 */
+      var cross=rows.filter(function(tr){return tr.dataset.cross==='1'});
+      html+=panel('跨案待確認', cross.length+' 筆', 'cross', cross.map(function(tr){
+        var chips=[].slice.call(tr.querySelectorAll('.chips .chip')).map(function(x){return x.textContent.trim()}).join('・');
+        return leadRow(tr, (leadGrade(tr)||'—')+' 級・也去過 '+(chips||'—'), '跨案');
+      }).join(''), '足跡有第二個建案的來客。歸屬、保護期與能不能轉案，正式版依專案設定判。');
+      total+=cross.length;
+
+      /* ⑥ 資料未齊（戶別）：底價／坪數／表價，逐戶檢查 PRICEDATA */
+      var ud='';
+      function byBuilding(arr){ var m={}; arr.forEach(function(k){ var b=k.split('/')[0]; m[b]=(m[b]||0)+1 }); return Object.keys(m).map(function(b){return b+' '+m[b]}).join('・') }
+      if(noFloor.length) ud+=unitRow('floor','底價未設', noFloor.length+' 戶住宅', '價格表 →','overdue');
+      if(pkNoFloor)      ud+=unitRow('floor','底價未設', pkNoFloor+' 個車位', '價格表 →','today');
+      if(noPing.length)  ud+=unitRow('units','坪數未填', noPing.length+' 戶', '銷控表 →','today');
+      if(noList.length)  ud+=unitRow('units','表價未填', noList.length+' 戶', '銷控表 →','today');
+      var udN=noFloor.length+pkNoFloor+noPing.length+noList.length, udRows=(ud.match(/dr-todo-row/g)||[]).length;
+      html+=panel('資料未齊（戶別）', udN+' 項', 'floor', ud, '檢查項：底價、坪數、表價。沒有底價就算不出溢價，獎金也算不了。'+(noFloor.length?'<br>底價未設依棟：'+byBuilding(noFloor)+'。':''));
+      total+=udRows;   /* 頁首總數算「列」：118 戶沒底價是一件事，不是 118 件 */
+
+      /* ⑦ 客資未齊（來客）：現在能查的只有列上有的欄位；「建檔後幾天沒有往來紀錄」要等往來紀錄逐筆存 */
+      var ld='';
+      var noPhone=rows.filter(function(tr){ return !((tr.children[3]||{textContent:''}).textContent||'').trim() });
+      var noSrc=rows.filter(function(tr){ return !((tr.children[5]||{textContent:''}).textContent||'').trim() });
+      var noGrade=rows.filter(function(tr){ return !leadGrade(tr) });
+      if(noPhone.length) ld+=noPhone.map(function(tr){return leadRow(tr,'沒有電話','補資料','overdue')}).join('');
+      if(noSrc.length)   ld+=noSrc.map(function(tr){return leadRow(tr,'沒有來源','補資料','today')}).join('');
+      if(noGrade.length) ld+=noGrade.map(function(tr){return leadRow(tr,'沒有分級','補資料','today')}).join('');
+      var ldN=noPhone.length+noSrc.length+noGrade.length;
+      html+=panel('客資未齊（來客）', ldN+' 筆', '', ld,
+        '現在能查：電話、來源、分級。'+
+        '<span class="wk-missing-mark" title="需補欄位：往來紀錄逐筆存（kind／at／by）與勾勾表必填欄位對應">＊</span>'+
+        '「建檔 3 天內沒有往來紀錄」「勾勾表必填欄位有缺」要等往來紀錄逐筆存、勾勾表必填欄位對應後才判得出來。');
+      total+=ldN;
+
+      blocks.innerHTML=html;
+      excN.textContent=total? total+' 項' : '沒有卡住的';
+
       /* 台帳一行：引用日報前四張卡（來人／回客、來電、下訂、簽約） */
       var dv=document.querySelector('#reportsDaily .dp-val'), date=dv? dv.textContent.trim().slice(5) : '';
       var cards=[].slice.call(document.querySelectorAll('#reportsDaily .dr-cards > div')).slice(0,4);
@@ -14658,6 +14759,11 @@ try{ /* collect */
     function goDaily(){
       nav('reports',true);
       var b=document.querySelector('#reportsSeg button[data-rep="daily"]'); if(b && !b.classList.contains('on')) b.click();
+    }
+    function focusUnits(st){
+      nav('units',true);
+      var rst=document.getElementById('stReset'); if(rst && !rst.hidden) rst.click();
+      var hb=document.querySelector('#page-units .stbtn[data-st="'+st+'"]'); if(hb && hb.getAttribute('aria-pressed')!=='true') hb.click();
     }
     home.addEventListener('click',function(e){
       var g=e.target.closest('[data-goto-lead]');
@@ -14676,14 +14782,13 @@ try{ /* collect */
       if(e.target.closest('[data-act="hmDaily"]')){ goDaily(); return }
       var r=e.target.closest('[data-act="hmGo"]'); if(!r) return;
       var go=r.dataset.go, pj=projName();
-      if(go==='un'){ nav('leadsall',true); if(window.laDeepLink) laDeepLink({proj:pj,un:true}); toast('只顯示 <b>'+pj+'</b> 的<b>未指派</b>來客'); }
-      else if(go==='stale'){ nav('leadsall',true); if(window.laDeepLink) laDeepLink({proj:pj,stale:true}); toast('只顯示 <b>'+pj+'</b> 的<b>久未跟進</b>來客'); }
+      if(go==='un'){ nav('leadsall',true); laDeepLink({proj:pj,un:true}); toast('只顯示 <b>'+pj+'</b> 的<b>未指派</b>來客'); }
+      else if(go==='stale'){ nav('leadsall',true); laDeepLink({proj:pj,stale:true}); toast('只顯示 <b>'+pj+'</b> 的<b>久未跟進</b>來客'); }
+      else if(go==='cross'){ nav('leadsall',true); laDeepLink({proj:pj,cross:true}); toast('只顯示 <b>'+pj+'</b> 的<b>跨案</b>來客'); }
       else if(go==='floor'){ nav('prices',true); }
-      else if(go==='hold'){
-        nav('units',true);
-        var rst=document.getElementById('stReset'); if(rst && !rst.hidden) rst.click();
-        var hb=document.querySelector('#page-units .stbtn[data-st="hold"]'); if(hb && hb.getAttribute('aria-pressed')!=='true') hb.click();
-      }
+      else if(go==='units'){ nav('units',true); }
+      else if(go==='hold'){ focusUnits('hold'); }
+      else if(go==='booked'){ focusUnits('booked'); }
     });
     /* 切進這頁就重算；切建案（.proj 卡）也重算——setProject 會改 #homeTitle */
     var _navH=nav; nav=function(p,r){ _navH(p,r); if(p==='home') refresh() };
