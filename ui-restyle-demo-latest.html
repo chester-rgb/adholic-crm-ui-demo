@@ -391,7 +391,10 @@
     transition:transform .18s ease-out, box-shadow .18s ease-out;
   }
   .proj:hover{transform:translateY(-6px); box-shadow:var(--el2)}
-  .proj .status{align-self:flex-start; font-size:.68rem; border-radius:var(--r-pill); padding:.1rem .7rem; letter-spacing:.1em}
+  /* 徽章自己帶形狀（原本圓角寫在 .proj .status，一離開建案卡就變方塊——
+     首頁基本資料列就踩到了。全站不該有方角的東西） */
+  .status{display:inline-flex; align-items:center; font-size:.68rem; border-radius:var(--r-pill); padding:.1rem .7rem; letter-spacing:.1em}
+  .proj .status{align-self:flex-start}
   .status.selling{background:var(--accent); color:var(--on-accent); font-weight:500}
   .status.presale{border:1px solid var(--accent); color:var(--accent)}
   .status.soldout{background:var(--fill); color:var(--muted)}
@@ -4170,12 +4173,14 @@
      面板／清單列／小字全部沿用日報的 .dr-* 元件（選擇器已放寬成 :is(#page-reports,#page-home)），
      這裡只補首頁自己的三樣：去化一行、兩欄格線、整列可點的例外列。 */
   /* 建案基本資料：一列定義式（標籤在上、值在下），與卡片同一組字級（.64 標籤／.72 值） */
-  #page-home .hm-facts{display:flex; flex-wrap:wrap; gap:var(--s3) var(--s6); align-items:flex-start;
-    padding-bottom:var(--s4); border-bottom:1px solid var(--line)}
-  #page-home .hm-facts > div{display:flex; flex-direction:column; gap:.15rem; min-width:0}
+  /* 基本資料：一格一張卡（標籤／值／副值），沿用卡內三級字（.64 標籤・.83 值・.64 副） */
+  #page-home .hm-facts{display:grid; grid-template-columns:repeat(auto-fill,minmax(9.5rem,1fr)); gap:var(--grid-gap)}
+  #page-home .hm-facts > div{display:flex; flex-direction:column; gap:var(--s1); min-width:0;
+    background:var(--panel); border-radius:var(--r-card); padding:var(--s4) var(--s5)}
   #page-home .hm-facts dt{font-size:.64rem; color:var(--muted); letter-spacing:.06em}
-  #page-home .hm-facts dd{margin:0; font-size:.72rem; color:var(--ink); font-variant-numeric:tabular-nums}
-  #page-home .hm-facts .status{align-self:center}
+  #page-home .hm-facts dd{margin:0; font-size:.83rem; font-weight:500; color:var(--ink); font-variant-numeric:tabular-nums}
+  #page-home .hm-facts dd .sub{display:block; margin-top:.15rem; font-size:.64rem; font-weight:400; color:var(--muted); letter-spacing:.02em}
+  #page-home .hm-facts .status{font-size:.72rem; padding:.15rem .75rem}
 
   /* 每個狀態一個區塊：自動填欄、各自高度，不硬撐等高（這是工作清單，不是 KPI 卡） */
   #page-home .hm-blocks{display:grid; grid-template-columns:repeat(auto-fill,minmax(21rem,1fr)); gap:var(--grid-gap); align-items:stretch; margin-bottom:var(--sec-gap)}
@@ -14683,16 +14688,17 @@ try{ /* collect */
         if(v.room) rooms[v.room]=1; if(v.ping) pings.push(v.ping);
         var seg=k.split('/'); blds[seg[0]]=1; if(seg[1]) floors[seg[1]]=1; });
       Object.keys(K).forEach(function(k){ var v=K[k]; if(v.kind) pkKind[v.kind]=(pkKind[v.kind]||0)+1; if(v.lv) pkLv[v.lv]=1 });
-      function fact(t,v){ return v? '<div><dt>'+t+'</dt><dd>'+v+'</dd></div>' : '' }
-      facts.innerHTML='<span class="status '+(info.cls||'selling')+' pgstatus" id="homeStatus">'+(info.st||'銷售中')+'</span>'+
+      function fact(t,v,sub){ return v? '<div><dt>'+t+'</dt><dd>'+v+(sub?'<span class="sub">'+sub+'</span>':'')+'</dd></div>' : '' }
+      var bldKeys=Object.keys(blds).sort(), lvKeys=Object.keys(pkLv).sort();
+      facts.innerHTML=
+        fact('狀態', '<span class="status '+(info.cls||'selling')+'" id="homeStatus">'+(info.st||'銷售中')+'</span>')+
         fact('位置', loc)+
         fact('開賣', open)+
         fact('備註', memo)+
-        fact('規劃', Object.keys(blds).length+' 棟・'+Object.keys(floors).length+' 層')+
-        fact('戶數', tot+' 戶')+
-        fact('房型', Object.keys(rooms).sort().join('／'))+
+        fact('規劃', bldKeys.length+' 棟・'+Object.keys(floors).length+' 層', bldKeys[0]+'–'+bldKeys[bldKeys.length-1])+
+        fact('總戶數', tot+' 戶', Object.keys(rooms).sort().join('／'))+
         fact('坪數', pings.length? Math.min.apply(0,pings)+'–'+Math.max.apply(0,pings)+' 坪' : '')+
-        fact('車位', pk+' 個・'+Object.keys(pkKind).map(function(x){return x+' '+pkKind[x]}).join('／')+'（'+Object.keys(pkLv).sort().join('/')+'）');
+        fact('車位', pk+' 個', Object.keys(pkKind).map(function(x){return x+' '+pkKind[x]}).join('／')+'・'+lvKeys.join('/'));
 
       var rows=leadRows(), html='';
 
