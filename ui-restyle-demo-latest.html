@@ -2594,10 +2594,10 @@
 :is(#page-reports,#page-home) .dr-section-head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s3);
   margin:calc(var(--s5) * -1) calc(var(--s5) * -1) var(--s4);padding:var(--s3) var(--s5);
   background:var(--fill);border-radius:var(--r-card) var(--r-card) 0 0}
-:is(#page-reports,#page-home) .dr-section-head h3{font-size:.9rem;font-weight:500;letter-spacing:.08em}
-:is(#page-reports,#page-home) .dr-section-head span{font-size:.66rem;color:var(--muted)}
+:is(#page-reports,#page-home) .dr-section-head h3{font-size:.83rem;font-weight:500;letter-spacing:.08em}
+:is(#page-reports,#page-home) .dr-section-head span{font-size:.64rem;color:var(--muted)}
 :is(#page-reports,#page-home) .dr-todo{display:flex;flex-direction:column}
-:is(#page-reports,#page-home) .dr-todo-row{display:grid;grid-template-columns:auto 4rem minmax(0,1fr) auto;align-items:center;gap:var(--s2);padding:var(--s3) 0;font-size:.76rem;border-top:1px solid var(--line)}
+:is(#page-reports,#page-home) .dr-todo-row{display:grid;grid-template-columns:auto 4rem minmax(0,1fr) auto;align-items:center;gap:var(--s2);padding:var(--s3) 0;font-size:.72rem;border-top:1px solid var(--line)}
 :is(#page-reports,#page-home) .dr-todo-row:first-child{border-top:0;padding-top:0}
 :is(#page-reports,#page-home) .dr-todo-row > .dot{background:var(--line-3)}
 :is(#page-reports,#page-home) .dr-todo-row > .dot.hot{background:var(--hot)}
@@ -2607,7 +2607,7 @@
 :is(#page-reports,#page-home) .dr-todo-row i{font-style:normal;color:var(--muted);white-space:nowrap}
 :is(#page-reports,#page-home) .dr-todo-row[data-state="overdue"] i{color:var(--hot)}
 :is(#page-reports,#page-home) .dr-todo-row[data-state="today"] i{color:var(--warm)}
-:is(#page-reports,#page-home) .dr-note{margin-top:var(--s3);padding-top:var(--s3);border-top:1px solid var(--line);font-size:.66rem;line-height:1.7;color:var(--muted)}
+:is(#page-reports,#page-home) .dr-note{margin-top:var(--s3);padding-top:var(--s3);border-top:1px solid var(--line);font-size:.64rem;line-height:1.7;color:var(--muted)}
 #page-reports .dr-table-wrap{padding:0;background:var(--bg);border:1px solid var(--line-2);border-radius:var(--r-card);overflow-x:auto}
 #page-reports .dr-table{width:100%;min-width:42rem;table-layout:fixed;border-collapse:collapse;border-spacing:0}
 #page-reports .dr-table th,#page-reports .dr-table td{padding:var(--s3) var(--s2);border-bottom:1px solid var(--line);font-size:.74rem;line-height:1.45;text-align:center;white-space:nowrap;font-variant-numeric:tabular-nums}
@@ -4169,6 +4169,14 @@
      沒有 hero、沒有功能磚（八張磚有七張是左欄已有的第二套導覽）。
      面板／清單列／小字全部沿用日報的 .dr-* 元件（選擇器已放寬成 :is(#page-reports,#page-home)），
      這裡只補首頁自己的三樣：去化一行、兩欄格線、整列可點的例外列。 */
+  /* 建案基本資料：一列定義式（標籤在上、值在下），與卡片同一組字級（.64 標籤／.72 值） */
+  #page-home .hm-facts{display:flex; flex-wrap:wrap; gap:var(--s3) var(--s6); align-items:flex-start;
+    padding-bottom:var(--s4); border-bottom:1px solid var(--line)}
+  #page-home .hm-facts > div{display:flex; flex-direction:column; gap:.15rem; min-width:0}
+  #page-home .hm-facts dt{font-size:.64rem; color:var(--muted); letter-spacing:.06em}
+  #page-home .hm-facts dd{margin:0; font-size:.72rem; color:var(--ink); font-variant-numeric:tabular-nums}
+  #page-home .hm-facts .status{align-self:center}
+
   /* 每個狀態一個區塊：自動填欄、各自高度，不硬撐等高（這是工作清單，不是 KPI 卡） */
   #page-home .hm-blocks{display:grid; grid-template-columns:repeat(auto-fill,minmax(21rem,1fr)); gap:var(--grid-gap); align-items:stretch; margin-bottom:var(--sec-gap)}
   /* 區塊固定高度、同排切齊；清單超過就在區塊內捲，標題與小字釘住不動（Enson 2026-09-08） */
@@ -4176,10 +4184,10 @@
   #page-home .hm-blocks .dr-section-head{flex:none}
   #page-home .hm-blocks .dr-todo{flex:1 1 auto; min-height:0; overflow-y:auto; overscroll-behavior:contain; scrollbar-gutter:stable}
   #page-home .hm-blocks .dr-note{flex:none}
-  #page-home .hm-sub{font-size:.66rem; color:var(--muted); letter-spacing:.06em; padding:var(--s3) 0 var(--s1); border-top:1px solid var(--line)}
+  #page-home .hm-sub{font-size:.64rem; color:var(--muted); letter-spacing:.06em; padding:var(--s3) 0 var(--s1); border-top:1px solid var(--line)}
   #page-home .hm-sub:first-child{border-top:0; padding-top:0}
   #page-home .hm-sub + .dr-todo-row{border-top:0; padding-top:var(--s1)}
-  #page-home .hm-empty{font-size:.76rem; color:var(--muted); padding:var(--s2) 0}
+  #page-home .hm-empty{font-size:.72rem; color:var(--muted); padding:var(--s2) 0}
   #page-home .dr-section-head .dr-link{margin-left:var(--s3)}
   /* 例外列整列是一顆按鈕：沿用 .dr-todo-row 的四欄格線（點｜數字｜說明｜去處） */
   #page-home button.dr-todo-row{width:100%; background:none; border:0; border-top:1px solid var(--line); border-radius:0;
@@ -4193,7 +4201,7 @@
   #page-home .dr-todo-row.hm-zero b, #page-home .dr-todo-row.hm-zero i{color:var(--muted)}
   #page-home .hm-ledger{display:flex; flex-wrap:wrap; align-items:baseline; gap:var(--s2) var(--s5);
     padding-top:var(--s4); border-top:1px solid var(--line);
-    font-size:.76rem; color:var(--muted); font-variant-numeric:tabular-nums}
+    font-size:.72rem; color:var(--muted); font-variant-numeric:tabular-nums}
   #page-home .hm-ledger .dr-link{margin-left:auto}
 
   /* KPI 卡下方小字：拆到各建案，本月新客再加上與上月的差
@@ -4917,9 +4925,11 @@
 
       <!-- ═══ 建案首頁 ═══ -->
       <section class="view" id="page-home">
-        <div class="sec pagebar">
-          <h2 id="homeTitle">青園綠境</h2><span class="status selling pgstatus" id="homeStatus">銷售中</span>
-        </div>
+        <!-- 最上面放建案基本資料（不放建案名——頂欄品牌位已經有，與 .rail-proj 隱藏同一個理由）。
+             資料一律由 PROJINFO 與 PRICEDATA 推導，這裡不寫死任何一項。 -->
+        <div class="block hm-facts" id="hmFacts" aria-label="建案基本資料"></div>
+
+        <div class="sec"><h2>待辦事項</h2></div>
 
         <!-- 建案首頁＝案場今日（Enson 2026-09-08 拍板 B 案，同日改成「每個狀態一個區塊」）。
              這頁不准手寫常數——去化來自 window.PRICEDATA、每個區塊的名單來自來客名單的列與 PRICEDATA、台帳引用日報。
@@ -6695,7 +6705,7 @@
               <div class="gtype"><span class="demo" style="font-size:.9rem">內文與表格，行高 1.7</span><span class="m">body｜.9rem・Regular 400</span></div>
               <div class="gtype"><span class="demo" style="font-size:.76rem">按鈕與 pill 文字</span><span class="m">控件｜.76rem・Regular 400</span></div>
               <div class="gtype"><span class="demo" style="font-size:.7rem; letter-spacing:.16em; color:var(--muted)">表頭與微標籤</span><span class="m">標籤｜.64–.7rem・字距 .14–.24em</span></div>
-              <div class="gtype"><span class="demo" style="font-size:.66rem; color:var(--muted)">卡片內只用三級：標題 .9／內容 .76／註記 .66</span><span class="m">卡內｜三級固定・同一列靠字重與顏色分層，不靠字級</span></div>
+              <div class="gtype"><span class="demo" style="font-size:.64rem; color:var(--muted)">卡片內只用三級：標題 .83／內容 .72／註記 .64</span><span class="m">卡內｜三級固定・同一列靠字重與顏色分層，不靠字級</span></div>
             </div>
           </div>
         </div>
@@ -13871,14 +13881,14 @@ try{ /* collect */
     hs:[5,6,7,7,8,9,10,11,11,12,13,13],
     hf:[111,104,98,91,84,78,71,64,58,51,44,38]
   };
+  window.PROJINFO=PROJINFO;
   window.PROJTREND=PROJTREND;
   var PROJPAGES=['home','units','prices','analytics','reports','templates','commission','collect'];
   function setProject(k){
     var d=PROJINFO[k]; if(!d) return;
     var bn=$('#brandName'); if(bn){ bn.textContent=d.name; bn.style.animation='none'; void bn.offsetWidth; bn.style.animation='rise .35s var(--enter)'; }
-    $('#homeTitle').textContent=d.name;
-    var st=$('#homeStatus'); st.textContent=d.st; st.className='status '+d.cls;
-    $('#homeNote').textContent=d.note;
+    /* 頁標固定是「建案首頁」，不寫建案名——名字已在頂欄品牌位（與 .rail-proj 隱藏同一個理由）*/
+    /* 狀態徽章與地點／開賣日都畫在建案首頁的基本資料列裡，由該頁的 refresh() 重畫 */
     $$('.rail-proj').forEach(function(el){el.textContent=d.name; el.dataset.tip=d.name+'・'+d.st});
     /* 深色帶的來客趨勢跟著換案重畫。不要在外面包 setProject——它每次執行都會
        重新指派 window.__setProject，外層包裝會被自己洗掉 */
@@ -14624,9 +14634,11 @@ try{ /* collect */
        分級跟進間隔 STALE_SLA（在來客名單那段）、下訂後 BOOK_SLA 天內要簽約（分析頁「卡單 >14 天標紅」同一條） */
   (function(){
     var home=document.getElementById('page-home'); if(!home) return;
-    var blocks=document.getElementById('hmBlocks'), ledger=document.getElementById('hmLedger');
+    var facts=document.getElementById('hmFacts'), blocks=document.getElementById('hmBlocks'), ledger=document.getElementById('hmLedger');
     var BOOK_SLA=14;
-    function projName(){ var t=document.getElementById('homeTitle'); return t?t.textContent.trim():'' }
+    /* 目前建案＝頂欄品牌位那個名字（頁標已改成固定字樣，不能再拿它當資料來源）*/
+    function projName(){ var t=document.getElementById('brandName'); return t?t.textContent.trim():'' }
+    function curProjKey(){ var n=projName(), I=window.PROJINFO||{}; return Object.keys(I).filter(function(k){return I[k].name===n})[0]||'qy' }
     function esc(x){ return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;') }
     function md(d){ return d? d.slice(5,10).replace('-','-') : '—' }
     function custName(c){ return c? String(c).split('（')[0] : '—' }
@@ -14661,6 +14673,27 @@ try{ /* collect */
         if(v.st==='booked') booked.push([k,v]); if(v.st==='hold') hold.push([k,v]); });
       var pkBooked=0;
       Object.keys(K).forEach(function(k){ var v=K[k]; pk++; if(!v.floor) pkNoFloor++; if(v.st==='booked') pkBooked++; if(v.st==='booked'||v.st==='signed'||v.st==='done') pkSold++; });
+      /* 基本資料：狀態與地點來自 PROJINFO，其餘全部由 PRICEDATA 逐戶推導 */
+      var info=(window.PROJINFO||{})[curProjKey()]||{}, note=(info.note||'').split('・');
+      /* note 只有正式建案是「地點・開賣日」；示意切換的兩案寫的是說明文字，不可硬拆成欄位 */
+      var loc=/[市縣]/.test(note[0]||'')? note[0] : '', open=/開賣$/.test(note[1]||'')? note[1].replace(' 開賣','') : '';
+      var memo=(!loc && !open)? (info.note||'') : '';
+      var rooms={}, pings=[], floors={}, blds={}, pkKind={}, pkLv={};
+      Object.keys(U).forEach(function(k){ var v=U[k];
+        if(v.room) rooms[v.room]=1; if(v.ping) pings.push(v.ping);
+        var seg=k.split('/'); blds[seg[0]]=1; if(seg[1]) floors[seg[1]]=1; });
+      Object.keys(K).forEach(function(k){ var v=K[k]; if(v.kind) pkKind[v.kind]=(pkKind[v.kind]||0)+1; if(v.lv) pkLv[v.lv]=1 });
+      function fact(t,v){ return v? '<div><dt>'+t+'</dt><dd>'+v+'</dd></div>' : '' }
+      facts.innerHTML='<span class="status '+(info.cls||'selling')+' pgstatus" id="homeStatus">'+(info.st||'銷售中')+'</span>'+
+        fact('位置', loc)+
+        fact('開賣', open)+
+        fact('備註', memo)+
+        fact('規劃', Object.keys(blds).length+' 棟・'+Object.keys(floors).length+' 層')+
+        fact('戶數', tot+' 戶')+
+        fact('房型', Object.keys(rooms).sort().join('／'))+
+        fact('坪數', pings.length? Math.min.apply(0,pings)+'–'+Math.max.apply(0,pings)+' 坪' : '')+
+        fact('車位', pk+' 個・'+Object.keys(pkKind).map(function(x){return x+' '+pkKind[x]}).join('／')+'（'+Object.keys(pkLv).sort().join('/')+'）');
+
       var rows=leadRows(), html='';
 
       /* ① 未指派 */
@@ -14767,7 +14800,7 @@ try{ /* collect */
       else if(go==='hold'){ focusUnits('hold'); }
       else if(go==='booked'){ focusUnits('booked'); }
     });
-    /* 切進這頁就重算；切建案（.proj 卡）也重算——setProject 會改 #homeTitle */
+    /* 切進這頁就重算；切建案（.proj 卡）也重算——基本資料與各區塊都跟著換案 */
     var _navH=nav; nav=function(p,r){ _navH(p,r); if(p==='home') refresh() };
     document.addEventListener('click',function(e){ if(e.target.closest('[data-proj]')) setTimeout(refresh,0) });
     setTimeout(refresh,0);   /* PRICEDATA 在這個閉包之後才定義，第一次計算延到 script 跑完 */
