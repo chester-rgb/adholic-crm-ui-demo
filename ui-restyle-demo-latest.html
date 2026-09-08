@@ -32,6 +32,15 @@ em,i,cite,dfn,var,address{font-style:normal}
     --line-accent:#B9CFDE; --line-hot:#EBC9C5;
     /* 填色階（--fill 最淺 → --fill-3；--track＝未點亮的軌道與開關底） */
     --fill-2:#E9EDF1; --fill-3:#E2E9EF; --track:#D5DEE5;
+    /* 銷控狀態色：淡底＋同色系文字＋淡邊（Annie 2026-09-08 定案）。
+       原本 15 個色值散在 60 幾條規則裡；收進來之後同一個狀態只有一組名字。
+       交屋的三種綠邊（#8FCF97／#B9DFBE／#BFE3C4）與兩種綠字（#2F6B3C／#376B3D）併成一組。 */
+    --st-hold-ink:#5E6B78; --st-hold-line:#DAE1E7;
+    --st-book-ink:#774818; --st-book-line:#EBC9A0;
+    --st-sign-ink:#93342D; --st-sign-line:#EFC2BD;
+    --st-done-bg:#E9F5EA; --st-done-ink:#376B3D; --st-done-line:#BFE3C4;
+    --use-shop-ink:#3F8F63; --use-shop-line:#8FBFA2;
+    --use-office-ink:#2E6E9E; --use-office-line:#9CBDD6;
     /* 圖表五階（鋼藍單色遞減，資料分佈用；規範頁「圖表五階」的正本） */
     --chart-1:var(--accent); --chart-2:#4A7A9D; --chart-3:#85AAC4; --chart-4:#BCD2E1; --chart-5:#E4EDF3;
     /* 深墨／鋼藍實色面上的前景（--on-accent 之外的兩個特例） */
@@ -2600,11 +2609,11 @@ em,i,cite,dfn,var,address{font-style:normal}
 /* 卡標題帶底色：用負邊界出血到卡緣，所以負值必須等於 .dr-panel 的內距（--s5）；
    內距一改這裡要跟著改，否則標題會凸出卡片（週報分析卡踩過這個坑）。
    上緣圓角＝卡片圓角，貼齊卡緣才同心。 */
-:is(#page-reports,#page-home) .dr-section-head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s3);
+:is(#page-reports,#page-home,#page-units) .dr-section-head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s3);
   margin:calc(var(--s5) * -1) calc(var(--s5) * -1) var(--s4);padding:var(--s3) var(--s5);
   background:var(--fill);border-radius:var(--r-card) var(--r-card) 0 0}
-:is(#page-reports,#page-home) .dr-section-head h3{font-size:.83rem;font-weight:500;letter-spacing:.08em}
-:is(#page-reports,#page-home) .dr-section-head span{font-size:.64rem;color:var(--muted)}
+:is(#page-reports,#page-home,#page-units) .dr-section-head h3{font-size:.83rem;font-weight:500;letter-spacing:.08em}
+:is(#page-reports,#page-home,#page-units) .dr-section-head span{font-size:.64rem;color:var(--muted)}
 :is(#page-reports,#page-home) .dr-todo{display:flex;flex-direction:column}
 :is(#page-reports,#page-home) .dr-todo-row{display:grid;grid-template-columns:auto 4rem minmax(0,1fr) auto;align-items:center;gap:var(--s2);padding:var(--s3) 0;font-size:.72rem;border-top:1px solid var(--line)}
 :is(#page-reports,#page-home) .dr-todo-row:first-child{border-top:0;padding-top:0}
@@ -4335,25 +4344,6 @@ em,i,cite,dfn,var,address{font-style:normal}
   .pkblock .pkwrap{display:flex; flex-wrap:wrap; gap:4px}
   .pkblock .matrix-cell--park{width:3.9rem; min-width:3.9rem; flex:none}
   .matrix-compact .pkblock .matrix-cell--park{width:36px; min-width:36px}
-  /* §3.2-3 4px 縫要用白色 shadow 補滿，否則捲動時格子從縫裡透出來 */
-  .matrix-tbl thead th.mx-corner{
-    position:sticky; left:0; top:0; z-index:30; background:var(--bg);
-    width:48px; box-shadow:2px 2px 0 2px var(--bg);
-  }
-  .matrix-tbl thead th.mx-col{
-    position:sticky; top:0; z-index:20; background:var(--bg);
-    box-shadow:0 2px 0 2px var(--bg); border-bottom:1px solid var(--line);
-    font-size:.66rem; font-weight:500; color:#687684; letter-spacing:.06em;
-    padding:0 4px 4px; min-width:4.75rem; text-align:center;
-  }
-  .matrix-tbl tbody th.mx-row{
-    position:sticky; left:0; z-index:20; background:var(--bg);
-    box-shadow:2px 0 0 2px var(--bg); border-right:1px solid var(--line);
-    font-size:.66rem; font-weight:400; color:#687684; text-align:right;
-    padding-right:8px; width:48px; white-space:nowrap; font-variant-numeric:tabular-nums;
-  }
-  .matrix-tbl td{padding:0}
-
   /* §4.1 格子尺寸：完整 76×56、緊湊 36×36 */
   .matrix-cell{
     position:relative; height:56px; width:100%; min-width:4.75rem;
@@ -4362,79 +4352,25 @@ em,i,cite,dfn,var,address{font-style:normal}
     transition:transform .2s ease-out, background .16s ease-out, border-color .16s ease-out;
   }
   .matrix-cell:hover{transform:scale(1.04); z-index:5}
-  .matrix-cell--park{width:3.9rem; min-width:3.9rem; flex:none; border-radius:6px}
-  .matrix-cell--park:hover{transform:scale(1.05)}
-  .matrix-cell--wide{width:100%}
-  .matrix-cell__no{font-size:.76rem; font-weight:500; line-height:1.25}
-  .matrix-cell__detail{font-size:.6rem; opacity:.72; line-height:1.2}
-  /* §7 空格：虛線框、不填色（有底色會被當成某個狀態） */
-  .matrix-empty{height:56px; width:4.75rem; border:1px dashed var(--line-2); border-radius:var(--r-mini)}
-
   /* §5.1 五態：底／框／字全部實測 ≥4.5:1（見下方註記） */
-  .mx-sale  {background:#FFFFFF; border-color:var(--line);  color:var(--ink)}     /* 14.42 */
-  .mx-hold  {background:#E9EDF1; border-color:var(--line-2); color:#5E6B78}       /*  4.64 */
-  .mx-booked{background:#F8EDDF; border-color:var(--warm);   color:#774818}       /*  6.67 */
-  .mx-signed{background:#F9E9E7; border-color:var(--hot);    color:#93342D}       /*  6.44 */
-  .mx-done  {background:#E9F5EA; border-color:#8FCF97;       color:#376B3D}       /*  5.61 */
+  .mx-sale  {background:var(--bg); border-color:var(--line);  color:var(--ink)}              /* 14.42 */
+  .mx-hold  {background:var(--fill-2); border-color:var(--line-2); color:var(--st-hold-ink)}  /*  4.64 */
+  .mx-booked{background:var(--warm-tint); border-color:var(--warm); color:var(--st-book-ink)} /*  6.67 */
+  .mx-signed{background:var(--hot-tint); border-color:var(--hot); color:var(--st-sign-ink)}   /*  6.44 */
+  .mx-done  {background:var(--st-done-bg); border-color:var(--st-done-line); color:var(--st-done-ink)} /* 5.61 */
 
-  /* §5.3 用途標：深色實心＋白字，住宅不標 */
-  .matrix-cell__tag{
-    position:absolute; top:2px; left:2px; z-index:10;
-    font-style:normal; font-size:.56rem; font-weight:500; line-height:1;
-    padding:1px 3px; border-radius:3px; color:var(--on-accent);
-  }
-  .matrix-cell__tag.tg-shop{background:#3E7845}   /* 5.28 */
-  .matrix-cell__tag.tg-office{background:var(--accent)} /* 8.87 */
-  .matrix-cell__tag.tg-other{background:var(--muted)}
-  /* §5.5 標王：深底黃字（黃底已被「下訂」用掉） */
-  .matrix-cell__crown{
-    position:absolute; top:-6px; right:-6px; z-index:10;
-    font-style:normal; font-size:.56rem; font-weight:500; line-height:1;
-    padding:2px 4px; border-radius:3px; background:var(--ink); color:#FFD230;
-    box-shadow:0 1px 2px rgba(15,23,42,.14);
-  }
-  /* §5.4 車位徽章 */
-  .mx-pksz{position:absolute; top:2px; left:2px; z-index:10; font-style:normal;
-    font-size:.54rem; font-weight:500; line-height:1; padding:1px 3px; border-radius:3px}
-  .mx-pksz.big{background:var(--ink); color:var(--on-accent); box-shadow:0 0 0 1px rgba(255,255,255,.7)}
-  .mx-pksz.small{background:rgba(255,255,255,.7); color:var(--ink); box-shadow:0 0 0 1px rgba(255,255,255,.7)}
-  /* 加了價格行之後底部沒有空間，充電徽章移到右上角、與左上的大小徽章對稱 */
-    .mx-pkev{position:absolute; top:2px; right:2px; z-index:10; font-style:normal;
-    font-size:.54rem; font-weight:500; line-height:1; padding:1px 3px; border-radius:3px;
-    background:var(--warm); color:#3D240C}                                        /* 4.93 */
-
-  /* §4.1 緊湊模式：格子只回答「賣掉了沒」 */
-  .matrix-compact .matrix-cell,
-  .matrix-compact .matrix-empty{width:36px; min-width:36px; height:36px}
-  .matrix-compact .matrix-cell--park{width:36px}
-  .matrix-compact .mx-col{min-width:36px}
-  .matrix-compact .matrix-cell__no{font-size:10px; line-height:1.1; font-weight:500}
-  .matrix-compact .matrix-cell__detail{display:none}
-  .matrix-compact .matrix-cell__tag{font-size:0; width:6px; height:6px; padding:0; border-radius:50%; left:auto; right:2px}
-  .matrix-compact .matrix-cell__crown{font-size:0; width:8px; height:8px; padding:0; border-radius:50%}
-  .matrix-compact .matrix-cell__compact-only{display:block}
-  .matrix-cell__compact-only{display:none}
-    /* 車位格第三行的價格；緊湊模式只留編號 */
-    .matrix-cell__price{font-size:.58rem; font-weight:500; line-height:1.15; font-variant-numeric:tabular-nums; opacity:.9}
-    /* 價格表車位格的編號（價格另由 .matrix-cell__face 顯示） */
-    .matrix-cell__pno{font-size:.7rem; font-weight:500; line-height:1.2; font-variant-numeric:tabular-nums}
     /* 價格歷史視窗：上半摘要卡（左標右值）＋下半異動紀錄 */
     .pricehist{width:min(34rem, calc(100vw - var(--pad-x) * 2))}
     .pricehist .phsum{background:var(--panel); border-radius:var(--r-card); padding:var(--s4) var(--s5); margin-bottom:var(--s5)}
     .pricehist .phrow{display:flex; align-items:baseline; justify-content:space-between; gap:1.5rem; line-height:2.2}
     .pricehist .phrow i{font-style:normal; font-size:.78rem; color:var(--muted)}
     .pricehist .phrow b{font-weight:500; font-size:.86rem; font-variant-numeric:tabular-nums}
-    .pricehist .phrow b.up{color:#93342D}
+    .pricehist .phrow b.up{color:var(--st-sign-ink)}
     .pricehist .phlbl{font-size:.7rem; color:var(--muted); letter-spacing:.16em; margin-bottom:var(--s3)}
     .pricehist .phdelta{margin-left:auto; font-size:.83rem; font-variant-numeric:tabular-nums}
     .pricehist .phdelta i{font-style:normal; color:var(--line-3); margin:0 .35rem}
     .pricehist .phdelta em{font-style:normal; font-size:.68rem; color:var(--muted); margin-left:.2rem}
-    .pricehist .chip.ph-floor{background:var(--warm-tint); border-color:var(--warm); color:#774818}
-    .matrix-compact .matrix-cell__pno{font-size:10px}
-    .matrix-compact .matrix-cell__price{display:none}
-    /* 完整模式顯示完整編號或成交金額，緊湊模式改用只有位置的短標 */
-    .matrix-compact .matrix-cell__no{display:none}
-    .matrix-compact .matrix-cell__compact-only{font-size:10px; line-height:1.1; font-weight:500}
+    .pricehist .chip.ph-floor{background:var(--warm-tint); border-color:var(--warm); color:var(--st-book-ink)}
     /* 提示框要能斷行才放得下結構化內容 */
     /* 銷控表的直式提示卡：標題（編號＋狀態）＋分隔線＋左標右值 */
     .floattip.rows{white-space:normal; text-align:left; min-width:10.5rem; padding:.6rem .75rem .5rem}
@@ -4479,7 +4415,7 @@ em,i,cite,dfn,var,address{font-style:normal}
   /* 雙保險：所屬頁面沒開啟時一律不顯示（fixed 元素不受父層版面影響，要自己擋） */
   .view:not(.on) .mx-bulk{display:none}
   .mx-bulk b{font-weight:500; font-size:.76rem}
-  .mx-bulk .pillbtn{border-color:rgba(255,255,255,.28); color:#fff; background:transparent; height:2rem}
+  .mx-bulk .pillbtn{border-color:rgba(255,255,255,.28); color:var(--on-accent); background:transparent; height:2rem}
   .mx-bulk .pillbtn:hover{background:rgba(255,255,255,.14); border-color:rgba(255,255,255,.5)}
   /* 密度切換 §9.3 */
   .dens{display:inline-flex; position:relative; background:var(--fill); border-radius:var(--r-pill); padding:2px}
@@ -4518,22 +4454,6 @@ em,i,cite,dfn,var,address{font-style:normal}
   .price-seg .thumb{position:absolute; top:2px; bottom:2px; left:2px; width:0;
     background:var(--accent); border-radius:var(--r-pill);
     transition:transform 480ms cubic-bezier(.22,1,.36,1), width 480ms cubic-bezier(.22,1,.36,1)}
-  /* §6.2 底色（與字色分開，換層時才不會底色先跳） */
-  .pcell{background:var(--bg); border-color:var(--line)}
-  .pcell.pb-up   {background:#F9E9E7; border-color:#EBC9C5}
-  .pcell.pb-down {background:#E9F5EA; border-color:#B9DFBE}
-  .pcell.pb-zero {background:var(--fill); border-color:var(--line-2)}
-  .pcell.pb-none {background:var(--fill); border-color:var(--line-2); border-style:dashed}
-  /* §6.3 字色：紅漲綠跌（全站規則，警示一律用琥珀不搶這條軸） */
-  .pcell .matrix-cell__face{color:var(--ink)}
-  .pcell.pt-up   .matrix-cell__face{color:#93342D}
-  .pcell.pt-down .matrix-cell__face{color:#376B3D}
-  .pcell.pt-zero .matrix-cell__face{color:var(--muted)}
-  .pcell.pt-none .matrix-cell__face{color:#8C99A5}
-  .pcell .matrix-cell__face{font-size:.76rem; font-weight:500; font-variant-numeric:tabular-nums}
-  .pcell.pt-none .matrix-cell__face{font-size:.64rem; font-weight:400}
-  .matrix-compact .pcell .matrix-cell__face{font-size:10px; font-weight:500}
-  .pcell .pdet{font-size:.58rem}
   /* §8.2 翻牌：a／b 兩份一模一樣的 keyframes，單一 class 第二次切換不會重播 */
   @keyframes mxflipA{0%{transform:perspective(600px) rotateY(0)}
     50%{transform:perspective(600px) rotateY(90deg); opacity:.25}
@@ -4621,11 +4541,11 @@ em,i,cite,dfn,var,address{font-style:normal}
   color:var(--accent);font-variant-numeric:tabular-nums;line-height:1.6}
 .udconv:empty,.udconv.mg-none{display:none}
 .unitdlg .fld,.parkdlg .fld,#pdBody .fld{position:relative}
-.udsum-hi{display:inline-block;margin-left:.7rem;padding-left:.7rem;border-left:1px solid var(--line-2);font-weight:600;color:var(--accent);font-size:.94rem}
+.udsum-hi{display:inline-block;margin-left:.7rem;padding-left:.7rem;border-left:1px solid var(--line-2);font-weight:600;color:var(--accent);font-size:.95rem}
   .unitdlg .udprem{font-weight:500; font-size:.83rem; font-variant-numeric:tabular-nums;
     display:flex; align-items:center; height:var(--ctrl-h)}
-  .unitdlg .udprem.up{color:#93342D}     /* 紅漲 */
-  .unitdlg .udprem.down{color:#376B3D}   /* 綠跌 */
+  .unitdlg .udprem.up{color:var(--st-sign-ink)}     /* 紅漲 */
+  .unitdlg .udprem.down{color:var(--st-done-ink)}   /* 綠跌 */
   .unitdlg .udprem.zero{color:var(--muted)}
   .unitdlg .udrow{display:flex; gap:var(--s3); align-items:center}
   .unitdlg .udrow select{flex:1; min-width:0}
@@ -4683,7 +4603,7 @@ em,i,cite,dfn,var,address{font-style:normal}
 .mg-rolemenu button:hover{background:var(--fill)}
 .mg-rolemenu button[aria-checked="true"]{background:var(--tint);color:var(--accent)}
 .mg-rolemenu button small{font-size:.66rem;color:var(--muted)}
-/* KPI 沿用 Enson dr-cards 版式（原樣式 scope 在 #page-reports，這裡自帶一份同值） */
+/* KPI 卡：外形照日報 dr-cards 的語言，但卡高與數字字級不同，所以是自己的 .mg-kpis2，不掛 dr-cards（那個 class 在這頁不生效）*/
 .mg-kpis2{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-auto-rows:1fr;gap:var(--s3);margin-bottom:var(--s3)}
 .mg-kpis2>div{display:flex;flex-direction:column;gap:var(--s2);min-width:0;min-height:6.2rem;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s4)}
 .mg-kpis2 .dr-kpi-head{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--s2)}
@@ -4702,7 +4622,7 @@ em,i,cite,dfn,var,address{font-style:normal}
 .loginwrap[data-lg="5"] .lgartcopy{border-top:1px solid var(--line-2)}
 
 
-.mg-kpis2 .dr-kpi-head b{font-size:1.42rem;font-weight:500;font-variant-numeric:tabular-nums;line-height:1.15}
+.mg-kpis2 .dr-kpi-head b{font-size:1.43rem;font-weight:500;font-variant-numeric:tabular-nums;line-height:1.15}
 .mg-kpis2 .dr-kpi-head b .wk-unit{font-size:.66rem;font-weight:400;color:var(--muted);font-style:normal}
 /* 戶別＋車位左右並排——吃滿寬度（Annie 9/8） */
 /* 兩大卡用底色區隔（照 Enson 日報卡片語言，Annie 9/8 採納） */
@@ -4712,19 +4632,19 @@ em,i,cite,dfn,var,address{font-style:normal}
    待售＝乾淨白底＋中性灰邊（Annie 9/8 定案：不用虛線） */
 #mgMxCard .matrix-cell,#mgPkCard .mg-pcell{border-color:var(--line)}
 #mgMxCard .matrix-cell.mx-sale,#mgPkCard .mg-pcell.mx-sale{
-  background:#fff;border-style:solid;border-color:var(--line)}
+  background:var(--bg);border-style:solid;border-color:var(--line)}
 #mgMxCard .matrix-cell.mx-sale .mg-t,#mgMxCard .matrix-cell.mx-sale .mg-m,
 #mgPkCard .mg-pcell.mx-sale b,#mgPkCard .mg-pcell.mx-sale small{color:var(--muted)}
 #mgMxCard .matrix-cell.mx-sale .mg-m{font-size:.72rem;font-weight:500;color:var(--ink)}
-#mgMxCard .matrix-cell.mx-hold,#mgPkCard .mg-pcell.mx-hold{background:var(--fill-2);border-color:var(--line);color:#5E6B78}
-#mgMxCard .matrix-cell.mx-booked,#mgPkCard .mg-pcell.mx-booked{background:var(--warm-tint);border-color:var(--line);color:#774818}
-#mgMxCard .matrix-cell.mx-signed,#mgPkCard .mg-pcell.mx-signed{background:var(--hot-tint);border-color:var(--line);color:#93342D}
-#mgMxCard .matrix-cell.mx-done,#mgPkCard .mg-pcell.mx-done{background:#E9F5EA;border-color:var(--line);color:#2F6B3C}
+#mgMxCard .matrix-cell.mx-hold,#mgPkCard .mg-pcell.mx-hold{background:var(--fill-2);border-color:var(--line);color:var(--st-hold-ink)}
+#mgMxCard .matrix-cell.mx-booked,#mgPkCard .mg-pcell.mx-booked{background:var(--warm-tint);border-color:var(--line);color:var(--st-book-ink)}
+#mgMxCard .matrix-cell.mx-signed,#mgPkCard .mg-pcell.mx-signed{background:var(--hot-tint);border-color:var(--line);color:var(--st-sign-ink)}
+#mgMxCard .matrix-cell.mx-done,#mgPkCard .mg-pcell.mx-done{background:var(--st-done-bg);border-color:var(--line);color:var(--st-done-ink)}
 /* 結構化提示卡（有 .ft-title 的那種）改白底輕卡＝全站彈窗語言；單行小提示維持深色不動 */
 .floattip:has(.ft-title){
-  background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:var(--r-row);
+  background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:var(--r-row);
   box-shadow:var(--el2);padding:.75rem .9rem;min-width:12.5rem;letter-spacing:.02em}
-.floattip:has(.ft-title) .ft-title{border-bottom:1px solid var(--fill);font-size:.82rem;font-weight:600;padding-bottom:.45rem;margin-bottom:.4rem}
+.floattip:has(.ft-title) .ft-title{border-bottom:1px solid var(--fill);font-size:.83rem;font-weight:600;padding-bottom:.45rem;margin-bottom:.4rem}
 .floattip:has(.ft-title) .ft-st{background:var(--fill);color:var(--muted);border-radius:var(--r-pill);padding:.02rem .45rem;font-size:.6rem;opacity:1}
 .floattip:has(.ft-title) .ft-row{font-size:.72rem;line-height:1.95}
 .floattip:has(.ft-title) .ft-row i{color:var(--muted);opacity:1}
@@ -4746,10 +4666,10 @@ em,i,cite,dfn,var,address{font-style:normal}
 .mg-stseg button:hover{border-color:var(--line-3)}
 .mg-stseg button[aria-pressed="true"]{font-weight:600}
 .mg-stseg button[data-v="sale"][aria-pressed="true"]{background:var(--fill);color:var(--ink)}
-.mg-stseg button[data-v="hold"][aria-pressed="true"]{background:var(--fill-2);color:#5E6B78;border-color:var(--line-2)}
-.mg-stseg button[data-v="booked"][aria-pressed="true"]{background:var(--warm-tint);color:#774818;border-color:#EBC9A0}
-.mg-stseg button[data-v="signed"][aria-pressed="true"]{background:var(--hot-tint);color:#93342D;border-color:#EFC2BD}
-.mg-stseg button[data-v="done"][aria-pressed="true"]{background:#E9F5EA;color:#2F6B3C;border-color:#BFE3C4}
+.mg-stseg button[data-v="hold"][aria-pressed="true"]{background:var(--fill-2);color:var(--st-hold-ink);border-color:var(--line-2)}
+.mg-stseg button[data-v="booked"][aria-pressed="true"]{background:var(--warm-tint);color:var(--st-book-ink);border-color:var(--st-book-line)}
+.mg-stseg button[data-v="signed"][aria-pressed="true"]{background:var(--hot-tint);color:var(--st-sign-ink);border-color:var(--st-sign-line)}
+.mg-stseg button[data-v="done"][aria-pressed="true"]{background:var(--st-done-bg);color:var(--st-done-ink);border-color:var(--st-done-line)}
 /* 銷控頁工具列黏在頂端：捲動時檢視層與操作鈕不消失（Annie 9/8） */
 #page-units > .sec.pagebar{position:sticky;top:0;z-index:30;background:var(--bg);
   padding-top:var(--s3);padding-bottom:var(--s3);margin-bottom:var(--s3)}
@@ -4776,7 +4696,7 @@ em,i,cite,dfn,var,address{font-style:normal}
 .mg-flowdlg .mg-fv .mg-ar{padding:0 .34rem;color:var(--line-3)}
 .mg-flowdlg .mg-fv b{font-weight:600}
 .mg-readdlg{width:min(22rem,92vw)}
-.mg-readlist{display:grid;grid-template-columns:auto 1fr;gap:.34rem 1rem;margin:.9rem 0 0;font-size:.82rem;align-items:baseline}
+.mg-readlist{display:grid;grid-template-columns:auto 1fr;gap:.34rem 1rem;margin:.9rem 0 0;font-size:.83rem;align-items:baseline}
 .mg-readlist dt{color:var(--muted);font-size:.74rem}
 .mg-readlist dd{margin:0;font-weight:600;font-variant-numeric:tabular-nums;text-align:right}
 .mg-readnote{margin:.8rem 0 0;font-size:.7rem;color:var(--muted);padding-top:.6rem;border-top:1px solid var(--line)}
@@ -4789,23 +4709,23 @@ em,i,cite,dfn,var,address{font-style:normal}
 .dlg .sel.open .sel-btn{border-color:var(--accent);outline:none}
 .dlg .sel .sel-btn:focus-visible{outline:2px solid var(--line-accent);outline-offset:2px}
 /* 白卡的小箭頭跟著轉白（原本是深色，改白底後會變成突兀黑三角） */
-.floattip:has(.ft-title)::after{border-top-color:#fff !important;filter:drop-shadow(0 1px 0 var(--line))}
+.floattip:has(.ft-title)::after{border-top-color:var(--bg) !important;filter:drop-shadow(0 1px 0 var(--line))}
 .floattip:has(.ft-title)::before{border-top-color:var(--line) !important}
 /* 狀態圖例小方塊＝格子實際底色（Annie 9/8：顏色沒對應到） */
-#mgMxCard .stfilter .stbtn i{width:.62rem;height:.62rem;border-radius:3px;border:1px solid var(--line);background:#fff}
+#mgMxCard .stfilter .stbtn i{width:.62rem;height:.62rem;border-radius:3px;border:1px solid var(--line);background:var(--bg)}
 #mgMxCard .stfilter .stbtn .mg-stn{margin-left:.34rem;font-weight:600;font-variant-numeric:tabular-nums;font-size:.72rem}
 #mgMxCard .stfilter .stbtn.hold i{background:var(--fill-2);border-color:var(--line-2)}
-#mgMxCard .stfilter .stbtn.booked i{background:var(--warm-tint);border-color:#EBC9A0}
-#mgMxCard .stfilter .stbtn.signed i{background:var(--hot-tint);border-color:#EFC2BD}
-#mgMxCard .stfilter .stbtn.done i{background:#E9F5EA;border-color:#BFE3C4}
+#mgMxCard .stfilter .stbtn.booked i{background:var(--warm-tint);border-color:var(--st-book-line)}
+#mgMxCard .stfilter .stbtn.signed i{background:var(--hot-tint);border-color:var(--st-sign-line)}
+#mgMxCard .stfilter .stbtn.done i{background:var(--st-done-bg);border-color:var(--st-done-line)}
 /* 店面／辦公：用途以左上角小標區分，跨棟打通的店面 grid-column 跨欄（Annie 9/8 真實案場結構） */
 #mgMxCard .matrix-cell[style*="span"]{aspect-ratio:auto}
 /* 店／辦與車位的大／小／充統一成同一套標記語言：描邊膠囊、同字級同內距（Annie 9/8） */
 #mgMxCard .matrix-cell.mg-use-shop::before,#mgMxCard .matrix-cell.mg-use-office::before{
-  position:absolute;top:5px;left:6px;font-size:.55rem;line-height:1.5;border-radius:var(--r-pill);
+  position:absolute;top:5px;left:6px;font-size:.56rem;line-height:1.5;border-radius:var(--r-pill);
   padding:0 .34rem;letter-spacing:.05em;background:transparent;border:1px solid var(--line-2);color:var(--muted)}
-#mgMxCard .matrix-cell.mg-use-shop::before{content:'店';border-color:#8FBFA2;color:#3F8F63}
-#mgMxCard .matrix-cell.mg-use-office::before{content:'辦';border-color:#9CBDD6;color:#2E6E9E}
+#mgMxCard .matrix-cell.mg-use-shop::before{content:'店';border-color:var(--use-shop-line);color:var(--use-shop-ink)}
+#mgMxCard .matrix-cell.mg-use-office::before{content:'辦';border-color:var(--use-office-line);color:var(--use-office-ink)}
 /* 選取態要壓過狀態底色 */
 #mgMxCard .matrix-cell.mx-picked,#mgPkCard .mg-pcell.mx-picked{border-style:solid;border-color:var(--accent)}
 .mg-card .matrix-cell,.mg-card .mg-pcell{background:var(--bg)}
@@ -4813,9 +4733,10 @@ em,i,cite,dfn,var,address{font-style:normal}
 .mg-wrap{display:grid;grid-template-columns:var(--mgLW,49rem) minmax(17rem,1fr);gap:var(--s5);align-items:start}
 .mg-card{margin-bottom:var(--s5);min-width:0}
 /* 左右第一排格子對齊（Annie 9/8）：兩卡頭鎖同高、B1 標籤行對位左側棟頭行 */
-.mg-card>.dr-section-head{min-height:1.9rem;margin-bottom:.5rem;align-items:center;flex-wrap:nowrap}
+/* 標題帶樣式來自共用的 .dr-section-head（已放寬到 #page-units）；這裡只補 chip 需要的垂直置中 */
+#page-units .mg-card>.dr-section-head{align-items:center;flex-wrap:nowrap}
 .mg-card>.dr-section-head h3{white-space:nowrap;display:flex;align-items:baseline;gap:.55rem}
-.mg-card>.dr-section-head h3 .microlbl{font-size:.7rem;color:var(--muted);font-weight:400;letter-spacing:.02em}
+.mg-card>.dr-section-head h3 .microlbl{font-size:.64rem;color:var(--muted);font-weight:400;letter-spacing:.02em}
 .mg-pktabs button{padding:.05rem .5rem;font-size:.62rem}
 /* 左右首格垂直對齊：棟頭行與 B1 標籤行鎖同一固定高度 */
 .mg-mx .bh{height:1.35rem;display:flex;align-items:flex-end;justify-content:center;padding-bottom:.15rem}
@@ -4832,19 +4753,11 @@ em,i,cite,dfn,var,address{font-style:normal}
 .mg-pkbar{display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap;margin:.1rem 0 .7rem}
 .mg-pklegend{font-size:.64rem;color:var(--muted)}
 .mg-ctlright{margin-left:auto;display:inline-flex;align-items:center;gap:.8rem}
-#mgMxCard>.dr-section-head,#mgPkCard>.dr-section-head{position:relative}
-#mgMxCard .stfilter{position:absolute;right:0;top:50%;transform:translateY(-50%);margin:0;padding:0;border:none;background:none;display:flex;align-items:center;gap:.3rem;flex-wrap:nowrap;line-height:1}
-#mgMxCard .stfilter .stbtn{height:1.5rem;font-size:.68rem;padding:0 .55rem}
-#mgMxCard .stfilter .stlbl{font-size:.66rem}
-#mgMxCard .stfilter .streset{height:1.5rem;font-size:.66rem;padding:0 .6rem}
-#mgPkCard .mg-pklegend{position:absolute;right:0;top:50%;transform:translateY(-50%);white-space:nowrap;line-height:1}
+/* 篩選 chip 與圖例改成標題帶裡的 flex 子項（原本絕對定位，是因為 .dr-section-head 在這頁根本沒生效）*/
+#mgMxCard .stfilter{margin:0 0 0 auto;padding:0;border:none;background:none;display:flex;align-items:center;gap:.3rem;flex-wrap:nowrap;line-height:1}
+#mgMxCard .stfilter .stbtn{height:1.5rem;padding:0 .55rem}   /* 字級沿用全站 .stbtn 的 .72rem */
+#mgPkCard .mg-pklegend{margin-left:auto;white-space:nowrap;line-height:1}
 
-.mg-kpis{grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));margin-bottom:var(--s3)}
-.mg-kpis .kpi{padding:var(--s3) var(--s4);gap:.15rem}
-.mg-kpis .kpi .v{font-size:1.35rem}
-.mg-kpis .kpi .v .wa{color:var(--warm)}
-.mg-brest{color:var(--muted);font-variant-numeric:tabular-nums;display:block;white-space:normal;word-break:keep-all;line-height:1.65;font-size:.62rem}
-.mg-brest i{font-style:normal;font-weight:600}
 .mg-hascard{position:relative}
 .mg-bpop{position:absolute;left:var(--s4);right:var(--s4);top:calc(100% - .4rem);z-index:12;
   background:var(--ink);color:var(--on-accent);border-radius:var(--r-cell);padding:.5rem .7rem;
@@ -4854,11 +4767,6 @@ em,i,cite,dfn,var,address{font-style:normal}
 .mg-bpop b{display:block;font-weight:400;opacity:.62;font-size:.62rem;letter-spacing:.12em;margin-bottom:.1rem}
 .mg-bpop span{display:inline-block;margin-right:.7rem;font-variant-numeric:tabular-nums}
 .mg-bpop i{font-style:normal;font-weight:600}
-.mg-brow{display:none}
-.mg-brow .bf{font:inherit;padding:0 .1rem;border:none;background:none;font-variant-numeric:tabular-nums;color:var(--muted)}
-.mg-brow .bf b{color:var(--ink);font-weight:600;margin-left:.15rem}
-.mg-brow .bf:not(:last-child)::after{content:'・';color:var(--line-3);margin-left:.35rem}
-.mg-brow .bf.onb{background:var(--tint);border-color:var(--line-accent,var(--accent));color:var(--accent)}
 .mg-who{font-size:.72rem;color:var(--accent);margin-right:.2rem;white-space:nowrap}
 .mg-roleseg button{font-size:.7rem}
 /* 頁首控制列節奏統一：同高、同圓角、同字級（Annie 9/8） */
@@ -4866,13 +4774,6 @@ em,i,cite,dfn,var,address{font-style:normal}
 #page-units .acts #mgView{height:2.125rem;padding:.18rem;align-items:center}
 #page-units .acts #mgView button{height:calc(100% - .04rem);display:inline-flex;align-items:center;font-size:.76rem;padding:0 .85rem}
 #mgView button[aria-pressed="true"],#mgSim button[aria-pressed="true"],#mgRole button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);border-radius:var(--r-pill)}
-.mg-ov{display:flex;flex-wrap:wrap;gap:.4rem 1.5rem;align-items:baseline;border:1px solid var(--line);border-radius:var(--r-row);background:var(--panel);padding:.7rem 1.1rem;margin:0 0 var(--s4);font-size:.78rem}
-.mg-ov b{font-variant-numeric:tabular-nums;font-weight:600;font-size:.95rem}
-.mg-ov .lb{color:var(--muted);font-size:.68rem;margin-right:.25rem}
-.mg-ov .wa{color:var(--warm)}
-.mg-ov .sp{width:1px;height:1rem;background:var(--line-2);align-self:center}
-.mg-ov .bf{font:inherit;padding:.05rem .35rem;border-radius:var(--r-mini);font-variant-numeric:tabular-nums}
-.mg-ov .bf.onb{background:var(--tint);color:var(--accent)}
 .mg-ctl{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;margin-bottom:var(--s4)}
 .mg-noread{padding:3rem 2rem;text-align:center;color:var(--muted);font-size:.85rem;border-style:dashed}
 /* 正方形自動佈局：欄數=棟數；格子 1:1；間距均等；少棟置中、多棟捲動 */
@@ -4884,10 +4785,10 @@ em,i,cite,dfn,var,address{font-style:normal}
 .mg-mx .matrix-cell{width:100%;aspect-ratio:1/1;height:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.08rem}
 .mg-mx .matrix-cell .mg-t{font-size:.72rem;font-weight:500;opacity:.8;line-height:1.25}
 .mg-mx .matrix-cell .mg-m{font-weight:600;font-variant-numeric:tabular-nums;font-size:.76rem;line-height:1.2}
-.mg-mx .matrix-cell .mg-s{font-size:.52rem;opacity:.75;line-height:1.3;text-align:center}
+.mg-mx .matrix-cell .mg-s{font-size:.54rem;opacity:.75;line-height:1.3;text-align:center}
 .mg-mx .matrix-cell .mg-m.mg-unset{color:var(--line-3);font-weight:400;font-size:.66rem}
-.mg-mx .matrix-cell .mg-m.mg-prem{color:#93342D}
-.mg-mx .matrix-cell .mg-m.mg-neg{color:#376B3D}
+.mg-mx .matrix-cell .mg-m.mg-prem{color:var(--st-sign-ink)}
+.mg-mx .matrix-cell .mg-m.mg-neg{color:var(--st-done-ink)}
 .mg-mx .matrix-cell.mg-dim{opacity:.15;pointer-events:none}
 /* 連動高亮：不用深框，改用全站慣用的淡色暈＋輕微浮起（Annie 9/8） */
 .mg-linked{z-index:3;box-shadow:0 0 0 3px var(--tint),var(--el1);transform:translateY(-1px)}
@@ -4913,15 +4814,15 @@ em,i,cite,dfn,var,address{font-style:normal}
   padding:.3rem .2rem .32rem;font-size:.7rem;position:relative;transition:transform .18s,box-shadow .2s;cursor:pointer;overflow:hidden}
 .mg-pcell .mg-tagrow{display:flex;gap:.2rem;align-items:center;justify-content:center;min-height:.9rem}
 .mg-pcell:hover{transform:scale(1.06);box-shadow:var(--el1);z-index:2}
-.mg-pcell small{font-size:.55rem;opacity:.7;line-height:1.3;text-align:center}
+.mg-pcell small{font-size:.56rem;opacity:.7;line-height:1.3;text-align:center}
 .mg-pcell b{font-size:.78rem;font-weight:600;font-variant-numeric:tabular-nums;line-height:1}
-.mg-pcell .mg-tag{font-size:.55rem;padding:0 .34rem}
-.mg-pcell .mg-chg{font-size:.55rem;padding:0 .34rem}
-.mg-pcell.mx-hold{background:var(--fill-2);border-color:#DAE1E7;color:#5E6B78}
-.mg-pcell.mx-booked{background:var(--warm-tint);border-color:#EBC9A0;color:#774818}
-.mg-pcell.mx-signed{background:var(--hot-tint);border-color:#EFC2BD;color:#93342D}
-.mg-pcell.mx-done{background:#E9F5EA;border-color:#BFE3C4;color:#376B3D}
-.mg-udwarn{margin:.2rem 1.6rem 0;background:var(--warm-tint);border:1px solid var(--warm);color:#774818;border-radius:var(--r-cell);padding:.5rem .8rem;font-size:.72rem}
+.mg-pcell .mg-tag{font-size:.56rem;padding:0 .34rem}
+.mg-pcell .mg-chg{font-size:.56rem;padding:0 .34rem}
+.mg-pcell.mx-hold{background:var(--fill-2);border-color:var(--st-hold-line);color:var(--st-hold-ink)}
+.mg-pcell.mx-booked{background:var(--warm-tint);border-color:var(--st-book-line);color:var(--st-book-ink)}
+.mg-pcell.mx-signed{background:var(--hot-tint);border-color:var(--st-sign-line);color:var(--st-sign-ink)}
+.mg-pcell.mx-done{background:var(--st-done-bg);border-color:var(--st-done-line);color:var(--st-done-ink)}
+.mg-udwarn{margin:.2rem 1.6rem 0;background:var(--warm-tint);border:1px solid var(--warm);color:var(--st-book-ink);border-radius:var(--r-cell);padding:.5rem .8rem;font-size:.72rem}
 .mg-udq{margin:.4rem 1.6rem 0;font-size:.72rem}
 .mg-udq .qr{display:flex;align-items:center;gap:.5rem;border:1px solid var(--line);border-radius:var(--r-mini);padding:.35rem .7rem;margin-top:.3rem}
 @media (max-width:640px){
@@ -5234,7 +5135,7 @@ em,i,cite,dfn,var,address{font-style:normal}
       <button class="pillbtn solid invite" id="mgAddOne" data-demo-toast type="button" aria-label="新增單筆"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16"/></svg><span class="lbl">新增單筆</span></button>
     </div>
   </div>
-  <div class="dr-cards mg-kpis2" id="mgOv" aria-label="銷控關鍵指標"></div>
+  <div class="mg-kpis2" id="mgOv" aria-label="銷控關鍵指標"></div>
   <div class="mx-hint" id="unitHint" hidden>選取模式：點格子可複選；選好後用畫面下方的工具列操作。</div>
   <div class="matrix-card mg-noread" id="mgNoRead" hidden>這個角色的「檢視銷控表」沒有開啟，看不到銷控矩陣。<br><small>權限頁把「檢視銷控表」打開即可（目前只給了「檢視與調整底價」）。</small></div>
   <div class="mg-wrap" id="mgWrap">
