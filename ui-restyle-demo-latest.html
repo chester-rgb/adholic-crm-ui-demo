@@ -3387,8 +3387,10 @@ em,i,cite,dfn,var,address{font-style:normal}
 #page-news .h p b{color:var(--ink)}
 /* ── 最新消息＝上：公告卡、下：行事曆卡（Enson 2026-09-08）──
    卡片、標題帶、小字全沿用日報 .dr-* 元件；這裡只補來源標記與月曆本身。 */
-#page-news .news-card{margin-bottom:var(--grid-gap)}
+#page-news .news-card{margin-bottom:var(--sec-gap)}   /* 兩張卡是兩個段落，用節間距不用格線間距 */
+#page-news .news-card .hist .h{padding:var(--s2) 0}
 #page-news .news-card .hist .h:first-child{padding-top:0}
+#page-news .news-card .hist{overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable}
 #page-news .news-card .hist .h:hover{background:var(--fill)}
 #page-news .news-card .hist .h.pin{background:var(--fill);border-radius:var(--r-cell)}
 #page-news .chip.nsrc{border:1px solid var(--line-2);border-radius:var(--r-pill);padding:0 .4rem;line-height:1.7;color:var(--muted);font-size:.64rem;background:var(--bg)}
@@ -3407,12 +3409,12 @@ em,i,cite,dfn,var,address{font-style:normal}
 #page-news .cal-tg.hol[aria-pressed="true"]::before{background:var(--hot)}
 #page-news .cal-tg.off[aria-pressed="true"]::before{background:var(--line-3)}
 #page-news #calAdd{height:1.75rem;padding:0 .8rem;font-size:.72rem}
-#page-news .cal-week,#page-news .cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:var(--s1)}
-#page-news .cal-week{margin-bottom:var(--s1)}
+#page-news .cal-week,#page-news .cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:var(--grid-gap)}
+#page-news .cal-week{margin-bottom:0}
 #page-news .cal-week span{text-align:center;font-size:.64rem;color:var(--muted);letter-spacing:.06em;padding:var(--s1) 0}
 #page-news .cal-week span:nth-child(n+6){color:var(--line-3)}
 /* 日子是一顆按鈕（點了新增）：只正規化 button 的 UA 預設，字級自己給，不用 font 簡寫 */
-#page-news .cal-day{min-height:5.6rem;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-cell);padding:var(--s2);
+#page-news .cal-day{min-height:5.6rem;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-row);padding:var(--s2);
   display:flex;flex-direction:column;align-items:stretch;gap:.2rem;text-align:left;cursor:pointer;
   font-family:inherit;font-size:.72rem;color:var(--ink);transition:border-color .15s ease-out,background .15s ease-out}
 #page-news .cal-day:hover{border-color:var(--line-3);background:var(--panel)}
@@ -14300,7 +14302,7 @@ try{ /* collect */
         if(v.pin) newsPin(d,true);
         d.style.animation='rise .5s var(--enter) backwards';
         d.dataset.src='co';   /* 公司端發的一律是自訂公告 */
-        newsHeadCount();
+        newsHeadCount(); newsFit();
         addNewsUnread();
         toast('公告已發佈：<b>'+v.ti+'</b>');
       });
@@ -14315,6 +14317,15 @@ try{ /* collect */
     var cnt=$('#page-news .pagebar .cnt'); if(cnt) cnt.textContent=rows.length+' 筆';
   }
   newsHeadCount();
+  /* 公告卡只放四則的高度：第五則起在卡內捲。高度照實際列高量（展開內文時列會變高，所以每次都重量）*/
+  function newsFit(){
+    var hist=$('#page-news .news-card .hist'); if(!hist) return;
+    var rows=$$('#page-news .news-card .hist .h').filter(function(h){return h.style.display!=='none'});
+    if(rows.length<=4){ hist.style.maxHeight=''; return }
+    var top=rows[0].getBoundingClientRect().top, fifth=rows[4].getBoundingClientRect().top;
+    hist.style.maxHeight=Math.round(fifth-top+hist.scrollTop)+'px';
+  }
+  newsFit();
 
   /* ══ 行事曆：公司事項／節假日／排休三層（Enson 2026-09-08）══
      demo 資料放這裡。正式版三張表：events（k=co 公司自訂、sys 艾德霍客後台）、holidays（匯入人事行政總處行事曆）、
@@ -14412,7 +14423,7 @@ try{ /* collect */
   /* 點整列展開／收起內文；點到操作鈕不觸發 */
   document.addEventListener('click',function(e){
     var row=e.target.closest('#page-news .hist .h');
-    if(row && !e.target.closest('[data-act]')) row.classList.toggle('open');
+    if(row && !e.target.closest('[data-act]')){ row.classList.toggle('open'); setTimeout(newsFit,240) }
   });
   /* data-act 委派 */
   document.addEventListener('click',function(e){
@@ -14457,7 +14468,7 @@ try{ /* collect */
     } else if(act==='ndel'){
       var h3=b.closest('.h');
       softDelete(h3, h3.querySelector('p b').textContent.slice(0,12));
-      setTimeout(newsHeadCount,320);
+      setTimeout(function(){ newsHeadCount(); newsFit() },320);
     } else if(act==='dd'){
       e.stopPropagation();
       var opts=b.dataset.opts.split('|'), pre=b.textContent.split('：')[0];
