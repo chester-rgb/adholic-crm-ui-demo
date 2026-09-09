@@ -3392,9 +3392,9 @@ em,i,cite,dfn,var,address{font-style:normal}
    原本四欄擠在同一行——類別欄寫死 7rem，標題被壓成 minmax(0,1fr) 常常只剩幾十 px，
    置頂徽章又塞在標題後面壓到文字。改成標題獨占一行就不會再擠。
    左側固定留一格 --s4 的溝：未讀點放在裡面，不管讀沒讀，標題左緣都對齊。 */
-#page-news .hist .h{display:grid;grid-template-columns:auto auto minmax(0,1fr);
-  grid-template-areas:"title title title" "cat by time" "body body body";
-  align-items:center;column-gap:var(--s3);row-gap:var(--s1);
+#page-news .hist .h{display:grid;grid-template-columns:minmax(0,1fr) auto 4rem 3rem;
+  grid-template-areas:"title cat by time" "body body body body";
+  align-items:center;column-gap:var(--s3);row-gap:var(--s2);
   background:none;border:0;border-radius:0;border-bottom:1px solid var(--line);
   padding:var(--s3) 0 var(--s3) var(--s4);cursor:pointer;position:relative}
 #page-news .hist .h:last-child{border-bottom:0}
@@ -3405,18 +3405,22 @@ em,i,cite,dfn,var,address{font-style:normal}
   overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 /* meta 行：類別（含色點）｜發布者｜日期。全部同一級灰字，用「·」分隔不用框 */
 #page-news .hist .h > .top{grid-area:cat;margin:0;gap:var(--s2);align-items:center}
-#page-news .hist .h > .by{grid-area:by;font-size:var(--fs-2);color:var(--muted);justify-self:start}
-#page-news .hist .h > time{grid-area:time;font-size:var(--fs-2);color:var(--muted);justify-self:start;font-variant-numeric:tabular-nums}
-/* 三段 meta 用「·」串成一條 byline，不要把日期甩到列的最右邊 */
-#page-news .hist .h > .by::before,#page-news .hist .h > time::before{content:'·';margin-right:var(--s2);color:var(--line-3)}
+#page-news .hist .h > .by{grid-area:by;font-size:var(--fs-2);color:var(--muted);text-align:right;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#page-news .hist .h > time{grid-area:time;font-size:var(--fs-2);color:var(--muted);
+  font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right}
+/* 欄寬固定就分得開了，不再加「·」 */
+#page-news .hist .h > .top{justify-content:flex-end}
 #page-news .hist .h > .nbody{grid-area:body;font-size:var(--fs-3);color:var(--muted);line-height:1.85;
   max-height:0;overflow:hidden;opacity:0;transition:max-height var(--dur-2) var(--enter),opacity var(--dur-1) ease-out,margin var(--dur-2) var(--enter)}
 #page-news .hist .h.open > .nbody{max-height:9rem;opacity:1;margin-top:var(--s1)}
-/* 類別色點取代大色塊，四則的輕重差別交給點的顏色 */
-#page-news .hist .h .ndot-cat{width:6px;height:6px;border-radius:50%;flex:none;background:var(--accent)}
-#page-news .hist .h .ndot-cat.warm{background:var(--warm)}
-#page-news .hist .h .ndot-cat.edu{background:var(--chart-3)}
-#page-news .hist .h > .top > .chip{border:0;background:none;padding:0;min-height:0;color:var(--muted);font-size:var(--fs-2)}
+/* 類別改成有底色的膠囊（Enson 2026-09-09：不要圓點，改底色）。
+   三階語意：一般公告＝鋼藍｜要注意的維護＝琥珀｜資訊類教育訓練＝中性灰 */
+#page-news .hist .h .ndot-cat{display:none}
+#page-news .hist .h > .top > .chip{border:0;padding:0 var(--s2);min-height:1.25rem;font-size:var(--fs-2);
+  background:var(--tint);color:var(--accent);white-space:nowrap}
+#page-news .hist .h > .top > .chip.warm{background:var(--warm-tint);color:var(--warm-ink)}
+#page-news .hist .h > .top > .chip.edu{background:var(--fill-2);color:var(--muted)}
 /* 置頂徽章移到標題行的最右邊自己一格（原本塞在標題後面，長標題會被它壓掉） */
 #page-news .hist .h .pinchip{flex:none;font-size:var(--fs-2);min-height:1.25rem;padding:0 var(--s2);
   color:var(--accent);background:var(--tint);border:0}
