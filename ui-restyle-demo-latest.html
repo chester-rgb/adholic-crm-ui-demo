@@ -4841,24 +4841,20 @@ em,i,cite,dfn,var,address{font-style:normal}
 #mgMxCard .matrix-cell.mx-picked,#mgPkCard .mg-pcell.mx-picked{border-style:solid;border-color:var(--accent)}
 .mg-card .matrix-cell,.mg-card .mg-pcell{background:var(--bg)}
 /* 戶別左卡＋車位右卡並排；車位釘住跟捲；多棟自動改上下（Annie 9/8 最終定案） */
-.mg-wrap{display:grid;grid-template-columns:var(--mgLW,49rem) minmax(17rem,1fr);gap:var(--s5);align-items:start}
-.mg-card{margin-bottom:var(--s5);min-width:0}
-/* 左右第一排格子對齊（Annie 9/8）：兩卡頭鎖同高、B1 標籤行對位左側棟頭行 */
+/* 戶別在上、車位在下（Enson 2026-09-10）。原本是左右分欄，左欄寬度由棟數算，
+   棟數一多就把車位擠成細長條、整頁也會很寬。改成單欄之後戶別永遠吃得到整個版寬。 */
+.mg-wrap{display:grid;grid-template-columns:1fr;gap:var(--s5);align-items:start}
+.mg-card{min-width:0}
 /* 標題帶樣式來自共用的 .dr-section-head（已放寬到 #page-units）；這裡只補 chip 需要的垂直置中 */
 #page-units .mg-card>.dr-section-head{align-items:center;flex-wrap:nowrap}
 .mg-card>.dr-section-head h3{white-space:nowrap;display:flex;align-items:baseline;gap:var(--grid-gap)}
 .mg-card>.dr-section-head h3 .microlbl{font-size:var(--fs-2);color:var(--muted);font-weight:400;letter-spacing:.02em}
 .mg-pktabs button{padding:.05rem var(--s2);font-size:var(--fs-2)}
-/* 左右首格垂直對齊：棟頭行與 B1 標籤行鎖同一固定高度 */
+/* 棟頭行高度固定，樓層列才對得齊 */
 .mg-mx .bh{height:1.35rem;display:flex;align-items:flex-end;justify-content:center;padding-bottom:.15rem}
-#mgPk .mg-pklv:first-child{height:1.35rem;display:flex;align-items:flex-end;margin:0 0 var(--s2);padding-bottom:.15rem}
 .mg-pklv{font-size:var(--fs-2);margin:var(--s2) 0 var(--s1)}
-#mgPkCard{position:sticky;top:4.2rem}
-.mg-wrap.mg-stack{grid-template-columns:1fr}
-.mg-wrap.mg-stack #mgPkCard{position:static}
-.mg-wrap #mgMxCard .mg-mx{margin:0}
-.mg-wrap:not(.mg-stack) .mg-pk{grid-template-columns:repeat(auto-fill,minmax(3.3rem,4rem))}
-@media (max-width:1150px){.mg-wrap{grid-template-columns:1fr}#mgPkCard{position:static}}
+/* 車位卡不再 sticky——它在下面，跟著捲就好 */
+.mg-wrap #mgMxCard .mg-mx{margin:0 auto}
 .mg-pk{grid-template-columns:repeat(auto-fill,minmax(3.6rem,4.6rem));justify-content:start;gap:var(--s1)}
 
 .mg-pkbar{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);flex-wrap:wrap;margin:.1rem 0 var(--s3)}
@@ -16078,12 +16074,6 @@ function renderMx(){
   /* 格子不用大（Annie 9/5）：上限依棟數微調，多棟再收斂 */
   var cmaxR=bs.length<=6?7.2 : bs.length<=8?6 : 5.2;
   host.style.setProperty('--cmax', cmaxR+'rem'); /* 戶別大一點（Annie 9/8） */
-  /* 左卡精確理想寬（fit-content 會塌陷取 min）：樓層標籤+格欄+卡內距 */
-  var wrapEl=document.getElementById('mgWrap');
-  if(wrapEl){
-    var segMul=SPLIT?2:1, segGap=SPLIT?1.8:0;
-    wrapEl.style.setProperty('--mgLW',(3.4+(cmaxR+0.42)*bs.length*segMul+segGap+2.6)+'rem');
-  }
   function rowsHtml(flist){
     var h='<span></span>'+bs.map(function(b){return '<span class="bh">'+b+'</span>'}).join('');
     flist.forEach(function(f){
@@ -16107,9 +16097,6 @@ function renderMx(){
     return h;
   }
   host.classList.toggle('mg-split',SPLIT);
-  /* 多棟（含分段×2）矩陣需寬 → 車位卡自動移到下方 */
-  var wrap=document.getElementById('mgWrap');
-  if(wrap) wrap.classList.toggle('mg-stack',(SPLIT?bs.length*2:bs.length)>7);
   if(SPLIT){
     var half=Math.ceil(fs.length/2);
     var segCols='auto repeat('+bs.length+',minmax(2.8rem,1fr))';
