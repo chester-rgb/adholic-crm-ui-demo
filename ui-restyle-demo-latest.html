@@ -2664,14 +2664,19 @@ em,i,cite,dfn,var,address{font-style:normal}
 :is(#page-reports,#page-home) .dr-todo-row[data-state="overdue"] i{color:var(--hot)}
 :is(#page-reports,#page-home) .dr-todo-row[data-state="today"] i{color:var(--warm-ink)}
 :is(#page-reports,#page-home,#page-units,#page-news) .dr-note{margin-top:var(--s3);padding-top:var(--s3);border-top:1px solid var(--line);font-size:var(--fs-2);line-height:1.7;color:var(--muted)}
-#page-reports .dr-table-wrap{padding:0;background:var(--bg);border:1px solid var(--line-2);border-radius:var(--r-card);overflow-x:auto}
+/* 表格直接放在卡片上，不再自己包一層白框（Enson 2026-09-10：卡片裡再一個表格框是多餘的）。
+   旁邊「今日要追的人」也是清單直接貼在卡上，兩張卡語彙一致。
+   只留 overflow-x：窄螢幕時表格自己捲，不要把整頁撐出橫捲軸。 */
+#page-reports .dr-table-wrap{padding:0;background:none;border:0;border-radius:0;overflow-x:auto}
 #page-reports .dr-table{width:100%;min-width:42rem;table-layout:fixed;border-collapse:collapse;border-spacing:0}
 #page-reports .dr-table th,#page-reports .dr-table td{padding:var(--s3) var(--s2);border-bottom:1px solid var(--line);font-size:var(--fs-3);line-height:1.45;text-align:center;white-space:nowrap;font-variant-numeric:tabular-nums}
-#page-reports .dr-table th{background:var(--fill);font-weight:500;letter-spacing:.04em}
+#page-reports .dr-table th{background:none;color:var(--muted);font-weight:400;font-size:var(--fs-2);letter-spacing:.06em;
+  border-bottom:1px solid var(--line-2);padding-top:0}
 #page-reports .dr-table .chip{font-size:var(--fs-2)}
 #page-reports .dr-table tbody tr:last-child td{border-bottom:0}
 #page-reports .dr-table tbody tr:hover{transform:none}
 #page-reports .dr-table tbody tr:hover td{background:var(--fill)}
+#page-reports .dr-table tbody tr:last-child td{padding-bottom:0}
 #page-reports .dr-table th:nth-child(1){width:11%}
 #page-reports .dr-table th:nth-child(2){width:14%}
 #page-reports .dr-table th:nth-child(3){width:12%}
