@@ -3396,7 +3396,8 @@ em,i,cite,dfn,var,address{font-style:normal}
   grid-template-areas:"title cat by time" "body body body body";
   align-items:center;column-gap:var(--s3);row-gap:var(--s2);
   background:none;border:0;border-radius:0;border-bottom:1px solid var(--line);
-  padding:var(--s3) 0 var(--s3) var(--s4);cursor:pointer;position:relative}
+  padding:var(--s3) 0 var(--s3) var(--s4);cursor:pointer;position:relative;
+  border-left:2px solid transparent}   /* 每列都預留左緣，置頂才上色——不然置頂那列內容會位移 2px */
 #page-news .hist .h:last-child{border-bottom:0}
 #page-news .hist .h:hover{background:var(--panel)}
 #page-news .hist .h > p{grid-area:title;margin:0;min-width:0;display:flex;align-items:center;gap:var(--s2)}
@@ -3424,7 +3425,9 @@ em,i,cite,dfn,var,address{font-style:normal}
 /* 置頂徽章移到標題行的最右邊自己一格（原本塞在標題後面，長標題會被它壓掉） */
 #page-news .hist .h .pinchip{flex:none;font-size:var(--fs-2);min-height:1.25rem;padding:0 var(--s2);
   color:var(--accent);background:var(--tint);border:0}
-#page-news .h.pin{border-color:var(--line)}   /* 置頂只用左緣標記，底線不再變深 */
+/* 置頂＝左緣一道主色，不加底色（Enson 2026-09-09：內圈一個底不 ok）。
+   「置頂」兩個字的徽章本身已經說清楚了，底色是多的。 */
+#page-news .h.pin{border-bottom-color:var(--line);border-left-color:var(--accent)}
 #page-news .h .hacts{display:flex;gap:var(--s1);opacity:0;transition:opacity var(--dur-1) ease-out, transform var(--dur-2) var(--spring);position:absolute;right:.7rem;top:0;bottom:0;align-items:center;background:inherit;padding-left:.6rem}
 #page-news .h:hover .hacts,#page-news .h:focus-within .hacts{opacity:1}
 /* 未讀點放在列左側那格固定的溝裡（列有 padding-left:--s4）。
@@ -3441,7 +3444,7 @@ em,i,cite,dfn,var,address{font-style:normal}
 #page-news .news-card .hist .h:first-child{padding-top:var(--s3)}
 #page-news .news-card .hist{overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable}
 #page-news .news-card .hist .h:hover{background:var(--fill)}
-#page-news .news-card .hist .h.pin{background:var(--fill);border-radius:var(--r-cell)}
+#page-news .news-card .hist .h.pin{background:none}
 #page-news .chip.nsrc{border:1px solid var(--line-2);border-radius:var(--r-pill);padding:0 var(--s2);min-height:1.25rem;color:var(--muted);font-size:var(--fs-2);background:var(--bg)}
 /* 艾德霍客後台發的訊息：公司端只能置頂，不能改不能刪 */
 #page-news .h[data-src="sys"] .hacts [data-act="nedit"],#page-news .h[data-src="sys"] .hacts [data-act="ndel"]{display:none}
@@ -3838,7 +3841,7 @@ em,i,cite,dfn,var,address{font-style:normal}
      四則都擠在同一週，點的間距由列高決定而非時間，那條軸看起來是刻度其實是等距列表 */
   #page-news .hist{position:relative}
   #page-news .hist .h{position:relative}
-  #page-news .hist .h.pin{box-shadow:none;background:var(--panel);border-radius:var(--r-cell)}
+  #page-news .hist .h.pin{box-shadow:none;background:none;border-radius:0}
   #page-news .chip.pinchip{background:var(--accent); border-color:var(--accent); color:var(--on-accent)}
   #page-news .chip.warm{border-color:var(--warm); color:var(--warm-ink)}
   #page-news .chip.edu{border-color:var(--line-accent); color:var(--accent)}
